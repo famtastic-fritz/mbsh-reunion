@@ -1,0 +1,61 @@
+/* chatbot.css — Hi-Tide Harry floating chatbot widget per V1-BRIEF Section 10
+   Phase 1 = FAQ + fallback collector. */
+
+.chatbot { position: fixed; bottom: calc(var(--space-lg) + 96px); right: var(--space-lg); z-index: 99; font-family: var(--font-body); }
+
+.chatbot__bubble {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--c-red);
+  box-shadow: 0 4px 20px rgba(200,16,46,0.5);
+  padding: 0; overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--duration-mid), box-shadow var(--duration-mid);
+  animation: chatbot-pulse 3s ease-in-out infinite;
+  display: flex; align-items: center; justify-content: center;
+}
+.chatbot__bubble img { width: 56px; height: 56px; object-fit: cover; pointer-events: none; }
+.chatbot__bubble:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 6px 28px rgba(200,16,46,0.6); animation: none; }
+
+@keyframes chatbot-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(200,16,46,0.5); }
+  50%      { box-shadow: 0 4px 32px rgba(200,16,46,0.8); }
+}
+
+.chatbot__panel {
+  position: absolute;
+  bottom: 80px; right: 0;
+  width: min(380px, calc(100vw - 2rem));
+  height: min(560px, calc(100vh - 12rem));
+  background: var(--c-cream);
+  border-radius: 12px;
+  box-shadow: 0 16px 48px rgba(10,10,10,0.4);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--c-silver);
+}
+@media (max-width: 480px) {
+  .chatbot__panel { position: fixed; inset: 0; bottom: 0; right: 0; width: 100vw; height: 100vh; border-radius: 0; }
+}
+
+.chatbot__panel-header { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--c-off-black); color: var(--c-white); position: relative; }
+.chatbot__panel-pose { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; background: var(--c-red); padding: 4px; }
+.chatbot__panel-title { display: flex; flex-direction: column; gap: 2px; }
+.chatbot__panel-title strong { font-family: var(--font-display); font-weight: 700; font-size: 1.125rem; }
+.chatbot__panel-title span { font-family: var(--font-italic); font-style: italic; font-size: 0.85rem; color: var(--c-silver); }
+.chatbot__close { position: absolute; top: var(--space-sm); right: var(--space-sm); font-size: 1.5rem; line-height: 1; width: 2rem; height: 2rem; color: var(--c-silver); border-radius: 4px; }
+.chatbot__close:hover { background: rgba(255,255,255,0.1); color: var(--c-white); }
+
+.chatbot__messages { flex: 1; overflow-y: auto; list-style: none; padding: var(--space-md); margin: 0; display: flex; flex-direction: column; gap: var(--space-sm); background: var(--c-cream); }
+.chatbot__msg { padding: 0.6rem 0.9rem; border-radius: 14px; font-size: 0.95rem; line-height: 1.4; max-width: 80%; word-wrap: break-word; }
+.chatbot__msg--harry { background: var(--c-red); color: var(--c-white); align-self: flex-start; border-bottom-left-radius: 2px; }
+.chatbot__msg--user { background: var(--c-silver-light); color: var(--c-off-black); align-self: flex-end; border-bottom-right-radius: 2px; }
+.chatbot__msg a { color: inherit; text-decoration: underline; }
+.chatbot__msg--fallback-form { background: var(--c-white); border: 1px dashed var(--c-silver); color: var(--c-off-black); display: flex; flex-direction: column; gap: var(--space-sm); width: 100%; max-width: none; }
+.chatbot__msg--fallback-form input { width: 100%; padding: 0.5rem; border: 1px solid var(--c-silver); border-radius: 3px; font-size: 0.9rem; }
+.chatbot__msg--fallback-form button { background: var(--c-red); color: var(--c-white); padding: 0.5rem 1rem; border-radius: 3px; font-weight: 600; font-size: 0.85rem; align-self: flex-start; }
+
+.chatbot__input { display: flex; gap: var(--space-xs); padding: var(--space-sm); background: var(--c-white); border-top: 1px solid var(--c-silver-light); }
+.chatbot__input input { flex: 1; padding: 0.6rem 0.9rem; border: 1px solid var(--c-silver); border-radius: 18px; font-size: 0.95rem; }
+.chatbot__input input:focus { outline: none; border-color: var(--c-red); }
+.chatbot__input button { background: var(--c-red); color: var(--c-white); width: 2.4rem; height: 2.4rem; border-radius: 50%; font-size: 1.1rem; line-height: 1; display: flex; align-items: center; justify-content: center; }
+.chatbot__input button:hover { background: var(--c-red-deep); }

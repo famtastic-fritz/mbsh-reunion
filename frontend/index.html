@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MBSH Class of '96 — 30th Reunion. A black-tie celebration thirty years in the making.">
+  <title>MBSH Class of &rsquo;96 — 30th Reunion</title>
+  <link rel="preload" as="image" href="assets/brand-mark/brand-mark.png">
+  <link rel="preload" as="video" href="assets/backgrounds/05-dancefloor-confetti.mp4">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Allura&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/story.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/compass.css">
+  <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body data-page="home">
+
+  <!-- ════ Section 1: Hero ════════════════════════════════════════════ -->
+  <section class="hero" aria-label="MBSH Class of '96 — 30th Reunion welcome">
+    <video class="hero__video" src="assets/backgrounds/05-dancefloor-confetti.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <div class="hero__overlay" aria-hidden="true"></div>
+    <div class="hero__content">
+      <img class="hero__mark" src="assets/brand-mark/brand-mark.png" alt="30 + 100 commemorative mark — Class of '96 30th reunion, MBSH 100th anniversary" width="120" height="120">
+      <div class="hero__type">
+        <p class="hero__welcome">Welcome back, Class of &rsquo;96</p>
+        <h1 class="hero__headline"><span>Thirty Years Of</span><span>Hi-Tides</span></h1>
+        <p class="hero__date" data-config-bind="reunion_date_display">October–November 2026 — Miami Beach</p>
+      </div>
+      <a class="hero__cta hero__cta--disabled" href="#" data-payments-state="disabled" aria-disabled="true">Reservations Opening Soon</a>
+      <a class="hero__cta hero__cta--enabled" href="rsvp.html" data-payments-state="live" hidden>Reserve Your Seat</a>
+      <img class="hero__harry" src="assets/mascot/01-wave-hello.png" alt="Hi-Tide Harry waving hello" width="280" height="280" loading="eager">
+      <div class="hero__scroll-tease" aria-hidden="true">
+        <span>Let us be known for our deeds</span>
+        <svg class="hero__chevron" viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 2 12 10 20 2"></polyline>
+          <polyline points="4 12 12 20 20 12" opacity="0.6"></polyline>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ Section 2: The Story (Then / Now / Forever) ═══════════════ -->
+  <section class="story" aria-label="The Story">
+    <article class="story__moment story__moment--then">
+      <div class="story__bg" style="background-image: url('assets/story/then-1996-hallway.jpg')"></div>
+      <div class="story__overlay"></div>
+      <h2 class="story__caption">In 1996, we walked these halls.</h2>
+    </article>
+    <article class="story__moment story__moment--now">
+      <div class="story__bg" style="background-image: url('assets/story/now-miami-beach.jpg')"></div>
+      <div class="story__overlay"></div>
+      <h2 class="story__caption">Thirty years later, we walk back together.</h2>
+    </article>
+    <article class="story__moment story__moment--forever">
+      <div class="story__forever-stage">
+        <img class="story__forever-mark" src="assets/brand-mark/brand-mark.png" alt="" aria-hidden="true">
+      </div>
+      <h2 class="story__caption">At a school turning 100. One night. One class. One hundred years of Hi-Tides.</h2>
+    </article>
+  </section>
+
+  <!-- ════ Event Details (inline after Story) ════════════════════════ -->
+  <section class="event-details" aria-label="Event details">
+    <div class="event-details__grid">
+      <div class="event-details__item"><span class="event-details__label">Date</span><span class="event-details__value" data-config-bind="reunion_date_display">October–November 2026</span></div>
+      <div class="event-details__item"><span class="event-details__label">Time</span><span class="event-details__value">7:00 PM – Midnight</span></div>
+      <div class="event-details__item"><span class="event-details__label">Venue</span><span class="event-details__value" data-config-bind="reunion_venue">Venue announcement coming soon</span></div>
+      <div class="event-details__item"><span class="event-details__label">Attire</span><span class="event-details__value">Black-tie cocktail</span></div>
+    </div>
+    <p class="event-details__hook">A black-tie celebration thirty years in the making.</p>
+  </section>
+
+  <!-- ════ Page-anchor previews to other sections ═════════════════════ -->
+  <section class="previews" aria-label="More from the reunion">
+    <a class="preview-card" href="rsvp.html"><h3>Reserve Your Seat</h3><p>Tell us you're coming. The night unlocks once we hear from you.</p></a>
+    <a class="preview-card" href="tickets.html"><h3>Tickets &amp; Sponsorship</h3><p>Two ways in: secure your seat, or help fund the night.</p></a>
+    <a class="preview-card" href="through-years.html"><h3>Through the Years</h3><p>One hundred years of Hi-Tides. The eras that built us.</p></a>
+    <a class="preview-card" href="memorial.html"><h3>In Memory</h3><p>Forever Hi-Tides. Names we carry with us.</p></a>
+    <a class="preview-card" href="capsule.html"><h3>Time Capsule</h3><p>Send your younger self a note. We'll deliver on the day.</p></a>
+    <a class="preview-card" href="playlist.html"><h3>Our Soundtrack</h3><p>The songs that made us who we are. Curated, embedded, alive.</p></a>
+  </section>
+
+  <!-- Shared partials inlined (Studio template-first style) -->
+  <!--#include partial="compass-nav" -->
+  <nav class="compass-nav" aria-label="Site navigation">
+    <button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="20"/><circle cx="32" cy="32" r="3" fill="currentColor"/>
+        <path d="M32 8 L36 30 L32 28 L28 30 Z" fill="currentColor"/>
+      </svg>
+      <span class="compass-nav__label" aria-hidden="true">Compass</span>
+    </button>
+    <ul class="compass-nav__items" id="compass-nav-items" role="menu">
+      <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+      <li role="none"><a href="rsvp.html" role="menuitem">RSVP</a></li>
+      <li role="none"><a href="tickets.html" role="menuitem">Tickets</a></li>
+      <li role="none"><a href="through-years.html" role="menuitem">Through the Years</a></li>
+      <li role="none"><a href="memorial.html" role="menuitem">In Memory</a></li>
+      <li role="none"><a href="capsule.html" role="menuitem">Time Capsule</a></li>
+      <li role="none"><a href="playlist.html" role="menuitem">Playlist</a></li>
+    </ul>
+  </nav>
+
+  <div class="chatbot" id="chatbot" aria-label="Hi-Tide Harry chat">
+    <button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open Hi-Tide Harry chat">
+      <img src="assets/mascot/06-listening.png" alt="" width="64" height="64" aria-hidden="true">
+    </button>
+    <div class="chatbot__panel" id="chatbot-panel" hidden>
+      <header class="chatbot__panel-header">
+        <img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello.png" alt="" width="120" height="120" aria-hidden="true">
+        <div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div>
+        <button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close chat">×</button>
+      </header>
+      <ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul>
+      <form class="chatbot__input" id="chatbot-form">
+        <input type="text" id="chatbot-input" placeholder="Ask Harry about July 12&hellip;" aria-label="Type your question" autocomplete="off">
+        <button type="submit" aria-label="Send">→</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer" data-template="footer">
+    <div class="footer__inner">
+      <div class="footer__col footer__col--identity">
+        <img class="footer__mark" src="assets/brand-mark/brand-mark.png" alt="" width="80" height="80" aria-hidden="true">
+        <p class="footer__title">Class of 1996 &middot; 30th Reunion</p>
+        <p class="footer__sub">Hi-Tide Pride Since 1926 🌊</p>
+        <p class="footer__tagline">Let us be known for our deeds</p>
+      </div>
+      <div class="footer__col footer__col--contact">
+        <h4>Reunion Committee</h4>
+        <p><a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p>
+        <p class="footer__social">
+          <a href="#" aria-label="Class Instagram">Instagram</a>
+          <a href="#" aria-label="Facebook reunion group">Facebook</a>
+        </p>
+      </div>
+      <div class="footer__col footer__col--resources">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a></li>
+          <li><a href="through-years.html#submit-memory">Submit a memory</a></li>
+          <li><a href="tickets.html#sponsor">Become a sponsor</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__strip">
+      <p class="footer__copyright">© 2026 MBSH Class of '96 Reunion Committee</p>
+      <p class="footer__credit">Built with <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p>
+    </div>
+  </footer>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/countdown.js" defer></script>
+  <script src="js/compass.js" defer></script>
+  <script src="js/chatbot.js" defer></script>
+</body>
+</html>

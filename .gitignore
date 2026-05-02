@@ -1,0 +1,48 @@
+# Environment files (never commit secrets)
+.env
+.env.*
+!.env.example
+
+# Local PHP config overrides (gitignored, mode 0600)
+*-config.local.php
+mbsh-config.php
+.mbsh-config.local.php
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build artifacts
+dist/
+build/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# Upload directories — only .gitkeep tracked
+backend/uploads/approved/sponsors/*
+backend/uploads/approved/memories/*
+!backend/uploads/approved/sponsors/.gitkeep
+!backend/uploads/approved/memories/.gitkeep
+
+# Pending uploads should NEVER be web-accessible — these directories don't exist in the repo
+backend/uploads/pending/
+
+# Story stills work (uncommitted recovery target)
+frontend/assets/story/*.png
+frontend/assets/story/*.jpg
+!frontend/assets/story/.gitkeep
+
+# Temporary files
+*.tmp
+*.bak
+
+# PHP session files in tests
+sess_*

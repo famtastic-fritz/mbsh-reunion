@@ -1,0 +1,103 @@
+/* compass.css — Hi-Tide Compass right-side circular medallion navigation
+   Per COWORK-BRIEFING: persistent ~64px circular medallion, anchored bottom-right,
+   1940s Miami Beach yacht-instrument feel. Click expands radial menu. */
+
+.compass-nav {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  z-index: 100;
+  font-family: var(--font-body);
+}
+
+.compass-nav__medallion {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--grad-silver-bezel);
+  border: 2px solid var(--c-silver-dark);
+  color: var(--c-off-black);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--duration-mid) var(--ease-out), box-shadow var(--duration-mid);
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+.compass-nav__medallion svg { width: 36px; height: 36px; transition: transform var(--duration-mid); }
+.compass-nav__medallion:hover {
+  transform: rotate(15deg);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+.compass-nav__medallion[aria-expanded="true"] {
+  transform: rotate(45deg);
+  background: var(--c-red);
+  color: var(--c-white);
+}
+.compass-nav__medallion[aria-expanded="true"] svg path { fill: var(--c-white); }
+.compass-nav__medallion[aria-expanded="true"] svg circle:last-of-type { fill: var(--c-white); }
+
+.compass-nav__items {
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.compass-nav__items li {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.6) translate(0,0);
+  transition: opacity var(--duration-mid) var(--ease-out), transform var(--duration-mid) var(--ease-out);
+}
+.compass-nav__items li a {
+  display: inline-block;
+  background: var(--c-off-black);
+  color: var(--c-white);
+  padding: 0.5rem 0.9rem;
+  border-radius: 18px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid var(--c-silver);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: background var(--duration-fast), color var(--duration-fast);
+}
+.compass-nav__items li a:hover, .compass-nav__items li a:focus-visible {
+  background: var(--c-red);
+  color: var(--c-white);
+  outline: none;
+}
+.compass-nav__items li a[aria-current="page"] { background: var(--c-red); color: var(--c-white); }
+
+/* Expanded state — radial layout, 7 items around the medallion */
+.compass-nav[data-expanded="true"] .compass-nav__items { pointer-events: auto; }
+.compass-nav[data-expanded="true"] .compass-nav__items li { opacity: 1; }
+
+.compass-nav__items li:nth-child(1) { transform-origin: bottom right; }
+.compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(1) { transform: scale(1) translate(-72px, -24px); }
+.compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(2) { transform: scale(1) translate(-128px, -64px); }
+.compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(3) { transform: scale(1) translate(-156px, -120px); }
+.compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(4) { transform: scale(1) translate(-156px, -184px); }
+.compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(5) { transform: scale(1) translate(-128px, -240px); }
+.compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(6) { transform: scale(1) translate(-72px, -280px); }
+.compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(7) { transform: scale(1) translate(0, -296px); }
+
+@media (max-width: 640px) {
+  /* Mobile: stack vertically instead of radial — radial doesn't fit small screens */
+  .compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(n) { transform: scale(1) translate(0, calc(-1 * var(--n, 1) * 48px - 32px)); }
+  .compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(1) { --n: 1; }
+  .compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(2) { --n: 2; }
+  .compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(3) { --n: 3; }
+  .compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(4) { --n: 4; }
+  .compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(5) { --n: 5; }
+  .compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(6) { --n: 6; }
+  .compass-nav[data-expanded="true"] .compass-nav__items li:nth-child(7) { --n: 7; }
+}

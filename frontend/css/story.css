@@ -1,0 +1,174 @@
+/* story.css — Section 2 three-moment vertical scroll narrative
+   Then / Now / Forever. IntersectionObserver fade in main.js. */
+
+.story { background: var(--c-off-black); position: relative; }
+
+.story__moment {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl) var(--space-lg);
+  overflow: hidden;
+  color: var(--c-white);
+}
+
+.story__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.story__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.85) 100%);
+  z-index: 1;
+}
+
+.story__caption {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-align: center;
+  max-width: 36rem;
+  margin: 0;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out);
+}
+.story__caption.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Moment 3 — Forever — brand mark on red */
+.story__moment--forever {
+  background: var(--c-red);
+}
+.story__moment--forever .story__bg, .story__moment--forever .story__overlay { display: none; }
+
+.story__forever-stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-xl);
+}
+
+.story__forever-mark {
+  width: clamp(180px, 30vw, 320px);
+  height: auto;
+  filter: drop-shadow(0 12px 32px rgba(0,0,0,0.4));
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out);
+}
+.story__forever-mark.is-visible {
+  opacity: 1;
+  transform: scale(1);
+  animation: forever-pulse 4s ease-in-out infinite 800ms;
+}
+
+@keyframes forever-pulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 12px 32px rgba(0,0,0,0.4)); }
+  50%      { transform: scale(1.03); filter: drop-shadow(0 16px 48px rgba(0,0,0,0.5)); }
+}
+
+/* Story moment placeholder backgrounds (gradient until stills land) */
+.story__moment--then .story__bg { background: linear-gradient(135deg, #3a2a1a 0%, #1a1006 100%); }
+.story__moment--now .story__bg { background: linear-gradient(135deg, #1f3550 0%, #0a1a2a 100%); }
+
+/* Event details inline after Story */
+.event-details {
+  background: var(--c-off-black);
+  color: var(--c-white);
+  padding: var(--space-3xl) var(--space-lg);
+  text-align: center;
+}
+.event-details__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  max-width: var(--container-narrow);
+  margin: 0 auto var(--space-xl);
+}
+.event-details__item { display: flex; flex-direction: column; gap: var(--space-xs); }
+.event-details__label {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--c-silver);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.event-details__value {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--c-cream);
+}
+.event-details__hook {
+  font-family: var(--font-script-small);
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  color: var(--c-silver);
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .event-details__grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Page-anchor previews to other pages from home */
+.previews {
+  background: linear-gradient(180deg, var(--c-off-black) 0%, var(--c-off-black-soft) 100%);
+  color: var(--c-white);
+  padding: var(--space-3xl) var(--space-lg);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.preview-card {
+  display: block;
+  padding: var(--space-lg);
+  border: 1px solid rgba(192,192,192,0.18);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.02);
+  transition: border-color var(--duration-mid), background var(--duration-mid), transform var(--duration-mid);
+  color: var(--c-white);
+}
+.preview-card:hover, .preview-card:focus-visible {
+  border-color: var(--c-silver);
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-2px);
+  color: var(--c-white);
+}
+.preview-card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 0 0 var(--space-sm);
+  letter-spacing: 0.01em;
+}
+.preview-card p {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.05rem;
+  margin: 0;
+  color: var(--c-cream);
+}
+
+@media (min-width: 768px) {
+  .previews { grid-template-columns: repeat(3, 1fr); padding: var(--space-3xl) var(--space-xl); }
+  .event-details { padding: var(--space-3xl) var(--space-xl); }
+}

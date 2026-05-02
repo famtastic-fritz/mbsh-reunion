@@ -1,0 +1,23 @@
+# .htaccess — hardening for approved upload directories
+# Per V1-BRIEF File Upload Safety. Apache 2.4+, PCRE-compiled.
+
+# Disable PHP / script execution
+<FilesMatch "\.(php|phtml|php3|php4|php5|phar|cgi|pl)$">
+  Require all denied
+</FilesMatch>
+
+# Disable directory listing
+Options -Indexes
+
+# Disable script execution
+Options -ExecCGI
+
+# Add nosniff for image MIME types
+<FilesMatch "\.(jpe?g|png|webp)$">
+  Header set X-Content-Type-Options "nosniff"
+</FilesMatch>
+
+# Deny non-image extensions (negative lookahead — requires PCRE)
+<FilesMatch "\.(?!jpe?g|png|webp)$">
+  Require all denied
+</FilesMatch>

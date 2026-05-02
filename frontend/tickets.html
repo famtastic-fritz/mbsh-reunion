@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tickets and sponsorship for MBSH Class of '96 30th Reunion.">
+  <title>Tickets &amp; Sponsorship — MBSH Class of &rsquo;96</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Allura&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
+  <link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/typography.css"><link rel="stylesheet" href="css/sections.css"><link rel="stylesheet" href="css/compass.css"><link rel="stylesheet" href="css/chatbot.css"><link rel="stylesheet" href="css/footer.css">
+</head>
+<body data-page="tickets">
+  <header class="page-header"><a class="page-header__back" href="index.html"><img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a><h1 class="page-header__title">The Night</h1><p class="page-header__sub">Two ways in: secure your seat, or help fund the night.</p></header>
+
+  <section class="tickets" aria-label="Ticket tiers">
+    <h2 class="section-head">Tickets</h2>
+    <div class="tickets__cards">
+      <article class="tier-card tier-card--early-bird" data-early-bird-show="true">
+        <h3 class="tier-card__name">Early Bird</h3>
+        <p class="tier-card__price"><span class="tier-card__currency">$</span><span data-config-bind="early_bird_price">60</span><span class="tier-card__per"> per person</span></p>
+        <p class="tier-card__blurb">Until <span data-config-bind="early_bird_deadline_display">June 1, 2026</span></p>
+        <button class="tier-card__cta" type="button" data-payments-state="disabled" disabled>Ticketing Opens Soon</button>
+        <button class="tier-card__cta" type="button" data-payments-state="live" hidden>Purchase Tickets</button>
+      </article>
+      <article class="tier-card tier-card--regular">
+        <h3 class="tier-card__name">Regular Price</h3>
+        <p class="tier-card__price"><span class="tier-card__currency">$</span><span data-config-bind="regular_price">75</span><span class="tier-card__per"> per person</span></p>
+        <p class="tier-card__blurb">After Early Bird closes</p>
+        <button class="tier-card__cta" type="button" data-payments-state="disabled" disabled>Ticketing Opens Soon</button>
+        <button class="tier-card__cta" type="button" data-payments-state="live" hidden>Purchase Tickets</button>
+      </article>
+    </div>
+    <p class="tickets__note">Ticketing opens once the committee finalizes the payment account. <a href="rsvp.html">RSVP for free now</a> to be notified.</p>
+  </section>
+
+  <section class="sponsors" id="sponsor" aria-label="Sponsorship tiers">
+    <h2 class="section-head">Sponsorship</h2>
+    <p class="sponsors__intro">Sponsor track funds the event. Premium logo placement, recognition at the event, social acknowledgment.</p>
+    <div class="sponsors__grid">
+      <article class="sponsor-tier sponsor-tier--diamond"><span class="sponsor-tier__rank">Diamond Sponsor</span><span class="sponsor-tier__amount">$1,000+</span><ul class="sponsor-tier__benefits"><li>Premium logo placement</li><li>Recognition at event</li><li>Social acknowledgment</li></ul><button class="sponsor-tier__cta" type="button" data-sponsor-tier="diamond">Become a Sponsor</button></article>
+      <article class="sponsor-tier sponsor-tier--captain"><span class="sponsor-tier__rank">Hi-Tide Captain</span><span class="sponsor-tier__amount">$500</span><ul class="sponsor-tier__benefits"><li>Featured logo placement</li><li>Recognition at event</li></ul><button class="sponsor-tier__cta" type="button" data-sponsor-tier="captain">Become a Captain</button></article>
+      <article class="sponsor-tier sponsor-tier--crew"><span class="sponsor-tier__rank">Hi-Tide Crew</span><span class="sponsor-tier__amount">$250</span><ul class="sponsor-tier__benefits"><li>Logo on sponsor wall</li></ul><button class="sponsor-tier__cta" type="button" data-sponsor-tier="crew">Join the Crew</button></article>
+      <article class="sponsor-tier sponsor-tier--friend"><span class="sponsor-tier__rank">Hi-Tide Friend</span><span class="sponsor-tier__amount">$100</span><ul class="sponsor-tier__benefits"><li>Name on sponsor wall</li></ul><button class="sponsor-tier__cta" type="button" data-sponsor-tier="friend">Be a Friend</button></article>
+      <article class="sponsor-tier sponsor-tier--custom"><span class="sponsor-tier__rank">Custom Amount</span><span class="sponsor-tier__amount">You decide</span><ul class="sponsor-tier__benefits"><li>Tailored recognition</li></ul><button class="sponsor-tier__cta" type="button" data-sponsor-tier="custom">Custom Sponsorship</button></article>
+    </div>
+
+    <h3 class="sponsors__wall-head">Already Supporting</h3>
+    <div class="sponsor-wall" id="sponsor-wall" aria-live="polite">
+      <p class="sponsor-wall__empty">Be among the first to support this milestone celebration.</p>
+    </div>
+  </section>
+
+  <!-- Sponsor inquiry modal -->
+  <dialog class="sponsor-modal" id="sponsor-modal">
+    <form class="sponsor-form" id="sponsor-form" enctype="multipart/form-data">
+      <h3 class="sponsor-form__title">Sponsor Inquiry</h3>
+      <button class="sponsor-form__close" type="button" id="sponsor-modal-close" aria-label="Close">×</button>
+      <label class="field"><span class="field__label">Name *</span><input class="field__input" type="text" name="contact_name" required maxlength="255"></label>
+      <label class="field"><span class="field__label">Company / Organization</span><input class="field__input" type="text" name="company_name" maxlength="255"></label>
+      <label class="field"><span class="field__label">Email *</span><input class="field__input" type="email" name="email" required maxlength="255"></label>
+      <label class="field"><span class="field__label">Phone</span><input class="field__input" type="tel" name="phone" maxlength="50"></label>
+      <label class="field"><span class="field__label">Tier interest *</span>
+        <select class="field__input" name="tier_interest" id="sponsor-tier-select" required>
+          <option value="">— Select —</option>
+          <option value="diamond">Diamond ($1,000+)</option>
+          <option value="captain">Captain ($500)</option>
+          <option value="crew">Crew ($250)</option>
+          <option value="friend">Friend ($100)</option>
+          <option value="custom">Custom Amount</option>
+        </select>
+      </label>
+      <label class="field" id="sponsor-custom-amount-wrap" hidden><span class="field__label">Custom amount (USD)</span><input class="field__input" type="number" name="custom_amount" min="1" step="1"></label>
+      <label class="field"><span class="field__label">Logo upload (JPG/PNG/WebP, 2MB max)</span><input class="field__input" type="file" name="logo" accept="image/jpeg,image/png,image/webp"></label>
+      <label class="field"><span class="field__label">Custom message</span><textarea class="field__input" name="message" maxlength="2000" rows="3"></textarea></label>
+      <input type="text" name="website" class="rsvp-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="form_loaded_at" id="sponsor-form-loaded-at">
+      <p class="sponsor-form__consent">Your contact information will be used to coordinate sponsorship details. Approved sponsor logos appear publicly on the site.</p>
+      <button type="submit" class="sponsor-form__submit">Submit Inquiry</button>
+    </form>
+  </dialog>
+
+  <nav class="compass-nav" aria-label="Site navigation"><button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="20"/><circle cx="32" cy="32" r="3" fill="currentColor"/><path d="M32 8 L36 30 L32 28 L28 30 Z" fill="currentColor"/></svg></button><ul class="compass-nav__items" id="compass-nav-items" role="menu"><li role="none"><a href="index.html" role="menuitem">Home</a></li><li role="none"><a href="rsvp.html" role="menuitem">RSVP</a></li><li role="none"><a href="tickets.html" role="menuitem" aria-current="page">Tickets</a></li><li role="none"><a href="through-years.html" role="menuitem">Through the Years</a></li><li role="none"><a href="memorial.html" role="menuitem">In Memory</a></li><li role="none"><a href="capsule.html" role="menuitem">Time Capsule</a></li><li role="none"><a href="playlist.html" role="menuitem">Playlist</a></li></ul></nav>
+  <div class="chatbot" id="chatbot"><button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open chat"><img src="assets/mascot/06-listening.png" alt="" width="64" height="64"></button><div class="chatbot__panel" id="chatbot-panel" hidden><header class="chatbot__panel-header"><img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello.png" alt="" width="120" height="120"><div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div><button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close">×</button></header><ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul><form class="chatbot__input" id="chatbot-form"><input type="text" id="chatbot-input" placeholder="Ask Harry&hellip;" autocomplete="off"><button type="submit">→</button></form></div></div>
+  <img class="page-mascot page-mascot--running" src="assets/mascot/10-running.png" alt="" aria-hidden="true">
+
+  <footer class="footer"><div class="footer__inner"><div class="footer__col footer__col--identity"><img class="footer__mark" src="assets/brand-mark/brand-mark.png" alt="" width="80" height="80"><p class="footer__title">Class of 1996 &middot; 30th Reunion</p><p class="footer__sub">Hi-Tide Pride Since 1926 🌊</p><p class="footer__tagline">Let us be known for our deeds</p></div><div class="footer__col footer__col--contact"><h4>Reunion Committee</h4><p><a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p></div><div class="footer__col footer__col--resources"><h4>Resources</h4><ul><li><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a></li><li><a href="through-years.html#submit-memory">Submit a memory</a></li><li><a href="tickets.html#sponsor">Become a sponsor</a></li></ul></div></div><div class="footer__strip"><p class="footer__copyright">© 2026 MBSH Class of '96 Reunion Committee</p><p class="footer__credit">Built with <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p></div></footer>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/compass.js" defer></script>
+  <script src="js/sponsor.js" defer></script>
+  <script src="js/chatbot.js" defer></script>
+</body>
+</html>

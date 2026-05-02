@@ -1,0 +1,38 @@
+/* typography.css — six-font system, scales, text-treatments */
+
+.section-head {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--space-lg);
+  text-transform: uppercase;
+}
+
+.script-large { font-family: var(--font-script-large); font-size: clamp(2rem, 5vw, 3.5rem); color: var(--c-silver); }
+.script-small { font-family: var(--font-script-small); font-size: clamp(1.4rem, 3vw, 2rem); color: var(--c-silver); }
+.italic-body { font-family: var(--font-italic); font-style: italic; font-size: 1.125rem; line-height: 1.6; }
+.mono { font-family: var(--font-mono); }
+
+.page-header {
+  position: relative;
+  padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+  background: linear-gradient(180deg, var(--c-off-black) 0%, var(--c-off-black-soft) 100%);
+  color: var(--c-white);
+  text-align: center;
+}
+.page-header__back { position: absolute; top: var(--space-md); left: var(--space-md); display: inline-block; }
+.page-header__mark { width: 56px; height: 56px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); transition: transform var(--duration-fast); }
+.page-header__back:hover .page-header__mark { transform: scale(1.06); }
+.page-header__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: 0.02em;
+  margin: var(--space-md) 0 var(--space-sm);
+  text-transform: uppercase;
+}
+.page-header__title--script { font-family: var(--font-script-large); text-transform: none; font-weight: 400; color: var(--c-silver); }
+.page-header__sub { font-family: var(--font-italic); font-style: italic; font-size: clamp(1rem, 2vw, 1.25rem); color: var(--c-cream); margin: 0; }
+.page-header__sub--italic { font-style: italic; }
+.page-header--reverent { background: var(--c-off-black); padding: var(--space-3xl) var(--space-lg); }
