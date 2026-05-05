@@ -32,7 +32,7 @@
   window.__famHelpers = {
     formLoadedAtIsRecent(formEl, minMs = 3000) {
       const ts = parseInt(formEl.querySelector('input[name="form_loaded_at"]')?.value || '0', 10);
-      return ts && (Date.now() - ts) < minMs;
+      return ts && (Date.now() - ts) >= minMs;
     },
     apiUrl(path) {
       const base = (window.__SITE_CONFIG__ && (window.__SITE_CONFIG__.API_BASE_URL || window.__SITE_CONFIG__.API_BASE_URL_DEV)) || '';

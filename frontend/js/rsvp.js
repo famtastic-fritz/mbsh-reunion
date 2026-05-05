@@ -22,6 +22,8 @@
     submit.disabled = true; submit.textContent = 'Sending…';
     try {
       const data = window.__famHelpers.serializeForm(form);
+      const publicOptIn = form.querySelector('input[name="display_publicly"]');
+      if (publicOptIn) data.display_publicly = publicOptIn.checked ? '1' : '0';
       const url = window.__famHelpers.apiUrl('/rsvp.php');
       const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
       if (!res.ok) throw new Error('http ' + res.status);
