@@ -35,9 +35,9 @@ backend/uploads/approved/memories/*
 # Pending uploads should NEVER be web-accessible — these directories don't exist in the repo
 backend/uploads/pending/
 
-# Story stills work (uncommitted recovery target)
-frontend/assets/story/*.png
-frontend/assets/story/*.jpg
+# Story stills are deployable launch assets
+!frontend/assets/story/*.png
+!frontend/assets/story/*.jpg
 !frontend/assets/story/.gitkeep
 
 # Temporary files
