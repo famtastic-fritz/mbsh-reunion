@@ -98,7 +98,25 @@ custom domain: mbsh96reunion.com (apex + www)
 SSL: Let's Encrypt via Netlify
 ```
 
-Future: invocation should be `platform.connect_netlify(site=mbsh-reunion-v2)` per the platform capability spec at `~/famtastic/platform/capabilities/deploy/connect-netlify.sh`. Today: manual UI flow.
+Staging deploy:
+
+```bash
+./scripts/push-staging.sh
+```
+
+The staging helper verifies the Netlify staging site slug before pushing the current commit to the `staging` branch. By default it enforces:
+
+```text
+https://mbsh-reunion-staging.netlify.app
+```
+
+Override the slug only when intentionally creating a different Netlify staging URL:
+
+```bash
+NETLIFY_STAGING_SITE_NAME=mbsh-reunion-demo ./scripts/push-staging.sh
+```
+
+Production deploys from the `main` branch through the separate production Netlify project and custom domain.
 
 ### Backend — GoDaddy cPanel (`nineoo` account)
 

@@ -46,3 +46,6 @@ backend/uploads/pending/
 
 # PHP session files in tests
 sess_*
+
+# Local Netlify folder
+.netlify
