@@ -49,3 +49,6 @@ sess_*
 
 # Local Netlify folder
 .netlify
+
+# Local-only site context copied from platform planning docs
+.site-context/
