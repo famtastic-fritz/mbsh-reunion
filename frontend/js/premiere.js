@@ -160,6 +160,9 @@
           if (!match) return;
           if (img.src.endsWith(match.pose)) return;
           img.style.opacity = '0';
+          // Trigger step animation on section change
+          usher.classList.add('is-stepping');
+          setTimeout(() => usher.classList.remove('is-stepping'), 700);
           setTimeout(() => {
             img.src = 'assets/mascot/' + match.pose;
             img.style.opacity = '1';
@@ -351,8 +354,71 @@
     }
   }
 
+  /* -----------------------------------------------------------------
+     Inject top primary nav (real menu, not just compass)
+     ----------------------------------------------------------------- */
+  function injectNav() {
+    if (document.querySelector('.premiere-nav')) return;
+
+    const NAV_ITEMS = [
+      { href: 'index.html',         label: 'Home',           page: 'home' },
+      { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp' },
+      { href: 'tickets.html',       label: 'Tickets',        page: 'tickets' },
+      { href: 'through-years.html', label: 'Through Years',  page: 'through-years' },
+      { href: 'memorial.html',      label: 'In Memory',      page: 'memorial' },
+      { href: 'capsule.html',       label: 'Capsule',        page: 'capsule' },
+      { href: 'playlist.html',      label: 'Playlist',       page: 'playlist' }
+    ];
+
+    const nav = document.createElement('nav');
+    nav.className = 'premiere-nav';
+    nav.setAttribute('aria-label', 'Primary');
+
+    const brand = document.createElement('a');
+    brand.className = 'premiere-nav__brand';
+    brand.href = 'index.html';
+    const brandImg = document.createElement('img');
+    brandImg.src = 'assets/brand-mark/brand-mark.png';
+    brandImg.alt = '';
+    brandImg.setAttribute('aria-hidden', 'true');
+    const brandText = document.createElement('span');
+    brandText.textContent = "Class of '96";
+    brand.appendChild(brandImg);
+    brand.appendChild(brandText);
+
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'premiere-nav__toggle';
+    toggle.setAttribute('aria-label', 'Toggle menu');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.textContent = '☰';
+
+    const list = document.createElement('ul');
+    list.className = 'premiere-nav__links';
+    NAV_ITEMS.forEach(item => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = item.href;
+      a.textContent = item.label;
+      if (item.page === page) a.setAttribute('aria-current', 'page');
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    nav.appendChild(brand);
+    nav.appendChild(toggle);
+    nav.appendChild(list);
+    document.body.insertBefore(nav, document.body.firstChild);
+  }
+
   function init() {
     try { injectOverlays(); }       catch (e) { console.warn('[premiere] fx', e); }
+    try { injectNav(); }            catch (e) { console.warn('[premiere] nav', e); }
     try { curtainRise(); }          catch (e) { console.warn('[premiere] curtain', e); }
     try { mountUsher(); }           catch (e) { console.warn('[premiere] usher', e); }
     try { activateStoryScene(); }   catch (e) { console.warn('[premiere] story', e); }

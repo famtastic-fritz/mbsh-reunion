@@ -3,6 +3,378 @@
    Existing prod CSS untouched. Flip the body attribute to roll back instantly.
    Reuses palette + font vars from base.css. */
 
+/* =====================================================================
+   GUARDS — kill duplicates that conflict with premiere
+   ===================================================================== */
+/* Bulletproof [hidden] — never let an animation flash a hidden CTA */
+body[data-premiere="on"] [hidden] { display: none !important; }
+
+/* Hide the embedded original Harry images on each page —
+   the .premiere-usher button is the canonical Harry under premiere */
+body[data-premiere="on"] .hero__harry,
+body[data-premiere="on"] .rsvp-form-wrap__harry,
+body[data-premiere="on"] .page-header__harry { display: none !important; }
+
+/* =====================================================================
+   FILM-STRIP SIDE BORDERS — cinema identity on every page
+   Two thin vertical sprocket strips down the viewport edges.
+   ===================================================================== */
+body[data-premiere="on"]::before,
+body[data-premiere="on"]::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  width: 28px;
+  height: 100%;
+  background:
+    linear-gradient(180deg, var(--c-off-black) 0%, var(--c-off-black) 100%),
+    repeating-linear-gradient(180deg,
+      transparent 0 14px,
+      rgba(255, 255, 255, 0.55) 14px 24px,
+      transparent 24px 38px,
+      rgba(255, 255, 255, 0.55) 38px 48px);
+  background-blend-mode: screen;
+  z-index: 35;
+  pointer-events: none;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.8);
+}
+body[data-premiere="on"]::before { left: 0; }
+body[data-premiere="on"]::after  { right: 0; }
+@media (max-width: 640px) {
+  body[data-premiere="on"]::before,
+  body[data-premiere="on"]::after { width: 14px; }
+}
+/* No film-strip on memorial — reverence wants quiet edges */
+body[data-premiere="on"][data-page="memorial"]::before,
+body[data-premiere="on"][data-page="memorial"]::after { display: none; }
+
+/* =====================================================================
+   PRIMARY MENU BAR — top, visible, real
+   Auto-injected by premiere.js. Compass stays as flair (mobile only).
+   ===================================================================== */
+body[data-premiere="on"] .premiere-nav {
+  position: fixed;
+  top: 0;
+  left: 28px;
+  right: 28px;
+  z-index: 38;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1.25rem;
+  background: rgba(5, 5, 11, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200, 16, 46, 0.35);
+  font-family: var(--font-body);
+}
+body[data-premiere="on"] .premiere-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--c-cream);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+body[data-premiere="on"] .premiere-nav__brand img { width: 32px; height: 32px; }
+body[data-premiere="on"] .premiere-nav__links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body[data-premiere="on"] .premiere-nav__links a {
+  color: var(--c-cream);
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 200ms var(--ease-cinema);
+}
+body[data-premiere="on"] .premiere-nav__links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--c-red);
+  transition: width 300ms var(--ease-cinema);
+}
+body[data-premiere="on"] .premiere-nav__links a:hover { color: var(--c-red); }
+body[data-premiere="on"] .premiere-nav__links a:hover::after { width: 100%; }
+body[data-premiere="on"] .premiere-nav__links a[aria-current="page"] {
+  color: var(--c-red);
+}
+body[data-premiere="on"] .premiere-nav__links a[aria-current="page"]::after { width: 100%; }
+
+/* Mobile menu toggle */
+body[data-premiere="on"] .premiere-nav__toggle {
+  display: none;
+  background: none;
+  border: 0;
+  color: var(--c-cream);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0.4rem;
+}
+@media (max-width: 720px) {
+  body[data-premiere="on"] .premiere-nav { left: 14px; right: 14px; padding: 0.5rem 0.75rem; }
+  body[data-premiere="on"] .premiere-nav__toggle { display: block; }
+  body[data-premiere="on"] .premiere-nav__links {
+    position: fixed;
+    top: 56px; left: 14px; right: 14px;
+    flex-direction: column;
+    background: rgba(5, 5, 11, 0.96);
+    border: 1px solid rgba(200, 16, 46, 0.35);
+    border-top: 0;
+    padding: 1rem 1.25rem;
+    gap: 1rem;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms, transform 200ms;
+  }
+  body[data-premiere="on"] .premiere-nav.is-open .premiere-nav__links {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  body[data-premiere="on"] .premiere-nav__links a { padding: 0.5rem 0; font-size: 0.95rem; }
+  /* Hide the giant compass medallion on mobile when the new nav is in play —
+     keep it as a desktop flair element only */
+  body[data-premiere="on"] .compass-nav { display: none; }
+}
+/* On desktop, push the compass medallion away from the new top nav */
+@media (min-width: 721px) {
+  body[data-premiere="on"] .compass-nav { top: auto; bottom: 1rem; right: 9rem; }
+}
+
+/* Add top padding to body so content doesn't sit under the nav */
+body[data-premiere="on"] {
+  padding-top: 60px;
+}
+@media (max-width: 720px) {
+  body[data-premiere="on"] { padding-top: 56px; }
+}
+/* But hero uses 100vh — let it stay full-bleed by negative margin */
+body[data-premiere="on"][data-page="home"] .hero {
+  margin-top: -60px;
+  padding-top: 60px;
+}
+
+/* =====================================================================
+   SCROLL-SNAP — home page sections
+   Snap-stop normal lets fast scroll skip; snap-align start anchors top.
+   ===================================================================== */
+@media (min-width: 721px) {
+  body[data-premiere="on"][data-page="home"] {
+    scroll-snap-type: y proximity;
+  }
+  body[data-premiere="on"][data-page="home"] .hero,
+  body[data-premiere="on"][data-page="home"] .story__moment,
+  body[data-premiere="on"][data-page="home"] .event-details,
+  body[data-premiere="on"][data-page="home"] .previews {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+}
+
+/* =====================================================================
+   CINEMATIC PAGE-HEADER — apply to every inner page
+   Bold scarlet treatment with marquee bulb strip
+   ===================================================================== */
+body[data-premiere="on"] .page-header {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(123,14,30,0.55) 0%, transparent 100%),
+    var(--c-night-sky);
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(200, 16, 46, 0.35);
+  overflow: hidden;
+}
+body[data-premiere="on"] .page-header::before {
+  content: '';
+  position: absolute;
+  top: 16px; left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  max-width: 480px;
+  height: 4px;
+  background: repeating-linear-gradient(90deg,
+    var(--c-red) 0 8px,
+    transparent 8px 24px);
+  opacity: 0.7;
+}
+body[data-premiere="on"] .page-header::after {
+  content: '';
+  position: absolute;
+  bottom: 16px; left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  max-width: 480px;
+  height: 4px;
+  background: repeating-linear-gradient(90deg,
+    var(--c-red) 0 8px,
+    transparent 8px 24px);
+  opacity: 0.7;
+}
+body[data-premiere="on"] .page-header__back {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+}
+body[data-premiere="on"] .page-header__back img {
+  width: 48px; height: 48px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+}
+body[data-premiere="on"] .page-header__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--c-cream);
+  margin: 0.5rem 0 0.4rem;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.7);
+}
+body[data-premiere="on"] .page-header__title--script {
+  font-family: var(--font-script-large);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  letter-spacing: 0;
+}
+body[data-premiere="on"] .page-header__sub {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: rgba(248, 244, 236, 0.8);
+  margin: 0;
+}
+
+/* Inner page bodies — night sky everywhere except home (which has hero video) */
+body[data-premiere="on"][data-page="rsvp"],
+body[data-premiere="on"][data-page="tickets"],
+body[data-premiere="on"][data-page="through-years"] {
+  background: var(--c-night-sky);
+  color: var(--c-cream);
+}
+body[data-premiere="on"][data-page="rsvp"] .field__input,
+body[data-premiere="on"][data-page="tickets"] .field__input,
+body[data-premiere="on"][data-page="through-years"] .field__input {
+  background: rgba(255,255,255,0.06);
+  color: var(--c-cream);
+  border: 1px solid rgba(200, 16, 46, 0.35);
+}
+body[data-premiere="on"][data-page="rsvp"] .field__label,
+body[data-premiere="on"][data-page="tickets"] .field__label,
+body[data-premiere="on"][data-page="through-years"] .field__label {
+  color: var(--c-cream);
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+/* =====================================================================
+   PLAYLIST CONTENT BLOCK — visible curated tracklist
+   ===================================================================== */
+body[data-premiere="on"][data-page="playlist"] .premiere-tracklist {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  color: var(--c-cream);
+}
+body[data-premiere="on"][data-page="playlist"] .premiere-tracklist__title {
+  font-family: var(--font-script-small);
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--c-cream);
+}
+body[data-premiere="on"][data-page="playlist"] .premiere-tracklist__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid rgba(200, 16, 46, 0.3);
+}
+body[data-premiere="on"][data-page="playlist"] .premiere-tracklist__list li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(200, 16, 46, 0.18);
+  transition: background 200ms;
+}
+body[data-premiere="on"][data-page="playlist"] .premiere-tracklist__list li:hover {
+  background: rgba(200, 16, 46, 0.08);
+}
+body[data-premiere="on"][data-page="playlist"] .premiere-tracklist__num {
+  font-family: var(--font-mono);
+  color: var(--c-red);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+body[data-premiere="on"][data-page="playlist"] .premiere-tracklist__track {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--c-cream);
+}
+body[data-premiere="on"][data-page="playlist"] .premiere-tracklist__artist {
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: rgba(248, 244, 236, 0.65);
+  font-size: 0.9rem;
+  display: block;
+}
+body[data-premiere="on"][data-page="playlist"] .premiere-tracklist__year {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: rgba(248, 244, 236, 0.5);
+  letter-spacing: 0.1em;
+}
+body[data-premiere="on"][data-page="playlist"] .premiere-tracklist__note {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: rgba(248, 244, 236, 0.5);
+  font-size: 0.9rem;
+}
+
+/* =====================================================================
+   HARRY ANIMATED ON SCROLL — subtle step / bounce on section change
+   premiere.js adds .is-stepping when section changes.
+   ===================================================================== */
+body[data-premiere="on"] .premiere-usher.is-stepping {
+  animation: premiere-harry-step 700ms var(--ease-cinema);
+}
+@keyframes premiere-harry-step {
+  0%   { transform: translate(0, 0) rotate(0); }
+  20%  { transform: translate(-6px, -10px) rotate(-3deg); }
+  50%  { transform: translate(8px, -4px) rotate(2deg); }
+  80%  { transform: translate(-2px, -8px) rotate(-1deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"] .premiere-usher.is-stepping { animation: none; }
+}
+/* Continuous gentle idle bob */
+@media (prefers-reduced-motion: no-preference) {
+  body[data-premiere="on"] .premiere-usher.is-visible:not(.is-stepping) img {
+    animation: premiere-harry-idle 4s ease-in-out infinite;
+  }
+}
+@keyframes premiere-harry-idle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
 body[data-premiere="on"] {
   /* New tonal layer */
   --c-night-sky: #05050B;
