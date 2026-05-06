@@ -340,6 +340,12 @@
      Keeps HTML lean — only the body attribute + CSS/JS links are required.
      ----------------------------------------------------------------- */
   function injectOverlays() {
+    if (!document.querySelector('.premiere-stage')) {
+      const stage = document.createElement('div');
+      stage.className = 'premiere-stage';
+      stage.setAttribute('aria-hidden', 'true');
+      document.body.insertBefore(stage, document.body.firstChild);
+    }
     if (!document.querySelector('.premiere-fx')) {
       const fx = document.createElement('div');
       fx.className = 'premiere-fx';
@@ -352,6 +358,51 @@
       sf.setAttribute('aria-hidden', 'true');
       document.body.appendChild(sf);
     }
+  }
+
+  /* Auto-hide nav on scroll-down, slide back in on scroll-up */
+  function wireNavScrollHide() {
+    const nav = document.querySelector('.premiere-nav');
+    if (!nav) return;
+    let lastY = window.scrollY;
+    let ticking = false;
+    function onScroll() {
+      const y = window.scrollY;
+      if (Math.abs(y - lastY) < 8) return; // ignore tiny moves
+      if (y > lastY && y > 80) {
+        nav.classList.add('is-hidden');
+      } else {
+        nav.classList.remove('is-hidden');
+      }
+      lastY = y;
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  /* Snap-in observer — attach to every section so they bounce in on scroll */
+  function attachSnapIn() {
+    const targets = document.querySelectorAll(
+      '.story__moment, .event-details, .previews, .premiere-section, ' +
+      '.countdown, .rsvp-form-wrap, .tickets, .timeline, .memorial, ' +
+      '.capsule, .playlist, .memory-submit, .preview-card'
+    );
+    targets.forEach(t => t.classList.add('premiere-snap-in'));
+    if (!targets.length) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    targets.forEach(t => observer.observe(t));
   }
 
   /* -----------------------------------------------------------------
@@ -419,6 +470,8 @@
   function init() {
     try { injectOverlays(); }       catch (e) { console.warn('[premiere] fx', e); }
     try { injectNav(); }            catch (e) { console.warn('[premiere] nav', e); }
+    try { wireNavScrollHide(); }    catch (e) { console.warn('[premiere] nav-hide', e); }
+    try { attachSnapIn(); }         catch (e) { console.warn('[premiere] snap-in', e); }
     try { curtainRise(); }          catch (e) { console.warn('[premiere] curtain', e); }
     try { mountUsher(); }           catch (e) { console.warn('[premiere] usher', e); }
     try { activateStoryScene(); }   catch (e) { console.warn('[premiere] story', e); }
