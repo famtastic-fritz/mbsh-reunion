@@ -18,8 +18,9 @@
   <link rel="stylesheet" href="css/compass.css">
   <link rel="stylesheet" href="css/chatbot.css">
   <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/premiere.css">
 </head>
-<body data-page="home">
+<body data-page="home" data-premiere="on">
 
   <!-- ════ Section 1: Hero ════════════════════════════════════════════ -->
   <section class="hero" aria-label="MBSH Class of '96 — 30th Reunion welcome">
@@ -67,6 +68,9 @@
 
   <!-- ════ Event Details (inline after Story) ════════════════════════ -->
   <section class="event-details" aria-label="Event details">
+    <div class="premiere-marquee" aria-hidden="true">
+      <span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span>
+    </div>
     <div class="event-details__grid">
       <div class="event-details__item"><span class="event-details__label">Date</span><span class="event-details__value" data-config-bind="reunion_date_display">October–November 2026</span></div>
       <div class="event-details__item"><span class="event-details__label">Time</span><span class="event-details__value">7:00 PM – Midnight</span></div>
@@ -161,5 +165,6 @@
   <script src="js/countdown.js" defer></script>
   <script src="js/compass.js" defer></script>
   <script src="js/chatbot.js" defer></script>
+  <script src="js/premiere.js" defer></script>
 </body>
 </html>

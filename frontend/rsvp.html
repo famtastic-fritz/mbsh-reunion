@@ -14,8 +14,9 @@
   <link rel="stylesheet" href="css/compass.css">
   <link rel="stylesheet" href="css/chatbot.css">
   <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/premiere.css">
 </head>
-<body data-page="rsvp">
+<body data-page="rsvp" data-premiere="on">
 
   <header class="page-header" data-template="header">
     <a class="page-header__back" href="index.html" aria-label="Back to home"><img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a>
@@ -35,6 +36,9 @@
   </section>
 
   <section class="rsvp-form-wrap" id="rsvp">
+    <div class="premiere-seat-row" aria-hidden="true">
+      <span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span>
+    </div>
     <img class="rsvp-form-wrap__harry" src="assets/mascot/08-pointing.png" alt="Hi-Tide Harry pointing at the form">
     <form class="rsvp-form" id="rsvp-form" novalidate>
       <fieldset class="rsvp-form__group rsvp-form__group--always">
@@ -124,5 +128,6 @@
   <script src="js/compass.js" defer></script>
   <script src="js/rsvp.js" defer></script>
   <script src="js/chatbot.js" defer></script>
+  <script src="js/premiere.js" defer></script>
 </body>
 </html>
