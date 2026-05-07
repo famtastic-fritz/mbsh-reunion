@@ -968,8 +968,13 @@ body[data-premiere="on"] .premiere-medallion {
    it doesn't take a flex slot in the column (which would push verbiage
    down) — Fritz spotted this on the staging walk. */
 
-/* Mobile: matches V1 .hero__mark mobile rule (72px, align-self: flex-start) */
+/* Mobile: matches V1 .hero__mark mobile rule (72px, align-self: flex-start).
+   IMPORTANT: position:static is REQUIRED here to override the base
+   .premiere-medallion { position: fixed } rule. Without it the wrapper
+   button is fixed-positioned and overlaps the welcome cursive text on
+   mobile (Fritz spotted this on his phone walk). */
 body[data-premiere="on"] .premiere-medallion--inline {
+  position: static;
   display: inline-block;
   width: 72px;
   height: 72px;
@@ -1863,11 +1868,12 @@ body.premiere-chatbot-open[data-premiere="on"] .premiere-usher { opacity: 0; poi
 /* Hide the original small chatbot bubble — Harry IS the bubble now */
 body[data-premiere="on"] .chatbot__bubble { display: none; }
 
-/* Mobile sizing */
+/* Mobile sizing — usher trimmed to 64px so it doesn't overlap the
+   bottom scroll-tease tagline (Fritz spotted on phone walk). */
 @media (max-width: 640px) {
-  body[data-premiere="on"] .premiere-usher { width: 88px; height: 88px; bottom: 0.5rem; right: 0.5rem; }
-  body[data-premiere="on"][data-page="memorial"] .premiere-usher { width: 64px; height: 64px; }
-  body[data-premiere="on"] .premiere-usher__hint { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+  body[data-premiere="on"] .premiere-usher { width: 64px; height: 64px; bottom: 0.5rem; right: 0.5rem; }
+  body[data-premiere="on"][data-page="memorial"] .premiere-usher { width: 56px; height: 56px; }
+  body[data-premiere="on"] .premiere-usher__hint { font-size: 0.7rem; padding: 0.3rem 0.6rem; }
 }
 
 /* =====================================================================
@@ -1930,6 +1936,35 @@ body[data-premiere="on"][data-page="home"] .hero__harry {
    slides off-center. (Fritz spotted this on the staging walk.) */
 body[data-premiere="on"][data-page="home"] .hero__scroll-tease {
   animation: premiere-tease-bob 3s ease-in-out infinite;
+}
+
+/* Clickable scroll-tease — premiere.js sets role=button + tabindex=0 + .is-clickable */
+body[data-premiere="on"] .hero__scroll-tease.is-clickable {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: filter 200ms var(--ease-cinema);
+}
+/* Mobile: pull tease up off the bottom-right so it doesn't crowd the usher.
+   Also constrain max-width so its right edge clears the usher button. */
+@media (max-width: 640px) {
+  body[data-premiere="on"][data-page="home"] .hero__scroll-tease {
+    margin-bottom: 5rem; /* clears 64px usher + 0.5rem margin + breathing room */
+    max-width: calc(100vw - 6rem); /* don't crowd the usher horizontally */
+  }
+}
+body[data-premiere="on"] .hero__scroll-tease.is-clickable:hover,
+body[data-premiere="on"] .hero__scroll-tease.is-clickable:focus-visible {
+  filter: brightness(1.2) drop-shadow(0 0 12px rgba(248, 198, 130, 0.6));
+  outline: none;
+}
+body[data-premiere="on"] .hero__scroll-tease.is-clickable:focus-visible {
+  outline: 2px solid var(--c-gold-light);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+body[data-premiere="on"] .hero__scroll-tease.is-clickable:active {
+  filter: brightness(1.1);
 }
 @media (min-width: 768px) {
   @keyframes premiere-tease-bob {

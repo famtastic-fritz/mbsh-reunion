@@ -802,6 +802,50 @@
     document.body.insertBefore(nav, document.body.firstChild);
   }
 
+  /* Make the hero scroll-tease (tagline + double chevron) clickable so it
+     scrolls the next section into view. Snap-mandatory will then settle
+     the section at the top. Keyboard accessible (Enter/Space). */
+  function wireScrollTeaseClick() {
+    if (page !== 'home') return;
+    const tease = document.querySelector('.hero__scroll-tease');
+    if (!tease) return;
+    // Find the first .premiere-snap-target AFTER the hero (skips dividers)
+    const allSnaps = Array.from(document.querySelectorAll('.premiere-snap-target'));
+    const hero = tease.closest('.hero');
+    const heroIdx = allSnaps.indexOf(hero);
+    const nextSection = allSnaps[heroIdx + 1];
+    if (!nextSection) return;
+
+    // Mark interactive (was aria-hidden in the V1 markup)
+    tease.removeAttribute('aria-hidden');
+    tease.setAttribute('role', 'button');
+    tease.setAttribute('tabindex', '0');
+    const targetLabel = nextSection.getAttribute('aria-label') || 'Story';
+    tease.setAttribute('aria-label', 'Scroll to ' + targetLabel);
+    tease.classList.add('is-clickable');
+
+    function scrollNext() {
+      // Use window.scrollTo instead of scrollIntoView — the latter has
+      // inconsistent behavior under scroll-snap-type: y mandatory in
+      // headless Chrome and some real-Chrome versions. window.scrollTo
+      // with offsetTop is reliable everywhere.
+      // Briefly relax snap so the smooth scroll isn't intercepted.
+      const body = document.body;
+      const prevSnap = body.style.scrollSnapType;
+      body.style.scrollSnapType = 'none';
+      const targetY = nextSection.offsetTop;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+      setTimeout(() => { body.style.scrollSnapType = prevSnap; }, 900);
+    }
+    tease.addEventListener('click', scrollNext);
+    tease.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        scrollNext();
+      }
+    });
+  }
+
   /* P6 perf fix: defer hero video load until after the page is fully loaded.
      Without this, the autoplay video competes with FCP/LCP and Lighthouse
      pins LCP to the still-loading video. With this, LCP is the poster image. */
@@ -830,6 +874,7 @@
     try { injectOverlays(); }       catch (e) { console.warn('[premiere] fx', e); }
     try { injectFooterSiteMap(); }  catch (e) { console.warn('[premiere] footer-nav', e); }
     try { deferHeroVideo(); }       catch (e) { console.warn('[premiere] video-defer', e); }
+    try { wireScrollTeaseClick(); } catch (e) { console.warn('[premiere] scroll-tease', e); }
     try { mountMedallionMenu(); }   catch (e) { console.warn('[premiere] medallion', e); }
     /* injectNav + wireNavScrollHide intentionally not called when medallion mounts;
        CSS hides them via [data-medallion-menu="mounted"]. Kept in source for one
