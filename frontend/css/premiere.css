@@ -1931,6 +1931,27 @@ body[data-premiere="on"][data-page="home"] .hero__harry {
 body[data-premiere="on"][data-page="home"] .hero__scroll-tease {
   animation: premiere-tease-bob 3s ease-in-out infinite;
 }
+
+/* Clickable scroll-tease — premiere.js sets role=button + tabindex=0 + .is-clickable */
+body[data-premiere="on"] .hero__scroll-tease.is-clickable {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: filter 200ms var(--ease-cinema);
+}
+body[data-premiere="on"] .hero__scroll-tease.is-clickable:hover,
+body[data-premiere="on"] .hero__scroll-tease.is-clickable:focus-visible {
+  filter: brightness(1.2) drop-shadow(0 0 12px rgba(248, 198, 130, 0.6));
+  outline: none;
+}
+body[data-premiere="on"] .hero__scroll-tease.is-clickable:focus-visible {
+  outline: 2px solid var(--c-gold-light);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+body[data-premiere="on"] .hero__scroll-tease.is-clickable:active {
+  filter: brightness(1.1);
+}
 @media (min-width: 768px) {
   @keyframes premiere-tease-bob {
     0%, 100% { transform: translateX(-50%) translateY(0); }
