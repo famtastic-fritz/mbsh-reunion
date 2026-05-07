@@ -378,14 +378,15 @@
   function mountMedallionMenu() {
     if (document.querySelector('.premiere-medallion')) return;
 
+    // Filmstrip drawer NAV_ITEMS — each gets a `tease` line under the title
     const NAV_ITEMS = [
-      { href: 'index.html',         label: 'Home',           page: 'home' },
-      { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp' },
-      { href: 'tickets.html',       label: 'Tickets',        page: 'tickets' },
-      { href: 'through-years.html', label: 'Through Years',  page: 'through-years' },
-      { href: 'memorial.html',      label: 'In Memory',      page: 'memorial' },
-      { href: 'capsule.html',       label: 'Capsule',        page: 'capsule' },
-      { href: 'playlist.html',      label: 'Playlist',       page: 'playlist' }
+      { href: 'index.html',         label: 'Home',           page: 'home',          tease: 'The Premiere' },
+      { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp',          tease: 'Take Your Seat' },
+      { href: 'tickets.html',       label: 'Tickets',        page: 'tickets',       tease: 'Patrons of the Evening' },
+      { href: 'through-years.html', label: 'Through Years',  page: 'through-years', tease: 'The Trailer Reel' },
+      { href: 'memorial.html',      label: 'In Memory',      page: 'memorial',      tease: 'In Memoriam' },
+      { href: 'capsule.html',       label: 'Capsule',        page: 'capsule',       tease: 'Letter to Yourself' },
+      { href: 'playlist.html',      label: 'Playlist',       page: 'playlist',      tease: 'Encore' }
     ];
 
     // P7-fix: on HOME, promote the existing hero brand-mark to BE the menu
@@ -420,47 +421,61 @@
       document.body.appendChild(medallion);
     }
 
-    // The menu overlay
+    // Filmstrip drawer (Option A) — replaces radial-fan menu.
+    // Page-dim backdrop + golden filmstrip ribbon sliding down from top.
+    const backdrop = document.createElement('div');
+    backdrop.className = 'premiere-menu-filmstrip-backdrop';
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(backdrop);
+
     const menu = document.createElement('div');
-    menu.className = 'premiere-medallion-menu';
+    menu.className = 'premiere-menu-filmstrip';
     menu.id = 'premiere-medallion-menu';
     menu.setAttribute('role', 'dialog');
     menu.setAttribute('aria-modal', 'false');
     menu.setAttribute('aria-label', 'Site navigation');
-    menu.hidden = false; // we toggle via .is-open instead
 
-    const backdrop = document.createElement('div');
-    backdrop.className = 'premiere-medallion-menu__backdrop';
-    backdrop.setAttribute('aria-hidden', 'true');
+    const sprocketTop = document.createElement('div');
+    sprocketTop.className = 'premiere-menu-filmstrip__sprocket premiere-menu-filmstrip__sprocket--top';
+    sprocketTop.setAttribute('aria-hidden', 'true');
+    menu.appendChild(sprocketTop);
 
     const list = document.createElement('ul');
-    list.className = 'premiere-medallion-menu__items';
+    list.className = 'premiere-menu-filmstrip__frames';
     list.setAttribute('role', 'menu');
-
-    // Distribute 7 items radially on a ~270° arc above the medallion
-    // (skip the bottom 90° so menu doesn't extend off-screen on home).
-    // angles in degrees, 0 = up, positive = clockwise
-    const arcStart = -135;
-    const arcEnd   = 135;
-    const arcSpan  = arcEnd - arcStart;
     NAV_ITEMS.forEach((item, i) => {
-      const angle = arcStart + (arcSpan * i) / (NAV_ITEMS.length - 1);
       const li = document.createElement('li');
-      li.className = 'premiere-medallion-menu__item';
-      li.style.setProperty('--angle', angle + 'deg');
+      li.className = 'premiere-menu-filmstrip__frame';
       li.setAttribute('role', 'none');
       const a = document.createElement('a');
       a.href = item.href;
-      a.className = 'premiere-medallion-menu__link';
-      a.textContent = item.label;
+      a.className = 'premiere-menu-filmstrip__link';
       a.setAttribute('role', 'menuitem');
       if (item.page === page) a.setAttribute('aria-current', 'page');
+
+      const num = document.createElement('span');
+      num.className = 'premiere-menu-filmstrip__num';
+      num.textContent = 'Scene ' + String(i + 1).padStart(2, '0');
+      const title = document.createElement('span');
+      title.className = 'premiere-menu-filmstrip__title';
+      title.textContent = item.label;
+      const tease = document.createElement('span');
+      tease.className = 'premiere-menu-filmstrip__tease';
+      tease.textContent = item.tease;
+
+      a.appendChild(num);
+      a.appendChild(title);
+      a.appendChild(tease);
       li.appendChild(a);
       list.appendChild(li);
     });
-
-    menu.appendChild(backdrop);
     menu.appendChild(list);
+
+    const sprocketBottom = document.createElement('div');
+    sprocketBottom.className = 'premiere-menu-filmstrip__sprocket premiere-menu-filmstrip__sprocket--bottom';
+    sprocketBottom.setAttribute('aria-hidden', 'true');
+    menu.appendChild(sprocketBottom);
+
     document.body.appendChild(menu);
 
     // Mark body so CSS can hide V1 top nav + compass + edge strips
@@ -468,23 +483,18 @@
 
     // Open / close
     function openMenu() {
-      // Anchor the radial menu around the medallion's actual position.
-      // CSS variables --menu-cx / --menu-cy drive item placement.
-      const r = medallion.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top + r.height / 2;
-      list.style.setProperty('--menu-cx', cx + 'px');
-      list.style.setProperty('--menu-cy', cy + 'px');
       menu.classList.add('is-open');
+      backdrop.classList.add('is-open');
       medallion.setAttribute('aria-expanded', 'true');
-      // Focus the first menu item for keyboard users
+      // Focus the active page's frame if present, otherwise first frame
       requestAnimationFrame(() => {
-        const first = list.querySelector('a');
-        if (first) first.focus();
+        const active = list.querySelector('a[aria-current="page"]') || list.querySelector('a');
+        if (active) active.focus({ preventScroll: false });
       });
     }
     function closeMenu() {
       menu.classList.remove('is-open');
+      backdrop.classList.remove('is-open');
       medallion.setAttribute('aria-expanded', 'false');
       medallion.focus();
     }
@@ -495,6 +505,10 @@
 
     medallion.addEventListener('click', toggleMenu);
     backdrop.addEventListener('click', closeMenu);
+    // Close after click on a frame so SPA-like UX works
+    list.addEventListener('click', (e) => {
+      if (e.target.closest('a')) closeMenu();
+    });
 
     // Esc closes
     document.addEventListener('keydown', (e) => {
