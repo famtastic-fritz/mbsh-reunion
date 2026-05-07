@@ -744,6 +744,16 @@ body[data-premiere="on"] .premiere-usher.is-stepping {
   50%      { transform: translateY(-3px); }
 }
 
+/* P7-fix-5: scrollbar-gutter symmetry.
+   Without this, a vertical scrollbar on the right takes ~15px from the
+   layout viewport, so all centered content appears ~7.5px left of the
+   visual center (Fritz spotted this on the staging walk). The
+   'both-edges' value reserves equal gutter on both sides so the content
+   axis lines up with the visual viewport center.
+   Supported: Chrome 94+, Firefox 97+, Safari 18.2+. Older browsers
+   fall back to default behavior — slight asymmetry but no regression. */
+html { scrollbar-gutter: stable both-edges; }
+
 body[data-premiere="on"] {
   /* New tonal layer */
   --c-night-sky: #05050B;
