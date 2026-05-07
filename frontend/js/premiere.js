@@ -609,6 +609,57 @@
      9. Auto-inject FX + starfield overlays
      Keeps HTML lean — only the body attribute + CSS/JS links are required.
      ----------------------------------------------------------------- */
+  /* Inject a clear text-based site-map column into the footer.
+     Solves Fritz post-staging concern: "I don't know how many pages
+     there are or how to navigate." Medallion menu is visual; footer
+     site-map is scannable and discoverable. */
+  function injectFooterSiteMap() {
+    const footerInner = document.querySelector('.footer .footer__inner');
+    if (!footerInner) return;
+    if (footerInner.querySelector('.footer__col--sitemap')) return; // already injected
+
+    const NAV_ITEMS = [
+      { href: 'index.html',         label: 'Home',           page: 'home' },
+      { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp' },
+      { href: 'tickets.html',       label: 'Tickets',        page: 'tickets' },
+      { href: 'through-years.html', label: 'Through the Years', page: 'through-years' },
+      { href: 'memorial.html',      label: 'In Memory',      page: 'memorial' },
+      { href: 'capsule.html',       label: 'Time Capsule',   page: 'capsule' },
+      { href: 'playlist.html',      label: 'Soundtrack',     page: 'playlist' }
+    ];
+
+    const col = document.createElement('div');
+    col.className = 'footer__col footer__col--sitemap';
+    const h = document.createElement('h4');
+    h.textContent = 'Visit';
+    col.appendChild(h);
+    const ul = document.createElement('ul');
+    NAV_ITEMS.forEach(item => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = item.href;
+      a.textContent = item.label;
+      if (item.page === page) a.setAttribute('aria-current', 'page');
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    col.appendChild(ul);
+    const count = document.createElement('span');
+    count.className = 'footer__col-count';
+    count.textContent = NAV_ITEMS.length + ' scenes';
+    col.appendChild(count);
+
+    // Insert as first column (or after identity, depending on layout); place
+    // before the existing 'Reunion Committee' / 'Resources' columns so it
+    // reads as primary nav.
+    const identityCol = footerInner.querySelector('.footer__col--identity');
+    if (identityCol && identityCol.nextSibling) {
+      footerInner.insertBefore(col, identityCol.nextSibling);
+    } else {
+      footerInner.appendChild(col);
+    }
+  }
+
   function injectOverlays() {
     if (!document.querySelector('.premiere-stage')) {
       const stage = document.createElement('div');
@@ -763,6 +814,7 @@
 
   function init() {
     try { injectOverlays(); }       catch (e) { console.warn('[premiere] fx', e); }
+    try { injectFooterSiteMap(); }  catch (e) { console.warn('[premiere] footer-nav', e); }
     try { deferHeroVideo(); }       catch (e) { console.warn('[premiere] video-defer', e); }
     try { mountMedallionMenu(); }   catch (e) { console.warn('[premiere] medallion', e); }
     /* injectNav + wireNavScrollHide intentionally not called when medallion mounts;

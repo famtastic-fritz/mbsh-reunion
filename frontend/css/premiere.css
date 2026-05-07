@@ -1247,6 +1247,91 @@ body[data-premiere="on"][data-medallion-menu="mounted"]:not([data-page="home"]) 
 }
 
 /* =====================================================================
+   P7-fix-2: medallion menu discoverability + footer site-map nav
+   Fritz post-staging-walk feedback: "I don't know how to navigate
+   or how many pages there are."
+
+   Two layers of nav now:
+   1. Medallion menu (visual / interactive)  — small text hint added
+   2. Footer site-map column (text-based, scannable) — auto-injected
+      by premiere.js on every page
+   ===================================================================== */
+
+/* Tiny "Menu" text hint below the medallion so users know it's clickable */
+body[data-premiere="on"] .premiere-medallion::after {
+  content: 'Menu';
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--c-gold-mid);
+  text-transform: uppercase;
+  pointer-events: none;
+  white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+  opacity: 0.85;
+}
+/* Inline (home) — hint sits below the brand mark */
+body[data-premiere="on"] .premiere-medallion--inline::after {
+  bottom: -1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* Floating (inner pages) — hint sits below the medallion top-right */
+body[data-premiere="on"]:not([data-page="home"]) .premiere-medallion::after {
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+body[data-premiere="on"] .premiere-medallion[aria-expanded="true"]::after {
+  opacity: 0; /* hide hint while menu is open */
+}
+
+/* Footer site-map column — injected by premiere.js into existing .footer__inner */
+body[data-premiere="on"] .footer__col--sitemap h4 {
+  /* matches existing footer heading style */
+}
+body[data-premiere="on"] .footer__col--sitemap ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body[data-premiere="on"] .footer__col--sitemap li {
+  margin-bottom: 0.45rem;
+}
+body[data-premiere="on"] .footer__col--sitemap a {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  letter-spacing: 0.05em;
+  color: rgba(248, 244, 236, 0.78);
+  text-decoration: none;
+  border-left: 2px solid var(--c-gold-mid);
+  padding-left: 0.6rem;
+  display: inline-block;
+  transition: color 200ms var(--ease-cinema), border-color 200ms;
+}
+body[data-premiere="on"] .footer__col--sitemap a:hover,
+body[data-premiere="on"] .footer__col--sitemap a:focus-visible {
+  color: var(--c-gold-light);
+  border-color: var(--c-red);
+  outline: none;
+}
+body[data-premiere="on"] .footer__col--sitemap a[aria-current="page"] {
+  color: var(--c-gold-light);
+  border-color: var(--c-red);
+  font-weight: 600;
+}
+body[data-premiere="on"] .footer__col--sitemap .footer__col-count {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--c-gold-mid);
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+}
+
+/* =====================================================================
    P2 — POSTER WALL polish (lightweight Fritz P2 win, R13)
    ─────────────────────────────────────────────────────────────────────
    Fritz feedback: "doesn't fully scream movie poster yet." Lightweight
