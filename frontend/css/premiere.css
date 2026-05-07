@@ -823,11 +823,15 @@ body[data-premiere="on"] .premiere-divider {
 }
 
 /* The frame: wraps a content section with sprocket strips top + bottom.
-   Side edges open to whatever backdrop is behind. */
+   Side edges open to whatever backdrop is behind.
+   P5 polish (Fritz R13): top + bottom strips tilt slightly toward viewer
+   so the frame feels like a zoomed-in detail of physical film tape lying
+   on a surface — depth, not flat stripes. */
 body[data-premiere="on"] .premiere-frame {
   position: relative;
   isolation: isolate;
   padding: calc(var(--sprocket-strip-h-desktop) + 1rem) 0;
+  perspective: 1200px;
 }
 body[data-premiere="on"] .premiere-frame::before,
 body[data-premiere="on"] .premiere-frame::after {
@@ -837,9 +841,26 @@ body[data-premiere="on"] .premiere-frame::after {
   right: 0;
   z-index: 11; /* L3 per architecture */
   pointer-events: none;
+  /* Edge taper for "tape passing through the frame" feel */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
 }
-body[data-premiere="on"] .premiere-frame::before { top: 0; }
-body[data-premiere="on"] .premiere-frame::after  { bottom: 0; transform: scaleY(-1); }
+body[data-premiere="on"] .premiere-frame::before {
+  top: 0;
+  transform: rotateX(10deg);
+  transform-origin: center bottom;
+}
+body[data-premiere="on"] .premiere-frame::after {
+  bottom: 0;
+  transform: scaleY(-1) rotateX(10deg);
+  transform-origin: center bottom;
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"] .premiere-frame { perspective: none; }
+  body[data-premiere="on"] .premiere-frame::before,
+  body[data-premiere="on"] .premiere-frame::after { transform: none; }
+  body[data-premiere="on"] .premiere-frame::after { transform: scaleY(-1); }
+}
 body[data-premiere="on"] .premiere-frame__body {
   position: relative;
   z-index: 1;
@@ -851,14 +872,26 @@ body[data-premiere="on"] .premiere-frame__body {
 }
 
 /* The divider: single horizontal golden strip between sections.
-   Adds depth via drop shadow + flowing-tape feel via slight scale. */
+   P5 polish (Fritz R13): perspective tilt + edge taper makes the
+   ribbon feel like a zoomed-in cinematic reel detail rather than
+   a flat straight bar. The strip bends slightly back at the
+   horizon — like film tape laid on a slanted surface. */
 body[data-premiere="on"] .premiere-divider {
   margin: 2rem auto;
   max-width: calc(960px + 4rem); /* slight overflow past content channel */
   z-index: 11;
   position: relative;
   pointer-events: none;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6)) drop-shadow(0 12px 20px rgba(0,0,0,0.35));
+  transform-origin: center center;
+  transform: perspective(800px) rotateX(8deg);
+  /* Edge taper — feathers the strip's left/right ends so it reads as
+     "passing through the frame" rather than abruptly cropped */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"] .premiere-divider { transform: none; }
 }
 body[data-premiere="on"] .premiere-divider--narrow { max-width: 720px; }
 body[data-premiere="on"] .premiere-divider--full   { max-width: none; margin-inline: -2rem; }
