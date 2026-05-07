@@ -1017,6 +1017,180 @@ body[data-premiere="on"] .premiere-medallion:focus-visible {
    indicator is now the menu items radiating + the focus ring + glow,
    not a button-position shift. */
 
+/* =====================================================================
+   FILMSTRIP DRAWER MENU (Option A — replaces radial-fan)
+   Click medallion → golden filmstrip slides down from top of viewport.
+   Each destination = one frame in the reel: sprocket borders, scene
+   number, title, italic teaser. Active page = bright frame; others
+   dimmed (like a reel paused on the active frame).
+   ===================================================================== */
+body[data-premiere="on"] .premiere-menu-filmstrip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  pointer-events: none;
+  transform: translateY(-100%);
+  transition: transform 600ms var(--ease-cinema);
+  background: linear-gradient(180deg,
+    var(--c-velvet-deep) 0%,
+    var(--c-velvet) 35%,
+    var(--c-velvet) 65%,
+    var(--c-velvet-deep) 100%);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+body[data-premiere="on"] .premiere-menu-filmstrip.is-open {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"] .premiere-menu-filmstrip { transition: none; }
+}
+
+/* Sprocket strips — reuse the .premiere-frame pattern */
+body[data-premiere="on"] .premiere-menu-filmstrip__sprocket {
+  display: block;
+  height: var(--sprocket-strip-h-desktop);
+  background:
+    radial-gradient(ellipse 8px 6px at 18px 50%, var(--c-off-black) 0 99%, transparent 100%) 0 0 / var(--sprocket-hole-spacing) 100% repeat-x,
+    linear-gradient(180deg,
+      var(--c-gold-deep) 0%,
+      var(--c-gold-mid) 25%,
+      var(--c-gold-light) 50%,
+      var(--c-gold-mid) 75%,
+      var(--c-gold-deep) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 0 -1px 0 rgba(0,0,0,0.5);
+}
+
+/* Frames — horizontal scrolling row of destinations */
+body[data-premiere="on"] .premiere-menu-filmstrip__frames {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-gold-mid) transparent;
+}
+body[data-premiere="on"] .premiere-menu-filmstrip__frames::-webkit-scrollbar { height: 4px; }
+body[data-premiere="on"] .premiere-menu-filmstrip__frames::-webkit-scrollbar-thumb { background: var(--c-gold-mid); border-radius: 0; }
+
+body[data-premiere="on"] .premiere-menu-filmstrip__frame {
+  flex: 0 0 220px;
+  scroll-snap-align: start;
+  border-right: 1px solid rgba(201, 169, 97, 0.4);
+}
+body[data-premiere="on"] .premiere-menu-filmstrip__frame:last-child {
+  border-right: 0;
+}
+
+body[data-premiere="on"] .premiere-menu-filmstrip__link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.5rem 1rem;
+  height: 100%;
+  text-decoration: none;
+  text-align: center;
+  filter: brightness(0.7) saturate(0.85);
+  transition: filter 300ms var(--ease-cinema), background 300ms;
+  position: relative;
+}
+body[data-premiere="on"] .premiere-menu-filmstrip__link:hover,
+body[data-premiere="on"] .premiere-menu-filmstrip__link:focus-visible {
+  filter: brightness(1.1) saturate(1);
+  background: rgba(255, 195, 130, 0.08);
+  outline: none;
+}
+body[data-premiere="on"] .premiere-menu-filmstrip__link:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--c-gold-light);
+}
+/* Active page frame — bright, marked with red corner */
+body[data-premiere="on"] .premiere-menu-filmstrip__link[aria-current="page"] {
+  filter: brightness(1.15) saturate(1.05);
+  background: linear-gradient(180deg, rgba(200, 16, 46, 0.18) 0%, transparent 100%);
+}
+body[data-premiere="on"] .premiere-menu-filmstrip__link[aria-current="page"]::before {
+  content: '';
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  width: 8px;
+  height: 8px;
+  background: var(--c-red);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--c-red);
+}
+
+body[data-premiere="on"] .premiere-menu-filmstrip__num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: var(--c-gold-light);
+  text-transform: uppercase;
+}
+body[data-premiere="on"] .premiere-menu-filmstrip__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  color: var(--c-cream);
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+body[data-premiere="on"] .premiere-menu-filmstrip__tease {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: rgba(248, 244, 236, 0.75);
+  line-height: 1.3;
+}
+
+/* Mobile: smaller frames, sprocket strips thinner */
+@media (max-width: 720px) {
+  body[data-premiere="on"] .premiere-menu-filmstrip__sprocket {
+    height: var(--sprocket-strip-h-mobile);
+    background-size: 24px 100%, 100% 100%;
+  }
+  body[data-premiere="on"] .premiere-menu-filmstrip__frame { flex: 0 0 160px; }
+  body[data-premiere="on"] .premiere-menu-filmstrip__link { padding: 1rem 0.75rem; }
+  body[data-premiere="on"] .premiere-menu-filmstrip__title { font-size: 1rem; }
+  body[data-premiere="on"] .premiere-menu-filmstrip__tease { font-size: 0.75rem; }
+}
+
+/* Backdrop — dim the page behind the filmstrip when open */
+body[data-premiere="on"] .premiere-menu-filmstrip-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 69; /* below filmstrip, above content */
+  background: rgba(5, 5, 11, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms var(--ease-cinema);
+}
+body[data-premiere="on"] .premiere-menu-filmstrip-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+@supports not (backdrop-filter: blur(4px)) {
+  body[data-premiere="on"] .premiere-menu-filmstrip-backdrop { background: rgba(5, 5, 11, 0.85); }
+}
+
+/* Hide the old radial menu items — superseded */
+body[data-premiere="on"] .premiere-medallion-menu__items { display: none !important; }
+body[data-premiere="on"] .premiere-medallion-menu__backdrop { display: none !important; }
+
 /* The radial menu — 7 destinations as small framed plates */
 body[data-premiere="on"] .premiere-medallion-menu {
   position: fixed;
