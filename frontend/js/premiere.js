@@ -79,6 +79,24 @@
   /* -----------------------------------------------------------------
      2. Harry-as-usher — sticky, swaps pose by section
      ----------------------------------------------------------------- */
+  /* POSE_MAP — V3 §6.2 choreography map.
+     Currently uses the existing 10-pose library + V2/V3 fallbacks.
+     Missing poses (P3 generation queue) and the existing-pose fallbacks
+     are tracked in DEFERRED-ASSETS.md. This map updates in P4 when real
+     poses ship. Fallback annotations:
+
+       home_story    → 08-pointing.png   (fallback for 11-pointing-left, mirror via CSS)
+       home_event    → 04-excited-cheer.png (will become 21-pride-celebrate.png in P4)
+       home_previews → 07-confirming.png (acceptable as-is)
+       home_footer   → 02-thumbs-up.png  (fallback for 23-salute.png)
+       rsvp          → 06-listening.png  (fallback for 15-seated-usher.png)
+       rsvp_success  → 02-thumbs-up.png  (fallback for 13-ticket-stub.png)
+       tickets       → 08-pointing.png   (fallback for 18-presenting.png)
+       through-years → 03-thinking.png   (fallback for 12-clipboard.png on add-memory)
+       capsule       → 08-pointing.png   (fallback for 12-with-pen.png)
+       capsule_success → 04-excited-cheer.png (fallback for 14-wax-stamping.png)
+       playlist      → 04-excited-cheer.png (fallback for 16-conducting.png)
+  */
   const POSE_MAP = {
     home_hero:           '01-wave-hello.png',
     home_story:          '08-pointing.png',

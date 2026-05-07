@@ -20,10 +20,10 @@
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/premiere.css">
 </head>
-<body data-page="home" data-premiere="on">
+<body data-page="home" data-premiere="on" data-snap="on">
 
   <!-- ════ Section 1: Hero ════════════════════════════════════════════ -->
-  <section class="hero" aria-label="MBSH Class of '96 — 30th Reunion welcome">
+  <section class="hero premiere-snap-target" aria-label="MBSH Class of '96 — 30th Reunion welcome">
     <video class="hero__video" src="assets/backgrounds/05-dancefloor-confetti.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__content">
@@ -46,8 +46,10 @@
     </div>
   </section>
 
+  <hr class="premiere-divider" aria-hidden="true">
+
   <!-- ════ Section 2: The Story (Then / Now / Forever) ═══════════════ -->
-  <section class="story" aria-label="The Story">
+  <section class="story premiere-snap-target" aria-label="The Story">
     <article class="story__moment story__moment--then">
       <div class="story__bg" style="background-image: url('assets/story/then-1996-hallway.jpg')"></div>
       <div class="story__overlay"></div>
@@ -67,7 +69,9 @@
   </section>
 
   <!-- ════ Event Details (inline after Story) ════════════════════════ -->
-  <section class="event-details" aria-label="Event details">
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <section class="event-details premiere-snap-target" aria-label="Event details">
     <div class="premiere-marquee" aria-hidden="true">
       <span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span>
     </div>
@@ -81,13 +85,21 @@
   </section>
 
   <!-- ════ Page-anchor previews to other sections ═════════════════════ -->
-  <section class="previews" aria-label="More from the reunion">
-    <a class="preview-card" href="rsvp.html"><h3>Reserve Your Seat</h3><p>Tell us you're coming. The night unlocks once we hear from you.</p></a>
-    <a class="preview-card" href="tickets.html"><h3>Tickets &amp; Sponsorship</h3><p>Two ways in: secure your seat, or help fund the night.</p></a>
-    <a class="preview-card" href="through-years.html"><h3>Through the Years</h3><p>One hundred years of Hi-Tides. The eras that built us.</p></a>
-    <a class="preview-card" href="memorial.html"><h3>In Memory</h3><p>Forever Hi-Tides. Names we carry with us.</p></a>
-    <a class="preview-card" href="capsule.html"><h3>Time Capsule</h3><p>Send your younger self a note. We'll deliver on the day.</p></a>
-    <a class="preview-card" href="playlist.html"><h3>Our Soundtrack</h3><p>The songs that made us who we are. Curated, embedded, alive.</p></a>
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <!-- Cards rendered as a movie-poster wall, framed in a golden filmstrip frame.
+       SCENE 0X slate badges are CSS-counter driven (premiere.css). -->
+  <section class="premiere-frame premiere-snap-target" aria-label="More from the reunion">
+    <p class="premiere-now-showing" aria-hidden="true">— Now Showing —</p>
+    <div class="premiere-frame__body previews">
+      <a class="preview-card" href="rsvp.html"><h3>Reserve Your Seat</h3><p>Tell us you're coming. The night unlocks once we hear from you.</p></a>
+      <a class="preview-card" href="tickets.html"><h3>Tickets &amp; Sponsorship</h3><p>Two ways in: secure your seat, or help fund the night.</p></a>
+      <a class="preview-card" href="through-years.html"><h3>Through the Years</h3><p>One hundred years of Hi-Tides. The eras that built us.</p></a>
+      <a class="preview-card" href="memorial.html"><h3>In Memory</h3><p>Forever Hi-Tides. Names we carry with us.</p></a>
+      <a class="preview-card" href="capsule.html"><h3>Time Capsule</h3><p>Send your younger self a note. We'll deliver on the day.</p></a>
+      <a class="preview-card" href="playlist.html"><h3>Our Soundtrack</h3><p>The songs that made us who we are. Curated, embedded, alive.</p></a>
+    </div>
+    <p class="premiere-presented-by" aria-hidden="true">Presented by the Class of '96 · MBSH 1926–2026</p>
   </section>
 
   <!-- Shared partials inlined (Studio template-first style) -->

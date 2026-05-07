@@ -390,15 +390,9 @@ body[data-premiere="on"] .preview-card {
   flex-direction: column;
   justify-content: space-between;
 }
-/* Spotlight halo behind the title */
-body[data-premiere="on"] .preview-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 30%, rgba(248, 198, 130, 0.18), transparent 65%);
-  z-index: -1;
-}
-/* Sprocket strips on top + bottom */
+/* P2 cleanup: V1 spotlight-halo ::before removed (replaced by .premiere-frame
+   gold-gradient backdrop). The SCENE 0X counter badge is now the only ::before
+   on .preview-card (defined later in the file). */
 body[data-premiere="on"] .preview-card::after {
   content: '';
   position: absolute;
@@ -1178,6 +1172,86 @@ body[data-premiere="on"] .compass-nav__label { display: none !important; }
 body[data-premiere="on"][data-medallion-menu="mounted"] .compass-nav { display: none; }
 
 /* =====================================================================
+   P2 — POSTER WALL polish (lightweight Fritz P2 win, R13)
+   ─────────────────────────────────────────────────────────────────────
+   Fritz feedback: "doesn't fully scream movie poster yet." Lightweight
+   wins applied here:
+   - SCENE 01 / 02 / 03... slate badge auto-numbered via CSS counter
+   - "— Now Showing —" header above the wall (italic Cormorant)
+   - "Presented by the Class of '96 · MBSH 1926–2026" footer line
+   Carry-forward P5 polish (R13): bend/curve film strips + perspective.
+   ===================================================================== */
+body[data-premiere="on"] .previews { counter-reset: scene; }
+
+body[data-premiere="on"] .preview-card {
+  counter-increment: scene;
+}
+
+/* Scene slate — small mono badge inset top-left of each poster card */
+body[data-premiere="on"] .preview-card > h3 { position: relative; }
+body[data-premiere="on"] .preview-card::before {
+  content: 'Scene ' counter(scene, decimal-leading-zero);
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  color: var(--c-gold-light);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--c-gold-mid);
+  text-transform: uppercase;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+/* The original ::before shadow hack from V1 (sprocket strips on poster top)
+   is replaced by the new frame around the entire .previews — leave the
+   ::before override above to repurpose ::before for the scene badge. */
+
+/* "Now Showing" header above the wall */
+body[data-premiere="on"] .premiere-now-showing {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--c-gold-mid);
+  text-align: center;
+  margin: 0.5rem 0 1.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* "Presented by..." footer line below the wall */
+body[data-premiere="on"] .premiere-presented-by {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(248, 244, 236, 0.55);
+  text-align: center;
+  margin: 1.5rem 0 0;
+  letter-spacing: 0.12em;
+}
+
+/* The .previews grid lives INSIDE .premiere-frame__body now — keep grid */
+body[data-premiere="on"][data-page="home"] .premiere-frame__body.previews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  padding: 0 1.5rem;
+}
+@media (max-width: 640px) {
+  body[data-premiere="on"][data-page="home"] .premiere-frame__body.previews {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+    padding: 0 0.75rem;
+  }
+}
+
+/* Hide the original .preview-card::after (V1 sprocket-on-card hack) since
+   the frame around the whole wall now provides the sprocket motif */
+body[data-premiere="on"] .preview-card::after { display: none !important; }
+
+/* =====================================================================
    1. Premiere FX overlay (consolidated single layer)
    One fixed div carries grain + light-leak + vignette = ONE paint layer.
    ===================================================================== */
@@ -1251,10 +1325,10 @@ body[data-premiere="on"] .premiere-starfield {
   background-color: transparent;
   transition: opacity 1500ms var(--ease-cinema);
 }
+/* P2 / V3 §1.11: starfield scoped to home + memorial only.
+   capsule + playlist removed from this list — they get their own backdrops in P3/P4. */
 body[data-premiere="on"][data-page="home"] .premiere-starfield,
-body[data-premiere="on"][data-page="memorial"] .premiere-starfield,
-body[data-premiere="on"][data-page="capsule"] .premiere-starfield,
-body[data-premiere="on"][data-page="playlist"] .premiere-starfield {
+body[data-premiere="on"][data-page="memorial"] .premiere-starfield {
   opacity: 1;
 }
 body[data-premiere="on"][data-page="memorial"] .premiere-starfield {
@@ -1571,15 +1645,8 @@ body[data-premiere="on"] .preview-card {
   transition: transform 600ms var(--ease-cinema), box-shadow 600ms var(--ease-cinema);
   overflow: hidden;
 }
-body[data-premiere="on"] .preview-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 2px;
-  background: var(--grad-silver);
-  transition: left 900ms var(--ease-cinema);
-}
-body[data-premiere="on"] .preview-card.is-visible::before { left: 0; }
+/* P2 cleanup: V1 silver-rule ::before sweep removed — replaced by the
+   golden filmstrip frame's gold-shimmer keyframe at the wall level. */
 body[data-premiere="on"] .preview-card.is-visible {
   transform: translateY(-2px);
 }
