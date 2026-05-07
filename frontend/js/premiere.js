@@ -1356,7 +1356,7 @@
         up.type = 'button';
         up.className = 'section-chevron section-chevron--up';
         up.setAttribute('aria-label', 'Previous scene');
-        up.innerHTML = '<svg viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 16 12 8 20 16"/></svg>';
+        up.innerHTML = '<svg viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 16 12 8 20 16"/><polyline points="4 10 12 2 20 10"/></svg>';
         up.addEventListener('click', () => scrollToSection(sections[i - 1]));
         if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
         sec.appendChild(up);

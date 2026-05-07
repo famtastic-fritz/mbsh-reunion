@@ -38,9 +38,8 @@
   display: none;
 }
 
-@media (max-width: 480px) {
-  .chatbot__panel { position: fixed; inset: 0; bottom: 0; right: 0; width: 100vw; height: 100vh; border-radius: 0; }
-}
+/* mobile chatbot rules live at the END of this file so they win source-order
+   ties against the desktop base rules (see bottom of file). */
 
 .chatbot__panel-header { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--c-off-black); color: var(--c-white); position: relative; }
 .chatbot__panel-pose { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; background: var(--c-red); padding: 4px; }
@@ -64,3 +63,30 @@
 .chatbot__input input:focus { outline: none; border-color: var(--c-red); }
 .chatbot__input button { background: var(--c-red); color: var(--c-white); width: 2.4rem; height: 2.4rem; border-radius: 50%; font-size: 1.1rem; line-height: 1; display: flex; align-items: center; justify-content: center; }
 .chatbot__input button:hover { background: var(--c-red-deep); }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Mobile chatbot — placed at end of file to beat source-order on the base
+   rules. Fixes iOS keyboard hiding the input + iOS auto-zoom on focus.
+   ──────────────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .chatbot__panel {
+    position: fixed; inset: 0; bottom: 0; right: 0;
+    width: 100%;
+    /* dvh adjusts when iOS Safari URL bar / keyboard slides in/out so the
+       input field stays visible above the keyboard. Falls back to vh on
+       browsers that don't yet support dvh. */
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    z-index: 100;
+  }
+  .chatbot__messages { flex: 1 1 0; min-height: 0; }
+  .chatbot__input {
+    flex-shrink: 0;
+    padding-bottom: calc(var(--space-sm) + env(safe-area-inset-bottom, 0px));
+  }
+  /* iOS auto-zooms <input> with font-size < 16px on focus and the layout
+     never recovers. 16px is the minimum that prevents the zoom. */
+  .chatbot__input input,
+  .chatbot__msg--fallback-form input { font-size: 16px; }
+}
