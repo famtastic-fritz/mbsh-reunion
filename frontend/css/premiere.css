@@ -1,7 +1,50 @@
 /* premiere.css — "The Premiere" theme overlay
    ALL styles gated by body[data-premiere="on"] for blast-radius control.
    Existing prod CSS untouched. Flip the body attribute to roll back instantly.
-   Reuses palette + font vars from base.css. */
+   Reuses palette + font vars from base.css.
+
+   ──────────────────────────────────────────────────────────────────────
+   Z-LAYER ARCHITECTURE (V3 / Design Map §1.1)
+   ──────────────────────────────────────────────────────────────────────
+   L0  z:-2   .premiere-stage          fixed page-themed backdrop          pointer-events: none
+   L1  z:50   .premiere-fx             grain + leak + vignette overlay     pointer-events: none
+   L2  z:1-10 page content sections    sections, frames, forms, text       normal
+   L3  z:11   .premiere-frame /        section frames + ribbon dividers    pointer-events: none
+              .premiere-divider
+   L4  z:40   .premiere-usher          Harry button + peek instances       normal on Harry only
+   L5  z:60   .chatbot__panel          chatbot modal when open             normal
+   L6  z:70   .premiere-medallion-menu radial menu when expanded           normal
+   L7  z:9999 .premiere-curtain        page-transition curtain (once)      pointer-events: none
+
+   ──────────────────────────────────────────────────────────────────────
+   SECTION INDEX (run `grep "^/\* =====" premiere.css` to scan)
+   ──────────────────────────────────────────────────────────────────────
+   GUARDS                                — kill duplicates / [hidden] guard
+   FILM-STRIP SIDE BORDERS               — DEPRECATED P1: replace with frames + dividers
+   PRIMARY MENU                          — DEPRECATED P1: replace with medallion-as-menu
+   1. PREMIERE FX (consolidated overlay) — kept
+   2. STARFIELD                          — P1 scope: home + memorial only
+   3. PAGE BACKGROUND (night-sky)        — kept
+   4. PAGE-TRANSITION CURTAIN            — kept (sessionStorage gate)
+   5. HARRY (visible context-aware VA)   — P1: extend with walk/peek/celebrate
+   6. HERO SCENE (index.html)            — kept
+   7. STORY SCENE (Ken Burns)            — kept
+   8. EVENT DETAILS (marquee chase)      — kept
+   9. PREVIEW CARDS                      — P1: rebuild as movie-poster wall
+   10. RSVP (cinema-seat row)            — kept; P1: add cinema-leader
+   11. TICKETS (foil shimmer)            — kept
+   12. THROUGH-YEARS (snap-cards)        — kept; P1: add reel-leader
+   13. MEMORIAL (in-memoriam)            — kept
+   14. CAPSULE (envelope)                — kept
+   15. PLAYLIST (vinyl)                  — kept
+   16. COMPASS (silver on memorial)      — kept
+   17. VIEW-TIMELINE PROGRESSIVE ENHANCE — kept
+   18. REDUCED-MOTION / REDUCED-DATA     — kept
+
+   ──────────────────────────────────────────────────────────────────────
+   AUTHORITY: V2 creative direction + V3 production protocol +
+              PREMIERE-DESIGN-MAP-2026-05-07.md
+   ────────────────────────────────────────────────────────────────────── */
 
 /* =====================================================================
    GUARDS — kill duplicates that conflict with premiere

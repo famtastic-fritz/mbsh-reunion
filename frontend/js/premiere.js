@@ -1,16 +1,42 @@
 /* premiere.js — orchestrator for "The Premiere" theme
    Activates only when body[data-premiere="on"]. No-op otherwise.
 
-   Responsibilities:
-   - Curtain rise (once per session, sessionStorage gated)
-   - Harry-as-usher: section-aware pose swapping via IntersectionObserver
-   - Story scene: .is-visible + .is-active toggles
-   - Preview cards: .is-visible on enter
-   - Memorial names: stagger fade-in
-   - RSVP: ticket stub on submit success
-   - Capsule: envelope open + seal animation
-   - Chatbot toggle hides Harry-usher
-   - Respects prefers-reduced-motion AND prefers-reduced-data
+   ──────────────────────────────────────────────────────────────────────
+   INIT SECTIONS (V3 / Design Map §1)
+   ──────────────────────────────────────────────────────────────────────
+   1. injectOverlays            — L0 .premiere-stage + L1 .premiere-fx + starfield
+   2. injectNav                 — L6 .premiere-nav (DEPRECATED P1: replace with medallion menu)
+   3. wireNavScrollHide         — auto-hide on scroll (DEPRECATED P1)
+   4. attachSnapIn              — IntersectionObserver fade-in (replaced P1 by real snap)
+   5. curtainRise               — L7 page-transition (sessionStorage-once on home)
+   6. mountUsher                — L4 Harry button + per-page pose swap + idle hints
+   7. activateStoryScene        — Story Then/Now/Forever IO triggers
+   8. activatePreviewCards      — preview card stagger fade-in (replaced P1 by frame component)
+   9. activateMemorial          — memorial names stagger
+   10. activateRSVPStub          — ticket stub flip on success
+   11. activateCapsule           — envelope flap open
+   12. activateGenericFades      — view() timeline progressive enhancement
+
+   ──────────────────────────────────────────────────────────────────────
+   PASSES INCOMING (V3 / Design Map §0)
+   ──────────────────────────────────────────────────────────────────────
+   P1 will add:
+   - Medallion-as-menu (replaces injectNav + scroll-hide)
+   - Snap mechanism (scrollend + bounce, iOS Safari fallback)
+   - Harry walk/peek/celebrate vocabulary
+   - Filmstrip frame + ribbon divider components (CSS-only, no JS handler)
+
+   P1 will remove:
+   - injectNav (replaced by mountMedallionMenu)
+   - wireNavScrollHide (replaced by medallion always-visible)
+   - .is-visible bounce path (replaced by real scroll-snap event)
+
+   ──────────────────────────────────────────────────────────────────────
+   AUTHORITY: V2 creative direction + V3 production protocol +
+              PREMIERE-DESIGN-MAP-2026-05-07.md
+   ──────────────────────────────────────────────────────────────────────
+
+   Respects prefers-reduced-motion AND prefers-reduced-data.
 */
 (function () {
   'use strict';
