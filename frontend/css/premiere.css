@@ -778,8 +778,10 @@ body[data-premiere="on"] {
   --sprocket-strip-h-mobile:  16px;
   --sprocket-hole-spacing:    36px;
 
-  /* Motion grammar */
-  --curtain-duration: 1200ms;
+  /* Motion grammar — Fritz feedback (mobile walk): curtain was 'way way too fast'.
+     Slowed from 1200ms to 3200ms — gives the title card time to read before
+     the rise, and the rise itself feels deliberate not flicker. */
+  --curtain-duration: 3200ms;
   --letterbox-duration: 600ms;
   --scene-fade-duration: 900ms;
   --ease-cinema: cubic-bezier(0.22, 1, 0.36, 1);
@@ -1755,7 +1757,10 @@ body[data-premiere="on"] .premiere-curtain.is-rising {
 }
 @keyframes premiere-curtain-rise {
   0%   { opacity: 1; transform: translateY(0); }
-  60%  { opacity: 1; transform: translateY(0); }
+  /* Hold the curtain + title card visible 0–55% (~1.75s of 3.2s) so the
+     reader has time to register 'MBSH presents' before the rise begins */
+  55%  { opacity: 1; transform: translateY(0); }
+  /* Rise from 55%–100% (~1.45s) — slow deliberate reveal */
   100% { opacity: 0; transform: translateY(-100%); }
 }
 
@@ -1770,10 +1775,12 @@ body[data-premiere="on"] .premiere-curtain__title {
   color: var(--c-cream);
   text-shadow: 0 4px 20px rgba(0,0,0,0.6);
   opacity: 0;
-  animation: premiere-title-fade 800ms var(--ease-cinema) 100ms forwards;
+  /* Title fade matched to slower curtain — fade-in 1.2s, then dwell while
+     the curtain holds, fade-out begins as the curtain starts to rise. */
+  animation: premiere-title-fade 1200ms var(--ease-cinema) 200ms forwards;
 }
 @keyframes premiere-title-fade {
-  0%   { opacity: 0; transform: translateY(8px); }
+  0%   { opacity: 0; transform: translateY(12px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
@@ -1821,6 +1828,109 @@ body[data-premiere="on"] .premiere-usher img {
   filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45));
   transition: opacity 400ms var(--ease-cinema), filter 300ms var(--ease-cinema);
   pointer-events: none;
+}
+
+/* =====================================================================
+   HARRY INTRO BUBBLE — first-visit-per-session post-curtain greeting
+   Fritz: 'harry comes in with a message introducing himself and letting
+   users know he can help navigate, take suggestions to send to the
+   committee, etc.'
+   Cream parchment with scarlet trim + Cormorant italic body. Multi-line.
+   Pointer triangle aiming at the usher button. Auto-dismiss after 12s
+   or on any tap.
+   ===================================================================== */
+body[data-premiere="on"] .premiere-usher-intro {
+  position: fixed;
+  bottom: calc(120px + 1.5rem); /* clears the usher (110px desktop / 64px mobile + breathing) */
+  right: 1.5rem;
+  z-index: 41;
+  max-width: 320px;
+  background: var(--c-cream);
+  color: var(--c-off-black);
+  border: 2px solid var(--c-velvet);
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.55), 0 4px 14px rgba(200,16,46,0.25);
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 0.96rem;
+  line-height: 1.45;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transition: opacity 700ms var(--ease-cinema), transform 700ms var(--ease-cinema);
+  pointer-events: none;
+}
+body[data-premiere="on"] .premiere-usher-intro.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+/* Cream pointer triangle aimed at the usher (down-right corner) */
+body[data-premiere="on"] .premiere-usher-intro::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 36px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--c-velvet);
+}
+body[data-premiere="on"] .premiere-usher-intro::before {
+  /* Inner cream notch (sits inside the velvet pointer) */
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  right: 38px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--c-cream);
+  z-index: 1;
+}
+/* Mini headline before the body text */
+body[data-premiere="on"] .premiere-usher-intro__name {
+  display: block;
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--c-velvet);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+body[data-premiere="on"] .premiere-usher-intro__close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--c-velvet);
+  padding: 4px 8px;
+  line-height: 1;
+  font-family: var(--font-body);
+}
+body[data-premiere="on"] .premiere-usher-intro__close:hover,
+body[data-premiere="on"] .premiere-usher-intro__close:focus-visible {
+  color: var(--c-red);
+  outline: 2px solid var(--c-velvet);
+  outline-offset: 2px;
+}
+@media (max-width: 640px) {
+  body[data-premiere="on"] .premiere-usher-intro {
+    max-width: calc(100vw - 6rem);
+    right: 0.5rem;
+    bottom: calc(64px + 1rem);
+    font-size: 0.88rem;
+    padding: 0.9rem 1rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"] .premiere-usher-intro { transition: opacity 200ms; transform: none; }
 }
 
 /* Tooltip-style label that fades in on idle */

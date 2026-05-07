@@ -50,13 +50,23 @@
   const page = document.body.getAttribute('data-page') || 'unknown';
 
   /* -----------------------------------------------------------------
-     1. Curtain rise — once per session, fires on first page load
+     1. Curtain rise — once per session, fires on first page load.
+     Slowed to 3200ms (Fritz: 'way way too fast'). Schedules the
+     Harry intro bubble to appear after the curtain finishes.
      ----------------------------------------------------------------- */
   function curtainRise() {
-    if (reduceMotion) return;
+    if (reduceMotion) {
+      // Reduced-motion: skip curtain animation but still show Harry intro
+      setTimeout(harryIntro, 600);
+      return;
+    }
     const SESSION_KEY = 'premiere_curtain_seen';
-    if (sessionStorage.getItem(SESSION_KEY)) return;
-    if (page !== 'home') return;
+    const alreadySeen = sessionStorage.getItem(SESSION_KEY);
+    if (page !== 'home' || alreadySeen) {
+      // Still trigger Harry intro on home if curtain was skipped
+      if (page === 'home') setTimeout(harryIntro, 800);
+      return;
+    }
 
     const curtain = document.createElement('div');
     curtain.className = 'premiere-curtain';
@@ -70,10 +80,64 @@
     requestAnimationFrame(() => {
       curtain.classList.add('is-rising');
     });
+    // Curtain duration is 3200ms (CSS var --curtain-duration).
+    // Remove element after rise + 100ms safety margin.
     setTimeout(() => {
       curtain.remove();
       sessionStorage.setItem(SESSION_KEY, '1');
-    }, 1300);
+      // Now Harry steps in with his intro bubble
+      setTimeout(harryIntro, 600);
+    }, 3300);
+  }
+
+  /* Harry intro bubble — first-visit-per-session greeting. Fritz:
+     'harry comes in with a message introducing himself and letting users
+     know he can help navigate, take suggestions to send to the committee'. */
+  function harryIntro() {
+    if (page !== 'home') return;
+    const INTRO_KEY = 'premiere_harry_intro_seen';
+    if (sessionStorage.getItem(INTRO_KEY)) return;
+
+    const usher = document.querySelector('.premiere-usher');
+    if (!usher) return;
+
+    const bubble = document.createElement('div');
+    bubble.className = 'premiere-usher-intro';
+    bubble.setAttribute('role', 'dialog');
+    bubble.setAttribute('aria-label', 'Hi-Tide Harry intro');
+
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'premiere-usher-intro__close';
+    close.setAttribute('aria-label', 'Close intro');
+    close.textContent = '×';
+
+    const name = document.createElement('span');
+    name.className = 'premiere-usher-intro__name';
+    name.textContent = "I'm Hi-Tide Harry.";
+
+    const body = document.createElement('span');
+    body.textContent = "I'm your reunion assistant — tap me to ask anything about the night, or send the committee a note. I'll help you navigate, too.";
+
+    bubble.appendChild(close);
+    bubble.appendChild(name);
+    bubble.appendChild(body);
+    document.body.appendChild(bubble);
+
+    requestAnimationFrame(() => bubble.classList.add('is-visible'));
+
+    function dismiss() {
+      bubble.classList.remove('is-visible');
+      setTimeout(() => bubble.remove(), 700);
+      sessionStorage.setItem(INTRO_KEY, '1');
+    }
+    close.addEventListener('click', (e) => { e.stopPropagation(); dismiss(); });
+    // Click anywhere also dismisses (after a tick so the open animation lands)
+    setTimeout(() => {
+      document.addEventListener('click', dismiss, { once: true });
+    }, 600);
+    // Auto-dismiss after 12s
+    setTimeout(dismiss, 12000);
   }
 
   /* -----------------------------------------------------------------
