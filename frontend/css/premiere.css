@@ -1913,13 +1913,27 @@ body[data-premiere="on"][data-page="home"] .hero__harry {
   50%      { box-shadow: 0 0 0 10px rgba(200, 16, 46, 0.18); }
 }
 
-/* Hero scroll-tease subtle bounce */
+/* Hero scroll-tease subtle bounce.
+   IMPORTANT: keyframes must preserve the desktop translateX(-50%) centering
+   from hero.css — CSS animation transforms REPLACE static transform, so any
+   translateY here MUST also include the -50% X centering or the element
+   slides off-center. (Fritz spotted this on the staging walk.) */
 body[data-premiere="on"][data-page="home"] .hero__scroll-tease {
   animation: premiere-tease-bob 3s ease-in-out infinite;
 }
-@keyframes premiere-tease-bob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(8px); }
+@media (min-width: 768px) {
+  @keyframes premiere-tease-bob {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(8px); }
+  }
+}
+/* Mobile: the V1 .hero__scroll-tease has no translateX (it's flow-positioned
+   inside hero__content), so the bob can use translateY alone. */
+@media (max-width: 767px) {
+  @keyframes premiere-tease-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(8px); }
+  }
 }
 
 /* =====================================================================
