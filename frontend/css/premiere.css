@@ -969,12 +969,14 @@ body[data-premiere="on"] .premiere-medallion {
    down) — Fritz spotted this on the staging walk. */
 
 /* Mobile: matches V1 .hero__mark mobile rule (72px, align-self: flex-start).
-   IMPORTANT: position:static is REQUIRED here to override the base
-   .premiere-medallion { position: fixed } rule. Without it the wrapper
-   button is fixed-positioned and overlaps the welcome cursive text on
-   mobile (Fritz spotted this on his phone walk). */
+   IMPORTANT:
+   - position MUST override the base .premiere-medallion { position: fixed }
+     so the wrapper takes a flex slot (otherwise welcome overlaps it).
+   - Use 'relative' (not 'static') so the .premiere-medallion::after MENU
+     hint label has a positioning reference — otherwise it walks up to
+     .hero and lands at the bottom of the hero instead of below the medallion. */
 body[data-premiere="on"] .premiere-medallion--inline {
-  position: static;
+  position: relative;
   display: inline-block;
   width: 72px;
   height: 72px;
