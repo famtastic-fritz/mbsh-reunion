@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="MBSH Class of '96 — 30th Reunion. A black-tie celebration thirty years in the making.">
   <title>MBSH Class of &rsquo;96 — 30th Reunion</title>
-  <link rel="preload" as="image" href="assets/brand-mark/brand-mark.png">
-  <link rel="preload" as="video" href="assets/backgrounds/05-dancefloor-confetti.mp4">
+  <link rel="preload" as="image" href="assets/premiere/hero-poster.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/premiere/brand-mark-foil.png">
+  <!-- P6 perf fix: removed preload as="video" — forced 4MB+ MP4 load before LCP.
+       Hero video now has a poster (LCP element) + preload="metadata". -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Allura&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
@@ -18,15 +21,16 @@
   <link rel="stylesheet" href="css/compass.css">
   <link rel="stylesheet" href="css/chatbot.css">
   <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/premiere.css">
 </head>
-<body data-page="home">
+<body data-page="home" data-premiere="on" data-snap="on">
 
   <!-- ════ Section 1: Hero ════════════════════════════════════════════ -->
-  <section class="hero" aria-label="MBSH Class of '96 — 30th Reunion welcome">
-    <video class="hero__video" src="assets/backgrounds/05-dancefloor-confetti.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <section class="hero premiere-snap-target" aria-label="MBSH Class of '96 — 30th Reunion welcome">
+    <video class="hero__video" data-src="assets/backgrounds/05-dancefloor-confetti.mp4" poster="assets/premiere/hero-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__content">
-      <img class="hero__mark" src="assets/brand-mark/brand-mark.png" alt="30 + 100 commemorative mark — Class of '96 30th reunion, MBSH 100th anniversary" width="120" height="120">
+      <img class="hero__mark" src="assets/premiere/brand-mark-foil.png" alt="30 + 100 commemorative mark — Class of '96 30th reunion, MBSH 100th anniversary" width="120" height="120">
       <div class="hero__type">
         <p class="hero__welcome">Welcome back, Class of &rsquo;96</p>
         <h1 class="hero__headline"><span>Thirty Years Of</span><span>Hi-Tides</span></h1>
@@ -45,8 +49,10 @@
     </div>
   </section>
 
+  <hr class="premiere-divider" aria-hidden="true">
+
   <!-- ════ Section 2: The Story (Then / Now / Forever) ═══════════════ -->
-  <section class="story" aria-label="The Story">
+  <section class="story premiere-snap-target" aria-label="The Story">
     <article class="story__moment story__moment--then">
       <div class="story__bg" style="background-image: url('assets/story/then-1996-hallway.jpg')"></div>
       <div class="story__overlay"></div>
@@ -59,14 +65,19 @@
     </article>
     <article class="story__moment story__moment--forever">
       <div class="story__forever-stage">
-        <img class="story__forever-mark" src="assets/brand-mark/brand-mark.png" alt="" aria-hidden="true">
+        <img class="story__forever-mark" src="assets/premiere/brand-mark-foil.png" alt="" aria-hidden="true">
       </div>
       <h2 class="story__caption">At a school turning 100. One night. One class. One hundred years of Hi-Tides.</h2>
     </article>
   </section>
 
   <!-- ════ Event Details (inline after Story) ════════════════════════ -->
-  <section class="event-details" aria-label="Event details">
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <section class="event-details premiere-snap-target" aria-label="Event details">
+    <div class="premiere-marquee" aria-hidden="true">
+      <span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span>
+    </div>
     <div class="event-details__grid">
       <div class="event-details__item"><span class="event-details__label">Date</span><span class="event-details__value" data-config-bind="reunion_date_display">October–November 2026</span></div>
       <div class="event-details__item"><span class="event-details__label">Time</span><span class="event-details__value">7:00 PM – Midnight</span></div>
@@ -77,13 +88,21 @@
   </section>
 
   <!-- ════ Page-anchor previews to other sections ═════════════════════ -->
-  <section class="previews" aria-label="More from the reunion">
-    <a class="preview-card" href="rsvp.html"><h3>Reserve Your Seat</h3><p>Tell us you're coming. The night unlocks once we hear from you.</p></a>
-    <a class="preview-card" href="tickets.html"><h3>Tickets &amp; Sponsorship</h3><p>Two ways in: secure your seat, or help fund the night.</p></a>
-    <a class="preview-card" href="through-years.html"><h3>Through the Years</h3><p>One hundred years of Hi-Tides. The eras that built us.</p></a>
-    <a class="preview-card" href="memorial.html"><h3>In Memory</h3><p>Forever Hi-Tides. Names we carry with us.</p></a>
-    <a class="preview-card" href="capsule.html"><h3>Time Capsule</h3><p>Send your younger self a note. We'll deliver on the day.</p></a>
-    <a class="preview-card" href="playlist.html"><h3>Our Soundtrack</h3><p>The songs that made us who we are. Curated, embedded, alive.</p></a>
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <!-- Cards rendered as a movie-poster wall, framed in a golden filmstrip frame.
+       SCENE 0X slate badges are CSS-counter driven (premiere.css). -->
+  <section class="premiere-frame premiere-snap-target" aria-label="More from the reunion">
+    <p class="premiere-now-showing" aria-hidden="true">— Now Showing —</p>
+    <div class="premiere-frame__body previews">
+      <a class="preview-card" href="rsvp.html"><h3>Reserve Your Seat</h3><p>Tell us you're coming. The night unlocks once we hear from you.</p></a>
+      <a class="preview-card" href="tickets.html"><h3>Tickets &amp; Sponsorship</h3><p>Two ways in: secure your seat, or help fund the night.</p></a>
+      <a class="preview-card" href="through-years.html"><h3>Through the Years</h3><p>One hundred years of Hi-Tides. The eras that built us.</p></a>
+      <a class="preview-card" href="memorial.html"><h3>In Memory</h3><p>Forever Hi-Tides. Names we carry with us.</p></a>
+      <a class="preview-card" href="capsule.html"><h3>Time Capsule</h3><p>Send your younger self a note. We'll deliver on the day.</p></a>
+      <a class="preview-card" href="playlist.html"><h3>Our Soundtrack</h3><p>The songs that made us who we are. Curated, embedded, alive.</p></a>
+    </div>
+    <p class="premiere-presented-by" aria-hidden="true">Presented by the Class of '96 · MBSH 1926–2026</p>
   </section>
 
   <!-- Shared partials inlined (Studio template-first style) -->
@@ -161,5 +180,6 @@
   <script src="js/countdown.js" defer></script>
   <script src="js/compass.js" defer></script>
   <script src="js/chatbot.js" defer></script>
+  <script src="js/premiere.js" defer></script>
 </body>
 </html>
