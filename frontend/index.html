@@ -51,41 +51,19 @@
 
   <hr class="premiere-divider" aria-hidden="true">
 
-  <!-- ════ Section 2: NOTE / Usher's Welcome ═════════════════════════
-       Page pattern: Title → NOTE → Pre → Main → Post → Where-Next.
-       This is the NOTE slot — Hi-Tide Harry briefs the guest. -->
-  <section class="page-note premiere-snap-target" aria-label="A note from your usher" data-page-slot="note">
+  <!-- ════ Section 2: NOTE / Billboard slideshow ═════════════════════
+       Page pattern: Title → NOTE → Main → Post → Where-Next.
+       The note is now a billboard — multi-slide, animated, auto-advances.
+       JS (`mountBillboard`) fills slides from the BILLBOARD data map. -->
+  <section class="page-note billboard premiere-snap-target" aria-label="A note from your usher" data-page-slot="note" data-billboard="home">
     <div class="page-note__slate">
-      <span>Scene 02 · Int. Lobby — Night</span>
+      <span class="page-note__slate-text">Scene 02 · Int. Lobby — Night</span>
       <span class="page-note__rec" aria-hidden="true"><span class="page-note__rec-dot"></span>Rec</span>
     </div>
-    <div class="page-note__inner">
-      <p class="page-note__eyebrow">— A note from your usher —</p>
-      <div class="page-note__body">
-        <img class="page-note__harry" src="assets/mascot/18-presenting.png" alt="Hi-Tide Harry, your usher" width="180" height="180">
-        <div class="page-note__copy">
-          <p class="page-note__line">Welcome inside, Hi-Tide. I'm <em>Harry</em> — your usher for the evening.</p>
-          <ul class="page-note__beats">
-            <li><span class="page-note__beat-num">i.</span> Tap the chevron at the bottom of any scene to drop into the next.</li>
-            <li><span class="page-note__beat-num">ii.</span> The medallion in the top corner is the <em>Compass</em> — every page in one tap.</li>
-            <li><span class="page-note__beat-num">iii.</span> Tap me any time. Questions about the night, or a note for the committee — I'll carry it.</li>
-          </ul>
-          <p class="page-note__sign">— Harry</p>
-        </div>
-      </div>
-    </div>
+    <!-- billboard slides + controls injected by premiere.js -->
   </section>
 
-  <!-- ════ Section 3: PRE-ITEM lead-in ════════════════════════════════ -->
-  <hr class="premiere-divider" aria-hidden="true">
-
-  <section class="page-pre premiere-snap-target" aria-label="Tonight's program lead-in" data-page-slot="pre">
-    <p class="page-pre__eyebrow">— Tonight's program —</p>
-    <h2 class="page-pre__headline">Nine reels.<br>One night.</h2>
-    <p class="page-pre__sub">Every page on this site is a scene from the evening. Pick one to walk into, or keep tapping the chevron and follow me through.</p>
-  </section>
-
-  <!-- ════ Section 4: MAIN ITEM — The Program Bulletin ═══════════════ -->
+  <!-- ════ Section 3: MAIN ITEM — The Program Bulletin ═══════════════ -->
   <hr class="premiere-divider" aria-hidden="true">
 
   <section class="page-main program-bulletin premiere-snap-target" aria-label="Program — pick a scene" data-page-slot="main">
@@ -159,15 +137,10 @@
     <p class="director-strip__credit">Presented by the Class of '96 · MBSH 1926–2026</p>
   </section>
 
-  <!-- ════ Section 6: WHERE-NEXT ═════════════════════════════════════ -->
+  <!-- ════ Section 6: WHERE-NEXT ═════════════════════════════════════
+       The .where-next section is injected by `injectWhereNext()` in
+       premiere.js, picking the next 3 reels in PROGRAM order. -->
   <hr class="premiere-divider" aria-hidden="true">
-
-  <section class="page-next premiere-snap-target" aria-label="Where to next" data-page-slot="next">
-    <p class="page-next__eyebrow">— Up next —</p>
-    <h2 class="page-next__headline">Reel I — Reserve your seat.</h2>
-    <p class="page-next__sub">The night unlocks once we hear from you.</p>
-    <a class="page-next__cta" href="rsvp.html">Take your seat →</a>
-  </section>
 
   <!-- Shared partials inlined (Studio template-first style) -->
   <!--#include partial="compass-nav" -->

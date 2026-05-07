@@ -1112,6 +1112,295 @@
     }
   }
 
+  /* -----------------------------------------------------------------
+     PASS 10 — Billboard slideshow + chevrons everywhere + unified
+     section pull-in animation.
+     ----------------------------------------------------------------- */
+
+  const BILLBOARD = {
+    home: [
+      {
+        eyebrow: 'A note from your usher',
+        kind: 'welcome',
+        harry: '18-presenting.png',
+        line: "Welcome inside, Hi-Tide. I'm <em>Harry</em> — your usher for the evening.",
+        beats: [
+          'Tap the chevron at the bottom of any scene to drop into the next.',
+          'The medallion in the top corner is the <em>Compass</em> — every page in one tap.',
+          "Tap me any time. Questions about the night, or a note for the committee — I'll carry it."
+        ],
+        sign: '— Harry'
+      },
+      {
+        eyebrow: "Tonight's program",
+        kind: 'headline',
+        harry: '20-pointing-across.png',
+        headline: 'Nine reels.<br>One night.',
+        sub: 'Every page on this site is a scene from the evening. Pick one to walk into, or keep tapping the chevron and follow me through.'
+      },
+      {
+        eyebrow: 'The night',
+        kind: 'headline',
+        harry: '23-salute.png',
+        headline: 'October–November 2026.<br><span class="billboard__accent">Black-tie cocktail.</span>',
+        sub: 'Miami Beach. The night unlocks once we hear from you.'
+      }
+    ],
+    rsvp: [
+      { eyebrow: 'A note from your usher', kind: 'welcome', harry: '12-clipboard.png',
+        line: "Take your seat, Hi-Tide. The night unlocks the moment you tell us you're coming.",
+        beats: [
+          'Fill the form below — name, plus-one, dietary notes.',
+          'You can update later if anything changes.',
+          'Tap me if a field gets weird or you want a hand.'
+        ], sign: '— Harry' },
+      { eyebrow: 'Save the date', kind: 'headline', harry: '02-thumbs-up.png',
+        headline: 'October–November 2026.', sub: 'Black-tie cocktail. Miami Beach. The full schedule lands once tickets open.' }
+    ],
+    tickets: [
+      { eyebrow: 'A note from your usher', kind: 'welcome', harry: '13-ticket-stub.png',
+        line: 'Two ways in tonight, Hi-Tide — secure a seat, or help fund the night.',
+        beats: [
+          'Tier badges below show what each level unlocks.',
+          'Patrons get on-site recognition + the patron-row at dinner.',
+          "Got a company that wants to put their name on it? I'll point them my way."
+        ], sign: '— Harry' },
+      { eyebrow: 'Patrons of the evening', kind: 'headline', harry: '04-excited-cheer.png',
+        headline: 'Studio · Director · Producer · Patron.', sub: 'Pick a tier. Or pick the seat. Either reels the room.' }
+    ],
+    'through-years': [
+      { eyebrow: 'A note from your usher', kind: 'welcome', harry: '22-walk-frame.png',
+        line: 'One hundred years of Hi-Tides, walked in five frames.',
+        beats: [
+          'Scroll the filmstrip — each card is an era.',
+          "1996 is your year — pause there a beat.",
+          'Add a memory at the end — we read every one.'
+        ], sign: '— Harry' },
+      { eyebrow: 'The reel rolls', kind: 'headline', harry: '20-pointing-across.png',
+        headline: '1926 → 2026.', sub: 'A century of hallways, hi-tides, and the kids who came back.' }
+    ],
+    memorial: [
+      { eyebrow: 'A note from your usher', kind: 'welcome', harry: '17-respectful.png',
+        line: 'Forever Hi-Tides. Names we carry with us tonight.',
+        beats: [
+          'Each name fades up as you scroll — give them the beat.',
+          "If we missed someone — submit below. We'll add them.",
+          'Hat off, hand on heart, then we keep walking.'
+        ], sign: '— Harry' },
+      { eyebrow: 'In Memoriam', kind: 'headline', harry: '17-respectful.png',
+        headline: 'Forever Hi-Tides.', sub: 'Once a Hi-Tide, always a Hi-Tide.' }
+    ],
+    capsule: [
+      { eyebrow: 'A note from your usher', kind: 'welcome', harry: '14-wax-stamping.png',
+        line: 'Send your younger self a note. We seal it tonight, deliver it on the day.',
+        beats: [
+          'Write what 17-year-old you should know now.',
+          "We'll wax-seal it on submit — sealed, not sent yet.",
+          'Delivered the night of the reunion. No spoilers from me.'
+        ], sign: '— Harry' },
+      { eyebrow: 'The promise', kind: 'headline', harry: '14-wax-stamping.png',
+        headline: 'Sealed July 12, 2026.', sub: "Delivered the night we're all in the room." }
+    ],
+    playlist: [
+      { eyebrow: 'A note from your usher', kind: 'welcome', harry: '16-conducting.png',
+        line: 'The songs that made us who we are. Curated, embedded, alive.',
+        beats: [
+          'Press play below — full Spotify playlist, no login needed.',
+          'Got a song we missed? Tap me, I add it.',
+          'Conduct along — nobody is watching but the cool kids.'
+        ], sign: '— Harry' },
+      { eyebrow: 'The encore', kind: 'headline', harry: '16-conducting.png',
+        headline: 'Press play.', sub: 'The night has a soundtrack. We were there for every song.' }
+    ]
+  };
+
+  function buildSlide(s) {
+    const slide = document.createElement('div');
+    slide.className = 'billboard__slide billboard__slide--' + (s.kind || 'welcome');
+    let inner = '';
+    inner += '<p class="billboard__eyebrow">— ' + s.eyebrow + ' —</p>';
+    if (s.harry) {
+      inner += '<img class="billboard__harry" src="assets/mascot/' + s.harry + '" alt="Hi-Tide Harry" loading="lazy" width="160" height="200">';
+    }
+    if (s.kind === 'welcome') {
+      inner += '<p class="billboard__line">' + s.line + '</p>';
+      if (s.beats && s.beats.length) {
+        inner += '<ul class="billboard__beats">';
+        const numerals = ['i','ii','iii','iv','v'];
+        s.beats.forEach((b, i) => {
+          inner += '<li><span class="billboard__beat-num">' + (numerals[i]||'') + '.</span> ' + b + '</li>';
+        });
+        inner += '</ul>';
+      }
+      if (s.sign) inner += '<p class="billboard__sign">' + s.sign + '</p>';
+    } else if (s.kind === 'headline') {
+      if (s.headline) inner += '<h2 class="billboard__headline">' + s.headline + '</h2>';
+      if (s.sub)      inner += '<p class="billboard__sub">' + s.sub + '</p>';
+    }
+    slide.innerHTML = inner;
+    return slide;
+  }
+
+  function mountBillboard(host, slides) {
+    if (!host || !slides || !slides.length) return;
+    if (host.dataset.billboardMounted === '1') return;
+    host.dataset.billboardMounted = '1';
+
+    const stage = document.createElement('div');
+    stage.className = 'billboard__stage';
+    slides.forEach((s, i) => {
+      const el = buildSlide(s);
+      if (i === 0) el.classList.add('is-current');
+      stage.appendChild(el);
+    });
+    host.appendChild(stage);
+
+    if (slides.length > 1) {
+      const dots = document.createElement('div');
+      dots.className = 'billboard__dots';
+      dots.setAttribute('role', 'tablist');
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'billboard__dot' + (i === 0 ? ' is-current' : '');
+        b.setAttribute('aria-label', 'Slide ' + (i+1) + ' of ' + slides.length);
+        b.addEventListener('click', () => go(i, true));
+        dots.appendChild(b);
+      });
+      host.appendChild(dots);
+
+      let current = 0;
+      let timer = null;
+      const ADVANCE_MS = 7000;
+
+      function go(i, manual) {
+        if (i === current) return;
+        const stageSlides = stage.children;
+        stageSlides[current].classList.remove('is-current');
+        stageSlides[current].classList.add('is-leaving');
+        stageSlides[i].classList.remove('is-leaving');
+        stageSlides[i].classList.add('is-current');
+        setTimeout(() => stageSlides[(current)].classList.remove('is-leaving'), 800);
+        [...dots.children].forEach((d, idx) => d.classList.toggle('is-current', idx === i));
+        current = i;
+        if (manual) restart();
+      }
+      function tick() { go((current + 1) % slides.length, false); }
+      function start() { if (!reduceMotion) timer = setInterval(tick, ADVANCE_MS); }
+      function restart() { if (timer) clearInterval(timer); start(); }
+      host.addEventListener('mouseenter', () => { if (timer) clearInterval(timer); });
+      host.addEventListener('mouseleave', () => restart());
+      start();
+    }
+  }
+
+  function mountAllBillboards() {
+    // Home billboard already has a host element with data-billboard="home".
+    document.querySelectorAll('[data-billboard]').forEach(host => {
+      const key = host.dataset.billboard;
+      if (BILLBOARD[key]) mountBillboard(host, BILLBOARD[key]);
+    });
+    // Inner pages — inject a billboard immediately after the first content
+    // section if no .page-note already exists.
+    if (page !== 'home' && BILLBOARD[page] && !document.querySelector('.page-note')) {
+      const main = document.querySelector('main') || document.body;
+      const firstSection = main.querySelector('section.premiere-snap-target') || main.querySelector('section');
+      if (firstSection) {
+        const note = document.createElement('section');
+        note.className = 'page-note billboard premiere-snap-target';
+        note.setAttribute('aria-label', 'A note from your usher');
+        note.dataset.pageSlot = 'note';
+        note.dataset.billboard = page;
+        const slate = document.createElement('div');
+        slate.className = 'page-note__slate';
+        slate.innerHTML = '<span class="page-note__slate-text">Scene 02 · Int. ' + (page.replace('-', ' ')) + ' — Night</span>' +
+                          '<span class="page-note__rec" aria-hidden="true"><span class="page-note__rec-dot"></span>Rec</span>';
+        note.appendChild(slate);
+        firstSection.parentNode.insertBefore(note, firstSection.nextSibling);
+        mountBillboard(note, BILLBOARD[page]);
+      }
+    }
+  }
+
+  /* Section chevrons — down (next) on every snap section, up (prev) on
+     every snap section except the first. Click triggers a smooth scroll
+     with snap temporarily disabled, matching the home hero pattern. */
+  function injectSectionChevrons() {
+    // Pick top-level page sections in document order. Prefer snap-targets
+    // when the page uses them; otherwise grab labeled body/main sections
+    // (covers inner pages built before the snap mechanism existed).
+    const snap = [...document.querySelectorAll('section.premiere-snap-target')];
+    const labeled = [...document.querySelectorAll('body > section[aria-label], main > section[aria-label]')]
+      .filter(s => !s.closest('footer') && !s.classList.contains('compass-nav'));
+    const merged = new Set([...snap, ...labeled]);
+    let sections = [...merged].sort((a, b) =>
+      (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1
+    );
+    if (sections.length < 2) return;
+
+    sections.forEach((sec, i) => {
+      // Skip if hero already has its own chevron
+      const isHero = sec.classList.contains('hero');
+      if (!isHero && !sec.querySelector(':scope > .section-chevron-down') && i < sections.length - 1) {
+        const down = document.createElement('button');
+        down.type = 'button';
+        down.className = 'section-chevron section-chevron--down';
+        down.setAttribute('aria-label', 'Next scene');
+        down.innerHTML = '<svg viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 12 14 20 6"/><polyline points="4 12 12 20 20 12"/></svg>';
+        down.addEventListener('click', () => scrollToSection(sections[i + 1]));
+        if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
+        sec.appendChild(down);
+      }
+      if (i > 0 && !sec.querySelector(':scope > .section-chevron-up')) {
+        const up = document.createElement('button');
+        up.type = 'button';
+        up.className = 'section-chevron section-chevron--up';
+        up.setAttribute('aria-label', 'Previous scene');
+        up.innerHTML = '<svg viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 16 12 8 20 16"/></svg>';
+        up.addEventListener('click', () => scrollToSection(sections[i - 1]));
+        if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
+        sec.appendChild(up);
+      }
+    });
+  }
+
+  function scrollToSection(target) {
+    if (!target) return;
+    const wasSnap = document.body.dataset.snap === 'on';
+    if (wasSnap) document.body.removeAttribute('data-snap');
+    const top = target.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+    if (wasSnap) setTimeout(() => { document.body.setAttribute('data-snap', 'on'); }, 900);
+    target.classList.add('is-arriving');
+    setTimeout(() => target.classList.remove('is-arriving'), 1100);
+  }
+
+  /* Unified pull-in arrival — same animation whether the user clicked a
+     chevron or just scrolled naturally. Watches every snap section and
+     toggles `.is-arriving` when it crosses the viewport center. */
+  function wireSectionArrival() {
+    if (reduceMotion) return;
+    const snap = [...document.querySelectorAll('section.premiere-snap-target')];
+    const labeled = [...document.querySelectorAll('body > section[aria-label], main > section[aria-label]')]
+      .filter(s => !s.closest('footer') && !s.classList.contains('compass-nav'));
+    const sections = [...new Set([...snap, ...labeled])];
+    if (!sections.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && e.intersectionRatio > 0.55) {
+          if (!e.target.classList.contains('is-arrived')) {
+            e.target.classList.add('is-arriving');
+            setTimeout(() => {
+              e.target.classList.remove('is-arriving');
+              e.target.classList.add('is-arrived');
+            }, 700);
+          }
+        }
+      });
+    }, { threshold: [0.55, 0.7] });
+    sections.forEach(s => io.observe(s));
+  }
+
   function init() {
     try { injectOverlays(); }       catch (e) { console.warn('[premiere] fx', e); }
     try { injectFooterSiteMap(); }  catch (e) { console.warn('[premiere] footer-nav', e); }
@@ -1133,8 +1422,11 @@
     try { activateGenericFades(); } catch (e) { console.warn('[premiere] fades', e); }
     try { wireHarryVocabulary(); }  catch (e) { console.warn('[premiere] harry-vocab', e); }
     try { fillHomeBulletin(); }     catch (e) { console.warn('[premiere] bulletin', e); }
+    try { mountAllBillboards(); }   catch (e) { console.warn('[premiere] billboard', e); }
     try { injectWhereNext(); }      catch (e) { console.warn('[premiere] where-next', e); }
     try { injectHarryInScene(); }   catch (e) { console.warn('[premiere] harry-scene', e); }
+    try { injectSectionChevrons();} catch (e) { console.warn('[premiere] chevrons', e); }
+    try { wireSectionArrival(); }   catch (e) { console.warn('[premiere] arrival', e); }
   }
 
   if (document.readyState === 'loading') {

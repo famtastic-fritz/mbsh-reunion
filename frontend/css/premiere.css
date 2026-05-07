@@ -3021,3 +3021,221 @@ body[data-premiere="on"] .harry-in-scene--anchor-bottom-right {
 
 /* Hide legacy .page-next when we mount the unified .where-next inline */
 body[data-premiere="on"] .page-next[data-replaced="where-next"] { display: none !important; }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   PASS 10 — Billboard slideshow + chevrons everywhere + unified pull-in.
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* Billboard host (replaces the static .page-note layout). */
+body[data-premiere="on"] .billboard {
+  position: relative;
+  padding: 4.5rem 1.5rem 5rem;
+  overflow: hidden;
+}
+body[data-premiere="on"] .billboard__stage {
+  position: relative;
+  width: min(720px, 100%);
+  margin: 0 auto;
+  min-height: 460px;
+}
+body[data-premiere="on"] .billboard__slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms var(--ease-cinema, cubic-bezier(0.65,0,0.35,1)),
+              transform 700ms var(--ease-cinema, cubic-bezier(0.65,0,0.35,1));
+  pointer-events: none;
+  padding: 0 0.5rem;
+}
+body[data-premiere="on"] .billboard__slide.is-current {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+body[data-premiere="on"] .billboard__slide.is-leaving {
+  opacity: 0;
+  transform: translateY(-14px);
+  transition-duration: 600ms;
+}
+body[data-premiere="on"] .billboard__eyebrow {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  letter-spacing: 0.45em;
+  font-size: 0.72rem;
+  color: var(--c-velvet-gold, #C9A75E);
+  margin: 0 0 1.2rem;
+  text-transform: uppercase;
+}
+body[data-premiere="on"] .billboard__harry {
+  width: clamp(120px, 18vw, 170px);
+  height: auto;
+  margin: 0 0 1.1rem;
+  filter: drop-shadow(0 14px 28px rgba(0,0,0,0.6));
+}
+body[data-premiere="on"] .billboard__line {
+  font-family: 'Italiana', 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+  line-height: 1.4;
+  margin: 0 0 1.1rem;
+  color: var(--c-cream, #F4ECD8);
+  max-width: 560px;
+}
+body[data-premiere="on"] .billboard__line em { color: var(--c-velvet-gold, #C9A75E); font-style: italic; }
+body[data-premiere="on"] .billboard__beats {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  text-align: left;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+body[data-premiere="on"] .billboard__beats li {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(244,236,216,0.92);
+}
+body[data-premiere="on"] .billboard__beats em { color: var(--c-velvet-gold, #C9A75E); font-style: italic; }
+body[data-premiere="on"] .billboard__beat-num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--c-velvet-gold, #C9A75E);
+  margin-right: 0.5rem;
+  text-transform: uppercase;
+}
+body[data-premiere="on"] .billboard__sign {
+  font-family: 'Italiana', serif;
+  font-style: italic;
+  color: var(--c-velvet-gold, #C9A75E);
+  margin: 0.25rem 0 0;
+  font-size: 1rem;
+}
+body[data-premiere="on"] .billboard__headline {
+  font-family: 'Playfair Display', 'DM Serif Display', serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 1.0;
+  margin: 0 0 0.9rem;
+  color: var(--c-cream, #F4ECD8);
+  letter-spacing: -0.01em;
+}
+body[data-premiere="on"] .billboard__headline .billboard__accent { color: var(--c-velvet-gold, #C9A75E); }
+body[data-premiere="on"] .billboard__sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  max-width: 540px;
+  color: rgba(244,236,216,0.84);
+  margin: 0;
+}
+
+/* Slide dots */
+body[data-premiere="on"] .billboard__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 1.3rem auto 0;
+}
+body[data-premiere="on"] .billboard__dot {
+  width: 32px;
+  height: 4px;
+  border: 0;
+  background: rgba(201,167,94,0.3);
+  cursor: pointer;
+  padding: 0;
+  transition: background 220ms ease, width 320ms ease;
+}
+body[data-premiere="on"] .billboard__dot:hover,
+body[data-premiere="on"] .billboard__dot:focus-visible {
+  background: rgba(246,224,154,0.7);
+  outline: none;
+}
+body[data-premiere="on"] .billboard__dot.is-current {
+  background: var(--c-velvet-gold, #C9A75E);
+  width: 56px;
+  box-shadow: 0 0 12px rgba(201,167,94,0.5);
+}
+
+/* Section chevrons — down (next) + up (prev). Same vocabulary as the hero. */
+body[data-premiere="on"] .section-chevron {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  border: 0;
+  color: var(--c-velvet-gold, #C9A75E);
+  cursor: pointer;
+  padding: 0.6rem 0.9rem;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+  opacity: 0.78;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+body[data-premiere="on"] .section-chevron:hover,
+body[data-premiere="on"] .section-chevron:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+body[data-premiere="on"] .section-chevron--down {
+  bottom: 0.9rem;
+  animation: section-chevron-bob 2.4s ease-in-out infinite;
+}
+body[data-premiere="on"] .section-chevron--up {
+  top: 3rem;
+  opacity: 0.55;
+}
+/* Push up-chevron below the scene-slate on note/billboard sections */
+body[data-premiere="on"] section.billboard .section-chevron--up,
+body[data-premiere="on"] section[data-page-slot="note"] .section-chevron--up { top: 3.4rem; }
+body[data-premiere="on"] .section-chevron--up:hover { opacity: 0.95; }
+body[data-premiere="on"] .section-chevron svg { width: 28px; height: 26px; }
+@keyframes section-chevron-bob {
+  0%,100% { transform: translate(-50%, 0); }
+  50%     { transform: translate(-50%, 6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"] .section-chevron--down { animation: none; }
+}
+
+/* Unified pull-in arrival animation — same effect on click and on
+   passive scroll-into-view via IntersectionObserver. */
+body[data-premiere="on"] section.premiere-snap-target {
+  /* Default state — neutral. The .is-arriving class drives the effect. */
+}
+body[data-premiere="on"] section.premiere-snap-target.is-arriving {
+  animation: section-pull-in 800ms var(--ease-cinema, cubic-bezier(0.65,0,0.35,1)) both;
+}
+@keyframes section-pull-in {
+  0%   { opacity: 0.6; transform: translateY(28px) scale(0.985); }
+  60%  { opacity: 1;   transform: translateY(-6px) scale(1.005); }
+  100% { opacity: 1;   transform: translateY(0)    scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"] section.premiere-snap-target.is-arriving { animation: none; }
+}
+
+/* Mobile tuning */
+@media (max-width: 720px) {
+  body[data-premiere="on"] .billboard__stage { min-height: 520px; }
+  body[data-premiere="on"] .billboard__beats li { font-size: 0.94rem; }
+  body[data-premiere="on"] .section-chevron svg { width: 24px; height: 22px; }
+  body[data-premiere="on"] .section-chevron--down { bottom: 0.6rem; }
+  body[data-premiere="on"] .section-chevron--up { top: 0.6rem; }
+}
+
+/* The legacy .page-note__inner / .page-note__body / .page-note__copy
+   blocks are dormant once mountBillboard fills the host. They remain
+   defined above for any page that hasn't migrated yet. */
