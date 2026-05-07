@@ -263,21 +263,24 @@ body[data-premiere="on"][data-page="home"] .premiere-stage::before {
     linear-gradient(180deg, var(--c-night-sky) 0%, #1A0410 60%, var(--c-night-sky) 100%);
 }
 body[data-premiere="on"][data-page="rsvp"] .premiere-stage::before {
+  /* P4 (2026-05-07): swap to real backdrop image */
   background:
-    /* Miami dusk skyline silhouette */
-    linear-gradient(180deg, #2B0E2E 0%, #6E1633 35%, #C8385A 55%, #1A0410 100%),
-    radial-gradient(ellipse at bottom, rgba(255, 198, 130, 0.35), transparent 50%);
-  animation: premiere-stage-drift 90s ease-in-out infinite alternate, premiere-twinkle-bg 8s ease-in-out infinite;
+    /* dim overlay so content stays legible over the photo */
+    linear-gradient(180deg, rgba(5,5,11,0.55) 0%, rgba(5,5,11,0.85) 100%),
+    url('../assets/premiere/bg-rsvp.jpg') center / cover no-repeat,
+    var(--c-night-sky);
+  animation: premiere-stage-drift 90s ease-in-out infinite alternate;
 }
 @keyframes premiere-twinkle-bg {
   0%, 100% { filter: blur(2px) brightness(0.55); }
   50%      { filter: blur(2px) brightness(0.7); }
 }
 body[data-premiere="on"][data-page="tickets"] .premiere-stage::before {
+  /* P4: real backdrop image */
   background:
-    /* red carpet runway */
-    linear-gradient(180deg, var(--c-night-sky) 0%, var(--c-night-sky) 30%, var(--c-velvet-deep) 50%, var(--c-velvet) 90%, var(--c-velvet-deep) 100%),
-    repeating-linear-gradient(90deg, transparent 0 30px, rgba(248, 244, 236, 0.05) 30px 32px);
+    linear-gradient(180deg, rgba(5,5,11,0.55) 0%, rgba(74,6,18,0.65) 100%),
+    url('../assets/premiere/bg-tickets.jpg') center / cover no-repeat,
+    var(--c-night-sky);
 }
 body[data-premiere="on"][data-page="through-years"] .premiere-stage::before {
   background:
@@ -295,10 +298,11 @@ body[data-premiere="on"][data-page="memorial"] .premiere-stage::before {
   animation: none;
 }
 body[data-premiere="on"][data-page="capsule"] .premiere-stage::before {
+  /* P4: real backdrop image (wood desk + brass lamp + letter opener) */
   background:
-    /* parchment ambient */
-    linear-gradient(135deg, #1A0410 0%, #2C0A14 40%, var(--c-night-sky) 100%),
-    radial-gradient(ellipse at 50% 50%, rgba(248, 198, 130, 0.10), transparent 60%);
+    linear-gradient(180deg, rgba(5,5,11,0.45) 0%, rgba(5,5,11,0.75) 100%),
+    url('../assets/premiere/bg-capsule.jpg') center / cover no-repeat,
+    var(--c-night-sky);
 }
 body[data-premiere="on"][data-page="playlist"] .premiere-stage::before {
   background:
@@ -509,6 +513,28 @@ body[data-premiere="on"] .premiere-mini-card__body {
   font-size: 0.95rem;
   line-height: 1.5;
   margin: 0;
+}
+
+/* P4: tier medallion centered above the price/title on patron mini-cards */
+body[data-premiere="on"] .premiere-mini-cards--with-medallions .premiere-mini-card {
+  padding-top: 1.5rem;
+}
+body[data-premiere="on"] .premiere-mini-card__medallion {
+  display: block;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 0.75rem;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  transition: transform 400ms var(--ease-cinema), filter 400ms var(--ease-cinema);
+}
+body[data-premiere="on"] .premiere-mini-card:hover .premiere-mini-card__medallion {
+  transform: translateY(-3px) rotate(-2deg);
+  filter: drop-shadow(0 8px 18px rgba(255, 200, 130, 0.45));
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"] .premiere-mini-card:hover .premiere-mini-card__medallion {
+    transform: none;
+  }
 }
 
 /* =====================================================================
