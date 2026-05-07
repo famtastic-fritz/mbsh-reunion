@@ -954,19 +954,41 @@ body[data-premiere="on"] .premiere-medallion {
 }
 /* P7-fix: on HOME the hero brand-mark IS the medallion (inline-mounted).
    The <button> wraps the existing img — no floating button.
-   Force 120x120 to match V1 hero__mark dimensions. */
+   The wrapper button INHERITS the original .hero__mark positioning so
+   it doesn't take a flex slot in the column (which would push verbiage
+   down) — Fritz spotted this on the staging walk. */
+
+/* Mobile: matches V1 .hero__mark mobile rule (72px, align-self: flex-start) */
 body[data-premiere="on"] .premiere-medallion--inline {
-  position: static;
   display: inline-block;
-  width: 120px;
-  height: 120px;
+  width: 72px;
+  height: 72px;
   line-height: 0;
   align-self: flex-start;
+  padding: 0;
 }
 body[data-premiere="on"] .premiere-medallion--inline img {
-  width: 120px !important;
-  height: 120px !important;
+  width: 72px !important;
+  height: 72px !important;
   display: block;
+  position: static !important; /* don't double-apply absolute positioning */
+}
+
+/* Desktop: matches V1 .hero__mark desktop rule (absolute, top-left, 120px) */
+@media (min-width: 768px) {
+  body[data-premiere="on"][data-page="home"] .premiere-medallion--inline {
+    position: absolute;
+    top: 2.5rem;
+    left: 2.5rem;
+    width: 120px;
+    height: 120px;
+    align-self: auto;
+    z-index: 3; /* above hero overlay so click-target works */
+  }
+  body[data-premiere="on"][data-page="home"] .premiere-medallion--inline img {
+    width: 120px !important;
+    height: 120px !important;
+  }
 }
 /* Inner pages: top-right, scaled 70% (R7) */
 body[data-premiere="on"]:not([data-page="home"]) .premiere-medallion {
