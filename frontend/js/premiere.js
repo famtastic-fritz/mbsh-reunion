@@ -934,6 +934,184 @@
     }
   }
 
+  /* -----------------------------------------------------------------
+     PASS 9 — PROGRAM array + reel-card vocabulary + Where-Next +
+     Harry-in-scene. Single source of truth for cross-page consistency.
+     ----------------------------------------------------------------- */
+
+  const PROGRAM = [
+    { id: 'home',     page: 'home',          href: 'index.html',         reel: 'I',    title: 'Welcome — The Premiere',     usher: 'Curtain up. Find your row, find your row of 1996.',           runtime: '—' },
+    { id: 'rsvp',     page: 'rsvp',          href: 'rsvp.html',          reel: 'II',   title: 'Reserve Your Seat',          usher: "Tell us you're coming. The night unlocks once we hear from you.", runtime: '4 min' },
+    { id: 'tickets',  page: 'tickets',       href: 'tickets.html',       reel: 'III',  title: 'Tickets & Sponsorship',      usher: 'Two ways in — secure a seat, or help fund the night.',  runtime: '6 min' },
+    { id: 'years',    page: 'through-years', href: 'through-years.html', reel: 'IV',   title: 'Through the Years',          usher: 'One hundred years of Hi-Tides. The eras that built us.',     runtime: '12 min' },
+    { id: 'memory',   page: 'memorial',      href: 'memorial.html',      reel: 'V',    title: 'In Memory',                  usher: 'Forever Hi-Tides. Names we carry with us.',                  runtime: '5 min' },
+    { id: 'capsule',  page: 'capsule',       href: 'capsule.html',       reel: 'VI',   title: 'Time Capsule',               usher: "Send your younger self a note. We'll deliver on the day.",   runtime: '8 min' },
+    { id: 'sound',    page: 'playlist',      href: 'playlist.html',      reel: 'VII',  title: 'The Soundtrack',             usher: 'The songs that made us who we are. Curated, embedded, alive.', runtime: '∞' },
+  ];
+
+  function programIndex(pageName) {
+    const i = PROGRAM.findIndex(p => p.page === pageName);
+    return i < 0 ? 0 : i;
+  }
+  function nextInProgram(pageName, count) {
+    const start = programIndex(pageName);
+    const out = [];
+    for (let n = 1; n <= count; n++) {
+      out.push(PROGRAM[(start + n) % PROGRAM.length]);
+    }
+    return out;
+  }
+
+  function renderReelCard(p, opts) {
+    opts = opts || {};
+    const a = document.createElement('a');
+    a.className = 'reel-card' + (opts.nowPlaying ? ' reel-card--now-playing' : '');
+    a.href = opts.nowPlaying ? '#' : p.href;
+    if (opts.nowPlaying) { a.setAttribute('aria-current', 'page'); a.tabIndex = -1; }
+    a.innerHTML =
+      '<span class="reel-card__eyebrow">Reel ' + p.reel + '</span>' +
+      '<h3 class="reel-card__title">' + p.title + '</h3>' +
+      '<p class="reel-card__usher">' + p.usher + '</p>' +
+      '<div class="reel-card__footer">' +
+        '<span class="reel-card__runtime">' + p.runtime + '</span>' +
+        '<span class="reel-card__cta">' + (opts.nowPlaying ? 'Now Playing' : 'Select') + '</span>' +
+      '</div>';
+    return a;
+  }
+
+  function buildReelRail(items, opts) {
+    opts = opts || {};
+    const rail = document.createElement('div');
+    rail.className = 'reel-rail';
+    if (opts.head) {
+      const head = document.createElement('div');
+      head.className = 'reel-rail__head';
+      const r1 = document.createElement('span'); r1.className = 'reel-rail__head-rule'; r1.setAttribute('aria-hidden','true');
+      const lbl = document.createElement('span'); lbl.textContent = opts.head;
+      const r2 = document.createElement('span'); r2.className = 'reel-rail__head-rule'; r2.setAttribute('aria-hidden','true');
+      const aff = document.createElement('span'); aff.className = 'reel-rail__head-affordance'; aff.textContent = 'Scroll ↔';
+      head.appendChild(r1); head.appendChild(lbl); head.appendChild(r2); head.appendChild(aff);
+      rail.appendChild(head);
+    }
+    const track = document.createElement('div');
+    track.className = 'reel-rail__track';
+    items.forEach(it => track.appendChild(renderReelCard(it.p, { nowPlaying: !!it.nowPlaying })));
+    rail.appendChild(track);
+    return rail;
+  }
+
+  /* Replace the home Bulletin list with reel-cards. */
+  function fillHomeBulletin() {
+    const list = document.querySelector('.program-bulletin__list');
+    if (!list) return;
+    const host = list.parentElement;
+    list.remove();
+    const rail = buildReelRail(
+      PROGRAM.filter(p => p.page !== 'home').map(p => ({ p })),
+      { head: 'Also on the program' }
+    );
+    host.appendChild(rail);
+  }
+
+  /* Inject (or upgrade) Where-Next on every page. Picks next 4 in program
+     order, with current page rendered as NOW PLAYING. */
+  function injectWhereNext() {
+    // If a hardcoded .page-next exists (home), upgrade it in place.
+    const legacy = document.querySelector('.page-next');
+    let target;
+    if (legacy && legacy.dataset.replaced !== 'where-next') {
+      legacy.dataset.replaced = 'where-next';
+      target = document.createElement('section');
+      target.className = 'where-next premiere-snap-target';
+      target.setAttribute('aria-label', 'Up next');
+      legacy.parentNode.insertBefore(target, legacy);
+    } else {
+      // Inner pages: append before footer.
+      const footer = document.querySelector('footer.footer, footer[data-template="footer"]');
+      if (!footer) return;
+      // Don't double-mount.
+      if (document.querySelector('section.where-next')) return;
+      target = document.createElement('section');
+      target.className = 'where-next premiere-snap-target';
+      target.setAttribute('aria-label', 'Up next');
+      footer.parentNode.insertBefore(target, footer);
+    }
+
+    const intro = document.createElement('div');
+    intro.className = 'where-next__intro';
+    const eb = document.createElement('p'); eb.className = 'where-next__eyebrow'; eb.textContent = '— Up next —';
+    const hd = document.createElement('h2'); hd.className = 'where-next__headline';
+    const sub = document.createElement('p'); sub.className = 'where-next__sub';
+
+    if (page === 'home') {
+      hd.textContent = 'Reel II — Reserve your seat.';
+      sub.textContent = 'The night unlocks once we hear from you.';
+    } else {
+      const next = nextInProgram(page, 1)[0];
+      hd.textContent = 'Reel ' + next.reel + ' — ' + next.title + '.';
+      sub.textContent = next.usher;
+    }
+    intro.appendChild(eb); intro.appendChild(hd); intro.appendChild(sub);
+    target.appendChild(intro);
+
+    // Build the rail: current page as NOW PLAYING (when not home), then next 3.
+    const items = [];
+    if (page !== 'home') {
+      const me = PROGRAM[programIndex(page)];
+      if (me) items.push({ p: me, nowPlaying: true });
+    }
+    nextInProgram(page, items.length ? 3 : 4).forEach(p => items.push({ p }));
+
+    const rail = buildReelRail(items, { head: 'Also playing' });
+    target.appendChild(rail);
+  }
+
+  /* Harry-in-scene — page-aware integration character. Distinct from the
+     corner .premiere-usher (which remains the chat trigger). */
+  const HARRY_SCENE_MAP = {
+    'home':          { pose: '20-pointing-across.png', anchor: 'bottom-left',  host: '.program-bulletin, .where-next', alt: 'Hi-Tide Harry pointing at the program' },
+    'rsvp':          { pose: '12-clipboard.png',       anchor: 'bottom-right', host: 'section.rsvp-form-wrap, section[id="rsvp"], main section:nth-of-type(1)', alt: 'Hi-Tide Harry holding a clipboard' },
+    'tickets':       { pose: '13-ticket-stub.png',     anchor: 'bottom-right', host: 'section.tickets, main section:nth-of-type(1)', alt: 'Hi-Tide Harry holding a ticket stub' },
+    'through-years': { pose: '22-walk-frame.png',      anchor: 'bottom-left',  host: 'section.timeline, main section:nth-of-type(1)', alt: 'Hi-Tide Harry walking the years' },
+    'memorial':      { pose: '17-respectful.png',      anchor: 'bottom-right', host: 'section.memorial, main section:nth-of-type(1)', alt: 'Hi-Tide Harry, hat in hand' },
+    'capsule':       { pose: '14-wax-stamping.png',    anchor: 'bottom-right', host: 'section.capsule, main section:nth-of-type(1)', alt: 'Hi-Tide Harry stamping the wax seal' },
+    'playlist':      { pose: '16-conducting.png',      anchor: 'bottom-left',  host: 'section.playlist, main section:nth-of-type(1)', alt: 'Hi-Tide Harry conducting the soundtrack' },
+  };
+
+  function injectHarryInScene() {
+    const cfg = HARRY_SCENE_MAP[page];
+    if (!cfg) return;
+    const host = document.querySelector(cfg.host);
+    if (!host) return;
+    if (host.querySelector(':scope > .harry-in-scene')) return;
+    if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+    if (getComputedStyle(host).overflow === 'visible') {
+      // Allow Harry to peek if section uses overflow:hidden, but otherwise OK.
+    }
+    const img = document.createElement('img');
+    img.className = 'harry-in-scene harry-in-scene--anchor-' + cfg.anchor;
+    img.src = 'assets/mascot/' + cfg.pose;
+    img.alt = cfg.alt;
+    img.width = 200; img.height = 240;
+    img.loading = 'lazy';
+    host.appendChild(img);
+
+    // Director-strip salute on home: a second Harry in the post section.
+    if (page === 'home') {
+      const post = document.querySelector('.director-strip');
+      if (post && !post.querySelector('.harry-in-scene')) {
+        if (getComputedStyle(post).position === 'static') post.style.position = 'relative';
+        const salute = document.createElement('img');
+        salute.className = 'harry-in-scene harry-in-scene--anchor-bottom-right';
+        salute.src = 'assets/mascot/23-salute.png';
+        salute.alt = 'Hi-Tide Harry saluting from the proscenium';
+        salute.width = 180; salute.height = 220;
+        salute.loading = 'lazy';
+        post.appendChild(salute);
+      }
+    }
+  }
+
   function init() {
     try { injectOverlays(); }       catch (e) { console.warn('[premiere] fx', e); }
     try { injectFooterSiteMap(); }  catch (e) { console.warn('[premiere] footer-nav', e); }
@@ -954,6 +1132,9 @@
     try { activateCapsule(); }      catch (e) { console.warn('[premiere] capsule', e); }
     try { activateGenericFades(); } catch (e) { console.warn('[premiere] fades', e); }
     try { wireHarryVocabulary(); }  catch (e) { console.warn('[premiere] harry-vocab', e); }
+    try { fillHomeBulletin(); }     catch (e) { console.warn('[premiere] bulletin', e); }
+    try { injectWhereNext(); }      catch (e) { console.warn('[premiere] where-next', e); }
+    try { injectHarryInScene(); }   catch (e) { console.warn('[premiere] harry-scene', e); }
   }
 
   if (document.readyState === 'loading') {

@@ -2473,3 +2473,551 @@ body[data-premiere="on"][data-page="memorial"] .compass-nav__medallion {
   }
   body[data-premiere="on"] .premiere-curtain { display: none; }
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   PASS 8 — Canonical page pattern: Title → Note → Pre → Main → Post → Next
+   Lifted from MSSH design bundle (Cinzel slate, Italiana usher, dotted-rule
+   bulletin row). Scoped to body[data-premiere="on"] so it stays opt-in.
+   ──────────────────────────────────────────────────────────────────────── */
+
+body[data-premiere="on"] .page-note,
+body[data-premiere="on"] .page-pre,
+body[data-premiere="on"] .page-main,
+body[data-premiere="on"] .page-post,
+body[data-premiere="on"] .page-next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1.5rem 5rem;
+  background: var(--c-night, #05050B);
+  color: var(--c-cream, #F4ECD8);
+  text-align: center;
+  position: relative;
+}
+
+/* ── Scene slate (top of NOTE section) ── */
+body[data-premiere="on"] .page-note__slate {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Cutive Mono', 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--c-cream, #F4ECD8);
+  opacity: 0.78;
+}
+body[data-premiere="on"] .page-note__rec {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+body[data-premiere="on"] .page-note__rec-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #e87d6f;
+  animation: page-rec-blink 1.4s ease-in-out infinite;
+}
+@keyframes page-rec-blink { 0%,100% { opacity: 1 } 50% { opacity: 0.25 } }
+
+body[data-premiere="on"] .page-note__inner {
+  max-width: 720px;
+  width: 100%;
+}
+body[data-premiere="on"] .page-note__eyebrow,
+body[data-premiere="on"] .page-pre__eyebrow,
+body[data-premiere="on"] .page-next__eyebrow {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  letter-spacing: 0.45em;
+  font-size: 0.72rem;
+  color: var(--c-velvet-gold, #C9A75E);
+  margin: 0 0 1.5rem;
+  text-transform: uppercase;
+}
+
+body[data-premiere="on"] .page-note__body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.4rem;
+  text-align: left;
+}
+body[data-premiere="on"] .page-note__harry {
+  width: 140px;
+  height: auto;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.55));
+}
+body[data-premiere="on"] .page-note__line {
+  font-family: 'Italiana', 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.35rem;
+  line-height: 1.45;
+  margin: 0 0 0.9rem;
+  color: var(--c-cream, #F4ECD8);
+}
+body[data-premiere="on"] .page-note__line em {
+  color: var(--c-velvet-gold, #C9A75E);
+  font-style: italic;
+}
+body[data-premiere="on"] .page-note__beats {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+body[data-premiere="on"] .page-note__beats li {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: rgba(244,236,216,0.92);
+  padding-left: 0.25rem;
+}
+body[data-premiere="on"] .page-note__beat-num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--c-velvet-gold, #C9A75E);
+  margin-right: 0.5rem;
+}
+body[data-premiere="on"] .page-note__sign {
+  font-family: 'Italiana', serif;
+  font-style: italic;
+  color: var(--c-velvet-gold, #C9A75E);
+  margin: 0.25rem 0 0;
+  font-size: 1rem;
+}
+
+/* ── PRE-item section ── */
+body[data-premiere="on"] .page-pre__headline,
+body[data-premiere="on"] .page-next__headline {
+  font-family: 'Playfair Display', 'DM Serif Display', serif;
+  font-weight: 900;
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  line-height: 0.98;
+  margin: 0 0 1rem;
+  letter-spacing: -0.01em;
+  color: var(--c-cream, #F4ECD8);
+}
+body[data-premiere="on"] .page-pre__sub,
+body[data-premiere="on"] .page-next__sub {
+  max-width: 540px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: rgba(244,236,216,0.82);
+  margin: 0 auto;
+  font-style: italic;
+}
+
+/* ── Program bulletin (MAIN item) ── */
+body[data-premiere="on"] .program-bulletin {
+  padding-top: 5rem;
+  padding-bottom: 11rem; /* Pass 9: reserve space below cards for Harry-in-scene */
+}
+@media (max-width: 720px) {
+  body[data-premiere="on"] .program-bulletin { padding-bottom: 8rem; }
+}
+/* Where-Next reserves room too so Harry doesn't overlap the rail */
+body[data-premiere="on"] .where-next { padding-bottom: 11rem; }
+@media (max-width: 720px) {
+  body[data-premiere="on"] .where-next { padding-bottom: 8rem; }
+}
+body[data-premiere="on"] .program-bulletin__head {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: min(560px, 100%);
+  margin: 0 auto 2rem;
+}
+body[data-premiere="on"] .program-bulletin__rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-velvet-gold, #C9A75E), transparent);
+}
+body[data-premiere="on"] .program-bulletin__heading {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.45em;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--c-velvet-gold, #C9A75E);
+}
+body[data-premiere="on"] .program-bulletin__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: min(640px, 100%);
+}
+body[data-premiere="on"] .program-bulletin__row {
+  border-bottom: 1px dotted rgba(201,167,94,0.4);
+}
+body[data-premiere="on"] .program-bulletin__link {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr auto;
+  grid-template-areas:
+    "reel title runtime"
+    ".    usher usher";
+  gap: 0.2rem 0.8rem;
+  align-items: baseline;
+  padding: 0.75rem 0.25rem;
+  text-decoration: none;
+  color: var(--c-cream, #F4ECD8);
+  text-align: left;
+  transition: transform 220ms var(--ease-cinema, cubic-bezier(0.65,0,0.35,1)), color 220ms ease;
+}
+body[data-premiere="on"] .program-bulletin__link:hover,
+body[data-premiere="on"] .program-bulletin__link:focus-visible {
+  transform: translateX(4px);
+  color: #FFF8DC;
+  outline: none;
+}
+body[data-premiere="on"] .program-bulletin__reel {
+  grid-area: reel;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--c-velvet-gold, #C9A75E);
+}
+body[data-premiere="on"] .program-bulletin__title {
+  grid-area: title;
+  font-family: 'Italiana', 'Playfair Display', serif;
+  font-size: 1.3rem;
+  line-height: 1.1;
+}
+body[data-premiere="on"] .program-bulletin__runtime {
+  grid-area: runtime;
+  font-family: 'Cutive Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+body[data-premiere="on"] .program-bulletin__usher {
+  grid-area: usher;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: rgba(244,236,216,0.7);
+}
+
+/* ── Director strip (POST-item) ── */
+body[data-premiere="on"] .director-strip .premiere-marquee {
+  width: min(420px, 80%);
+  margin: 0 auto 1.6rem;
+}
+body[data-premiere="on"] .director-strip__motto {
+  font-family: 'Italiana', 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.4rem, 3.4vw, 2rem);
+  color: var(--c-velvet-gold, #C9A75E);
+  margin: 0 0 1.2rem;
+  letter-spacing: 0.01em;
+}
+body[data-premiere="on"] .director-strip__meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--c-cream, #F4ECD8);
+  margin: 0 0 1.4rem;
+}
+body[data-premiere="on"] .director-strip__sep {
+  color: var(--c-velvet-gold, #C9A75E);
+  opacity: 0.6;
+}
+body[data-premiere="on"] .director-strip__credit {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: rgba(244,236,216,0.55);
+  margin: 0;
+}
+
+/* ── Where-Next CTA ── */
+body[data-premiere="on"] .page-next__cta {
+  display: inline-block;
+  margin-top: 1.6rem;
+  padding: 0.95rem 2.2rem;
+  background: linear-gradient(180deg, #E8C87A, #C9A75E);
+  color: #1A0C08;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.32em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid #F6E09A;
+  box-shadow: 0 10px 28px rgba(247,183,51,0.25), 0 2px 0 rgba(0,0,0,0.4);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+body[data-premiere="on"] .page-next__cta:hover,
+body[data-premiere="on"] .page-next__cta:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(247,183,51,0.35);
+  outline: none;
+}
+
+/* ── Mobile tuning ── */
+@media (max-width: 640px) {
+  body[data-premiere="on"] .page-note__body {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+  }
+  body[data-premiere="on"] .page-note__harry {
+    width: 110px;
+    margin: 0 auto;
+  }
+  body[data-premiere="on"] .page-note__beats { text-align: left; }
+  body[data-premiere="on"] .page-note__line { font-size: 1.18rem; text-align: center; }
+  body[data-premiere="on"] .program-bulletin__link {
+    grid-template-columns: 1.8rem 1fr;
+    grid-template-areas:
+      "reel title"
+      ".    runtime"
+      ".    usher";
+  }
+  body[data-premiere="on"] .program-bulletin__runtime { justify-self: start; }
+  body[data-premiere="on"] .page-note__slate { font-size: 0.58rem; letter-spacing: 0.25em; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   PASS 9 — Unified .reel-card vocabulary + page-aware Where-Next rail +
+   Harry-in-scene positioning. Lifted from MSSH design bundle.
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* Reel rail — horizontal scroll-snap container used by home bulletin AND
+   per-page Where-Next strip. Same vocabulary, same look, scoped variants. */
+body[data-premiere="on"] .reel-rail {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  position: relative;
+}
+body[data-premiere="on"] .reel-rail__head {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0 0 1.2rem;
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  letter-spacing: 0.45em;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--c-velvet-gold, #C9A75E);
+}
+body[data-premiere="on"] .reel-rail__head-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-velvet-gold,#C9A75E), transparent);
+}
+body[data-premiere="on"] .reel-rail__head-affordance {
+  font-family: 'Cutive Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.32em;
+  opacity: 0.65;
+  text-transform: uppercase;
+}
+body[data-premiere="on"] .reel-rail__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 1fr);
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.4rem 0.4rem 1.2rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201,167,94,0.4) transparent;
+}
+body[data-premiere="on"] .reel-rail__track::-webkit-scrollbar { height: 6px; }
+body[data-premiere="on"] .reel-rail__track::-webkit-scrollbar-thumb {
+  background: rgba(201,167,94,0.4); border-radius: 999px;
+}
+@media (max-width: 720px) {
+  body[data-premiere="on"] .reel-rail__track {
+    grid-auto-columns: 78%;
+    gap: 0.7rem;
+    padding: 0.4rem 1.2rem 1rem;
+  }
+}
+
+/* Reel-card itself */
+body[data-premiere="on"] .reel-card {
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  padding: 1.4rem 1.2rem 1rem;
+  background: linear-gradient(180deg, #1a0c08 0%, #0c0604 100%);
+  border: 1px solid rgba(201,167,94,0.4);
+  color: var(--c-cream, #F4ECD8);
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  transition: transform 260ms var(--ease-cinema, cubic-bezier(0.65,0,0.35,1)),
+              border-color 260ms ease, box-shadow 260ms ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+body[data-premiere="on"] .reel-card::before {
+  /* Inner gold rule, like the marquee plate */
+  content: ""; position: absolute; inset: 6px;
+  border: 1px solid rgba(201,167,94,0.25);
+  pointer-events: none;
+}
+body[data-premiere="on"] .reel-card:hover,
+body[data-premiere="on"] .reel-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(246,224,154,0.85);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.6), 0 0 0 1px rgba(246,224,154,0.3);
+  outline: none;
+}
+body[data-premiere="on"] .reel-card__eyebrow {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.32em;
+  font-size: 0.7rem;
+  color: var(--c-velvet-gold, #C9A75E);
+  text-transform: uppercase;
+  margin: 0 0 0.8rem;
+}
+body[data-premiere="on"] .reel-card__title {
+  font-family: 'Playfair Display', 'DM Serif Display', serif;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 2.2vw, 1.7rem);
+  line-height: 1.05;
+  margin: 0 0 0.7rem;
+  color: var(--c-cream, #F4ECD8);
+  letter-spacing: -0.005em;
+}
+body[data-premiere="on"] .reel-card__usher {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: rgba(244,236,216,0.8);
+  margin: 0 0 1rem;
+  flex: 1;
+}
+body[data-premiere="on"] .reel-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: auto;
+  font-family: 'Cutive Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+body[data-premiere="on"] .reel-card__runtime {
+  color: rgba(244,236,216,0.6);
+}
+body[data-premiere="on"] .reel-card__cta {
+  color: var(--c-velvet-gold, #C9A75E);
+}
+/* Now-playing card — current page in the rail */
+body[data-premiere="on"] .reel-card--now-playing {
+  background: linear-gradient(180deg, #2a0a10 0%, #14060a 100%);
+  border-color: rgba(246,224,154,0.95);
+  box-shadow: 0 0 0 1px rgba(246,224,154,0.25),
+              0 14px 40px rgba(123,14,30,0.45),
+              inset 0 0 30px rgba(201,167,94,0.15);
+}
+body[data-premiere="on"] .reel-card--now-playing .reel-card__cta {
+  color: #f6e09a;
+  text-shadow: 0 0 14px rgba(247,183,51,0.45);
+}
+body[data-premiere="on"] .reel-card--now-playing::before {
+  border-color: rgba(246,224,154,0.55);
+}
+
+/* Where-Next section (replaces .page-next on inner pages, also wraps home next) */
+body[data-premiere="on"] .where-next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 4rem 1.5rem 5rem;
+  background: var(--c-night, #05050B);
+  position: relative;
+}
+body[data-premiere="on"] .where-next__intro {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2rem;
+}
+body[data-premiere="on"] .where-next__eyebrow {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.45em;
+  font-size: 0.72rem;
+  color: var(--c-velvet-gold, #C9A75E);
+  margin: 0 0 1.1rem;
+  text-transform: uppercase;
+}
+body[data-premiere="on"] .where-next__headline {
+  font-family: 'Playfair Display', 'DM Serif Display', serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 5.2vw, 3.4rem);
+  line-height: 1.02;
+  margin: 0 0 0.6rem;
+  color: var(--c-cream, #F4ECD8);
+}
+body[data-premiere="on"] .where-next__sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: rgba(244,236,216,0.78);
+  margin: 0;
+}
+
+/* Harry-in-scene — visual integration character. Positioned inside its
+   parent section. The corner-bubble Harry (.premiere-usher) stays for chat. */
+body[data-premiere="on"] .harry-in-scene {
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 30px rgba(0,0,0,0.7));
+  user-select: none;
+  -webkit-user-drag: none;
+}
+body[data-premiere="on"] .harry-in-scene--inline {
+  margin: 0 auto 1.5rem;
+  width: clamp(140px, 22vw, 220px);
+  height: auto;
+}
+body[data-premiere="on"] .harry-in-scene--anchor-bottom-left {
+  position: absolute;
+  left: clamp(0.5rem, 3vw, 2rem);
+  bottom: clamp(0.5rem, 3vw, 2rem);
+  width: clamp(120px, 18vw, 200px);
+  height: auto;
+  z-index: 2;
+}
+body[data-premiere="on"] .harry-in-scene--anchor-bottom-right {
+  position: absolute;
+  right: clamp(0.5rem, 3vw, 2rem);
+  bottom: clamp(0.5rem, 3vw, 2rem);
+  width: clamp(120px, 18vw, 200px);
+  height: auto;
+  z-index: 2;
+}
+@media (max-width: 720px) {
+  body[data-premiere="on"] .harry-in-scene--anchor-bottom-left,
+  body[data-premiere="on"] .harry-in-scene--anchor-bottom-right {
+    width: 96px;
+    bottom: 0.5rem;
+    opacity: 0.92;
+  }
+}
+
+/* Hide legacy .page-next when we mount the unified .where-next inline */
+body[data-premiere="on"] .page-next[data-replaced="where-next"] { display: none !important; }

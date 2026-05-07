@@ -51,58 +51,122 @@
 
   <hr class="premiere-divider" aria-hidden="true">
 
-  <!-- ════ Section 2: The Story (Then / Now / Forever) ═══════════════ -->
-  <section class="story premiere-snap-target" aria-label="The Story">
-    <article class="story__moment story__moment--then">
-      <div class="story__bg" style="background-image: url('assets/story/then-1996-hallway.jpg')"></div>
-      <div class="story__overlay"></div>
-      <h2 class="story__caption">In 1996, we walked these halls.</h2>
-    </article>
-    <article class="story__moment story__moment--now">
-      <div class="story__bg" style="background-image: url('assets/story/now-miami-beach.jpg')"></div>
-      <div class="story__overlay"></div>
-      <h2 class="story__caption">Thirty years later, we walk back together.</h2>
-    </article>
-    <article class="story__moment story__moment--forever">
-      <div class="story__forever-stage">
-        <img class="story__forever-mark" src="assets/premiere/brand-mark-foil.png?v=2" alt="" aria-hidden="true">
+  <!-- ════ Section 2: NOTE / Usher's Welcome ═════════════════════════
+       Page pattern: Title → NOTE → Pre → Main → Post → Where-Next.
+       This is the NOTE slot — Hi-Tide Harry briefs the guest. -->
+  <section class="page-note premiere-snap-target" aria-label="A note from your usher" data-page-slot="note">
+    <div class="page-note__slate">
+      <span>Scene 02 · Int. Lobby — Night</span>
+      <span class="page-note__rec" aria-hidden="true"><span class="page-note__rec-dot"></span>Rec</span>
+    </div>
+    <div class="page-note__inner">
+      <p class="page-note__eyebrow">— A note from your usher —</p>
+      <div class="page-note__body">
+        <img class="page-note__harry" src="assets/mascot/18-presenting.png" alt="Hi-Tide Harry, your usher" width="180" height="180">
+        <div class="page-note__copy">
+          <p class="page-note__line">Welcome inside, Hi-Tide. I'm <em>Harry</em> — your usher for the evening.</p>
+          <ul class="page-note__beats">
+            <li><span class="page-note__beat-num">i.</span> Tap the chevron at the bottom of any scene to drop into the next.</li>
+            <li><span class="page-note__beat-num">ii.</span> The medallion in the top corner is the <em>Compass</em> — every page in one tap.</li>
+            <li><span class="page-note__beat-num">iii.</span> Tap me any time. Questions about the night, or a note for the committee — I'll carry it.</li>
+          </ul>
+          <p class="page-note__sign">— Harry</p>
+        </div>
       </div>
-      <h2 class="story__caption">At a school turning 100. One night. One class. One hundred years of Hi-Tides.</h2>
-    </article>
+    </div>
   </section>
 
-  <!-- ════ Event Details (inline after Story) ════════════════════════ -->
+  <!-- ════ Section 3: PRE-ITEM lead-in ════════════════════════════════ -->
   <hr class="premiere-divider" aria-hidden="true">
 
-  <section class="event-details premiere-snap-target" aria-label="Event details">
+  <section class="page-pre premiere-snap-target" aria-label="Tonight's program lead-in" data-page-slot="pre">
+    <p class="page-pre__eyebrow">— Tonight's program —</p>
+    <h2 class="page-pre__headline">Nine reels.<br>One night.</h2>
+    <p class="page-pre__sub">Every page on this site is a scene from the evening. Pick one to walk into, or keep tapping the chevron and follow me through.</p>
+  </section>
+
+  <!-- ════ Section 4: MAIN ITEM — The Program Bulletin ═══════════════ -->
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <section class="page-main program-bulletin premiere-snap-target" aria-label="Program — pick a scene" data-page-slot="main">
+    <ol class="program-bulletin__list">
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="rsvp.html">
+          <span class="program-bulletin__reel">I.</span>
+          <span class="program-bulletin__title">Reserve Your Seat</span>
+          <span class="program-bulletin__usher">Tell us you're coming. The night unlocks once we hear from you.</span>
+          <span class="program-bulletin__runtime">4 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="tickets.html">
+          <span class="program-bulletin__reel">II.</span>
+          <span class="program-bulletin__title">Tickets &amp; Sponsorship</span>
+          <span class="program-bulletin__usher">Two ways in — secure a seat, or help fund the night.</span>
+          <span class="program-bulletin__runtime">6 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="through-years.html">
+          <span class="program-bulletin__reel">III.</span>
+          <span class="program-bulletin__title">Through the Years</span>
+          <span class="program-bulletin__usher">One hundred years of Hi-Tides. The eras that built us.</span>
+          <span class="program-bulletin__runtime">12 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="memorial.html">
+          <span class="program-bulletin__reel">IV.</span>
+          <span class="program-bulletin__title">In Memory</span>
+          <span class="program-bulletin__usher">Forever Hi-Tides. Names we carry with us.</span>
+          <span class="program-bulletin__runtime">5 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="capsule.html">
+          <span class="program-bulletin__reel">V.</span>
+          <span class="program-bulletin__title">Time Capsule</span>
+          <span class="program-bulletin__usher">Send your younger self a note. We'll deliver on the day.</span>
+          <span class="program-bulletin__runtime">8 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="playlist.html">
+          <span class="program-bulletin__reel">VI.</span>
+          <span class="program-bulletin__title">The Soundtrack</span>
+          <span class="program-bulletin__usher">The songs that made us who we are. Curated, embedded, alive.</span>
+          <span class="program-bulletin__runtime">∞</span>
+        </a>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ════ Section 5: POST-ITEM — Director's Strip ═══════════════════ -->
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <section class="page-post director-strip premiere-snap-target" aria-label="Director's strip" data-page-slot="post">
     <div class="premiere-marquee" aria-hidden="true">
       <span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span>
     </div>
-    <div class="event-details__grid">
-      <div class="event-details__item"><span class="event-details__label">Date</span><span class="event-details__value" data-config-bind="reunion_date_display">October–November 2026</span></div>
-      <div class="event-details__item"><span class="event-details__label">Time</span><span class="event-details__value">7:00 PM – Midnight</span></div>
-      <div class="event-details__item"><span class="event-details__label">Venue</span><span class="event-details__value" data-config-bind="reunion_venue">Venue announcement coming soon</span></div>
-      <div class="event-details__item"><span class="event-details__label">Attire</span><span class="event-details__value">Black-tie cocktail</span></div>
+    <p class="director-strip__motto">Let us be known for our deeds.</p>
+    <div class="director-strip__meta">
+      <span>October–November 2026</span>
+      <span class="director-strip__sep" aria-hidden="true">·</span>
+      <span>Miami Beach</span>
+      <span class="director-strip__sep" aria-hidden="true">·</span>
+      <span>Black tie</span>
     </div>
-    <p class="event-details__hook">A black-tie celebration thirty years in the making.</p>
+    <p class="director-strip__credit">Presented by the Class of '96 · MBSH 1926–2026</p>
   </section>
 
-  <!-- ════ Page-anchor previews to other sections ═════════════════════ -->
+  <!-- ════ Section 6: WHERE-NEXT ═════════════════════════════════════ -->
   <hr class="premiere-divider" aria-hidden="true">
 
-  <!-- Cards rendered as a movie-poster wall, framed in a golden filmstrip frame.
-       SCENE 0X slate badges are CSS-counter driven (premiere.css). -->
-  <section class="premiere-frame premiere-snap-target" aria-label="More from the reunion">
-    <p class="premiere-now-showing" aria-hidden="true">— Now Showing —</p>
-    <div class="premiere-frame__body previews">
-      <a class="preview-card" href="rsvp.html"><h3>Reserve Your Seat</h3><p>Tell us you're coming. The night unlocks once we hear from you.</p></a>
-      <a class="preview-card" href="tickets.html"><h3>Tickets &amp; Sponsorship</h3><p>Two ways in: secure your seat, or help fund the night.</p></a>
-      <a class="preview-card" href="through-years.html"><h3>Through the Years</h3><p>One hundred years of Hi-Tides. The eras that built us.</p></a>
-      <a class="preview-card" href="memorial.html"><h3>In Memory</h3><p>Forever Hi-Tides. Names we carry with us.</p></a>
-      <a class="preview-card" href="capsule.html"><h3>Time Capsule</h3><p>Send your younger self a note. We'll deliver on the day.</p></a>
-      <a class="preview-card" href="playlist.html"><h3>Our Soundtrack</h3><p>The songs that made us who we are. Curated, embedded, alive.</p></a>
-    </div>
-    <p class="premiere-presented-by" aria-hidden="true">Presented by the Class of '96 · MBSH 1926–2026</p>
+  <section class="page-next premiere-snap-target" aria-label="Where to next" data-page-slot="next">
+    <p class="page-next__eyebrow">— Up next —</p>
+    <h2 class="page-next__headline">Reel I — Reserve your seat.</h2>
+    <p class="page-next__sub">The night unlocks once we hear from you.</p>
+    <a class="page-next__cta" href="rsvp.html">Take your seat →</a>
   </section>
 
   <!-- Shared partials inlined (Studio template-first style) -->
