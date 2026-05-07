@@ -388,19 +388,37 @@
       { href: 'playlist.html',      label: 'Playlist',       page: 'playlist' }
     ];
 
-    // The medallion button itself
-    const medallion = document.createElement('button');
-    medallion.type = 'button';
-    medallion.className = 'premiere-medallion';
-    medallion.setAttribute('aria-label', 'Open menu');
-    medallion.setAttribute('aria-expanded', 'false');
-    medallion.setAttribute('aria-controls', 'premiere-medallion-menu');
-    const img = document.createElement('img');
-    img.src = 'assets/brand-mark/brand-mark.png';
-    img.alt = '';
-    img.setAttribute('aria-hidden', 'true');
-    medallion.appendChild(img);
-    document.body.appendChild(medallion);
+    // P7-fix: on HOME, promote the existing hero brand-mark to BE the menu
+    // trigger — eliminates the duplicate medallion (hero brand-mark + floating
+    // medallion button were both visible). On inner pages, mount the floating
+    // medallion at top-right.
+    let medallion;
+    const heroMark = document.querySelector('.hero__mark');
+    if (page === 'home' && heroMark) {
+      // Wrap the hero__mark in a real <button> so it's keyboard-accessible
+      const wrapper = document.createElement('button');
+      wrapper.type = 'button';
+      wrapper.className = 'premiere-medallion premiere-medallion--inline';
+      wrapper.setAttribute('aria-label', 'Open menu');
+      wrapper.setAttribute('aria-expanded', 'false');
+      wrapper.setAttribute('aria-controls', 'premiere-medallion-menu');
+      heroMark.parentNode.insertBefore(wrapper, heroMark);
+      wrapper.appendChild(heroMark);
+      medallion = wrapper;
+    } else {
+      medallion = document.createElement('button');
+      medallion.type = 'button';
+      medallion.className = 'premiere-medallion';
+      medallion.setAttribute('aria-label', 'Open menu');
+      medallion.setAttribute('aria-expanded', 'false');
+      medallion.setAttribute('aria-controls', 'premiere-medallion-menu');
+      const img = document.createElement('img');
+      img.src = 'assets/brand-mark/brand-mark.png';
+      img.alt = '';
+      img.setAttribute('aria-hidden', 'true');
+      medallion.appendChild(img);
+      document.body.appendChild(medallion);
+    }
 
     // The menu overlay
     const menu = document.createElement('div');

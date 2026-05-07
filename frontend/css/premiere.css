@@ -950,13 +950,23 @@ body[data-premiere="on"] .premiere-medallion {
   cursor: pointer;
   padding: 0;
   border-radius: 50%;
-  transition: transform 400ms var(--ease-cinema), filter 300ms var(--ease-cinema);
+  transition: filter 300ms var(--ease-cinema);
 }
-/* Home position: bottom-center */
-body[data-premiere="on"][data-page="home"] .premiere-medallion {
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+/* P7-fix: on HOME the hero brand-mark IS the medallion (inline-mounted).
+   The <button> wraps the existing img — no floating button.
+   Force 120x120 to match V1 hero__mark dimensions. */
+body[data-premiere="on"] .premiere-medallion--inline {
+  position: static;
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  line-height: 0;
+  align-self: flex-start;
+}
+body[data-premiere="on"] .premiere-medallion--inline img {
+  width: 120px !important;
+  height: 120px !important;
+  display: block;
 }
 /* Inner pages: top-right, scaled 70% (R7) */
 body[data-premiere="on"]:not([data-page="home"]) .premiere-medallion {
@@ -980,12 +990,10 @@ body[data-premiere="on"] .premiere-medallion:focus-visible {
   outline: 3px solid var(--c-gold-mid);
   outline-offset: 6px;
 }
-body[data-premiere="on"] .premiere-medallion[aria-expanded="true"] {
-  transform: translateX(-50%) scale(1.08);
-}
-body[data-premiere="on"]:not([data-page="home"]) .premiere-medallion[aria-expanded="true"] {
-  transform: scale(1.08);
-}
+/* P7-fix: removed the scale(1.08) on aria-expanded — Fritz reported
+   "the menu moves" because the medallion grew on click. The expand
+   indicator is now the menu items radiating + the focus ring + glow,
+   not a button-position shift. */
 
 /* The radial menu — 7 destinations as small framed plates */
 body[data-premiere="on"] .premiere-medallion-menu {
@@ -1229,6 +1237,14 @@ body[data-premiere="on"][data-snap="on"] .premiere-snap-in {
 body[data-premiere="on"] .compass-nav__label { display: none !important; }
 /* Also hide the entire compass-nav once medallion menu mounts (V3 §1.11). */
 body[data-premiere="on"][data-medallion-menu="mounted"] .compass-nav { display: none; }
+
+/* P7-fix: hide the page-header back-button on inner pages when premiere
+   is on. The medallion menu top-right provides Home navigation, so the
+   small brand-mark back button at top-left is the duplicate Fritz spotted.
+   Page header still keeps the title + subhead. */
+body[data-premiere="on"][data-medallion-menu="mounted"]:not([data-page="home"]) .page-header__back {
+  display: none;
+}
 
 /* =====================================================================
    P2 — POSTER WALL polish (lightweight Fritz P2 win, R13)
