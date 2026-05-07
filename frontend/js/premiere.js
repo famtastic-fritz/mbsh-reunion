@@ -361,6 +361,228 @@
     els.forEach(el => observer.observe(el));
   }
 
+  /* =================================================================
+     P1 ADDITIONS (Design Map §0 Pass 1)
+     mountMedallionMenu  — D5 (replaces injectNav + wireNavScrollHide)
+     wireSnapBounce      — D8 (scrollend + .is-snapped)
+     wireHarryVocabulary — Harry walk + celebrate triggers
+     ================================================================= */
+
+  /* Mount the medallion-as-menu component.
+     Replaces V1 top nav + compass medallion. Brand-mark sized button on home,
+     scaled 70% on inner pages. Click expands radial menu of 7 destinations. */
+  function mountMedallionMenu() {
+    if (document.querySelector('.premiere-medallion')) return;
+
+    const NAV_ITEMS = [
+      { href: 'index.html',         label: 'Home',           page: 'home' },
+      { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp' },
+      { href: 'tickets.html',       label: 'Tickets',        page: 'tickets' },
+      { href: 'through-years.html', label: 'Through Years',  page: 'through-years' },
+      { href: 'memorial.html',      label: 'In Memory',      page: 'memorial' },
+      { href: 'capsule.html',       label: 'Capsule',        page: 'capsule' },
+      { href: 'playlist.html',      label: 'Playlist',       page: 'playlist' }
+    ];
+
+    // The medallion button itself
+    const medallion = document.createElement('button');
+    medallion.type = 'button';
+    medallion.className = 'premiere-medallion';
+    medallion.setAttribute('aria-label', 'Open menu');
+    medallion.setAttribute('aria-expanded', 'false');
+    medallion.setAttribute('aria-controls', 'premiere-medallion-menu');
+    const img = document.createElement('img');
+    img.src = 'assets/brand-mark/brand-mark.png';
+    img.alt = '';
+    img.setAttribute('aria-hidden', 'true');
+    medallion.appendChild(img);
+    document.body.appendChild(medallion);
+
+    // The menu overlay
+    const menu = document.createElement('div');
+    menu.className = 'premiere-medallion-menu';
+    menu.id = 'premiere-medallion-menu';
+    menu.setAttribute('role', 'dialog');
+    menu.setAttribute('aria-modal', 'false');
+    menu.setAttribute('aria-label', 'Site navigation');
+    menu.hidden = false; // we toggle via .is-open instead
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'premiere-medallion-menu__backdrop';
+    backdrop.setAttribute('aria-hidden', 'true');
+
+    const list = document.createElement('ul');
+    list.className = 'premiere-medallion-menu__items';
+    list.setAttribute('role', 'menu');
+
+    // Distribute 7 items radially on a ~270° arc above the medallion
+    // (skip the bottom 90° so menu doesn't extend off-screen on home).
+    // angles in degrees, 0 = up, positive = clockwise
+    const arcStart = -135;
+    const arcEnd   = 135;
+    const arcSpan  = arcEnd - arcStart;
+    NAV_ITEMS.forEach((item, i) => {
+      const angle = arcStart + (arcSpan * i) / (NAV_ITEMS.length - 1);
+      const li = document.createElement('li');
+      li.className = 'premiere-medallion-menu__item';
+      li.style.setProperty('--angle', angle + 'deg');
+      li.setAttribute('role', 'none');
+      const a = document.createElement('a');
+      a.href = item.href;
+      a.className = 'premiere-medallion-menu__link';
+      a.textContent = item.label;
+      a.setAttribute('role', 'menuitem');
+      if (item.page === page) a.setAttribute('aria-current', 'page');
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+
+    menu.appendChild(backdrop);
+    menu.appendChild(list);
+    document.body.appendChild(menu);
+
+    // Mark body so CSS can hide V1 top nav + compass + edge strips
+    document.body.setAttribute('data-medallion-menu', 'mounted');
+
+    // Open / close
+    function openMenu() {
+      // Anchor the radial menu around the medallion's actual position.
+      // CSS variables --menu-cx / --menu-cy drive item placement.
+      const r = medallion.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      list.style.setProperty('--menu-cx', cx + 'px');
+      list.style.setProperty('--menu-cy', cy + 'px');
+      menu.classList.add('is-open');
+      medallion.setAttribute('aria-expanded', 'true');
+      // Focus the first menu item for keyboard users
+      requestAnimationFrame(() => {
+        const first = list.querySelector('a');
+        if (first) first.focus();
+      });
+    }
+    function closeMenu() {
+      menu.classList.remove('is-open');
+      medallion.setAttribute('aria-expanded', 'false');
+      medallion.focus();
+    }
+    function toggleMenu() {
+      if (menu.classList.contains('is-open')) closeMenu();
+      else openMenu();
+    }
+
+    medallion.addEventListener('click', toggleMenu);
+    backdrop.addEventListener('click', closeMenu);
+
+    // Esc closes
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+        e.preventDefault();
+        closeMenu();
+      }
+    });
+
+    // Arrow keys cycle within menu
+    list.addEventListener('keydown', (e) => {
+      const items = Array.from(list.querySelectorAll('a'));
+      const idx = items.indexOf(document.activeElement);
+      if (idx < 0) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        items[(idx + 1) % items.length].focus();
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        items[(idx - 1 + items.length) % items.length].focus();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        items[0].focus();
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        items[items.length - 1].focus();
+      }
+    });
+  }
+
+  /* Snap mechanism — listen for scrollend, add .is-snapped to the snapped section,
+     remove after the bounce animation completes. */
+  function wireSnapBounce() {
+    if (document.body.getAttribute('data-snap') !== 'on') return;
+    const targets = document.querySelectorAll('.premiere-snap-target');
+    if (!targets.length) return;
+
+    function findSnapped() {
+      const center = window.innerHeight / 2;
+      let best = null;
+      let bestDist = Infinity;
+      targets.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const elCenter = rect.top + rect.height / 2;
+        const dist = Math.abs(elCenter - center);
+        if (dist < bestDist) {
+          best = el;
+          bestDist = dist;
+        }
+      });
+      return best;
+    }
+
+    function handleSnap() {
+      const snapped = findSnapped();
+      if (!snapped) return;
+      if (snapped.classList.contains('is-snapped')) return; // already animated
+      targets.forEach(t => t.classList.remove('is-snapped'));
+      snapped.classList.add('is-snapped');
+      setTimeout(() => snapped.classList.remove('is-snapped'), 700);
+    }
+
+    if ('onscrollend' in window) {
+      window.addEventListener('scrollend', handleSnap, { passive: true });
+    } else {
+      // Debounced fallback for browsers without scrollend
+      let scrollTimer;
+      window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(handleSnap, 150);
+      }, { passive: true });
+    }
+  }
+
+  /* Harry walk + celebrate triggers.
+     The existing mountUsher() handles pose-swap on section change; this
+     extends it to add `.is-walking` between sections and `.is-celebrating`
+     on form-submit success events. */
+  function wireHarryVocabulary() {
+    const usher = document.querySelector('.premiere-usher');
+    if (!usher) return;
+
+    // Walk on section change (home only — desktop only)
+    if (page === 'home' && !reduceMotion && window.matchMedia('(min-width: 721px)').matches) {
+      const sections = document.querySelectorAll('.hero, .story, .event-details, .previews, .footer');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
+            usher.classList.remove('is-walking');
+            // Force reflow so animation re-fires
+            void usher.offsetWidth;
+            usher.classList.add('is-walking');
+            setTimeout(() => usher.classList.remove('is-walking'), 1100);
+          }
+        });
+      }, { threshold: 0.4 });
+      sections.forEach(s => observer.observe(s));
+    }
+
+    // Celebrate on any form submit success — listen for custom events
+    ['rsvp:success', 'capsule:success', 'memory:success', 'sponsor:success', 'playlist:success'].forEach(eventName => {
+      document.addEventListener(eventName, () => {
+        usher.classList.remove('is-celebrating');
+        void usher.offsetWidth;
+        usher.classList.add('is-celebrating');
+        setTimeout(() => usher.classList.remove('is-celebrating'), 800);
+      });
+    });
+  }
+
   /* -----------------------------------------------------------------
      9. Auto-inject FX + starfield overlays
      Keeps HTML lean — only the body attribute + CSS/JS links are required.
@@ -495,9 +717,12 @@
 
   function init() {
     try { injectOverlays(); }       catch (e) { console.warn('[premiere] fx', e); }
-    try { injectNav(); }            catch (e) { console.warn('[premiere] nav', e); }
-    try { wireNavScrollHide(); }    catch (e) { console.warn('[premiere] nav-hide', e); }
+    try { mountMedallionMenu(); }   catch (e) { console.warn('[premiere] medallion', e); }
+    /* injectNav + wireNavScrollHide intentionally not called when medallion mounts;
+       CSS hides them via [data-medallion-menu="mounted"]. Kept in source for one
+       cycle so rollback is clean. */
     try { attachSnapIn(); }         catch (e) { console.warn('[premiere] snap-in', e); }
+    try { wireSnapBounce(); }       catch (e) { console.warn('[premiere] snap-bounce', e); }
     try { curtainRise(); }          catch (e) { console.warn('[premiere] curtain', e); }
     try { mountUsher(); }           catch (e) { console.warn('[premiere] usher', e); }
     try { activateStoryScene(); }   catch (e) { console.warn('[premiere] story', e); }
@@ -506,6 +731,7 @@
     try { activateRSVPStub(); }     catch (e) { console.warn('[premiere] rsvp', e); }
     try { activateCapsule(); }      catch (e) { console.warn('[premiere] capsule', e); }
     try { activateGenericFades(); } catch (e) { console.warn('[premiere] fades', e); }
+    try { wireHarryVocabulary(); }  catch (e) { console.warn('[premiere] harry-vocab', e); }
   }
 
   if (document.readyState === 'loading') {

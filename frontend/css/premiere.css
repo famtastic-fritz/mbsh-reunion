@@ -731,6 +731,23 @@ body[data-premiere="on"] {
   --c-velvet-deep: #4A0612;
   --c-spotlight: rgba(255, 198, 130, 0.18);
 
+  /* Cinema-gold tokens — V3 / Design Map §1.5 (P1 introduced) */
+  --c-gold-light: #E8D08A;
+  --c-gold-mid:   #C9A961;
+  --c-gold-deep:  #8C6E2A;
+  --c-gold-shadow: #5A3F12;
+  --grad-cinema-gold: linear-gradient(135deg,
+    var(--c-gold-light) 0%,
+    var(--c-gold-mid) 25%,
+    var(--c-gold-deep) 50%,
+    var(--c-gold-mid) 75%,
+    var(--c-gold-light) 100%);
+
+  /* Sprocket strip dimensions */
+  --sprocket-strip-h-desktop: 26px;
+  --sprocket-strip-h-mobile:  16px;
+  --sprocket-hole-spacing:    36px;
+
   /* Motion grammar */
   --curtain-duration: 1200ms;
   --letterbox-duration: 600ms;
@@ -738,6 +755,427 @@ body[data-premiere="on"] {
   --ease-cinema: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-curtain: cubic-bezier(0.65, 0, 0.35, 1);
 }
+
+/* =====================================================================
+   P1.A — GOLDEN FILMSTRIP COMPONENTS (D4)
+   ─────────────────────────────────────────────────────────────────────
+   .premiere-frame   — wraps a section in a golden filmstrip frame
+                       (top + bottom sprocket strips, no side rails)
+   .premiere-divider — horizontal golden ribbon between sections
+                       (single sprocket strip, drop shadow)
+   Both share the SPROCKET-STRIP PATTERN below.
+
+   Reference: Shutterstock "shiny folded golden filmstrip tape" (Fritz, 2026-05-07)
+   ===================================================================== */
+
+/* Reusable sprocket-strip mixin via CSS variables.
+   Strip = polished gold gradient (vertical depth) + cutout sprocket holes
+   drawn as dark mask layer with `radial-gradient` repeats. */
+body[data-premiere="on"] .premiere-sprocket-strip,
+body[data-premiere="on"] .premiere-frame::before,
+body[data-premiere="on"] .premiere-frame::after,
+body[data-premiere="on"] .premiere-divider {
+  display: block;
+  height: var(--sprocket-strip-h-desktop);
+  background:
+    /* sprocket holes — repeating dark ovals on the gold */
+    radial-gradient(ellipse 8px 6px at 18px 50%, var(--c-off-black) 0 99%, transparent 100%) 0 0 / var(--sprocket-hole-spacing) 100% repeat-x,
+    /* polished vertical gold depth */
+    linear-gradient(180deg,
+      var(--c-gold-deep) 0%,
+      var(--c-gold-mid) 25%,
+      var(--c-gold-light) 50%,
+      var(--c-gold-mid) 75%,
+      var(--c-gold-deep) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 0 -1px 0 rgba(0,0,0,0.5),
+    0 2px 6px rgba(0,0,0,0.5);
+}
+@media (max-width: 720px) {
+  body[data-premiere="on"] .premiere-sprocket-strip,
+  body[data-premiere="on"] .premiere-frame::before,
+  body[data-premiere="on"] .premiere-frame::after,
+  body[data-premiere="on"] .premiere-divider {
+    height: var(--sprocket-strip-h-mobile);
+    background-size: 24px 100%, 100% 100%;
+  }
+}
+
+/* The frame: wraps a content section with sprocket strips top + bottom.
+   Side edges open to whatever backdrop is behind. */
+body[data-premiere="on"] .premiere-frame {
+  position: relative;
+  isolation: isolate;
+  padding: calc(var(--sprocket-strip-h-desktop) + 1rem) 0;
+}
+body[data-premiere="on"] .premiere-frame::before,
+body[data-premiere="on"] .premiere-frame::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 11; /* L3 per architecture */
+  pointer-events: none;
+}
+body[data-premiere="on"] .premiere-frame::before { top: 0; }
+body[data-premiere="on"] .premiere-frame::after  { bottom: 0; transform: scaleY(-1); }
+body[data-premiere="on"] .premiere-frame__body {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 720px) {
+  body[data-premiere="on"] .premiere-frame {
+    padding: calc(var(--sprocket-strip-h-mobile) + 0.75rem) 0;
+  }
+}
+
+/* The divider: single horizontal golden strip between sections.
+   Adds depth via drop shadow + flowing-tape feel via slight scale. */
+body[data-premiere="on"] .premiere-divider {
+  margin: 2rem auto;
+  max-width: calc(960px + 4rem); /* slight overflow past content channel */
+  z-index: 11;
+  position: relative;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+}
+body[data-premiere="on"] .premiere-divider--narrow { max-width: 720px; }
+body[data-premiere="on"] .premiere-divider--full   { max-width: none; margin-inline: -2rem; }
+
+/* Subtle continuous shimmer — gold catches "light" passing across.
+   Compositor-friendly (background-position only). */
+@media (prefers-reduced-motion: no-preference) {
+  body[data-premiere="on"] .premiere-divider::after,
+  body[data-premiere="on"] .premiere-frame::before,
+  body[data-premiere="on"] .premiere-frame::after {
+    animation: premiere-gold-shimmer 6s ease-in-out infinite;
+  }
+}
+@keyframes premiere-gold-shimmer {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.18); }
+}
+/* Note: ::after on .premiere-divider is decorative — actual element rule below */
+body[data-premiere="on"] .premiere-divider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 48%,
+    transparent 66%);
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  mix-blend-mode: overlay;
+  animation: premiere-gold-sweep 8s ease-in-out infinite;
+}
+@keyframes premiere-gold-sweep {
+  0%   { background-position: -120% 0; }
+  100% { background-position:  220% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"] .premiere-divider::after { animation: none; }
+}
+
+/* =====================================================================
+   P1.B — MEDALLION-AS-MENU (D5)
+   ─────────────────────────────────────────────────────────────────────
+   Big brand-mark medallion is the menu (replaces top nav + compass).
+   Click expands into a radial wheel of 7 destinations.
+   Sized brand-mark on home, scaled 70% on inner pages (R7).
+   Keyboard-accessible: focus trap, Esc closes, arrow keys cycle.
+   ===================================================================== */
+body[data-premiere="on"] .premiere-medallion {
+  position: fixed;
+  z-index: 70; /* L6 per architecture */
+  width: 120px;
+  height: 120px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  transition: transform 400ms var(--ease-cinema), filter 300ms var(--ease-cinema);
+}
+/* Home position: bottom-center */
+body[data-premiere="on"][data-page="home"] .premiere-medallion {
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* Inner pages: top-right, scaled 70% (R7) */
+body[data-premiere="on"]:not([data-page="home"]) .premiere-medallion {
+  top: 1rem;
+  right: 1rem;
+  width: 84px;
+  height: 84px;
+}
+body[data-premiere="on"] .premiere-medallion img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.6));
+  transition: filter 300ms var(--ease-cinema);
+}
+body[data-premiere="on"] .premiere-medallion:hover img,
+body[data-premiere="on"] .premiere-medallion:focus-visible img {
+  filter: drop-shadow(0 6px 28px rgba(200, 16, 46, 0.7)) drop-shadow(0 0 12px rgba(255, 200, 130, 0.5));
+}
+body[data-premiere="on"] .premiere-medallion:focus-visible {
+  outline: 3px solid var(--c-gold-mid);
+  outline-offset: 6px;
+}
+body[data-premiere="on"] .premiere-medallion[aria-expanded="true"] {
+  transform: translateX(-50%) scale(1.08);
+}
+body[data-premiere="on"]:not([data-page="home"]) .premiere-medallion[aria-expanded="true"] {
+  transform: scale(1.08);
+}
+
+/* The radial menu — 7 destinations as small framed plates */
+body[data-premiere="on"] .premiere-medallion-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms var(--ease-cinema);
+}
+body[data-premiere="on"] .premiere-medallion-menu.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+body[data-premiere="on"] .premiere-medallion-menu__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 5, 11, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+@supports not (backdrop-filter: blur(8px)) {
+  body[data-premiere="on"] .premiere-medallion-menu__backdrop { background: rgba(5, 5, 11, 0.92); }
+}
+
+/* Menu items arranged radially around the medallion's center.
+   Each item is positioned absolutely, then transformed into its arc slot. */
+body[data-premiere="on"] .premiere-medallion-menu__items {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* Position the menu around the medallion. Set via JS at open time. */
+  --menu-radius: 220px;
+  --menu-cx: 50%;
+  --menu-cy: 80%;
+  top: var(--menu-cy);
+  left: var(--menu-cx);
+  width: 0;
+  height: 0;
+}
+@media (max-width: 720px) {
+  body[data-premiere="on"] .premiere-medallion-menu__items { --menu-radius: 160px; }
+}
+body[data-premiere="on"] .premiere-medallion-menu__item {
+  position: absolute;
+  /* angle set via inline --angle CSS custom prop by JS */
+  transform:
+    rotate(var(--angle, 0deg))
+    translateY(calc(var(--menu-radius) * -1))
+    rotate(calc(var(--angle, 0deg) * -1));
+  opacity: 0;
+  transition: transform 500ms var(--ease-cinema), opacity 400ms var(--ease-cinema);
+  transition-delay: 0ms;
+}
+body[data-premiere="on"] .premiere-medallion-menu.is-open .premiere-medallion-menu__item {
+  opacity: 1;
+}
+/* Stagger items radially as menu opens */
+body[data-premiere="on"] .premiere-medallion-menu.is-open .premiere-medallion-menu__item:nth-child(1) { transition-delay: 50ms; }
+body[data-premiere="on"] .premiere-medallion-menu.is-open .premiere-medallion-menu__item:nth-child(2) { transition-delay: 100ms; }
+body[data-premiere="on"] .premiere-medallion-menu.is-open .premiere-medallion-menu__item:nth-child(3) { transition-delay: 150ms; }
+body[data-premiere="on"] .premiere-medallion-menu.is-open .premiere-medallion-menu__item:nth-child(4) { transition-delay: 200ms; }
+body[data-premiere="on"] .premiere-medallion-menu.is-open .premiere-medallion-menu__item:nth-child(5) { transition-delay: 250ms; }
+body[data-premiere="on"] .premiere-medallion-menu.is-open .premiere-medallion-menu__item:nth-child(6) { transition-delay: 300ms; }
+body[data-premiere="on"] .premiere-medallion-menu.is-open .premiere-medallion-menu__item:nth-child(7) { transition-delay: 350ms; }
+
+body[data-premiere="on"] .premiere-medallion-menu__link {
+  display: block;
+  min-width: 96px;
+  padding: 0.5rem 0.9rem;
+  background: linear-gradient(180deg, var(--c-velvet) 0%, var(--c-velvet-deep) 100%);
+  color: var(--c-cream);
+  border: 1px solid var(--c-gold-mid);
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  transition: transform 200ms var(--ease-cinema), background 200ms;
+}
+body[data-premiere="on"] .premiere-medallion-menu__link:hover,
+body[data-premiere="on"] .premiere-medallion-menu__link:focus-visible {
+  background: linear-gradient(180deg, var(--c-red) 0%, var(--c-velvet) 100%);
+  transform: scale(1.06);
+  outline: none;
+  border-color: var(--c-cream);
+}
+body[data-premiere="on"] .premiere-medallion-menu__link[aria-current="page"] {
+  background: linear-gradient(180deg, var(--c-red) 0%, var(--c-velvet) 100%);
+  border-color: var(--c-gold-light);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"] .premiere-medallion-menu,
+  body[data-premiere="on"] .premiere-medallion-menu__item,
+  body[data-premiere="on"] .premiere-medallion { transition: none; }
+}
+
+/* =====================================================================
+   P1.C — SNAP MECHANISM (D8)
+   ─────────────────────────────────────────────────────────────────────
+   scroll-snap-type: y mandatory on opt-in pages (home + through-years)
+   via [data-snap="on"] body attribute.
+   scrollend listener (with debounce fallback) triggers .is-snapped class
+   on the snapped section → 600ms bounce keyframe.
+   iOS Safari: feature-detect; fall back to proximity if mandatory fights
+   momentum scroll.
+   ===================================================================== */
+body[data-premiere="on"][data-snap="on"] {
+  scroll-snap-type: y mandatory;
+}
+body[data-premiere="on"][data-snap="on"] .premiere-snap-target {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+body[data-premiere="on"][data-snap="on"] .premiere-snap-target.is-snapped {
+  animation: premiere-snap-bounce 600ms var(--ease-cinema);
+}
+@keyframes premiere-snap-bounce {
+  0%   { transform: translateY(0)    scale(1); }
+  35%  { transform: translateY(-6px) scale(1.005); }
+  65%  { transform: translateY(2px)  scale(0.998); }
+  100% { transform: translateY(0)    scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"][data-snap="on"] { scroll-snap-type: none; }
+  body[data-premiere="on"][data-snap="on"] .premiere-snap-target.is-snapped { animation: none; }
+}
+
+/* =====================================================================
+   P1.D — HARRY VOCABULARY (walk / peek / celebrate)
+   Extends the existing .premiere-usher button with new motion classes.
+   ===================================================================== */
+body[data-premiere="on"] .premiere-usher.is-walking {
+  animation: premiere-harry-walk 1100ms var(--ease-cinema);
+}
+@keyframes premiere-harry-walk {
+  0%   { transform: translate(-30px, 0) rotate(-3deg); }
+  25%  { transform: translate(-15px, -6px) rotate(2deg); }
+  50%  { transform: translate(0, 0) rotate(-1deg); }
+  75%  { transform: translate(8px, -4px) rotate(2deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+
+body[data-premiere="on"] .premiere-usher.is-celebrating {
+  animation: premiere-harry-celebrate 800ms var(--ease-cinema);
+}
+body[data-premiere="on"] .premiere-usher.is-celebrating::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 16, 46, 0.4) 0%, transparent 70%);
+  animation: premiere-harry-pulse 800ms var(--ease-cinema);
+  pointer-events: none;
+}
+@keyframes premiere-harry-celebrate {
+  0%   { transform: scale(1) translateY(0); }
+  20%  { transform: scale(1.15) translateY(-12px); }
+  40%  { transform: scale(0.95) translateY(0); }
+  60%  { transform: scale(1.08) translateY(-6px); }
+  100% { transform: scale(1) translateY(0); }
+}
+@keyframes premiere-harry-pulse {
+  0%   { opacity: 0.9; transform: scale(0.8); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+body[data-premiere="on"] .premiere-usher.is-stepping-back {
+  opacity: 0.5 !important;
+  transform: scale(0.85);
+}
+
+/* Decorative peek instances — separate elements, NOT the usher button.
+   Used per-section to make Harry "peek" from behind a frame. */
+body[data-premiere="on"] .premiere-peek {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 600ms var(--ease-cinema), transform 800ms var(--ease-cinema);
+  z-index: 12;
+}
+body[data-premiere="on"] .premiere-peek.is-peeking {
+  opacity: 0.95;
+  transform: translateX(0);
+}
+body[data-premiere="on"] .premiere-peek--right { transform: translateX(100%); }
+body[data-premiere="on"] .premiere-peek--right.is-peeking { transform: translateX(0); }
+body[data-premiere="on"] .premiere-peek img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+@media (max-width: 720px) {
+  body[data-premiere="on"] .premiere-peek { width: 64px; height: 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"] .premiere-usher.is-walking,
+  body[data-premiere="on"] .premiere-usher.is-celebrating,
+  body[data-premiere="on"] .premiere-usher.is-celebrating::after,
+  body[data-premiere="on"] .premiere-peek { animation: none; transition: none; }
+}
+
+/* =====================================================================
+   P1.E — REMOVALS (V3 cleanup, per Design Map §1.11)
+   Old top nav, edge film strips, .is-visible bounce all hidden.
+   Kept code remains for one cycle so the rollback path is clean.
+   ===================================================================== */
+/* Hide the V1-shipped top nav once the medallion menu mounts */
+body[data-premiere="on"][data-medallion-menu="mounted"] .premiere-nav { display: none; }
+
+/* Hide the V1-shipped edge film strips once the new frame component is in use.
+   The old body::before/::after pseudo-elements still fire from the existing
+   FILM-STRIP SIDE BORDERS section above; this rule overrides them. */
+body[data-premiere="on"][data-medallion-menu="mounted"]::before,
+body[data-premiere="on"][data-medallion-menu="mounted"]::after {
+  display: none;
+}
+
+/* The V1 .is-visible bounce on .premiere-snap-in becomes a no-op when the
+   new snap mechanism is active. */
+body[data-premiere="on"][data-snap="on"] .premiere-snap-in {
+  opacity: 1;
+  transform: none;
+  animation: none;
+  transition: opacity 0s, transform 0s;
+}
+
+/* Hide "Compass" text label baked into the original compass markup.
+   The medallion menu replaces that role. */
+body[data-premiere="on"] .compass-nav__label { display: none !important; }
+/* Also hide the entire compass-nav once medallion menu mounts (V3 §1.11). */
+body[data-premiere="on"][data-medallion-menu="mounted"] .compass-nav { display: none; }
 
 /* =====================================================================
    1. Premiere FX overlay (consolidated single layer)
