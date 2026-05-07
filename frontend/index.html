@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="MBSH Class of '96 — 30th Reunion. A black-tie celebration thirty years in the making.">
   <title>MBSH Class of &rsquo;96 — 30th Reunion</title>
-  <link rel="preload" as="image" href="assets/brand-mark/brand-mark.png">
-  <link rel="preload" as="video" href="assets/backgrounds/05-dancefloor-confetti.mp4">
+  <link rel="preload" as="image" href="assets/premiere/hero-poster.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/premiere/brand-mark-foil.png">
+  <!-- P6 perf fix: removed preload as="video" — forced 4MB+ MP4 load before LCP.
+       Hero video now has a poster (LCP element) + preload="metadata". -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Allura&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
@@ -24,7 +27,7 @@
 
   <!-- ════ Section 1: Hero ════════════════════════════════════════════ -->
   <section class="hero premiere-snap-target" aria-label="MBSH Class of '96 — 30th Reunion welcome">
-    <video class="hero__video" src="assets/backgrounds/05-dancefloor-confetti.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <video class="hero__video" data-src="assets/backgrounds/05-dancefloor-confetti.mp4" poster="assets/premiere/hero-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__content">
       <img class="hero__mark" src="assets/premiere/brand-mark-foil.png" alt="30 + 100 commemorative mark — Class of '96 30th reunion, MBSH 100th anniversary" width="120" height="120">

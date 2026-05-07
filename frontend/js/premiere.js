@@ -719,8 +719,33 @@
     document.body.insertBefore(nav, document.body.firstChild);
   }
 
+  /* P6 perf fix: defer hero video load until after the page is fully loaded.
+     Without this, the autoplay video competes with FCP/LCP and Lighthouse
+     pins LCP to the still-loading video. With this, LCP is the poster image. */
+  function deferHeroVideo() {
+    const v = document.querySelector('.hero__video[data-src]');
+    if (!v) return;
+    const start = () => {
+      const src = v.getAttribute('data-src');
+      if (!src) return;
+      v.src = src;
+      v.removeAttribute('data-src');
+      v.setAttribute('autoplay', '');
+      // Some browsers ignore autoplay when programmatically set; explicit play
+      const p = v.play();
+      if (p && typeof p.catch === 'function') p.catch(() => { /* allow user-gesture fallback */ });
+    };
+    if (document.readyState === 'complete') {
+      // Already loaded — start after a microtask
+      setTimeout(start, 0);
+    } else {
+      window.addEventListener('load', () => setTimeout(start, 0), { once: true });
+    }
+  }
+
   function init() {
     try { injectOverlays(); }       catch (e) { console.warn('[premiere] fx', e); }
+    try { deferHeroVideo(); }       catch (e) { console.warn('[premiere] video-defer', e); }
     try { mountMedallionMenu(); }   catch (e) { console.warn('[premiere] medallion', e); }
     /* injectNav + wireNavScrollHide intentionally not called when medallion mounts;
        CSS hides them via [data-medallion-menu="mounted"]. Kept in source for one
