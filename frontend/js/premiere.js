@@ -1078,14 +1078,17 @@
 
   /* Harry-in-scene — page-aware integration character. Distinct from the
      corner .premiere-usher (which remains the chat trigger). */
+  /* Pass 13 — placement rule: graphics/in-scene Harry sits LEFT of the
+     scene, the chat assistant lives RIGHT. The medallion menu is
+     centered-top. This keeps the page composition predictable. */
   const HARRY_SCENE_MAP = {
-    'home':          { pose: '20-pointing-across.png', anchor: 'bottom-left',  host: '.program-bulletin, .where-next', alt: 'Hi-Tide Harry pointing at the program' },
-    'rsvp':          { pose: '12-clipboard.png',       anchor: 'bottom-right', host: 'section.rsvp-form-wrap, section[id="rsvp"], main section:nth-of-type(1)', alt: 'Hi-Tide Harry holding a clipboard' },
-    'tickets':       { pose: '13-ticket-stub.png',     anchor: 'bottom-right', host: 'section.tickets, main section:nth-of-type(1)', alt: 'Hi-Tide Harry holding a ticket stub' },
-    'through-years': { pose: '22-walk-frame.png',      anchor: 'bottom-left',  host: 'section.timeline, main section:nth-of-type(1)', alt: 'Hi-Tide Harry walking the years' },
-    'memorial':      { pose: '17-respectful.png',      anchor: 'bottom-right', host: 'section.memorial, main section:nth-of-type(1)', alt: 'Hi-Tide Harry, hat in hand' },
-    'capsule':       { pose: '14-wax-stamping.png',    anchor: 'bottom-right', host: 'section.capsule, main section:nth-of-type(1)', alt: 'Hi-Tide Harry stamping the wax seal' },
-    'playlist':      { pose: '16-conducting.png',      anchor: 'bottom-left',  host: 'section.playlist, main section:nth-of-type(1)', alt: 'Hi-Tide Harry conducting the soundtrack' },
+    'home':          { pose: '20-pointing-across.png', anchor: 'bottom-left', host: '.program-bulletin, .where-next', alt: 'Hi-Tide Harry pointing at the program' },
+    'rsvp':          { pose: '12-clipboard.png',       anchor: 'bottom-left', host: 'section.rsvp-form-wrap, section[id="rsvp"], main section:nth-of-type(1)', alt: 'Hi-Tide Harry holding a clipboard' },
+    'tickets':       { pose: '13-ticket-stub.png',     anchor: 'bottom-left', host: 'section.tickets, main section:nth-of-type(1)', alt: 'Hi-Tide Harry holding a ticket stub' },
+    'through-years': { pose: '22-walk-frame.png',      anchor: 'bottom-left', host: 'section.timeline, main section:nth-of-type(1)', alt: 'Hi-Tide Harry walking the years' },
+    'memorial':      { pose: '17-respectful.png',      anchor: 'bottom-left', host: 'section.memorial, main section:nth-of-type(1)', alt: 'Hi-Tide Harry, hat in hand' },
+    'capsule':       { pose: '14-wax-stamping.png',    anchor: 'bottom-left', host: 'section.capsule, main section:nth-of-type(1)', alt: 'Hi-Tide Harry stamping the wax seal' },
+    'playlist':      { pose: '16-conducting.png',      anchor: 'bottom-left', host: 'section.playlist, main section:nth-of-type(1)', alt: 'Hi-Tide Harry conducting the soundtrack' },
   };
 
   function injectHarryInScene() {
@@ -1121,7 +1124,7 @@
       if (post && !post.querySelector('.harry-in-scene')) {
         if (getComputedStyle(post).position === 'static') post.style.position = 'relative';
         const salute = document.createElement('img');
-        salute.className = 'harry-in-scene harry-in-scene--anchor-bottom-right';
+        salute.className = 'harry-in-scene harry-in-scene--anchor-bottom-left';
         salute.src = 'assets/mascot/23-salute.png';
         salute.alt = 'Hi-Tide Harry saluting from the proscenium';
         salute.width = 180; salute.height = 220;
