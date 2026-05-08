@@ -94,10 +94,15 @@
      'harry comes in with a message introducing himself and letting users
      know he can help navigate, take suggestions to send to the committee'. */
   function harryIntro() {
+    /* Pass 12 — retired. The speech-bubble welcome lived alongside the
+       corner .premiere-usher, which we've removed. The home billboard's
+       slide-1 ("Welcome inside, Hi-Tide. I'm Harry — your usher for the
+       evening.") now carries the same opening line on-system. */
+    return;
+    /* eslint-disable */
     if (page !== 'home') return;
     const INTRO_KEY = 'premiere_harry_intro_seen';
     if (sessionStorage.getItem(INTRO_KEY)) return;
-
     const usher = document.querySelector('.premiere-usher');
     if (!usher) return;
 
@@ -691,51 +696,56 @@
      Solves Fritz post-staging concern: "I don't know how many pages
      there are or how to navigate." Medallion menu is visual; footer
      site-map is scannable and discoverable. */
+  /* Pass 12 — Final Reel footer upgrader.
+     Replaces the legacy three-column footer with the closing-credits
+     scene on every page. Idempotent — checks for the .footer--final-reel
+     marker before rewriting. */
   function injectFooterSiteMap() {
-    const footerInner = document.querySelector('.footer .footer__inner');
-    if (!footerInner) return;
-    if (footerInner.querySelector('.footer__col--sitemap')) return; // already injected
+    const footer = document.querySelector('footer.footer');
+    if (!footer) return;
+    if (footer.classList.contains('footer--final-reel')) return;
+    footer.classList.add('footer--final-reel');
+    footer.setAttribute('data-mode', 'scene');
+    footer.setAttribute('data-page-slot', 'footer-scene');
+    footer.setAttribute('aria-label', 'The final reel');
 
-    const NAV_ITEMS = [
-      { href: 'index.html',         label: 'Home',           page: 'home' },
-      { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp' },
-      { href: 'tickets.html',       label: 'Tickets',        page: 'tickets' },
-      { href: 'through-years.html', label: 'Through the Years', page: 'through-years' },
-      { href: 'memorial.html',      label: 'In Memory',      page: 'memorial' },
-      { href: 'capsule.html',       label: 'Time Capsule',   page: 'capsule' },
-      { href: 'playlist.html',      label: 'Soundtrack',     page: 'playlist' }
-    ];
+    const navHTML = [
+      ['index.html', 'Visit', 'home'],
+      ['rsvp.html', 'RSVP', 'rsvp'],
+      ['tickets.html', 'Tickets', 'tickets'],
+      ['through-years.html', 'Through the Years', 'through-years'],
+      ['memorial.html', 'In Memory', 'memorial'],
+      ['capsule.html', 'Time Capsule', 'capsule'],
+      ['playlist.html', 'Soundtrack', 'playlist']
+    ].map(function (row) {
+      var href = row[0], label = row[1], key = row[2];
+      var cur = key === page ? ' aria-current="page"' : '';
+      return '<a href="' + href + '"' + cur + '>' + label + '</a>';
+    }).join(' · ');
 
-    const col = document.createElement('div');
-    col.className = 'footer__col footer__col--sitemap';
-    const h = document.createElement('h4');
-    h.textContent = 'Visit';
-    col.appendChild(h);
-    const ul = document.createElement('ul');
-    NAV_ITEMS.forEach(item => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = item.href;
-      a.textContent = item.label;
-      if (item.page === page) a.setAttribute('aria-current', 'page');
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
-    col.appendChild(ul);
-    const count = document.createElement('span');
-    count.className = 'footer__col-count';
-    count.textContent = NAV_ITEMS.length + ' scenes';
-    col.appendChild(count);
-
-    // Insert as first column (or after identity, depending on layout); place
-    // before the existing 'Reunion Committee' / 'Resources' columns so it
-    // reads as primary nav.
-    const identityCol = footerInner.querySelector('.footer__col--identity');
-    if (identityCol && identityCol.nextSibling) {
-      footerInner.insertBefore(col, identityCol.nextSibling);
-    } else {
-      footerInner.appendChild(col);
-    }
+    footer.innerHTML =
+      '<div class="footer__rail footer__rail--top" aria-hidden="true"></div>' +
+      '<div class="footer__inner">' +
+        '<img class="footer__seal" src="assets/premiere/brand-mark-foil.png?v=2" alt="Class of \'96 + MBSH 1926-2026 commemorative seal" width="140" height="140" loading="lazy">' +
+        '<p class="footer__seal-line">MBSH · 1926 — 2026</p>' +
+        '<p class="footer__class">Class of 1996 · 30th Reunion</p>' +
+        '<p class="footer__motto">Let us be known for our deeds.</p>' +
+        '<hr class="footer__rule">' +
+        '<div class="footer__credits">' +
+          '<p class="footer__credits-eyebrow">— A final credit roll —</p>' +
+          '<p class="footer__credits-line"><strong>Reunion Committee</strong> <a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p>' +
+          '<p class="footer__credits-line">' + navHTML + '</p>' +
+          '<p class="footer__credits-line"><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a> · <a href="through-years.html#submit-memory">Submit a memory</a> · <a href="tickets.html#sponsor">Become a sponsor</a></p>' +
+          '<p class="footer__credits-line footer__credits-line--social">Instagram &amp; Facebook coming soon — drop a note to the committee for a heads-up.</p>' +
+        '</div>' +
+        '<hr class="footer__rule">' +
+        '<div class="footer__encore">' +
+          '<p class="footer__encore-eyebrow">— Encore —</p>' +
+          '<p class="footer__copyright">© 2026 MBSH Class of \'96 Reunion Committee</p>' +
+          '<p class="footer__credit">Built with <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p>' +
+        '</div>' +
+      '</div>' +
+      '<div class="footer__rail footer__rail--bottom" aria-hidden="true"></div>';
   }
 
   function injectOverlays() {
@@ -1398,7 +1408,12 @@
     const snap = [...document.querySelectorAll('section.premiere-snap-target')];
     const labeled = [...document.querySelectorAll('body > section[aria-label], main > section[aria-label], body > section[id], main > section[id]')]
       .filter(s => !s.closest('footer') && !s.classList.contains('compass-nav'));
+    /* Pass 12 — the final reel footer participates in the archetype
+       system. Treat it as the last "section" in the page so chevrons
+       wire it up correctly. */
+    const finalFooter = document.querySelector('footer.footer--final-reel');
     const merged = new Set([...snap, ...labeled]);
+    if (finalFooter) merged.add(finalFooter);
     return [...merged].sort((a, b) =>
       (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1
     );
@@ -1487,7 +1502,10 @@
     try { attachSnapIn(); }         catch (e) { console.warn('[premiere] snap-in', e); }
     try { wireSnapBounce(); }       catch (e) { console.warn('[premiere] snap-bounce', e); }
     try { curtainRise(); }          catch (e) { console.warn('[premiere] curtain', e); }
-    try { mountUsher(); }           catch (e) { console.warn('[premiere] usher', e); }
+    /* Pass 12 — mountUsher() retired. The corner-floating .premiere-usher
+       button duplicated .chatbot__bubble in the same corner. The
+       .harry-in-scene per-section system + the billboard's slide-1 welcome
+       cover the role. CSS hides any residual .premiere-usher node. */
     try { activateStoryScene(); }   catch (e) { console.warn('[premiere] story', e); }
     try { activatePreviewCards(); } catch (e) { console.warn('[premiere] previews', e); }
     try { activateMemorial(); }     catch (e) { console.warn('[premiere] memorial', e); }
