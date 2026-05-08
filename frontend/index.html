@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="MBSH Class of '96 — 30th Reunion. A black-tie celebration thirty years in the making.">
   <title>MBSH Class of &rsquo;96 — 30th Reunion</title>
-  <link rel="preload" as="image" href="assets/brand-mark/brand-mark.png">
-  <link rel="preload" as="video" href="assets/backgrounds/05-dancefloor-confetti.mp4">
+  <link rel="preload" as="image" href="assets/premiere/hero-poster.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/premiere/brand-mark-foil.png?v=2">
+  <!-- P6 perf fix: removed preload as="video" — forced 4MB+ MP4 load before LCP.
+       Hero video now has a poster (LCP element) + preload="metadata". -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Allura&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
@@ -18,23 +21,27 @@
   <link rel="stylesheet" href="css/compass.css">
   <link rel="stylesheet" href="css/chatbot.css">
   <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/premiere.css">
 </head>
-<body data-page="home">
+<body data-page="home" data-premiere="on" data-snap="on">
 
   <!-- ════ Section 1: Hero ════════════════════════════════════════════ -->
-  <section class="hero" aria-label="MBSH Class of '96 — 30th Reunion welcome">
-    <video class="hero__video" src="assets/backgrounds/05-dancefloor-confetti.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <section class="hero premiere-snap-target" aria-label="MBSH Class of '96 — 30th Reunion welcome">
+    <video class="hero__video" data-src="assets/backgrounds/05-dancefloor-confetti.mp4" poster="assets/premiere/hero-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__content">
-      <img class="hero__mark" src="assets/brand-mark/brand-mark.png" alt="30 + 100 commemorative mark — Class of '96 30th reunion, MBSH 100th anniversary" width="120" height="120">
+      <img class="hero__mark" src="assets/premiere/brand-mark-foil.png?v=2" alt="30 + 100 commemorative mark — Class of '96 30th reunion, MBSH 100th anniversary" width="120" height="120">
       <div class="hero__type">
         <p class="hero__welcome">Welcome back, Class of &rsquo;96</p>
         <h1 class="hero__headline"><span>Thirty Years Of</span><span>Hi-Tides</span></h1>
         <p class="hero__date" data-config-bind="reunion_date_display">October–November 2026 — Miami Beach</p>
       </div>
-      <a class="hero__cta hero__cta--disabled" href="#" data-payments-state="disabled" aria-disabled="true">Reservations Opening Soon</a>
-      <a class="hero__cta hero__cta--enabled" href="rsvp.html" data-payments-state="live" hidden>Reserve Your Seat</a>
-      <img class="hero__harry" src="assets/mascot/01-wave-hello.png" alt="Hi-Tide Harry waving hello" width="280" height="280" loading="eager">
+      <!-- Registration is open; payment processing comes online later.
+           One CTA, always live, points at the RSVP form. -->
+      <a class="hero__cta hero__cta--enabled" href="rsvp.html">Reserve Your Seat</a>
+      <!-- Pass 12 — hero Harry removed. The chatbot bubble is the only
+           corner Harry; the in-scene Harry per Scene + the home billboard's
+           slide-1 welcome carry the on-page character now. -->
       <div class="hero__scroll-tease" aria-hidden="true">
         <span>Let us be known for our deeds</span>
         <svg class="hero__chevron" viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -45,46 +52,98 @@
     </div>
   </section>
 
-  <!-- ════ Section 2: The Story (Then / Now / Forever) ═══════════════ -->
-  <section class="story" aria-label="The Story">
-    <article class="story__moment story__moment--then">
-      <div class="story__bg" style="background-image: url('assets/story/then-1996-hallway.jpg')"></div>
-      <div class="story__overlay"></div>
-      <h2 class="story__caption">In 1996, we walked these halls.</h2>
-    </article>
-    <article class="story__moment story__moment--now">
-      <div class="story__bg" style="background-image: url('assets/story/now-miami-beach.jpg')"></div>
-      <div class="story__overlay"></div>
-      <h2 class="story__caption">Thirty years later, we walk back together.</h2>
-    </article>
-    <article class="story__moment story__moment--forever">
-      <div class="story__forever-stage">
-        <img class="story__forever-mark" src="assets/brand-mark/brand-mark.png" alt="" aria-hidden="true">
-      </div>
-      <h2 class="story__caption">At a school turning 100. One night. One class. One hundred years of Hi-Tides.</h2>
-    </article>
-  </section>
+  <hr class="premiere-divider" aria-hidden="true">
 
-  <!-- ════ Event Details (inline after Story) ════════════════════════ -->
-  <section class="event-details" aria-label="Event details">
-    <div class="event-details__grid">
-      <div class="event-details__item"><span class="event-details__label">Date</span><span class="event-details__value" data-config-bind="reunion_date_display">October–November 2026</span></div>
-      <div class="event-details__item"><span class="event-details__label">Time</span><span class="event-details__value">7:00 PM – Midnight</span></div>
-      <div class="event-details__item"><span class="event-details__label">Venue</span><span class="event-details__value" data-config-bind="reunion_venue">Venue announcement coming soon</span></div>
-      <div class="event-details__item"><span class="event-details__label">Attire</span><span class="event-details__value">Black-tie cocktail</span></div>
+  <!-- ════ Section 2: NOTE / Billboard slideshow ═════════════════════
+       Page pattern: Title → NOTE → Main → Post → Where-Next.
+       The note is now a billboard — multi-slide, animated, auto-advances.
+       JS (`mountBillboard`) fills slides from the BILLBOARD data map. -->
+  <section class="page-note billboard premiere-snap-target" aria-label="A note from your usher" data-page-slot="note" data-billboard="home">
+    <div class="page-note__slate">
+      <span class="page-note__slate-text">Scene 02 · Int. Lobby — Night</span>
+      <span class="page-note__rec" aria-hidden="true"><span class="page-note__rec-dot"></span>Rec</span>
     </div>
-    <p class="event-details__hook">A black-tie celebration thirty years in the making.</p>
+    <!-- billboard slides + controls injected by premiere.js -->
   </section>
 
-  <!-- ════ Page-anchor previews to other sections ═════════════════════ -->
-  <section class="previews" aria-label="More from the reunion">
-    <a class="preview-card" href="rsvp.html"><h3>Reserve Your Seat</h3><p>Tell us you're coming. The night unlocks once we hear from you.</p></a>
-    <a class="preview-card" href="tickets.html"><h3>Tickets &amp; Sponsorship</h3><p>Two ways in: secure your seat, or help fund the night.</p></a>
-    <a class="preview-card" href="through-years.html"><h3>Through the Years</h3><p>One hundred years of Hi-Tides. The eras that built us.</p></a>
-    <a class="preview-card" href="memorial.html"><h3>In Memory</h3><p>Forever Hi-Tides. Names we carry with us.</p></a>
-    <a class="preview-card" href="capsule.html"><h3>Time Capsule</h3><p>Send your younger self a note. We'll deliver on the day.</p></a>
-    <a class="preview-card" href="playlist.html"><h3>Our Soundtrack</h3><p>The songs that made us who we are. Curated, embedded, alive.</p></a>
+  <!-- ════ Section 3: MAIN ITEM — The Program Bulletin ═══════════════ -->
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <section class="page-main program-bulletin premiere-snap-target" aria-label="Program — pick a scene" data-page-slot="main">
+    <ol class="program-bulletin__list">
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="rsvp.html">
+          <span class="program-bulletin__reel">I.</span>
+          <span class="program-bulletin__title">Reserve Your Seat</span>
+          <span class="program-bulletin__usher">Tell us you're coming. The night unlocks once we hear from you.</span>
+          <span class="program-bulletin__runtime">4 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="tickets.html">
+          <span class="program-bulletin__reel">II.</span>
+          <span class="program-bulletin__title">Tickets &amp; Sponsorship</span>
+          <span class="program-bulletin__usher">Two ways in — secure a seat, or help fund the night.</span>
+          <span class="program-bulletin__runtime">6 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="through-years.html">
+          <span class="program-bulletin__reel">III.</span>
+          <span class="program-bulletin__title">Through the Years</span>
+          <span class="program-bulletin__usher">One hundred years of Hi-Tides. The eras that built us.</span>
+          <span class="program-bulletin__runtime">12 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="memorial.html">
+          <span class="program-bulletin__reel">IV.</span>
+          <span class="program-bulletin__title">In Memory</span>
+          <span class="program-bulletin__usher">Forever Hi-Tides. Names we carry with us.</span>
+          <span class="program-bulletin__runtime">5 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="capsule.html">
+          <span class="program-bulletin__reel">V.</span>
+          <span class="program-bulletin__title">Time Capsule</span>
+          <span class="program-bulletin__usher">Send your younger self a note. We'll deliver on the day.</span>
+          <span class="program-bulletin__runtime">8 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="playlist.html">
+          <span class="program-bulletin__reel">VI.</span>
+          <span class="program-bulletin__title">The Soundtrack</span>
+          <span class="program-bulletin__usher">The songs that made us who we are. Curated, embedded, alive.</span>
+          <span class="program-bulletin__runtime">∞</span>
+        </a>
+      </li>
+    </ol>
   </section>
+
+  <!-- ════ Section 5: POST-ITEM — Director's Strip ═══════════════════ -->
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <section class="page-post director-strip premiere-snap-target" aria-label="Director's strip" data-page-slot="post">
+    <div class="premiere-marquee" aria-hidden="true">
+      <span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span>
+    </div>
+    <p class="director-strip__motto">Let us be known for our deeds.</p>
+    <div class="director-strip__meta">
+      <span>October–November 2026</span>
+      <span class="director-strip__sep" aria-hidden="true">·</span>
+      <span>Miami Beach</span>
+      <span class="director-strip__sep" aria-hidden="true">·</span>
+      <span>Black tie</span>
+    </div>
+    <p class="director-strip__credit">Presented by the Class of '96 · MBSH 1926–2026</p>
+  </section>
+
+  <!-- ════ Section 6: WHERE-NEXT ═════════════════════════════════════
+       The .where-next section is injected by `injectWhereNext()` in
+       premiere.js, picking the next 3 reels in PROGRAM order. -->
+  <hr class="premiere-divider" aria-hidden="true">
 
   <!-- Shared partials inlined (Studio template-first style) -->
   <!--#include partial="compass-nav" -->
@@ -136,9 +195,10 @@
       <div class="footer__col footer__col--contact">
         <h4>Reunion Committee</h4>
         <p><a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p>
-        <p class="footer__social">
-          <a href="#" aria-label="Class Instagram">Instagram</a>
-          <a href="#" aria-label="Facebook reunion group">Facebook</a>
+        <!-- Class Instagram + Facebook handles pending. Hidden until URLs land
+             so we don't ship dead # links to production. -->
+        <p class="footer__social footer__social--coming-soon">
+          <span>Instagram &amp; Facebook coming soon — drop a note to the committee for a heads-up.</span>
         </p>
       </div>
       <div class="footer__col footer__col--resources">
@@ -161,5 +221,6 @@
   <script src="js/countdown.js" defer></script>
   <script src="js/compass.js" defer></script>
   <script src="js/chatbot.js" defer></script>
+  <script src="js/premiere.js" defer></script>
 </body>
 </html>

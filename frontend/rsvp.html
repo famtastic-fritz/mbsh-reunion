@@ -14,8 +14,9 @@
   <link rel="stylesheet" href="css/compass.css">
   <link rel="stylesheet" href="css/chatbot.css">
   <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/premiere.css">
 </head>
-<body data-page="rsvp">
+<body data-page="rsvp" data-premiere="on">
 
   <header class="page-header" data-template="header">
     <a class="page-header__back" href="index.html" aria-label="Back to home"><img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a>
@@ -35,7 +36,10 @@
   </section>
 
   <section class="rsvp-form-wrap" id="rsvp">
-    <img class="rsvp-form-wrap__harry" src="assets/mascot/08-pointing.png" alt="Hi-Tide Harry pointing at the form">
+    <div class="premiere-seat-row" aria-hidden="true">
+      <span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span>
+    </div>
+    <!-- Harry-in-scene (12-clipboard) is injected by premiere.js — replaces the legacy static 08-pointing. -->
     <form class="rsvp-form" id="rsvp-form" novalidate>
       <fieldset class="rsvp-form__group rsvp-form__group--always">
         <legend class="visually-hidden">Your information</legend>
@@ -86,6 +90,33 @@
     </div>
   </section>
 
+  <section class="premiere-section premiere-section--alt" aria-label="What to expect that night">
+    <h2 class="premiere-section__title">What to expect that night</h2>
+    <p class="premiere-section__lead">Black-tie cocktail. Live tributes. A soundtrack that knows you. The Class of '96 — back together, exactly thirty years on.</p>
+    <div class="premiere-mini-cards">
+      <div class="premiere-mini-card">
+        <span class="premiere-mini-card__num">7:00 PM</span>
+        <h3 class="premiere-mini-card__title">Arrival</h3>
+        <p class="premiere-mini-card__body">Walk the carpet. Find your row. Reconnect over the first thirty minutes.</p>
+      </div>
+      <div class="premiere-mini-card">
+        <span class="premiere-mini-card__num">9:30 PM</span>
+        <h3 class="premiere-mini-card__title">The Tribute</h3>
+        <p class="premiere-mini-card__body">100 years of MBSH. 30 years of '96. A short reel, names we carry, the moments that built us.</p>
+      </div>
+      <div class="premiere-mini-card">
+        <span class="premiere-mini-card__num">'til 12</span>
+        <h3 class="premiere-mini-card__title">The Floor</h3>
+        <p class="premiere-mini-card__body">The soundtrack drops. The dancefloor opens. The night you've waited thirty years for.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="premiere-section" aria-label="Why now">
+    <h2 class="premiere-section__title">Why this night, why now</h2>
+    <p class="premiere-section__lead">Thirty years is more than a number. It's the chapter we get to write together — once. The committee built this site so every classmate sees what's possible, says yes early, and walks in already feeling part of the night.</p>
+  </section>
+
   <!-- compass nav, chatbot, footer (same partials as index) -->
   <nav class="compass-nav" aria-label="Site navigation">
     <button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="20"/><circle cx="32" cy="32" r="3" fill="currentColor"/><path d="M32 8 L36 30 L32 28 L28 30 Z" fill="currentColor"/></svg></button>
@@ -124,5 +155,6 @@
   <script src="js/compass.js" defer></script>
   <script src="js/rsvp.js" defer></script>
   <script src="js/chatbot.js" defer></script>
+  <script src="js/premiere.js" defer></script>
 </body>
 </html>
