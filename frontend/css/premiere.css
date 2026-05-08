@@ -3239,3 +3239,111 @@ body[data-premiere="on"] section.premiere-snap-target.is-arriving {
 /* The legacy .page-note__inner / .page-note__body / .page-note__copy
    blocks are dormant once mountBillboard fills the host. They remain
    defined above for any page that hasn't migrated yet. */
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Pre-prod audit: Through-Years simplified-for-launch poster + memorial
+   empty-state styling.
+   ──────────────────────────────────────────────────────────────────────── */
+body[data-premiere="on"] .timeline--coming-soon {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6rem 1.5rem 4rem;
+  background: var(--c-night, #05050B);
+}
+body[data-premiere="on"] .timeline-poster {
+  width: min(640px, 100%);
+  text-align: center;
+  background: linear-gradient(180deg, #1a0c08 0%, #0c0604 100%);
+  border: 1px solid rgba(201,167,94,0.45);
+  padding: 3rem 1.8rem 2.4rem;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55), inset 0 0 60px rgba(201,167,94,0.06);
+}
+body[data-premiere="on"] .timeline-poster::before {
+  content: ""; position: absolute; inset: 8px;
+  border: 1px solid rgba(201,167,94,0.25);
+  pointer-events: none;
+}
+body[data-premiere="on"] .timeline-poster__eyebrow {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  letter-spacing: 0.45em;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--c-velvet-gold, #C9A75E);
+  display: block;
+  margin: 0 0 1.4rem;
+}
+body[data-premiere="on"] .timeline-poster__headline {
+  font-family: 'Playfair Display', 'DM Serif Display', serif;
+  font-weight: 900;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  line-height: 1;
+  margin: 0 0 1rem;
+  color: var(--c-cream, #F4ECD8);
+  letter-spacing: -0.01em;
+}
+body[data-premiere="on"] .timeline-poster__sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.08rem;
+  line-height: 1.55;
+  color: rgba(244,236,216,0.84);
+  margin: 0 auto 2rem;
+  max-width: 480px;
+}
+body[data-premiere="on"] .timeline-poster__eras {
+  list-style: none;
+  margin: 0 auto 1.6rem;
+  padding: 0;
+  text-align: left;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+body[data-premiere="on"] .timeline-poster__eras li {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  align-items: baseline;
+  padding: 0.45rem 0.25rem;
+  border-bottom: 1px dotted rgba(201,167,94,0.32);
+}
+body[data-premiere="on"] .timeline-poster__year {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--c-velvet-gold, #C9A75E);
+}
+body[data-premiere="on"] .timeline-poster__era {
+  font-family: 'Italiana', 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--c-cream, #F4ECD8);
+}
+body[data-premiere="on"] .timeline-poster__note {
+  font-family: 'Cutive Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--c-velvet-gold, #C9A75E);
+  opacity: 0.75;
+  margin: 0;
+}
+
+/* Memorial empty-state — when no names are loaded yet, the existing
+   ".memorial" message gets a poster treatment to match the universe. */
+body[data-premiere="on"] .memorial {
+  position: relative;
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+  min-height: 60vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+body[data-premiere="on"] .memorial__empty {
+  max-width: 540px;
+  margin: 0 auto;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(244,236,216,0.78);
+}

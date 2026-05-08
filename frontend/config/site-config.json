@@ -1,0 +1,20 @@
+{
+  "REUNION_DATE": "2026-07-12",
+  "REUNION_DATE_DISPLAY": "October–November 2026 — Miami Beach (date confirmed by committee, coming soon)",
+  "REUNION_TIME": "19:00",
+  "REUNION_VENUE": "TBA",
+  "EARLY_BIRD_PRICE": 60,
+  "REGULAR_PRICE": 75,
+  "EARLY_BIRD_DEADLINE": "2026-06-01",
+  "EARLY_BIRD_DEADLINE_DISPLAY": "June 1, 2026",
+  "EARLY_BIRD_ACTIVE": true,
+  "PAYPAL_BUTTON_ID": null,
+  "PAYMENTS_STATUS": "disabled",
+  "REGISTRATION_STATUS": "open",
+  "COMMITTEE_EMAIL": "mbsh96reunion@gmail.com",
+  "API_BASE_URL": "https://api.mbsh96reunion.com",
+  "API_BASE_URL_DEV": "http://localhost:8888",
+  "HARRY_VOICE_ID": null,
+  "BUILD_STATUS": "v2-cowork-build",
+  "_provenance": "Built by Cowork as A/B counterpart to canonical mbsh-reunion repo. Same V1-BRIEF spec, full multi-page implementation, live PHP backend."
+}
