@@ -10,8 +10,16 @@
 <body data-page="playlist" data-premiere="on">
   <header class="page-header"><a class="page-header__back" href="index.html"><img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a><h1 class="page-header__title">Our Soundtrack</h1><p class="page-header__sub">The songs that made us who we are.</p></header>
 
-  <section class="playlist" aria-label="Class of '96 Spotify playlist">
+  <!-- Pass 11 split: the original 3047px playlist section is broken into
+       two Sequences (embed+tracklist + suggest-form) so neither one
+       buries the user inside a wall of scroll. -->
+  <section class="playlist" aria-label="Class of '96 Spotify playlist" data-mode="sequence">
     <div class="premiere-vinyl" aria-hidden="true"></div>
+
+    <div class="playlist__embed">
+      <iframe title="Class of '96 Playlist" src="about:blank" data-spotify-src="https://open.spotify.com/embed/playlist/PLACEHOLDER_ID?utm_source=mbsh96reunion" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
+      <p class="playlist__note">Spotify embed loads when the playlist ID is finalized.</p>
+    </div>
 
     <div class="premiere-tracklist" aria-label="Curated tracklist">
       <p class="premiere-tracklist__title">The songs that built us — Class of '96</p>
@@ -35,15 +43,13 @@
         <li><span class="premiere-tracklist__num">C2</span><span><span class="premiere-tracklist__track">You're Makin' Me High</span><span class="premiere-tracklist__artist">Toni Braxton</span></span><span class="premiere-tracklist__year">'96</span></li>
         <li><span class="premiere-tracklist__num">C3</span><span><span class="premiere-tracklist__track">Nobody</span><span class="premiere-tracklist__artist">Keith Sweat ft. Athena Cage</span></span><span class="premiere-tracklist__year">'96</span></li>
       </ol>
-      <p class="premiere-tracklist__note">Suggest a track below — committee curates weekly. Spotify embed loads when the playlist ID is finalized.</p>
     </div>
+  </section>
 
-    <div class="playlist__embed">
-      <iframe title="Class of '96 Playlist" src="about:blank" data-spotify-src="https://open.spotify.com/embed/playlist/PLACEHOLDER_ID?utm_source=mbsh96reunion" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
-      <p class="playlist__note">Curated by the committee. Suggest a track below — we curate weekly.</p>
-    </div>
+  <section class="playlist-suggest-section" aria-label="Suggest a track" data-mode="sequence">
     <form class="playlist-suggest" id="playlist-suggest-form">
       <h3 class="playlist-suggest__title">Suggest a track</h3>
+      <p class="playlist-suggest__lead">Got a song that takes you straight back to '96? Drop it — committee curates weekly.</p>
       <label class="field"><span class="field__label">Artist + Song *</span><input class="field__input" type="text" name="track" required maxlength="500" placeholder="Artist — Song title"></label>
       <label class="field"><span class="field__label">Why? (optional)</span><textarea class="field__input" name="why" maxlength="500" rows="2"></textarea></label>
       <label class="field"><span class="field__label">Your Name (optional)</span><input class="field__input" type="text" name="contributor_name" maxlength="255"></label>

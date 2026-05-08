@@ -1081,13 +1081,22 @@
   function injectHarryInScene() {
     const cfg = HARRY_SCENE_MAP[page];
     if (!cfg) return;
-    const host = document.querySelector(cfg.host);
+    let host = document.querySelector(cfg.host);
     if (!host) return;
+    // Pass 11 — Harry refuses Sequence hosts. If the candidate host is a
+    // Sequence, walk to the nearest Scene sibling (prefer next, fall back
+    // prev) and re-anchor there. The billboard slide already shows the
+    // page-specific pose so the Note Scene is the natural fallback.
+    if (host.dataset.mode === 'sequence') {
+      const all = collectPageSections();
+      const idx = all.indexOf(host);
+      const nextScene = all.slice(idx + 1).find(s => s.dataset.mode === 'scene');
+      const prevScene = all.slice(0, idx).reverse().find(s => s.dataset.mode === 'scene');
+      host = nextScene || prevScene;
+      if (!host) return;
+    }
     if (host.querySelector(':scope > .harry-in-scene')) return;
     if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
-    if (getComputedStyle(host).overflow === 'visible') {
-      // Allow Harry to peek if section uses overflow:hidden, but otherwise OK.
-    }
     const img = document.createElement('img');
     img.className = 'harry-in-scene harry-in-scene--anchor-' + cfg.anchor;
     img.src = 'assets/mascot/' + cfg.pose;
@@ -1325,23 +1334,88 @@
   /* Section chevrons — down (next) on every snap section, up (prev) on
      every snap section except the first. Click triggers a smooth scroll
      with snap temporarily disabled, matching the home hero pattern. */
-  function injectSectionChevrons() {
-    // Pick top-level page sections in document order. Prefer snap-targets
-    // when the page uses them; otherwise grab labeled body/main sections
-    // (covers inner pages built before the snap mechanism existed).
+  /* Pass 11 — Section archetype tagger.
+     Walks every top-level section, classifies as scene|sequence|tease,
+     and writes data-mode. Heuristic + page-specific overrides. */
+  const SECTION_MODE_OVERRIDES = {
+    'rsvp': {
+      'Countdown to reunion':         'scene',
+      'rsvp':                          'sequence',
+      'What to expect that night':    'sequence',
+      'Why now':                      'tease'
+    },
+    'tickets': {
+      'Ticket tiers':                 'sequence',
+      'Sponsorship tiers':            'sequence',
+      'Become a patron':              'sequence',
+      'Why it matters':               'tease'
+    },
+    'through-years': {
+      'Through-the-Years overview':   'scene',
+      'Submit a memory':              'sequence'
+    },
+    'memorial': {
+      'In memory of':                 'scene',
+      'Add a name':                   'tease',
+      'At the reunion':               'tease'
+    },
+    'capsule': {
+      'Time capsule form':            'sequence',
+      'What to write':                'sequence',
+      'The promise':                  'tease'
+    },
+    'playlist': {
+      "Class of '96 Spotify playlist": 'sequence',
+      'Suggest a track':              'sequence',
+      'About the soundtrack':         'sequence'
+    }
+  };
+
+  function tagSectionModes() {
+    const overrides = SECTION_MODE_OVERRIDES[page] || {};
+    const allSections = collectPageSections();
+    allSections.forEach(s => {
+      if (s.dataset.mode) return; // explicit attr wins
+      const label = (s.getAttribute('aria-label') || s.id || '').trim();
+      // 1. JS-injected sections from earlier passes are always Scenes
+      if (s.classList.contains('hero')) { s.dataset.mode = 'scene'; return; }
+      if (s.classList.contains('billboard') || s.dataset.pageSlot === 'note') { s.dataset.mode = 'scene'; return; }
+      if (s.classList.contains('where-next')) { s.dataset.mode = 'scene'; return; }
+      if (s.classList.contains('director-strip') || s.dataset.pageSlot === 'post') { s.dataset.mode = 'scene'; return; }
+      if (s.classList.contains('program-bulletin') || s.dataset.pageSlot === 'main') { s.dataset.mode = 'scene'; return; }
+      // 2. Per-page override map
+      if (overrides[label]) { s.dataset.mode = overrides[label]; return; }
+      // 3. Heuristics: contains form → sequence; tall → sequence; else scene
+      if (s.querySelector('form')) { s.dataset.mode = 'sequence'; return; }
+      const h = s.getBoundingClientRect().height;
+      if (h > window.innerHeight * 1.05) { s.dataset.mode = 'sequence'; return; }
+      if (h < window.innerHeight * 0.7)  { s.dataset.mode = 'tease'; return; }
+      s.dataset.mode = 'scene';
+    });
+  }
+
+  function collectPageSections() {
     const snap = [...document.querySelectorAll('section.premiere-snap-target')];
-    const labeled = [...document.querySelectorAll('body > section[aria-label], main > section[aria-label]')]
+    const labeled = [...document.querySelectorAll('body > section[aria-label], main > section[aria-label], body > section[id], main > section[id]')]
       .filter(s => !s.closest('footer') && !s.classList.contains('compass-nav'));
     const merged = new Set([...snap, ...labeled]);
-    let sections = [...merged].sort((a, b) =>
+    return [...merged].sort((a, b) =>
       (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1
     );
+  }
+
+  function injectSectionChevrons() {
+    let sections = collectPageSections();
     if (sections.length < 2) return;
 
     sections.forEach((sec, i) => {
       // Skip if hero already has its own chevron
       const isHero = sec.classList.contains('hero');
-      if (!isHero && !sec.querySelector(':scope > .section-chevron-down') && i < sections.length - 1) {
+      const mode = sec.dataset.mode;
+      // Pass 11: skip down-chevron on Sequences. Sequences are content the
+      // user reads/scrolls — a floating mid-form chevron is noise.
+      const skipDown = mode === 'sequence';
+      if (!isHero && !skipDown && !sec.querySelector(':scope > .section-chevron--down') && i < sections.length - 1) {
         const down = document.createElement('button');
         down.type = 'button';
         down.className = 'section-chevron section-chevron--down';
@@ -1351,7 +1425,7 @@
         if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
         sec.appendChild(down);
       }
-      if (i > 0 && !sec.querySelector(':scope > .section-chevron-up')) {
+      if (i > 0 && !sec.querySelector(':scope > .section-chevron--up')) {
         const up = document.createElement('button');
         up.type = 'button';
         up.className = 'section-chevron section-chevron--up';
@@ -1424,6 +1498,9 @@
     try { fillHomeBulletin(); }     catch (e) { console.warn('[premiere] bulletin', e); }
     try { mountAllBillboards(); }   catch (e) { console.warn('[premiere] billboard', e); }
     try { injectWhereNext(); }      catch (e) { console.warn('[premiere] where-next', e); }
+    /* Pass 11 — section archetype tagger MUST run before chevrons +
+       Harry-in-scene so they can read data-mode. */
+    try { tagSectionModes(); }      catch (e) { console.warn('[premiere] tag-modes', e); }
     try { injectHarryInScene(); }   catch (e) { console.warn('[premiere] harry-scene', e); }
     try { injectSectionChevrons();} catch (e) { console.warn('[premiere] chevrons', e); }
     try { wireSectionArrival(); }   catch (e) { console.warn('[premiere] arrival', e); }

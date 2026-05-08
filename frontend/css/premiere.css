@@ -3347,3 +3347,221 @@ body[data-premiere="on"] .memorial__empty {
   line-height: 1.55;
   color: rgba(244,236,216,0.78);
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   PASS 11 — VIEWPORT COMPOSITION SYSTEM
+   Scene / Sequence / Tease archetypes + centered top medallion.
+   ──────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --safe-top:           max(env(safe-area-inset-top, 0px), 12px);
+  --safe-bottom:        max(env(safe-area-inset-bottom, 0px), 12px);
+  --medallion-size:     72px;
+  --medallion-clearance: calc(var(--medallion-size) + var(--safe-top) + 16px);
+  --chevron-clearance-bottom: calc(var(--safe-bottom) + 8px);
+  --scene-min:          100dvh;
+}
+@media (min-width: 768px) {
+  :root { --medallion-size: 88px; }
+}
+
+/* Snap policy — proximity, not mandatory. Sequences don't fight users. */
+@media (min-width: 0px) {
+  body[data-premiere="on"][data-snap="on"] { scroll-snap-type: y proximity; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-premiere="on"][data-snap="on"] { scroll-snap-type: none; }
+}
+
+/* Section archetypes ──────────────────────────────────────────────────── */
+body[data-premiere="on"] section[data-mode="scene"] {
+  min-height: var(--scene-min);
+  scroll-snap-align: start;
+  /* Top-pad accounts for the centered medallion so content never sits
+     under it. Bottom-pad accounts for the down-chevron. */
+  padding-top: var(--medallion-clearance);
+  padding-bottom: var(--chevron-clearance-bottom);
+  position: relative;
+}
+body[data-premiere="on"] section[data-mode="sequence"] {
+  min-height: 0;
+  scroll-snap-align: none;
+  padding-top: var(--medallion-clearance);
+  padding-bottom: 4rem;
+  position: relative;
+}
+body[data-premiere="on"] section[data-mode="tease"] {
+  min-height: 50dvh;
+  scroll-snap-align: start;
+  padding-top: var(--medallion-clearance);
+  padding-bottom: var(--chevron-clearance-bottom);
+  position: relative;
+}
+
+/* Override the older Pass-8 100vh rules that hardcoded min-height on
+   .page-note/.page-pre/.page-main/.page-post/.page-next so the archetype
+   system wins. The override targets only when data-mode is set. */
+body[data-premiere="on"] section[data-mode] {
+  min-height: var(--scene-min);
+}
+body[data-premiere="on"] section[data-mode="sequence"] { min-height: 0; }
+
+/* Centered-top medallion ─────────────────────────────────────────────── */
+body[data-premiere="on"] .premiere-medallion,
+body[data-premiere="on"] .premiere-medallion--inline {
+  position: fixed !important;
+  top: var(--safe-top) !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%);
+  width: var(--medallion-size) !important;
+  height: var(--medallion-size) !important;
+  z-index: 70;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: auto;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,0.55));
+  transition: transform 220ms var(--ease-cinema, cubic-bezier(0.65,0,0.35,1)), filter 220ms ease;
+}
+body[data-premiere="on"] .premiere-medallion:hover,
+body[data-premiere="on"] .premiere-medallion:focus-visible {
+  transform: translateX(-50%) scale(1.06);
+  filter: drop-shadow(0 6px 22px rgba(247,183,51,0.45));
+  outline: none;
+}
+body[data-premiere="on"] .premiere-medallion img,
+body[data-premiere="on"] .premiere-medallion--inline img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  position: static !important;
+  object-fit: contain;
+}
+
+/* MENU label below medallion repositioned for centered placement */
+body[data-premiere="on"] .premiere-medallion::after {
+  content: "MENU";
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--c-velvet-gold, #C9A75E);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Hide the home hero brand-mark when the floating medallion is mounted —
+   no more duplicate brand-marks on home. The hero composition flows below
+   the centered medallion via section[data-mode="scene"] padding-top. */
+body[data-premiere="on"][data-medallion-menu="mounted"] .hero__mark:not(.premiere-medallion):not(.premiere-medallion *) {
+  display: none;
+}
+
+/* Hero scene: it has its own background video, so we don't want
+   medallion-clearance pushing the hero content too far down. The hero
+   content uses flexbox-center to balance — keep the padding minimal. */
+body[data-premiere="on"] section.hero[data-mode="scene"] {
+  padding-top: var(--medallion-clearance);
+  padding-bottom: var(--chevron-clearance-bottom);
+}
+
+/* Chevron-up: top-left (away from centered medallion) ─────────────────── */
+body[data-premiere="on"] .section-chevron--up {
+  left: 12px !important;
+  right: auto !important;
+  top: var(--safe-top) !important;
+  transform: none !important;
+  opacity: 0.55;
+}
+body[data-premiere="on"] .section-chevron--up:hover,
+body[data-premiere="on"] .section-chevron--up:focus-visible {
+  opacity: 0.95;
+  outline: none;
+}
+/* Override the slate-bearing-section special case from earlier passes —
+   chevron-up is now top-left so slate position no longer collides. */
+body[data-premiere="on"] section.billboard .section-chevron--up,
+body[data-premiere="on"] section[data-page-slot="note"] .section-chevron--up {
+  top: var(--safe-top) !important;
+}
+
+/* Down-chevron: anchored above safe-bottom; never below it */
+body[data-premiere="on"] .section-chevron--down {
+  bottom: var(--chevron-clearance-bottom) !important;
+}
+
+/* Memorial reverence Scene ────────────────────────────────────────────── */
+body[data-premiere="on"] section.memorial[data-mode="scene"] {
+  text-align: center;
+  background: var(--c-night, #05050B);
+  padding-top: calc(var(--medallion-clearance) + 1rem);
+}
+body[data-premiere="on"] section.memorial[data-mode="scene"]::before,
+body[data-premiere="on"] section.memorial[data-mode="scene"]::after {
+  content: "";
+  position: absolute;
+  left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(123,14,30,0.85), transparent);
+}
+body[data-premiere="on"] section.memorial[data-mode="scene"]::before { top: calc(var(--medallion-clearance) + 0.6rem); }
+body[data-premiere="on"] section.memorial[data-mode="scene"]::after  { bottom: calc(var(--chevron-clearance-bottom) + 2.4rem); }
+body[data-premiere="on"] section.memorial[data-mode="scene"] .memorial__empty {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(244,236,216,0.84);
+  max-width: 540px;
+  margin: 0 auto 2rem;
+}
+
+/* Form readability — iOS auto-zoom guard everywhere a user types ────── */
+body[data-premiere="on"] input[type="text"],
+body[data-premiere="on"] input[type="email"],
+body[data-premiere="on"] input[type="tel"],
+body[data-premiere="on"] input[type="search"],
+body[data-premiere="on"] input[type="url"],
+body[data-premiere="on"] input[type="number"],
+body[data-premiere="on"] input[type="date"],
+body[data-premiere="on"] input[type="file"],
+body[data-premiere="on"] textarea,
+body[data-premiere="on"] select {
+  font-size: 16px;
+}
+
+/* Sequence Harry rule — no harry-in-scene inside sequences */
+body[data-premiere="on"] section[data-mode="sequence"] > .harry-in-scene {
+  display: none;
+}
+
+/* Playlist split — suggest section copy */
+body[data-premiere="on"] .playlist-suggest__lead {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(244,236,216,0.78);
+  margin: 0 0 1rem;
+  text-align: center;
+}
+body[data-premiere="on"] .playlist-suggest-section {
+  background: var(--c-night, #05050B);
+  text-align: center;
+}
+body[data-premiere="on"] .playlist-suggest-section .playlist-suggest {
+  width: min(540px, 100%);
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(180deg, #1a0c08 0%, #0c0604 100%);
+  border: 1px solid rgba(201,167,94,0.35);
+  text-align: left;
+}
