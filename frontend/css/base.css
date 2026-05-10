@@ -46,7 +46,16 @@
   --duration-fast: 200ms;
   --duration-mid: 400ms;
   --duration-slow: 800ms;
+
+  /* Form text tokens — guarantee readable text inside form controls
+     regardless of the body color cascade (home page sets body color: white). */
+  --text-on-light: var(--c-off-black);
+  --text-muted-on-light: var(--c-silver-dark);
+  --placeholder-on-light: var(--c-silver-dark);
 }
+
+/* Global placeholder color — opacity:1 because Firefox defaults to 0.54. */
+::placeholder { color: var(--placeholder-on-light); opacity: 1; }
 
 /* Reset */
 *, *::before, *::after { box-sizing: border-box; }
