@@ -33,23 +33,6 @@
     <p class="tickets__note">Reserve a seat tonight — payment activates the moment the committee finalizes the account. <a href="rsvp.html">RSVP for free</a> and we'll notify you the second tickets are live.</p>
   </section>
 
-  <section class="sponsors" id="sponsor" aria-label="Sponsorship tiers">
-    <h2 class="section-head">Sponsorship</h2>
-    <p class="sponsors__intro">Sponsor track funds the event. Premium logo placement, recognition at the event, social acknowledgment.</p>
-    <div class="sponsors__grid">
-      <article class="sponsor-tier sponsor-tier--diamond"><span class="sponsor-tier__rank">Diamond Sponsor</span><span class="sponsor-tier__amount">$1,000+</span><ul class="sponsor-tier__benefits"><li>Premium logo placement</li><li>Recognition at event</li><li>Social acknowledgment</li></ul><button class="sponsor-tier__cta" type="button" data-sponsor-tier="diamond">Become a Sponsor</button></article>
-      <article class="sponsor-tier sponsor-tier--captain"><span class="sponsor-tier__rank">Hi-Tide Captain</span><span class="sponsor-tier__amount">$500</span><ul class="sponsor-tier__benefits"><li>Featured logo placement</li><li>Recognition at event</li></ul><button class="sponsor-tier__cta" type="button" data-sponsor-tier="captain">Become a Captain</button></article>
-      <article class="sponsor-tier sponsor-tier--crew"><span class="sponsor-tier__rank">Hi-Tide Crew</span><span class="sponsor-tier__amount">$250</span><ul class="sponsor-tier__benefits"><li>Logo on sponsor wall</li></ul><button class="sponsor-tier__cta" type="button" data-sponsor-tier="crew">Join the Crew</button></article>
-      <article class="sponsor-tier sponsor-tier--friend"><span class="sponsor-tier__rank">Hi-Tide Friend</span><span class="sponsor-tier__amount">$100</span><ul class="sponsor-tier__benefits"><li>Name on sponsor wall</li></ul><button class="sponsor-tier__cta" type="button" data-sponsor-tier="friend">Be a Friend</button></article>
-      <article class="sponsor-tier sponsor-tier--custom"><span class="sponsor-tier__rank">Custom Amount</span><span class="sponsor-tier__amount">You decide</span><ul class="sponsor-tier__benefits"><li>Tailored recognition</li></ul><button class="sponsor-tier__cta" type="button" data-sponsor-tier="custom">Custom Sponsorship</button></article>
-    </div>
-
-    <h3 class="sponsors__wall-head">Already Supporting</h3>
-    <div class="sponsor-wall" id="sponsor-wall" aria-live="polite">
-      <p class="sponsor-wall__empty">Be among the first to support this milestone celebration.</p>
-    </div>
-  </section>
-
   <!-- Sponsor inquiry modal -->
   <dialog class="sponsor-modal" id="sponsor-modal">
     <form class="sponsor-form" id="sponsor-form" enctype="multipart/form-data">
@@ -62,10 +45,9 @@
       <label class="field"><span class="field__label">Tier interest *</span>
         <select class="field__input" name="tier_interest" id="sponsor-tier-select" required>
           <option value="">— Select —</option>
-          <option value="diamond">Diamond ($1,000+)</option>
-          <option value="captain">Captain ($500)</option>
-          <option value="crew">Crew ($250)</option>
-          <option value="friend">Friend ($100)</option>
+          <option value="marquee">Marquee ($2,500)</option>
+          <option value="producer">Producer ($1,000)</option>
+          <option value="featured">Featured ($500)</option>
           <option value="custom">Custom Amount</option>
         </select>
       </label>
@@ -83,7 +65,7 @@
   <div class="chatbot" id="chatbot"><button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open chat"><img src="assets/mascot/06-listening.png" alt="" width="64" height="64"></button><div class="chatbot__panel" id="chatbot-panel" hidden><header class="chatbot__panel-header"><img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello.png" alt="" width="120" height="120"><div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div><button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close">×</button></header><ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul><form class="chatbot__input" id="chatbot-form"><input type="text" id="chatbot-input" placeholder="Ask Harry&hellip;" autocomplete="off"><button type="submit">→</button></form></div></div>
   <!-- Legacy static page-mascot removed — premiere.js injects the in-scene Harry (13-ticket-stub) into the .tickets section. -->
 
-  <section class="premiere-section premiere-section--alt" aria-label="Become a patron">
+  <section class="premiere-section premiere-section--alt" id="sponsor" aria-label="Become a patron">
     <h2 class="premiere-section__title">Become a Patron of the Premiere</h2>
     <p class="premiere-section__lead">Three sponsorship tiers fund the night — and put your name on the wall. Every dollar offsets attendee tickets so more classmates can walk the carpet.</p>
     <div class="premiere-mini-cards premiere-mini-cards--with-medallions">
@@ -92,21 +74,24 @@
         <span class="premiere-mini-card__num">$2,500</span>
         <h3 class="premiere-mini-card__title">Marquee</h3>
         <p class="premiere-mini-card__body">Top of the bill. Logo on screen during the tribute reel, name in the program, four reserved seats.</p>
+        <button class="tier-card__cta" type="button" data-sponsor-tier="marquee">Sponsor at Marquee</button>
       </div>
       <div class="premiere-mini-card">
         <img class="premiere-mini-card__medallion" src="assets/premiere/tier-gold.png?v=2" alt="" aria-hidden="true" width="120" height="120" loading="lazy">
         <span class="premiere-mini-card__num">$1,000</span>
         <h3 class="premiere-mini-card__title">Producer</h3>
         <p class="premiere-mini-card__body">Producer credit in the program and on the wall. Two reserved seats.</p>
+        <button class="tier-card__cta" type="button" data-sponsor-tier="producer">Sponsor at Producer</button>
       </div>
       <div class="premiere-mini-card">
         <img class="premiere-mini-card__medallion" src="assets/premiere/tier-silver.png?v=2" alt="" aria-hidden="true" width="120" height="120" loading="lazy">
         <span class="premiere-mini-card__num">$500</span>
         <h3 class="premiere-mini-card__title">Featured</h3>
         <p class="premiere-mini-card__body">Featured credit in the program. Recognition on the patrons' page.</p>
+        <button class="tier-card__cta" type="button" data-sponsor-tier="featured">Sponsor at Featured</button>
       </div>
     </div>
-    <p class="premiere-section__lead" style="margin-top:2rem;"><a href="mailto:mbsh96reunion@gmail.com?subject=Sponsorship%20interest" style="color:var(--c-red); text-decoration: underline;">Reach the committee →</a></p>
+    <p class="premiere-section__lead" style="margin-top:2rem;">Prefer email? <a href="mailto:mbsh96reunion@gmail.com?subject=Sponsorship%20interest" style="color:var(--c-red); text-decoration: underline;">Reach the committee →</a></p>
   </section>
 
   <section class="premiere-section" aria-label="Why it matters">
@@ -121,6 +106,7 @@
   <script src="js/compass.js" defer></script>
   <script src="js/sponsor.js" defer></script>
   <script src="js/chatbot.js" defer></script>
+  <script src="js/page-sequence.js" defer></script>
   <script src="js/premiere.js" defer></script>
 </body>
 </html>

@@ -33,7 +33,7 @@
       <img class="hero__mark" src="assets/premiere/brand-mark-foil.png?v=2" alt="30 + 100 commemorative mark — Class of '96 30th reunion, MBSH 100th anniversary" width="120" height="120">
       <div class="hero__type">
         <p class="hero__welcome">Welcome back, Class of &rsquo;96</p>
-        <h1 class="hero__headline"><span>Thirty Years Of</span><span>Hi-Tides</span></h1>
+        <h1 class="hero__headline"><span>Thirty Years Of </span><span>Hi-Tides</span></h1>
         <p class="hero__date" data-config-bind="reunion_date_display">October–November 2026 — Miami Beach</p>
       </div>
       <!-- Registration is open; payment processing comes online later.
@@ -60,7 +60,7 @@
        JS (`mountBillboard`) fills slides from the BILLBOARD data map. -->
   <section class="page-note billboard premiere-snap-target" aria-label="A note from your usher" data-page-slot="note" data-billboard="home">
     <div class="page-note__slate">
-      <span class="page-note__slate-text">Scene 02 · Int. Lobby — Night</span>
+      <span class="page-note__slate-text" data-scene-marker>SCENE I · INT. LOBBY — NIGHT</span>
       <span class="page-note__rec" aria-hidden="true"><span class="page-note__rec-dot"></span>Rec</span>
     </div>
     <!-- billboard slides + controls injected by premiere.js -->
@@ -221,6 +221,7 @@
   <script src="js/countdown.js" defer></script>
   <script src="js/compass.js" defer></script>
   <script src="js/chatbot.js" defer></script>
+  <script src="js/page-sequence.js" defer></script>
   <script src="js/premiere.js" defer></script>
 </body>
 </html>

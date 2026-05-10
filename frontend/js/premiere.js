@@ -949,15 +949,33 @@
      Harry-in-scene. Single source of truth for cross-page consistency.
      ----------------------------------------------------------------- */
 
-  const PROGRAM = [
-    { id: 'home',     page: 'home',          href: 'index.html',         reel: 'I',    title: 'Welcome — The Premiere',     usher: 'Curtain up. Find your row, find your row of 1996.',           runtime: '—' },
-    { id: 'rsvp',     page: 'rsvp',          href: 'rsvp.html',          reel: 'II',   title: 'Reserve Your Seat',          usher: "Tell us you're coming. The night unlocks once we hear from you.", runtime: '4 min' },
-    { id: 'tickets',  page: 'tickets',       href: 'tickets.html',       reel: 'III',  title: 'Tickets & Sponsorship',      usher: 'Two ways in — secure a seat, or help fund the night.',  runtime: '6 min' },
-    { id: 'years',    page: 'through-years', href: 'through-years.html', reel: 'IV',   title: 'Through the Years',          usher: 'One hundred years of Hi-Tides. The eras that built us.',     runtime: '12 min' },
-    { id: 'memory',   page: 'memorial',      href: 'memorial.html',      reel: 'V',    title: 'In Memory',                  usher: 'Forever Hi-Tides. Names we carry with us.',                  runtime: '5 min' },
-    { id: 'capsule',  page: 'capsule',       href: 'capsule.html',       reel: 'VI',   title: 'Time Capsule',               usher: "Send your younger self a note. We'll deliver on the day.",   runtime: '8 min' },
-    { id: 'sound',    page: 'playlist',      href: 'playlist.html',      reel: 'VII',  title: 'The Soundtrack',             usher: 'The songs that made us who we are. Curated, embedded, alive.', runtime: '∞' },
-  ];
+  // PROGRAM — runtime-specific reel data used by where-next, the home
+  // bulletin, and the Harry-in-scene placement table. The canonical reel
+  // ORDER and reel NUMBERING live in `js/page-sequence.js` (window.PAGE_SEQUENCE);
+  // this array adapts that data into the shape premiere.js already uses
+  // (with .href and .runtime). If page-sequence.js failed to load we fall
+  // back to the embedded copy so this file still works standalone.
+  const PROGRAM_RUNTIMES = {
+    home: '—', rsvp: '4 min', tickets: '6 min', 'through-years': '12 min',
+    memorial: '5 min', capsule: '8 min', playlist: '∞'
+  };
+  const PROGRAM = (window.PAGE_SEQUENCE && Array.isArray(window.PAGE_SEQUENCE))
+    ? window.PAGE_SEQUENCE.map(function (e) {
+        return {
+          id: e.id, page: e.page, href: e.slug, reel: e.reelRoman,
+          title: e.title, usher: e.usher,
+          runtime: PROGRAM_RUNTIMES[e.page] || '—'
+        };
+      })
+    : [
+        { id: 'home',     page: 'home',          href: 'index.html',         reel: 'I',    title: 'Welcome — The Premiere',     usher: 'Curtain up. Find your row, find your row of 1996.',           runtime: '—' },
+        { id: 'rsvp',     page: 'rsvp',          href: 'rsvp.html',          reel: 'II',   title: 'Reserve Your Seat',          usher: "Tell us you're coming. The night unlocks once we hear from you.", runtime: '4 min' },
+        { id: 'tickets',  page: 'tickets',       href: 'tickets.html',       reel: 'III',  title: 'Tickets & Sponsorship',      usher: 'Two ways in — secure a seat, or help fund the night.',  runtime: '6 min' },
+        { id: 'years',    page: 'through-years', href: 'through-years.html', reel: 'IV',   title: 'Through the Years',          usher: 'One hundred years of Hi-Tides. The eras that built us.',     runtime: '12 min' },
+        { id: 'memory',   page: 'memorial',      href: 'memorial.html',      reel: 'V',    title: 'In Memory',                  usher: 'Forever Hi-Tides. Names we carry with us.',                  runtime: '5 min' },
+        { id: 'capsule',  page: 'capsule',       href: 'capsule.html',       reel: 'VI',   title: 'Time Capsule',               usher: "Send your younger self a note. We'll deliver on the day.",   runtime: '8 min' },
+        { id: 'sound',    page: 'playlist',      href: 'playlist.html',      reel: 'VII',  title: 'The Soundtrack',             usher: 'The songs that made us who we are. Curated, embedded, alive.', runtime: '∞' },
+      ];
 
   function programIndex(pageName) {
     const i = PROGRAM.findIndex(p => p.page === pageName);
@@ -1053,10 +1071,9 @@
     const hd = document.createElement('h2'); hd.className = 'where-next__headline';
     const sub = document.createElement('p'); sub.className = 'where-next__sub';
 
-    if (page === 'home') {
-      hd.textContent = 'Reel II — Reserve your seat.';
-      sub.textContent = 'The night unlocks once we hear from you.';
-    } else {
+    {
+      // Derive Up Next entirely from the program sequence so playlist
+      // wraps back to home and any future reorder is one-edit-away.
       const next = nextInProgram(page, 1)[0];
       hd.textContent = 'Reel ' + next.reel + ' — ' + next.title + '.';
       sub.textContent = next.usher;
