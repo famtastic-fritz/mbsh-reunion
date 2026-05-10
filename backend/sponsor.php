@@ -24,7 +24,10 @@ try {
   $company = fam_optional($_POST, 'company_name', 255);
   $email = fam_email($_POST, 'email', true);
   $phone = fam_optional($_POST, 'phone', 50);
-  $tier = fam_enum($_POST, 'tier_interest', ['diamond','captain','crew','friend','custom'], true);
+  // Accept both the legacy 5-tier set and the current 3-tier Premiere set.
+  // The frontend shows only marquee/producer/featured/custom, but legacy
+  // values are still accepted so any in-flight or external links keep working.
+  $tier = fam_enum($_POST, 'tier_interest', ['marquee','producer','featured','custom','diamond','captain','crew','friend'], true);
   $custom = $tier === 'custom' ? fam_int($_POST, 'custom_amount', 1, 1000000, null) : null;
   $message = fam_optional($_POST, 'message', 2000);
 
