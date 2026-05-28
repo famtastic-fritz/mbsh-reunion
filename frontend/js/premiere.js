@@ -48,6 +48,19 @@
   const cinematicOK  = !reduceMotion && !reduceData;
 
   const page = document.body.getAttribute('data-page') || 'unknown';
+  const sequenceEntry = window.PageSequence && window.PageSequence.getEntry ? window.PageSequence.getEntry(page) : null;
+
+  function sceneMarkerText(entry) {
+    return window.PageSequence && window.PageSequence.formatSceneMarker ? window.PageSequence.formatSceneMarker(entry) : '';
+  }
+
+  function scriptSceneText(entry) {
+    return window.PageSequence && window.PageSequence.formatScriptScene ? window.PageSequence.formatScriptScene(entry) : sceneMarkerText(entry);
+  }
+
+  function escapeAttr(value) {
+    return String(value || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
 
   /* -----------------------------------------------------------------
      1. Curtain rise — once per session, fires on first page load.
@@ -449,13 +462,13 @@
 
     // Filmstrip drawer NAV_ITEMS — each gets a `tease` line under the title
     const NAV_ITEMS = [
-      { href: 'index.html',         label: 'Home',           page: 'home',          tease: 'The Premiere' },
-      { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp',          tease: 'Take Your Seat' },
-      { href: 'tickets.html',       label: 'Tickets',        page: 'tickets',       tease: 'Patrons of the Evening' },
-      { href: 'through-years.html', label: 'Through Years',  page: 'through-years', tease: 'The Trailer Reel' },
-      { href: 'memorial.html',      label: 'In Memory',      page: 'memorial',      tease: 'In Memoriam' },
-      { href: 'capsule.html',       label: 'Capsule',        page: 'capsule',       tease: 'Letter to Yourself' },
-      { href: 'playlist.html',      label: 'Playlist',       page: 'playlist',      tease: 'Encore' }
+      { href: 'index.html',         label: 'Home',           page: 'home',          tease: 'The Lobby Opens' },
+      { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp',          tease: 'Lock Your Seat' },
+      { href: 'tickets.html',       label: 'Tickets',        page: 'tickets',       tease: 'Claim Your Ticket' },
+      { href: 'through-years.html', label: 'Through Years',  page: 'through-years', tease: 'Roll the Memory Reel' },
+      { href: 'memorial.html',      label: 'In Memory',      page: 'memorial',      tease: 'Hold the Light' },
+      { href: 'capsule.html',       label: 'Capsule',        page: 'capsule',       tease: 'Seal the Time Capsule' },
+      { href: 'playlist.html',      label: 'Playlist',       page: 'playlist',      tease: 'Drop the Soundtrack' }
     ];
 
     // P7-fix: on HOME, promote the existing hero brand-mark to BE the menu
@@ -483,7 +496,7 @@
       medallion.setAttribute('aria-expanded', 'false');
       medallion.setAttribute('aria-controls', 'premiere-medallion-menu');
       const img = document.createElement('img');
-      img.src = 'assets/brand-mark/brand-mark.png';
+      img.src = page === 'rsvp' ? 'assets/brand-mark/brand-mark-160.webp' : 'assets/brand-mark/brand-mark.png';
       img.alt = '';
       img.setAttribute('aria-hidden', 'true');
       medallion.appendChild(img);
@@ -749,6 +762,10 @@
   }
 
   function injectOverlays() {
+    // RSVP Phase 3 carries its own scene plate, dust, lamp, bleed, and light spill.
+    // Skip the full-page injected overlay here so Lighthouse does not treat the
+    // fixed decorative backdrop as the LCP element.
+    if (page === 'rsvp') return;
     if (!document.querySelector('.premiere-stage')) {
       const stage = document.createElement('div');
       stage.className = 'premiere-stage';
@@ -880,43 +897,53 @@
      scrolls the next section into view. Snap-mandatory will then settle
      the section at the top. Keyboard accessible (Enter/Space). */
   function wireScrollTeaseClick() {
-    if (page !== 'home') return;
-    const tease = document.querySelector('.hero__scroll-tease');
-    if (!tease) return;
-    // Find the first .premiere-snap-target AFTER the hero (skips dividers)
-    const allSnaps = Array.from(document.querySelectorAll('.premiere-snap-target'));
-    const hero = tease.closest('.hero');
-    const heroIdx = allSnaps.indexOf(hero);
-    const nextSection = allSnaps[heroIdx + 1];
-    if (!nextSection) return;
+    const teasers = Array.from(document.querySelectorAll('[data-scroll-tease="true"], .scroll-teaser, .hero__scroll-tease'));
+    if (!teasers.length) return;
 
-    // Mark interactive (was aria-hidden in the V1 markup)
-    tease.removeAttribute('aria-hidden');
-    tease.setAttribute('role', 'button');
-    tease.setAttribute('tabindex', '0');
-    const targetLabel = nextSection.getAttribute('aria-label') || 'Story';
-    tease.setAttribute('aria-label', 'Scroll to ' + targetLabel);
-    tease.classList.add('is-clickable');
+    function resolveTarget(tease) {
+      const selector = tease.getAttribute('data-scroll-target');
+      if (selector) return document.querySelector(selector);
+      const allSnaps = Array.from(document.querySelectorAll('.premiere-snap-target'));
+      const hero = tease.closest('.hero, .experience-hero, .reel-hero, header');
+      const heroIdx = allSnaps.indexOf(hero);
+      return heroIdx >= 0 ? allSnaps[heroIdx + 1] : null;
+    }
 
-    function scrollNext() {
+    function scrollToTarget(target) {
       // Use window.scrollTo instead of scrollIntoView — the latter has
       // inconsistent behavior under scroll-snap-type: y mandatory in
       // headless Chrome and some real-Chrome versions. window.scrollTo
       // with offsetTop is reliable everywhere.
       // Briefly relax snap so the smooth scroll isn't intercepted.
+      if (!target) return;
       const body = document.body;
       const prevSnap = body.style.scrollSnapType;
       body.style.scrollSnapType = 'none';
-      const targetY = nextSection.offsetTop;
-      window.scrollTo({ top: targetY, behavior: 'smooth' });
+      const targetY = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - 110);
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: targetY, behavior: reduceMotion ? 'auto' : 'smooth' });
       setTimeout(() => { body.style.scrollSnapType = prevSnap; }, 900);
     }
-    tease.addEventListener('click', scrollNext);
-    tease.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        scrollNext();
+
+    teasers.forEach((tease) => {
+      const target = resolveTarget(tease);
+      if (!target || tease.dataset.scrollTeaseWired === 'true') return;
+      tease.dataset.scrollTeaseWired = 'true';
+      tease.removeAttribute('aria-hidden');
+      if (tease.tagName !== 'BUTTON') {
+        tease.setAttribute('role', 'button');
+        tease.setAttribute('tabindex', '0');
       }
+      const targetLabel = target.getAttribute('aria-label') || target.id || 'next section';
+      if (!tease.getAttribute('aria-label')) tease.setAttribute('aria-label', 'Scroll to ' + targetLabel);
+      tease.classList.add('is-clickable');
+      tease.addEventListener('click', () => scrollToTarget(target));
+      tease.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          scrollToTarget(target);
+        }
+      });
     });
   }
 
@@ -1156,6 +1183,108 @@
      section pull-in animation.
      ----------------------------------------------------------------- */
 
+  function upgradeInteriorHero() {
+    if (page === 'home' || !sequenceEntry) return;
+    const header = document.querySelector('header.page-header');
+    if (!header || header.dataset.experienceHero === '1') return;
+
+    header.dataset.experienceHero = '1';
+    header.dataset.pageSlot = 'title';
+    header.dataset.mode = 'scene';
+    header.dataset.height = 'large';
+    header.classList.add('experience-hero', 'premiere-snap-target');
+    if (sequenceEntry.heroTier) header.dataset.heroTier = sequenceEntry.heroTier;
+    if (sequenceEntry.heroBridge) header.dataset.heroBridge = sequenceEntry.heroBridge;
+    if (sequenceEntry.heroImage) header.style.setProperty('--experience-hero-image', 'url("' + escapeAttr(sequenceEntry.heroImage) + '")');
+    header.style.setProperty('--experience-hero-mood', '"' + escapeAttr(sequenceEntry.mood || '') + '"');
+
+    const title = header.querySelector('.page-header__title');
+    const sub = header.querySelector('.page-header__sub');
+    if (title && sequenceEntry.heroTitle) title.textContent = sequenceEntry.heroTitle;
+    if (sub && sequenceEntry.heroSub) sub.textContent = sequenceEntry.heroSub;
+
+    if (!header.querySelector('.experience-hero__layers')) {
+      const layers = document.createElement('div');
+      layers.className = 'experience-hero__layers';
+      layers.setAttribute('aria-hidden', 'true');
+      layers.innerHTML = '<span class="experience-hero__layer experience-hero__image"></span>' +
+                         '<span class="experience-hero__layer experience-hero__set experience-hero__set--rsvp"><span class="rsvp-set__marquee"></span><span class="rsvp-set__doors"></span><span class="rsvp-set__podium"></span><span class="rsvp-set__guest-list"></span><span class="rsvp-set__seat-cards"></span><span class="rsvp-set__rope rsvp-set__rope--left"></span><span class="rsvp-set__rope rsvp-set__rope--right"></span><span class="rsvp-set__stanchion rsvp-set__stanchion--a"></span><span class="rsvp-set__stanchion rsvp-set__stanchion--b"></span><span class="rsvp-set__stanchion rsvp-set__stanchion--c"></span><span class="rsvp-set__carpet"></span></span>' +
+                         '<span class="experience-hero__layer experience-hero__wash"></span>' +
+                         '<span class="experience-hero__layer experience-hero__beam"></span>' +
+                         '<span class="experience-hero__layer experience-hero__grain"></span>' +
+                         '<span class="experience-hero__layer experience-hero__foreground"></span>' +
+                         '<span class="experience-hero__layer experience-hero__bleed experience-hero__bleed--one"></span>' +
+                         '<span class="experience-hero__layer experience-hero__bleed experience-hero__bleed--two"></span>' +
+                         '<span class="experience-hero__layer experience-hero__bulbs"></span>';
+      header.insertBefore(layers, header.firstChild);
+    }
+
+    if ((sequenceEntry.heroHarryPhoto || sequenceEntry.heroHarry) && !header.querySelector('.experience-hero__harry')) {
+      const harry = document.createElement('img');
+      harry.className = 'experience-hero__harry';
+      harry.src = sequenceEntry.heroHarryPhoto || ('assets/mascot/' + sequenceEntry.heroHarry);
+      harry.alt = sequenceEntry.heroHarryAlt || 'Hi-Tide Harry in the scene';
+      harry.width = 360;
+      harry.height = 420;
+      harry.loading = 'eager';
+      header.appendChild(harry);
+    }
+
+    const back = header.querySelector('.page-header__back');
+    const content = document.createElement('div');
+    content.className = 'experience-hero__content';
+    [...header.children].forEach(child => {
+      if (child.classList && child.classList.contains('experience-hero__layers')) return;
+      if (child.classList && child.classList.contains('experience-hero__harry')) return;
+      if (child === content) return;
+      content.appendChild(child);
+    });
+    if (!content.parentNode) header.appendChild(content);
+    if (back) back.classList.add('experience-hero__back');
+
+    if (!content.querySelector('.experience-hero__kicker')) {
+      const kicker = document.createElement('p');
+      kicker.className = 'experience-hero__kicker';
+      kicker.textContent = sequenceEntry.heroKicker || sequenceEntry.sceneLocation || '';
+      const titleNode = content.querySelector('.page-header__title');
+      if (titleNode) content.insertBefore(kicker, titleNode);
+      else content.appendChild(kicker);
+    }
+
+    if (sequenceEntry.heroAction && !content.querySelector('.experience-hero__action')) {
+      const action = document.createElement('p');
+      action.className = 'experience-hero__action';
+      action.textContent = sequenceEntry.heroAction;
+      content.appendChild(action);
+    }
+
+    if (page === 'rsvp' && !header.querySelector('.experience-hero__chevron')) {
+      const chevron = document.createElement('button');
+      chevron.className = 'experience-hero__chevron scroll-teaser';
+      chevron.type = 'button';
+      chevron.dataset.scrollTarget = '#rsvp-form';
+      chevron.dataset.scrollTease = 'true';
+      chevron.setAttribute('aria-label', 'Continue to RSVP form');
+      chevron.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+      header.appendChild(chevron);
+    }
+
+    if (page !== 'rsvp' && !document.querySelector('.scene-marker-marquee[data-page-slot="scene-marker"]')) {
+      const marker = document.createElement('section');
+      marker.className = 'scene-marker-marquee premiere-snap-target';
+      if (sequenceEntry.heroBridge) marker.dataset.heroBridge = sequenceEntry.heroBridge;
+      marker.dataset.pageSlot = 'scene-marker';
+      marker.dataset.mode = 'tease';
+      marker.dataset.height = 'third';
+      marker.setAttribute('aria-label', 'Scene marker');
+      marker.innerHTML = '<div class="scene-marker-marquee__rail" aria-hidden="true"></div>' +
+                         '<p class="scene-marker-marquee__num">SCENE ' + escapeAttr(sequenceEntry.sceneNumber || sequenceEntry.reelRoman) + '</p>' +
+                         '<h2 class="scene-marker-marquee__title">' + escapeAttr(sequenceEntry.sceneTitle || sequenceEntry.title) + '</h2>' +
+                         '<div class="scene-marker-marquee__rail" aria-hidden="true"></div>';
+      header.parentNode.insertBefore(marker, header.nextSibling);
+    }
+  }
+
   const BILLBOARD = {
     home: [
       {
@@ -1174,8 +1303,8 @@
         eyebrow: "Tonight's program",
         kind: 'headline',
         harry: '20-pointing-across.png',
-        headline: 'Nine reels.<br>One night.',
-        sub: 'Every page on this site is a scene from the evening. Pick one to walk into, or keep tapping the chevron and follow me through.'
+        headline: 'Seven scenes.<br>One night.',
+        sub: 'Every page is one controlled scene in the reunion movie. Pick a door, or keep tapping the chevron and follow the program.'
       },
       {
         eyebrow: 'The night',
@@ -1209,22 +1338,22 @@
     ],
     'through-years': [
       { eyebrow: 'A note from your usher', kind: 'welcome', harry: '22-walk-frame.png',
-        line: 'One hundred years of Hi-Tides, walked in five frames.',
+        line: 'The projector is warming up, Hi-Tide. This room is for the photos, programs, hallways, and stories that made us.',
         beats: [
-          'Scroll the filmstrip — each card is an era.',
-          "1996 is your year — pause there a beat.",
+          'The full archive is still being cut with the committee.',
+          "1996 is the anchor — send the story only you remember.",
           'Add a memory at the end — we read every one.'
         ], sign: '— Harry' },
       { eyebrow: 'The reel rolls', kind: 'headline', harry: '20-pointing-across.png',
-        headline: '1926 → 2026.', sub: 'A century of hallways, hi-tides, and the kids who came back.' }
+        headline: '1926 → 2026.', sub: 'The memory reel begins with what we have now and grows as the committee archive lands.' }
     ],
     memorial: [
       { eyebrow: 'A note from your usher', kind: 'welcome', harry: '17-respectful.png',
         line: 'Forever Hi-Tides. Names we carry with us tonight.',
         beats: [
-          'Each name fades up as you scroll — give them the beat.',
-          "If we missed someone — submit below. We'll add them.",
-          'Hat off, hand on heart, then we keep walking.'
+          'This scene moves slower on purpose — give every name the beat.',
+          "If someone is missing, use the email here so the committee can verify with care.",
+          'Hat off, hand on heart, then we keep walking together.'
         ], sign: '— Harry' },
       { eyebrow: 'In Memoriam', kind: 'headline', harry: '17-respectful.png',
         headline: 'Forever Hi-Tides.', sub: 'Once a Hi-Tide, always a Hi-Tide.' }
@@ -1235,18 +1364,18 @@
         beats: [
           'Write what 17-year-old you should know now.',
           "We'll wax-seal it on submit — sealed, not sent yet.",
-          'Delivered the night of the reunion. No spoilers from me.'
+          'Delivered when the reunion date is locked. No spoilers from me.'
         ], sign: '— Harry' },
       { eyebrow: 'The promise', kind: 'headline', harry: '14-wax-stamping.png',
-        headline: 'Sealed July 12, 2026.', sub: "Delivered the night we're all in the room." }
+        headline: 'Seal it for reunion night.', sub: "Date locks when the committee locks the room; the promise is the same." }
     ],
     playlist: [
       { eyebrow: 'A note from your usher', kind: 'welcome', harry: '16-conducting.png',
         line: 'The songs that made us who we are. Curated, embedded, alive.',
         beats: [
-          'Press play below — full Spotify playlist, no login needed.',
-          'Got a song we missed? Tap me, I add it.',
-          'Conduct along — nobody is watching but the cool kids.'
+          'The Spotify embed turns on when the final playlist ID is ready.',
+          'Got a song we missed? Suggest it below and the committee can add it.',
+          'Until the embed is live, the starter tracklist keeps the room moving.'
         ], sign: '— Harry' },
       { eyebrow: 'The encore', kind: 'headline', harry: '16-conducting.png',
         headline: 'Press play.', sub: 'The night has a soundtrack. We were there for every song.' }
@@ -1333,30 +1462,88 @@
     }
   }
 
+
+  function buildInfoCompanion(entry) {
+    if (!entry || !entry.companion) return null;
+    const c = entry.companion;
+    const panel = document.createElement('aside');
+    panel.className = 'info-companion info-companion--' + (c.kind || 'cue');
+    panel.setAttribute('aria-label', c.eyebrow || 'Scene cue');
+    panel.innerHTML =
+      '<p class="info-companion__eyebrow">' + escapeAttr(c.eyebrow || 'Scene cue') + '</p>' +
+      '<div class="info-companion__prop" aria-hidden="true"><span></span></div>' +
+      '<h3 class="info-companion__headline">' + escapeAttr(c.headline || '') + '</h3>' +
+      '<p class="info-companion__sub">' + escapeAttr(c.sub || '') + '</p>' +
+      '<p class="info-companion__stat">' + escapeAttr(c.stat || '') + '</p>';
+    return panel;
+  }
+
+  function mountInfoCompanion(note, entry) {
+    if (!note || note.querySelector('.info-companion')) return;
+    const companion = buildInfoCompanion(entry);
+    if (!companion) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'page-note__duo';
+    const stage = note.querySelector('.billboard__stage');
+    const dots = note.querySelector('.billboard__dots');
+    if (stage) {
+      note.insertBefore(wrap, stage);
+      wrap.appendChild(stage);
+      wrap.appendChild(companion);
+      if (dots) wrap.appendChild(dots);
+    } else {
+      note.appendChild(wrap);
+      wrap.appendChild(companion);
+    }
+  }
+
+  function upgradeFormsForCinema() {
+    const forms = document.querySelectorAll('.rsvp-form, .sponsor-form, .memory-form, .capsule-form, .playlist-suggest, .chatbot__input');
+    forms.forEach(function (form) {
+      form.classList.add('premiere-form-wow');
+      if (!form.querySelector(':scope > .premiere-form-wow__rail')) {
+        const rail = document.createElement('div');
+        rail.className = 'premiere-form-wow__rail';
+        rail.setAttribute('aria-hidden', 'true');
+        form.insertBefore(rail, form.firstChild);
+      }
+      const submit = form.querySelector('button[type="submit"]');
+      if (submit && !submit.querySelector('.premiere-submit-cue')) {
+        const cue = document.createElement('span');
+        cue.className = 'premiere-submit-cue';
+        cue.setAttribute('aria-hidden', 'true');
+        cue.textContent = '★';
+        submit.appendChild(cue);
+      }
+    });
+  }
+
   function mountAllBillboards() {
     // Home billboard already has a host element with data-billboard="home".
     document.querySelectorAll('[data-billboard]').forEach(host => {
       const key = host.dataset.billboard;
       if (BILLBOARD[key]) mountBillboard(host, BILLBOARD[key]);
     });
-    // Inner pages — inject a billboard immediately after the first content
-    // section if no .page-note already exists.
-    if (page !== 'home' && BILLBOARD[page] && !document.querySelector('.page-note')) {
-      const main = document.querySelector('main') || document.body;
-      const firstSection = main.querySelector('section.premiere-snap-target') || main.querySelector('section');
-      if (firstSection) {
+    // Inner pages — inject the configurable Note from Usher directly after
+    // the mini-marquee scene marker. It is the info panel, not decoration.
+    if (page !== 'home' && page !== 'rsvp' && BILLBOARD[page] && !document.querySelector('.page-note')) {
+      const anchor = document.querySelector('.scene-marker-marquee') || document.querySelector('header.experience-hero') || document.querySelector('header.page-header');
+      if (anchor && anchor.parentNode) {
         const note = document.createElement('section');
         note.className = 'page-note billboard premiere-snap-target';
         note.setAttribute('aria-label', 'A note from your usher');
         note.dataset.pageSlot = 'note';
+        note.dataset.mode = 'scene';
+        note.dataset.height = 'large';
         note.dataset.billboard = page;
         const slate = document.createElement('div');
         slate.className = 'page-note__slate';
-        slate.innerHTML = '<span class="page-note__slate-text">Scene 02 · Int. ' + (page.replace('-', ' ')) + ' — Night</span>' +
-                          '<span class="page-note__rec" aria-hidden="true"><span class="page-note__rec-dot"></span>Rec</span>';
+        slate.innerHTML = '<span class="page-note__slate-text">' + scriptSceneText(sequenceEntry) + '</span>' +
+                          '<span class="page-note__rec" aria-hidden="true"><span class="page-note__rec-dot"></span>Info</span>';
         note.appendChild(slate);
-        firstSection.parentNode.insertBefore(note, firstSection.nextSibling);
+        anchor.parentNode.insertBefore(note, anchor.nextSibling);
         mountBillboard(note, BILLBOARD[page]);
+        mountInfoCompanion(note, sequenceEntry);
       }
     }
   }
@@ -1421,6 +1608,55 @@
       if (h > window.innerHeight * 1.05) { s.dataset.mode = 'sequence'; return; }
       if (h < window.innerHeight * 0.7)  { s.dataset.mode = 'tease'; return; }
       s.dataset.mode = 'scene';
+    });
+  }
+
+
+  const PAGE_SLOT_OVERRIDES = {
+    rsvp: {
+      'Countdown to reunion': ['pre', 'third'],
+      'rsvp': ['main', 'content'],
+      'What to expect that night': ['post', 'large'],
+      'Why now': ['post', 'half']
+    },
+    tickets: {
+      'Ticket tiers': ['main', 'content'],
+      'Sponsorship tiers': ['main', 'content'],
+      'Become a patron': ['main', 'content'],
+      'Why it matters': ['post', 'half']
+    },
+    'through-years': {
+      'Through-the-Years overview': ['pre', 'large'],
+      'Submit a memory': ['main', 'content']
+    },
+    memorial: {
+      'In memory of': ['main', 'large'],
+      'Add a name': ['post', 'half'],
+      'At the reunion': ['post', 'half']
+    },
+    capsule: {
+      'Time capsule form': ['main', 'content'],
+      'What to write': ['post', 'large'],
+      'The promise': ['post', 'half']
+    },
+    playlist: {
+      "Class of '96 Spotify playlist": ['main', 'content'],
+      'Suggest a track': ['main', 'content'],
+      'About the soundtrack': ['post', 'large']
+    }
+  };
+
+  function assignPageSlots() {
+    const overrides = PAGE_SLOT_OVERRIDES[page] || {};
+    collectPageSections().forEach(s => {
+      if (s.dataset.pageSlot) return;
+      if (s.classList.contains('where-next')) { s.dataset.pageSlot = 'where-next'; s.dataset.height = 'large'; return; }
+      const label = (s.getAttribute('aria-label') || s.id || '').trim();
+      const spec = overrides[label];
+      if (spec) {
+        s.dataset.pageSlot = spec[0];
+        s.dataset.height = spec[1];
+      }
     });
   }
 
@@ -1510,6 +1746,19 @@
     sections.forEach(s => io.observe(s));
   }
 
+  function wireOpeningChatDeferral() {
+    const opening = document.querySelector('.experience-hero');
+    const marker = document.querySelector('.scene-marker-marquee');
+    if (!opening || !marker) return;
+    const update = () => {
+      const threshold = opening.getBoundingClientRect().height + marker.getBoundingClientRect().height - 16;
+      document.body.classList.toggle('is-past-opening', window.scrollY > threshold);
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+  }
+
   function init() {
     try { injectOverlays(); }       catch (e) { console.warn('[premiere] fx', e); }
     try { injectFooterSiteMap(); }  catch (e) { console.warn('[premiere] footer-nav', e); }
@@ -1534,14 +1783,19 @@
     try { activateGenericFades(); } catch (e) { console.warn('[premiere] fades', e); }
     try { wireHarryVocabulary(); }  catch (e) { console.warn('[premiere] harry-vocab', e); }
     try { fillHomeBulletin(); }     catch (e) { console.warn('[premiere] bulletin', e); }
+    try { upgradeInteriorHero(); }  catch (e) { console.warn('[premiere] hero-upgrade', e); }
+    try { wireScrollTeaseClick(); } catch (e) { console.warn('[premiere] scroll-tease-hero', e); }
     try { mountAllBillboards(); }   catch (e) { console.warn('[premiere] billboard', e); }
+    try { upgradeFormsForCinema(); } catch (e) { console.warn('[premiere] form-wow', e); }
     try { injectWhereNext(); }      catch (e) { console.warn('[premiere] where-next', e); }
     /* Pass 11 — section archetype tagger MUST run before chevrons +
        Harry-in-scene so they can read data-mode. */
     try { tagSectionModes(); }      catch (e) { console.warn('[premiere] tag-modes', e); }
+    try { assignPageSlots(); }      catch (e) { console.warn('[premiere] page-slots', e); }
     try { injectHarryInScene(); }   catch (e) { console.warn('[premiere] harry-scene', e); }
     try { injectSectionChevrons();} catch (e) { console.warn('[premiere] chevrons', e); }
     try { wireSectionArrival(); }   catch (e) { console.warn('[premiere] arrival', e); }
+    try { wireOpeningChatDeferral(); } catch (e) { console.warn('[premiere] opening-chat', e); }
   }
 
   if (document.readyState === 'loading') {

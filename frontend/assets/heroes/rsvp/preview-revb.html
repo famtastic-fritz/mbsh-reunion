@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RSVP Hero revB Preview</title>
+<style>
+  :root { --gold:#E8C77A; --brass:#C8A45C; --dark:#090405; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#050304; font-family: Inter, system-ui, sans-serif; color:var(--gold); overflow:hidden; }
+  .reel-hero--rsvp { min-height:70vh; position:relative; background:#050304; padding-top:8vh; }
+  .hero-stage { position:relative; height:70vh; container-type:inline-size; overflow:visible; width:100vw; }
+  .layer { position:absolute; }
+  .layer--scene { inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter:saturate(1.06) contrast(1.03); }
+  .layer--atmosphere { inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+  .layer--atmosphere::before { content:""; position:absolute; inset:-20%; background:radial-gradient(circle at 72% 16%, rgba(232,199,122,.36), transparent 20%), radial-gradient(circle at 28% 75%, rgba(74,14,17,.36), transparent 28%); mix-blend-mode:screen; opacity:.72; animation:hazePulse 5.5s ease-in-out infinite; }
+  .layer--atmosphere::after { content:""; position:absolute; inset:0; background:linear-gradient(105deg, transparent 0 46%, rgba(232,199,122,.13) 52%, transparent 62%); animation:spotSweep 7s ease-in-out infinite; }
+  .layer--character { bottom:-1.4vh; left:6.2cqw; width:28cqw; max-height:74vh; object-fit:contain; z-index:4; animation:breath 5.5s ease-in-out infinite; filter:drop-shadow(0 22px 22px rgba(0,0,0,.58)); }
+  .layer--marker { bottom:2.4cqw; left:4.6cqw; width:30cqw; z-index:5; padding:1rem 1.4rem; text-align:center; background:radial-gradient(ellipse at center,#4A0E11 0%,#2A0508 55%,#0A0507 100%); border:3px solid var(--brass); border-radius:10px; filter:drop-shadow(0 18px 18px rgba(0,0,0,.62)); transform:perspective(900px) rotateX(2deg) rotateZ(-.4deg); }
+  .layer--marker p{margin:0 0 .35rem;font-family:monospace;letter-spacing:.16em;font-size:clamp(8px,.8cqw,13px);color:var(--brass);}
+  .layer--marker h2{margin:0;font-family:Georgia,serif;font-size:clamp(20px,2.6cqw,42px);line-height:.95;color:var(--gold);}
+  .layer--headline { top:9.2cqw; right:5.8cqw; left:auto; max-width:37cqw; z-index:6; text-shadow:0 4px 18px rgba(0,0,0,.9); }
+  .kicker { margin:0 0 .75rem; text-transform:uppercase; letter-spacing:.22em; color:var(--brass); font-size:clamp(13px,1.15cqw,18px); }
+  .title { margin:0; font-family:Georgia, 'Times New Roman', serif; font-size:clamp(52px,6cqw,88px); line-height:.9; color:var(--gold); }
+  .support { max-width:38rem; font-size:clamp(17px,1.45cqw,24px); line-height:1.35; color:#fff4d7; }
+  .layer--chevron { bottom:2vh; left:50%; transform:translateX(-50%); z-index:8; width:52px; height:52px; border:1px solid rgba(232,199,122,.62); border-radius:50%; background:rgba(10,5,7,.35); color:var(--gold); display:grid; place-items:center; animation:chevronPulse 2.4s ease-in-out infinite; }
+  .layer--chevron svg { width:32px; height:32px; }
+  .bleed-bridge { position:absolute; bottom:-8vh; left:36cqw; right:0; height:16vh; pointer-events:none; z-index:7; background:linear-gradient(100deg, transparent 0 5%, rgba(86,0,0,.2) 10%, rgba(155,6,10,.88) 36%, rgba(63,0,0,.7) 68%, transparent 100%); clip-path:polygon(0 28%,100% 0,100% 100%,0 78%); filter:drop-shadow(0 -8px 18px rgba(232,199,122,.18)); }
+  .bleed-bridge::before { content:""; position:absolute; left:6%; right:9%; top:18%; height:3px; background:linear-gradient(90deg, rgba(200,164,92,.2), rgba(232,199,122,.9), rgba(200,164,92,.3)); box-shadow:0 0 16px rgba(232,199,122,.45); }
+  .next-form-hint { height:30vh; background:linear-gradient(#16070a,#070304); display:flex; justify-content:flex-end; align-items:flex-start; padding:10vh 8vw 0 0; color:#fff4d7; font-size:24px; }
+  @keyframes breath { 0%,100%{ transform:translateY(0) scale(1); } 50%{ transform:translateY(-.6vh) scale(1.012); } }
+  @keyframes chevronPulse { 0%,100%{ opacity:.7; transform:translateX(-50%) translateY(0); } 50%{ opacity:1; transform:translateX(-50%) translateY(7px); } }
+  @keyframes hazePulse { 0%,100%{ opacity:.55; } 50%{ opacity:.9; } }
+  @keyframes spotSweep { 0%,100%{ transform:translateX(-8%); opacity:.18; } 50%{ transform:translateX(6%); opacity:.36; } }
+  @media (prefers-reduced-motion: reduce) { .layer--character,.layer--chevron,.layer--atmosphere::before,.layer--atmosphere::after { animation:none; } }
+  @container (max-width:480px) {
+    .layer--character { left:4cqw; width:48cqw; }
+    .layer--marker { width:52cqw; left:4cqw; bottom:4cqw; }
+    .bleed-bridge { left:52cqw; }
+  }
+  @media (max-width: 900px) {
+    .reel-hero--rsvp { padding-top:8vh; }
+    .hero-stage { height:70vh; }
+    .layer--headline { top:7vh; right:2vw; left:34vw; max-width:64vw; }
+    .kicker { font-size:6px; letter-spacing:.08em; margin-bottom:.18rem; }
+    .title { font-size:18px; line-height:.95; overflow-wrap:normal; }
+    .support { display:none; }
+  }
+</style>
+</head>
+<body>
+<section class="reel-hero reel-hero--rsvp interior-hero" data-reel="II">
+  <div class="hero-stage" data-page="rsvp">
+    <img class="layer layer--scene" src="./01-environment.png" alt="Vintage theater lobby check-in entrance" draggable="false" />
+    <div class="layer layer--atmosphere" aria-hidden="true"></div>
+    <img id="harry" class="layer layer--character" src="./02a-harry-f1-mascot-transparent.png" alt="Hi-Tide Harry, premiere usher, opening the velvet rope" draggable="false" />
+    <div class="layer layer--marker" role="img" aria-label="Scene 2, Interior Auditorium, Night — Lock Your Seat"><p>SCENE II · INT. AUDITORIUM — NIGHT</p><h2>LOCK YOUR SEAT</h2></div>
+    <div class="layer layer--headline">
+      <p class="kicker">The guest list is open.</p>
+      <h1 class="title">Reserve Your Seat</h1>
+      <p class="support">Your RSVP gives the committee the count to plan the room, guests, food, and flow.</p>
+    </div>
+    <button class="layer layer--chevron scroll-teaser" type="button" data-scroll-target="#rsvp-form" data-scroll-tease="true" aria-label="Continue to RSVP form">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" /></svg>
+    </button>
+  </div>
+  <div class="bleed-bridge" aria-hidden="true"></div>
+</section>
+<div class="next-form-hint" id="rsvp-form">RSVP form begins here</div>
+<script>
+  const params = new URLSearchParams(location.search);
+  if (params.get('variant') === 'b') document.getElementById('harry').src = './02b-harry-3d-render-transparent.png';
+</script>
+</body>
+</html>

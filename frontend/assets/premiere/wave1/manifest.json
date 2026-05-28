@@ -1,0 +1,22 @@
+{
+  "blocked": {
+    "openai_harry_assets": "OPENAI_API_KEY rejected by API before generation; no OpenAI images produced.",
+    "veo_loops": "GEMINI/GOOGLE key rejected by API before video generation; no Veo videos produced."
+  },
+  "completed": {
+    "imagen_stills": [
+      "frontend/assets/premiere/wave1/scenes/capsule-envelope-wax-seal.png",
+      "frontend/assets/premiere/wave1/scenes/memorial-candle-still.png",
+      "frontend/assets/premiere/wave1/scenes/playlist-curtain-confetti-still.png",
+      "frontend/assets/premiere/wave1/scenes/rsvp-velvet-seat.png",
+      "frontend/assets/premiere/wave1/scenes/through-years-projection-booth.png"
+    ]
+  },
+  "cost_cap_usd": 1.57,
+  "estimated_spend_usd": 0.02,
+  "notes": [
+    "No keys were written to disk.",
+    "Counters reset for rejected auth attempts because no generation outputs were produced."
+  ],
+  "status": "partial_blocked_on_valid_api_keys"
+}

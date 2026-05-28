@@ -5,119 +5,223 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="RSVP for MBSH Class of '96 30th Reunion. October-November 2026 - Miami Beach.">
   <title>RSVP — MBSH Class of &rsquo;96 30th Reunion</title>
+
+  <!-- Critical image preloads -->
+  <link rel="preload" as="image"
+        href="assets/heroes/rsvp/01-environment-640.webp"
+        imagesrcset="assets/heroes/rsvp/01-environment-640.webp 640w, assets/heroes/rsvp/01-environment-960.webp 960w, assets/heroes/rsvp/01-environment-1280.webp 1280w"
+        imagesizes="100vw"
+        fetchpriority="high">
+  <link rel="preload" as="image"
+        href="assets/heroes/rsvp/02b-harry-3d-render-transparent-768.webp"
+        fetchpriority="high">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Allura&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
+
+  <!-- Base styles -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/typography.css">
   <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/premiere.css">
   <link rel="stylesheet" href="css/compass.css">
   <link rel="stylesheet" href="css/chatbot.css">
   <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/premiere.css">
+
+  <!-- RSVP page styles — clean, no accumulated overrides -->
+  <link rel="stylesheet" href="css/rsvp.css">
 </head>
-<body data-page="rsvp" data-premiere="on">
+<body data-page="rsvp" data-premiere="on" data-snap="on">
 
-  <header class="page-header" data-template="header">
-    <a class="page-header__back" href="index.html" aria-label="Back to home"><img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a>
-    <h1 class="page-header__title">Save the Date</h1>
-    <p class="page-header__sub">Tell us you're coming. Welcome back, Hi-Tide.</p>
-  </header>
+  <!-- ── SECTION 1: Hero + Scene Marker (100vh) ─────────────────────────── -->
+  <section class="reel-hero reel-hero--rsvp premiere-snap-target"
+           data-reel="II"
+           data-page-slot="title"
+           aria-label="RSVP opening scene — Lock Your Seat">
 
-  <section class="countdown" aria-label="Countdown to reunion">
-    <h2 class="countdown__title">Countdown to the Night</h2>
-    <div class="countdown__grid">
-      <div class="countdown__cell"><span class="countdown__num" id="countdown-days">--</span><span class="countdown__label">Days</span></div>
-      <div class="countdown__cell"><span class="countdown__num" id="countdown-hours">--</span><span class="countdown__label">Hours</span></div>
-      <div class="countdown__cell"><span class="countdown__num" id="countdown-mins">--</span><span class="countdown__label">Minutes</span></div>
-      <div class="countdown__cell"><span class="countdown__num" id="countdown-secs">--</span><span class="countdown__label">Seconds</span></div>
-    </div>
-    <p class="countdown__date-note" data-config-bind="reunion_date_display">Date confirmed by committee &mdash; coming soon</p>
-  </section>
+    <!-- Hero stage: top 2/3 -->
+    <div class="hero-stage" data-page="rsvp">
 
-  <section class="rsvp-form-wrap" id="rsvp">
-    <div class="premiere-seat-row" aria-hidden="true">
-      <span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span>
-    </div>
-    <!-- Harry-in-scene (12-clipboard) is injected by premiere.js — replaces the legacy static 08-pointing. -->
-    <form class="rsvp-form" id="rsvp-form" novalidate>
-      <fieldset class="rsvp-form__group rsvp-form__group--always">
-        <legend class="visually-hidden">Your information</legend>
-        <label class="field"><span class="field__label">First Name *</span><input class="field__input" type="text" name="first_name" required maxlength="100"></label>
-        <label class="field"><span class="field__label">Last Name (Maiden Name if applicable) *</span><input class="field__input" type="text" name="last_name" required maxlength="100" placeholder="Smith (Jones)"></label>
-        <label class="field"><span class="field__label">Email Address *</span><input class="field__input" type="email" name="email" required maxlength="255"></label>
-        <label class="field"><span class="field__label">Will you attend? *</span>
-          <select class="field__input" name="attending" id="rsvp-attending" required>
-            <option value="">— Select —</option>
-            <option value="yes">Yes, I'll be there</option>
-            <option value="maybe">Maybe</option>
-            <option value="no">Sorry, can't make it</option>
-          </select>
-        </label>
-      </fieldset>
-
-      <fieldset class="rsvp-form__group rsvp-form__group--reveal" id="rsvp-yes-reveal" hidden>
-        <legend class="visually-hidden">Tell us more</legend>
-        <label class="field"><span class="field__label">Phone Number</span><input class="field__input" type="tel" name="phone" maxlength="50"></label>
-        <label class="field"><span class="field__label">Current City / State</span><input class="field__input" type="text" name="city_state" maxlength="255"></label>
-        <label class="field"><span class="field__label">Number of Guests</span>
-          <select class="field__input" name="guest_count">
-            <option value="1">Just me</option>
-            <option value="2">+1</option>
-            <option value="3">+2</option>
-            <option value="4">+3</option>
-          </select>
-        </label>
-        <label class="field"><span class="field__label">Guest Name(s)</span><input class="field__input" type="text" name="guest_names" maxlength="500"></label>
-        <label class="field"><span class="field__label">Dietary Restrictions / Preferences</span><textarea class="field__input" name="dietary" maxlength="500" rows="2"></textarea></label>
-        <label class="field field--check"><input type="checkbox" name="help_planning" value="1"><span class="field__label">I'd love to help with planning!</span></label>
-        <label class="field"><span class="field__label">Messages or Venue Suggestions</span><textarea class="field__input" name="message" maxlength="2000" rows="3"></textarea></label>
-        <label class="field field--check"><input type="checkbox" name="display_publicly" value="1" checked><span class="field__label">Display me publicly on the attendee list</span></label>
-      </fieldset>
-
-      <input type="text" name="website" class="rsvp-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <input type="hidden" name="form_loaded_at" id="form-loaded-at">
-
-      <p class="rsvp-form__consent">By submitting, you consent to your name and city appearing on the public attendee list (you can opt out via the checkbox above). The committee retains this information until 30 days after the reunion. Email <a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a> to request deletion at any time.</p>
-
-      <button type="submit" class="rsvp-form__submit">Submit RSVP <span aria-hidden="true">🌊</span></button>
-    </form>
-
-    <div class="rsvp-success" id="rsvp-success" hidden>
-      <h3 class="rsvp-success__title">You're on the list. Welcome back, <span id="rsvp-success-name">Hi-Tide</span>.</h3>
-      <p class="rsvp-success__sub">We've sent confirmation to <span id="rsvp-success-email"></span>. See you on the night.</p>
-      <p class="rsvp-success__capsule"><a href="capsule.html">Want to send your younger self a message? Open the time capsule.</a></p>
-    </div>
-  </section>
-
-  <section class="premiere-section premiere-section--alt" aria-label="What to expect that night">
-    <h2 class="premiere-section__title">What to expect that night</h2>
-    <p class="premiere-section__lead">Black-tie cocktail. Live tributes. A soundtrack that knows you. The Class of '96 — back together, exactly thirty years on.</p>
-    <div class="premiere-mini-cards">
-      <div class="premiere-mini-card">
-        <span class="premiere-mini-card__num">7:00 PM</span>
-        <h3 class="premiere-mini-card__title">Arrival</h3>
-        <p class="premiere-mini-card__body">Walk the carpet. Find your row. Reconnect over the first thirty minutes.</p>
+      <!-- Scene plate (CSS background for performance) -->
+      <div class="layer layer--scene"
+           role="img"
+           aria-label="Vintage theater lobby check-in entrance with red carpet and velvet ropes">
       </div>
-      <div class="premiere-mini-card">
-        <span class="premiere-mini-card__num">9:30 PM</span>
-        <h3 class="premiere-mini-card__title">The Tribute</h3>
-        <p class="premiere-mini-card__body">100 years of MBSH. 30 years of '96. A short reel, names we carry, the moments that built us.</p>
+
+      <!-- Atmosphere: dust, lamp, flashes -->
+      <div class="layer layer--atmosphere" aria-hidden="true">
+        <div class="atmosphere-dust"></div>
+        <div class="atmosphere-podium-pool"></div>
+        <div class="flash-1"></div>
+        <div class="flash-2"></div>
       </div>
-      <div class="premiere-mini-card">
-        <span class="premiere-mini-card__num">'til 12</span>
-        <h3 class="premiere-mini-card__title">The Floor</h3>
-        <p class="premiere-mini-card__body">The soundtrack drops. The dancefloor opens. The night you've waited thirty years for.</p>
+
+      <!-- Harry: Tier 1 photoreal, left-positioned, opening the rope -->
+      <img class="layer layer--character"
+           src="assets/heroes/rsvp/02b-harry-3d-render-transparent-768.webp"
+           alt="Hi-Tide Harry, premiere usher, opening the velvet rope and presenting the RSVP card"
+           draggable="false"
+           fetchpriority="high">
+
+      <!-- Headline: right side -->
+      <div class="layer layer--headline">
+        <p class="kicker">The guest list is open.</p>
+        <h1 class="title">Reserve Your Seat</h1>
+        <p class="support">Your RSVP gives the committee the count to plan the room, guests, food, and flow.</p>
       </div>
+
+    </div>
+
+    <!-- Marker band: bottom 1/3 -->
+    <div class="marker-band" aria-label="Scene marker">
+
+      <div class="marker-plaque"
+           role="img"
+           aria-label="Scene 2, Interior Auditorium, Night — Lock Your Seat">
+
+        <!-- Marquee crown: 20 bulbs -->
+        <div class="marker-bulbs-top" aria-hidden="true">
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+          <span class="marker-bulb"></span>
+        </div>
+
+        <!-- Art Deco corners -->
+        <span class="marker-corner marker-corner--tl" aria-hidden="true"></span>
+        <span class="marker-corner marker-corner--tr" aria-hidden="true"></span>
+        <span class="marker-corner marker-corner--bl" aria-hidden="true"></span>
+        <span class="marker-corner marker-corner--br" aria-hidden="true"></span>
+
+        <!-- Scene title -->
+        <p class="marker-line-1">SCENE II &middot; INT. AUDITORIUM &mdash; NIGHT</p>
+        <h2 class="marker-line-2">LOCK YOUR SEAT</h2>
+
+        <!-- Marquee crown: bottom 20 bulbs — mirrors top crown -->
+        <div class="marker-bulbs-bottom" aria-hidden="true">
+          <span class="marker-bulb"></span><span class="marker-bulb"></span>
+          <span class="marker-bulb"></span><span class="marker-bulb"></span>
+          <span class="marker-bulb"></span><span class="marker-bulb"></span>
+          <span class="marker-bulb"></span><span class="marker-bulb"></span>
+          <span class="marker-bulb"></span><span class="marker-bulb"></span>
+          <span class="marker-bulb"></span><span class="marker-bulb"></span>
+          <span class="marker-bulb"></span><span class="marker-bulb"></span>
+          <span class="marker-bulb"></span><span class="marker-bulb"></span>
+          <span class="marker-bulb"></span><span class="marker-bulb"></span>
+          <span class="marker-bulb"></span><span class="marker-bulb"></span>
+        </div>
+
+      </div>
+
+      <!-- Chevron: scroll to form -->
+      <button class="chevron scroll-teaser"
+              type="button"
+              data-scroll-target="#rsvp-form"
+              data-scroll-tease="true"
+              aria-label="Continue to RSVP form">
+        <svg viewBox="0 0 24 36" aria-hidden="true">
+          <path d="M6 9l6 6 6-6"
+                stroke="currentColor" stroke-width="2.5"
+                fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 19l6 6 6-6"
+                stroke="currentColor" stroke-width="2.5"
+                fill="none" stroke-linecap="round" stroke-linejoin="round"
+                opacity="0.55"/>
+        </svg>
+      </button>
+
     </div>
   </section>
 
-  <section class="premiere-section" aria-label="Why now">
-    <h2 class="premiere-section__title">Why this night, why now</h2>
-    <p class="premiere-section__lead">Thirty years is more than a number. It's the chapter we get to write together — once. The committee built this site so every classmate sees what's possible, says yes early, and walks in already feeling part of the night.</p>
+  <!-- ── SECTION 2: RSVP Form (100vh min) ───────────────────────────────── -->
+  <section class="rsvp-form-section premiere-snap-target"
+           id="rsvp"
+           aria-label="RSVP form">
+
+    <div class="rsvp-form-wrap">
+      <form class="rsvp-form" id="rsvp-form" novalidate>
+        <fieldset class="rsvp-form__group rsvp-form__group--always">
+          <legend class="visually-hidden">Your information</legend>
+          <label class="field"><span class="field__label">First Name *</span><input class="field__input" type="text" name="first_name" required maxlength="100"></label>
+          <label class="field"><span class="field__label">Last Name (Maiden Name if applicable) *</span><input class="field__input" type="text" name="last_name" required maxlength="100" placeholder="Smith (Jones)"></label>
+          <label class="field"><span class="field__label">Email Address *</span><input class="field__input" type="email" name="email" required maxlength="255"></label>
+          <label class="field"><span class="field__label">Will you attend? *</span>
+            <select class="field__input" name="attending" id="rsvp-attending" required>
+              <option value="">— Select —</option>
+              <option value="yes">Yes, I'll be there</option>
+              <option value="maybe">Maybe</option>
+              <option value="no">Sorry, can't make it</option>
+            </select>
+          </label>
+        </fieldset>
+
+        <fieldset class="rsvp-form__group rsvp-form__group--reveal" id="rsvp-yes-reveal" hidden>
+          <legend class="visually-hidden">Tell us more</legend>
+          <label class="field"><span class="field__label">Phone Number</span><input class="field__input" type="tel" name="phone" maxlength="50"></label>
+          <label class="field"><span class="field__label">Current City / State</span><input class="field__input" type="text" name="city_state" maxlength="255"></label>
+          <label class="field"><span class="field__label">Number of Guests</span>
+            <select class="field__input" name="guest_count">
+              <option value="1">Just me</option>
+              <option value="2">+1</option>
+              <option value="3">+2</option>
+              <option value="4">+3</option>
+            </select>
+          </label>
+          <label class="field"><span class="field__label">Guest Name(s)</span><input class="field__input" type="text" name="guest_names" maxlength="500"></label>
+          <label class="field"><span class="field__label">Dietary Restrictions / Preferences</span><textarea class="field__input" name="dietary" maxlength="500" rows="2"></textarea></label>
+          <label class="field field--check"><input type="checkbox" name="help_planning" value="1"><span class="field__label">I'd love to help with planning!</span></label>
+          <label class="field"><span class="field__label">Messages or Venue Suggestions</span><textarea class="field__input" name="message" maxlength="2000" rows="3"></textarea></label>
+          <label class="field field--check"><input type="checkbox" name="display_publicly" value="1" checked><span class="field__label">Display me publicly on the attendee list</span></label>
+        </fieldset>
+
+        <input type="text" name="website" class="rsvp-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="form_loaded_at" id="form-loaded-at">
+
+        <p class="rsvp-form__consent">By submitting, you consent to your name and city appearing on the public attendee list (you can opt out via the checkbox above). The committee retains this information until 30 days after the reunion. Email <a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a> to request deletion at any time.</p>
+
+        <button type="submit" class="rsvp-form__submit">Submit RSVP <span aria-hidden="true">🌊</span></button>
+      </form>
+
+      <div class="rsvp-success" id="rsvp-success" hidden>
+        <h3 class="rsvp-success__title">You're on the list. Welcome back, <span id="rsvp-success-name">Hi-Tide</span>.</h3>
+        <p class="rsvp-success__sub">We've sent confirmation to <span id="rsvp-success-email"></span>. See you on the night.</p>
+        <p class="rsvp-success__capsule"><a href="capsule.html">Want to send your younger self a message? Open the time capsule.</a></p>
+      </div>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown" aria-label="Countdown to reunion">
+      <h2 class="countdown__title">Countdown to the Night</h2>
+      <div class="countdown__grid">
+        <div class="countdown__cell"><span class="countdown__num" id="countdown-days">--</span><span class="countdown__label">Days</span></div>
+        <div class="countdown__cell"><span class="countdown__num" id="countdown-hours">--</span><span class="countdown__label">Hours</span></div>
+        <div class="countdown__cell"><span class="countdown__num" id="countdown-mins">--</span><span class="countdown__label">Minutes</span></div>
+        <div class="countdown__cell"><span class="countdown__num" id="countdown-secs">--</span><span class="countdown__label">Seconds</span></div>
+      </div>
+      <p class="countdown__date-note" data-config-bind="reunion_date_display">Date confirmed by committee &mdash; coming soon</p>
+    </div>
+
   </section>
 
-  <!-- compass nav, chatbot, footer (same partials as index) -->
+  <!-- ── Compass nav ────────────────────────────────────────────────────── -->
   <nav class="compass-nav" aria-label="Site navigation">
     <button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="20"/><circle cx="32" cy="32" r="3" fill="currentColor"/><path d="M32 8 L36 30 L32 28 L28 30 Z" fill="currentColor"/></svg></button>
     <ul class="compass-nav__items" id="compass-nav-items" role="menu">
@@ -131,22 +235,24 @@
     </ul>
   </nav>
 
+  <!-- ── Chatbot ───────────────────────────────────────────────────────── -->
   <div class="chatbot" id="chatbot" aria-label="Hi-Tide Harry chat">
-    <button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open Hi-Tide Harry chat"><img src="assets/mascot/06-listening.png" alt="" width="64" height="64" aria-hidden="true"></button>
+    <button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open Hi-Tide Harry chat"><img src="assets/mascot/06-listening-96.webp" alt="" width="64" height="64" aria-hidden="true"></button>
     <div class="chatbot__panel" id="chatbot-panel" hidden>
-      <header class="chatbot__panel-header"><img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello.png" alt="" width="120" height="120" aria-hidden="true"><div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div><button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close chat">×</button></header>
+      <header class="chatbot__panel-header"><img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello-160.webp" alt="" width="120" height="120" aria-hidden="true"><div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div><button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close chat">&times;</button></header>
       <ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul>
-      <form class="chatbot__input" id="chatbot-form"><input type="text" id="chatbot-input" placeholder="Ask Harry about July 12&hellip;" aria-label="Type your question" autocomplete="off"><button type="submit" aria-label="Send">→</button></form>
+      <form class="chatbot__input" id="chatbot-form"><input type="text" id="chatbot-input" placeholder="Ask Harry about the reunion&hellip;" aria-label="Type your question" autocomplete="off"><button type="submit" aria-label="Send">&rarr;</button></form>
     </div>
   </div>
 
+  <!-- ── Footer ────────────────────────────────────────────────────────── -->
   <footer class="footer" data-template="footer">
     <div class="footer__inner">
-      <div class="footer__col footer__col--identity"><img class="footer__mark" src="assets/brand-mark/brand-mark.png" alt="" width="80" height="80" aria-hidden="true"><p class="footer__title">Class of 1996 &middot; 30th Reunion</p><p class="footer__sub">Hi-Tide Pride Since 1926 🌊</p><p class="footer__tagline">Let us be known for our deeds</p></div>
+      <div class="footer__col footer__col--identity"><img class="footer__mark" src="assets/brand-mark/brand-mark-160.webp" alt="" width="80" height="80" aria-hidden="true"><p class="footer__title">Class of 1996 &middot; 30th Reunion</p><p class="footer__sub">Hi-Tide Pride Since 1926 🌊</p><p class="footer__tagline">Let us be known for our deeds</p></div>
       <div class="footer__col footer__col--contact"><h4>Reunion Committee</h4><p><a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p></div>
       <div class="footer__col footer__col--resources"><h4>Resources</h4><ul><li><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a></li><li><a href="through-years.html#submit-memory">Submit a memory</a></li><li><a href="tickets.html#sponsor">Become a sponsor</a></li></ul></div>
     </div>
-    <div class="footer__strip"><p class="footer__copyright">© 2026 MBSH Class of '96 Reunion Committee</p><p class="footer__credit">Built with <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p></div>
+    <div class="footer__strip"><p class="footer__copyright">&copy; 2026 MBSH Class of '96 Reunion Committee</p><p class="footer__credit">Built with <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p></div>
   </footer>
 
   <script src="js/config.js" defer></script>

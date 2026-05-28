@@ -1,0 +1,475 @@
+/* rsvp.css — RSVP page styles. Clean slate from Phase 3.3 rebuild.
+   Replaces all accumulated RSVP overrides in premiere.css.
+   Last updated: Phase 3.5 clean rewrite
+*/
+
+/* ── SECTION SYSTEM ─────────────────────────────────────────────────────────
+   RSVP uses data-snap="on" like home. Two sections snap into view:
+   1. .reel-hero--rsvp  — cinematic opening (100vh)
+   2. .rsvp-form-section — form content (min 100vh, scrollable inside)
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ── HERO SECTION (2/3 stage + 1/3 marker band = 100vh) ─────────────────── */
+
+.reel-hero--rsvp {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── RSVP page overrides ──────────────────────────────────────────────── */
+
+/* Suppress film-strip side rails on RSVP — the hero scene plate
+   provides its own cinematic framing; side sprocket strips compete */
+body[data-page="rsvp"]::before,
+body[data-page="rsvp"]::after { display: none !important; }
+
+/* ── HERO STAGE (top 2/3) ──────────────────────────────────────────────── */
+
+.reel-hero--rsvp .hero-stage {
+  position: relative;
+  flex: 0 0 66.66vh;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+/* Scene plate — full coverage background */
+.reel-hero--rsvp .layer--scene {
+  position: absolute;
+  inset: 0;
+  background-image:
+    image-set(
+      url('../assets/heroes/rsvp/01-environment-640.webp') 640w,
+      url('../assets/heroes/rsvp/01-environment-960.webp') 960w,
+      url('../assets/heroes/rsvp/01-environment-1280.webp') 1280w
+    );
+  background-size: cover;
+  background-position: center top;
+  animation: tungstenPulse 6.7s ease-in-out infinite;
+  will-change: filter;
+}
+
+@keyframes tungstenPulse {
+  0%, 100% { filter: brightness(1.00) saturate(1.00); }
+  18%      { filter: brightness(1.06) saturate(1.04); }
+  37%      { filter: brightness(0.96) saturate(0.98); }
+  54%      { filter: brightness(1.04) saturate(1.02); }
+  71%      { filter: brightness(0.99) saturate(1.00); }
+  88%      { filter: brightness(1.02) saturate(1.01); }
+}
+
+/* Atmosphere layer */
+.reel-hero--rsvp .layer--atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Dust motes */
+.reel-hero--rsvp .atmosphere-dust {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle 1px at 20% 60%, rgba(232,199,122,0.55) 0%, transparent 70%),
+    radial-gradient(circle 1px at 70% 80%, rgba(232,199,122,0.40) 0%, transparent 70%),
+    radial-gradient(circle 1px at 45% 40%, rgba(232,199,122,0.50) 0%, transparent 70%),
+    radial-gradient(circle 1px at 85% 30%, rgba(232,199,122,0.35) 0%, transparent 70%),
+    radial-gradient(circle 1px at 30% 90%, rgba(232,199,122,0.45) 0%, transparent 70%);
+  background-size: 220px 280px, 260px 320px, 190px 240px, 300px 360px, 210px 260px;
+  background-position: 0 0, 50px 0, 100px 0, 150px 0, 200px 0;
+  animation: dustRise 28s linear infinite;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+
+@keyframes dustRise {
+  to {
+    background-position:
+      0 -280px, 50px -320px, 100px -240px, 150px -360px, 200px -260px;
+  }
+}
+
+/* Podium lamp pool */
+.reel-hero--rsvp .atmosphere-podium-pool {
+  position: absolute;
+  top: 20%; right: 8%;
+  width: 30%; height: 50%;
+  background: radial-gradient(ellipse at center, rgba(232,199,122,0.18) 0%, transparent 60%);
+  animation: lampBreath 4.9s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes lampBreath {
+  0%, 100% { opacity: 0.75; }
+  33%      { opacity: 0.92; }
+  66%      { opacity: 0.68; }
+}
+
+/* Camera flash 1 — upper right near podium */
+.reel-hero--rsvp .flash-1 {
+  position: absolute;
+  top: 10%; right: 15%;
+  width: 40%; height: 40%;
+  background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(255,245,220,0.4) 25%, transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: cameraFlash1 5.3s ease-in infinite;
+}
+
+/* Camera flash 2 — upper left through archway */
+.reel-hero--rsvp .flash-2 {
+  position: absolute;
+  top: 5%; left: 25%;
+  width: 35%; height: 35%;
+  background: radial-gradient(circle, rgba(255,255,255,0.75) 0%, rgba(255,245,220,0.3) 25%, transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: cameraFlash2 6.7s ease-in infinite;
+}
+
+@keyframes cameraFlash1 {
+  0%, 96%, 100% { opacity: 0; }
+  97%           { opacity: 1; }
+  98%           { opacity: 0.4; }
+  99%           { opacity: 0; }
+}
+
+@keyframes cameraFlash2 {
+  0%, 94%, 100% { opacity: 0; }
+  95%           { opacity: 0.9; }
+  96%           { opacity: 0.3; }
+  97%           { opacity: 0; }
+}
+
+/* Harry — left positioned, bottom anchored */
+.reel-hero--rsvp .layer--character {
+  position: absolute;
+  bottom: 0;
+  left: 6cqw;
+  width: 32cqw;
+  max-width: 420px;
+  height: auto;
+  z-index: 3;
+  animation: harryBreathe 5.5s ease-in-out infinite;
+}
+
+@keyframes harryBreathe {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* Headline — right side, vertically centered */
+.reel-hero--rsvp .layer--headline {
+  position: absolute;
+  top: 50%;
+  right: 5cqw;
+  transform: translateY(-50%);
+  max-width: 42cqw;
+  text-align: right;
+  z-index: 4;
+}
+
+.reel-hero--rsvp .kicker {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: clamp(0.65rem, 0.9vw, 0.85rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C8A45C;
+  margin: 0 0 0.5rem;
+}
+
+.reel-hero--rsvp .title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+  font-weight: 700;
+  color: #E8C77A;
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+}
+
+.reel-hero--rsvp .support {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+  color: rgba(232,199,122,0.8);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── MARKER BAND (bottom 1/3) ────────────────────────────────────────────── */
+
+.reel-hero--rsvp .marker-band {
+  flex: 0 0 33.33vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 1.5vh 4vw 4vh 4vw;
+  background: linear-gradient(180deg, #18060a 0%, #0a0303 100%);
+  gap: 1.5vh;
+  overflow: visible;
+}
+
+/* Marker plaque */
+.reel-hero--rsvp .marker-plaque {
+  position: relative;
+  width: 100%;
+  padding: clamp(1.2rem, 2vh, 2rem) clamp(1.5rem, 3vw, 3rem);
+  background: radial-gradient(ellipse at center, #4A0E11 0%, #2A0508 55%, #0A0507 100%);
+  border: 2px solid #C8A45C;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow:
+    inset 0 0 0 1px rgba(232,199,122,0.25),
+    inset 0 0 20px rgba(0,0,0,0.5),
+    0 4px 20px rgba(0,0,0,0.7);
+}
+
+/* Art Deco diamond corners */
+.reel-hero--rsvp .marker-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #E8C77A, #C8A45C, #8B6F3A);
+  transform: rotate(45deg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.reel-hero--rsvp .marker-corner--tl { top: -6px; left: -6px; }
+.reel-hero--rsvp .marker-corner--tr { top: -6px; right: -6px; }
+.reel-hero--rsvp .marker-corner--bl { bottom: -6px; left: -6px; }
+.reel-hero--rsvp .marker-corner--br { bottom: -6px; right: -6px; }
+
+/* Marquee bulbs along top of plaque */
+.reel-hero--rsvp .marker-bulbs-top {
+  position: absolute;
+  top: -6px;
+  left: 5%;
+  right: 5%;
+  height: 12px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.reel-hero--rsvp .marker-bulb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff4d0 0%, #f4d77a 40%, #c8a45c 70%, #8b6f3a 100%);
+  box-shadow: 0 0 6px rgba(232,199,122,0.8), 0 0 12px rgba(232,199,122,0.4);
+  animation: markerBulbChase 3s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.reel-hero--rsvp .marker-bulb:nth-child(1)  { animation-delay: 0.00s; }
+.reel-hero--rsvp .marker-bulb:nth-child(2)  { animation-delay: 0.13s; }
+.reel-hero--rsvp .marker-bulb:nth-child(3)  { animation-delay: 0.26s; }
+.reel-hero--rsvp .marker-bulb:nth-child(4)  { animation-delay: 0.39s; }
+.reel-hero--rsvp .marker-bulb:nth-child(5)  { animation-delay: 0.52s; }
+.reel-hero--rsvp .marker-bulb:nth-child(6)  { animation-delay: 0.65s; }
+.reel-hero--rsvp .marker-bulb:nth-child(7)  { animation-delay: 0.78s; }
+.reel-hero--rsvp .marker-bulb:nth-child(8)  { animation-delay: 0.91s; }
+.reel-hero--rsvp .marker-bulb:nth-child(9)  { animation-delay: 1.04s; }
+.reel-hero--rsvp .marker-bulb:nth-child(10) { animation-delay: 1.17s; }
+.reel-hero--rsvp .marker-bulb:nth-child(11) { animation-delay: 1.30s; }
+.reel-hero--rsvp .marker-bulb:nth-child(12) { animation-delay: 1.43s; }
+.reel-hero--rsvp .marker-bulb:nth-child(13) { animation-delay: 1.56s; }
+.reel-hero--rsvp .marker-bulb:nth-child(14) { animation-delay: 1.69s; }
+.reel-hero--rsvp .marker-bulb:nth-child(15) { animation-delay: 1.82s; }
+.reel-hero--rsvp .marker-bulb:nth-child(16) { animation-delay: 1.95s; }
+.reel-hero--rsvp .marker-bulb:nth-child(17) { animation-delay: 2.08s; }
+.reel-hero--rsvp .marker-bulb:nth-child(18) { animation-delay: 2.21s; }
+.reel-hero--rsvp .marker-bulb:nth-child(19) { animation-delay: 2.34s; }
+.reel-hero--rsvp .marker-bulb:nth-child(20) { animation-delay: 2.47s; }
+
+@keyframes markerBulbChase {
+  0%, 100% {
+    filter: brightness(0.55);
+    box-shadow: 0 0 4px rgba(232,199,122,0.4), 0 0 8px rgba(232,199,122,0.2);
+  }
+  50% {
+    filter: brightness(1.2);
+    box-shadow: 0 0 10px rgba(232,199,122,1), 0 0 20px rgba(232,199,122,0.6), 0 0 30px rgba(232,199,122,0.3);
+  }
+}
+
+/* Marker text */
+.reel-hero--rsvp .marker-line-1 {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: clamp(0.6rem, 1vw, 0.85rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C8A45C;
+  margin: 0 0 0.5rem;
+}
+
+.reel-hero--rsvp .marker-line-2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #E8C77A;
+  margin: 0;
+  text-shadow: 0 0 16px rgba(232,199,122,0.5), 0 2px 6px rgba(0,0,0,0.9);
+}
+
+/* Bottom bulb crown — mirrors top, sits on bottom edge of plaque */
+.reel-hero--rsvp .marker-bulbs-bottom {
+  position: absolute;
+  bottom: -6px;
+  left: 4%;
+  right: 4%;
+  height: 12px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+/* Bottom bulb row — below plaque (legacy, hidden) */
+.reel-hero--rsvp .bleed-bulb-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2vw;
+  height: 10px;
+  align-items: center;
+}
+
+.reel-hero--rsvp .bleed-bulb-row .bulb {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6b5a3a;
+  box-shadow: 0 0 4px rgba(232,199,122,0.3);
+  animation: bleedBulbChase 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(1)  { animation-delay: 0.00s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(2)  { animation-delay: 0.09s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(3)  { animation-delay: 0.18s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(4)  { animation-delay: 0.27s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(5)  { animation-delay: 0.36s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(6)  { animation-delay: 0.45s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(7)  { animation-delay: 0.54s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(8)  { animation-delay: 0.63s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(9)  { animation-delay: 0.72s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(10) { animation-delay: 0.81s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(11) { animation-delay: 0.90s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(12) { animation-delay: 0.99s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(13) { animation-delay: 1.08s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(14) { animation-delay: 1.17s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(15) { animation-delay: 1.26s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(16) { animation-delay: 1.35s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(17) { animation-delay: 1.44s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(18) { animation-delay: 1.53s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(19) { animation-delay: 1.62s; }
+.reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(20) { animation-delay: 1.71s; }
+
+@keyframes bleedBulbChase {
+  0%, 100% {
+    background: #6b5a3a;
+    box-shadow: 0 0 4px rgba(232,199,122,0.3);
+  }
+  50% {
+    background: #f4d77a;
+    box-shadow: 0 0 10px rgba(232,199,122,1), 0 0 20px rgba(232,199,122,0.5);
+  }
+}
+
+/* Chevron — absolute, bottom of marker band */
+.reel-hero--rsvp .chevron {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid #C8A45C;
+  background: radial-gradient(circle at center, rgba(74,14,17,0.95) 0%, rgba(10,5,7,0.95) 100%);
+  color: #E8C77A;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 0 3px rgba(10,5,7,0.7),
+    0 8px 20px rgba(0,0,0,0.7),
+    inset 0 0 8px rgba(232,199,122,0.3);
+  animation: chevronBounce 1.6s ease-in-out infinite;
+}
+
+.reel-hero--rsvp .chevron svg {
+  width: 22px;
+  height: 28px;
+}
+
+@keyframes chevronBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  25%       { transform: translateX(-50%) translateY(-18px); }
+  50%       { transform: translateX(-50%) translateY(0); }
+  70%       { transform: translateX(-50%) translateY(-8px); }
+  85%       { transform: translateX(-50%) translateY(0); }
+}
+
+/* ── FORM SECTION ────────────────────────────────────────────────────────── */
+
+.rsvp-form-section {
+  min-height: 100vh;
+  background: var(--c-cream, #f5f0e8);
+  position: relative;
+  z-index: 1;
+}
+
+.rsvp-form-section .rsvp-form-wrap {
+  padding: var(--space-2xl, 3rem) var(--space-lg, 1.5rem);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ── REDUCED MOTION ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-hero--rsvp .layer--scene,
+  .reel-hero--rsvp .atmosphere-dust,
+  .reel-hero--rsvp .atmosphere-podium-pool,
+  .reel-hero--rsvp .flash-1,
+  .reel-hero--rsvp .flash-2,
+  .reel-hero--rsvp .layer--character,
+  .reel-hero--rsvp .marker-bulb,
+  .reel-hero--rsvp .bleed-bulb-row .bulb,
+  .reel-hero--rsvp .chevron {
+    animation: none;
+  }
+  .reel-hero--rsvp .marker-bulb { filter: brightness(0.85); }
+}
+
+/* ── MOBILE ──────────────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .reel-hero--rsvp .layer--character {
+    left: 2cqw;
+    width: 50cqw;
+  }
+  .reel-hero--rsvp .layer--headline {
+    right: 2cqw;
+    max-width: 52cqw;
+  }
+  .reel-hero--rsvp .title {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+  .reel-hero--rsvp .marker-line-2 {
+    font-size: clamp(1.4rem, 5.5vw, 2rem);
+  }
+  .reel-hero--rsvp .bleed-bulb-row .bulb:nth-child(n+11) { display: none; }
+  .reel-hero--rsvp .marker-bulb:nth-child(n+11) { display: none; }
+  .reel-hero--rsvp .marker-band {
+    padding: 1.5vh 4vw 4vh 4vw;
+  }
+}
