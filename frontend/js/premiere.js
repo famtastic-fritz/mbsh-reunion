@@ -1796,9 +1796,115 @@
     try { injectSectionChevrons();} catch (e) { console.warn('[premiere] chevrons', e); }
     try { wireSectionArrival(); }   catch (e) { console.warn('[premiere] arrival', e); }
     try { wireOpeningChatDeferral(); } catch (e) { console.warn('[premiere] opening-chat', e); }
+    /* swarm/premiere-revival — marquee-scenes stream */
+    try { initUsherNote(); }        catch (e) { console.warn('[premiere] usher-note', e); }
   }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else { init(); }
 })();
+
+/* ═══════════════════════════════════════════════════════════════
+   USHER NOTE — Note from Usher info panel
+   Added by swarm/premiere-revival, stream: marquee-scenes
+   Uses <meta name="usher-note" content="..."> on the page.
+═══════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var SESSION_KEY_PREFIX = 'mbsh_usher_dismissed_';
+
+  function initUsherNote () {
+    var meta = document.querySelector('meta[name="usher-note"]');
+    if (!meta) return;
+
+    var message = meta.getAttribute('content');
+    if (!message) return;
+
+    /* Derive a page key for session storage */
+    var pageKey = SESSION_KEY_PREFIX + (window.location.pathname.split('/').pop() || 'index');
+
+    /* If already dismissed this session, bail */
+    try {
+      if (sessionStorage.getItem(pageKey) === 'dismissed') return;
+    } catch (e) {}
+
+    var autoShowDelay = 1500;
+
+    /* Build DOM */
+    var panel = document.createElement('div');
+    panel.className = 'usher-note usher-note--hidden';
+    panel.setAttribute('role', 'complementary');
+    panel.setAttribute('aria-label', 'Note from Harry the Usher');
+
+    var header = document.createElement('div');
+    header.className = 'usher-note__header';
+
+    var icon = document.createElement('div');
+    icon.className = 'usher-note__icon';
+    var iconImg = document.createElement('img');
+    iconImg.src = 'assets/mascot/15-seated-usher.png';
+    iconImg.alt = '';
+    iconImg.width = 44;
+    iconImg.height = 44;
+    iconImg.onerror = function () { icon.textContent = '🎩'; };
+    icon.appendChild(iconImg);
+
+    var titleDiv = document.createElement('div');
+    titleDiv.className = 'usher-note__title';
+    var nameSpan = document.createElement('span');
+    nameSpan.className = 'usher-note__name';
+    nameSpan.textContent = 'Hi-Tide Harry';
+    var roleSpan = document.createElement('span');
+    roleSpan.className = 'usher-note__role';
+    roleSpan.textContent = 'Your Usher';
+    titleDiv.appendChild(nameSpan);
+    titleDiv.appendChild(roleSpan);
+
+    var dismissBtn = document.createElement('button');
+    dismissBtn.className = 'usher-note__dismiss';
+    dismissBtn.type = 'button';
+    dismissBtn.setAttribute('aria-label', 'Dismiss note');
+    dismissBtn.textContent = '×';
+
+    header.appendChild(icon);
+    header.appendChild(titleDiv);
+    header.appendChild(dismissBtn);
+
+    var textDiv = document.createElement('div');
+    textDiv.className = 'usher-note__text';
+    textDiv.textContent = message;
+
+    panel.appendChild(header);
+    panel.appendChild(textDiv);
+    document.body.appendChild(panel);
+
+    /* Auto-show */
+    var showTimer = setTimeout(function () {
+      panel.classList.remove('usher-note--hidden');
+    }, autoShowDelay);
+
+    /* Dismiss */
+    dismissBtn.addEventListener('click', function () {
+      panel.classList.add('usher-note--hidden');
+      try { sessionStorage.setItem(pageKey, 'dismissed'); } catch (e) {}
+    });
+
+    /* Public API on element for external callers */
+    panel.showNote = function (msg) {
+      if (msg) textDiv.textContent = msg;
+      panel.classList.remove('usher-note--hidden');
+    };
+    panel.hideNote = function () {
+      panel.classList.add('usher-note--hidden');
+    };
+
+    window.__usherNote = panel;
+  }
+
+  /* Expose globally so premiere.js init() can call it */
+  window.initUsherNote = initUsherNote;
+
+}());
+

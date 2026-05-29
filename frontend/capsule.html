@@ -8,7 +8,17 @@
   <link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/typography.css"><link rel="stylesheet" href="css/sections.css"><link rel="stylesheet" href="css/compass.css"><link rel="stylesheet" href="css/chatbot.css"><link rel="stylesheet" href="css/footer.css"><link rel="stylesheet" href="css/premiere.css">
 </head>
 <body data-page="capsule" data-premiere="on">
-  <header class="page-header"><a class="page-header__back" href="index.html"><img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a><h1 class="page-header__title">Hi-Tide Time Capsule</h1><p class="page-header__sub">Send your younger self a message. We deliver on the day.</p></header>
+  <!-- HERO-PLACEHOLDER: hero-capsule.jpg -->
+  <header class="page-header" data-hero-asset="assets/heroes/hero-capsule.jpg" data-hero-asset-mobile="assets/heroes/hero-capsule-mobile.jpg">
+    <img class="page-header__hero-bg" src="assets/heroes/hero-capsule.jpg"
+         alt="" aria-hidden="true" loading="eager"
+         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.18;pointer-events:none;"
+         onerror="this.style.display='none'">
+    <a class="page-header__back" href="index.html"><img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a>
+    <h1 class="page-header__title">Hi-Tide Time Capsule</h1>
+    <p class="page-header__sub">Send your younger self a message. We deliver on the day.</p>
+  </header>
+  <span data-scene-marker class="scene-marker"></span>
 
   <section class="capsule" aria-label="Time capsule form">
     <div class="capsule__envelope">

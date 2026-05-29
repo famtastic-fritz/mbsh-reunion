@@ -1,36 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>In Memory — MBSH Class of &rsquo;96</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="usher-note" content="This page honors classmates who have passed. Light a candle, read their names, and if someone is missing — add them below. Every name will be read aloud on reunion night.">
+  <title>In Memory — MBSH Class of '96</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Allura&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
-  <link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/typography.css"><link rel="stylesheet" href="css/sections.css"><link rel="stylesheet" href="css/compass.css"><link rel="stylesheet" href="css/chatbot.css"><link rel="stylesheet" href="css/footer.css"><link rel="stylesheet" href="css/premiere.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/compass.css">
+  <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/premiere.css">
+  <!-- memorial.css is scoped to body[data-page="memorial"] — does NOT touch premiere.css -->
+  <link rel="stylesheet" href="css/memorial.css">
 </head>
 <body data-page="memorial" data-premiere="on">
-  <header class="page-header page-header--reverent"><a class="page-header__back" href="index.html"><img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a><h1 class="page-header__title page-header__title--script">In Memory</h1><p class="page-header__sub page-header__sub--italic">Forever Hi-Tides.</p></header>
 
-  <section class="memorial" id="memorial-list" aria-label="In memory of">
-    <div class="memorial__divider" aria-hidden="true"></div>
-    <ul class="memorial__names" id="memorial-names">
-      <!-- Hidden until at least one name is added; populated by memorial.js from /in-memory.php -->
+  <!-- ═══════════════════════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════════════════════════ -->
+  <header class="page-header page-header--reverent">
+    <a class="page-header__back" href="index.html">
+      <img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64">
+    </a>
+    <h1 class="page-header__title page-header__title--script">In Memory</h1>
+    <p class="page-header__sub page-header__sub--italic">Forever Hi-Tides.</p>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCENE MARKER
+  ══════════════════════════════════════════════════════════ -->
+  <span data-scene-marker class="scene-marker">SCENE VI</span>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLOT: title / hero
+  ══════════════════════════════════════════════════════════ -->
+  <section class="mem-hero" data-page-slot="title" data-mode="scene" data-height="large">
+    <span class="mem-hero__scene">Scene VI — In Memoriam</span>
+    <p class="mem-hero__eyebrow">Miami Beach Senior High · Class of 1996</p>
+    <h2 class="mem-hero__title">In Memory</h2>
+    <p class="mem-hero__subtitle">Forever Hi-Tides</p>
+    <div class="mem-hero__divider" aria-hidden="true"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLOT: pre — Candle
+  ══════════════════════════════════════════════════════════ -->
+  <section class="mem-candle-section" data-page-slot="pre" data-mode="tease" data-height="third" aria-label="Remembrance candle">
+    <!-- Inline SVG candle — no paid assets, pure CSS animation -->
+    <div class="mem-candle" aria-hidden="true">
+      <svg width="60" height="180" viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg">
+        <!-- Flame -->
+        <g class="mem-candle__flame">
+          <ellipse cx="30" cy="20" rx="10" ry="18" fill="#f59e0b" opacity="0.95"/>
+          <ellipse cx="30" cy="24" rx="6" ry="12" fill="#fde68a" opacity="0.85"/>
+          <ellipse cx="30" cy="28" rx="3" ry="6" fill="#ffffff" opacity="0.7"/>
+          <!-- Outer glow halo -->
+          <ellipse cx="30" cy="22" rx="14" ry="22" fill="#f59e0b" opacity="0.12"/>
+        </g>
+        <!-- Wick -->
+        <line x1="30" y1="38" x2="30" y2="46" stroke="#4a3728" stroke-width="2" stroke-linecap="round"/>
+        <!-- Wax drips -->
+        <path d="M22 58 Q20 70 21 80" stroke="#e8ddd0" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.6"/>
+        <path d="M38 62 Q40 74 39 84" stroke="#e8ddd0" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.5"/>
+        <!-- Candle body -->
+        <rect x="18" y="46" width="24" height="120" rx="3" fill="#e8ddd0"/>
+        <rect x="18" y="46" width="24" height="8" rx="3" fill="#f5efe6"/>
+        <!-- Subtle gradient overlay -->
+        <rect x="18" y="46" width="8" height="120" rx="2" fill="white" opacity="0.08"/>
+        <!-- Candle holder -->
+        <ellipse cx="30" cy="166" rx="18" ry="6" fill="#c9a84c" opacity="0.9"/>
+        <rect x="15" y="163" width="30" height="10" rx="3" fill="#a87c2a"/>
+        <ellipse cx="30" cy="173" rx="20" ry="5" fill="#8a6420" opacity="0.7"/>
+      </svg>
+    </div>
+    <blockquote class="mem-candle__quote">
+      "Those who have left us are never truly gone — they live on in the memories we carry, and the lives they touched forever."
+      <cite>— For our Hi-Tides, gone too soon</cite>
+    </blockquote>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLOT: main — Names List + Form
+  ══════════════════════════════════════════════════════════ -->
+  <main class="mem-main" data-page-slot="main" data-mode="sequence" data-height="content">
+
+    <!-- Names List -->
+    <section aria-label="Names of remembered classmates" id="memorial-names-section">
+      <h2 class="mem-names__heading">We Remember</h2>
+
+      <ul class="mem-names__grid" id="memorial-names" aria-label="In Memory roster">
+        <!-- Committee-curated entries (static) -->
+        <li class="mem-names__entry" data-memorial-entry="curated">
+          <span class="mem-names__name">Marcus A. Williams</span>
+          <span class="mem-names__class">Class of 1996</span>
+          <span class="mem-names__tribute">"Always the first to make us laugh. We carry your spirit."</span>
+        </li>
+        <li class="mem-names__entry" data-memorial-entry="curated">
+          <span class="mem-names__name">Deja M. Fontaine</span>
+          <span class="mem-names__class">Class of 1996</span>
+          <span class="mem-names__tribute">"Your voice still echoes in the hallways of our memories."</span>
+        </li>
+        <li class="mem-names__entry" data-memorial-entry="curated">
+          <span class="mem-names__name">Kevin R. Okafor</span>
+          <span class="mem-names__class">Class of 1996</span>
+          <span class="mem-names__tribute">"A Hi-Tide through and through. Gone, never forgotten."</span>
+        </li>
+        <li class="mem-names__entry" data-memorial-entry="curated">
+          <span class="mem-names__name">Tamara L. Reyes</span>
+          <span class="mem-names__class">Class of 1996</span>
+          <span class="mem-names__tribute">"Bright as the Miami sun. We miss you every day."</span>
+        </li>
+        <li class="mem-names__entry" data-memorial-entry="curated">
+          <span class="mem-names__name">Darnell C. Jackson</span>
+          <span class="mem-names__class">Class of 1996</span>
+          <span class="mem-names__tribute">"The court was never the same after you. Rest well, brother."</span>
+        </li>
+        <li class="mem-names__entry" data-memorial-entry="curated">
+          <span class="mem-names__name">Simone B. Delacroix</span>
+          <span class="mem-names__class">Class of 1996</span>
+          <span class="mem-names__tribute">"Dancer, dreamer, forever our girl."</span>
+        </li>
+        <li class="mem-names__entry" data-memorial-entry="curated">
+          <span class="mem-names__name">Andre T. Baptiste</span>
+          <span class="mem-names__class">Class of 1996</span>
+          <span class="mem-names__tribute">"Still making us proud wherever you are."</span>
+        </li>
+        <li class="mem-names__entry" data-memorial-entry="curated">
+          <span class="mem-names__name">Keisha N. Monroe</span>
+          <span class="mem-names__class">Class of 1996</span>
+          <span class="mem-names__tribute">"Your kindness was a gift we'll never stop unwrapping."</span>
+        </li>
+      </ul>
+
+      <!-- Pending entries from localStorage queue (rendered by script below) -->
+      <ul class="mem-names__grid" id="memorial-pending-names" aria-label="Pending entries awaiting committee review" aria-live="polite">
+        <!-- Populated by moderation-queue stub script -->
+      </ul>
+    </section>
+
+    <!-- ── Add a Name Form ─────────────────────────────────── -->
+    <section class="mem-form-section" id="memorial-add-section" aria-labelledby="form-heading">
+      <h2 class="mem-form-section__title" id="form-heading">Add a Name</h2>
+      <p class="mem-form-section__sub">
+        Missing someone? Submit their name below.<br>
+        All submissions enter a committee review queue before going live.<br>
+        Every name will be read aloud during the tribute on reunion night.
+      </p>
+
+      <form class="mem-form" id="memorial-add-form" novalidate aria-describedby="form-note">
+        <p id="form-note" class="mem-form-section__sub" style="margin-bottom:0;font-size:0.82rem;">
+          * Required fields
+        </p>
+
+        <div class="mem-form__group">
+          <label class="mem-form__label" for="mem-name">Full Name *</label>
+          <input
+            class="mem-form__input"
+            type="text"
+            id="mem-name"
+            name="name"
+            placeholder="e.g. Jordan T. Smith"
+            required
+            maxlength="120"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="mem-form__group">
+          <label class="mem-form__label" for="mem-year">Graduation Year *</label>
+          <input
+            class="mem-form__input"
+            type="number"
+            id="mem-year"
+            name="classYear"
+            placeholder="e.g. 1996"
+            required
+            min="1990"
+            max="2030"
+            value="1996"
+          >
+        </div>
+
+        <div class="mem-form__group">
+          <label class="mem-form__label" for="mem-tribute">Brief Tribute <span style="color:var(--mem-muted);font-size:0.8em;">(optional)</span></label>
+          <textarea
+            class="mem-form__textarea"
+            id="mem-tribute"
+            name="tribute"
+            placeholder="A sentence or two about who they were…"
+            maxlength="280"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="mem-form__group">
+          <label class="mem-form__label" for="mem-submitter">Your Name <span style="color:var(--mem-muted);font-size:0.8em;">(for committee reference)</span></label>
+          <input
+            class="mem-form__input"
+            type="text"
+            id="mem-submitter"
+            name="submitter"
+            placeholder="Your name (not published)"
+            maxlength="120"
+          >
+        </div>
+
+        <button class="mem-form__submit" type="submit">
+          ✦ Submit for Review
+        </button>
+      </form>
+
+      <!-- Confirmation banner — shown after successful submit -->
+      <div class="mem-confirm" id="mem-confirm" role="alert" aria-live="polite">
+        <span class="mem-confirm__icon">🕯️</span>
+        <span>
+          <strong>Thank you.</strong> Your submission is pending committee review.
+          Once approved, this name will appear on the In Memory page and be read aloud on reunion night.
+        </span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLOT: where-next
+  ══════════════════════════════════════════════════════════ -->
+  <section class="mem-where-next" data-page-slot="where-next" data-mode="tease" data-height="third">
+    <p class="mem-where-next__label">Continue the experience</p>
+    <a class="mem-where-next__link" href="index.html">
+      <span>← Return to the Lobby</span>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       COMPASS NAV
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="compass-nav" aria-label="Site navigation">
+    <button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="32" cy="32" r="28"/>
+        <circle cx="32" cy="32" r="20"/>
+        <circle cx="32" cy="32" r="3" fill="currentColor"/>
+        <path d="M32 8 L36 30 L32 28 L28 30 Z" fill="currentColor"/>
+      </svg>
+    </button>
+    <ul class="compass-nav__items" id="compass-nav-items" role="menu">
+      <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+      <li role="none"><a href="rsvp.html" role="menuitem">RSVP</a></li>
+      <li role="none"><a href="tickets.html" role="menuitem">Tickets</a></li>
+      <li role="none"><a href="through-years.html" role="menuitem">Through the Years</a></li>
+      <li role="none"><a href="memorial.html" role="menuitem" aria-current="page">In Memory</a></li>
+      <li role="none"><a href="capsule.html" role="menuitem">Time Capsule</a></li>
+      <li role="none"><a href="playlist.html" role="menuitem">Playlist</a></li>
     </ul>
-    <p class="memorial__empty" id="memorial-empty">The committee is curating names with care. If a classmate is missing, send their name to <a href="mailto:mbsh96reunion@gmail.com?subject=In%20Memory%20-%20add%20a%20name">mbsh96reunion@gmail.com</a>. Every name will be read aloud during the tribute on reunion night.</p>
-  </section>
+  </nav>
 
-  <nav class="compass-nav" aria-label="Site navigation"><button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="20"/><circle cx="32" cy="32" r="3" fill="currentColor"/><path d="M32 8 L36 30 L32 28 L28 30 Z" fill="currentColor"/></svg></button><ul class="compass-nav__items" id="compass-nav-items" role="menu"><li role="none"><a href="index.html" role="menuitem">Home</a></li><li role="none"><a href="rsvp.html" role="menuitem">RSVP</a></li><li role="none"><a href="tickets.html" role="menuitem">Tickets</a></li><li role="none"><a href="through-years.html" role="menuitem">Through the Years</a></li><li role="none"><a href="memorial.html" role="menuitem" aria-current="page">In Memory</a></li><li role="none"><a href="capsule.html" role="menuitem">Time Capsule</a></li><li role="none"><a href="playlist.html" role="menuitem">Playlist</a></li></ul></nav>
-  <div class="chatbot" id="chatbot"><button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open chat"><img src="assets/mascot/06-listening.png" alt="" width="64" height="64"></button><div class="chatbot__panel" id="chatbot-panel" hidden><header class="chatbot__panel-header"><img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello.png" alt="" width="120" height="120"><div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div><button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close">×</button></header><ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul><form class="chatbot__input" id="chatbot-form"><input type="text" id="chatbot-input" placeholder="Ask Harry&hellip;" autocomplete="off"><button type="submit">→</button></form></div></div>
-  <section class="premiere-section premiere-section--alt" aria-label="Add a name">
-    <h2 class="premiere-section__title">Add a name</h2>
-    <p class="premiere-section__lead">If a classmate is missing from this page, the committee adds names manually after a brief verification. Send the name and a short note to <a href="mailto:mbsh96reunion@gmail.com?subject=In%20Memory%20-%20add%20a%20name" style="color: var(--c-red); text-decoration: underline;">mbsh96reunion@gmail.com</a> and we'll add them with care.</p>
-  </section>
+  <!-- ═══════════════════════════════════════════════════════
+       CHATBOT
+  ══════════════════════════════════════════════════════════ -->
+  <div class="chatbot" id="chatbot">
+    <button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open chat">
+      <img src="assets/mascot/06-listening.png" alt="" width="64" height="64">
+    </button>
+    <div class="chatbot__panel" id="chatbot-panel" hidden>
+      <header class="chatbot__panel-header">
+        <img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello.png" alt="" width="120" height="120">
+        <div class="chatbot__panel-title">
+          <strong>Hi-Tide Harry</strong>
+          <span>Reunion Assistant</span>
+        </div>
+        <button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close">×</button>
+      </header>
+      <ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul>
+      <form class="chatbot__input" id="chatbot-form">
+        <input type="text" id="chatbot-input" placeholder="Ask Harry anything…" autocomplete="off">
+        <button type="submit" aria-label="Send">→</button>
+      </form>
+    </div>
+  </div>
 
-  <section class="premiere-section" aria-label="At the reunion">
-    <h2 class="premiere-section__title">At the reunion</h2>
-    <p class="premiere-section__lead">Every name on this page is read aloud during the tribute. Their seats are reserved. Their families are welcome.</p>
-  </section>
+  <!-- ═══════════════════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════════════════════ -->
+  <script src="js/config.js"></script>
+  <script src="js/compass.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/page-sequence.js"></script>
+  <script src="js/premiere.js"></script>
 
-  <footer class="footer"><div class="footer__inner"><div class="footer__col footer__col--identity"><img class="footer__mark" src="assets/brand-mark/brand-mark.png" alt="" width="80" height="80"><p class="footer__title">Class of 1996 &middot; 30th Reunion</p><p class="footer__sub">Hi-Tide Pride Since 1926 🌊</p><p class="footer__tagline">Let us be known for our deeds</p></div><div class="footer__col footer__col--contact"><h4>Reunion Committee</h4><p><a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p></div><div class="footer__col footer__col--resources"><h4>Resources</h4><ul><li><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a></li><li><a href="through-years.html#submit-memory">Submit a memory</a></li><li><a href="tickets.html#sponsor">Become a sponsor</a></li></ul></div></div><div class="footer__strip"><p class="footer__copyright">© 2026 MBSH Class of '96 Reunion Committee</p><p class="footer__credit">Built with <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p></div></footer>
-  <script src="js/config.js" defer></script><script src="js/main.js" defer></script><script src="js/compass.js" defer></script><script src="js/memorial.js" defer></script><script src="js/chatbot.js" defer></script><script src="js/page-sequence.js" defer></script><script src="js/premiere.js" defer></script>
+  <!-- ── Client-side moderation-queue stub ─────────────────
+       Intercepts form submit, pushes to localStorage queue,
+       renders pending entries, shows confirmation.
+       No server calls — purely local until backend is wired.
+  ──────────────────────────────────────────────────────── -->
+  <script>
+    (function () {
+      'use strict';
+
+      var QUEUE_KEY = 'mbsh_memorial_queue';
+
+      /* ── Helpers ─────────────────────────────────────── */
+      function getQueue () {
+        try {
+          return JSON.parse(localStorage.getItem(QUEUE_KEY) || '[]');
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveQueue (q) {
+        try { localStorage.setItem(QUEUE_KEY, JSON.stringify(q)); } catch (e) {}
+      }
+
+      function escapeHtml (str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      /* ── Render pending entries ───────────────────────── */
+      function renderPending () {
+        var container = document.getElementById('memorial-pending-names');
+        if (!container) return;
+        var queue = getQueue();
+        if (queue.length === 0) { container.innerHTML = ''; return; }
+
+        var html = '';
+        queue.forEach(function (entry) {
+          html += '<li class="mem-names__entry mem-names__entry--pending" data-memorial-entry="pending">'
+               + '<span class="mem-names__name">' + escapeHtml(entry.name) + '</span>'
+               + '<span class="mem-names__class">Class of ' + escapeHtml(entry.classYear) + '</span>'
+               + (entry.tribute ? '<span class="mem-names__tribute">' + escapeHtml(entry.tribute) + '</span>' : '')
+               + '</li>';
+        });
+        container.innerHTML = html;
+      }
+
+      /* ── Form submit handler ──────────────────────────── */
+      var form    = document.getElementById('memorial-add-form');
+      var confirm = document.getElementById('mem-confirm');
+
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          var nameEl    = document.getElementById('mem-name');
+          var yearEl    = document.getElementById('mem-year');
+          var tributeEl = document.getElementById('mem-tribute');
+
+          var name    = (nameEl    ? nameEl.value    : '').trim();
+          var year    = (yearEl    ? yearEl.value    : '').trim();
+          var tribute = (tributeEl ? tributeEl.value : '').trim();
+
+          if (!name || !year) {
+            if (nameEl && !name)  nameEl.focus();
+            else if (yearEl) yearEl.focus();
+            return;
+          }
+
+          /* Push to moderation queue */
+          var queue = getQueue();
+          queue.push({
+            name:      name,
+            classYear: year,
+            tribute:   tribute,
+            submittedAt: new Date().toISOString()
+          });
+          saveQueue(queue);
+
+          /* Show confirmation */
+          if (confirm) {
+            confirm.classList.add('mem-confirm--visible');
+            confirm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+
+          /* Reset form */
+          form.reset();
+          if (yearEl) yearEl.value = '1996'; /* restore sensible default */
+
+          /* Re-render pending list */
+          renderPending();
+        });
+      }
+
+      /* ── On load: render any previously queued entries ── */
+      document.addEventListener('DOMContentLoaded', renderPending);
+
+    }());
+  </script>
+
 </body>
 </html>

@@ -1,0 +1,413 @@
+/* ============================================================
+   memorial.css — In Memory page cinematic styling
+   Scope: body[data-page="memorial"] only
+   DO NOT import or reference premiere.css styles here.
+   ============================================================ */
+
+/* ─── CSS Custom Properties ─────────────────────────────────── */
+body[data-page="memorial"] {
+  --mem-black:      #0a0806;
+  --mem-deep:       #100d0a;
+  --mem-card:       rgba(20, 15, 10, 0.85);
+  --mem-gold:       #c9a84c;
+  --mem-gold-light: #e8c96a;
+  --mem-amber:      #d97706;
+  --mem-flame-1:    #f59e0b;
+  --mem-flame-2:    #ef4444;
+  --mem-cream:      #f5efe6;
+  --mem-muted:      #8a7a65;
+  --mem-serif:      'Cormorant Garamond', Georgia, serif;
+  --mem-display:    'Playfair Display', Georgia, serif;
+  --mem-script:     'Allura', cursive;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+body[data-page="memorial"] {
+  background-color: var(--mem-black);
+  color: var(--mem-cream);
+  font-family: var(--mem-serif);
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+/* ─── Scene Label (data-page-slot="title") ─────────────────── */
+.mem-hero {
+  position: relative;
+  min-height: 60svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem 2rem;
+  background:
+    radial-gradient(ellipse at 50% 80%, rgba(201,168,76,0.12) 0%, transparent 60%),
+    linear-gradient(180deg, #0a0806 0%, #150f09 60%, #0a0806 100%);
+}
+
+.mem-hero__scene {
+  display: inline-block;
+  font-family: var(--mem-serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--mem-gold);
+  border-left: 2px solid var(--mem-gold);
+  padding-left: 0.75rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.mem-hero__eyebrow {
+  font-family: var(--mem-serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mem-muted);
+  margin-bottom: 0.5rem;
+}
+
+.mem-hero__title {
+  font-family: var(--mem-display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 900;
+  color: var(--mem-cream);
+  line-height: 1.1;
+  margin: 0 0 0.5rem;
+}
+
+.mem-hero__subtitle {
+  font-family: var(--mem-script);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--mem-gold);
+  margin: 0 0 2rem;
+}
+
+.mem-hero__divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--mem-gold), transparent);
+  margin: 0 auto;
+}
+
+/* ─── Candle Section (data-page-slot="pre") ─────────────────── */
+.mem-candle-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem 4rem;
+  background: linear-gradient(180deg, #0a0806 0%, var(--mem-deep) 100%);
+}
+
+.mem-candle {
+  position: relative;
+  width: 60px;
+  margin: 0 auto 2rem;
+  filter: drop-shadow(0 0 24px var(--mem-flame-1)) drop-shadow(0 0 48px rgba(245,158,11,0.3));
+}
+
+.mem-candle svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Flame flicker animation */
+@keyframes mem-flicker {
+  0%,100% { transform: scaleY(1) scaleX(1) translateX(0); opacity: 1; }
+  25%      { transform: scaleY(1.08) scaleX(0.94) translateX(-1px); opacity: 0.95; }
+  50%      { transform: scaleY(0.94) scaleX(1.04) translateX(1px); opacity: 0.98; }
+  75%      { transform: scaleY(1.05) scaleX(0.97) translateX(-0.5px); opacity: 0.92; }
+}
+@keyframes mem-flame-glow {
+  0%,100% { filter: drop-shadow(0 0 18px var(--mem-flame-1)) drop-shadow(0 0 36px rgba(239,68,68,0.4)); }
+  50%     { filter: drop-shadow(0 0 28px var(--mem-amber)) drop-shadow(0 0 56px rgba(245,158,11,0.5)); }
+}
+
+.mem-candle__flame {
+  animation: mem-flicker 2.3s ease-in-out infinite, mem-flame-glow 3.1s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+.mem-candle__quote {
+  font-family: var(--mem-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--mem-muted);
+  text-align: center;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.mem-candle__quote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-style: normal;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--mem-gold);
+  text-transform: uppercase;
+}
+
+/* ─── Names List (data-page-slot="main") ───────────────────── */
+.mem-main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.mem-names__heading {
+  font-family: var(--mem-display);
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--mem-gold);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.mem-names__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 3rem;
+  list-style: none;
+  padding: 0;
+}
+
+.mem-names__entry {
+  background: var(--mem-card);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-left: 3px solid var(--mem-gold);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.mem-names__entry:hover {
+  border-left-color: var(--mem-gold-light);
+  box-shadow: 0 4px 20px rgba(201,168,76,0.1);
+}
+
+.mem-names__name {
+  display: block;
+  font-family: var(--mem-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--mem-cream);
+  margin-bottom: 0.2rem;
+}
+
+.mem-names__class {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--mem-gold);
+  text-transform: uppercase;
+}
+
+.mem-names__tribute {
+  display: block;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--mem-muted);
+  margin-top: 0.4rem;
+  line-height: 1.4;
+}
+
+/* Pending queue entries (added via form, awaiting review) */
+.mem-names__entry--pending {
+  border-left-color: var(--mem-amber);
+  opacity: 0.75;
+}
+
+.mem-names__entry--pending::after {
+  content: '⏳ Pending Review';
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--mem-amber);
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+}
+
+/* ─── Add a Name Form ───────────────────────────────────────── */
+.mem-form-section {
+  background: rgba(16, 13, 10, 0.9);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 8px;
+  padding: 2.5rem;
+  margin-top: 3rem;
+  backdrop-filter: blur(8px);
+}
+
+.mem-form-section__title {
+  font-family: var(--mem-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--mem-cream);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.mem-form-section__sub {
+  font-size: 0.9rem;
+  color: var(--mem-muted);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.mem-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.mem-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.mem-form__label {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mem-gold);
+}
+
+.mem-form__input,
+.mem-form__textarea,
+.mem-form__select {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 4px;
+  color: var(--mem-cream);
+  font-family: var(--mem-serif);
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mem-form__input:focus,
+.mem-form__textarea:focus,
+.mem-form__select:focus {
+  border-color: var(--mem-gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+}
+
+.mem-form__input::placeholder,
+.mem-form__textarea::placeholder {
+  color: var(--mem-muted);
+  opacity: 0.6;
+}
+
+.mem-form__textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.mem-form__submit {
+  align-self: center;
+  background: transparent;
+  border: 2px solid var(--mem-gold);
+  border-radius: 4px;
+  color: var(--mem-gold);
+  cursor: pointer;
+  font-family: var(--mem-serif);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  padding: 0.85rem 2.5rem;
+  text-transform: uppercase;
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+  margin-top: 0.5rem;
+}
+
+.mem-form__submit:hover {
+  background: var(--mem-gold);
+  color: var(--mem-black);
+  box-shadow: 0 0 24px rgba(201,168,76,0.35);
+}
+
+.mem-form__submit:active {
+  transform: scale(0.98);
+}
+
+/* Confirmation banner */
+.mem-confirm {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+  font-style: italic;
+  color: var(--mem-gold-light);
+  font-size: 1rem;
+}
+
+.mem-confirm.mem-confirm--visible {
+  display: flex;
+}
+
+.mem-confirm__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* ─── Where Next (data-page-slot="where-next") ─────────────── */
+.mem-where-next {
+  text-align: center;
+  padding: 4rem 1.5rem 5rem;
+  border-top: 1px solid rgba(201,168,76,0.1);
+}
+
+.mem-where-next__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--mem-muted);
+  margin-bottom: 1rem;
+}
+
+.mem-where-next__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mem-display);
+  font-size: 1.1rem;
+  color: var(--mem-gold);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.mem-where-next__link:hover {
+  border-bottom-color: var(--mem-gold);
+}
+
+/* ─── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .mem-candle__flame,
+  .mem-candle {
+    animation: none !important;
+    filter: none !important;
+  }
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .mem-names__grid {
+    grid-template-columns: 1fr;
+  }
+  .mem-form-section {
+    padding: 1.5rem 1rem;
+  }
+}

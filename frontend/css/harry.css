@@ -1,0 +1,172 @@
+/* ============================================================
+   harry.css — Hi-Tide Harry layered avatar component
+   Standalone: does NOT import or modify premiere.css.
+   ============================================================ */
+
+/* ─── Custom Properties ─────────────────────────────────────── */
+.harry-avatar {
+  --harry-w:        200px;
+  --harry-h:        300px;
+  --harry-navy:     #0d1b2a;
+  --harry-amber:    #d97706;
+  --harry-gold:     #c9a84c;
+  --harry-glow:     #f59e0b;
+  --harry-ring-dim: 0.35;
+  --harry-ring-lit: 1;
+  --harry-transition: 0.3s ease;
+}
+
+/* ─── Container ─────────────────────────────────────────────── */
+.harry-avatar {
+  position: relative;
+  display: inline-block;
+  width: var(--harry-w);
+  height: var(--harry-h);
+  /* Prevents layers from bleeding outside bounds */
+  overflow: visible;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+/* ─── Layers (all absolutely stacked) ───────────────────────── */
+.harry-body,
+.harry-ring,
+.harry-face,
+.harry-eyes,
+.harry-mouth {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Z-order */
+.harry-body   { z-index: 1; }
+.harry-ring   { z-index: 2; }
+.harry-face   { z-index: 3; }
+.harry-eyes   { z-index: 4; }
+.harry-mouth  { z-index: 5; }
+
+/* ─── Keyframes ─────────────────────────────────────────────── */
+
+/* Idle: slow breathing pulse */
+@keyframes harry-breathe {
+  0%, 100% { transform: scale(1);    }
+  50%       { transform: scale(1.02); }
+}
+
+/* Listening: subtle left-right drift (eyes-chase state) */
+@keyframes harry-listen-chase {
+  0%, 100% { transform: translateX(0);   }
+  30%       { transform: translateX(-4px); }
+  70%       { transform: translateX(4px);  }
+}
+
+/* Speaking: ring scale pulse in rhythm */
+@keyframes harry-speak-pulse {
+  0%, 100% { transform: scale(1);    filter: brightness(1.4) drop-shadow(0 0 12px var(--harry-glow)); }
+  50%       { transform: scale(1.06); filter: brightness(1.6) drop-shadow(0 0 22px var(--harry-amber)); }
+}
+
+/* Ring dim flicker (idle) */
+@keyframes harry-ring-flicker {
+  0%, 100% { opacity: var(--harry-ring-dim); }
+  50%       { opacity: calc(var(--harry-ring-dim) * 1.3); }
+}
+
+/* ─── STATE: idle ────────────────────────────────────────────── */
+.harry-avatar.harry--idle {
+  animation: harry-breathe 3s ease-in-out infinite;
+}
+
+.harry-avatar.harry--idle .harry-ring {
+  opacity: var(--harry-ring-dim);
+  filter: none;
+  animation: harry-ring-flicker 4s ease-in-out infinite;
+  transition: opacity var(--harry-transition), filter var(--harry-transition);
+}
+
+/* In idle: show idle eye/mouth layers, hide chase/speaking */
+.harry-avatar.harry--idle .harry-eyes  { opacity: 1;   transition: opacity var(--harry-transition); }
+.harry-avatar.harry--idle .harry-mouth { opacity: 1;   transition: opacity var(--harry-transition); }
+
+/* ─── STATE: listening ───────────────────────────────────────── */
+.harry-avatar.harry--listening {
+  animation: none;
+}
+
+.harry-avatar.harry--listening .harry-ring {
+  opacity: 0.7;
+  filter: drop-shadow(0 0 8px var(--harry-amber)) drop-shadow(0 0 16px rgba(201,168,76,0.4));
+  transition: opacity var(--harry-transition), filter var(--harry-transition);
+}
+
+/* Eyes drift while listening */
+.harry-avatar.harry--listening .harry-eyes {
+  animation: harry-listen-chase 2.5s ease-in-out infinite;
+}
+
+/* ─── STATE: speaking ────────────────────────────────────────── */
+.harry-avatar.harry--speaking {
+  animation: none;
+}
+
+.harry-avatar.harry--speaking .harry-ring {
+  opacity: var(--harry-ring-lit);
+  animation: harry-speak-pulse 0.4s ease-in-out infinite;
+  transition: opacity var(--harry-transition);
+}
+
+/* Speaking shows mouth-open layer (JS swaps .harry-mouth src) */
+.harry-avatar.harry--speaking .harry-mouth {
+  opacity: 1;
+  transition: opacity var(--harry-transition);
+}
+
+/* ─── Ring image swap helper ─────────────────────────────────── */
+/* The JS component swaps .harry-ring's src between ring-idle and ring-glow.
+   The transition is handled above via filter/opacity changes.        */
+
+/* ─── Broken-image graceful hide ────────────────────────────── */
+.harry-avatar img.harry--broken {
+  visibility: hidden;
+}
+
+/* ─── Placement helpers (optional utility classes) ───────────── */
+.harry-mount--bottom-right {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 900;
+}
+
+.harry-mount--inline {
+  position: relative;
+}
+
+/* ─── Reduced motion override ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .harry-avatar,
+  .harry-avatar.harry--idle,
+  .harry-avatar.harry--listening .harry-eyes,
+  .harry-avatar.harry--speaking .harry-ring {
+    animation: none !important;
+  }
+
+  .harry-avatar .harry-ring {
+    filter: none !important;
+    opacity: 0.5 !important;
+  }
+}
+
+/* ─── Responsive size overrides (optional) ───────────────────── */
+@media (max-width: 480px) {
+  .harry-avatar {
+    --harry-w: 120px;
+    --harry-h: 180px;
+  }
+}

@@ -242,4 +242,38 @@
     formatScriptScene: formatScriptScene,
     bindSceneMarkers: bindSceneMarkers
   };
+
+  /* ── SCENE_MAP — swarm/premiere-revival, marquee-scenes stream ──
+     Canonical scene label per page slug (without .html).
+     Matches the reelRoman values in PAGE_SEQUENCE above.          */
+  var SCENE_MAP = {
+    'home':         'SCENE I',
+    'rsvp':         'SCENE II',
+    'tickets':      'SCENE III',
+    'playlist':     'SCENE IV',
+    'capsule':      'SCENE V',
+    'memorial':     'SCENE VI',
+    'through-years': 'SCENE VII'
+  };
+
+  /* initSceneMarker — lightweight alias that uses SCENE_MAP
+     to set [data-scene-marker] text on the current page.
+     Called by premiere.js and also on DOMContentLoaded below. */
+  function initSceneMarker () {
+    var pageName = (document.body && document.body.dataset && document.body.dataset.page) || '';
+    var label = SCENE_MAP[pageName];
+    if (!label) return;
+    var markers = document.querySelectorAll('[data-scene-marker]');
+    for (var k = 0; k < markers.length; k++) {
+      /* Prefer the full formatted label from PAGE_SEQUENCE if available */
+      var entry = getEntry(pageName);
+      markers[k].textContent = entry ? formatSceneMarker(entry) : label;
+    }
+  }
+
+  window.SCENE_MAP = SCENE_MAP;
+  window.initSceneMarker = initSceneMarker;
+  window.PageSequence.SCENE_MAP = SCENE_MAP;
+  window.PageSequence.initSceneMarker = initSceneMarker;
 })();
+

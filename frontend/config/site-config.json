@@ -1,8 +1,8 @@
 {
-  "REUNION_DATE": "2026-07-12",
-  "REUNION_DATE_DISPLAY": "October–November 2026 — Miami Beach (date confirmed by committee, coming soon)",
+  "REUNION_DATE": "2026-10-10",
+  "REUNION_DATE_DISPLAY": "October 10, 2026 — Miami Beach",
   "REUNION_TIME": "19:00",
-  "REUNION_VENUE": "TBA",
+  "REUNION_VENUE": "TBA — Miami Beach",
   "EARLY_BIRD_PRICE": 60,
   "REGULAR_PRICE": 75,
   "EARLY_BIRD_DEADLINE": "2026-06-01",
@@ -16,5 +16,7 @@
   "API_BASE_URL_DEV": "http://localhost:8888",
   "HARRY_VOICE_ID": null,
   "BUILD_STATUS": "v2-cowork-build",
-  "_provenance": "Built by Cowork as A/B counterpart to canonical mbsh-reunion repo. Same V1-BRIEF spec, full multi-page implementation, live PHP backend."
+  "_provenance": "Built by Cowork as A/B counterpart to canonical mbsh-reunion repo. Same V1-BRIEF spec, full multi-page implementation, live PHP backend.",
+  "_swarm_note": "swarm/premiere-revival stream cleanup: locked REUNION_DATE to 2026-10-10 (Saturday, October 10, 2026, 7:00 PM ET). Previous value was 2026-07-12 (placeholder)."
 }
+

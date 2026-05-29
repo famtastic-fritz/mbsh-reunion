@@ -8,7 +8,17 @@
   <link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/typography.css"><link rel="stylesheet" href="css/sections.css"><link rel="stylesheet" href="css/compass.css"><link rel="stylesheet" href="css/chatbot.css"><link rel="stylesheet" href="css/footer.css"><link rel="stylesheet" href="css/premiere.css">
 </head>
 <body data-page="playlist" data-premiere="on">
-  <header class="page-header"><a class="page-header__back" href="index.html"><img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a><h1 class="page-header__title">Our Soundtrack</h1><p class="page-header__sub">The songs that made us who we are.</p></header>
+  <!-- HERO-PLACEHOLDER: hero-playlist.jpg -->
+  <header class="page-header" data-hero-asset="assets/heroes/hero-playlist.jpg" data-hero-asset-mobile="assets/heroes/hero-playlist-mobile.jpg">
+    <img class="page-header__hero-bg" src="assets/heroes/hero-playlist.jpg"
+         alt="" aria-hidden="true" loading="eager"
+         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.18;pointer-events:none;"
+         onerror="this.style.display='none'">
+    <a class="page-header__back" href="index.html"><img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a>
+    <h1 class="page-header__title">Our Soundtrack</h1>
+    <p class="page-header__sub">The songs that made us who we are.</p>
+  </header>
+  <span data-scene-marker class="scene-marker"></span>
 
   <!-- Pass 11 split: the original 3047px playlist section is broken into
        two Sequences (embed+tracklist + suggest-form) so neither one

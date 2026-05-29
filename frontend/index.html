@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="MBSH Class of '96 — 30th Reunion. A black-tie celebration thirty years in the making.">
+  <meta name="usher-note" content="Welcome back, Class of '96. The reunion is October 10, 2026 — Miami Beach. Use the compass or program below to navigate. Harry is here to help.">
   <title>MBSH Class of &rsquo;96 — 30th Reunion</title>
   <link rel="preload" as="image" href="assets/premiere/hero-poster.jpg" fetchpriority="high">
   <link rel="preload" as="image" href="assets/premiere/brand-mark-foil.png?v=2">
@@ -26,7 +27,15 @@
 <body data-page="home" data-premiere="on" data-snap="on">
 
   <!-- ════ Section 1: Hero ════════════════════════════════════════════ -->
-  <section class="hero premiere-snap-target" aria-label="MBSH Class of '96 — 30th Reunion welcome">
+  <!-- HERO-PLACEHOLDER: hero-home.jpg -->
+  <section class="hero premiere-snap-target" aria-label="MBSH Class of '96 — 30th Reunion welcome"
+           data-hero-asset="assets/heroes/hero-home.jpg"
+           data-hero-asset-mobile="assets/heroes/hero-home-mobile.jpg">
+    <!-- Hero cinematic still (pending Media Studio generation) — video poster serves as fallback LCP -->
+    <img class="hero__cinematic-bg" src="assets/heroes/hero-home.jpg"
+         alt="" aria-hidden="true" loading="eager" decoding="async"
+         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;"
+         onerror="this.style.display='none'">
     <video class="hero__video" data-src="assets/backgrounds/05-dancefloor-confetti.mp4" poster="assets/premiere/hero-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__content">
@@ -34,7 +43,7 @@
       <div class="hero__type">
         <p class="hero__welcome">Welcome back, Class of &rsquo;96</p>
         <h1 class="hero__headline"><span>Thirty Years Of </span><span>Hi-Tides</span></h1>
-        <p class="hero__date" data-config-bind="reunion_date_display">October–November 2026 — Miami Beach</p>
+        <p class="hero__date" data-config-bind="reunion_date_display">October 10, 2026 — Miami Beach</p>
       </div>
       <!-- Registration is open; payment processing comes online later.
            One CTA, always live, points at the RSVP form. -->
@@ -70,6 +79,9 @@
   <hr class="premiere-divider" aria-hidden="true">
 
   <section class="page-main program-bulletin premiere-snap-target" aria-label="Program — pick a scene" data-page-slot="main">
+    <!-- Program bulletin: inner pages listed in order (Home = the lobby/arrival, not listed here).
+         Reel numbers here are the viewing-order index within the inner-page program.
+         Scene markers on each page use the canonical SCENE_MAP from page-sequence.js (SCENE II–VII). -->
     <ol class="program-bulletin__list">
       <li class="program-bulletin__row">
         <a class="program-bulletin__link" href="rsvp.html">
@@ -178,7 +190,7 @@
       </header>
       <ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul>
       <form class="chatbot__input" id="chatbot-form">
-        <input type="text" id="chatbot-input" placeholder="Ask Harry about July 12&hellip;" aria-label="Type your question" autocomplete="off">
+        <input type="text" id="chatbot-input" placeholder="Ask Harry about October 10&hellip;" aria-label="Type your question" autocomplete="off">
         <button type="submit" aria-label="Send">→</button>
       </form>
     </div>
@@ -197,8 +209,11 @@
         <p><a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p>
         <!-- Class Instagram + Facebook handles pending. Hidden until URLs land
              so we don't ship dead # links to production. -->
-        <p class="footer__social footer__social--coming-soon">
-          <span>Instagram &amp; Facebook coming soon — drop a note to the committee for a heads-up.</span>
+        <p class="footer__social footer__social--coming-soon social-coming-soon"
+           title="Social links dropping soon — stay tuned"
+           aria-disabled="true"
+           role="note">
+          <span>📸 Instagram &amp; Facebook — dropping soon. Follow the committee email for updates.</span>
         </p>
       </div>
       <div class="footer__col footer__col--resources">
