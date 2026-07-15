@@ -164,7 +164,8 @@ body[data-premiere="on"] .menu-form .field__label,
 body[data-premiere="on"] .menu-form .menu-course__title,
 body[data-premiere="on"] .menu-form .menu-course__rule,
 body[data-premiere="on"] .menu-form .menu-option label,
-body[data-premiere="on"] .menu-form .error-msg {
+body[data-premiere="on"] .menu-form .error-msg,
+body[data-premiere="on"] .survey-form .field__label {
   color: var(--c-off-black) !important;
 }
 
@@ -175,7 +176,9 @@ body[data-premiere="on"] .playlist-suggest .field__input,
 body[data-premiere="on"] .sponsor-form .field__input,
 body[data-premiere="on"] .sponsor-form select,
 body[data-premiere="on"] .menu-form .field__input,
-body[data-premiere="on"] .menu-form select {
+body[data-premiere="on"] .menu-form select,
+body[data-premiere="on"] .survey-form .field__input,
+body[data-premiere="on"] .survey-form .field__select {
   color: var(--c-off-black) !important;
   background: var(--c-white) !important;
   border-color: rgba(10,10,10,0.18) !important;
@@ -186,7 +189,8 @@ body[data-premiere="on"] .memory-form .field__input::placeholder,
 body[data-premiere="on"] .capsule__envelope .field__input::placeholder,
 body[data-premiere="on"] .playlist-suggest .field__input::placeholder,
 body[data-premiere="on"] .sponsor-form .field__input::placeholder,
-body[data-premiere="on"] .menu-form .field__input::placeholder {
+body[data-premiere="on"] .menu-form .field__input::placeholder,
+body[data-premiere="on"] .survey-form .field__input::placeholder {
   color: var(--c-silver-dark) !important;
   opacity: 1 !important;
 }
@@ -196,7 +200,9 @@ body[data-premiere="on"] .memory-form .field__input:focus,
 body[data-premiere="on"] .capsule__envelope .field__input:focus,
 body[data-premiere="on"] .playlist-suggest .field__input:focus,
 body[data-premiere="on"] .sponsor-form .field__input:focus,
-body[data-premiere="on"] .menu-form .field__input:focus {
+body[data-premiere="on"] .menu-form .field__input:focus,
+body[data-premiere="on"] .survey-form .field__input:focus,
+body[data-premiere="on"] .survey-form .field__select:focus {
   border-color: var(--c-red) !important;
   box-shadow: 0 0 0 3px rgba(200,16,46,0.15) !important;
 }

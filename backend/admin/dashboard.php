@@ -71,5 +71,6 @@ h1{font-family:Georgia,serif;margin:0}
   <div class="card"><div class="num"><?= $counts['capsules_queued'] ?></div><div class="label">Time capsules queued</div><a href="capsules.php">View</a></div>
   <div class="card"><div class="num"><?= $counts['chatbot_unresponded'] ?></div><div class="label">Chatbot fallbacks pending</div><a href="chatbot.php?filter=unresponded">View</a></div>
   <div class="card"><div class="num"><?= (int)$pdo->query("SELECT COUNT(*) FROM menu_selections")->fetchColumn() ?></div><div class="label">Menu selections</div><a href="menu-results.php">View results</a></div>
+  <div class="card"><div class="num"><?= (int)$pdo->query("SELECT COUNT(*) FROM surveys")->fetchColumn() ?></div><div class="label">Class surveys</div><a href="surveys.php">View results</a></div>
 </div>
 </body></html>

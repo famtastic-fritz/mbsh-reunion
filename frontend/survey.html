@@ -53,22 +53,14 @@
     }
     .survey-hero__sub {
       font-family: var(--font-italic); font-style: italic; font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      color: var(--c-silver); line-height: 1.5; max-width: 38rem; margin: 0 auto 2.5rem;
+      color: var(--c-silver); line-height: 1.5; max-width: 38rem; margin: 0 auto 1.5rem;
     }
-    .survey-cta {
-      display: inline-flex; align-items: center; gap: 0.75rem;
-      background: var(--c-red); color: var(--c-white);
-      padding: 1.1rem 2.5rem; border-radius: 3px; font-weight: 700; font-size: 1.05rem;
-      text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none;
-      box-shadow: 0 8px 32px rgba(200,16,46,0.35); transition: all 0.25s ease;
-    }
-    .survey-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,16,46,0.5); }
-    .survey-cta__arrow { transition: transform 0.25s ease; }
-    .survey-cta:hover .survey-cta__arrow { transform: translateX(4px); }
-    .survey-hero__meta {
-      margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.7rem;
+    .survey-hero__scroll {
+      margin-top: 1rem; font-family: var(--font-mono); font-size: 0.7rem;
       letter-spacing: 0.15em; text-transform: uppercase; color: var(--c-silver-dark);
+      animation: survey-bounce 2s ease-in-out infinite;
     }
+    @keyframes survey-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
     .survey-preview {
       padding: 5rem 1.5rem; background: var(--c-off-black);
@@ -99,14 +91,98 @@
     }
     .survey-card__body { font-size: 0.95rem; color: var(--c-silver); line-height: 1.5; }
 
+    /* ── The Form ── */
+    .survey-form-wrap {
+      padding: 4rem 1.5rem; background: var(--c-off-black);
+      border-top: 1px solid rgba(248,244,236,0.06);
+    }
+    .survey-form-wrap__inner { max-width: 48rem; margin: 0 auto; }
+    .survey-form-wrap__title {
+      font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.25rem);
+      color: var(--c-white); text-align: center; margin-bottom: 0.5rem;
+    }
+    .survey-form-wrap__lead {
+      font-family: var(--font-italic); font-style: italic; text-align: center;
+      color: var(--c-silver); font-size: 1.1rem; max-width: 32rem; margin: 0 auto 2.5rem;
+    }
+    .survey-form {
+      background: rgba(248,244,236,0.03); border: 1px solid rgba(248,244,236,0.06);
+      border-radius: 4px; padding: 2.5rem;
+    }
+    .survey-form__section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(248,244,236,0.06);
+    }
+    .survey-form__section:last-of-type { border-bottom: none; margin-bottom: 1.5rem; }
+    .survey-form__section-title {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+      color: var(--c-white); margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .survey-form__section-num {
+      font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--c-red); display: block; margin-bottom: 1rem;
+    }
+    .survey-form .field { display: block; margin-bottom: 1.25rem; }
+    .survey-form .field__label {
+      display: block; font-size: 0.85rem; font-weight: 600; color: var(--c-off-black);
+      margin-bottom: 0.4rem; letter-spacing: 0.02em;
+    }
+    .survey-form .field__input,
+    .survey-form .field__select {
+      width: 100%; padding: 0.75rem 1rem; font-size: 1rem; font-family: inherit;
+      color: var(--c-off-black); background: var(--c-white);
+      border: 1px solid rgba(10,10,10,0.18); border-radius: 3px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .survey-form .field__input:focus,
+    .survey-form .field__select:focus {
+      outline: none; border-color: var(--c-red);
+      box-shadow: 0 0 0 3px rgba(200,16,46,0.15);
+    }
+    .survey-form textarea.field__input { min-height: 5rem; resize: vertical; }
+    .survey-form .field__hint { font-size: 0.8rem; color: var(--c-silver-dark); margin-top: 0.25rem; }
+    .survey-form .checkbox-row {
+      display: flex; align-items: center; gap: 0.75rem; margin: 1rem 0;
+    }
+    .survey-form .checkbox-row input { width: 1.1rem; height: 1.1rem; accent-color: var(--c-red); }
+    .survey-form .checkbox-row label { font-size: 0.95rem; color: var(--c-off-black); cursor: pointer; }
+    .survey-form__submit {
+      display: block; width: 100%; padding: 1.1rem; background: var(--c-red); color: var(--c-white);
+      font-family: var(--font-body); font-weight: 700; font-size: 1.05rem; text-transform: uppercase;
+      letter-spacing: 0.1em; border: none; border-radius: 3px; cursor: pointer;
+      box-shadow: 0 8px 32px rgba(200,16,46,0.35); transition: all 0.25s ease;
+    }
+    .survey-form__submit:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,16,46,0.5); }
+    .survey-form__submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .survey-form__status { margin-top: 1rem; font-size: 0.95rem; text-align: center; min-height: 1.5rem; }
+    .survey-form__status--error { color: var(--c-red); }
+    .survey-form__status--ok { color: #2a9d3a; }
+
+    .survey-success {
+      display: none; text-align: center; padding: 4rem 1.5rem;
+    }
+    .survey-success__icon { font-size: 3rem; margin-bottom: 1rem; }
+    .survey-success__title {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.75rem;
+      color: var(--c-white); margin-bottom: 0.5rem;
+    }
+    .survey-success__body { font-size: 1.05rem; color: var(--c-silver); max-width: 32rem; margin: 0 auto 1.5rem; line-height: 1.5; }
+    .survey-success__cta {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      background: var(--c-red); color: var(--c-white);
+      padding: 1rem 2rem; border-radius: 3px; font-weight: 700; font-size: 1rem;
+      text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none;
+      box-shadow: 0 8px 32px rgba(200,16,46,0.35); transition: all 0.25s ease;
+    }
+    .survey-success__cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,16,46,0.5); }
+
     .survey-results-tease {
       padding: 4rem 1.5rem; text-align: center;
       background: radial-gradient(ellipse at 50% 50%, rgba(200,16,46,0.08) 0%, transparent 60%);
       border-top: 1px solid rgba(248,244,236,0.06);
     }
-    .survey-results-tease__icon {
-      font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.6;
-    }
+    .survey-results-tease__icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.6; }
     .survey-results-tease__title {
       font-family: var(--font-display); font-weight: 700; font-size: 1.5rem;
       color: var(--c-white); margin-bottom: 0.5rem;
@@ -119,18 +195,10 @@
       text-decoration: underline; text-underline-offset: 3px;
     }
 
-    .survey-closing {
-      padding: 4rem 1.5rem 6rem; text-align: center;
-    }
-    .survey-closing__quote {
-      font-family: var(--font-script); font-size: clamp(1.5rem, 3vw, 2.25rem);
-      color: var(--c-gold); margin-bottom: 1.5rem;
-    }
-    .survey-closing__cta { margin-top: 0.5rem; }
-
     @media (max-width: 640px) {
       .survey-hero { padding: 6rem 1rem 3.5rem; }
       .survey-cards { grid-template-columns: 1fr; }
+      .survey-form { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -147,11 +215,7 @@
         <p class="survey-hero__sub">
           Help the committee plan the perfect 30th reunion. Share your preferences, your whereabouts, and a few memories so we can make this night unforgettable.
         </p>
-        <a class="survey-cta" href="https://forms.office.com/pages/responsepage.aspx?id=iiMrMYPAwUGhi3NrAmlveXauVt4JhThMic8UUj5dovVUMEdSM0RKQkNBQzBFUldDV05JTjFQSEZWSi4u&route=shorturl" target="_blank" rel="noopener">
-          Take the Survey
-          <span class="survey-cta__arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <p class="survey-hero__meta">Takes about 4 minutes &middot; Microsoft Forms</p>
+        <p class="survey-hero__scroll">Scroll to begin &darr;</p>
       </div>
     </section>
 
@@ -200,6 +264,164 @@
       </div>
     </section>
 
+    <!-- ═══ Form ═══ -->
+    <section class="survey-form-wrap" id="survey-form-section" aria-label="Class survey form">
+      <div class="survey-form-wrap__inner">
+        <h2 class="survey-form-wrap__title">The Survey</h2>
+        <p class="survey-form-wrap__lead">Takes about 4 minutes. All fields help us plan — nothing is shared publicly without your say.</p>
+
+        <form class="survey-form" id="survey-form" autocomplete="on">
+          <input type="text" name="website" class="rsvp-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="form_loaded_at" id="form-loaded-at">
+
+          <!-- 01 Contact -->
+          <div class="survey-form__section">
+            <span class="survey-form__section-num">01 &mdash; Contact</span>
+            <h3 class="survey-form__section-title">Where Are You Now?</h3>
+            <label class="field">
+              <span class="field__label">Full Name *</span>
+              <input class="field__input" type="text" name="full_name" required maxlength="255" placeholder="Your name then and now">
+            </label>
+            <label class="field">
+              <span class="field__label">Email Address *</span>
+              <input class="field__input" type="email" name="email" required maxlength="255" placeholder="you@example.com">
+            </label>
+            <label class="field">
+              <span class="field__label">Current City / State</span>
+              <input class="field__input" type="text" name="current_city" maxlength="255" placeholder="Miami, FL">
+            </label>
+          </div>
+
+          <!-- 02 Preference -->
+          <div class="survey-form__section">
+            <span class="survey-form__section-num">02 &mdash; Preference</span>
+            <h3 class="survey-form__section-title">Reunion Vibe</h3>
+            <label class="field">
+              <span class="field__label">What kind of night do you want?</span>
+              <select class="field__input field__select" name="reunion_vibe">
+                <option value="">— Select —</option>
+                <option value="formal">Formal / Black Tie</option>
+                <option value="semi-formal">Semi-Formal</option>
+                <option value="business-casual">Business Casual</option>
+                <option value="laid-back">Laid-Back / Casual</option>
+                <option value="surprise">Surprise me</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__label">Timing preference?</span>
+              <select class="field__input field__select" name="reunion_timing">
+                <option value="">— Select —</option>
+                <option value="friday-night">Friday Night</option>
+                <option value="saturday-night">Saturday Night</option>
+                <option value="saturday-day">Saturday Day / Afternoon</option>
+                <option value="sunday-brunch">Sunday Brunch</option>
+                <option value="weekend">Full Weekend Event</option>
+                <option value="no-preference">No Preference</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- 03 Travel -->
+          <div class="survey-form__section">
+            <span class="survey-form__section-num">03 &mdash; Travel</span>
+            <h3 class="survey-form__section-title">Getting There</h3>
+            <label class="field">
+              <span class="field__label">How are you getting to Miami?</span>
+              <select class="field__input field__select" name="travel_method">
+                <option value="">— Select —</option>
+                <option value="live-local">I live in Miami / South Florida</option>
+                <option value="flying">Flying in</option>
+                <option value="driving">Driving</option>
+                <option value="train-bus">Train / Bus</option>
+                <option value="undecided">Not sure yet</option>
+              </select>
+            </label>
+            <div class="checkbox-row">
+              <input type="checkbox" id="need-hotel" name="need_hotel" value="1">
+              <label for="need-hotel">I&rsquo;ll need hotel block information</label>
+            </div>
+          </div>
+
+          <!-- 04 Plus-One -->
+          <div class="survey-form__section">
+            <span class="survey-form__section-num">04 &mdash; Plus-One</span>
+            <h3 class="survey-form__section-title">Who&rsquo;s Coming With You?</h3>
+            <label class="field">
+              <span class="field__label">How many guests besides you?</span>
+              <select class="field__input field__select" name="plus_one_count">
+                <option value="0">Just me</option>
+                <option value="1">+1</option>
+                <option value="2">+2</option>
+                <option value="3">+3</option>
+                <option value="4">+4</option>
+                <option value="5">+5</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__label">Guest names (who&rsquo;s coming?)</span>
+              <textarea class="field__input" name="plus_one_names" maxlength="500" placeholder="Spouse, partner, kids, friends..."></textarea>
+              <span class="field__hint">Helps us with seating and name tags.</span>
+            </label>
+          </div>
+
+          <!-- 05 Memories -->
+          <div class="survey-form__section">
+            <span class="survey-form__section-num">05 &mdash; Memories</span>
+            <h3 class="survey-form__section-title">Your MBSH Story</h3>
+            <label class="field">
+              <span class="field__label">Favorite teacher or staff member?</span>
+              <input class="field__input" type="text" name="favorite_teacher" maxlength="255" placeholder="Mr. Smith, Coach Johnson, Ms. Rodriguez...">
+            </label>
+            <label class="field">
+              <span class="field__label">Wildest MBSH memory?</span>
+              <textarea class="field__input" name="wildest_memory" maxlength="2000" placeholder="The thing we still talk about at every cookout..."></textarea>
+            </label>
+            <label class="field">
+              <span class="field__label">What have you been up to since &rsquo;96?</span>
+              <textarea class="field__input" name="life_update" maxlength="2000" placeholder="Career, family, adventures, whatever you want to share..."></textarea>
+              <span class="field__hint">May be used in the program or tribute reel.</span>
+            </label>
+          </div>
+
+          <!-- 06 Menu -->
+          <div class="survey-form__section">
+            <span class="survey-form__section-num">06 &mdash; Menu</span>
+            <h3 class="survey-form__section-title">Food &amp; Drink</h3>
+            <label class="field">
+              <span class="field__label">Dietary restrictions or preferences?</span>
+              <textarea class="field__input" name="dietary" maxlength="1000" placeholder="Vegetarian, vegan, kosher, halal, low-sodium, etc."></textarea>
+            </label>
+            <label class="field">
+              <span class="field__label">Food allergies?</span>
+              <textarea class="field__input" name="allergies" maxlength="1000" placeholder="Nuts, shellfish, gluten, dairy, etc."></textarea>
+            </label>
+          </div>
+
+          <!-- 07 Music -->
+          <div class="survey-form__section">
+            <span class="survey-form__section-num">07 &mdash; Music</span>
+            <h3 class="survey-form__section-title">The Soundtrack</h3>
+            <label class="field">
+              <span class="field__label">Song requests for the DJ?</span>
+              <textarea class="field__input" name="song_requests" maxlength="2000" placeholder="Drop the tracks that still hit. One per line is fine."></textarea>
+              <span class="field__hint">We&rsquo;re curating the playlist from all submissions.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="survey-form__submit" id="survey-submit">Submit Survey</button>
+          <p class="survey-form__status" id="survey-status" aria-live="polite"></p>
+        </form>
+
+        <!-- Success state -->
+        <div class="survey-success" id="survey-success" aria-hidden="true">
+          <div class="survey-success__icon" aria-hidden="true">&#127881;</div>
+          <h3 class="survey-success__title">You&rsquo;re on the list.</h3>
+          <p class="survey-success__body">Thanks for helping us plan. The committee will see your responses in real time, and we&rsquo;ll keep you posted as details firm up.</p>
+          <a class="survey-success__cta" href="index.html">Back to Home</a>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══ Live Results Tease ═══ -->
     <section class="survey-results-tease" aria-label="Live results dashboard">
       <div class="survey-results-tease__icon" aria-hidden="true">&#128200;</div>
@@ -208,16 +430,6 @@
         The committee can see responses as they come in. Want to know what the class is saying?
       </p>
       <a class="survey-results-tease__link" href="admin-survey.html">View the live dashboard &rarr;</a>
-    </section>
-
-    <!-- ═══ Closing CTA ═══ -->
-    <section class="survey-closing" aria-label="Final call to action">
-      <p class="survey-closing__quote">Let us be known for our deeds.</p>
-      <a class="survey-cta survey-closing__cta" href="https://forms.office.com/pages/responsepage.aspx?id=iiMrMYPAwUGhi3NrAmlveXauVt4JhThMic8UUj5dovVUMEdSM0RKQkNBQzBFUldDV05JTjFQSEZWSi4u&route=shorturl" target="_blank" rel="noopener">
-        Take the Survey
-        <span class="survey-cta__arrow" aria-hidden="true">&rarr;</span>
-      </a>
-      <p class="survey-hero__meta" style="margin-top:1rem;">Closes soon &middot; Don&rsquo;t miss the headcount</p>
     </section>
 
   </main>
@@ -277,5 +489,52 @@
   <script src="js/main.js" defer></script>
   <script src="js/compass.js" defer></script>
   <script src="js/chatbot.js" defer></script>
+  <script>
+    (function() {
+      'use strict';
+      const form = document.getElementById('survey-form');
+      const success = document.getElementById('survey-success');
+      const status = document.getElementById('survey-status');
+      const submitBtn = document.getElementById('survey-submit');
+      const loadedAt = document.getElementById('form-loaded-at');
+      if (loadedAt) loadedAt.value = String(Date.now());
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        status.textContent = '';
+        status.className = 'survey-form__status';
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        const data = Object.fromEntries(new FormData(form));
+        data.need_hotel = data.need_hotel === '1';
+        data.plus_one_count = parseInt(data.plus_one_count || '0', 10);
+
+        try {
+          const res = await fetch('https://api.mbsh96reunion.com/survey.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const json = await res.json().catch(() => ({}));
+          if (res.ok && json.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            success.removeAttribute('aria-hidden');
+          } else {
+            status.textContent = json.message || 'Something went wrong. Please try again.';
+            status.className = 'survey-form__status survey-form__status--error';
+          }
+        } catch (err) {
+          status.textContent = 'Network error. Please check your connection and try again.';
+          status.className = 'survey-form__status survey-form__status--error';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Survey';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
