@@ -143,3 +143,26 @@ CREATE TABLE IF NOT EXISTS admin_audit_log (
   INDEX idx_label (admin_label),
   INDEX idx_action_time (action, performed_at)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS menu_selections (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  selections_json JSON NOT NULL,
+  dietary TEXT DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_email (email)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  admin_session_id VARCHAR(64) NOT NULL,
+  admin_label VARCHAR(100) DEFAULT 'committee',
+  action VARCHAR(100) NOT NULL,
+  target_table VARCHAR(50) DEFAULT NULL,
+  target_id INT DEFAULT NULL,
+  notes TEXT DEFAULT NULL,
+  ip_address VARCHAR(45) DEFAULT NULL,
+  performed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_session (admin_session_id),
+  INDEX idx_label (admin_label),
+  INDEX idx_action_time (action, performed_at)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

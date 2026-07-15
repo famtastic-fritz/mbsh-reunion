@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Survey — MBSH Class of &rsquo;96</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/compass.css">
+  <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/premiere.css">
+</head>
+<body data-page="survey" data-premiere="on">
+  <main class="page-content">
+    <section class="section" style="padding: 4rem 1.5rem; max-width: 60rem; margin: 0 auto; text-align: center;">
+      <h1 class="section-head" style="margin-bottom: 1rem;">Class Survey</h1>
+      <p class="section-sub" style="margin-bottom: 2rem; max-width: 40rem; margin-left: auto; margin-right: auto;">
+        Help the committee plan the best reunion ever. Share your preferences, memories, and whereabouts so we can make this night unforgettable.
+      </p>
+      <div style="background: var(--c-white); padding: 2rem; border-radius: 4px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); max-width: 52rem; margin: 0 auto;">
+        <iframe
+          src="https://forms.office.com/pages/responsepage.aspx?id=iiMrMYPAwUGhi3NrAmlveXauVt4JhThMic8UUj5dovVUMEdSM0RKQkNBQzBFUldDV05JTjFQSEZWSi4u&route=shorturl&embed=true"
+          width="100%"
+          height="1200"
+          style="border: none; max-width: 100%;"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p style="margin-top: 2rem; color: var(--c-silver-dark); font-size: 0.9rem;">
+        Can&rsquo;t see the form? <a href="https://forms.office.com/pages/responsepage.aspx?id=iiMrMYPAwUGhi3NrAmlveXauVt4JhThMic8UUj5dovVUMEdSM0RKQkNBQzBFUldDV05JTjFQSEZWSi4u&route=shorturl" target="_blank" style="color: var(--c-red); text-decoration: underline;">Open in new tab</a>
+      </p>
+    </section>
+  </main>
+
+  <nav class="compass-nav" aria-label="Site navigation">
+    <button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items">
+      <span class="compass-nav__label" aria-hidden="true">Compass</span>
+    </button>
+    <ul class="compass-nav__items" id="compass-nav-items" role="menu">
+      <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+      <li role="none"><a href="rsvp.html" role="menuitem">RSVP</a></li>
+      <li role="none"><a href="tickets.html" role="menuitem">Tickets</a></li>
+      <li role="none"><a href="menu.html" role="menuitem">Menu</a></li>
+      <li role="none"><a href="survey.html" role="menuitem">Survey</a></li>
+      <li role="none"><a href="menu.html" role="menuitem">Menu</a></li>
+      <li role="none"><a href="survey.html" role="menuitem">Survey</a></li>
+      <li role="none"><a href="through-years.html" role="menuitem">Through the Years</a></li>
+      <li role="none"><a href="memorial.html" role="menuitem">In Memory</a></li>
+      <li role="none"><a href="capsule.html" role="menuitem">Time Capsule</a></li>
+      <li role="none"><a href="playlist.html" role="menuitem">Playlist</a></li>
+    </ul>
+  </nav>
+
+  <div class="chatbot" id="chatbot" aria-label="Hi-Tide Harry chat">
+    <button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open Hi-Tide Harry chat">
+      <img src="assets/mascot/06-listening.png" alt="" width="64" height="64" aria-hidden="true">
+    </button>
+    <div class="chatbot__panel" id="chatbot-panel" hidden>
+      <header class="chatbot__panel-header">
+        <img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello.png" alt="" width="120" height="120" aria-hidden="true">
+        <div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div>
+        <button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close chat">&times;</button>
+      </header>
+      <div class="chatbot__panel-body" id="chatbot-messages"></div>
+      <form class="chatbot__input" id="chatbot-form"><input type="text" id="chatbot-input" placeholder="Ask Harry about the reunion&hellip;" aria-label="Type your question" autocomplete="off"><button type="submit" aria-label="Send">&rarr;</button></form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col footer__col--identity">
+        <p class="footer__title">Class of 1996 &middot; 30th Reunion</p>
+        <p class="footer__sub">Hi-Tide Pride Since 1926</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/compass.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

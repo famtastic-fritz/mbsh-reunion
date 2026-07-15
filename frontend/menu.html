@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Menu — Dinner Preferences — MBSH Class of &rsquo;96</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/compass.css">
+  <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/premiere.css">
+  <style>
+    .menu-wrap { padding: var(--space-2xl) var(--space-lg); max-width: var(--container-narrow); margin: 0 auto; }
+    .menu-head { text-align: center; margin-bottom: var(--space-xl); }
+    .menu-head h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.75rem, 4vw, 2.5rem); margin: 0 0 var(--space-sm); }
+    .menu-head p { font-family: var(--font-italic); font-style: italic; color: var(--c-off-black); margin: 0; }
+    .menu-head .price { font-family: var(--font-mono); font-size: 1.1rem; color: var(--c-red); font-weight: 700; margin-top: var(--space-sm); }
+    .menu-form { background: var(--c-white); padding: var(--space-xl); border-radius: 4px; box-shadow: 0 4px 32px rgba(10,10,10,0.08); }
+    .menu-course { margin-bottom: var(--space-xl); border-bottom: 1px solid rgba(10,10,10,0.08); padding-bottom: var(--space-lg); }
+    .menu-course:last-child { border-bottom: none; }
+    .menu-course__title { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; margin: 0 0 var(--space-sm); color: var(--c-red); text-transform: uppercase; letter-spacing: 0.05em; }
+    .menu-course__rule { font-size: 0.85rem; color: var(--c-silver-dark); margin-bottom: var(--space-md); font-style: italic; }
+    .menu-option { display: flex; align-items: flex-start; gap: var(--space-sm); padding: 0.5rem 0; }
+    .menu-option input { width: 1.1rem; height: 1.1rem; accent-color: var(--c-red); margin-top: 0.15rem; flex-shrink: 0; }
+    .menu-option label { font-size: 0.95rem; line-height: 1.4; cursor: pointer; }
+    .menu-option .upcharge { color: var(--c-red); font-weight: 600; font-size: 0.85rem; }
+    .menu-success { background: var(--c-white); padding: var(--space-2xl); border-radius: 4px; box-shadow: 0 4px 32px rgba(10,10,10,0.08); text-align: center; display: none; }
+    .menu-success h2 { font-family: var(--font-display); font-weight: 700; color: var(--c-red); margin: 0 0 var(--space-md); }
+    .menu-success p { font-family: var(--font-italic); font-style: italic; color: var(--c-off-black); margin: 0; }
+    .error-msg { color: #c62828; background: #ffebee; padding: 0.75rem 1rem; border-radius: 3px; margin-bottom: 1rem; display: none; }
+  </style>
+</head>
+<body data-page="menu" data-premiere="on">
+  <main class="page-content">
+    <div class="menu-wrap">
+      <div class="menu-head">
+        <h1>Gold Menu Dinner Preferences</h1>
+        <p>Miami Shores Country Club &middot; October 2026</p>
+        <p class="price">$85.95++ per person ($110.36) &middot; Minimum 50 guests</p>
+      </div>
+
+      <div class="error-msg" id="error-msg"></div>
+
+      <form class="menu-form" id="menu-form">
+        <div class="field">
+          <span class="field__label">Your Name *</span>
+          <input class="field__input" type="text" name="name" required maxlength="200">
+        </div>
+        <div class="field">
+          <span class="field__label">Email Address *</span>
+          <input class="field__input" type="email" name="email" required maxlength="255">
+        </div>
+
+        <div class="menu-course">
+          <h2 class="menu-course__title">Hors d&rsquo;Oeuvre Station</h2>
+          <p class="menu-course__rule">Choose 2 cold stations</p>
+          <div class="menu-option"><input type="checkbox" name="hors" value="Fresh Seasonal Fruits" id="h1"><label for="h1">Fresh Seasonal Fruits</label></div>
+          <div class="menu-option"><input type="checkbox" name="hors" value="Domestic/Imported Cheeses + Breads/Crackers" id="h2"><label for="h2">Domestic/Imported Cheeses + Breads/Crackers</label></div>
+          <div class="menu-option"><input type="checkbox" name="hors" value="Vegetable Crudités" id="h3"><label for="h3">Vegetable Crudités</label></div>
+          <div class="menu-option"><input type="checkbox" name="hors" value="Mediterranean Display" id="h4"><label for="h4">Mediterranean Display</label></div>
+          <div class="menu-option"><input type="checkbox" name="hors" value="Antipasto Display" id="h5"><label for="h5">Antipasto Display <span class="upcharge">+$6</span></label></div>
+          <div class="menu-option"><input type="checkbox" name="hors" value="Seafood Display" id="h6"><label for="h6">Seafood Display <span class="upcharge">+$12</span></label></div>
+        </div>
+
+        <div class="menu-course">
+          <h2 class="menu-course__title">Salad</h2>
+          <p class="menu-course__rule">Select 1</p>
+          <div class="menu-option"><input type="radio" name="salad" value="Shores Garden Salad" id="s1" required><label for="s1">Shores Garden Salad</label></div>
+          <div class="menu-option"><input type="radio" name="salad" value="Classic Caesar Salad" id="s2"><label for="s2">Classic Caesar Salad</label></div>
+          <div class="menu-option"><input type="radio" name="salad" value="Poached Pear with Goat Cheese" id="s3"><label for="s3">Poached Pear with Goat Cheese <span class="upcharge">+$4</span></label></div>
+        </div>
+
+        <div class="menu-course">
+          <h2 class="menu-course__title">Entr&eacute;e</h2>
+          <p class="menu-course__rule">Choose 1 or 2</p>
+          <div class="menu-option"><input type="checkbox" name="entree" value="Sautéed Chicken Piccata" id="e1"><label for="e1">Sautéed Chicken Piccata</label></div>
+          <div class="menu-option"><input type="checkbox" name="entree" value="Chicken Breast Madeira" id="e2"><label for="e2">Chicken Breast Madeira</label></div>
+          <div class="menu-option"><input type="checkbox" name="entree" value="Tuscan Roasted Chicken" id="e3"><label for="e3">Tuscan Roasted Chicken</label></div>
+          <div class="menu-option"><input type="checkbox" name="entree" value="Maple-Bourbon Salmon" id="e4"><label for="e4">Maple-Bourbon Salmon</label></div>
+          <div class="menu-option"><input type="checkbox" name="entree" value="Mahi Mahi with Caribbean Salsa" id="e5"><label for="e5">Mahi Mahi with Caribbean Salsa</label></div>
+          <div class="menu-option"><input type="checkbox" name="entree" value="Churrasco Steak" id="e6"><label for="e6">Churrasco Steak <span class="upcharge">+$3</span></label></div>
+          <div class="menu-option"><input type="checkbox" name="entree" value="Braised Short Rib" id="e7"><label for="e7">Braised Short Rib <span class="upcharge">+$6</span></label></div>
+          <div class="menu-option"><input type="checkbox" name="entree" value="Beef Tenderloin" id="e8"><label for="e8">Beef Tenderloin <span class="upcharge">+$8</span></label></div>
+        </div>
+
+        <div class="menu-course">
+          <h2 class="menu-course__title">Side Items</h2>
+          <p class="menu-course__rule">Select 2</p>
+          <div class="menu-option"><input type="checkbox" name="side" value="Rosemary Fingerling Potatoes" id="si1"><label for="si1">Rosemary Fingerling Potatoes</label></div>
+          <div class="menu-option"><input type="checkbox" name="side" value="Garlic Mashed Potato" id="si2"><label for="si2">Garlic Mashed Potato</label></div>
+          <div class="menu-option"><input type="checkbox" name="side" value="Rice Pilaf" id="si3"><label for="si3">Rice Pilaf</label></div>
+          <div class="menu-option"><input type="checkbox" name="side" value="Roasted Seasonal Vegetables" id="si4"><label for="si4">Roasted Seasonal Vegetables</label></div>
+          <div class="menu-option"><input type="checkbox" name="side" value="Sautéed Green Beans" id="si5"><label for="si5">Sautéed Green Beans</label></div>
+          <div class="menu-option"><input type="checkbox" name="side" value="Broccoli" id="si6"><label for="si6">Broccoli</label></div>
+          <div class="menu-option"><input type="checkbox" name="side" value="Baby Carrots" id="si7"><label for="si7">Baby Carrots</label></div>
+          <div class="menu-option"><input type="checkbox" name="side" value="French Rolls & Butter" id="si8"><label for="si8">French Rolls & Butter</label></div>
+        </div>
+
+        <div class="menu-course">
+          <h2 class="menu-course__title">Dietary Restrictions</h2>
+          <p class="menu-course__rule">Any allergies or special requests?</p>
+          <div class="field">
+            <textarea class="field__input" name="dietary" rows="2" maxlength="500" placeholder="Gluten-free, vegetarian, allergies, etc."></textarea>
+          </div>
+        </div>
+
+        <input type="hidden" name="form_loaded_at" id="form-loaded-at">
+        <button type="submit" class="rsvp-form__submit">Submit Preferences</button>
+        <p class="rsvp-form__consent" style="margin-top: 1rem;">This is not a final order. Preferences help the committee gauge what the majority wants before finalizing the menu.</p>
+      </form>
+
+      <div class="menu-success" id="menu-success">
+        <h2>Preferences Submitted!</h2>
+        <p>Thank you for helping us plan the perfect dinner. The committee will review all selections before finalizing the menu.</p>
+      </div>
+    </div>
+  </main>
+
+  <nav class="compass-nav" aria-label="Site navigation">
+    <button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items">
+      <span class="compass-nav__label" aria-hidden="true">Compass</span>
+    </button>
+    <ul class="compass-nav__items" id="compass-nav-items" role="menu">
+      <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+      <li role="none"><a href="rsvp.html" role="menuitem">RSVP</a></li>
+      <li role="none"><a href="tickets.html" role="menuitem">Tickets</a></li>
+      <li role="none"><a href="menu.html" role="menuitem">Menu</a></li>
+      <li role="none"><a href="survey.html" role="menuitem">Survey</a></li>
+      <li role="none"><a href="menu.html" role="menuitem">Menu</a></li>
+      <li role="none"><a href="survey.html" role="menuitem">Survey</a></li>
+      <li role="none"><a href="through-years.html" role="menuitem">Through the Years</a></li>
+      <li role="none"><a href="memorial.html" role="menuitem">In Memory</a></li>
+      <li role="none"><a href="capsule.html" role="menuitem">Time Capsule</a></li>
+      <li role="none"><a href="playlist.html" role="menuitem">Playlist</a></li>
+    </ul>
+  </nav>
+
+  <div class="chatbot" id="chatbot" aria-label="Hi-Tide Harry chat">
+    <button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open Hi-Tide Harry chat">
+      <img src="assets/mascot/06-listening.png" alt="" width="64" height="64" aria-hidden="true">
+    </button>
+    <div class="chatbot__panel" id="chatbot-panel" hidden>
+      <header class="chatbot__panel-header">
+        <img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello.png" alt="" width="120" height="120" aria-hidden="true">
+        <div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div>
+        <button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close chat">&times;</button>
+      </header>
+      <div class="chatbot__panel-body" id="chatbot-messages"></div>
+      <form class="chatbot__input" id="chatbot-form"><input type="text" id="chatbot-input" placeholder="Ask Harry about the reunion&hellip;" aria-label="Type your question" autocomplete="off"><button type="submit" aria-label="Send">&rarr;</button></form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col footer__col--identity">
+        <p class="footer__title">Class of 1996 &middot; 30th Reunion</p>
+        <p class="footer__sub">Hi-Tide Pride Since 1926</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/compass.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script>
+    document.getElementById('form-loaded-at').value = Date.now();
+    const form = document.getElementById('menu-form');
+    const errorMsg = document.getElementById('error-msg');
+    const successMsg = document.getElementById('menu-success');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      errorMsg.style.display = 'none';
+
+      const fd = new FormData(form);
+      const payload = {
+        name: fd.get('name'),
+        email: fd.get('email'),
+        selections: {
+          hors: fd.getAll('hors'),
+          salad: fd.get('salad'),
+          entree: fd.getAll('entree'),
+          side: fd.getAll('side'),
+        },
+        dietary: fd.get('dietary') || null,
+        form_loaded_at: parseInt(fd.get('form_loaded_at') || '0'),
+      };
+
+      if (payload.selections.hors.length < 2) { errorMsg.textContent = 'Please select 2 Hors d\'Oeuvre stations.'; errorMsg.style.display = 'block'; return; }
+      if (!payload.selections.salad) { errorMsg.textContent = 'Please select 1 salad.'; errorMsg.style.display = 'block'; return; }
+      if (payload.selections.entree.length < 1) { errorMsg.textContent = 'Please select at least 1 entrée.'; errorMsg.style.display = 'block'; return; }
+      if (payload.selections.side.length < 2) { errorMsg.textContent = 'Please select 2 side items.'; errorMsg.style.display = 'block'; return; }
+
+      try {
+        const res = await fetch('https://api.mbsh96reunion.com/menu.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Origin': 'https://mbsh96reunion.com' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (data.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          errorMsg.textContent = data.error || 'Something went wrong. Please try again.';
+          errorMsg.style.display = 'block';
+        }
+      } catch (err) {
+        errorMsg.textContent = 'Network error. Please try again.';
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
