@@ -1,5 +1,6 @@
 <?php
 // survey.php — POST endpoint for Class Survey submissions
+// Fields match the Microsoft Forms survey sent to the class.
 declare(strict_types=1);
 require_once __DIR__ . '/lib/config.php';
 require_once __DIR__ . '/lib/cors.php';
@@ -21,36 +22,42 @@ try {
   fam_rate_limit($pdo, 'survey', 60, 5);
   fam_rate_limit($pdo, 'survey_hourly', 3600, 20);
 
-  $name        = fam_required($data, 'full_name', 255);
-  $email       = fam_email($data, 'email', true);
-  $city        = fam_optional($data, 'current_city', 255);
-  $vibe        = fam_optional($data, 'reunion_vibe', 100);
-  $timing      = fam_optional($data, 'reunion_timing', 100);
-  $travel      = fam_optional($data, 'travel_method', 100);
-  $needHotel   = fam_bool($data, 'need_hotel', false);
-  $plusCount   = fam_int($data, 'plus_one_count', 0, 10, 0);
-  $plusNames   = fam_optional($data, 'plus_one_names', 500);
-  $teacher     = fam_optional($data, 'favorite_teacher', 255);
-  $memory      = fam_optional($data, 'wildest_memory', 2000);
-  $lifeUpdate  = fam_optional($data, 'life_update', 2000);
-  $dietary     = fam_optional($data, 'dietary', 1000);
-  $allergies   = fam_optional($data, 'allergies', 1000);
-  $songs       = fam_optional($data, 'song_requests', 2000);
+  $firstName       = fam_required($data, 'first_name', 100);
+  $lastName        = fam_required($data, 'last_name', 100);
+  $hsName          = fam_optional($data, 'hs_name', 255);
+  $phone           = fam_optional($data, 'phone', 50);
+  $email           = fam_email($data, 'email', true);
+  $mailingAddress  = fam_optional($data, 'mailing_address', 500);
+  $tshirtSize      = fam_optional($data, 'tshirt_size', 20);
+  $planning        = fam_optional($data, 'planning', 10);
+  $planningRole    = fam_optional($data, 'planning_role', 100);
+  $contactPref     = fam_optional($data, 'contact_pref', 50);
+  $groupme         = fam_optional($data, 'groupme', 10);
+  $classmatesPassed = fam_optional($data, 'classmates_passed', 1000);
+  $reunionMonth    = fam_optional($data, 'reunion_month', 100);
+  $duration        = fam_optional($data, 'duration', 100);
+  $daysOfWeek      = fam_optional($data, 'days_of_week', 100);
+  $reunionType     = fam_optional($data, 'reunion_type', 100);
+  $venueType       = fam_optional($data, 'venue_type', 100);
+  $budget          = fam_optional($data, 'budget', 100);
+  $openOther       = fam_optional($data, 'open_other_classes', 100);
+  $comments        = fam_optional($data, 'comments', 2000);
 
   $stmt = $pdo->prepare('INSERT INTO surveys
-    (full_name, email, current_city, reunion_vibe, reunion_timing, travel_method, need_hotel, plus_one_count, plus_one_names, favorite_teacher, wildest_memory, life_update, dietary, allergies, song_requests)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    (first_name, last_name, hs_name, phone, email, mailing_address, tshirt_size, planning, planning_role, contact_pref, groupme, classmates_passed, reunion_month, duration, days_of_week, reunion_type, venue_type, budget, open_other_classes, comments)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
   $stmt->execute([
-    $name, $email, $city, $vibe, $timing, $travel,
-    $needHotel ? 1 : 0, $plusCount, $plusNames,
-    $teacher, $memory, $lifeUpdate, $dietary, $allergies, $songs
+    $firstName, $lastName, $hsName, $phone, $email, $mailingAddress,
+    $tshirtSize, $planning, $planningRole, $contactPref, $groupme,
+    $classmatesPassed, $reunionMonth, $duration, $daysOfWeek,
+    $reunionType, $venueType, $budget, $openOther, $comments
   ]);
   $surveyId = (int)$pdo->lastInsertId();
 
   // Committee notification (best-effort)
-  $committeeHtml = "<p>New Class Survey — {$name} ({$email}).</p>";
+  $committeeHtml = "<p>New Class Survey &mdash; {$firstName} {$lastName} ({$email}).</p>";
   try {
-    fam_send_email($config, $config['committee_email'], "Survey: {$name}", $committeeHtml, 'committee');
+    fam_send_email($config, $config['committee_email'], "Survey: {$firstName} {$lastName}", $committeeHtml, 'committee');
   } catch (Throwable $e) {
     error_log('[survey] Email send failed: ' . $e->getMessage());
   }

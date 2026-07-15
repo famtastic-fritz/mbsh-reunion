@@ -16,7 +16,6 @@
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/premiere.css">
   <style>
-    /* ── Survey Landing Page — bespoke, dark, cinematic ── */
     .survey-landing { min-height: 100vh; display: flex; flex-direction: column; }
     .survey-hero {
       position: relative;
@@ -62,36 +61,6 @@
     }
     @keyframes survey-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
-    .survey-preview {
-      padding: 5rem 1.5rem; background: var(--c-off-black);
-      border-top: 1px solid rgba(248,244,236,0.06);
-    }
-    .survey-preview__inner { max-width: 56rem; margin: 0 auto; }
-    .survey-preview__title {
-      font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.25rem);
-      color: var(--c-white); text-align: center; margin-bottom: 0.75rem;
-    }
-    .survey-preview__lead {
-      font-family: var(--font-italic); font-style: italic; text-align: center;
-      color: var(--c-silver); font-size: 1.1rem; max-width: 36rem; margin: 0 auto 3rem;
-    }
-    .survey-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.25rem; }
-    .survey-card {
-      background: rgba(248,244,236,0.03); border: 1px solid rgba(248,244,236,0.06);
-      border-radius: 4px; padding: 1.75rem; transition: all 0.25s ease;
-    }
-    .survey-card:hover { border-color: rgba(200,16,46,0.25); background: rgba(248,244,236,0.045); }
-    .survey-card__num {
-      font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--c-red); margin-bottom: 0.75rem;
-    }
-    .survey-card__title {
-      font-family: var(--font-display); font-weight: 700; font-size: 1.15rem;
-      color: var(--c-white); margin-bottom: 0.5rem;
-    }
-    .survey-card__body { font-size: 0.95rem; color: var(--c-silver); line-height: 1.5; }
-
-    /* ── The Form ── */
     .survey-form-wrap {
       padding: 4rem 1.5rem; background: var(--c-off-black);
       border-top: 1px solid rgba(248,244,236,0.06);
@@ -125,6 +94,11 @@
     }
     .survey-form .field { display: block; margin-bottom: 1.25rem; }
     .survey-form .field__label {
+      display: block; font-size: 0.85rem; font-weight: 600; color: var(--c-white);
+      margin-bottom: 0.4rem; letter-spacing: 0.02em;
+    }
+    .survey-form .field__hint { font-size: 0.8rem; color: var(--c-silver); margin-top: 0.25rem; }
+    .survey-form .checkbox-row label { font-size: 0.95rem; color: var(--c-white); cursor: pointer; }
       display: block; font-size: 0.85rem; font-weight: 600; color: var(--c-off-black);
       margin-bottom: 0.4rem; letter-spacing: 0.02em;
     }
@@ -177,27 +151,8 @@
     }
     .survey-success__cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,16,46,0.5); }
 
-    .survey-results-tease {
-      padding: 4rem 1.5rem; text-align: center;
-      background: radial-gradient(ellipse at 50% 50%, rgba(200,16,46,0.08) 0%, transparent 60%);
-      border-top: 1px solid rgba(248,244,236,0.06);
-    }
-    .survey-results-tease__icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.6; }
-    .survey-results-tease__title {
-      font-family: var(--font-display); font-weight: 700; font-size: 1.5rem;
-      color: var(--c-white); margin-bottom: 0.5rem;
-    }
-    .survey-results-tease__body {
-      font-size: 1rem; color: var(--c-silver); max-width: 32rem; margin: 0 auto 1.5rem; line-height: 1.5;
-    }
-    .survey-results-tease__link {
-      display: inline-block; color: var(--c-red); font-weight: 600; font-size: 0.95rem;
-      text-decoration: underline; text-underline-offset: 3px;
-    }
-
     @media (max-width: 640px) {
       .survey-hero { padding: 6rem 1rem 3.5rem; }
-      .survey-cards { grid-template-columns: 1fr; }
       .survey-form { padding: 1.5rem; }
     }
   </style>
@@ -206,205 +161,216 @@
 
   <main class="survey-landing">
 
-    <!-- ═══ Hero ═══ -->
     <section class="survey-hero" aria-label="Class survey welcome">
       <div class="survey-hero__bg" aria-hidden="true"></div>
       <div class="survey-hero__content">
         <span class="survey-hero__scene">Scene &middot; The Head Count</span>
         <h1 class="survey-hero__headline">The Class of &rsquo;96<br><em>Survey</em></h1>
         <p class="survey-hero__sub">
-          Help the committee plan the perfect 30th reunion. Share your preferences, your whereabouts, and a few memories so we can make this night unforgettable.
+          Help the committee plan the perfect 30th reunion. Your voice shapes the night.
         </p>
         <p class="survey-hero__scroll">Scroll to begin &darr;</p>
       </div>
     </section>
 
-    <!-- ═══ Preview Cards ═══ -->
-    <section class="survey-preview" aria-label="What the survey covers">
-      <div class="survey-preview__inner">
-        <h2 class="survey-preview__title">What&rsquo;s Inside</h2>
-        <p class="survey-preview__lead">Seven quick sections — nothing invasive, everything useful.</p>
-        <div class="survey-cards">
-          <article class="survey-card">
-            <span class="survey-card__num">01 &mdash; Contact</span>
-            <h3 class="survey-card__title">Where Are You Now?</h3>
-            <p class="survey-card__body">Current city, state, email — so we know where everyone landed and how to reach you.</p>
-          </article>
-          <article class="survey-card">
-            <span class="survey-card__num">02 &mdash; Preference</span>
-            <h3 class="survey-card__title">Reunion Vibe</h3>
-            <p class="survey-card__body">What kind of night do you want? Formal? Laid-back? Day event vs. night? Your voice shapes the plan.</p>
-          </article>
-          <article class="survey-card">
-            <span class="survey-card__num">03 &mdash; Travel</span>
-            <h3 class="survey-card__title">Getting There</h3>
-            <p class="survey-card__body">Flying in or driving? Need hotel block info? We&rsquo;re gauging travel to help with logistics.</p>
-          </article>
-          <article class="survey-card">
-            <span class="survey-card__num">04 &mdash; Plus-One</span>
-            <h3 class="survey-card__title">Who&rsquo;s Coming With You?</h3>
-            <p class="survey-card__body">Spouse, partner, kids? Helps us nail the headcount and seating.</p>
-          </article>
-          <article class="survey-card">
-            <span class="survey-card__num">05 &mdash; Memories</span>
-            <h3 class="survey-card__title">Your MBSH Story</h3>
-            <p class="survey-card__body">Favorite teacher? Wildest memory? What you&rsquo;ve been up to? Fuel for the tribute reel and program.</p>
-          </article>
-          <article class="survey-card">
-            <span class="survey-card__num">06 &mdash; Menu</span>
-            <h3 class="survey-card__title">Food &amp; Drink</h3>
-            <p class="survey-card__body">Dietary restrictions, allergies, preferences — the caterer needs this, and so do we.</p>
-          </article>
-          <article class="survey-card">
-            <span class="survey-card__num">07 &mdash; Music</span>
-            <h3 class="survey-card__title">The Soundtrack</h3>
-            <p class="survey-card__body">What songs still hit? Drop your requests and we&rsquo;ll feed them to the DJ.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ Form ═══ -->
     <section class="survey-form-wrap" id="survey-form-section" aria-label="Class survey form">
       <div class="survey-form-wrap__inner">
-        <h2 class="survey-form-wrap__title">The Survey</h2>
-        <p class="survey-form-wrap__lead">Takes about 4 minutes. All fields help us plan — nothing is shared publicly without your say.</p>
+        <h2 class="survey-form-wrap__title">The Class Survey</h2>
+        <p class="survey-form-wrap__lead">All the info the committee needs to make this reunion unforgettable. Takes about 5 minutes.</p>
 
         <form class="survey-form" id="survey-form" autocomplete="on">
           <input type="text" name="website" class="rsvp-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="form_loaded_at" id="form-loaded-at">
 
-          <!-- 01 Contact -->
+          <!-- 01 Who You Are -->
           <div class="survey-form__section">
-            <span class="survey-form__section-num">01 &mdash; Contact</span>
-            <h3 class="survey-form__section-title">Where Are You Now?</h3>
+            <span class="survey-form__section-num">01 &mdash; Who You Are</span>
+            <h3 class="survey-form__section-title">Your Name</h3>
             <label class="field">
-              <span class="field__label">Full Name *</span>
-              <input class="field__input" type="text" name="full_name" required maxlength="255" placeholder="Your name then and now">
+              <span class="field__label">First Name *</span>
+              <input class="field__input" type="text" name="first_name" required maxlength="100">
+            </label>
+            <label class="field">
+              <span class="field__label">Last Name *</span>
+              <input class="field__input" type="text" name="last_name" required maxlength="100">
+            </label>
+            <label class="field">
+              <span class="field__label">Full Name in High School (if different)</span>
+              <input class="field__input" type="text" name="hs_name" maxlength="255" placeholder="Leave blank if same">
+            </label>
+          </div>
+
+          <!-- 02 Contact Info -->
+          <div class="survey-form__section">
+            <span class="survey-form__section-num">02 &mdash; Contact Info</span>
+            <h3 class="survey-form__section-title">How to Reach You</h3>
+            <label class="field">
+              <span class="field__label">Phone Number</span>
+              <input class="field__input" type="tel" name="phone" maxlength="50">
             </label>
             <label class="field">
               <span class="field__label">Email Address *</span>
-              <input class="field__input" type="email" name="email" required maxlength="255" placeholder="you@example.com">
+              <input class="field__input" type="email" name="email" required maxlength="255">
             </label>
             <label class="field">
-              <span class="field__label">Current City / State</span>
-              <input class="field__input" type="text" name="current_city" maxlength="255" placeholder="Miami, FL">
+              <span class="field__label">Mailing Address</span>
+              <textarea class="field__input" name="mailing_address" maxlength="500" placeholder="Street, City, State, ZIP"></textarea>
             </label>
           </div>
 
-          <!-- 02 Preference -->
+          <!-- 03 T-Shirt & Planning -->
           <div class="survey-form__section">
-            <span class="survey-form__section-num">02 &mdash; Preference</span>
-            <h3 class="survey-form__section-title">Reunion Vibe</h3>
+            <span class="survey-form__section-num">03 &mdash; T-Shirt &amp; Planning</span>
+            <h3 class="survey-form__section-title">Get Involved</h3>
             <label class="field">
-              <span class="field__label">What kind of night do you want?</span>
-              <select class="field__input field__select" name="reunion_vibe">
+              <span class="field__label">T-Shirt Size</span>
+              <select class="field__input field__select" name="tshirt_size">
                 <option value="">— Select —</option>
-                <option value="formal">Formal / Black Tie</option>
-                <option value="semi-formal">Semi-Formal</option>
-                <option value="business-casual">Business Casual</option>
-                <option value="laid-back">Laid-Back / Casual</option>
-                <option value="surprise">Surprise me</option>
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="XXXL">XXXL</option>
+                <option value="XXXXL">XXXXL</option>
+                <option value="XXXXXL">XXXXXL</option>
               </select>
             </label>
             <label class="field">
-              <span class="field__label">Timing preference?</span>
-              <select class="field__input field__select" name="reunion_timing">
+              <span class="field__label">Do you want to participate in planning the reunion?</span>
+              <select class="field__input field__select" name="planning">
                 <option value="">— Select —</option>
-                <option value="friday-night">Friday Night</option>
-                <option value="saturday-night">Saturday Night</option>
-                <option value="saturday-day">Saturday Day / Afternoon</option>
-                <option value="sunday-brunch">Sunday Brunch</option>
-                <option value="weekend">Full Weekend Event</option>
-                <option value="no-preference">No Preference</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Maybe">Maybe</option>
               </select>
             </label>
-          </div>
-
-          <!-- 03 Travel -->
-          <div class="survey-form__section">
-            <span class="survey-form__section-num">03 &mdash; Travel</span>
-            <h3 class="survey-form__section-title">Getting There</h3>
             <label class="field">
-              <span class="field__label">How are you getting to Miami?</span>
-              <select class="field__input field__select" name="travel_method">
+              <span class="field__label">If yes, what role are you willing to take on?</span>
+              <select class="field__input field__select" name="planning_role">
                 <option value="">— Select —</option>
-                <option value="live-local">I live in Miami / South Florida</option>
-                <option value="flying">Flying in</option>
-                <option value="driving">Driving</option>
-                <option value="train-bus">Train / Bus</option>
-                <option value="undecided">Not sure yet</option>
-              </select>
-            </label>
-            <div class="checkbox-row">
-              <input type="checkbox" id="need-hotel" name="need_hotel" value="1">
-              <label for="need-hotel">I&rsquo;ll need hotel block information</label>
-            </div>
-          </div>
-
-          <!-- 04 Plus-One -->
-          <div class="survey-form__section">
-            <span class="survey-form__section-num">04 &mdash; Plus-One</span>
-            <h3 class="survey-form__section-title">Who&rsquo;s Coming With You?</h3>
-            <label class="field">
-              <span class="field__label">How many guests besides you?</span>
-              <select class="field__input field__select" name="plus_one_count">
-                <option value="0">Just me</option>
-                <option value="1">+1</option>
-                <option value="2">+2</option>
-                <option value="3">+3</option>
-                <option value="4">+4</option>
-                <option value="5">+5</option>
+                <option value="Member">Member</option>
+                <option value="Coordinator">Coordinator</option>
+                <option value="Fundraiser">Fundraiser</option>
+                <option value="Communications">Communications</option>
+                <option value="Event Logistics">Event Logistics</option>
+                <option value="Other">Other</option>
               </select>
             </label>
             <label class="field">
-              <span class="field__label">Guest names (who&rsquo;s coming?)</span>
-              <textarea class="field__input" name="plus_one_names" maxlength="500" placeholder="Spouse, partner, kids, friends..."></textarea>
-              <span class="field__hint">Helps us with seating and name tags.</span>
+              <span class="field__label">How do you prefer to be contacted?</span>
+              <select class="field__input field__select" name="contact_pref">
+                <option value="">— Select —</option>
+                <option value="Email">Email</option>
+                <option value="Phone">Phone</option>
+                <option value="Mail">Mail</option>
+                <option value="No Preference">No Preference</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__label">Do you want to be added to the MBSH C/O 96 GroupMe?</span>
+              <select class="field__input field__select" name="groupme">
+                <option value="">— Select —</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
             </label>
           </div>
 
-          <!-- 05 Memories -->
+          <!-- 04 In Memory -->
           <div class="survey-form__section">
-            <span class="survey-form__section-num">05 &mdash; Memories</span>
-            <h3 class="survey-form__section-title">Your MBSH Story</h3>
+            <span class="survey-form__section-num">04 &mdash; In Memory</span>
+            <h3 class="survey-form__section-title">Honor Our Classmates</h3>
             <label class="field">
-              <span class="field__label">Favorite teacher or staff member?</span>
-              <input class="field__input" type="text" name="favorite_teacher" maxlength="255" placeholder="Mr. Smith, Coach Johnson, Ms. Rodriguez...">
-            </label>
-            <label class="field">
-              <span class="field__label">Wildest MBSH memory?</span>
-              <textarea class="field__input" name="wildest_memory" maxlength="2000" placeholder="The thing we still talk about at every cookout..."></textarea>
-            </label>
-            <label class="field">
-              <span class="field__label">What have you been up to since &rsquo;96?</span>
-              <textarea class="field__input" name="life_update" maxlength="2000" placeholder="Career, family, adventures, whatever you want to share..."></textarea>
-              <span class="field__hint">May be used in the program or tribute reel.</span>
+              <span class="field__label">Do you know of any former classmates who have passed away since graduation?</span>
+              <textarea class="field__input" name="classmates_passed" maxlength="1000" placeholder="Names of classmates we should honor at the reunion..."></textarea>
             </label>
           </div>
 
-          <!-- 06 Menu -->
+          <!-- 05 Reunion Preferences -->
           <div class="survey-form__section">
-            <span class="survey-form__section-num">06 &mdash; Menu</span>
-            <h3 class="survey-form__section-title">Food &amp; Drink</h3>
+            <span class="survey-form__section-num">05 &mdash; Reunion Preferences</span>
+            <h3 class="survey-form__section-title">Shape the Night</h3>
             <label class="field">
-              <span class="field__label">Dietary restrictions or preferences?</span>
-              <textarea class="field__input" name="dietary" maxlength="1000" placeholder="Vegetarian, vegan, kosher, halal, low-sodium, etc."></textarea>
+              <span class="field__label">What month should we do the reunion?</span>
+              <input class="field__input" type="text" name="reunion_month" maxlength="100" placeholder="e.g. August, September, October">
             </label>
             <label class="field">
-              <span class="field__label">Food allergies?</span>
-              <textarea class="field__input" name="allergies" maxlength="1000" placeholder="Nuts, shellfish, gluten, dairy, etc."></textarea>
+              <span class="field__label">Duration of the reunion</span>
+              <select class="field__input field__select" name="duration">
+                <option value="">— Select —</option>
+                <option value="One day">One day</option>
+                <option value="Two days">Two days</option>
+                <option value="Three days">Three days</option>
+                <option value="Open to anything">Open to anything</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__label">What day(s) of the week?</span>
+              <select class="field__input field__select" name="days_of_week">
+                <option value="">— Select —</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+                <option value="Friday & Saturday">Friday & Saturday</option>
+                <option value="Saturday & Sunday">Saturday & Sunday</option>
+                <option value="Any day">Any day</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__label">Type of reunion</span>
+              <select class="field__input field__select" name="reunion_type">
+                <option value="">— Select —</option>
+                <option value="Meet & Greet">Meet & Greet</option>
+                <option value="Prom Remake">Prom Remake</option>
+                <option value="Picnic">Picnic</option>
+                <option value="Family Fun Day">Family Fun Day</option>
+                <option value="Dinner and dancing">Dinner and dancing</option>
+                <option value="Cocktail">Cocktail</option>
+                <option value="Options Open">Options Open</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__label">Type of venue</span>
+              <select class="field__input field__select" name="venue_type">
+                <option value="">— Select —</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Club/Bar/Lounge">Club/Bar/Lounge</option>
+                <option value="Park">Park</option>
+                <option value="Banquet hall">Banquet hall</option>
+                <option value="High school">High school</option>
+                <option value="Any of the above">Any of the above</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__label">Estimated budget per person</span>
+              <select class="field__input field__select" name="budget">
+                <option value="">— Select —</option>
+                <option value="$50-$75">$50–$75</option>
+                <option value="$75-$100">$75–$100</option>
+                <option value="$100-$150">$100–$150</option>
+                <option value="Any of the above">Any of the above</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__label">Should it be open to other MBSH graduating classes?</span>
+              <select class="field__input field__select" name="open_other_classes">
+                <option value="">— Select —</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Maybe">Maybe</option>
+              </select>
             </label>
           </div>
 
-          <!-- 07 Music -->
+          <!-- 06 Comments -->
           <div class="survey-form__section">
-            <span class="survey-form__section-num">07 &mdash; Music</span>
-            <h3 class="survey-form__section-title">The Soundtrack</h3>
+            <span class="survey-form__section-num">06 &mdash; Final Thoughts</span>
+            <h3 class="survey-form__section-title">Anything Else?</h3>
             <label class="field">
-              <span class="field__label">Song requests for the DJ?</span>
-              <textarea class="field__input" name="song_requests" maxlength="2000" placeholder="Drop the tracks that still hit. One per line is fine."></textarea>
-              <span class="field__hint">We&rsquo;re curating the playlist from all submissions.</span>
+              <span class="field__label">Questions, comments, ideas, or suggestions?</span>
+              <textarea class="field__input" name="comments" maxlength="2000" placeholder="Drop your ideas here... 90s theme? Alumni DJ? Let us know."></textarea>
             </label>
           </div>
 
@@ -412,7 +378,6 @@
           <p class="survey-form__status" id="survey-status" aria-live="polite"></p>
         </form>
 
-        <!-- Success state -->
         <div class="survey-success" id="survey-success" aria-hidden="true">
           <div class="survey-success__icon" aria-hidden="true">&#127881;</div>
           <h3 class="survey-success__title">You&rsquo;re on the list.</h3>
@@ -422,19 +387,8 @@
       </div>
     </section>
 
-    <!-- ═══ Live Results Tease ═══ -->
-    <section class="survey-results-tease" aria-label="Live results dashboard">
-      <div class="survey-results-tease__icon" aria-hidden="true">&#128200;</div>
-      <h2 class="survey-results-tease__title">Results in Real Time</h2>
-      <p class="survey-results-tease__body">
-        The committee can see responses as they come in. Want to know what the class is saying?
-      </p>
-      <a class="survey-results-tease__link" href="admin-survey.html">View the live dashboard &rarr;</a>
-    </section>
-
   </main>
 
-  <!-- ═══ Compass Nav ═══ -->
   <nav class="compass-nav" aria-label="Site navigation">
     <button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items">
       <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -456,7 +410,6 @@
     </ul>
   </nav>
 
-  <!-- ═══ Chatbot ═══ -->
   <div class="chatbot" id="chatbot" aria-label="Hi-Tide Harry chat">
     <button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open Hi-Tide Harry chat">
       <img src="assets/mascot/06-listening.png" alt="" width="64" height="64" aria-hidden="true">
@@ -475,7 +428,6 @@
     </div>
   </div>
 
-  <!-- ═══ Footer ═══ -->
   <footer class="footer" data-template="footer">
     <div class="footer__inner">
       <div class="footer__col footer__col--identity">
@@ -507,8 +459,6 @@
         submitBtn.textContent = 'Sending...';
 
         const data = Object.fromEntries(new FormData(form));
-        data.need_hotel = data.need_hotel === '1';
-        data.plus_one_count = parseInt(data.plus_one_count || '0', 10);
 
         try {
           const res = await fetch('https://api.mbsh96reunion.com/survey.php', {

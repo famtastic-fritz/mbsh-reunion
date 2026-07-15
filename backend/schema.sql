@@ -154,23 +154,34 @@ CREATE TABLE IF NOT EXISTS menu_selections (
   INDEX idx_email (email)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS surveys (
+-- ==========================================================
+-- SURVEYS TABLE — Matches Microsoft Forms survey fields
+-- ==========================================================
+DROP TABLE IF EXISTS surveys;
+CREATE TABLE surveys (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  full_name VARCHAR(255) NOT NULL,
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
+  hs_name VARCHAR(255) DEFAULT NULL,
+  phone VARCHAR(50) DEFAULT NULL,
   email VARCHAR(255) NOT NULL,
-  current_city VARCHAR(255) DEFAULT NULL,
-  reunion_vibe VARCHAR(100) DEFAULT NULL,
-  reunion_timing VARCHAR(100) DEFAULT NULL,
-  travel_method VARCHAR(100) DEFAULT NULL,
-  need_hotel BOOLEAN DEFAULT FALSE,
-  plus_one_count INT DEFAULT 0,
-  plus_one_names TEXT DEFAULT NULL,
-  favorite_teacher VARCHAR(255) DEFAULT NULL,
-  wildest_memory TEXT DEFAULT NULL,
-  life_update TEXT DEFAULT NULL,
-  dietary TEXT DEFAULT NULL,
-  allergies TEXT DEFAULT NULL,
-  song_requests TEXT DEFAULT NULL,
+  mailing_address TEXT DEFAULT NULL,
+  tshirt_size VARCHAR(20) DEFAULT NULL,
+  planning ENUM('Yes','No','Maybe') DEFAULT NULL,
+  planning_role VARCHAR(100) DEFAULT NULL,
+  contact_pref ENUM('Email','Phone','Mail','No Preference') DEFAULT NULL,
+  groupme ENUM('Yes','No') DEFAULT NULL,
+  classmates_passed TEXT DEFAULT NULL,
+  reunion_month VARCHAR(100) DEFAULT NULL,
+  duration VARCHAR(255) DEFAULT NULL,
+  days_of_week VARCHAR(255) DEFAULT NULL,
+  reunion_type VARCHAR(500) DEFAULT NULL,
+  venue_type VARCHAR(500) DEFAULT NULL,
+  budget VARCHAR(255) DEFAULT NULL,
+  open_other_classes VARCHAR(255) DEFAULT NULL,
+  comments TEXT DEFAULT NULL,
+  is_imported BOOLEAN DEFAULT FALSE,
+  imported_at TIMESTAMP NULL DEFAULT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   INDEX idx_email (email),
   INDEX idx_created (created_at)
