@@ -154,4 +154,49 @@ textarea.field__input { resize: vertical; min-height: 4rem; }
 .error-page__title { font-family: var(--font-display); font-weight: 900; font-size: clamp(2rem, 5vw, 3rem); margin: 0; }
 .error-page__msg { font-family: var(--font-italic); font-style: italic; font-size: 1.25rem; color: var(--c-off-black); }
 .error-page__cta { background: var(--c-red); color: var(--c-white); padding: 1rem 2rem; border-radius: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
-.error-page__cta:hover { background: var(--c-red-deep); color: var(--c-white); }
+/* ── Form contrast fix: override premiere theme for light-background forms ── */
+.rsvp-form .field__label,
+.memory-form .field__label,
+.capsule__envelope .field__label,
+.playlist-suggest .field__label,
+.sponsor-form .field__label {
+  color: var(--c-off-black) !important;
+}
+
+.rsvp-form .field__input,
+.memory-form .field__input,
+.capsule__envelope .field__input,
+.playlist-suggest .field__input,
+.sponsor-form .field__input,
+.sponsor-form select {
+  color: var(--c-off-black) !important;
+  background: var(--c-white) !important;
+  border-color: rgba(10,10,10,0.18) !important;
+}
+
+.rsvp-form .field__input::placeholder,
+.memory-form .field__input::placeholder,
+.capsule__envelope .field__input::placeholder,
+.playlist-suggest .field__input::placeholder,
+.sponsor-form .field__input::placeholder {
+  color: var(--c-silver-dark) !important;
+  opacity: 1 !important;
+}
+
+.rsvp-form .field__input:focus,
+.memory-form .field__input:focus,
+.capsule__envelope .field__input:focus,
+.playlist-suggest .field__input:focus,
+.sponsor-form .field__input:focus {
+  border-color: var(--c-red) !important;
+  box-shadow: 0 0 0 3px rgba(200,16,46,0.15) !important;
+}
+
+/* Ensure consent text is readable on light forms too */
+.rsvp-form__consent,
+.memory-form__consent,
+.capsule-form__consent,
+.sponsor-form__consent {
+  color: var(--c-off-black) !important;
+  opacity: 0.75 !important;
+}
