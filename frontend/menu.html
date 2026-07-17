@@ -128,8 +128,6 @@
       <li role="none"><a href="tickets.html" role="menuitem">Tickets</a></li>
       <li role="none"><a href="menu.html" role="menuitem">Menu</a></li>
       <li role="none"><a href="survey.html" role="menuitem">Survey</a></li>
-      <li role="none"><a href="menu.html" role="menuitem">Menu</a></li>
-      <li role="none"><a href="survey.html" role="menuitem">Survey</a></li>
       <li role="none"><a href="through-years.html" role="menuitem">Through the Years</a></li>
       <li role="none"><a href="memorial.html" role="menuitem">In Memory</a></li>
       <li role="none"><a href="capsule.html" role="menuitem">Time Capsule</a></li>
@@ -189,10 +187,10 @@
         form_loaded_at: parseInt(fd.get('form_loaded_at') || '0'),
       };
 
-      if (payload.selections.hors.length < 2) { errorMsg.textContent = 'Please select 2 Hors d\'Oeuvre stations.'; errorMsg.style.display = 'block'; return; }
+      if (payload.selections.hors.length !== 2) { errorMsg.textContent = 'Please select exactly 2 Hors d\'Oeuvre stations.'; errorMsg.style.display = 'block'; return; }
       if (!payload.selections.salad) { errorMsg.textContent = 'Please select 1 salad.'; errorMsg.style.display = 'block'; return; }
-      if (payload.selections.entree.length < 1) { errorMsg.textContent = 'Please select at least 1 entrée.'; errorMsg.style.display = 'block'; return; }
-      if (payload.selections.side.length < 2) { errorMsg.textContent = 'Please select 2 side items.'; errorMsg.style.display = 'block'; return; }
+      if (payload.selections.entree.length < 1 || payload.selections.entree.length > 2) { errorMsg.textContent = 'Please select 1 or 2 entrées.'; errorMsg.style.display = 'block'; return; }
+      if (payload.selections.side.length !== 2) { errorMsg.textContent = 'Please select exactly 2 side items.'; errorMsg.style.display = 'block'; return; }
 
       try {
         const res = await fetch('https://api.mbsh96reunion.com/menu.php', {
