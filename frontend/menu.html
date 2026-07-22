@@ -28,8 +28,31 @@
     .menu-option .upcharge { color: var(--c-red); font-weight: 600; font-size: 0.85rem; }
     .menu-success { background: var(--c-white); padding: var(--space-2xl); border-radius: 4px; box-shadow: 0 4px 32px rgba(10,10,10,0.08); text-align: center; display: none; }
     .menu-success h2 { font-family: var(--font-display); font-weight: 700; color: var(--c-red); margin: 0 0 var(--space-md); }
-    .menu-success p { font-family: var(--font-italic); font-style: italic; color: var(--c-off-black); margin: 0; }
+    .menu-success p { font-family: var(--font-italic); font-style: italic; color: var(--c-off-black); margin: 0 0 var(--space-sm); }
+    .menu-success__email-note { font-size: 0.95rem; color: var(--c-silver-dark); margin-top: var(--space-md); }
+    .menu-success__selections { text-align: left; max-width: 32rem; margin: var(--space-lg) auto 0; background: var(--c-cream); padding: var(--space-lg); border-radius: 4px; }
+    .menu-success__selections h3 { font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin: 0 0 var(--space-sm); color: var(--c-off-black); }
+    .menu-success__selections ul { margin: 0; padding-left: 1.2rem; color: var(--c-off-black); font-size: 0.95rem; line-height: 1.6; }
     .error-msg { color: #c62828; background: #ffebee; padding: 0.75rem 1rem; border-radius: 3px; margin-bottom: 1rem; display: none; }
+
+    /* Failsafe: force dark labels inside the white menu form regardless of any theme */
+    body[data-premiere="on"] .menu-form .field__label,
+    body[data-premiere="on"] .menu-form .menu-course__title,
+    body[data-premiere="on"] .menu-form .menu-course__rule,
+    body[data-premiere="on"] .menu-form .menu-option label,
+    body[data-premiere="on"] .menu-form .error-msg,
+    body[data-premiere="on"] .menu-form .rsvp-form__consent {
+      color: var(--c-off-black) !important;
+    }
+    body[data-premiere="on"] .menu-form .field__input {
+      color: var(--c-off-black) !important;
+      background: var(--c-white) !important;
+      border-color: rgba(10,10,10,0.18) !important;
+    }
+    body[data-premiere="on"] .menu-form .field__input::placeholder {
+      color: var(--c-silver-dark) !important;
+      opacity: 1 !important;
+    }
   </style>
 </head>
 <body data-page="menu" data-premiere="on">
@@ -45,11 +68,11 @@
 
       <form class="menu-form" id="menu-form">
         <div class="field">
-          <span class="field__label">Your Name *</span>
+          <span class="field__label" style="color:var(--c-off-black)">Your Name *</span>
           <input class="field__input" type="text" name="name" required maxlength="200">
         </div>
         <div class="field">
-          <span class="field__label">Email Address *</span>
+          <span class="field__label" style="color:var(--c-off-black)">Email Address *</span>
           <input class="field__input" type="email" name="email" required maxlength="255">
         </div>
 
@@ -114,6 +137,8 @@
       <div class="menu-success" id="menu-success">
         <h2>Preferences Submitted!</h2>
         <p>Thank you for helping us plan the perfect dinner. The committee will review all selections before finalizing the menu.</p>
+        <p class="menu-success__email-note">A confirmation email has been sent to your inbox with a copy of your selections.</p>
+        <div class="menu-success__selections" id="menu-success-details"></div>
       </div>
     </div>
   </main>
@@ -168,6 +193,7 @@
     const form = document.getElementById('menu-form');
     const errorMsg = document.getElementById('error-msg');
     const successMsg = document.getElementById('menu-success');
+    const successDetails = document.getElementById('menu-success-details');
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -202,8 +228,19 @@
         if (data.ok) {
           form.style.display = 'none';
           successMsg.style.display = 'block';
+          // Show selection summary in success state
+          successDetails.innerHTML = `
+            <h3>Your Selections</h3>
+            <ul>
+              <li><strong>Hors d'Oeuvre:</strong> ${payload.selections.hors.join(', ')}</li>
+              <li><strong>Salad:</strong> ${payload.selections.salad}</li>
+              <li><strong>Entrée:</strong> ${payload.selections.entree.join(', ')}</li>
+              <li><strong>Sides:</strong> ${payload.selections.side.join(', ')}</li>
+              ${payload.dietary ? `<li><strong>Dietary:</strong> ${payload.dietary}</li>` : ''}
+            </ul>
+          `;
         } else {
-          errorMsg.textContent = data.error || 'Something went wrong. Please try again.';
+          errorMsg.textContent = (data.messages && data.messages.join) ? data.messages.join(' ') : (data.error || 'Something went wrong. Please try again.');
           errorMsg.style.display = 'block';
         }
       } catch (err) {
