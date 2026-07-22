@@ -75,18 +75,18 @@
       color: var(--c-silver); font-size: 1.1rem; max-width: 32rem; margin: 0 auto 2.5rem;
     }
     .survey-form {
-      background: rgba(248,244,236,0.03); border: 1px solid rgba(248,244,236,0.06);
+      background: var(--c-white); border: 1px solid rgba(10,10,10,0.08);
       border-radius: 4px; padding: 2.5rem;
     }
     .survey-form__section {
       margin-bottom: 2.5rem;
       padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(248,244,236,0.06);
+      border-bottom: 1px solid rgba(10,10,10,0.08);
     }
     .survey-form__section:last-of-type { border-bottom: none; margin-bottom: 1.5rem; }
     .survey-form__section-title {
       font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
-      color: var(--c-white); margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--c-off-black); margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em;
     }
     .survey-form__section-num {
       font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em;
@@ -94,10 +94,10 @@
     }
     .survey-form .field { display: block; margin-bottom: 1.25rem; }
     .survey-form .field__label {
-      display: block; font-size: 0.85rem; font-weight: 600; color: var(--c-white);
+      display: block; font-size: 0.85rem; font-weight: 600; color: var(--c-off-black);
       margin-bottom: 0.4rem; letter-spacing: 0.02em;
     }
-    .survey-form .field__hint { font-size: 0.8rem; color: var(--c-silver); margin-top: 0.25rem; }
+    .survey-form .field__hint { font-size: 0.8rem; color: var(--c-silver-dark); margin-top: 0.25rem; }
     .survey-form .field__input,
     .survey-form .field__select {
       width: 100%; padding: 0.75rem 1rem; font-size: 1rem; font-family: inherit;
@@ -111,12 +111,11 @@
       box-shadow: 0 0 0 3px rgba(200,16,46,0.15);
     }
     .survey-form textarea.field__input { min-height: 5rem; resize: vertical; }
-    .survey-form .field__hint { font-size: 0.8rem; color: var(--c-silver-dark); margin-top: 0.25rem; }
     .survey-form .checkbox-row {
       display: flex; align-items: center; gap: 0.75rem; margin: 1rem 0;
     }
     .survey-form .checkbox-row input { width: 1.1rem; height: 1.1rem; accent-color: var(--c-red); }
-    .survey-form .checkbox-row label { font-size: 0.95rem; color: var(--c-white); cursor: pointer; }
+    .survey-form .checkbox-row label { font-size: 0.95rem; color: var(--c-off-black); cursor: pointer; }
     .survey-form__submit {
       display: block; width: 100%; padding: 1.1rem; background: var(--c-red); color: var(--c-white);
       font-family: var(--font-body); font-weight: 700; font-size: 1.05rem; text-transform: uppercase;
@@ -126,18 +125,19 @@
     .survey-form__submit:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,16,46,0.5); }
     .survey-form__submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
     .survey-form__status { margin-top: 1rem; font-size: 0.95rem; text-align: center; min-height: 1.5rem; }
-    .survey-form__status--error { color: var(--c-red); }
+    .survey-form__status--error { color: #c62828; }
     .survey-form__status--ok { color: #2a9d3a; }
 
     .survey-success {
       display: none; text-align: center; padding: 4rem 1.5rem;
+      background: var(--c-white); border-radius: 4px;
     }
     .survey-success__icon { font-size: 3rem; margin-bottom: 1rem; }
     .survey-success__title {
       font-family: var(--font-display); font-weight: 700; font-size: 1.75rem;
-      color: var(--c-white); margin-bottom: 0.5rem;
+      color: var(--c-off-black); margin-bottom: 0.5rem;
     }
-    .survey-success__body { font-size: 1.05rem; color: var(--c-silver); max-width: 32rem; margin: 0 auto 1.5rem; line-height: 1.5; }
+    .survey-success__body { font-size: 1.05rem; color: var(--c-silver-dark); max-width: 32rem; margin: 0 auto 1.5rem; line-height: 1.5; }
     .survey-success__cta {
       display: inline-flex; align-items: center; gap: 0.75rem;
       background: var(--c-red); color: var(--c-white);
@@ -146,6 +146,32 @@
       box-shadow: 0 8px 32px rgba(200,16,46,0.35); transition: all 0.25s ease;
     }
     .survey-success__cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,16,46,0.5); }
+
+    /* Failsafe: force dark labels inside the white form regardless of any theme */
+    body[data-premiere="on"] .survey-form .field__label,
+    body[data-premiere="on"] .survey-form .survey-form__section-title,
+    body[data-premiere="on"] .survey-form .survey-form__section-num,
+    body[data-premiere="on"] .survey-form .checkbox-row label,
+    body[data-premiere="on"] .survey-form .survey-form__status {
+      color: var(--c-off-black) !important;
+    }
+    body[data-premiere="on"] .survey-form .field__hint {
+      color: var(--c-silver-dark) !important;
+    }
+    body[data-premiere="on"] .survey-form .field__input,
+    body[data-premiere="on"] .survey-form .field__select {
+      color: var(--c-off-black) !important;
+      background: var(--c-white) !important;
+      border-color: rgba(10,10,10,0.18) !important;
+    }
+    body[data-premiere="on"] .survey-form .field__input::placeholder {
+      color: var(--c-silver-dark) !important;
+      opacity: 1 !important;
+    }
+    body[data-premiere="on"] .survey-success__title,
+    body[data-premiere="on"] .survey-success__body {
+      color: var(--c-off-black) !important;
+    }
 
     @media (max-width: 640px) {
       .survey-hero { padding: 6rem 1rem 3.5rem; }
@@ -183,15 +209,15 @@
             <span class="survey-form__section-num">01 &mdash; Who You Are</span>
             <h3 class="survey-form__section-title">Your Name</h3>
             <label class="field">
-              <span class="field__label">First Name *</span>
+              <span class="field__label" style="color:var(--c-off-black)">First Name *</span>
               <input class="field__input" type="text" name="first_name" required maxlength="100">
             </label>
             <label class="field">
-              <span class="field__label">Last Name *</span>
+              <span class="field__label" style="color:var(--c-off-black)">Last Name *</span>
               <input class="field__input" type="text" name="last_name" required maxlength="100">
             </label>
             <label class="field">
-              <span class="field__label">Full Name in High School (if different)</span>
+              <span class="field__label" style="color:var(--c-off-black)">Full Name in High School (if different)</span>
               <input class="field__input" type="text" name="hs_name" maxlength="255" placeholder="Leave blank if same">
             </label>
           </div>
@@ -201,15 +227,15 @@
             <span class="survey-form__section-num">02 &mdash; Contact Info</span>
             <h3 class="survey-form__section-title">How to Reach You</h3>
             <label class="field">
-              <span class="field__label">Phone Number</span>
+              <span class="field__label" style="color:var(--c-off-black)">Phone Number</span>
               <input class="field__input" type="tel" name="phone" maxlength="50">
             </label>
             <label class="field">
-              <span class="field__label">Email Address *</span>
+              <span class="field__label" style="color:var(--c-off-black)">Email Address *</span>
               <input class="field__input" type="email" name="email" required maxlength="255">
             </label>
             <label class="field">
-              <span class="field__label">Mailing Address</span>
+              <span class="field__label" style="color:var(--c-off-black)">Mailing Address</span>
               <textarea class="field__input" name="mailing_address" maxlength="500" placeholder="Street, City, State, ZIP"></textarea>
             </label>
           </div>
@@ -219,7 +245,7 @@
             <span class="survey-form__section-num">03 &mdash; T-Shirt &amp; Planning</span>
             <h3 class="survey-form__section-title">Get Involved</h3>
             <label class="field">
-              <span class="field__label">T-Shirt Size</span>
+              <span class="field__label" style="color:var(--c-off-black)">T-Shirt Size</span>
               <select class="field__input field__select" name="tshirt_size">
                 <option value="">— Select —</option>
                 <option value="XS">XS</option>
@@ -234,7 +260,7 @@
               </select>
             </label>
             <label class="field">
-              <span class="field__label">Do you want to participate in planning the reunion?</span>
+              <span class="field__label" style="color:var(--c-off-black)">Do you want to participate in planning the reunion?</span>
               <select class="field__input field__select" name="planning">
                 <option value="">— Select —</option>
                 <option value="Yes">Yes</option>
@@ -243,7 +269,7 @@
               </select>
             </label>
             <label class="field">
-              <span class="field__label">If yes, what role are you willing to take on?</span>
+              <span class="field__label" style="color:var(--c-off-black)">If yes, what role are you willing to take on?</span>
               <select class="field__input field__select" name="planning_role">
                 <option value="">— Select —</option>
                 <option value="Member">Member</option>
@@ -255,7 +281,7 @@
               </select>
             </label>
             <label class="field">
-              <span class="field__label">How do you prefer to be contacted?</span>
+              <span class="field__label" style="color:var(--c-off-black)">How do you prefer to be contacted?</span>
               <select class="field__input field__select" name="contact_pref">
                 <option value="">— Select —</option>
                 <option value="Email">Email</option>
@@ -265,7 +291,7 @@
               </select>
             </label>
             <label class="field">
-              <span class="field__label">Do you want to be added to the MBSH C/O 96 GroupMe?</span>
+              <span class="field__label" style="color:var(--c-off-black)">Do you want to be added to the MBSH C/O 96 GroupMe?</span>
               <select class="field__input field__select" name="groupme">
                 <option value="">— Select —</option>
                 <option value="Yes">Yes</option>
@@ -279,7 +305,7 @@
             <span class="survey-form__section-num">04 &mdash; In Memory</span>
             <h3 class="survey-form__section-title">Honor Our Classmates</h3>
             <label class="field">
-              <span class="field__label">Do you know of any former classmates who have passed away since graduation?</span>
+              <span class="field__label" style="color:var(--c-off-black)">Do you know of any former classmates who have passed away since graduation?</span>
               <textarea class="field__input" name="classmates_passed" maxlength="1000" placeholder="Names of classmates we should honor at the reunion..."></textarea>
             </label>
           </div>
@@ -289,11 +315,11 @@
             <span class="survey-form__section-num">05 &mdash; Reunion Preferences</span>
             <h3 class="survey-form__section-title">Shape the Night</h3>
             <label class="field">
-              <span class="field__label">What month should we do the reunion?</span>
+              <span class="field__label" style="color:var(--c-off-black)">What month should we do the reunion?</span>
               <input class="field__input" type="text" name="reunion_month" maxlength="100" placeholder="e.g. August, September, October">
             </label>
             <label class="field">
-              <span class="field__label">Duration of the reunion</span>
+              <span class="field__label" style="color:var(--c-off-black)">Duration of the reunion</span>
               <select class="field__input field__select" name="duration">
                 <option value="">— Select —</option>
                 <option value="One day">One day</option>
@@ -303,7 +329,7 @@
               </select>
             </label>
             <label class="field">
-              <span class="field__label">What day(s) of the week?</span>
+              <span class="field__label" style="color:var(--c-off-black)">What day(s) of the week?</span>
               <select class="field__input field__select" name="days_of_week">
                 <option value="">— Select —</option>
                 <option value="Friday">Friday</option>
@@ -315,7 +341,7 @@
               </select>
             </label>
             <label class="field">
-              <span class="field__label">Type of reunion</span>
+              <span class="field__label" style="color:var(--c-off-black)">Type of reunion</span>
               <select class="field__input field__select" name="reunion_type">
                 <option value="">— Select —</option>
                 <option value="Meet & Greet">Meet & Greet</option>
@@ -328,7 +354,7 @@
               </select>
             </label>
             <label class="field">
-              <span class="field__label">Type of venue</span>
+              <span class="field__label" style="color:var(--c-off-black)">Type of venue</span>
               <select class="field__input field__select" name="venue_type">
                 <option value="">— Select —</option>
                 <option value="Hotel">Hotel</option>
@@ -340,7 +366,7 @@
               </select>
             </label>
             <label class="field">
-              <span class="field__label">Estimated budget per person</span>
+              <span class="field__label" style="color:var(--c-off-black)">Estimated budget per person</span>
               <select class="field__input field__select" name="budget">
                 <option value="">— Select —</option>
                 <option value="$50-$75">$50–$75</option>
@@ -350,7 +376,7 @@
               </select>
             </label>
             <label class="field">
-              <span class="field__label">Should it be open to other MBSH graduating classes?</span>
+              <span class="field__label" style="color:var(--c-off-black)">Should it be open to other MBSH graduating classes?</span>
               <select class="field__input field__select" name="open_other_classes">
                 <option value="">— Select —</option>
                 <option value="Yes">Yes</option>
@@ -365,7 +391,7 @@
             <span class="survey-form__section-num">06 &mdash; Final Thoughts</span>
             <h3 class="survey-form__section-title">Anything Else?</h3>
             <label class="field">
-              <span class="field__label">Questions, comments, ideas, or suggestions?</span>
+              <span class="field__label" style="color:var(--c-off-black)">Questions, comments, ideas, or suggestions?</span>
               <textarea class="field__input" name="comments" maxlength="2000" placeholder="Drop your ideas here... 90s theme? Alumni DJ? Let us know."></textarea>
             </label>
           </div>
@@ -398,7 +424,8 @@
       <li role="none"><a href="rsvp.html" role="menuitem">RSVP</a></li>
       <li role="none"><a href="tickets.html" role="menuitem">Tickets</a></li>
       <li role="none"><a href="menu.html" role="menuitem">Menu</a></li>
-      <li role="none"><a href="survey.html" role="menuitem" aria-current="page">Survey</a></li>
+      <li role="none"><a href="survey2.html" role="menuitem">Quick RSVP</a></li>
+      <li role="none"><a href="survey.html" role="menuitem" aria-current="page">Full Survey</a></li>
       <li role="none"><a href="through-years.html" role="menuitem">Through the Years</a></li>
       <li role="none"><a href="memorial.html" role="menuitem">In Memory</a></li>
       <li role="none"><a href="capsule.html" role="menuitem">Time Capsule</a></li>
