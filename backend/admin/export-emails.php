@@ -80,6 +80,65 @@ if ($source === 'rsvps') {
       $row['created_at']
     ]);
   }
+} elseif ($source === 'historical_missing_rsvp' || $source === 'historical_missing_menu') {
+  fputcsv($output, ['First Name', 'Last Name', 'HS Name', 'Email', 'Phone', 'Mailing Address', 'Preferred Reunion Month', 'Budget', 'Comments', 'Imported At', 'Survey Row Count', 'RSVP Created At', 'Menu Created At']);
+  $whereClause = $source === 'historical_missing_menu'
+    ? 'm.menu_created_at IS NULL'
+    : 'r.rsvp_created_at IS NULL';
+  $sql = <<<SQL
+SELECT h.*, r.rsvp_created_at, m.menu_created_at
+FROM (
+  SELECT
+    LOWER(TRIM(email)) AS email_key,
+    MAX(NULLIF(first_name, '')) AS first_name,
+    MAX(NULLIF(last_name, '')) AS last_name,
+    MAX(NULLIF(hs_name, '')) AS hs_name,
+    MAX(NULLIF(phone, '')) AS phone,
+    MAX(NULLIF(mailing_address, '')) AS mailing_address,
+    MAX(NULLIF(reunion_month, '')) AS reunion_month,
+    MAX(NULLIF(budget, '')) AS budget,
+    MAX(NULLIF(comments, '')) AS comments,
+    MAX(imported_at) AS imported_at,
+    COUNT(*) AS survey_row_count
+  FROM surveys
+  WHERE is_imported = 1
+    AND email IS NOT NULL
+    AND TRIM(email) <> ''
+  GROUP BY LOWER(TRIM(email))
+) h
+LEFT JOIN (
+  SELECT LOWER(TRIM(email)) AS email_key, MAX(created_at) AS rsvp_created_at
+  FROM rsvps
+  WHERE email IS NOT NULL AND TRIM(email) <> ''
+  GROUP BY LOWER(TRIM(email))
+) r ON r.email_key = h.email_key
+LEFT JOIN (
+  SELECT LOWER(TRIM(email)) AS email_key, MAX(created_at) AS menu_created_at
+  FROM menu_selections
+  WHERE email IS NOT NULL AND TRIM(email) <> ''
+  GROUP BY LOWER(TRIM(email))
+) m ON m.email_key = h.email_key
+WHERE {$whereClause}
+ORDER BY COALESCE(NULLIF(h.last_name, ''), NULLIF(h.hs_name, ''), h.email_key), COALESCE(NULLIF(h.first_name, ''), h.email_key)
+SQL;
+  $stmt = $pdo->query($sql);
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    fputcsv($output, [
+      $row['first_name'] ?? '',
+      $row['last_name'] ?? '',
+      $row['hs_name'] ?? '',
+      $row['email_key'] ?? '',
+      $row['phone'] ?? '',
+      $row['mailing_address'] ?? '',
+      $row['reunion_month'] ?? '',
+      $row['budget'] ?? '',
+      $row['comments'] ?? '',
+      $row['imported_at'] ?? '',
+      $row['survey_row_count'] ?? 0,
+      $row['rsvp_created_at'] ?? '',
+      $row['menu_created_at'] ?? '',
+    ]);
+  }
 }
 
 fclose($output);

@@ -40,6 +40,9 @@ foreach ($menuRows as $json) {
 
 $surveyBudget = $pdo->query("SELECT budget, COUNT(*) AS total FROM surveys WHERE budget IS NOT NULL AND budget <> '' GROUP BY budget ORDER BY total DESC")->fetchAll();
 $surveyMonths = $pdo->query("SELECT reunion_month, COUNT(*) AS total FROM surveys WHERE reunion_month IS NOT NULL AND reunion_month <> '' GROUP BY reunion_month ORDER BY total DESC")->fetchAll();
+$historicalContacts = (int)$pdo->query("SELECT COUNT(*) FROM (SELECT LOWER(TRIM(email)) AS email_key FROM surveys WHERE is_imported = 1 AND email IS NOT NULL AND TRIM(email) <> '' GROUP BY LOWER(TRIM(email))) historical_contacts")->fetchColumn();
+$historicalMissingRsvp = (int)$pdo->query("SELECT COUNT(*) FROM (SELECT LOWER(TRIM(s.email)) AS email_key FROM surveys s LEFT JOIN (SELECT LOWER(TRIM(email)) AS email_key FROM rsvps WHERE email IS NOT NULL AND TRIM(email) <> '' GROUP BY LOWER(TRIM(email))) r ON r.email_key = LOWER(TRIM(s.email)) WHERE s.is_imported = 1 AND s.email IS NOT NULL AND TRIM(s.email) <> '' AND r.email_key IS NULL GROUP BY LOWER(TRIM(s.email))) missing_rsvp")->fetchColumn();
+$historicalMissingMenu = (int)$pdo->query("SELECT COUNT(*) FROM (SELECT LOWER(TRIM(s.email)) AS email_key FROM surveys s LEFT JOIN (SELECT LOWER(TRIM(email)) AS email_key FROM menu_selections WHERE email IS NOT NULL AND TRIM(email) <> '' GROUP BY LOWER(TRIM(email))) m ON m.email_key = LOWER(TRIM(s.email)) WHERE s.is_imported = 1 AND s.email IS NOT NULL AND TRIM(s.email) <> '' AND m.email_key IS NULL GROUP BY LOWER(TRIM(s.email))) missing_menu")->fetchColumn();
 ?><!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reports — MBSH Admin</title>
@@ -59,7 +62,11 @@ h1,h2{font-family:Georgia,serif;margin:0}
   <div class="actions">
     <a href="dashboard.php">&larr; Dashboard</a>
     <a href="menu-results.php">Menu results</a>
+    <a href="follow-up.php?type=rsvp">Missing RSVP</a>
+    <a href="follow-up.php?type=menu">Missing menu</a>
     <a href="export-emails.php?source=menu">Export menu CSV</a>
+    <a href="export-emails.php?source=historical_missing_rsvp">Export missing RSVP</a>
+    <a href="export-emails.php?source=historical_missing_menu">Export missing menu</a>
   </div>
 </header>
 
@@ -72,6 +79,9 @@ h1,h2{font-family:Georgia,serif;margin:0}
     <div class="card"><div class="num"><?= $menuSummary['total'] ?? 0 ?></div><div class="label">Menu submissions</div></div>
     <div class="card"><div class="num"><?= $menuSummary['submitter_sent'] ?? 0 ?></div><div class="label">Submitter emails sent</div></div>
     <div class="card"><div class="num"><?= $menuSummary['submitter_failed'] ?? 0 ?></div><div class="label">Submitter emails failed</div></div>
+    <div class="card"><div class="num"><?= $historicalContacts ?></div><div class="label">Historical contacts</div></div>
+    <div class="card"><div class="num"><?= $historicalMissingRsvp ?></div><div class="label">Historical contacts missing RSVP</div></div>
+    <div class="card"><div class="num"><?= $historicalMissingMenu ?></div><div class="label">Historical contacts missing menu</div></div>
   </div>
 </div>
 

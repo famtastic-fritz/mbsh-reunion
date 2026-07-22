@@ -20,6 +20,9 @@ $counts = [
   'capsules_queued'=> (int)$pdo->query("SELECT COUNT(*) FROM time_capsules WHERE sent_at IS NULL")->fetchColumn(),
   'chatbot_total'  => (int)$pdo->query("SELECT COUNT(*) FROM chatbot_questions")->fetchColumn(),
   'chatbot_unresponded' => (int)$pdo->query("SELECT COUNT(*) FROM chatbot_questions WHERE responded=0 AND was_fallback=1")->fetchColumn(),
+  'historical_contacts' => (int)$pdo->query("SELECT COUNT(*) FROM (SELECT LOWER(TRIM(email)) AS email_key FROM surveys WHERE is_imported = 1 AND email IS NOT NULL AND TRIM(email) <> '' GROUP BY LOWER(TRIM(email))) historical_contacts")->fetchColumn(),
+  'historical_missing_rsvp' => (int)$pdo->query("SELECT COUNT(*) FROM (SELECT LOWER(TRIM(s.email)) AS email_key FROM surveys s LEFT JOIN (SELECT LOWER(TRIM(email)) AS email_key FROM rsvps WHERE email IS NOT NULL AND TRIM(email) <> '' GROUP BY LOWER(TRIM(email))) r ON r.email_key = LOWER(TRIM(s.email)) WHERE s.is_imported = 1 AND s.email IS NOT NULL AND TRIM(s.email) <> '' AND r.email_key IS NULL GROUP BY LOWER(TRIM(s.email))) missing_rsvp")->fetchColumn(),
+  'historical_missing_menu' => (int)$pdo->query("SELECT COUNT(*) FROM (SELECT LOWER(TRIM(s.email)) AS email_key FROM surveys s LEFT JOIN (SELECT LOWER(TRIM(email)) AS email_key FROM menu_selections WHERE email IS NOT NULL AND TRIM(email) <> '' GROUP BY LOWER(TRIM(email))) m ON m.email_key = LOWER(TRIM(s.email)) WHERE s.is_imported = 1 AND s.email IS NOT NULL AND TRIM(s.email) <> '' AND m.email_key IS NULL GROUP BY LOWER(TRIM(s.email))) missing_menu")->fetchColumn(),
 ];
 ?><!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,9 +51,13 @@ h1{font-family:Georgia,serif;margin:0}
   <a href="menu-results.php">🍽️ Menu Results</a>
   <a href="reports.php">📊 Reports</a>
   <a href="polls.php">🗳️ Polls</a>
+  <a href="follow-up.php?type=rsvp">📬 Missing RSVP (<?= $counts['historical_missing_rsvp'] ?>)</a>
+  <a href="follow-up.php?type=menu">📬 Missing Menu (<?= $counts['historical_missing_menu'] ?>)</a>
   <a href="export-emails.php?source=rsvps">📥 Export RSVP Emails</a>
   <a href="export-emails.php?source=sponsors">📥 Export Sponsor Emails</a>
   <a href="export-emails.php?source=menu">📥 Export Menu CSV</a>
+  <a href="export-emails.php?source=historical_missing_rsvp">📥 Export Missing RSVP</a>
+  <a href="export-emails.php?source=historical_missing_menu">📥 Export Missing Menu</a>
 </div>
 
 <div class="section-title">RSVPs</div>
@@ -76,5 +83,8 @@ h1{font-family:Georgia,serif;margin:0}
   <div class="card"><div class="num"><?= $counts['chatbot_unresponded'] ?></div><div class="label">Chatbot fallbacks pending</div><a href="chatbot.php?filter=unresponded">View</a></div>
   <div class="card"><div class="num"><?= (int)$pdo->query("SELECT COUNT(*) FROM menu_selections")->fetchColumn() ?></div><div class="label">Menu selections</div><a href="menu-results.php">View results</a></div>
   <div class="card"><div class="num"><?= (int)$pdo->query("SELECT COUNT(*) FROM surveys")->fetchColumn() ?></div><div class="label">Class surveys</div><a href="surveys.php">View results</a></div>
+  <div class="card"><div class="num"><?= $counts['historical_contacts'] ?></div><div class="label">Historical contacts</div><a href="reports.php">View reports</a></div>
+  <div class="card"><div class="num"><?= $counts['historical_missing_rsvp'] ?></div><div class="label">Historical contacts missing RSVP</div><a href="follow-up.php?type=rsvp">Open follow-up</a></div>
+  <div class="card"><div class="num"><?= $counts['historical_missing_menu'] ?></div><div class="label">Historical contacts missing menu</div><a href="follow-up.php?type=menu">Open follow-up</a></div>
 </div>
 </body></html>
