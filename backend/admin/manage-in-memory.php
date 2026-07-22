@@ -33,7 +33,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 $rows = $pdo->query('SELECT * FROM in_memory ORDER BY active DESC, display_order, full_name')->fetchAll();
 $csrf = fam_csrf_issue(session_id() ?: 'cli', $config['admin_csrf_secret']);
 ?><!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>Manage In Memory</title>
+<html><head><meta charset="utf-8"><title>Manage In Memory</title>
 <style>body{font-family:Inter,sans-serif;background:#F8F4EC;padding:2rem}.row{background:#fff;padding:1rem;margin-bottom:.5rem;border-radius:4px;display:flex;justify-content:space-between;align-items:center}.row.inactive{opacity:.5}form.add{background:#fff;padding:1.5rem;margin-bottom:2rem;border-radius:4px}input,textarea{width:100%;padding:.5rem;margin-bottom:.5rem;box-sizing:border-box}button{padding:.5rem 1rem;background:#C8102E;color:#fff;border:none;border-radius:3px;cursor:pointer}</style></head><body>
 <h1>In Memory — manage</h1><p><a href="dashboard.php">← Dashboard</a></p>
 <form method="POST" class="add" data-csrf="<?= htmlspecialchars($csrf) ?>"><input type="hidden" name="action" value="add">

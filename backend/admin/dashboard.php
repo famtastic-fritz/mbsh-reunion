@@ -22,7 +22,7 @@ $counts = [
   'chatbot_unresponded' => (int)$pdo->query("SELECT COUNT(*) FROM chatbot_questions WHERE responded=0 AND was_fallback=1")->fetchColumn(),
 ];
 ?><!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Committee Dashboard — MBSH</title>
 <style>
 body{font-family:Inter,sans-serif;background:#F8F4EC;color:#0A0A0A;margin:0;padding:2rem}
@@ -45,8 +45,12 @@ h1{font-family:Georgia,serif;margin:0}
   <a href="rsvps.php">📋 View All RSVPs</a>
   <a href="capsules.php">💌 Time Capsules (<?= $counts['capsules_total'] ?>)</a>
   <a href="chatbot.php">💬 Chatbot Questions (<?= $counts['chatbot_total'] ?>)</a>
+  <a href="menu-results.php">🍽️ Menu Results</a>
+  <a href="reports.php">📊 Reports</a>
+  <a href="polls.php">🗳️ Polls</a>
   <a href="export-emails.php?source=rsvps">📥 Export RSVP Emails</a>
   <a href="export-emails.php?source=sponsors">📥 Export Sponsor Emails</a>
+  <a href="export-emails.php?source=menu">📥 Export Menu CSV</a>
 </div>
 
 <div class="section-title">RSVPs</div>

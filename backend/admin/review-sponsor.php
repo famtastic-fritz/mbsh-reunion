@@ -45,7 +45,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 $pending = $pdo->query("SELECT * FROM sponsors_pending WHERE status='pending' ORDER BY created_at DESC")->fetchAll();
 $csrf = fam_csrf_issue(session_id() ?: 'cli', $config['admin_csrf_secret']);
 ?><!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><title>Review Sponsors</title>
+<html lang="en"><head><meta charset="utf-8"><title>Review Sponsors</title>
 <style>body{font-family:Inter,sans-serif;background:#F8F4EC;padding:2rem;color:#0A0A0A}h1{font-family:Georgia,serif}.row{background:#fff;padding:1.5rem;margin-bottom:1rem;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.06)}.actions{display:flex;gap:.5rem;margin-top:1rem}button{padding:.6rem 1.2rem;border:none;border-radius:3px;cursor:pointer;font-weight:600}.approve{background:#C8102E;color:#fff}.reject{background:#888;color:#fff}img{max-width:160px;display:block;margin:1rem 0}</style></head><body>
 <h1>Sponsor inquiries — pending</h1>
 <p><a href="dashboard.php">← Dashboard</a></p>

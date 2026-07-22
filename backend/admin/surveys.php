@@ -25,7 +25,7 @@ $contact = $pdo->query("SELECT contact_pref, COUNT(*) as c FROM surveys WHERE co
 // Recent submissions
 $recent = $pdo->query("SELECT * FROM surveys ORDER BY created_at DESC LIMIT 50")->fetchAll();
 ?><!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Class Survey Results — MBSH Admin</title>
 <style>
 body{font-family:Inter,sans-serif;background:#F8F4EC;color:#0A0A0A;margin:0;padding:2rem}

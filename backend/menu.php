@@ -61,12 +61,14 @@ if ($loadedAt > 0 && (time() * 1000 - $loadedAt) < 3000) {
 }
 
 try {
-  $stmt = $pdo->prepare('INSERT INTO menu_selections (name, email, selections_json, dietary) VALUES (?, ?, ?, ?)');
+  $stmt = $pdo->prepare('INSERT INTO menu_selections (name, email, selections_json, dietary, submitter_email_status, committee_email_status) VALUES (?, ?, ?, ?, ?, ?)');
   $stmt->execute([
     trim($body['name']),
     trim($body['email']),
     json_encode($selections),
     !empty($body['dietary']) ? trim($body['dietary']) : null,
+    'pending',
+    'pending',
   ]);
   $id = (int)$pdo->lastInsertId();
 
@@ -105,18 +107,25 @@ try {
 
   // Send emails (best-effort; don't fail the request if email fails)
   $emailErrors = [];
+  $updateSubmitter = $pdo->prepare('UPDATE menu_selections SET submitter_email_status = ?, submitter_email_error = ?, submitter_email_message_id = ?, submitter_email_sent_at = ? WHERE id = ?');
+  $updateCommittee = $pdo->prepare('UPDATE menu_selections SET committee_email_status = ?, committee_email_error = ?, committee_email_message_id = ?, committee_email_sent_at = ? WHERE id = ?');
+
   try {
-    fam_send_email($config, trim($body['email']), 'Your Gold Menu Preferences — MBSH Class of \'96', $submitterHtml, 'harry');
+    $submitterResult = fam_send_email($config, trim($body['email']), 'Your Gold Menu Preferences — MBSH Class of \'96', $submitterHtml, 'harry');
+    $updateSubmitter->execute(['sent', null, (string)($submitterResult['id'] ?? ''), gmdate('Y-m-d H:i:s'), $id]);
   } catch (Throwable $e) {
     error_log('menu.php submitter email error: ' . $e->getMessage());
     $emailErrors[] = 'submitter_email_failed';
+    $updateSubmitter->execute(['failed', $e->getMessage(), null, null, $id]);
   }
 
   try {
-    fam_send_email($config, $config['committee_email'], "Menu: {$body['name']}", $committeeHtml, 'committee');
+    $committeeResult = fam_send_email($config, $config['committee_email'], "Menu: {$body['name']}", $committeeHtml, 'committee');
+    $updateCommittee->execute(['sent', null, (string)($committeeResult['id'] ?? ''), gmdate('Y-m-d H:i:s'), $id]);
   } catch (Throwable $e) {
     error_log('menu.php committee email error: ' . $e->getMessage());
     $emailErrors[] = 'committee_email_failed';
+    $updateCommittee->execute(['failed', $e->getMessage(), null, null, $id]);
   }
 
   $response = ['ok' => true, 'id' => $id];

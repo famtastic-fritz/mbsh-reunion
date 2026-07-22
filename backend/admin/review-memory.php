@@ -41,7 +41,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 $pending = $pdo->query('SELECT * FROM memories WHERE approved=0 ORDER BY created_at DESC')->fetchAll();
 $csrf = fam_csrf_issue(session_id() ?: 'cli', $config['admin_csrf_secret']);
 ?><!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>Review Memories</title>
+<html><head><meta charset="utf-8"><title>Review Memories</title>
 <style>body{font-family:Inter,sans-serif;background:#F8F4EC;padding:2rem}h1{font-family:Georgia,serif}.row{background:#fff;padding:1.5rem;margin-bottom:1rem;border-radius:4px}button{padding:.6rem 1.2rem;border:none;cursor:pointer;font-weight:600;border-radius:3px;margin-right:.5rem}.approve{background:#C8102E;color:#fff}.reject{background:#888;color:#fff}</style></head><body>
 <h1>Memories — pending</h1><p><a href="dashboard.php">← Dashboard</a></p>
 <?php foreach ($pending as $m): ?>

@@ -9,7 +9,7 @@ $pdo = fam_db($config);
 
 $capsules = $pdo->query("SELECT * FROM time_capsules ORDER BY created_at DESC")->fetchAll();
 ?><!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Time Capsules — MBSH Admin</title>
 <style>
 body{font-family:Inter,sans-serif;background:#F8F4EC;color:#0A0A0A;margin:0;padding:2rem}

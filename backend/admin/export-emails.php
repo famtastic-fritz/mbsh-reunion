@@ -58,6 +58,28 @@ if ($source === 'rsvps') {
       $row['created_at']
     ]);
   }
+} elseif ($source === 'menu') {
+  fputcsv($output, ['Name', 'Email', 'Hors', 'Salad', 'Entree', 'Sides', 'Dietary', 'Submitter Email Status', 'Submitter Email Sent At', 'Submitter Email Error', 'Committee Email Status', 'Committee Email Sent At', 'Committee Email Error', 'Submitted At']);
+  $stmt = $pdo->query("SELECT name, email, selections_json, dietary, submitter_email_status, submitter_email_sent_at, submitter_email_error, committee_email_status, committee_email_sent_at, committee_email_error, created_at FROM menu_selections ORDER BY created_at DESC");
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $selections = json_decode($row['selections_json'], true) ?: [];
+    fputcsv($output, [
+      $row['name'],
+      $row['email'],
+      implode(', ', $selections['hors'] ?? []),
+      $selections['salad'] ?? '',
+      implode(', ', $selections['entree'] ?? []),
+      implode(', ', $selections['side'] ?? []),
+      $row['dietary'] ?? '',
+      $row['submitter_email_status'] ?? '',
+      $row['submitter_email_sent_at'] ?? '',
+      $row['submitter_email_error'] ?? '',
+      $row['committee_email_status'] ?? '',
+      $row['committee_email_sent_at'] ?? '',
+      $row['committee_email_error'] ?? '',
+      $row['created_at']
+    ]);
+  }
 }
 
 fclose($output);
