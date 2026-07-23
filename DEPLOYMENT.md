@@ -51,8 +51,14 @@ php -r 'echo password_hash("Letmein123", PASSWORD_DEFAULT);'
 #   'admin_password_hash' => '<paste-here>',
 ```
 
+**To update the notification email on production:**
+In `/home/nineoo/.config/mbsh-config.php`, ensure this key is set:
+```php
+'menu_notification_email' => 'valerievalcourt96@gmail.com',
+```
+
 ### Notification email
-`menu_notification_email` in the config file (or `MENU_NOTIFICATION_EMAIL` in `.env`) controls where the third "Menu Submission Alert" email goes. Defaults to `committee_email` if not set.
+`menu_notification_email` in the config file (or `MENU_NOTIFICATION_EMAIL` in `.env`) controls where the third "Menu Submission Alert" email goes. Defaults to `valerievalcourt96@gmail.com`.
 
 ## Admin Access
 
@@ -61,11 +67,11 @@ php -r 'echo password_hash("Letmein123", PASSWORD_DEFAULT);'
 
 ## Email Senders
 
-| Purpose | From address |
-|---------|-------------|
-| Submitter confirmations | `harry@send.mbsh96reunion.com` |
-| Committee notifications | `committee@send.mbsh96reunion.com` |
-| Menu alerts | `committee@send.mbsh96reunion.com` |
+| Purpose | From address | To address |
+|---------|-------------|------------|
+| Submitter confirmations | `harry@send.mbsh96reunion.com` | Person who filled out the form |
+| Committee notifications | `committee@send.mbsh96reunion.com` | `mbsh96reunion@gmail.com` |
+| Menu alerts | `committee@send.mbsh96reunion.com` | `valerievalcourt96@gmail.com` |
 
 ## Common Issues
 
