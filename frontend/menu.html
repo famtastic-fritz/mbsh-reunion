@@ -97,7 +97,7 @@
 
         <div class="menu-course">
           <h2 class="menu-course__title">Entr&eacute;e</h2>
-          <p class="menu-course__rule">Choose 1 or 2</p>
+          <p class="menu-course__rule">Choose exactly 2</p>
           <div class="menu-option"><input type="checkbox" name="entree" value="Sautéed Chicken Piccata" id="e1"><label for="e1">Sautéed Chicken Piccata</label></div>
           <div class="menu-option"><input type="checkbox" name="entree" value="Chicken Breast Madeira" id="e2"><label for="e2">Chicken Breast Madeira</label></div>
           <div class="menu-option"><input type="checkbox" name="entree" value="Tuscan Roasted Chicken" id="e3"><label for="e3">Tuscan Roasted Chicken</label></div>
@@ -215,7 +215,7 @@
 
       if (payload.selections.hors.length !== 2) { errorMsg.textContent = 'Please select exactly 2 Hors d\'Oeuvre stations.'; errorMsg.style.display = 'block'; return; }
       if (!payload.selections.salad) { errorMsg.textContent = 'Please select 1 salad.'; errorMsg.style.display = 'block'; return; }
-      if (payload.selections.entree.length < 1 || payload.selections.entree.length > 2) { errorMsg.textContent = 'Please select 1 or 2 entrées.'; errorMsg.style.display = 'block'; return; }
+      if (payload.selections.entree.length !== 2) { errorMsg.textContent = 'Please select exactly 2 entrées.'; errorMsg.style.display = 'block'; return; }
       if (payload.selections.side.length !== 2) { errorMsg.textContent = 'Please select exactly 2 side items.'; errorMsg.style.display = 'block'; return; }
 
       try {
