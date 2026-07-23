@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premiere Sandbox — D4 / D5 / D8 component review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Allura&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/premiere.css">
+  <style>
+    /* Sandbox-only layout helpers (not part of the design system) */
+    body { background: var(--c-night-sky); color: var(--c-cream); font-family: var(--font-body); padding-bottom: 200px; }
+    .sandbox { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+    .sandbox-section { margin: 5rem 0; padding: 1rem; }
+    .sandbox-label { display: block; font-family: var(--font-mono); color: var(--c-gold-mid); font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid rgba(201, 169, 97, 0.3); }
+    .sandbox h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(2rem, 5vw, 3.5rem); margin: 0 0 0.5rem; }
+    .sandbox h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; margin: 0 0 0.5rem; color: var(--c-cream); }
+    .sandbox p { font-family: var(--font-italic); font-style: italic; color: rgba(248, 244, 236, 0.75); line-height: 1.6; }
+    .sandbox .demo-content { padding: 2rem 1.5rem; }
+    .legend { font-family: var(--font-mono); font-size: 0.78rem; color: var(--c-gold-mid); background: rgba(201, 169, 97, 0.08); padding: 1rem; border-left: 3px solid var(--c-gold-mid); margin: 1rem 0; }
+    .legend strong { color: var(--c-gold-light); }
+  </style>
+</head>
+<body data-page="sandbox" data-premiere="on" data-snap="on">
+
+  <div class="sandbox">
+
+    <header class="sandbox-section">
+      <span class="sandbox-label">Sandbox · P1 component review</span>
+      <h1>The Premiere — Component Review</h1>
+      <p>This page exists for <strong>Fritz to approve D4 (filmstrip frame), D5 (medallion-as-menu), and D8 (snap mechanism)</strong> before P2 propagates these to all 7 production pages. Production pages currently still use V1 components; this sandbox is the only surface where the new components are wired.</p>
+      <div class="legend">
+        <strong>To test:</strong>
+        <ul style="margin: 0.5rem 0 0 1.5rem;">
+          <li><strong>Medallion menu (D5):</strong> click the brand-mark medallion at bottom-center. Tab/arrow-key/Esc all work.</li>
+          <li><strong>Filmstrip frame (D4):</strong> scroll to "Frame demo" below. Cards-as-poster-wall sit inside the frame.</li>
+          <li><strong>Ribbon divider (D4):</strong> the golden ribbons between sections.</li>
+          <li><strong>Snap mechanism (D8):</strong> scroll. Each section snaps to the top of the viewport. Bounce keyframe fires on settle.</li>
+          <li><strong>Harry vocabulary:</strong> Harry walks between sections (desktop). Trigger a celebrate via the test button below.</li>
+        </ul>
+      </div>
+    </header>
+
+    <hr class="premiere-divider" aria-hidden="true">
+
+    <section class="premiere-snap-target sandbox-section premiere-frame" aria-label="Frame demo">
+      <div class="premiere-frame__body demo-content">
+        <span class="sandbox-label">D4 · .premiere-frame</span>
+        <h2>Section inside a golden filmstrip frame</h2>
+        <p>This whole section is wrapped in <code>.premiere-frame</code>. Sprocket strips on top + bottom. Side edges open to the page backdrop. The strips have a gentle gold-shimmer animation (~6s). Hover over the strips and the frame should feel like real polished tape with light catching it.</p>
+        <p style="margin-top: 1rem;">A frame is structural. It tells you "this part of the page is a scene." Six of these on the home page would be the movie-poster wall.</p>
+      </div>
+    </section>
+
+    <hr class="premiere-divider" aria-hidden="true">
+
+    <section class="premiere-snap-target sandbox-section" aria-label="Divider demo">
+      <span class="sandbox-label">D4 · .premiere-divider (above and below this section)</span>
+      <h2>Sections separated by golden ribbon dividers</h2>
+      <p>Dividers are decorative. They thread between sections like a flowing tape. There's a subtle light-sweep that passes across the gold every ~8 seconds — barely perceptible, signals "celluloid in motion."</p>
+    </section>
+
+    <hr class="premiere-divider premiere-divider--narrow" aria-hidden="true">
+
+    <section class="premiere-snap-target sandbox-section" aria-label="Snap demo">
+      <span class="sandbox-label">D8 · scroll-snap-type: y mandatory + .is-snapped bounce</span>
+      <h2>Snap-into-place with bounce</h2>
+      <p>The body has <code>data-snap="on"</code> which activates <code>scroll-snap-type: y mandatory</code>. Each <code>.premiere-snap-target</code> snaps to the top. After the snap settles, a 600ms bounce keyframe fires. Try scrolling slowly — you should feel the snap. Try scrolling fast — fast flicks pass through.</p>
+      <p style="margin-top: 1rem;"><strong>iOS Safari note:</strong> mandatory snap can fight native momentum. If the snap feels sticky on iPhone, the fallback is to flip to proximity. Test on a real device.</p>
+    </section>
+
+    <hr class="premiere-divider" aria-hidden="true">
+
+    <section class="premiere-snap-target sandbox-section" aria-label="Harry celebrate test">
+      <span class="sandbox-label">Harry vocabulary · celebrate trigger</span>
+      <h2>Test Harry's celebrate animation</h2>
+      <p>Click the button. Harry should pulse with a scarlet glow + cheer pose for ~800ms.</p>
+      <button type="button" id="celebrate-btn" style="margin-top: 1.5rem; padding: 0.9rem 1.5rem; background: var(--c-red); color: var(--c-cream); border: 1px solid var(--c-gold-mid); font-family: var(--font-body); letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; border-radius: 4px;">Trigger celebrate</button>
+    </section>
+
+    <hr class="premiere-divider" aria-hidden="true">
+
+    <section class="premiere-snap-target sandbox-section" aria-label="Movie poster wall preview">
+      <span class="sandbox-label">D4 · poster wall (P2 production target)</span>
+      <h2>Six framed posters</h2>
+      <p>This is what the home page cards section will become in P2. Each card is a section in its own filmstrip frame. Hover lifts -12px with a slight rotation.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+        <a class="preview-card" href="#"><h3>Reserve Your Seat</h3><p>Tell us you're coming. The night unlocks once we hear from you.</p></a>
+        <a class="preview-card" href="#"><h3>Tickets &amp; Sponsorship</h3><p>Two ways in: secure your seat, or help fund the night.</p></a>
+        <a class="preview-card" href="#"><h3>Through the Years</h3><p>One hundred years of Hi-Tides. The eras that built us.</p></a>
+        <a class="preview-card" href="#"><h3>In Memory</h3><p>Forever Hi-Tides. Names we carry with us.</p></a>
+        <a class="preview-card" href="#"><h3>Time Capsule</h3><p>Send your younger self a note. We'll deliver on the day.</p></a>
+        <a class="preview-card" href="#"><h3>Our Soundtrack</h3><p>The songs that made us who we are. Curated, embedded, alive.</p></a>
+      </div>
+    </section>
+
+    <hr class="premiere-divider premiere-divider--full" aria-hidden="true">
+
+    <footer class="sandbox-section" style="text-align: center;">
+      <p style="font-family: var(--font-script-large); font-size: 1.6rem; color: var(--c-cream); font-style: normal;">Let us be known for our deeds</p>
+      <p style="font-family: var(--font-mono); font-size: 0.75rem; color: rgba(248, 244, 236, 0.4); letter-spacing: 0.2em;">SANDBOX · NOT FOR PRODUCTION</p>
+    </footer>
+
+  </div>
+
+  <script src="js/premiere.js" defer></script>
+  <script>
+    // Sandbox-only celebrate trigger
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('celebrate-btn');
+      if (btn) btn.addEventListener('click', () => {
+        document.dispatchEvent(new CustomEvent('rsvp:success'));
+      });
+    });
+  </script>
+</body>
+</html>

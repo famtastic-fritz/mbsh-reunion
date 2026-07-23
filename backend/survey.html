@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
+<head><meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="RSVP for the MBSH Class of '96 30th Reunion. Let us know you're coming.">
   <title>Survey — MBSH Class of &rsquo;96</title>
@@ -302,7 +302,7 @@
       const data = Object.fromEntries(new FormData(form));
 
       try {
-        const res = await fetch('/survey2.php', {
+        const res = await fetch('https://mbsh96reunion.com/survey2.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)

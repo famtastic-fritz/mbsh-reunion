@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MBSH Class of '96 — 30th Reunion. A black-tie celebration thirty years in the making.">
+  <title>MBSH Class of &rsquo;96 — 30th Reunion</title>
+  <link rel="preload" as="image" href="assets/premiere/hero-poster.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/premiere/brand-mark-foil.png?v=2">
+  <!-- P6 perf fix: removed preload as="video" — forced 4MB+ MP4 load before LCP.
+       Hero video now has a poster (LCP element) + preload="metadata". -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Allura&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/story.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/compass.css">
+  <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/premiere.css">
+</head>
+<body data-page="home" data-premiere="on" data-snap="on">
+
+  <!-- ════ Section 1: Hero ════════════════════════════════════════════ -->
+  <section class="hero premiere-snap-target" aria-label="MBSH Class of '96 — 30th Reunion welcome">
+    <video class="hero__video" data-src="assets/backgrounds/05-dancefloor-confetti.mp4" poster="assets/premiere/hero-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <div class="hero__overlay" aria-hidden="true"></div>
+    <div class="hero__content">
+      <img class="hero__mark" src="assets/premiere/brand-mark-foil.png?v=2" alt="30 + 100 commemorative mark — Class of '96 30th reunion, MBSH 100th anniversary" width="120" height="120">
+      <div class="hero__type">
+        <p class="hero__welcome">Welcome back, Class of &rsquo;96</p>
+        <h1 class="hero__headline"><span>Thirty Years Of </span><span>Hi-Tides</span></h1>
+        <p class="hero__date" data-config-bind="reunion_date_display">October–November 2026 — Miami Beach</p>
+      </div>
+      <!-- Registration is open; payment processing comes online later.
+           One CTA, always live, points at the RSVP form. -->
+      <a class="hero__cta hero__cta--enabled" href="rsvp.html">Reserve Your Seat</a>
+      <!-- Pass 12 — hero Harry removed. The chatbot bubble is the only
+           corner Harry; the in-scene Harry per Scene + the home billboard's
+           slide-1 welcome carry the on-page character now. -->
+      <div class="hero__scroll-tease" aria-hidden="true">
+        <span>Let us be known for our deeds</span>
+        <svg class="hero__chevron" viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 2 12 10 20 2"></polyline>
+          <polyline points="4 12 12 20 20 12" opacity="0.6"></polyline>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <!-- ════ Section 2: NOTE / Billboard slideshow ═════════════════════
+       Page pattern: Title → NOTE → Main → Post → Where-Next.
+       The note is now a billboard — multi-slide, animated, auto-advances.
+       JS (`mountBillboard`) fills slides from the BILLBOARD data map. -->
+  <section class="page-note billboard premiere-snap-target" aria-label="A note from your usher" data-page-slot="note" data-billboard="home">
+    <div class="page-note__slate">
+      <span class="page-note__slate-text" data-scene-marker>SCENE I · INT. LOBBY — NIGHT</span>
+      <span class="page-note__rec" aria-hidden="true"><span class="page-note__rec-dot"></span>Rec</span>
+    </div>
+    <!-- billboard slides + controls injected by premiere.js -->
+  </section>
+
+  <!-- ════ Section 3: MAIN ITEM — The Program Bulletin ═══════════════ -->
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <section class="page-main program-bulletin premiere-snap-target" aria-label="Program — pick a scene" data-page-slot="main">
+    <ol class="program-bulletin__list">
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="rsvp.html">
+          <span class="program-bulletin__reel">I.</span>
+          <span class="program-bulletin__title">Reserve Your Seat</span>
+          <span class="program-bulletin__usher">Tell us you're coming. The night unlocks once we hear from you.</span>
+          <span class="program-bulletin__runtime">4 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="tickets.html">
+          <span class="program-bulletin__reel">II.</span>
+          <span class="program-bulletin__title">Tickets &amp; Sponsorship</span>
+          <span class="program-bulletin__usher">Two ways in — secure a seat, or help fund the night.</span>
+          <span class="program-bulletin__runtime">6 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="through-years.html">
+          <span class="program-bulletin__reel">III.</span>
+          <span class="program-bulletin__title">Through the Years</span>
+          <span class="program-bulletin__usher">One hundred years of Hi-Tides. The eras that built us.</span>
+          <span class="program-bulletin__runtime">12 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="memorial.html">
+          <span class="program-bulletin__reel">IV.</span>
+          <span class="program-bulletin__title">In Memory</span>
+          <span class="program-bulletin__usher">Forever Hi-Tides. Names we carry with us.</span>
+          <span class="program-bulletin__runtime">5 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="capsule.html">
+          <span class="program-bulletin__reel">V.</span>
+          <span class="program-bulletin__title">Time Capsule</span>
+          <span class="program-bulletin__usher">Send your younger self a note. We'll deliver on the day.</span>
+          <span class="program-bulletin__runtime">8 min</span>
+        </a>
+      </li>
+      <li class="program-bulletin__row">
+        <a class="program-bulletin__link" href="playlist.html">
+          <span class="program-bulletin__reel">VI.</span>
+          <span class="program-bulletin__title">The Soundtrack</span>
+          <span class="program-bulletin__usher">The songs that made us who we are. Curated, embedded, alive.</span>
+          <span class="program-bulletin__runtime">∞</span>
+        </a>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ════ Section 5: POST-ITEM — Director's Strip ═══════════════════ -->
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <section class="page-post director-strip premiere-snap-target" aria-label="Director's strip" data-page-slot="post">
+    <div class="premiere-marquee" aria-hidden="true">
+      <span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span><span class="premiere-marquee__bulb"></span>
+    </div>
+    <p class="director-strip__motto">Let us be known for our deeds.</p>
+    <div class="director-strip__meta">
+      <span>October–November 2026</span>
+      <span class="director-strip__sep" aria-hidden="true">·</span>
+      <span>Miami Beach</span>
+      <span class="director-strip__sep" aria-hidden="true">·</span>
+      <span>Black tie</span>
+    </div>
+    <p class="director-strip__credit">Presented by the Class of '96 · MBSH 1926–2026</p>
+  </section>
+
+  <!-- ════ Section 6: WHERE-NEXT ═════════════════════════════════════
+       The .where-next section is injected by `injectWhereNext()` in
+       premiere.js, picking the next 3 reels in PROGRAM order. -->
+  <hr class="premiere-divider" aria-hidden="true">
+
+  <!-- Shared partials inlined (Studio template-first style) -->
+  <!--#include partial="compass-nav" -->
+  <nav class="compass-nav" aria-label="Site navigation">
+    <button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="20"/><circle cx="32" cy="32" r="3" fill="currentColor"/>
+        <path d="M32 8 L36 30 L32 28 L28 30 Z" fill="currentColor"/>
+      </svg>
+      <span class="compass-nav__label" aria-hidden="true">Compass</span>
+    </button>
+    <ul class="compass-nav__items" id="compass-nav-items" role="menu">
+      <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+      <li role="none"><a href="rsvp.html" role="menuitem">RSVP</a></li>
+      <li role="none"><a href="tickets.html" role="menuitem">Tickets</a></li>
+      <li role="none"><a href="menu.html" role="menuitem">Menu</a></li>
+      <li role="none"><a href="survey.html" role="menuitem">Survey</a></li>
+      <li role="none"><a href="through-years.html" role="menuitem">Through the Years</a></li>
+      <li role="none"><a href="memorial.html" role="menuitem">In Memory</a></li>
+      <li role="none"><a href="capsule.html" role="menuitem">Time Capsule</a></li>
+      <li role="none"><a href="playlist.html" role="menuitem">Playlist</a></li>
+    </ul>
+  </nav>
+
+  <div class="chatbot" id="chatbot" aria-label="Hi-Tide Harry chat">
+    <button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open Hi-Tide Harry chat">
+      <img src="assets/mascot/06-listening.png" alt="" width="64" height="64" aria-hidden="true">
+    </button>
+    <div class="chatbot__panel" id="chatbot-panel" hidden>
+      <header class="chatbot__panel-header">
+        <img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello.png" alt="" width="120" height="120" aria-hidden="true">
+        <div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div>
+        <button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close chat">×</button>
+      </header>
+      <ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul>
+      <form class="chatbot__input" id="chatbot-form">
+        <input type="text" id="chatbot-input" placeholder="Ask Harry about July 12&hellip;" aria-label="Type your question" autocomplete="off">
+        <button type="submit" aria-label="Send">→</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer" data-template="footer">
+    <div class="footer__inner">
+      <div class="footer__col footer__col--identity">
+        <img class="footer__mark" src="assets/brand-mark/brand-mark.png" alt="" width="80" height="80" aria-hidden="true">
+        <p class="footer__title">Class of 1996 &middot; 30th Reunion</p>
+        <p class="footer__sub">Hi-Tide Pride Since 1926 🌊</p>
+        <p class="footer__tagline">Let us be known for our deeds</p>
+      </div>
+      <div class="footer__col footer__col--contact">
+        <h4>Reunion Committee</h4>
+        <p><a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p>
+        <!-- Class Instagram + Facebook handles pending. Hidden until URLs land
+             so we don't ship dead # links to production. -->
+        <p class="footer__social footer__social--coming-soon">
+          <span>Instagram &amp; Facebook coming soon — drop a note to the committee for a heads-up.</span>
+        </p>
+      </div>
+      <div class="footer__col footer__col--resources">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a></li>
+          <li><a href="through-years.html#submit-memory">Submit a memory</a></li>
+          <li><a href="tickets.html#sponsor">Become a sponsor</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__strip">
+      <p class="footer__copyright">© 2026 MBSH Class of '96 Reunion Committee</p>
+      <p class="footer__credit">Built with <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p>
+    </div>
+  </footer>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/countdown.js" defer></script>
+  <script src="js/compass.js" defer></script>
+  <script src="js/chatbot.js" defer></script>
+  <script src="js/page-sequence.js" defer></script>
+  <script src="js/premiere.js" defer></script>
+</body>
+</html>

@@ -105,7 +105,7 @@ try {
       <li><strong>Sides:</strong> {$sideList}</li>
       <li><strong>Dietary:</strong> {$dietaryNote}</li>
     </ul>
-    <p><a href=\"https://api.mbsh96reunion.com/admin/menu-results.php\">View all results</a></p>";
+    <p><a href=\"https://mbsh96reunion.com/admin/menu-results.php\">View all results</a></p>";
 
   // Third notification email — summary with admin link
   $notificationHtml = "<h2>Menu Submission Alert</h2>
@@ -116,7 +116,7 @@ try {
       <tr><td style='padding:4px 12px 4px 0'><strong>Time</strong></td><td>" . gmdate('Y-m-d H:i:s') . " UTC</td></tr>
       <tr><td style='padding:4px 12px 4px 0'><strong>Entrées</strong></td><td>{$entreeList}</td></tr>
     </table>
-    <p style='margin-top:16px'><a href=\"https://api.mbsh96reunion.com/admin/menu-results.php\">View full details in admin</a></p>
+    <p style='margin-top:16px'><a href=\"https://mbsh96reunion.com/admin/menu-results.php\">View full details in admin</a></p>
     <p style='font-size:0.85rem;color:#666'>Reply STOP to disable these alerts.</p>";
 
   // Send emails (best-effort; don't fail the request if email fails)
@@ -124,6 +124,7 @@ try {
   $updateSubmitter = $pdo->prepare('UPDATE menu_selections SET submitter_email_status = ?, submitter_email_error = ?, submitter_email_message_id = ?, submitter_email_sent_at = ? WHERE id = ?');
   $updateCommittee = $pdo->prepare('UPDATE menu_selections SET committee_email_status = ?, committee_email_error = ?, committee_email_message_id = ?, committee_email_sent_at = ? WHERE id = ?');
   $updateNotification = $pdo->prepare('UPDATE menu_selections SET notification_email_status = ?, notification_email_error = ?, notification_email_message_id = ?, notification_email_sent_at = ? WHERE id = ?');
+  $notificationEmail = trim((string)($config['menu_notification_email'] ?? $config['committee_email'] ?? ''));
 
   try {
     $submitterResult = fam_send_email($config, trim($body['email']), 'Your Gold Menu Preferences — MBSH Class of \'96', $submitterHtml, 'harry');
@@ -135,12 +136,16 @@ try {
   }
 
   try {
-    $committeeResult = fam_send_email($config, $config['committee_email'], "Menu: {$body['name']}", $committeeHtml, 'committee');
-    $updateCommittee->execute(['sent', null, (string)($committeeResult['id'] ?? ''), gmdate('Y-m-d H:i:s'), $id]);
+    $notificationResult = fam_send_email($config, $notificationEmail, "Menu: {$body['name']}", $committeeHtml, 'committee');
+    $sentAt = gmdate('Y-m-d H:i:s');
+    $messageId = (string)($notificationResult['id'] ?? '');
+    $updateCommittee->execute(['sent', null, $messageId, $sentAt, $id]);
+    $updateNotification->execute(['sent', null, $messageId, $sentAt, $id]);
   } catch (Throwable $e) {
-    error_log('menu.php committee email error: ' . $e->getMessage());
-    $emailErrors[] = 'committee_email_failed';
+    error_log('menu.php notification email error: ' . $e->getMessage());
+    $emailErrors[] = 'notification_email_failed';
     $updateCommittee->execute(['failed', $e->getMessage(), null, null, $id]);
+    $updateNotification->execute(['failed', $e->getMessage(), null, null, $id]);
   }
 
   try {

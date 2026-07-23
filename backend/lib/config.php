@@ -42,7 +42,7 @@ function fam_load_config(): array {
         'resend_reply_to'          => $env['COMMITTEE_EMAIL'] ?? 'mbsh96reunion@gmail.com',
         'committee_email'          => $env['COMMITTEE_EMAIL'] ?? 'mbsh96reunion@gmail.com',
         'menu_notification_email'  => !empty($env['MENU_NOTIFICATION_EMAIL']) ? $env['MENU_NOTIFICATION_EMAIL'] : 'valerievalcourt96@gmail.com',
-        'allowed_origins'          => ['http://localhost:8080', 'http://localhost:3333', 'http://127.0.0.1:8080'],
+        'allowed_origins'          => ['http://localhost:8080', 'http://localhost:3333', 'http://127.0.0.1:8080', 'https://mbsh96reunion.com', 'https://www.mbsh96reunion.com'],
         'allowed_origin_patterns'  => ['/^https:\/\/[a-z0-9-]+--[a-z0-9-]+\.netlify\.app$/', '/^https:\/\/[a-z0-9-]+\.netlify\.app$/'],
         'admin_password_hash'      => $env['ADMIN_PASSWORD_HASH'] ?? '',
         'admin_csrf_secret'        => $env['ADMIN_CSRF_SECRET'] ?? bin2hex(random_bytes(16)),

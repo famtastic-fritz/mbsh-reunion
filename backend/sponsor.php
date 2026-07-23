@@ -40,7 +40,7 @@ try {
   $stmt->execute([$name, $company, $email, $phone, $tier, $custom, $logoPath, $message, 'pending']);
   $id = (int)$pdo->lastInsertId();
 
-  $reviewUrl = 'https://api.mbsh96reunion.com/admin/review-sponsor.php?id=' . $id;
+  $reviewUrl = 'https://mbsh96reunion.com/admin/review-sponsor.php?id=' . $id;
   $html = "<p>New sponsor inquiry from {$name} ({$company}) — tier: {$tier}.</p><p>Email: {$email} | Phone: " . ($phone ?: '—') . "</p><p>Review: <a href=\"{$reviewUrl}\">{$reviewUrl}</a></p>";
   try {
     fam_send_email($config, $config['committee_email'], "Sponsor inquiry: {$name} ({$tier})", $html, 'committee');

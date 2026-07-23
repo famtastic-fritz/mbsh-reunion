@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
+<head><meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gold Menu — Dinner Preferences — MBSH Class of &rsquo;96</title>
   <link rel="stylesheet" href="css/base.css">
@@ -26,7 +26,6 @@
     .menu-option input { width: 1.1rem; height: 1.1rem; accent-color: var(--c-red); margin-top: 0.15rem; flex-shrink: 0; }
     .menu-option label { font-size: 0.95rem; line-height: 1.4; cursor: pointer; }
     .menu-option .upcharge { color: var(--c-red); font-weight: 600; font-size: 0.85rem; }
-    .menu-option--disabled label { opacity: 0.45; cursor: not-allowed; }
     .menu-success { background: var(--c-white); padding: var(--space-2xl); border-radius: 4px; box-shadow: 0 4px 32px rgba(10,10,10,0.08); text-align: center; display: none; }
     .menu-success h2 { font-family: var(--font-display); font-weight: 700; color: var(--c-red); margin: 0 0 var(--space-md); }
     .menu-success p { font-family: var(--font-italic); font-style: italic; color: var(--c-off-black); margin: 0 0 var(--space-sm); }
@@ -77,7 +76,7 @@
           <input class="field__input" type="email" name="email" required maxlength="255">
         </div>
 
-        <div class="menu-course" data-limit="2">
+        <div class="menu-course">
           <h2 class="menu-course__title">Hors d&rsquo;Oeuvre Station</h2>
           <p class="menu-course__rule">Choose 2 cold stations</p>
           <div class="menu-option"><input type="checkbox" name="hors" value="Fresh Seasonal Fruits" id="h1"><label for="h1">Fresh Seasonal Fruits</label></div>
@@ -96,7 +95,7 @@
           <div class="menu-option"><input type="radio" name="salad" value="Poached Pear with Goat Cheese" id="s3"><label for="s3">Poached Pear with Goat Cheese <span class="upcharge">+$4</span></label></div>
         </div>
 
-        <div class="menu-course" data-limit="2">
+        <div class="menu-course">
           <h2 class="menu-course__title">Entr&eacute;e</h2>
           <p class="menu-course__rule">Choose 1 or 2</p>
           <div class="menu-option"><input type="checkbox" name="entree" value="Sautéed Chicken Piccata" id="e1"><label for="e1">Sautéed Chicken Piccata</label></div>
@@ -109,7 +108,7 @@
           <div class="menu-option"><input type="checkbox" name="entree" value="Beef Tenderloin" id="e8"><label for="e8">Beef Tenderloin <span class="upcharge">+$8</span></label></div>
         </div>
 
-        <div class="menu-course" data-limit="2">
+        <div class="menu-course">
           <h2 class="menu-course__title">Side Items</h2>
           <p class="menu-course__rule">Select 2</p>
           <div class="menu-option"><input type="checkbox" name="side" value="Rosemary Fingerling Potatoes" id="si1"><label for="si1">Rosemary Fingerling Potatoes</label></div>
@@ -196,30 +195,6 @@
     const successMsg = document.getElementById('menu-success');
     const successDetails = document.getElementById('menu-success-details');
 
-    // UI-level checkbox limiting: once limit is reached, disable unchecked boxes in the same group
-    document.querySelectorAll('.menu-course[data-limit]').forEach(function(course) {
-      const limit = parseInt(course.dataset.limit, 10);
-      const checkboxes = course.querySelectorAll('input[type="checkbox"]');
-      checkboxes.forEach(function(box) {
-        box.addEventListener('change', function() {
-          const checked = course.querySelectorAll('input[type="checkbox"]:checked');
-          if (checked.length >= limit) {
-            checkboxes.forEach(function(cb) {
-              if (!cb.checked) {
-                cb.disabled = true;
-                cb.closest('.menu-option').classList.add('menu-option--disabled');
-              }
-            });
-          } else {
-            checkboxes.forEach(function(cb) {
-              cb.disabled = false;
-              cb.closest('.menu-option').classList.remove('menu-option--disabled');
-            });
-          }
-        });
-      });
-    });
-
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       errorMsg.style.display = 'none';
@@ -244,15 +219,16 @@
       if (payload.selections.side.length !== 2) { errorMsg.textContent = 'Please select exactly 2 side items.'; errorMsg.style.display = 'block'; return; }
 
       try {
-        const res = await fetch('/menu.php', {
+        const res = await fetch('https://mbsh96reunion.com/menu.php', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Origin': 'https://mbsh96reunion.com' },
           body: JSON.stringify(payload),
         });
         const data = await res.json();
         if (data.ok) {
           form.style.display = 'none';
           successMsg.style.display = 'block';
+          // Show selection summary in success state
           successDetails.innerHTML = `
             <h3>Your Selections</h3>
             <ul>

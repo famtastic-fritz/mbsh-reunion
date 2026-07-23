@@ -30,7 +30,7 @@ try {
   $id = (int)$pdo->lastInsertId();
 
   try {
-    $reviewUrl = 'https://api.mbsh96reunion.com/admin/review-memory.php?id=' . $id;
+    $reviewUrl = 'https://mbsh96reunion.com/admin/review-memory.php?id=' . $id;
     fam_send_email($config, $config['committee_email'], "New memory from {$name}", "<p>{$name} sent a memory.</p><p>Review: <a href=\"{$reviewUrl}\">{$reviewUrl}</a></p>", 'committee');
   } catch (ResendError $e) { error_log('[memory] notify failed: ' . $e->getMessage()); }
 
