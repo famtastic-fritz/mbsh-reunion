@@ -39,3 +39,28 @@ CREATE TABLE IF NOT EXISTS poll_votes (
   CONSTRAINT fk_poll_votes_poll FOREIGN KEY (poll_id) REFERENCES poll_questions(id) ON DELETE CASCADE,
   CONSTRAINT fk_poll_votes_option FOREIGN KEY (option_id) REFERENCES poll_options(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Menu selections (Gold Package dinner preferences)
+CREATE TABLE IF NOT EXISTS menu_selections (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name VARCHAR(200) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  selections_json JSON NOT NULL,
+  dietary TEXT NULL,
+  submitter_email_status VARCHAR(20) NOT NULL DEFAULT 'pending',
+  submitter_email_error TEXT NULL,
+  submitter_email_message_id VARCHAR(100) NULL,
+  submitter_email_sent_at DATETIME NULL,
+  committee_email_status VARCHAR(20) NOT NULL DEFAULT 'pending',
+  committee_email_error TEXT NULL,
+  committee_email_message_id VARCHAR(100) NULL,
+  committee_email_sent_at DATETIME NULL,
+  notification_email_status VARCHAR(20) NOT NULL DEFAULT 'pending',
+  notification_email_error TEXT NULL,
+  notification_email_message_id VARCHAR(100) NULL,
+  notification_email_sent_at DATETIME NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_menu_email (email),
+  KEY idx_menu_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
