@@ -43,7 +43,7 @@ if (empty($body['selections']) || !is_array($body['selections'])) $errors[] = 'S
 $selections = $body['selections'] ?? [];
 if (empty($selections['hors']) || count($selections['hors']) !== 2) $errors[] = 'Please select exactly 2 Hors d\'Oeuvre stations.';
 if (empty($selections['salad'])) $errors[] = 'Please select 1 salad.';
-if (empty($selections['entree']) || count($selections['entree']) !== 2) $errors[] = 'Please select exactly 2 entrées.';
+if (empty($selections['entree']) || count($selections['entree']) < 1 || count($selections['entree']) > 2) $errors[] = 'Please select 1 or 2 entrées.';
 if (empty($selections['side']) || count($selections['side']) !== 2) $errors[] = 'Please select exactly 2 side items.';
 
 if (!empty($errors)) {
@@ -78,6 +78,7 @@ try {
   $entreeList = implode(', ', $selections['entree']);
   $sideList = implode(', ', $selections['side']);
   $dietaryNote = !empty($body['dietary']) ? htmlspecialchars(trim($body['dietary'])) : 'None';
+  $entreeCount = count($selections['entree']);
 
   // Confirmation email to submitter
   $submitterHtml = "<h2>Hi {$body['name']},</h2>
@@ -85,7 +86,7 @@ try {
     <ul>
       <li><strong>Hors d'Oeuvre (2):</strong> {$horsList}</li>
       <li><strong>Salad:</strong> {$selections['salad']}</li>
-      <li><strong>Entrée (2):</strong> {$entreeList}</li>
+      <li><strong>Entrée ({$entreeCount}):</strong> {$entreeList}</li>
       <li><strong>Sides (2):</strong> {$sideList}</li>
       <li><strong>Dietary:</strong> {$dietaryNote}</li>
     </ul>
@@ -100,7 +101,7 @@ try {
     <ul>
       <li><strong>Hors d'Oeuvre:</strong> {$horsList}</li>
       <li><strong>Salad:</strong> {$selections['salad']}</li>
-      <li><strong>Entrée:</strong> {$entreeList}</li>
+      <li><strong>Entrée ({$entreeCount}):</strong> {$entreeList}</li>
       <li><strong>Sides:</strong> {$sideList}</li>
       <li><strong>Dietary:</strong> {$dietaryNote}</li>
     </ul>
