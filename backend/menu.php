@@ -43,7 +43,7 @@ if (empty($body['selections']) || !is_array($body['selections'])) $errors[] = 'S
 $selections = $body['selections'] ?? [];
 if (empty($selections['hors']) || count($selections['hors']) !== 2) $errors[] = 'Please select exactly 2 Hors d\'Oeuvre stations.';
 if (empty($selections['salad'])) $errors[] = 'Please select 1 salad.';
-if (empty($selections['entree']) || count($selections['entree']) < 1 || count($selections['entree']) > 2) $errors[] = 'Please select 1 or 2 entrées.';
+if (empty($selections['entree']) || count($selections['entree']) !== 2) $errors[] = 'Please select exactly 2 entrées.';
 if (empty($selections['side']) || count($selections['side']) !== 2) $errors[] = 'Please select exactly 2 side items.';
 
 if (!empty($errors)) {
@@ -61,12 +61,13 @@ if ($loadedAt > 0 && (time() * 1000 - $loadedAt) < 3000) {
 }
 
 try {
-  $stmt = $pdo->prepare('INSERT INTO menu_selections (name, email, selections_json, dietary, submitter_email_status, committee_email_status) VALUES (?, ?, ?, ?, ?, ?)');
+  $stmt = $pdo->prepare('INSERT INTO menu_selections (name, email, selections_json, dietary, submitter_email_status, committee_email_status, notification_email_status) VALUES (?, ?, ?, ?, ?, ?, ?)');
   $stmt->execute([
     trim($body['name']),
     trim($body['email']),
     json_encode($selections),
     !empty($body['dietary']) ? trim($body['dietary']) : null,
+    'pending',
     'pending',
     'pending',
   ]);
@@ -84,7 +85,7 @@ try {
     <ul>
       <li><strong>Hors d'Oeuvre (2):</strong> {$horsList}</li>
       <li><strong>Salad:</strong> {$selections['salad']}</li>
-      <li><strong>Entrée (1-2):</strong> {$entreeList}</li>
+      <li><strong>Entrée (2):</strong> {$entreeList}</li>
       <li><strong>Sides (2):</strong> {$sideList}</li>
       <li><strong>Dietary:</strong> {$dietaryNote}</li>
     </ul>
@@ -105,10 +106,23 @@ try {
     </ul>
     <p><a href=\"https://api.mbsh96reunion.com/admin/menu-results.php\">View all results</a></p>";
 
+  // Third notification email — summary with admin link
+  $notificationHtml = "<h2>Menu Submission Alert</h2>
+    <p>A new Gold Menu preference has been submitted.</p>
+    <table style='border-collapse:collapse'>
+      <tr><td style='padding:4px 12px 4px 0'><strong>Name</strong></td><td>{$body['name']}</td></tr>
+      <tr><td style='padding:4px 12px 4px 0'><strong>Email</strong></td><td>{$body['email']}</td></tr>
+      <tr><td style='padding:4px 12px 4px 0'><strong>Time</strong></td><td>" . gmdate('Y-m-d H:i:s') . " UTC</td></tr>
+      <tr><td style='padding:4px 12px 4px 0'><strong>Entrées</strong></td><td>{$entreeList}</td></tr>
+    </table>
+    <p style='margin-top:16px'><a href=\"https://api.mbsh96reunion.com/admin/menu-results.php\">View full details in admin</a></p>
+    <p style='font-size:0.85rem;color:#666'>Reply STOP to disable these alerts.</p>";
+
   // Send emails (best-effort; don't fail the request if email fails)
   $emailErrors = [];
   $updateSubmitter = $pdo->prepare('UPDATE menu_selections SET submitter_email_status = ?, submitter_email_error = ?, submitter_email_message_id = ?, submitter_email_sent_at = ? WHERE id = ?');
   $updateCommittee = $pdo->prepare('UPDATE menu_selections SET committee_email_status = ?, committee_email_error = ?, committee_email_message_id = ?, committee_email_sent_at = ? WHERE id = ?');
+  $updateNotification = $pdo->prepare('UPDATE menu_selections SET notification_email_status = ?, notification_email_error = ?, notification_email_message_id = ?, notification_email_sent_at = ? WHERE id = ?');
 
   try {
     $submitterResult = fam_send_email($config, trim($body['email']), 'Your Gold Menu Preferences — MBSH Class of \'96', $submitterHtml, 'harry');
@@ -126,6 +140,16 @@ try {
     error_log('menu.php committee email error: ' . $e->getMessage());
     $emailErrors[] = 'committee_email_failed';
     $updateCommittee->execute(['failed', $e->getMessage(), null, null, $id]);
+  }
+
+  try {
+    $notifyTo = $config['menu_notification_email'] ?? $config['committee_email'];
+    $notifyResult = fam_send_email($config, $notifyTo, "Menu alert: {$body['name']}", $notificationHtml, 'committee');
+    $updateNotification->execute(['sent', null, (string)($notifyResult['id'] ?? ''), gmdate('Y-m-d H:i:s'), $id]);
+  } catch (Throwable $e) {
+    error_log('menu.php notification email error: ' . $e->getMessage());
+    $emailErrors[] = 'notification_email_failed';
+    $updateNotification->execute(['failed', $e->getMessage(), null, null, $id]);
   }
 
   $response = ['ok' => true, 'id' => $id];
