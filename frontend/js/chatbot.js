@@ -194,7 +194,7 @@
       els.root.classList.remove('is-avoiding');
       return;
     }
-    const targets = document.querySelectorAll('.cinema-actions, .journey-progress, .rsvp-form');
+    const targets = document.querySelectorAll('.cinema-actions, .cinema-status, .journey-progress, .rsvp-form');
     const shouldAvoid = [...targets].some((target) => {
       const rect = target.getBoundingClientRect();
       return rect.top < innerHeight && rect.bottom > innerHeight - 145;
