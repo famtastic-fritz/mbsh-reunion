@@ -1,0 +1,47 @@
+  <section class="premiere-section premiere-section--alt menu-explainer" aria-label="Final menu update">
+    <h2 class="premiere-section__title">The menu is taking shape</h2>
+    <p class="premiere-section__lead">To simplify service for Miami Shores Country Club and make the evening smoother for everyone, the committee has narrowed the entrée choices to chicken, fish, and a vegetarian option.</p>
+    <div class="premiere-mini-cards">
+      <div class="premiere-mini-card"><span class="premiere-mini-card__num">1</span><h3 class="premiere-mini-card__title">Review the menu</h3><p class="premiere-mini-card__body">The hors d’oeuvres, salads, and sides are listed below so you know what will be served.</p></div>
+      <div class="premiere-mini-card"><span class="premiere-mini-card__num">2</span><h3 class="premiere-mini-card__title">Choose one entrée</h3><p class="premiere-mini-card__body">Select Tuscan Roasted Chicken, Maple-Bourbon Salmon, or the Vegetarian Entrée.</p></div>
+      <div class="premiere-mini-card"><span class="premiere-mini-card__num">3</span><h3 class="premiere-mini-card__title">Share dietary needs</h3><p class="premiere-mini-card__body">Tell the committee about allergies or dietary restrictions so the venue can prepare.</p></div>
+    </div>
+  </section>
+
+  <section class="rsvp-form-wrap menu-page premiere-snap-in" id="menu" aria-label="Dinner menu and meal selection" data-mode="sequence">
+    <div class="premiere-seat-row" aria-hidden="true"><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span></div>
+    <div class="menu-shell__inner">
+      <div class="error-msg" id="error-msg" role="alert"></div>
+      <form class="menu-form rsvp-form" id="menu-form">
+        <label class="field"><span class="field__label">Your Name *</span><input class="field__input" type="text" name="name" required maxlength="200" autocomplete="name"></label>
+        <label class="field"><span class="field__label">Email Address *</span><input class="field__input" type="email" name="email" required maxlength="255" autocomplete="email"></label>
+
+        <div class="menu-course menu-course--finalized"><h2 class="menu-course__title">Hors d&rsquo;Oeuvres</h2><p class="menu-course__rule">Included in the finalized menu</p><ul class="menu-final-list"><li>Fresh Seasonal Fruits</li><li>Domestic and Imported Cheeses, Breads, and Crackers</li></ul></div>
+        <div class="menu-course menu-course--finalized"><h2 class="menu-course__title">Salads</h2><p class="menu-course__rule">Included in the finalized menu</p><ul class="menu-final-list"><li>Garden Salad</li><li>Caesar Salad</li></ul></div>
+
+        <fieldset class="menu-course menu-course--choices">
+          <legend class="menu-course__title">Entr&eacute;e</legend>
+          <p class="menu-course__rule">Select one entrée</p>
+          <div class="menu-option"><input type="radio" name="entree" value="Tuscan Roasted Chicken" id="e1" required><label for="e1">Tuscan Roasted Chicken</label></div>
+          <div class="menu-option"><input type="radio" name="entree" value="Maple-Bourbon Salmon" id="e2"><label for="e2">Maple-Bourbon Salmon</label></div>
+          <div class="menu-option"><input type="radio" name="entree" value="Vegetarian Entrée" id="e3"><label for="e3">Vegetarian Entrée</label></div>
+        </fieldset>
+
+        <div class="menu-course menu-course--finalized"><h2 class="menu-course__title">Sides</h2><p class="menu-course__rule">Included in the finalized menu</p><ul class="menu-final-list"><li>Rosemary Fingerling Potatoes</li><li>Rice Pilaf</li><li>Sautéed Green Beans</li></ul></div>
+
+        <div class="menu-course"><h2 class="menu-course__title">Dietary Restrictions</h2><p class="menu-course__rule">Any allergies or special requests?</p><label class="field"><span class="field__label">Dietary restrictions or allergies</span><textarea class="field__input" name="dietary" rows="3" maxlength="500" placeholder="Gluten-free, allergies, or other dietary needs"></textarea></label></div>
+        <input type="text" name="website" class="rsvp-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="form_loaded_at" id="form-loaded-at">
+        <button type="submit" class="rsvp-form__submit">Submit Meal Selection</button>
+        <p class="rsvp-form__consent">Your entrée selection and dietary notes will help the committee coordinate final meal counts with Miami Shores Country Club.</p>
+      </form>
+
+      <div class="menu-success" id="menu-success" hidden>
+        <h2>Meal Selection Submitted!</h2><p>Your entrée choice and dietary notes have been sent to the committee.</p>
+        <p class="menu-success__email-note">A confirmation email has been sent to your inbox. Need to update anything? Email <a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a>.</p>
+        <div class="menu-success__selections" id="menu-success-details"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="premiere-section" aria-label="A smoother dinner service"><h2 class="premiere-section__title">A smoother dinner service</h2><p class="premiere-section__lead">Three entrée choices keep service clear, give guests meaningful options, and help Miami Shores Country Club deliver the evening with care.</p></section>

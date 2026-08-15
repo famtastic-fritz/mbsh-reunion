@@ -4,8 +4,7 @@
 
 | Environment | Domain | Host | Purpose |
 |-------------|--------|------|---------|
-| **Production** | `mbsh96reunion.com` | GoDaddy (famtasticinc) | Live site — static frontend + PHP backend |
-| ~~Production (old)~~ | ~~`api.mbsh96reunion.com`~~ | ~~GoDaddy~~ | ~~Legacy backend subdomain — being retired~~ |
+| **Production** | `mbsh96reunion.com`, `www.mbsh96reunion.com` | GoDaddy (famtasticinc) | Live site — static frontend + PHP backend |
 | Staging | `mbsh-reunion-staging.netlify.app` | Netlify | Frontend preview only |
 | Local dev | `localhost:8080` | Local PHP server | Development |
 
@@ -101,11 +100,11 @@ For backend testing, symlink or copy `backend/` into the docroot, or run a secon
 
 | Record | Target | Notes |
 |--------|--------|-------|
-| `mbsh96reunion.com` A | GoDaddy server IP | Primary domain |
-| `www.mbsh96reunion.com` CNAME | `mbsh96reunion.com` | Redirect to primary |
-| ~~`api.mbsh96reunion.com`~~ | ~~GoDaddy~~ | ~~RETIRING — do not use~~ |
+| `mbsh96reunion.com` A | `107.180.51.234` | Primary live domain on GoDaddy |
+| `www.mbsh96reunion.com` CNAME | `mbsh96reunion.com` | Canonical alias to the same GoDaddy host |
+| `api.mbsh96reunion.com` | Legacy/compatibility only | Do not treat as the primary production frontend path |
 
-**Goal:** Everything under `mbsh96reunion.com`. No `api.` subdomain.
+**Current production truth:** the live frontend and backend both resolve from the GoDaddy hosting account under the main customer domain. Netlify is not the live production host for `mbsh96reunion.com`.
 
 ## Database Schema Notes
 

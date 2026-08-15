@@ -267,7 +267,7 @@ body[data-premiere="on"][data-page="rsvp"] .premiere-stage::before {
   background:
     /* dim overlay so content stays legible over the photo */
     linear-gradient(180deg, rgba(5,5,11,0.55) 0%, rgba(5,5,11,0.85) 100%),
-    url('../assets/premiere/bg-rsvp.jpg') center / cover no-repeat,
+    url('/assets/premiere/bg-rsvp.jpg') center / cover no-repeat,
     var(--c-night-sky);
   animation: premiere-stage-drift 90s ease-in-out infinite alternate;
 }
@@ -279,7 +279,7 @@ body[data-premiere="on"][data-page="tickets"] .premiere-stage::before {
   /* P4: real backdrop image */
   background:
     linear-gradient(180deg, rgba(5,5,11,0.55) 0%, rgba(74,6,18,0.65) 100%),
-    url('../assets/premiere/bg-tickets.jpg') center / cover no-repeat,
+    url('/assets/premiere/bg-tickets.jpg') center / cover no-repeat,
     var(--c-night-sky);
 }
 body[data-premiere="on"][data-page="through-years"] .premiere-stage::before {
@@ -301,7 +301,7 @@ body[data-premiere="on"][data-page="capsule"] .premiere-stage::before {
   /* P4: real backdrop image (wood desk + brass lamp + letter opener) */
   background:
     linear-gradient(180deg, rgba(5,5,11,0.45) 0%, rgba(5,5,11,0.75) 100%),
-    url('../assets/premiere/bg-capsule.jpg') center / cover no-repeat,
+    url('/assets/premiere/bg-capsule.jpg') center / cover no-repeat,
     var(--c-night-sky);
 }
 body[data-premiere="on"][data-page="playlist"] .premiere-stage::before {
@@ -343,7 +343,7 @@ body[data-premiere="on"] .page-header {
 
 /* Section spacing */
 body[data-premiere="on"] .premiere-section {
-  padding: 5rem 2rem;
+  padding: clamp(2.5rem, 5vw, 4rem) 2rem;
   position: relative;
 }
 body[data-premiere="on"] .premiere-section--alt {
@@ -1501,34 +1501,9 @@ body[data-premiere="on"][data-medallion-menu="mounted"]:not([data-page="home"]) 
       by premiere.js on every page
    ===================================================================== */
 
-/* Tiny "Menu" text hint below the medallion so users know it's clickable */
+/* The medallion stands on its own. No forced pseudo-label copy under the mark. */
 body[data-premiere="on"] .premiere-medallion::after {
-  content: 'Menu';
-  position: absolute;
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
-  color: var(--c-gold-mid);
-  text-transform: uppercase;
-  pointer-events: none;
-  white-space: nowrap;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
-  opacity: 0.85;
-}
-/* Inline (home) — hint sits below the brand mark */
-body[data-premiere="on"] .premiere-medallion--inline::after {
-  bottom: -1.2rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-/* Floating (inner pages) — hint sits below the medallion top-right */
-body[data-premiere="on"]:not([data-page="home"]) .premiere-medallion::after {
-  bottom: -1rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-body[data-premiere="on"] .premiere-medallion[aria-expanded="true"]::after {
-  opacity: 0; /* hide hint while menu is open */
+  content: none;
 }
 
 /* Footer site-map column — injected by premiere.js into existing .footer__inner */
@@ -3438,9 +3413,12 @@ body[data-premiere="on"] section[data-mode="tease"] {
    .page-note/.page-pre/.page-main/.page-post/.page-next so the archetype
    system wins. The override targets only when data-mode is set. */
 body[data-premiere="on"] section[data-mode] {
-  min-height: var(--scene-min);
+  min-height: auto;
 }
 body[data-premiere="on"] section[data-mode="sequence"] { min-height: 0; }
+body[data-premiere="on"] section[data-mode="scene"] {
+  min-height: clamp(22rem, 48vw, 40rem);
+}
 
 /* Centered-top medallion ─────────────────────────────────────────────── */
 body[data-premiere="on"] .premiere-medallion,
@@ -3482,17 +3460,7 @@ body[data-premiere="on"] .premiere-medallion--inline img {
 
 /* MENU label below medallion repositioned for centered placement */
 body[data-premiere="on"] .premiere-medallion::after {
-  content: "MENU";
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Cinzel', 'Playfair Display', serif;
-  font-size: 9px;
-  letter-spacing: 0.32em;
-  color: var(--c-velvet-gold, #C9A75E);
-  pointer-events: none;
-  opacity: 0.85;
+  content: none;
 }
 
 /* Hide the home hero brand-mark when the floating medallion is mounted —
@@ -3627,10 +3595,8 @@ body[data-premiere="on"] footer.footer--final-reel {
 }
 @media (min-width: 768px) {
   body[data-premiere="on"] footer.footer--final-reel {
-    min-height: 100dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: auto;
+    display: block;
   }
 }
 @media (max-width: 767px) {

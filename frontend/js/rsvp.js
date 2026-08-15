@@ -13,6 +13,10 @@
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
     if (form.querySelector('input[name="website"]').value) return; // honeypot
     if (!window.__famHelpers.formLoadedAtIsRecent(form, 3000)) {
       console.warn('[rsvp] form submitted too quickly — silent reject');
@@ -33,7 +37,7 @@
       document.getElementById('rsvp-success-name').textContent = data.first_name || 'Hi-Tide';
       document.getElementById('rsvp-success-email').textContent = data.email;
       // Confetti micro-moment
-      if (window.requestAnimationFrame) confettiBurst();
+      if (window.requestAnimationFrame && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) confettiBurst();
     } catch (err) {
       submit.disabled = false; submit.textContent = 'Submit RSVP 🌊';
       alert('We could not save your RSVP. Try again or email mbsh96reunion@gmail.com.');

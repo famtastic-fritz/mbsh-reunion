@@ -10,27 +10,48 @@
   <link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/typography.css"><link rel="stylesheet" href="css/sections.css"><link rel="stylesheet" href="css/compass.css"><link rel="stylesheet" href="css/chatbot.css"><link rel="stylesheet" href="css/footer.css"><link rel="stylesheet" href="css/premiere.css">
 </head>
 <body data-page="tickets" data-premiere="on">
-  <header class="page-header"><a class="page-header__back" href="index.html"><img class="page-header__mark" src="assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a><h1 class="page-header__title">The Night</h1><p class="page-header__sub">Two ways in: secure your seat, or help fund the night.</p></header>
+  <header class="page-header"><a class="page-header__back" href="index.html"><img class="page-header__mark" src="/assets/brand-mark/brand-mark.png" alt="" width="64" height="64"></a><h1 class="page-header__title">The Night</h1><p class="page-header__sub">Two ways in: secure your seat, or help fund the night.</p></header>
 
   <section class="tickets" aria-label="Ticket tiers">
     <h2 class="section-head">Tickets</h2>
     <div class="tickets__cards">
       <article class="tier-card tier-card--early-bird" data-early-bird-show="true">
         <h3 class="tier-card__name">Early Bird</h3>
-        <p class="tier-card__price"><span class="tier-card__currency">$</span><span data-config-bind="early_bird_price">60</span><span class="tier-card__per"> per person</span></p>
-        <p class="tier-card__blurb">Until <span data-config-bind="early_bird_deadline_display">June 1, 2026</span></p>
-        <a class="tier-card__cta" href="rsvp.html">Hold My Seat</a>
-        <p class="tier-card__hint">RSVP now — pay when ticketing opens.</p>
+        <p class="tier-card__price"><span class="tier-card__currency">$</span><span data-config-bind="early_bird_price">185</span><span class="tier-card__per"> per person</span></p>
+        <p class="tier-card__blurb">Through <span data-config-bind="early_bird_deadline_display">Labor Day — September 7, 2026</span></p>
+        <a class="tier-card__cta" href="#ticket-order">Place Ticket Order</a>
+        <p class="tier-card__hint">Submit your order now; payment instructions will follow.</p>
       </article>
       <article class="tier-card tier-card--regular">
         <h3 class="tier-card__name">Regular Price</h3>
-        <p class="tier-card__price"><span class="tier-card__currency">$</span><span data-config-bind="regular_price">75</span><span class="tier-card__per"> per person</span></p>
-        <p class="tier-card__blurb">After Early Bird closes</p>
-        <a class="tier-card__cta" href="rsvp.html">Hold My Seat</a>
-        <p class="tier-card__hint">RSVP now — pay when ticketing opens.</p>
+        <p class="tier-card__price"><span class="tier-card__currency">$</span><span data-config-bind="regular_price">200</span><span class="tier-card__per"> per person</span></p>
+        <p class="tier-card__blurb">Beginning September 8, 2026</p>
+        <a class="tier-card__cta" href="#ticket-order">Place Ticket Order</a>
+        <p class="tier-card__hint">The order form automatically uses the current price.</p>
       </article>
     </div>
-    <p class="tickets__note">Reserve a seat tonight — payment activates the moment the committee finalizes the account. <a href="rsvp.html">RSVP for free</a> and we'll notify you the second tickets are live.</p>
+    <p class="tickets__note">Ticket ordering is open. No payment is collected on this site yet; the committee will send payment instructions after receiving your order.</p>
+  </section>
+
+  <section class="ticket-order" id="ticket-order" aria-label="Ticket order form">
+    <div class="ticket-order__intro"><p class="premiere-section__eyebrow">Order now · Pay when instructed</p><h2 class="section-head">Place Your Ticket Order</h2><p>Reserve up to 10 seats. We’ll save your order at today’s price and email both you and the committee. This is not a payment receipt.</p></div>
+    <form class="rsvp-form ticket-order__form" id="ticket-order-form">
+      <div class="ticket-order__status" id="ticket-order-status" role="status" aria-live="polite"></div>
+      <label class="field"><span class="field__label">Contact name *</span><input class="field__input" type="text" name="contact_name" required maxlength="200" autocomplete="name"></label>
+      <div class="ticket-order__columns">
+        <label class="field"><span class="field__label">Email *</span><input class="field__input" type="email" name="email" required maxlength="255" autocomplete="email"></label>
+        <label class="field"><span class="field__label">Phone</span><input class="field__input" type="tel" name="phone" maxlength="50" autocomplete="tel"></label>
+      </div>
+      <label class="field"><span class="field__label">Number of tickets *</span><select class="field__input" name="quantity" id="ticket-quantity" required><option value="1">1 ticket</option><option value="2">2 tickets</option><option value="3">3 tickets</option><option value="4">4 tickets</option><option value="5">5 tickets</option><option value="6">6 tickets</option><option value="7">7 tickets</option><option value="8">8 tickets</option><option value="9">9 tickets</option><option value="10">10 tickets</option></select></label>
+      <div class="ticket-order__total"><span id="ticket-price-label">Early Bird · $185 per person</span><strong id="ticket-order-total">Total due: $185</strong></div>
+      <label class="field"><span class="field__label">Guest names</span><textarea class="field__input" name="guest_names" rows="3" maxlength="1000" placeholder="List each guest’s full name, if known"></textarea></label>
+      <label class="field"><span class="field__label">Notes for the committee</span><textarea class="field__input" name="notes" rows="3" maxlength="1000" placeholder="Questions or anything the committee should know"></textarea></label>
+      <input type="text" name="website" class="rsvp-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="form_loaded_at" id="ticket-form-loaded-at">
+      <button type="submit" class="rsvp-form__submit">Submit Ticket Order</button>
+      <p class="rsvp-form__consent">Submitting this form reserves your order request at the displayed price. It does not collect payment or guarantee admission until payment is completed.</p>
+    </form>
+    <div class="ticket-order__success" id="ticket-order-success" hidden><h2>Order Received</h2><p id="ticket-order-success-copy"></p><p>The committee will send payment instructions when the payment account is ready. Keep your order number for reference.</p></div>
   </section>
 
   <!-- Sponsor inquiry modal -->
@@ -62,7 +83,7 @@
   </dialog>
 
   <nav class="compass-nav" aria-label="Site navigation"><button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="20"/><circle cx="32" cy="32" r="3" fill="currentColor"/><path d="M32 8 L36 30 L32 28 L28 30 Z" fill="currentColor"/></svg></button><ul class="compass-nav__items" id="compass-nav-items" role="menu"><li role="none"><a href="index.html" role="menuitem">Home</a></li><li role="none"><a href="rsvp.html" role="menuitem">RSVP</a></li><li role="none"><a href="tickets.html" role="menuitem" aria-current="page">Tickets</a></li><li role="none"><a href="menu.html" role="menuitem">Menu</a></li><li role="none"><a href="survey.html" role="menuitem">Survey</a></li><li role="none"><a href="through-years.html" role="menuitem">Through the Years</a></li><li role="none"><a href="memorial.html" role="menuitem">In Memory</a></li><li role="none"><a href="capsule.html" role="menuitem">Time Capsule</a></li><li role="none"><a href="playlist.html" role="menuitem">Playlist</a></li></ul></nav>
-  <div class="chatbot" id="chatbot"><button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open chat"><img src="assets/mascot/06-listening.png" alt="" width="64" height="64"></button><div class="chatbot__panel" id="chatbot-panel" hidden><header class="chatbot__panel-header"><img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello.png" alt="" width="120" height="120"><div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div><button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close">×</button></header><ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul><form class="chatbot__input" id="chatbot-form"><input type="text" id="chatbot-input" placeholder="Ask Harry&hellip;" autocomplete="off"><button type="submit">→</button></form></div></div>
+  <div class="chatbot" id="chatbot"><button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open chat"><img src="/assets/mascot/06-listening.png" alt="" width="64" height="64"></button><div class="chatbot__panel" id="chatbot-panel" hidden><header class="chatbot__panel-header"><img class="chatbot__panel-pose" src="/assets/mascot/01-wave-hello.png" alt="" width="120" height="120"><div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div><button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close">×</button></header><ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul><form class="chatbot__input" id="chatbot-form"><input type="text" id="chatbot-input" placeholder="Ask Harry&hellip;" autocomplete="off"><button type="submit">→</button></form></div></div>
   <!-- Legacy static page-mascot removed — premiere.js injects the in-scene Harry (13-ticket-stub) into the .tickets section. -->
 
   <section class="premiere-section premiere-section--alt" id="sponsor" aria-label="Become a patron">
@@ -70,21 +91,21 @@
     <p class="premiere-section__lead">Three sponsorship tiers fund the night — and put your name on the wall. Every dollar offsets attendee tickets so more classmates can walk the carpet.</p>
     <div class="premiere-mini-cards premiere-mini-cards--with-medallions">
       <div class="premiere-mini-card">
-        <img class="premiere-mini-card__medallion" src="assets/premiere/tier-platinum.png?v=2" alt="" aria-hidden="true" width="120" height="120" loading="lazy">
+        <img class="premiere-mini-card__medallion" src="/assets/premiere/tier-platinum.png?v=2" alt="" aria-hidden="true" width="120" height="120" loading="lazy">
         <span class="premiere-mini-card__num">$2,500</span>
         <h3 class="premiere-mini-card__title">Marquee</h3>
         <p class="premiere-mini-card__body">Top of the bill. Logo on screen during the tribute reel, name in the program, four reserved seats.</p>
         <button class="tier-card__cta" type="button" data-sponsor-tier="marquee">Sponsor at Marquee</button>
       </div>
       <div class="premiere-mini-card">
-        <img class="premiere-mini-card__medallion" src="assets/premiere/tier-gold.png?v=2" alt="" aria-hidden="true" width="120" height="120" loading="lazy">
+        <img class="premiere-mini-card__medallion" src="/assets/premiere/tier-gold.png?v=2" alt="" aria-hidden="true" width="120" height="120" loading="lazy">
         <span class="premiere-mini-card__num">$1,000</span>
         <h3 class="premiere-mini-card__title">Producer</h3>
         <p class="premiere-mini-card__body">Producer credit in the program and on the wall. Two reserved seats.</p>
         <button class="tier-card__cta" type="button" data-sponsor-tier="producer">Sponsor at Producer</button>
       </div>
       <div class="premiere-mini-card">
-        <img class="premiere-mini-card__medallion" src="assets/premiere/tier-silver.png?v=2" alt="" aria-hidden="true" width="120" height="120" loading="lazy">
+        <img class="premiere-mini-card__medallion" src="/assets/premiere/tier-silver.png?v=2" alt="" aria-hidden="true" width="120" height="120" loading="lazy">
         <span class="premiere-mini-card__num">$500</span>
         <h3 class="premiere-mini-card__title">Featured</h3>
         <p class="premiere-mini-card__body">Featured credit in the program. Recognition on the patrons' page.</p>
@@ -99,14 +120,15 @@
     <p class="premiere-section__lead">Reunions don't run themselves — venue, food, live tributes, the soundtrack, the tribute reel, the small touches that make the night feel like a film. Every patron tier funds a piece of that. Your contribution lands as more classmates in the room.</p>
   </section>
 
-  <footer class="footer"><div class="footer__inner"><div class="footer__col footer__col--identity"><img class="footer__mark" src="assets/brand-mark/brand-mark.png" alt="" width="80" height="80"><p class="footer__title">Class of 1996 &middot; 30th Reunion</p><p class="footer__sub">Hi-Tide Pride Since 1926 🌊</p><p class="footer__tagline">Let us be known for our deeds</p></div><div class="footer__col footer__col--contact"><h4>Reunion Committee</h4><p><a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p></div><div class="footer__col footer__col--resources"><h4>Resources</h4><ul><li><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a></li><li><a href="through-years.html#submit-memory">Submit a memory</a></li><li><a href="tickets.html#sponsor">Become a sponsor</a></li></ul></div></div><div class="footer__strip"><p class="footer__copyright">© 2026 MBSH Class of '96 Reunion Committee</p><p class="footer__credit">Built with <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p></div></footer>
+  <footer class="footer"><div class="footer__inner"><div class="footer__col footer__col--identity"><img class="footer__mark" src="/assets/brand-mark/brand-mark.png" alt="" width="80" height="80"><p class="footer__title">Class of 1996 &middot; 30th Reunion</p><p class="footer__sub">Hi-Tide Pride Since 1926 🌊</p><p class="footer__tagline">Let us be known for our deeds</p></div><div class="footer__col footer__col--contact"><h4>Reunion Committee</h4><p><a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p></div><div class="footer__col footer__col--resources"><h4>Resources</h4><ul><li><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a></li><li><a href="through-years.html#submit-memory">Submit a memory</a></li><li><a href="tickets.html#sponsor">Become a sponsor</a></li></ul></div></div><div class="footer__strip"><p class="footer__copyright">© 2026 MBSH Class of '96 Reunion Committee</p><p class="footer__credit">This site was created by <a href="https://famtasticdesigns.com" rel="noopener">FAMtasticDesigns.com</a> · Powered by <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p></div></footer>
 
   <script src="js/config.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/compass.js" defer></script>
   <script src="js/sponsor.js" defer></script>
+  <script src="js/ticket-order.js" defer></script>
   <script src="js/chatbot.js" defer></script>
-  <script src="js/page-sequence.js" defer></script>
-  <script src="js/premiere.js" defer></script>
+  <script src="js/page-sequence.js?v=menufix2" defer></script>
+  <script src="js/premiere.js?v=menufix2" defer></script>
 </body>
 </html>

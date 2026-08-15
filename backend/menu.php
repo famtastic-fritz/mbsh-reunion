@@ -41,10 +41,13 @@ if (empty($body['email']) || !filter_var($body['email'], FILTER_VALIDATE_EMAIL))
 if (empty($body['selections']) || !is_array($body['selections'])) $errors[] = 'Selections are required.';
 
 $selections = $body['selections'] ?? [];
-if (empty($selections['hors']) || count($selections['hors']) !== 2) $errors[] = 'Please select exactly 2 Hors d\'Oeuvre stations.';
-if (empty($selections['salad'])) $errors[] = 'Please select 1 salad.';
-if (empty($selections['entree']) || count($selections['entree']) < 1 || count($selections['entree']) > 2) $errors[] = 'Please select 1 or 2 entrées.';
-if (empty($selections['side']) || count($selections['side']) !== 2) $errors[] = 'Please select exactly 2 side items.';
+$allowedEntrees = ['Tuscan Roasted Chicken', 'Maple-Bourbon Salmon', 'Vegetarian Entrée'];
+if (empty($selections['entree']) || !is_array($selections['entree']) || count($selections['entree']) !== 1 || !in_array($selections['entree'][0], $allowedEntrees, true)) {
+  $errors[] = 'Please select one valid entrée.';
+}
+$selections['hors'] = ['Fresh Seasonal Fruits', 'Domestic and Imported Cheeses, Breads, and Crackers'];
+$selections['salad'] = ['Garden Salad', 'Caesar Salad'];
+$selections['side'] = ['Rosemary Fingerling Potatoes', 'Rice Pilaf', 'Sautéed Green Beans'];
 
 if (!empty($errors)) {
   http_response_code(422);
@@ -75,6 +78,7 @@ try {
 
   // Build selection summary for emails
   $horsList = implode(', ', $selections['hors']);
+  $saladList = implode(', ', $selections['salad']);
   $entreeList = implode(', ', $selections['entree']);
   $sideList = implode(', ', $selections['side']);
   $dietaryNote = !empty($body['dietary']) ? htmlspecialchars(trim($body['dietary'])) : 'None';
@@ -82,15 +86,15 @@ try {
 
   // Confirmation email to submitter
   $submitterHtml = "<h2>Hi {$body['name']},</h2>
-    <p>Your Gold Menu preferences have been received. Here's what you selected:</p>
+    <p>Your meal selection has been received. Here's the dinner plan:</p>
     <ul>
       <li><strong>Hors d'Oeuvre (2):</strong> {$horsList}</li>
-      <li><strong>Salad:</strong> {$selections['salad']}</li>
+      <li><strong>Salads:</strong> {$saladList}</li>
       <li><strong>Entrée ({$entreeCount}):</strong> {$entreeList}</li>
-      <li><strong>Sides (2):</strong> {$sideList}</li>
+      <li><strong>Sides:</strong> {$sideList}</li>
       <li><strong>Dietary:</strong> {$dietaryNote}</li>
     </ul>
-    <p>This is <strong>not a final order</strong>. The committee will review all selections before finalizing the menu.</p>
+    <p>The committee will coordinate final meal counts and dietary needs with Miami Shores Country Club.</p>
     <p>Questions? Reply to this email or ask <strong>Hi-Tide Harry</strong> on the website.</p>
     <p>— MBSH Class of '96 Reunion Committee</p>";
 
@@ -100,7 +104,7 @@ try {
     <strong>Email:</strong> {$body['email']}</p>
     <ul>
       <li><strong>Hors d'Oeuvre:</strong> {$horsList}</li>
-      <li><strong>Salad:</strong> {$selections['salad']}</li>
+      <li><strong>Salads:</strong> {$saladList}</li>
       <li><strong>Entrée ({$entreeCount}):</strong> {$entreeList}</li>
       <li><strong>Sides:</strong> {$sideList}</li>
       <li><strong>Dietary:</strong> {$dietaryNote}</li>

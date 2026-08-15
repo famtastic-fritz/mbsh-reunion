@@ -1,0 +1,335 @@
+/* Cinematic vertical-slice system — reusable Site Studio-style primitives. */
+:root {
+  --cinema-ink: #070607;
+  --cinema-panel: rgba(18, 12, 14, 0.86);
+  --cinema-panel-solid: #151013;
+  --cinema-red: #c91432;
+  --cinema-red-bright: #ef2848;
+  --cinema-gold: #d8b86a;
+  --cinema-cream: #f5efe5;
+  --cinema-silver: #c7c7ca;
+  --cinema-line: rgba(216, 184, 106, 0.32);
+  --cinema-radius: 1.35rem;
+  --cinema-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
+  --content-max: 76rem;
+}
+
+html { scroll-behavior: smooth; }
+body.cinematic-proof {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(102, 10, 29, 0.22), transparent 35rem),
+    var(--cinema-ink);
+  color: var(--cinema-cream);
+}
+
+/* The cinematic shell replaces the legacy floating compass on proof pages.
+   The original markup remains untouched so rollback is a stylesheet removal. */
+.cinematic-proof .compass-nav { display: none !important; }
+.cinematic-proof .premiere-menu-toggle,
+.cinematic-proof .premiere-medallion,
+.cinematic-proof .premiere-menu-filmstrip,
+.cinematic-proof .section-chevron { display: none !important; }
+
+.cinematic-proof *:focus-visible {
+  outline: 3px solid var(--cinema-gold);
+  outline-offset: 4px;
+}
+
+.cinema-skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: .75rem;
+  left: .75rem;
+  transform: translateY(-180%);
+  padding: .75rem 1rem;
+  border-radius: 999px;
+  background: var(--cinema-cream);
+  color: var(--cinema-ink);
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+}
+.cinema-skip-link:focus { transform: translateY(0); }
+
+.cinema-site-header {
+  position: fixed;
+  z-index: 80;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .7rem clamp(.85rem, 3vw, 2rem);
+  border-bottom: 1px solid rgba(255, 255, 255, .09);
+  background: linear-gradient(180deg, rgba(4, 4, 5, .94), rgba(4, 4, 5, .76));
+  backdrop-filter: blur(18px);
+}
+.cinema-site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  min-height: 44px;
+  color: var(--cinema-cream);
+  text-decoration: none;
+  min-width: 0;
+}
+.cinema-site-header__brand img { width: 2.65rem; height: 2.65rem; object-fit: contain; }
+.cinema-site-header__brand-copy { display: grid; line-height: 1.05; }
+.cinema-site-header__brand-copy strong { font-family: "Playfair Display", serif; font-size: .98rem; }
+.cinema-site-header__brand-copy span { margin-top: .25rem; color: var(--cinema-silver); font: 600 .62rem/1 Inter, sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+.cinema-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  min-height: 44px;
+  padding: .65rem .9rem;
+  border: 1px solid var(--cinema-line);
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  color: var(--cinema-cream);
+  font: 700 .78rem/1 Inter, sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.cinema-menu-toggle__bars,
+.cinema-menu-toggle__bars::before,
+.cinema-menu-toggle__bars::after {
+  display: block;
+  width: 1.15rem;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  content: "";
+  transition: transform .25s ease, opacity .25s ease;
+}
+.cinema-menu-toggle__bars { position: relative; }
+.cinema-menu-toggle__bars::before { position: absolute; top: -.38rem; }
+.cinema-menu-toggle__bars::after { position: absolute; top: .38rem; }
+.cinema-menu-toggle[aria-expanded="true"] .cinema-menu-toggle__bars { background: transparent; }
+.cinema-menu-toggle[aria-expanded="true"] .cinema-menu-toggle__bars::before { transform: translateY(.38rem) rotate(45deg); }
+.cinema-menu-toggle[aria-expanded="true"] .cinema-menu-toggle__bars::after { transform: translateY(-.38rem) rotate(-45deg); }
+
+.cinema-drawer {
+  position: fixed;
+  z-index: 79;
+  top: 0;
+  right: 0;
+  width: min(30rem, 100%);
+  height: 100dvh;
+  padding: 6rem 1.1rem 1.25rem;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(201, 20, 50, .23), transparent 20rem),
+    rgba(7, 6, 7, .98);
+  border-left: 1px solid var(--cinema-line);
+  box-shadow: -32px 0 80px rgba(0,0,0,.48);
+  transform: translateX(105%);
+  visibility: hidden;
+  transition: transform .35s cubic-bezier(.22,.8,.22,1), visibility .35s;
+}
+.cinema-drawer.is-open { transform: translateX(0); visibility: visible; }
+.cinema-drawer__intro { margin: 0 0 1.1rem; color: var(--cinema-gold); font: italic 1rem/1.4 "Cormorant Garamond", serif; }
+.cinema-drawer nav { display: grid; gap: .35rem; }
+.cinema-drawer a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 3.25rem;
+  padding: .75rem .9rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  color: var(--cinema-cream);
+  text-decoration: none;
+  font: 700 clamp(1.05rem, 4vw, 1.35rem)/1.1 "Playfair Display", serif;
+}
+.cinema-drawer a::after { content: "↗"; color: var(--cinema-red-bright); font-family: Inter, sans-serif; }
+.cinema-drawer a[aria-current="page"] { color: var(--cinema-gold); }
+.cinema-drawer__primary { margin-top: 1rem; border: 1px solid var(--cinema-red) !important; background: var(--cinema-red); }
+.cinema-backdrop { position: fixed; z-index: 78; inset: 0; background: rgba(0,0,0,.62); backdrop-filter: blur(4px); }
+
+.cinema-hero {
+  position: relative;
+  min-height: min(92dvh, 58rem);
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0c090b;
+}
+.cinema-hero__media,
+.cinema-hero__media video,
+.cinema-hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cinema-hero__media video,
+.cinema-hero__media img { object-fit: cover; object-position: 50% 34%; }
+.cinema-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.24) 36%, rgba(4,3,4,.92) 90%), linear-gradient(90deg, rgba(0,0,0,.55), transparent 65%);
+}
+.cinema-hero__content {
+  position: relative;
+  z-index: 2;
+  width: min(var(--content-max), calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 8rem 0 clamp(3rem, 8vw, 6rem);
+}
+.cinema-kicker { margin: 0 0 .8rem; color: var(--cinema-gold); font: 700 .72rem/1.3 Inter, sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+.cinema-hero h1 { max-width: 14ch; margin: 0; color: #fff; font: 900 clamp(3rem, 10vw, 7.5rem)/.88 "Playfair Display", serif; letter-spacing: -.055em; text-wrap: balance; }
+.cinema-hero__lead { max-width: 42rem; margin: 1.2rem 0 0; color: rgba(255,255,255,.82); font: 500 clamp(1.08rem, 2vw, 1.4rem)/1.55 "Cormorant Garamond", serif; }
+.cinema-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.cinema-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: .8rem 1.15rem;
+  border: 1px solid var(--cinema-line);
+  border-radius: 999px;
+  color: var(--cinema-cream);
+  background: rgba(7,6,7,.56);
+  text-decoration: none;
+  font: 700 .82rem/1 Inter, sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.cinema-button--primary { border-color: var(--cinema-red-bright); background: var(--cinema-red); box-shadow: 0 12px 34px rgba(201,20,50,.3); }
+.cinema-button:hover { transform: translateY(-2px); }
+
+.cinema-status {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: min(66rem, calc(100% - 2rem));
+  margin: -1.6rem auto 0;
+  border: 1px solid var(--cinema-line);
+  border-radius: var(--cinema-radius);
+  background: rgba(20,13,16,.94);
+  box-shadow: var(--cinema-shadow);
+  overflow: hidden;
+}
+.cinema-status__item { min-width: 0; padding: 1rem; text-align: center; }
+.cinema-status__item + .cinema-status__item { border-left: 1px solid var(--cinema-line); }
+.cinema-status__item span { display: block; color: var(--cinema-silver); font: 700 .62rem/1.2 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.cinema-status__item strong { display: block; margin-top: .35rem; color: var(--cinema-cream); font: 700 clamp(.92rem, 2vw, 1.12rem)/1.25 "Playfair Display", serif; }
+
+.cinema-container { width: min(var(--content-max), calc(100% - 2rem)); margin-inline: auto; padding-block: clamp(3.5rem, 8vw, 7rem); }
+.cinema-section-heading { max-width: 48rem; margin-bottom: 1.8rem; }
+.cinema-section-heading h2 { margin: 0; color: var(--cinema-cream); font: 800 clamp(2rem, 5vw, 4rem)/1 "Playfair Display", serif; letter-spacing: -.035em; }
+.cinema-section-heading p { color: rgba(245,239,229,.68); font: 500 1.05rem/1.65 Inter, sans-serif; }
+
+.cinema-journey-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.cinema-journey-card {
+  position: relative;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 1.4rem;
+  border: 1px solid var(--cinema-line);
+  border-radius: var(--cinema-radius);
+  overflow: hidden;
+  color: var(--cinema-cream);
+  text-decoration: none;
+  background: linear-gradient(145deg, rgba(201,20,50,.15), rgba(255,255,255,.025));
+  transition: transform .3s ease, border-color .3s ease;
+}
+.cinema-journey-card:hover { transform: translateY(-5px); border-color: var(--cinema-gold); }
+.cinema-journey-card__number { color: var(--cinema-red-bright); font: 700 .7rem/1 Inter, sans-serif; letter-spacing: .15em; }
+.cinema-journey-card h3 { margin: .6rem 0; font: 700 1.7rem/1.05 "Playfair Display", serif; }
+.cinema-journey-card p { margin: 0; color: rgba(245,239,229,.66); font: .93rem/1.55 Inter, sans-serif; }
+
+.journey-progress {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: min(54rem, calc(100% - 2rem));
+  margin: -1.25rem auto 2rem;
+  border: 1px solid var(--cinema-line);
+  border-radius: 999px;
+  background: rgba(15,10,12,.95);
+  overflow: hidden;
+}
+.journey-progress span { padding: .75rem .4rem; color: var(--cinema-silver); text-align: center; font: 700 .65rem/1 Inter, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.journey-progress .is-current { background: var(--cinema-red); color: #fff; }
+
+.cinematic-proof .rsvp-form-wrap { min-height: 0 !important; padding: clamp(2rem, 5vw, 4rem) 1rem !important; background: transparent !important; }
+.cinematic-proof .rsvp-form {
+  width: min(52rem, 100%);
+  margin: 0 auto;
+  padding: clamp(1.15rem, 4vw, 2.5rem);
+  border: 1px solid var(--cinema-line);
+  border-radius: var(--cinema-radius);
+  background: linear-gradient(145deg, rgba(247,241,232,.99), rgba(232,224,214,.97));
+  box-shadow: var(--cinema-shadow);
+}
+.cinematic-proof .rsvp-form::before {
+  content: "Your reunion details";
+  display: block;
+  margin-bottom: 1.2rem;
+  color: #1c1518;
+  font: 800 clamp(1.6rem, 4vw, 2.4rem)/1 "Playfair Display", serif;
+}
+.cinematic-proof .rsvp-form__group { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.cinematic-proof .rsvp-form__group .field:has(textarea),
+.cinematic-proof .rsvp-form__group .field--check { grid-column: 1 / -1; }
+.cinematic-proof .field__input { min-height: 48px; border-radius: .65rem; border: 1px solid #c9bfc0; background: rgba(255,255,255,.84); color: #161014; }
+.cinematic-proof .field__input:focus { border-color: var(--cinema-red); box-shadow: 0 0 0 3px rgba(201,20,50,.14); }
+.cinematic-proof .rsvp-form__submit { min-height: 52px; border-radius: 999px; background: var(--cinema-red); box-shadow: 0 12px 30px rgba(201,20,50,.25); }
+.cinematic-proof .rsvp-success { width: min(52rem, 100%); margin: 0 auto; padding: 2rem; border: 1px solid var(--cinema-line); border-radius: var(--cinema-radius); background: var(--cinema-panel-solid); }
+
+.cinematic-proof .premiere-section,
+.cinematic-proof .page-note,
+.cinematic-proof .page-main,
+.cinematic-proof .page-post,
+.cinematic-proof .venue-map { min-height: 0 !important; }
+.cinematic-proof .premiere-section { padding-block: clamp(3.5rem, 8vw, 7rem) !important; }
+.cinematic-proof .page-note { padding-block: clamp(3rem, 6vw, 5rem) !important; }
+.cinematic-proof .page-main { padding-block: clamp(3rem, 6vw, 5rem) !important; }
+.cinematic-proof .director-strip { padding-block: clamp(3rem, 6vw, 5rem) !important; }
+.cinematic-proof .venue-map { padding-block: clamp(3rem, 6vw, 5rem) !important; }
+
+/* Preserve the Premiere dot visual while giving each tab a real touch target. */
+.cinematic-proof .billboard__dot {
+  position: relative;
+  width: 44px !important;
+  height: 44px !important;
+  background: transparent !important;
+}
+.cinematic-proof .billboard__dot::before {
+  content: "";
+  position: absolute;
+  inset: 20px 6px;
+  border-radius: 999px;
+  background: rgba(245,239,229,.42);
+}
+.cinematic-proof .billboard__dot.is-current::before { background: var(--cinema-red-bright); }
+.cinematic-proof .section-chevron { min-width: 44px !important; min-height: 44px !important; }
+
+@media (min-width: 900px) {
+  .cinema-menu-toggle__label { display: inline; }
+}
+
+@media (max-width: 760px) {
+  .cinema-site-header__brand-copy span { display: none; }
+  .cinema-menu-toggle__label { font-size: 0; }
+  .cinema-menu-toggle__label::after { content: "Menu"; font-size: .72rem; }
+  .cinema-hero { min-height: 88dvh; }
+  .cinema-hero__content { padding-top: 7rem; }
+  .cinema-hero h1 { max-width: 9ch; }
+  .cinema-status { grid-template-columns: 1fr; margin-top: -1rem; }
+  .cinema-status__item { display: flex; justify-content: space-between; gap: 1rem; text-align: left; }
+  .cinema-status__item + .cinema-status__item { border-left: 0; border-top: 1px solid var(--cinema-line); }
+  .cinema-status__item strong { margin-top: 0; text-align: right; }
+  .cinema-journey-grid { grid-template-columns: 1fr; }
+  .cinema-journey-card { min-height: 13rem; }
+  .journey-progress { border-radius: 1rem; }
+  .journey-progress span { letter-spacing: .02em; }
+  .cinematic-proof .rsvp-form__group { grid-template-columns: 1fr; }
+  .cinematic-proof .rsvp-form__group .field:has(textarea),
+  .cinematic-proof .rsvp-form__group .field--check { grid-column: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cinema-drawer, .cinema-menu-toggle__bars, .cinema-menu-toggle__bars::before, .cinema-menu-toggle__bars::after { transition: none !important; }
+  .cinema-hero__media video { display: none; }
+}

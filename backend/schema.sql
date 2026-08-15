@@ -64,3 +64,26 @@ CREATE TABLE IF NOT EXISTS menu_selections (
   KEY idx_menu_email (email),
   KEY idx_menu_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Ticket order requests. Payment is collected separately once the committee
+-- supplies the active payment account/link.
+CREATE TABLE IF NOT EXISTS ticket_orders (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  order_code VARCHAR(20) NOT NULL,
+  contact_name VARCHAR(200) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50) NULL,
+  quantity TINYINT UNSIGNED NOT NULL,
+  guest_names TEXT NULL,
+  unit_price DECIMAL(8,2) NOT NULL,
+  total_amount DECIMAL(10,2) NOT NULL,
+  price_tier ENUM('early_bird','regular') NOT NULL,
+  payment_status ENUM('pending','paid','cancelled') NOT NULL DEFAULT 'pending',
+  notes TEXT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uniq_ticket_order_code (order_code),
+  KEY idx_ticket_orders_email (email),
+  KEY idx_ticket_orders_status (payment_status),
+  KEY idx_ticket_orders_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

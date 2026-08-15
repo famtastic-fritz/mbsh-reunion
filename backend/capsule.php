@@ -1,5 +1,5 @@
 <?php
-// capsule.php — POST time capsule form, queues for July 12 send
+// capsule.php — POST time capsule form, queues for reunion-day delivery
 declare(strict_types=1);
 require_once __DIR__ . '/lib/config.php';
 require_once __DIR__ . '/lib/cors.php';

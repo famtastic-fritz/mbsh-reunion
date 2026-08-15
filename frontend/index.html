@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="MBSH Class of '96 — 30th Reunion. A black-tie celebration thirty years in the making.">
   <title>MBSH Class of &rsquo;96 — 30th Reunion</title>
-  <link rel="preload" as="image" href="assets/premiere/hero-poster.jpg" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/premiere/brand-mark-foil.png?v=2">
+  <link rel="preload" as="image" href="/assets/social/2026-reunion-hype/01-hi-tide-harry-ultra-real-4x5.png" fetchpriority="high">
+  <link rel="preload" as="image" href="/assets/premiere/brand-mark-foil.png?v=2">
   <!-- P6 perf fix: removed preload as="video" — forced 4MB+ MP4 load before LCP.
        Hero video now has a poster (LCP element) + preload="metadata". -->
 
@@ -19,36 +19,44 @@
   <link rel="stylesheet" href="css/story.css">
   <link rel="stylesheet" href="css/sections.css">
   <link rel="stylesheet" href="css/compass.css">
-  <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/chatbot.css?v=cinematic4">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/premiere.css">
+  <link rel="stylesheet" href="css/cinematic-system.css?v=cinematic3">
 </head>
-<body data-page="home" data-premiere="on" data-snap="on">
+<body data-page="home" data-premiere="on">
 
-  <!-- ════ Section 1: Hero ════════════════════════════════════════════ -->
-  <section class="hero premiere-snap-target" aria-label="MBSH Class of '96 — 30th Reunion welcome">
-    <video class="hero__video" data-src="assets/backgrounds/05-dancefloor-confetti.mp4" poster="assets/premiere/hero-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
-    <div class="hero__overlay" aria-hidden="true"></div>
-    <div class="hero__content">
-      <img class="hero__mark" src="assets/premiere/brand-mark-foil.png?v=2" alt="30 + 100 commemorative mark — Class of '96 30th reunion, MBSH 100th anniversary" width="120" height="120">
-      <div class="hero__type">
-        <p class="hero__welcome">Welcome back, Class of &rsquo;96</p>
-        <h1 class="hero__headline"><span>Thirty Years Of </span><span>Hi-Tides</span></h1>
-        <p class="hero__date" data-config-bind="reunion_date_display">October–November 2026 — Miami Beach</p>
+  <main class="cinema-hero" id="main-content" aria-labelledby="home-title">
+    <div class="cinema-hero__media">
+      <video data-src="/assets/social/2026-reunion-hype/openart-video/hi-tide-harry-reunion-teaser-mobile-720p.mp4" poster="/assets/social/2026-reunion-hype/01-hi-tide-harry-ultra-real-4x5.png" muted loop playsinline preload="none" aria-hidden="true"></video>
+    </div>
+    <div class="cinema-hero__content">
+      <p class="cinema-kicker">Miami Beach Senior High · Class of 1996</p>
+      <h1 id="home-title">The countdown has awakened.</h1>
+      <p class="cinema-hero__lead">Thirty years later. One hundred years strong. On November 7, the Class of &rsquo;96 comes home.</p>
+      <div class="cinema-actions">
+        <a class="cinema-button cinema-button--primary" href="rsvp.html">Reserve your place</a>
+        <a class="cinema-button" href="tickets.html">Tickets &amp; sponsorship</a>
       </div>
-      <!-- Registration is open; payment processing comes online later.
-           One CTA, always live, points at the RSVP form. -->
-      <a class="hero__cta hero__cta--enabled" href="rsvp.html">Reserve Your Seat</a>
-      <!-- Pass 12 — hero Harry removed. The chatbot bubble is the only
-           corner Harry; the in-scene Harry per Scene + the home billboard's
-           slide-1 welcome carry the on-page character now. -->
-      <div class="hero__scroll-tease" aria-hidden="true">
-        <span>Let us be known for our deeds</span>
-        <svg class="hero__chevron" viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="4 2 12 10 20 2"></polyline>
-          <polyline points="4 12 12 20 20 12" opacity="0.6"></polyline>
-        </svg>
-      </div>
+    </div>
+  </main>
+
+  <div class="cinema-status" aria-label="Reunion essentials">
+    <div class="cinema-status__item"><span>Date</span><strong>November 7, 2026</strong></div>
+    <div class="cinema-status__item"><span>Destination</span><strong>Miami Shores Country Club</strong></div>
+    <div class="cinema-status__item"><span>Attire</span><strong>Black-tie cocktail</strong></div>
+  </div>
+
+  <section class="cinema-container" aria-labelledby="choose-scene-title">
+    <div class="cinema-section-heading">
+      <p class="cinema-kicker">Choose your next scene</p>
+      <h2 id="choose-scene-title">Make the night real.</h2>
+      <p>Start with the action that matters now. The rest of the reunion experience will be waiting when you return.</p>
+    </div>
+    <div class="cinema-journey-grid">
+      <a class="cinema-journey-card" href="rsvp.html"><span class="cinema-journey-card__number">Scene 01</span><h3>Tell us you&rsquo;re coming</h3><p>Complete the formal RSVP and give the committee the details needed to welcome you back.</p></a>
+      <a class="cinema-journey-card" href="tickets.html"><span class="cinema-journey-card__number">Scene 02</span><h3>Secure the night</h3><p>Reserve seats, review the active ticket phase, or help produce the reunion as a sponsor.</p></a>
+      <a class="cinema-journey-card" href="through-years.html"><span class="cinema-journey-card__number">Scene 03</span><h3>Return to the story</h3><p>Walk through one hundred years of Hi-Tides and add the memory only you can tell.</p></a>
     </div>
   </section>
 
@@ -131,13 +139,26 @@
     </div>
     <p class="director-strip__motto">Let us be known for our deeds.</p>
     <div class="director-strip__meta">
-      <span>October–November 2026</span>
+      <span>Saturday, November 7, 2026</span>
       <span class="director-strip__sep" aria-hidden="true">·</span>
-      <span>Miami Beach</span>
+      <span>Miami Shores Country Club</span>
       <span class="director-strip__sep" aria-hidden="true">·</span>
       <span>Black tie</span>
     </div>
     <p class="director-strip__credit">Presented by the Class of '96 · MBSH 1926–2026</p>
+  </section>
+
+  <section class="venue-map premiere-snap-target" aria-labelledby="venue-map-title">
+    <div class="venue-map__copy">
+      <p class="venue-map__eyebrow">The destination</p>
+      <h2 id="venue-map-title">Miami Shores Country Club</h2>
+      <p>Saturday, November 7, 2026</p>
+      <address>10000 Biscayne Blvd<br>Miami Shores, FL 33138</address>
+      <a class="venue-map__directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Miami+Shores+Country+Club%2C+10000+Biscayne+Blvd%2C+Miami+Shores%2C+FL+33138" target="_blank" rel="noopener">Get Directions</a>
+    </div>
+    <div class="venue-map__frame">
+      <iframe title="Map showing Miami Shores Country Club" src="https://www.google.com/maps?q=Miami+Shores+Country+Club%2C+10000+Biscayne+Blvd%2C+Miami+Shores%2C+FL+33138&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
   </section>
 
   <!-- ════ Section 6: WHERE-NEXT ═════════════════════════════════════
@@ -159,7 +180,7 @@
       <li role="none"><a href="index.html" role="menuitem">Home</a></li>
       <li role="none"><a href="rsvp.html" role="menuitem">RSVP</a></li>
       <li role="none"><a href="tickets.html" role="menuitem">Tickets</a></li>
-      <li role="none"><a href="menu.html" role="menuitem">Menu</a></li>
+      <li role="none"><a href="/menu/" role="menuitem">Menu</a></li>
       <li role="none"><a href="survey.html" role="menuitem">Survey</a></li>
       <li role="none"><a href="through-years.html" role="menuitem">Through the Years</a></li>
       <li role="none"><a href="memorial.html" role="menuitem">In Memory</a></li>
@@ -170,17 +191,17 @@
 
   <div class="chatbot" id="chatbot" aria-label="Hi-Tide Harry chat">
     <button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open Hi-Tide Harry chat">
-      <img src="assets/mascot/06-listening.png" alt="" width="64" height="64" aria-hidden="true">
+      <img src="/assets/mascot/06-listening.png" alt="" width="64" height="64" aria-hidden="true">
     </button>
     <div class="chatbot__panel" id="chatbot-panel" hidden>
       <header class="chatbot__panel-header">
-        <img class="chatbot__panel-pose" src="assets/mascot/01-wave-hello.png" alt="" width="120" height="120" aria-hidden="true">
+        <img class="chatbot__panel-pose" src="/assets/mascot/01-wave-hello.png" alt="" width="120" height="120" aria-hidden="true">
         <div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div>
         <button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close chat">×</button>
       </header>
       <ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul>
       <form class="chatbot__input" id="chatbot-form">
-        <input type="text" id="chatbot-input" placeholder="Ask Harry about July 12&hellip;" aria-label="Type your question" autocomplete="off">
+        <input type="text" id="chatbot-input" placeholder="Ask Harry about November 7&hellip;" aria-label="Type your question" autocomplete="off">
         <button type="submit" aria-label="Send">→</button>
       </form>
     </div>
@@ -189,7 +210,7 @@
   <footer class="footer" data-template="footer">
     <div class="footer__inner">
       <div class="footer__col footer__col--identity">
-        <img class="footer__mark" src="assets/brand-mark/brand-mark.png" alt="" width="80" height="80" aria-hidden="true">
+        <img class="footer__mark" src="/assets/brand-mark/brand-mark.png" alt="" width="80" height="80" aria-hidden="true">
         <p class="footer__title">Class of 1996 &middot; 30th Reunion</p>
         <p class="footer__sub">Hi-Tide Pride Since 1926 🌊</p>
         <p class="footer__tagline">Let us be known for our deeds</p>
@@ -214,16 +235,17 @@
     </div>
     <div class="footer__strip">
       <p class="footer__copyright">© 2026 MBSH Class of '96 Reunion Committee</p>
-      <p class="footer__credit">Built with <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p>
+      <p class="footer__credit">This site was created by <a href="https://famtasticdesigns.com" rel="noopener">FAMtasticDesigns.com</a> · Powered by <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p>
     </div>
   </footer>
 
   <script src="js/config.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/cinematic-shell.js?v=cinematic3" defer></script>
   <script src="js/countdown.js" defer></script>
   <script src="js/compass.js" defer></script>
-  <script src="js/chatbot.js" defer></script>
-  <script src="js/page-sequence.js" defer></script>
-  <script src="js/premiere.js" defer></script>
+  <script src="js/chatbot.js?v=cinematic4" defer></script>
+  <script src="js/page-sequence.js?v=menufix2" defer></script>
+  <script src="js/premiere.js?v=salutefix1" defer></script>
 </body>
 </html>

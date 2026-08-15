@@ -35,14 +35,15 @@
       console.warn('[config] failed to load /config/site-config.json:', err);
       // Fallback config so the page still functions
       applyConfig({
-        REUNION_DATE: '2026-07-12',
-        REUNION_DATE_DISPLAY: 'October–November 2026 — Miami Beach',
-        REUNION_VENUE: 'TBA',
-        EARLY_BIRD_PRICE: 60,
-        REGULAR_PRICE: 75,
-        EARLY_BIRD_DEADLINE: '2026-06-01',
+        REUNION_DATE: '2026-11-07',
+        REUNION_DATE_DISPLAY: 'Saturday, November 7, 2026 — Miami Shores Country Club',
+        REUNION_VENUE: 'Miami Shores Country Club',
+        REUNION_ADDRESS: '10000 Biscayne Blvd, Miami Shores, FL 33138',
+        EARLY_BIRD_PRICE: 185,
+        REGULAR_PRICE: 200,
+        EARLY_BIRD_DEADLINE: '2026-09-07',
         EARLY_BIRD_ACTIVE: true,
-        PAYMENTS_STATUS: 'disabled',
+        PAYMENTS_STATUS: 'order-request',
         REGISTRATION_STATUS: 'open',
         API_BASE_URL: null
       });

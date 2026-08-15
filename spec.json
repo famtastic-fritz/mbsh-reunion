@@ -30,7 +30,7 @@
       "Reduce RSVP friction",
       "Sponsor track funds the event (donation tiers + manual approval gate)",
       "Honor classmates lost (In Memory section, reverent restraint)",
-      "Surprise emotional payoff (Time Capsule sends to classmates' future selves on July 12)",
+      "Surprise emotional payoff (Time Capsule sends to classmates' future selves on November 7)",
       "Living soundtrack (Spotify playlist, embedded)",
       "First branded AI chatbot built through Studio (Hi-Tide Harry, Phase 1 = FAQ + fallback)"
     ],
@@ -152,11 +152,11 @@
     "generated_at": "2026-05-02T18:30:00.000Z"
   },
   "site_repo": {
-    "path": "/Users/famtasticfritz/famtastic/sites/site-mbsh-reunion",
+    "path": "/Users/famtasticfritz/famtastic-sites/mbsh-reunion",
     "remote": "https://github.com/famtastic-fritz/mbsh-reunion",
     "current_branch": "main",
     "archive_branch": "archive/v0-placeholder",
-    "deploy_target_role": "Studio's per-tag directory at ~/famtastic/sites/site-mbsh-reunion/ now serves as both the canonical tracked repo and the backend/frontend source of truth."
+    "deploy_target_role": "Studio's per-tag directory at ~/famtastic/sites/site-mbsh-reunion/ is the SANDBOX (asset workshop). The deploy artifact lives in the sibling repo above. Per repo-separation rule (Recommendation 0.9 + G.4)."
   },
   "environments": {
     "staging": {
@@ -180,7 +180,7 @@
       ],
       "ssl": "letsencrypt-via-netlify",
       "repo": {
-        "path": "/Users/famtasticfritz/famtastic/sites/site-mbsh-reunion",
+        "path": "/Users/famtasticfritz/famtastic-sites/mbsh-reunion",
         "remote": "https://github.com/famtastic-fritz/mbsh-reunion"
       }
     }
@@ -212,7 +212,7 @@
       {
         "path": "/capsule.php",
         "method": "POST",
-        "purpose": "Time capsule form, queues for July 12 send"
+        "purpose": "Time capsule form, queues for November 7 send"
       },
       {
         "path": "/chatbot-question.php",
@@ -330,8 +330,8 @@
       "cors_locked_at": "2026-05-05T18:53:14.441713Z",
       "cors_locked_to": "mbsh-reunion-staging"
     },
-    "deployed_at": "2026-07-22T21:24:24.459055Z",
-    "deploy_revision": "798c9bb",
+    "deployed_at": "2026-05-05T18:40:56.367903Z",
+    "deploy_revision": "cdf8921",
     "email_sending_domain_verified_at": "2026-05-05T18:51:13.859840Z"
   },
   "character_sets": [
@@ -552,7 +552,7 @@
   "deployment_pipeline": {
     "stage_target": "session_8",
     "production_target": "session_9",
-    "reunion_date": "2026-07-12",
+    "reunion_date": "2026-11-07",
     "timeline_path": "/Users/famtasticfritz/famtastic/docs/sites/site-mbsh-reunion/cowork-audit-001/07-infrastructure-pipeline.md",
     "credentials_helper": "/Users/famtasticfritz/famtastic-sites/mbsh-reunion/scripts/setup-mbsh-backend.sh"
   },

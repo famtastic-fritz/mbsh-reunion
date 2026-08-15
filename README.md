@@ -59,7 +59,7 @@ The canonical hero (at `mbsh-reunion`) is preserved verbatim here. Sections 2-11
 | `rsvp.php` | RSVP submission → `rsvps` + Resend confirm + committee notify |
 | `sponsor.php` | Sponsor inquiry (multipart) → `sponsors_pending` + Resend notify with admin review link |
 | `memory.php` | Memory submission (multipart) → `memories` (approved=0) + Resend notify |
-| `capsule.php` | Time capsule → `time_capsules` (queued for July 12) |
+| `capsule.php` | Time capsule → `time_capsules` (queued for November 7) |
 | `chatbot-question.php` | Chatbot fallback question + email → `chatbot_questions` |
 | `attendees.php` | GET public attendee feed (display_publicly only, no PII) |
 | `sponsors.php` | GET approved sponsor wall feed |

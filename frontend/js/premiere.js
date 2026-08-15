@@ -157,7 +157,7 @@
     home_story:          '08-pointing.png',       // existing — Story sub-moments use 11-peeking via section observer (below)
     home_event:          '21-pride-celebrate.png', // P3 — was 04-excited-cheer
     home_previews:       '07-confirming.png',     // existing
-    home_footer:         '23-salute.png',         // P3 — was 02-thumbs-up
+    home_footer:         '23-salute-clean.png',   // cleaned transparent production asset
     rsvp:                '15-seated-usher.png',   // P3 — was 06-listening
     rsvp_success:        '13-ticket-stub.png',    // P3 — was 02-thumbs-up
     tickets:             '18-presenting.png',     // P3 — was 08-pointing
@@ -191,7 +191,7 @@
     const img = document.createElement('img');
     img.alt = '';
     img.setAttribute('aria-hidden', 'true');
-    img.src = 'assets/mascot/' + (POSE_MAP[page] || POSE_MAP.home_hero);
+    img.src = '/assets/mascot/' + (POSE_MAP[page] || POSE_MAP.home_hero);
     img.width = 120; img.height = 120;
 
     const hint = document.createElement('span');
@@ -263,7 +263,7 @@
           usher.classList.add('is-stepping');
           setTimeout(() => usher.classList.remove('is-stepping'), 700);
           setTimeout(() => {
-            img.src = 'assets/mascot/' + match.pose;
+            img.src = '/assets/mascot/' + match.pose;
             img.style.opacity = '1';
             hint.textContent = match.hint;
           }, 250);
@@ -399,7 +399,7 @@
       if (target) target.textContent = name;
       stub.classList.add('is-visible');
       const usherImg = document.querySelector('.premiere-usher img');
-      if (usherImg) usherImg.src = 'assets/mascot/' + POSE_MAP.rsvp_success;
+      if (usherImg) usherImg.src = '/assets/mascot/' + POSE_MAP.rsvp_success;
     });
   }
 
@@ -452,6 +452,8 @@
       { href: 'index.html',         label: 'Home',           page: 'home',          tease: 'The Premiere' },
       { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp',          tease: 'Take Your Seat' },
       { href: 'tickets.html',       label: 'Tickets',        page: 'tickets',       tease: 'Patrons of the Evening' },
+      { href: '/menu/',             label: 'Menu',           page: 'menu',          tease: 'Dinner Preferences' },
+      { href: 'survey.html',        label: 'Survey',         page: 'survey',        tease: 'Class Roll Call' },
       { href: 'through-years.html', label: 'Through Years',  page: 'through-years', tease: 'The Trailer Reel' },
       { href: 'memorial.html',      label: 'In Memory',      page: 'memorial',      tease: 'In Memoriam' },
       { href: 'capsule.html',       label: 'Capsule',        page: 'capsule',       tease: 'Letter to Yourself' },
@@ -483,7 +485,7 @@
       medallion.setAttribute('aria-expanded', 'false');
       medallion.setAttribute('aria-controls', 'premiere-medallion-menu');
       const img = document.createElement('img');
-      img.src = 'assets/brand-mark/brand-mark.png';
+      img.src = '/assets/brand-mark/brand-mark.png';
       img.alt = '';
       img.setAttribute('aria-hidden', 'true');
       medallion.appendChild(img);
@@ -713,6 +715,8 @@
       ['index.html', 'Visit', 'home'],
       ['rsvp.html', 'RSVP', 'rsvp'],
       ['tickets.html', 'Tickets', 'tickets'],
+      ['/menu/', 'Menu', 'menu'],
+      ['survey.html', 'Survey', 'survey'],
       ['through-years.html', 'Through the Years', 'through-years'],
       ['memorial.html', 'In Memory', 'memorial'],
       ['capsule.html', 'Time Capsule', 'capsule'],
@@ -726,14 +730,14 @@
     footer.innerHTML =
       '<div class="footer__rail footer__rail--top" aria-hidden="true"></div>' +
       '<div class="footer__inner">' +
-        '<img class="footer__seal" src="assets/premiere/brand-mark-foil.png?v=2" alt="Class of \'96 + MBSH 1926-2026 commemorative seal" width="140" height="140" loading="lazy">' +
+        '<img class="footer__seal" src="/assets/premiere/brand-mark-foil.png?v=2" alt="Class of \'96 + MBSH 1926-2026 commemorative seal" width="140" height="140" loading="lazy">' +
         '<p class="footer__seal-line">MBSH · 1926 — 2026</p>' +
         '<p class="footer__class">Class of 1996 · 30th Reunion</p>' +
         '<p class="footer__motto">Let us be known for our deeds.</p>' +
         '<hr class="footer__rule">' +
         '<div class="footer__credits">' +
           '<p class="footer__credits-eyebrow">— A final credit roll —</p>' +
-          '<p class="footer__credits-line"><strong>Reunion Committee</strong> <a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p>' +
+          '<p class="footer__credits-line"><strong>M11 Committee</strong> <a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p>' +
           '<p class="footer__credits-line">' + navHTML + '</p>' +
           '<p class="footer__credits-line"><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a> · <a href="through-years.html#submit-memory">Submit a memory</a> · <a href="tickets.html#sponsor">Become a sponsor</a></p>' +
           '<p class="footer__credits-line footer__credits-line--social">Instagram &amp; Facebook coming soon — drop a note to the committee for a heads-up.</p>' +
@@ -741,8 +745,8 @@
         '<hr class="footer__rule">' +
         '<div class="footer__encore">' +
           '<p class="footer__encore-eyebrow">— Encore —</p>' +
-          '<p class="footer__copyright">© 2026 MBSH Class of \'96 Reunion Committee</p>' +
-          '<p class="footer__credit">Built with <a href="https://famtastic.com" rel="noopener">FAMtastic Site Studio</a></p>' +
+          '<p class="footer__copyright">© 2026 MBSH Class of \'96 Reunion</p>' +
+          '<p class="footer__credit">Site by <a href="https://famtasticdesigns.com" rel="noopener">FAMtastic Designs</a></p>' +
         '</div>' +
       '</div>' +
       '<div class="footer__rail footer__rail--bottom" aria-hidden="true"></div>';
@@ -824,6 +828,8 @@
       { href: 'index.html',         label: 'Home',           page: 'home' },
       { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp' },
       { href: 'tickets.html',       label: 'Tickets',        page: 'tickets' },
+      { href: '/menu/',             label: 'Menu',           page: 'menu' },
+      { href: 'survey.html',        label: 'Survey',         page: 'survey' },
       { href: 'through-years.html', label: 'Through Years',  page: 'through-years' },
       { href: 'memorial.html',      label: 'In Memory',      page: 'memorial' },
       { href: 'capsule.html',       label: 'Capsule',        page: 'capsule' },
@@ -838,7 +844,7 @@
     brand.className = 'premiere-nav__brand';
     brand.href = 'index.html';
     const brandImg = document.createElement('img');
-    brandImg.src = 'assets/brand-mark/brand-mark.png';
+    brandImg.src = '/assets/brand-mark/brand-mark.png';
     brandImg.alt = '';
     brandImg.setAttribute('aria-hidden', 'true');
     const brandText = document.createElement('span');
@@ -956,8 +962,8 @@
   // (with .href and .runtime). If page-sequence.js failed to load we fall
   // back to the embedded copy so this file still works standalone.
   const PROGRAM_RUNTIMES = {
-    home: '—', rsvp: '4 min', tickets: '6 min', 'through-years': '12 min',
-    memorial: '5 min', capsule: '8 min', playlist: '∞'
+    home: '—', rsvp: '4 min', tickets: '6 min', menu: '5 min', survey: '3 min',
+    'through-years': '12 min', memorial: '5 min', capsule: '8 min', playlist: '∞'
   };
   const PROGRAM = (window.PAGE_SEQUENCE && Array.isArray(window.PAGE_SEQUENCE))
     ? window.PAGE_SEQUENCE.map(function (e) {
@@ -971,10 +977,12 @@
         { id: 'home',     page: 'home',          href: 'index.html',         reel: 'I',    title: 'Welcome — The Premiere',     usher: 'Curtain up. Find your row, find your row of 1996.',           runtime: '—' },
         { id: 'rsvp',     page: 'rsvp',          href: 'rsvp.html',          reel: 'II',   title: 'Reserve Your Seat',          usher: "Tell us you're coming. The night unlocks once we hear from you.", runtime: '4 min' },
         { id: 'tickets',  page: 'tickets',       href: 'tickets.html',       reel: 'III',  title: 'Tickets & Sponsorship',      usher: 'Two ways in — secure a seat, or help fund the night.',  runtime: '6 min' },
-        { id: 'years',    page: 'through-years', href: 'through-years.html', reel: 'IV',   title: 'Through the Years',          usher: 'One hundred years of Hi-Tides. The eras that built us.',     runtime: '12 min' },
-        { id: 'memory',   page: 'memorial',      href: 'memorial.html',      reel: 'V',    title: 'In Memory',                  usher: 'Forever Hi-Tides. Names we carry with us.',                  runtime: '5 min' },
-        { id: 'capsule',  page: 'capsule',       href: 'capsule.html',       reel: 'VI',   title: 'Time Capsule',               usher: "Send your younger self a note. We'll deliver on the day.",   runtime: '8 min' },
-        { id: 'sound',    page: 'playlist',      href: 'playlist.html',      reel: 'VII',  title: 'The Soundtrack',             usher: 'The songs that made us who we are. Curated, embedded, alive.', runtime: '∞' },
+        { id: 'menu',     page: 'menu',          href: '/menu/',             reel: 'IV',   title: 'Dinner Preferences',         usher: 'Vote the menu up front so the committee locks the strongest dinner lineup.', runtime: '5 min' },
+        { id: 'survey',   page: 'survey',        href: 'survey.html',        reel: 'V',    title: 'Class Survey',               usher: 'Give the committee the head count, guest signal, and planning intel they need.', runtime: '3 min' },
+        { id: 'years',    page: 'through-years', href: 'through-years.html', reel: 'VI',   title: 'Through the Years',          usher: 'One hundred years of Hi-Tides. The eras that built us.',     runtime: '12 min' },
+        { id: 'memory',   page: 'memorial',      href: 'memorial.html',      reel: 'VII',  title: 'In Memory',                  usher: 'Forever Hi-Tides. Names we carry with us.',                  runtime: '5 min' },
+        { id: 'capsule',  page: 'capsule',       href: 'capsule.html',       reel: 'VIII', title: 'Time Capsule',               usher: "Send your younger self a note. We'll deliver on the day.",   runtime: '8 min' },
+        { id: 'sound',    page: 'playlist',      href: 'playlist.html',      reel: 'IX',   title: 'The Soundtrack',             usher: 'The songs that made us who we are. Curated, embedded, alive.', runtime: '∞' },
       ];
 
   function programIndex(pageName) {
@@ -1041,9 +1049,10 @@
     host.appendChild(rail);
   }
 
-  /* Inject (or upgrade) Where-Next on every page. Picks next 4 in program
-     order, with current page rendered as NOW PLAYING. */
+  /* Inject (or upgrade) Where-Next on landing pages only. Simple pages like
+     menu/survey should stay clean: header, content, footer. */
   function injectWhereNext() {
+    if (page !== 'home') return;
     // If a hardcoded .page-next exists (home), upgrade it in place.
     const legacy = document.querySelector('.page-next');
     let target;
@@ -1102,6 +1111,8 @@
     'home':          { pose: '20-pointing-across.png', anchor: 'bottom-left', host: '.program-bulletin, .where-next', alt: 'Hi-Tide Harry pointing at the program' },
     'rsvp':          { pose: '12-clipboard.png',       anchor: 'bottom-left', host: 'section.rsvp-form-wrap, section[id="rsvp"], main section:nth-of-type(1)', alt: 'Hi-Tide Harry holding a clipboard' },
     'tickets':       { pose: '13-ticket-stub.png',     anchor: 'bottom-left', host: 'section.tickets, main section:nth-of-type(1)', alt: 'Hi-Tide Harry holding a ticket stub' },
+    'menu':          { pose: '15-seated-usher.png',    anchor: 'bottom-left', host: '.menu-shell__inner, #menu-form, section[aria-label="Gold menu dinner preferences"]', alt: 'Hi-Tide Harry seated beside the dinner preferences form' },
+    'survey':        { pose: '12-clipboard.png',       anchor: 'bottom-left', host: 'section.survey-form-wrap, section[aria-label="Class survey form"], main section:nth-of-type(2)', alt: 'Hi-Tide Harry holding the class survey clipboard' },
     'through-years': { pose: '22-walk-frame.png',      anchor: 'bottom-left', host: 'section.timeline, main section:nth-of-type(1)', alt: 'Hi-Tide Harry walking the years' },
     'memorial':      { pose: '17-respectful.png',      anchor: 'bottom-left', host: 'section.memorial, main section:nth-of-type(1)', alt: 'Hi-Tide Harry, hat in hand' },
     'capsule':       { pose: '14-wax-stamping.png',    anchor: 'bottom-left', host: 'section.capsule, main section:nth-of-type(1)', alt: 'Hi-Tide Harry stamping the wax seal' },
@@ -1129,7 +1140,7 @@
     if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
     const img = document.createElement('img');
     img.className = 'harry-in-scene harry-in-scene--anchor-' + cfg.anchor;
-    img.src = 'assets/mascot/' + cfg.pose;
+    img.src = '/assets/mascot/' + cfg.pose;
     img.alt = cfg.alt;
     img.width = 200; img.height = 240;
     img.loading = 'lazy';
@@ -1142,7 +1153,7 @@
         if (getComputedStyle(post).position === 'static') post.style.position = 'relative';
         const salute = document.createElement('img');
         salute.className = 'harry-in-scene harry-in-scene--anchor-bottom-left';
-        salute.src = 'assets/mascot/23-salute.png';
+        salute.src = '/assets/mascot/23-salute-clean.png';
         salute.alt = 'Hi-Tide Harry saluting from the proscenium';
         salute.width = 180; salute.height = 220;
         salute.loading = 'lazy';
@@ -1165,7 +1176,7 @@
         line: "Welcome inside, Hi-Tide. I'm <em>Harry</em> — your usher for the evening.",
         beats: [
           'Tap the chevron at the bottom of any scene to drop into the next.',
-          'The medallion in the top corner is the <em>Compass</em> — every page in one tap.',
+          'Use <em>Explore</em> in the top corner — every page is available in one tap.',
           "Tap me any time. Questions about the night, or a note for the committee — I'll carry it."
         ],
         sign: '— Harry'
@@ -1180,9 +1191,9 @@
       {
         eyebrow: 'The night',
         kind: 'headline',
-        harry: '23-salute.png',
-        headline: 'October–November 2026.<br><span class="billboard__accent">Black-tie cocktail.</span>',
-        sub: 'Miami Beach. The night unlocks once we hear from you.'
+        harry: '23-salute-clean.png',
+        headline: 'Saturday, November 7, 2026.<br><span class="billboard__accent">Black-tie cocktail.</span>',
+        sub: 'Miami Shores Country Club. The night unlocks once we hear from you.'
       }
     ],
     rsvp: [
@@ -1194,7 +1205,7 @@
           'Tap me if a field gets weird or you want a hand.'
         ], sign: '— Harry' },
       { eyebrow: 'Save the date', kind: 'headline', harry: '02-thumbs-up.png',
-        headline: 'October–November 2026.', sub: 'Black-tie cocktail. Miami Beach. The full schedule lands once tickets open.' }
+        headline: 'Saturday, November 7, 2026.', sub: 'Black-tie cocktail. Miami Shores Country Club.' }
     ],
     tickets: [
       { eyebrow: 'A note from your usher', kind: 'welcome', harry: '13-ticket-stub.png',
@@ -1238,7 +1249,7 @@
           'Delivered the night of the reunion. No spoilers from me.'
         ], sign: '— Harry' },
       { eyebrow: 'The promise', kind: 'headline', harry: '14-wax-stamping.png',
-        headline: 'Sealed July 12, 2026.', sub: "Delivered the night we're all in the room." }
+        headline: 'Sealed November 7, 2026.', sub: "Delivered the night we're all in the room." }
     ],
     playlist: [
       { eyebrow: 'A note from your usher', kind: 'welcome', harry: '16-conducting.png',
@@ -1259,7 +1270,7 @@
     let inner = '';
     inner += '<p class="billboard__eyebrow">— ' + s.eyebrow + ' —</p>';
     if (s.harry) {
-      inner += '<img class="billboard__harry" src="assets/mascot/' + s.harry + '" alt="Hi-Tide Harry" loading="lazy" width="160" height="200">';
+      inner += '<img class="billboard__harry" src="/assets/mascot/' + s.harry + '" alt="Hi-Tide Harry" loading="lazy" width="160" height="200">';
     }
     if (s.kind === 'welcome') {
       inner += '<p class="billboard__line">' + s.line + '</p>';

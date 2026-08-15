@@ -68,6 +68,18 @@ textarea.field__input { resize: vertical; min-height: 4rem; }
 .tickets__note { font-family: var(--font-italic); font-style: italic; text-align: center; color: var(--c-off-black); opacity: 0.7; margin: 0; }
 .tickets__note a { color: var(--c-red); font-weight: 600; }
 
+.ticket-order { padding: var(--space-2xl) var(--space-lg); max-width: var(--container-narrow); margin: 0 auto; }
+.ticket-order__intro { text-align: center; color: var(--c-cream); margin-bottom: var(--space-lg); }
+.ticket-order__intro p { line-height: 1.6; }
+.ticket-order__columns { display: grid; gap: var(--space-md); }
+@media (min-width: 640px) { .ticket-order__columns { grid-template-columns: 1fr 1fr; } }
+.ticket-order__total { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-sm); margin: 0 0 var(--space-lg); padding: var(--space-md); background: var(--c-cream); color: var(--c-off-black); border-left: 3px solid var(--c-red); }
+.ticket-order__total strong { color: var(--c-red); }
+.ticket-order__status { color: #a31621; font-weight: 600; margin-bottom: var(--space-md); }
+.ticket-order__success { background: var(--c-white); color: var(--c-off-black); padding: var(--space-xl); border-radius: 4px; text-align: center; box-shadow: 0 4px 32px rgba(10,10,10,0.08); }
+.ticket-order__success h2 { color: var(--c-red); font-family: var(--font-display); }
+.ticket-order__success[hidden] { display: none !important; }
+
 /* ── Section 4B: Sponsorship ──────────────────────────────────────── */
 .sponsors { background: var(--c-off-black); color: var(--c-white); border-radius: 4px; }
 .sponsors .section-head { color: var(--c-white); }
@@ -160,6 +172,7 @@ body[data-premiere="on"] .memory-form .field__label,
 body[data-premiere="on"] .capsule__envelope .field__label,
 body[data-premiere="on"] .playlist-suggest .field__label,
 body[data-premiere="on"] .sponsor-form .field__label,
+body[data-premiere="on"] .ticket-order__form .field__label,
 body[data-premiere="on"] .menu-form .field__label,
 body[data-premiere="on"] .menu-form .menu-course__title,
 body[data-premiere="on"] .menu-form .menu-course__rule,
@@ -174,6 +187,7 @@ body[data-premiere="on"] .capsule__envelope .field__input,
 body[data-premiere="on"] .playlist-suggest .field__input,
 body[data-premiere="on"] .sponsor-form .field__input,
 body[data-premiere="on"] .sponsor-form select,
+body[data-premiere="on"] .ticket-order__form .field__input,
 body[data-premiere="on"] .menu-form .field__input,
 body[data-premiere="on"] .menu-form select {
   color: var(--c-off-black) !important;
@@ -186,6 +200,7 @@ body[data-premiere="on"] .memory-form .field__input::placeholder,
 body[data-premiere="on"] .capsule__envelope .field__input::placeholder,
 body[data-premiere="on"] .playlist-suggest .field__input::placeholder,
 body[data-premiere="on"] .sponsor-form .field__input::placeholder,
+body[data-premiere="on"] .ticket-order__form .field__input::placeholder,
 body[data-premiere="on"] .menu-form .field__input::placeholder {
   color: var(--c-silver-dark) !important;
   opacity: 1 !important;
@@ -196,6 +211,7 @@ body[data-premiere="on"] .memory-form .field__input:focus,
 body[data-premiere="on"] .capsule__envelope .field__input:focus,
 body[data-premiere="on"] .playlist-suggest .field__input:focus,
 body[data-premiere="on"] .sponsor-form .field__input:focus,
+body[data-premiere="on"] .ticket-order__form .field__input:focus,
 body[data-premiere="on"] .menu-form .field__input:focus {
   border-color: var(--c-red) !important;
   box-shadow: 0 0 0 3px rgba(200,16,46,0.15) !important;

@@ -10,7 +10,7 @@
 // `window.PAGE_SEQUENCE` and the helpers below being defined.
 //
 // PAGE SEQUENCE (locked):
-//   home → rsvp → tickets → through-years → memorial → capsule → playlist
+//   home → rsvp → tickets → menu → survey → through-years → memorial → capsule → playlist
 //   playlist's "next" wraps back to home.
 //
 // Each entry carries:
@@ -60,10 +60,28 @@
       usher: 'Two ways in — secure a seat, or help fund the night.'
     },
     {
+      id: 'menu',
+      page: 'menu',
+      slug: '/menu/',
+      reelRoman: 'IV',
+      sceneLocation: 'Dining Room',
+      title: 'Dinner Preferences',
+      usher: 'Vote the menu up front so the committee locks the strongest dinner lineup.'
+    },
+    {
+      id: 'survey',
+      page: 'survey',
+      slug: 'survey.html',
+      reelRoman: 'V',
+      sceneLocation: 'Roll Call',
+      title: 'Class Survey',
+      usher: 'Give the committee the head count, guest signal, and planning intel they need.'
+    },
+    {
       id: 'through-years',
       page: 'through-years',
       slug: 'through-years.html',
-      reelRoman: 'IV',
+      reelRoman: 'VI',
       sceneLocation: 'The Marquee',
       title: 'Through the Years',
       usher: 'One hundred years of Hi-Tides. The eras that built us.'
@@ -72,7 +90,7 @@
       id: 'memorial',
       page: 'memorial',
       slug: 'memorial.html',
-      reelRoman: 'V',
+      reelRoman: 'VII',
       sceneLocation: 'Memorial Hall',
       title: 'In Memory',
       usher: 'Forever Hi-Tides. Names we carry with us.'
@@ -81,7 +99,7 @@
       id: 'capsule',
       page: 'capsule',
       slug: 'capsule.html',
-      reelRoman: 'VI',
+      reelRoman: 'VIII',
       sceneLocation: 'Projection Booth',
       title: 'Time Capsule',
       usher: "Send your younger self a note. We'll deliver on the day."
@@ -90,7 +108,7 @@
       id: 'playlist',
       page: 'playlist',
       slug: 'playlist.html',
-      reelRoman: 'VII',
+      reelRoman: 'IX',
       sceneLocation: 'Sound Stage',
       title: 'The Soundtrack',
       usher: 'The songs that made us who we are. Curated, embedded, alive.'
