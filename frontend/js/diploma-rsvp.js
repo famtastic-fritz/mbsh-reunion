@@ -3,7 +3,7 @@
   const form = document.querySelector('#rsvp-form');
   if (!stage || !form) return;
 
-  const open = (mode) => {
+  const open = (mode, shouldFocus = true) => {
     const animated = mode === 'book' && !matchMedia('(prefers-reduced-motion: reduce)').matches;
     stage.classList.toggle('is-instant', !animated);
     stage.classList.toggle('is-opening', animated);
@@ -15,7 +15,9 @@
     } else {
       stage.classList.add('is-open');
     }
-    window.setTimeout(() => form.querySelector('input,select,textarea')?.focus(), animated ? 1550 : 0);
+    if (shouldFocus) {
+      window.setTimeout(() => form.querySelector('input,select,textarea')?.focus(), animated ? 1550 : 0);
+    }
   };
 
   document.querySelectorAll('[data-diploma-open]').forEach((button) => {
@@ -23,6 +25,8 @@
   });
 
   if (matchMedia('(max-width: 980px), (prefers-reduced-motion: reduce)').matches) {
-    open('instant');
+    // Open the compact mobile layout without stealing focus or scrolling past
+    // the page hero. Explicit user actions still move focus into the form.
+    open('instant', false);
   }
 })();

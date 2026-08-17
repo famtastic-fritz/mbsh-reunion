@@ -18,6 +18,32 @@
     ['portal', 'Attendee Portal', '/portal/login']
   ];
 
+  const footerMarkup = `
+    <div class="footer__inner">
+      <div class="footer__col footer__col--identity">
+        <img class="footer__mark" src="/assets/premiere/brand-mark-foil.png?v=2" alt="" width="80" height="80" aria-hidden="true">
+        <p class="footer__title">Class of 1996 &middot; 30th Reunion</p>
+        <p class="footer__sub">Hi-Tide Pride Since 1926 🌊</p>
+        <p class="footer__tagline">Let us be known for our deeds</p>
+      </div>
+      <div class="footer__col footer__col--contact">
+        <h4>MBSH Committee</h4>
+        <p><a href="mailto:committee@mbsh96reunion.com">committee@mbsh96reunion.com</a></p>
+      </div>
+      <div class="footer__col footer__col--resources">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a></li>
+          <li><a href="/through-years.html#submit-memory">Submit a memory</a></li>
+          <li><a href="/tickets.html#sponsor">Become a sponsor</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__strip">
+      <p class="footer__copyright">© 2026 MBSH Class of '96 Reunion</p>
+      <p class="footer__credit">Site by <a href="https://famtasticdesigns.com" rel="noopener">FAMtastic Designs</a></p>
+    </div>`;
+
   function mountShell() {
     if (document.querySelector('.cinema-site-header')) return;
 
@@ -105,6 +131,13 @@
     media.play().catch(() => {});
   }
 
+  function normalizeFooter() {
+    const footer = document.querySelector('footer.footer');
+    if (!footer) return;
+    footer.dataset.template = 'footer';
+    footer.innerHTML = footerMarkup;
+  }
+
   function prioritizePrimaryTask() {
     if (page !== 'rsvp') return;
     const form = document.querySelector('.rsvp-form-wrap');
@@ -120,6 +153,7 @@
 
   function init() {
     mountShell();
+    normalizeFooter();
     identifyMain();
     prioritizePrimaryTask();
     enhanceMedia();
