@@ -1,6 +1,9 @@
 # FAMtastic Reunion WordPress Proof
 
-This directory is a **non-live integration scaffold**. It does not replace the current custom backend and must not be connected to production credentials.
+This directory is the reusable WordPress/WooCommerce control-plane source. A
+production copy is installed under `/cms`, but it does not replace the current
+custom operational backend or become payment authority until the recorded
+migration and provider gates pass.
 
 ## Local proof
 

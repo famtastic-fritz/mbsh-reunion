@@ -1,6 +1,6 @@
 # Headless WordPress/WooCommerce Operations Plan
 
-**Status:** non-live proof scaffold
+**Status:** production-installed, migration-gated hybrid
 **Decision:** staged hybrid migration; no production cutover is implied by this repository state.
 
 ## 1. Authority map
