@@ -4,6 +4,14 @@ Read `docs/architecture/EVENT_CINEMA_ARCHITECTURE.md` and
 `docs/operations/PRIVATE_ARCHIVE_SOURCE_MANIFEST.md` before changing identity,
 commerce, uploads, archival media, email, or scheduled jobs.
 
+Before changing any public page, also read
+`docs/architecture/PUBLIC_PAGE_COMPONENT_CONTRACT_2026-08-17.md`. The visible
+header, site navigation, and footer are owned by
+`frontend/js/cinematic-shell.js`; a page supplies only its ordered content
+sections and `data-page` identity. Never add page-relative global navigation.
+Run `node tests/frontend/shared-public-shell.test.mjs` after every public-page
+or template change.
+
 ## Non-negotiable boundaries
 
 - The cinematic frontend owns presentation. WordPress owns editable editorial

@@ -65,6 +65,28 @@ Every public section must map to a structured CMS component or an explicitly
 named application component. Every visible promise must map to a working data
 record, action, owner, status, and failure state.
 
+### Universal public shell
+
+Compose every route as:
+
+`Page = SharedShell(Header + Navigation + Footer) + PageContent(ordered Sections) + PageAwareHarry`
+
+- Maintain one canonical route registry with root-absolute destinations.
+- Load one shared visible header/navigation/footer implementation on every
+  public route; keep semantic HTML fallbacks for resilience and crawlability.
+- A route declares `data-page`; Harry uses that page identity plus the active
+  component/section to select guidance, pose, actions, and escalation context.
+- A global-shell change must propagate without editing individual page content.
+- Page-specific visual metaphors live inside the content area. For this site,
+  the diploma is the RSVP/official-record interaction; tickets, yearbook,
+  memorials, meals, and the archive retain their own meaningful components.
+- Reject unexplained decorative controls. A visual that resembles a button,
+  progress control, or navigation element must work, be labeled, or be removed.
+- Prove nested routes such as `/menu/` cannot prefix global destinations.
+
+Reference implementation: `frontend/js/cinematic-shell.js`.
+Contract test: `node tests/frontend/shared-public-shell.test.mjs`.
+
 - Account verification/recovery and notification settings.
 - Event dashboard, agenda, FAQs, travel, venue, and announcements.
 - Moderated memory/story upload with explicit rights scope.
