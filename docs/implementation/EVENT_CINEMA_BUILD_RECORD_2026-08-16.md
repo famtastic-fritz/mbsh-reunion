@@ -5,6 +5,15 @@ Branch: `feature/event-cinema-portal`
 Worktree: isolated from the production/main working tree
 Deployment status: not deployed
 
+## August 17 — universal shell completion
+
+- Removed the retired compass navigation markup, JavaScript, and stylesheet references from all nine public routes and all reusable page templates.
+- Removed duplicate branded back-header controls while retaining each page's content heading.
+- Centralized footer markup in the cinematic shell; pages now expose only an empty footer mount.
+- Made `/menu/` the sole Menu implementation and added a permanent `/menu.html` compatibility redirect.
+- Added regression assertions for shell exclusivity and every preserved form/list controller contract.
+- Recorded verification in `docs/qa/SHARED_SHELL_MIGRATION_QA_2026-08-17.md`.
+
 ## Objective
 
 Turn the cinematic reunion experience into a reusable event platform with

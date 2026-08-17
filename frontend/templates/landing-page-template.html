@@ -14,45 +14,21 @@
   <link rel="stylesheet" href="/css/hero.css">
   <link rel="stylesheet" href="/css/story.css">
   <link rel="stylesheet" href="/css/sections.css">
-  <link rel="stylesheet" href="/css/compass.css">
   <link rel="stylesheet" href="/css/chatbot.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/premiere.css">
+  <link rel="stylesheet" href="/css/cinematic-system.css?v=cinematic5">
   {{OPTIONAL_PAGE_CSS}}
 </head>
 <body data-page="{{PAGE_KEY}}" data-premiere="on" {{OPTIONAL_BODY_ATTRS}}>
   {{PAGE_CONTENT}}
-
-  <nav class="compass-nav" aria-label="Site navigation">
-    <button class="compass-nav__medallion" id="compass-nav-toggle" type="button" aria-expanded="false" aria-controls="compass-nav-items">
-      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <circle cx="32" cy="32" r="28"/>
-        <circle cx="32" cy="32" r="20"/>
-        <circle cx="32" cy="32" r="3" fill="currentColor"/>
-        <path d="M32 8 L36 30 L32 28 L28 30 Z" fill="currentColor"/>
-      </svg>
-      <span class="compass-nav__label" aria-hidden="true">Compass</span>
-    </button>
-    <ul class="compass-nav__items" id="compass-nav-items" role="menu">
-      <li role="none"><a href="/index.html" role="menuitem">Home</a></li>
-      <li role="none"><a href="/rsvp.html" role="menuitem">RSVP</a></li>
-      <li role="none"><a href="/tickets.html" role="menuitem">Tickets</a></li>
-      <li role="none"><a href="/menu/" role="menuitem">Menu</a></li>
-      <li role="none"><a href="/survey.html" role="menuitem">Survey</a></li>
-      <li role="none"><a href="/through-years.html" role="menuitem">Through the Years</a></li>
-      <li role="none"><a href="/memorial.html" role="menuitem">In Memory</a></li>
-      <li role="none"><a href="/capsule.html" role="menuitem">Time Capsule</a></li>
-      <li role="none"><a href="/playlist.html" role="menuitem">Playlist</a></li>
-    </ul>
-  </nav>
-
-  <div class="chatbot" id="chatbot" aria-label="Hi-Tide Harry chat">{{CHATBOT_CONTENT}}</div>
-  {{FOOTER_CONTENT}}
+<div class="chatbot" id="chatbot" aria-label="Hi-Tide Harry chat">{{CHATBOT_CONTENT}}</div>
+  <footer class="footer" data-template="footer"></footer>
 
   <script src="/js/config.js" defer></script>
   <script src="/js/main.js" defer></script>
+  <script src="/js/cinematic-shell.js?v=cinematic5" defer></script>
   {{OPTIONAL_PAGE_JS}}
-  <script src="/js/compass.js" defer></script>
   <script src="/js/chatbot.js" defer></script>
   <script src="/js/page-sequence.js" defer></script>
   <script src="/js/premiere.js" defer></script>

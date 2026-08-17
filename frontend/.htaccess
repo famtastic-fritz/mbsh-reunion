@@ -6,6 +6,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # One canonical dinner-preference route; retain old bookmarks without
+  # maintaining a second copy of the page.
+  RewriteRule ^menu\.html$ /menu/ [R=308,L,NE]
+
   # One branded identity entrance. Legacy staff bookmarks no longer expose the
   # retired shared-password administrator screen.
   RewriteRule ^admin/login\.php$ /portal/login [R=302,L,NE]

@@ -19,30 +19,28 @@
   ];
 
   const footerMarkup = `
+    <div class="footer__rail footer__rail--top" aria-hidden="true"></div>
     <div class="footer__inner">
-      <div class="footer__col footer__col--identity">
-        <img class="footer__mark" src="/assets/premiere/brand-mark-foil.png?v=2" alt="" width="80" height="80" aria-hidden="true">
-        <p class="footer__title">Class of 1996 &middot; 30th Reunion</p>
-        <p class="footer__sub">Hi-Tide Pride Since 1926 🌊</p>
-        <p class="footer__tagline">Let us be known for our deeds</p>
+      <img class="footer__seal" src="/assets/premiere/brand-mark-foil.png?v=2" alt="Class of '96 and MBSH 1926–2026 commemorative seal" width="140" height="140" loading="lazy">
+      <p class="footer__seal-line">MBSH · 1926 — 2026</p>
+      <p class="footer__class">Class of 1996 · 30th Reunion</p>
+      <p class="footer__motto">Let us be known for our deeds.</p>
+      <hr class="footer__rule">
+      <div class="footer__credits">
+        <p class="footer__credits-eyebrow">— A final credit roll —</p>
+        <p class="footer__credits-line"><strong>Reunion Committee</strong> <a href="mailto:committee@mbsh96reunion.com">committee@mbsh96reunion.com</a></p>
+        <p class="footer__credits-line">${routes.map(([key, label, href]) => `<a href="${href}"${key === page ? ' aria-current="page"' : ''}>${label}</a>`).join(' · ')}</p>
+        <p class="footer__credits-line"><a href="/portal/register">Create attendee account</a> · <a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a> · <a href="/through-years.html#submit-memory">Submit a memory</a> · <a href="/tickets.html#sponsor">Become a sponsor</a></p>
+        <p class="footer__credits-line footer__credits-line--social">Instagram &amp; Facebook coming soon — contact the committee for updates.</p>
       </div>
-      <div class="footer__col footer__col--contact">
-        <h4>MBSH Committee</h4>
-        <p><a href="mailto:committee@mbsh96reunion.com">committee@mbsh96reunion.com</a></p>
-      </div>
-      <div class="footer__col footer__col--resources">
-        <h4>Resources</h4>
-        <ul>
-          <li><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a></li>
-          <li><a href="/through-years.html#submit-memory">Submit a memory</a></li>
-          <li><a href="/tickets.html#sponsor">Become a sponsor</a></li>
-        </ul>
+      <hr class="footer__rule">
+      <div class="footer__encore">
+        <p class="footer__encore-eyebrow">— Encore —</p>
+        <p class="footer__copyright">© 2026 MBSH Class of '96 Reunion</p>
+        <p class="footer__credit">Site by <a href="https://famtasticdesigns.com" rel="noopener">FAMtastic Designs</a></p>
       </div>
     </div>
-    <div class="footer__strip">
-      <p class="footer__copyright">© 2026 MBSH Class of '96 Reunion</p>
-      <p class="footer__credit">Site by <a href="https://famtasticdesigns.com" rel="noopener">FAMtastic Designs</a></p>
-    </div>`;
+    <div class="footer__rail footer__rail--bottom" aria-hidden="true"></div>`;
 
   function mountShell() {
     if (document.querySelector('.cinema-site-header')) return;
@@ -135,6 +133,8 @@
     const footer = document.querySelector('footer.footer');
     if (!footer) return;
     footer.dataset.template = 'footer';
+    footer.classList.add('footer--final-reel');
+    footer.setAttribute('aria-label', 'The final reel');
     footer.innerHTML = footerMarkup;
   }
 

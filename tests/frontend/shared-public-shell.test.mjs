@@ -18,8 +18,27 @@ const publicPages = [
 for (const relativePath of publicPages) {
   const html = fs.readFileSync(path.join(root, relativePath), 'utf8');
   assert.match(html, /data-page="[^"]+"/, `${relativePath} must identify its page for Harry and navigation`);
-  assert.match(html, /cinematic-system\.css\?v=cinematic4/, `${relativePath} must load the shared shell styles`);
-  assert.match(html, /cinematic-shell\.js\?v=cinematic4/, `${relativePath} must load the shared shell behavior`);
+  assert.match(html, /cinematic-system\.css\?v=cinematic5/, `${relativePath} must load the shared shell styles`);
+  assert.match(html, /cinematic-shell\.js\?v=cinematic5/, `${relativePath} must load the shared shell behavior`);
+  assert.doesNotMatch(html, /compass-nav|compass\.css|compass\.js/, `${relativePath} must not ship the retired compass shell`);
+  assert.doesNotMatch(html, /page-header__back/, `${relativePath} must not ship a second branded home control`);
+  assert.match(html, /<footer class="footer"[^>]*><\/footer>/, `${relativePath} must use the shared footer mount`);
+}
+
+const functionalContracts = {
+  'frontend/rsvp.html': [/id="rsvp-form"/, /js\/rsvp\.js/],
+  'frontend/tickets.html': [/id="ticket-order-form"/, /js\/ticket-order\.js/, /id="sponsor-form"/, /js\/sponsor\.js/],
+  'frontend/menu/index.html': [/id="menu-form"/, /js\/menu\.js/],
+  'frontend/survey.html': [/id="survey-form"/, /fetch\('\/survey2\.php'/],
+  'frontend/through-years.html': [/id="memory-form"/, /js\/memory\.js/],
+  'frontend/memorial.html': [/id="memorial-list"/, /js\/memorial\.js/],
+  'frontend/capsule.html': [/id="capsule-form"/, /js\/time-capsule\.js/],
+  'frontend/playlist.html': [/id="playlist-suggest-form"/, /js\/playlist\.js/],
+};
+
+for (const [relativePath, contracts] of Object.entries(functionalContracts)) {
+  const html = fs.readFileSync(path.join(root, relativePath), 'utf8');
+  for (const contract of contracts) assert.match(html, contract, `${relativePath} lost a functional contract during shell migration`);
 }
 
 const shell = fs.readFileSync(path.join(root, 'frontend/js/cinematic-shell.js'), 'utf8');

@@ -27,3 +27,7 @@ Run:
 `node tests/frontend/shared-public-shell.test.mjs`
 
 The contract fails when a primary page omits the shared shell, omits page identity, loses a canonical route, or restores the competing RSVP decorations.
+
+## Migration status — August 17, 2026
+
+The legacy compass shell has been removed from all primary public-page source and from reusable page templates. Page files now provide content, a shared-footer mount, page identity, and feature-specific controllers. The shared shell exclusively owns the visible header, navigation registry, drawer behavior, and footer content. `/menu/` is canonical; `/menu.html` is redirect-only compatibility.

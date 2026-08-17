@@ -5,9 +5,7 @@
    INIT SECTIONS (V3 / Design Map §1)
    ──────────────────────────────────────────────────────────────────────
    1. injectOverlays            — L0 .premiere-stage + L1 .premiere-fx + starfield
-   2. injectNav                 — L6 .premiere-nav (DEPRECATED P1: replace with medallion menu)
-   3. wireNavScrollHide         — auto-hide on scroll (DEPRECATED P1)
-   4. attachSnapIn              — IntersectionObserver fade-in (replaced P1 by real snap)
+   2. attachSnapIn              — IntersectionObserver fade-in (replaced P1 by real snap)
    5. curtainRise               — L7 page-transition (sessionStorage-once on home)
    6. mountUsher                — L4 Harry button + per-page pose swap + idle hints
    7. activateStoryScene        — Story Then/Now/Forever IO triggers
@@ -21,14 +19,11 @@
    PASSES INCOMING (V3 / Design Map §0)
    ──────────────────────────────────────────────────────────────────────
    P1 will add:
-   - Medallion-as-menu (replaces injectNav + scroll-hide)
    - Snap mechanism (scrollend + bounce, iOS Safari fallback)
    - Harry walk/peek/celebrate vocabulary
    - Filmstrip frame + ribbon divider components (CSS-only, no JS handler)
 
    P1 will remove:
-   - injectNav (replaced by mountMedallionMenu)
-   - wireNavScrollHide (replaced by medallion always-visible)
    - .is-visible bounce path (replaced by real scroll-snap event)
 
    ──────────────────────────────────────────────────────────────────────
@@ -436,179 +431,9 @@
 
   /* =================================================================
      P1 ADDITIONS (Design Map §0 Pass 1)
-     mountMedallionMenu  — D5 (replaces injectNav + wireNavScrollHide)
      wireSnapBounce      — D8 (scrollend + .is-snapped)
      wireHarryVocabulary — Harry walk + celebrate triggers
      ================================================================= */
-
-  /* Mount the medallion-as-menu component.
-     Replaces V1 top nav + compass medallion. Brand-mark sized button on home,
-     scaled 70% on inner pages. Click expands radial menu of 7 destinations. */
-  function mountMedallionMenu() {
-    if (document.querySelector('.premiere-medallion')) return;
-
-    // Filmstrip drawer NAV_ITEMS — each gets a `tease` line under the title
-    const NAV_ITEMS = [
-      { href: 'index.html',         label: 'Home',           page: 'home',          tease: 'The Premiere' },
-      { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp',          tease: 'Take Your Seat' },
-      { href: 'tickets.html',       label: 'Tickets',        page: 'tickets',       tease: 'Patrons of the Evening' },
-      { href: '/menu/',             label: 'Menu',           page: 'menu',          tease: 'Dinner Preferences' },
-      { href: 'survey.html',        label: 'Survey',         page: 'survey',        tease: 'Class Roll Call' },
-      { href: 'through-years.html', label: 'Through Years',  page: 'through-years', tease: 'The Trailer Reel' },
-      { href: 'memorial.html',      label: 'In Memory',      page: 'memorial',      tease: 'In Memoriam' },
-      { href: 'capsule.html',       label: 'Capsule',        page: 'capsule',       tease: 'Letter to Yourself' },
-      { href: 'playlist.html',      label: 'Playlist',       page: 'playlist',      tease: 'Encore' }
-    ];
-
-    // P7-fix: on HOME, promote the existing hero brand-mark to BE the menu
-    // trigger — eliminates the duplicate medallion (hero brand-mark + floating
-    // medallion button were both visible). On inner pages, mount the floating
-    // medallion at top-right.
-    let medallion;
-    const heroMark = document.querySelector('.hero__mark');
-    if (page === 'home' && heroMark) {
-      // Wrap the hero__mark in a real <button> so it's keyboard-accessible
-      const wrapper = document.createElement('button');
-      wrapper.type = 'button';
-      wrapper.className = 'premiere-medallion premiere-medallion--inline';
-      wrapper.setAttribute('aria-label', 'Open menu');
-      wrapper.setAttribute('aria-expanded', 'false');
-      wrapper.setAttribute('aria-controls', 'premiere-medallion-menu');
-      heroMark.parentNode.insertBefore(wrapper, heroMark);
-      wrapper.appendChild(heroMark);
-      medallion = wrapper;
-    } else {
-      medallion = document.createElement('button');
-      medallion.type = 'button';
-      medallion.className = 'premiere-medallion';
-      medallion.setAttribute('aria-label', 'Open menu');
-      medallion.setAttribute('aria-expanded', 'false');
-      medallion.setAttribute('aria-controls', 'premiere-medallion-menu');
-      const img = document.createElement('img');
-      img.src = '/assets/brand-mark/brand-mark.png';
-      img.alt = '';
-      img.setAttribute('aria-hidden', 'true');
-      medallion.appendChild(img);
-      document.body.appendChild(medallion);
-    }
-
-    // Filmstrip drawer (Option A) — replaces radial-fan menu.
-    // Page-dim backdrop + golden filmstrip ribbon sliding down from top.
-    const backdrop = document.createElement('div');
-    backdrop.className = 'premiere-menu-filmstrip-backdrop';
-    backdrop.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(backdrop);
-
-    const menu = document.createElement('div');
-    menu.className = 'premiere-menu-filmstrip';
-    menu.id = 'premiere-medallion-menu';
-    menu.setAttribute('role', 'dialog');
-    menu.setAttribute('aria-modal', 'false');
-    menu.setAttribute('aria-label', 'Site navigation');
-
-    const sprocketTop = document.createElement('div');
-    sprocketTop.className = 'premiere-menu-filmstrip__sprocket premiere-menu-filmstrip__sprocket--top';
-    sprocketTop.setAttribute('aria-hidden', 'true');
-    menu.appendChild(sprocketTop);
-
-    const list = document.createElement('ul');
-    list.className = 'premiere-menu-filmstrip__frames';
-    list.setAttribute('role', 'menu');
-    NAV_ITEMS.forEach((item, i) => {
-      const li = document.createElement('li');
-      li.className = 'premiere-menu-filmstrip__frame';
-      li.setAttribute('role', 'none');
-      const a = document.createElement('a');
-      a.href = item.href;
-      a.className = 'premiere-menu-filmstrip__link';
-      a.setAttribute('role', 'menuitem');
-      if (item.page === page) a.setAttribute('aria-current', 'page');
-
-      const num = document.createElement('span');
-      num.className = 'premiere-menu-filmstrip__num';
-      num.textContent = 'Scene ' + String(i + 1).padStart(2, '0');
-      const title = document.createElement('span');
-      title.className = 'premiere-menu-filmstrip__title';
-      title.textContent = item.label;
-      const tease = document.createElement('span');
-      tease.className = 'premiere-menu-filmstrip__tease';
-      tease.textContent = item.tease;
-
-      a.appendChild(num);
-      a.appendChild(title);
-      a.appendChild(tease);
-      li.appendChild(a);
-      list.appendChild(li);
-    });
-    menu.appendChild(list);
-
-    const sprocketBottom = document.createElement('div');
-    sprocketBottom.className = 'premiere-menu-filmstrip__sprocket premiere-menu-filmstrip__sprocket--bottom';
-    sprocketBottom.setAttribute('aria-hidden', 'true');
-    menu.appendChild(sprocketBottom);
-
-    document.body.appendChild(menu);
-
-    // Mark body so CSS can hide V1 top nav + compass + edge strips
-    document.body.setAttribute('data-medallion-menu', 'mounted');
-
-    // Open / close
-    function openMenu() {
-      menu.classList.add('is-open');
-      backdrop.classList.add('is-open');
-      medallion.setAttribute('aria-expanded', 'true');
-      // Focus the active page's frame if present, otherwise first frame
-      requestAnimationFrame(() => {
-        const active = list.querySelector('a[aria-current="page"]') || list.querySelector('a');
-        if (active) active.focus({ preventScroll: false });
-      });
-    }
-    function closeMenu() {
-      menu.classList.remove('is-open');
-      backdrop.classList.remove('is-open');
-      medallion.setAttribute('aria-expanded', 'false');
-      medallion.focus();
-    }
-    function toggleMenu() {
-      if (menu.classList.contains('is-open')) closeMenu();
-      else openMenu();
-    }
-
-    medallion.addEventListener('click', toggleMenu);
-    backdrop.addEventListener('click', closeMenu);
-    // Close after click on a frame so SPA-like UX works
-    list.addEventListener('click', (e) => {
-      if (e.target.closest('a')) closeMenu();
-    });
-
-    // Esc closes
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
-        e.preventDefault();
-        closeMenu();
-      }
-    });
-
-    // Arrow keys cycle within menu
-    list.addEventListener('keydown', (e) => {
-      const items = Array.from(list.querySelectorAll('a'));
-      const idx = items.indexOf(document.activeElement);
-      if (idx < 0) return;
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-        e.preventDefault();
-        items[(idx + 1) % items.length].focus();
-      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-        e.preventDefault();
-        items[(idx - 1 + items.length) % items.length].focus();
-      } else if (e.key === 'Home') {
-        e.preventDefault();
-        items[0].focus();
-      } else if (e.key === 'End') {
-        e.preventDefault();
-        items[items.length - 1].focus();
-      }
-    });
-  }
 
   /* Snap mechanism — listen for scrollend, add .is-snapped to the snapped section,
      remove after the bounce animation completes. */
@@ -694,65 +519,6 @@
      9. Auto-inject FX + starfield overlays
      Keeps HTML lean — only the body attribute + CSS/JS links are required.
      ----------------------------------------------------------------- */
-  /* Inject a clear text-based site-map column into the footer.
-     Solves Fritz post-staging concern: "I don't know how many pages
-     there are or how to navigate." Medallion menu is visual; footer
-     site-map is scannable and discoverable. */
-  /* Pass 12 — Final Reel footer upgrader.
-     Replaces the legacy three-column footer with the closing-credits
-     scene on every page. Idempotent — checks for the .footer--final-reel
-     marker before rewriting. */
-  function injectFooterSiteMap() {
-    const footer = document.querySelector('footer.footer');
-    if (!footer) return;
-    if (footer.classList.contains('footer--final-reel')) return;
-    footer.classList.add('footer--final-reel');
-    footer.setAttribute('data-mode', 'scene');
-    footer.setAttribute('data-page-slot', 'footer-scene');
-    footer.setAttribute('aria-label', 'The final reel');
-
-    const navHTML = [
-      ['index.html', 'Visit', 'home'],
-      ['rsvp.html', 'RSVP', 'rsvp'],
-      ['tickets.html', 'Tickets', 'tickets'],
-      ['/menu/', 'Menu', 'menu'],
-      ['survey.html', 'Survey', 'survey'],
-      ['through-years.html', 'Through the Years', 'through-years'],
-      ['memorial.html', 'In Memory', 'memorial'],
-      ['capsule.html', 'Time Capsule', 'capsule'],
-      ['playlist.html', 'Soundtrack', 'playlist'],
-      ['/portal/login', 'Attendee Portal', 'portal']
-    ].map(function (row) {
-      var href = row[0], label = row[1], key = row[2];
-      var cur = key === page ? ' aria-current="page"' : '';
-      return '<a href="' + href + '"' + cur + '>' + label + '</a>';
-    }).join(' · ');
-
-    footer.innerHTML =
-      '<div class="footer__rail footer__rail--top" aria-hidden="true"></div>' +
-      '<div class="footer__inner">' +
-        '<img class="footer__seal" src="/assets/premiere/brand-mark-foil.png?v=2" alt="Class of \'96 + MBSH 1926-2026 commemorative seal" width="140" height="140" loading="lazy">' +
-        '<p class="footer__seal-line">MBSH · 1926 — 2026</p>' +
-        '<p class="footer__class">Class of 1996 · 30th Reunion</p>' +
-        '<p class="footer__motto">Let us be known for our deeds.</p>' +
-        '<hr class="footer__rule">' +
-        '<div class="footer__credits">' +
-          '<p class="footer__credits-eyebrow">— A final credit roll —</p>' +
-          '<p class="footer__credits-line"><strong>Reunion Committee</strong> <a href="mailto:committee@mbsh96reunion.com">committee@mbsh96reunion.com</a></p>' +
-          '<p class="footer__credits-line">' + navHTML + '</p>' +
-          '<p class="footer__credits-line"><a href="/portal/register">Create attendee account</a> · <a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a> · <a href="through-years.html#submit-memory">Submit a memory</a> · <a href="tickets.html#sponsor">Become a sponsor</a></p>' +
-          '<p class="footer__credits-line footer__credits-line--social">Instagram &amp; Facebook coming soon — drop a note to the committee for a heads-up.</p>' +
-        '</div>' +
-        '<hr class="footer__rule">' +
-        '<div class="footer__encore">' +
-          '<p class="footer__encore-eyebrow">— Encore —</p>' +
-          '<p class="footer__copyright">© 2026 MBSH Class of \'96 Reunion</p>' +
-          '<p class="footer__credit">Site by <a href="https://famtasticdesigns.com" rel="noopener">FAMtastic Designs</a></p>' +
-        '</div>' +
-      '</div>' +
-      '<div class="footer__rail footer__rail--bottom" aria-hidden="true"></div>';
-  }
-
   function injectOverlays() {
     if (!document.querySelector('.premiere-stage')) {
       const stage = document.createElement('div');
@@ -774,31 +540,6 @@
     }
   }
 
-  /* Auto-hide nav on scroll-down, slide back in on scroll-up */
-  function wireNavScrollHide() {
-    const nav = document.querySelector('.premiere-nav');
-    if (!nav) return;
-    let lastY = window.scrollY;
-    let ticking = false;
-    function onScroll() {
-      const y = window.scrollY;
-      if (Math.abs(y - lastY) < 8) return; // ignore tiny moves
-      if (y > lastY && y > 80) {
-        nav.classList.add('is-hidden');
-      } else {
-        nav.classList.remove('is-hidden');
-      }
-      lastY = y;
-      ticking = false;
-    }
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(onScroll);
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-
   /* Snap-in observer — attach to every section so they bounce in on scroll */
   function attachSnapIn() {
     const targets = document.querySelectorAll(
@@ -817,70 +558,6 @@
       });
     }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
     targets.forEach(t => observer.observe(t));
-  }
-
-  /* -----------------------------------------------------------------
-     Inject top primary nav (real menu, not just compass)
-     ----------------------------------------------------------------- */
-  function injectNav() {
-    if (document.querySelector('.premiere-nav')) return;
-
-    const NAV_ITEMS = [
-      { href: 'index.html',         label: 'Home',           page: 'home' },
-      { href: 'rsvp.html',          label: 'RSVP',           page: 'rsvp' },
-      { href: 'tickets.html',       label: 'Tickets',        page: 'tickets' },
-      { href: '/menu/',             label: 'Menu',           page: 'menu' },
-      { href: 'survey.html',        label: 'Survey',         page: 'survey' },
-      { href: 'through-years.html', label: 'Through Years',  page: 'through-years' },
-      { href: 'memorial.html',      label: 'In Memory',      page: 'memorial' },
-      { href: 'capsule.html',       label: 'Capsule',        page: 'capsule' },
-      { href: 'playlist.html',      label: 'Playlist',       page: 'playlist' }
-    ];
-
-    const nav = document.createElement('nav');
-    nav.className = 'premiere-nav';
-    nav.setAttribute('aria-label', 'Primary');
-
-    const brand = document.createElement('a');
-    brand.className = 'premiere-nav__brand';
-    brand.href = 'index.html';
-    const brandImg = document.createElement('img');
-    brandImg.src = '/assets/brand-mark/brand-mark.png';
-    brandImg.alt = '';
-    brandImg.setAttribute('aria-hidden', 'true');
-    const brandText = document.createElement('span');
-    brandText.textContent = "Class of '96";
-    brand.appendChild(brandImg);
-    brand.appendChild(brandText);
-
-    const toggle = document.createElement('button');
-    toggle.type = 'button';
-    toggle.className = 'premiere-nav__toggle';
-    toggle.setAttribute('aria-label', 'Toggle menu');
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.textContent = '☰';
-
-    const list = document.createElement('ul');
-    list.className = 'premiere-nav__links';
-    NAV_ITEMS.forEach(item => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = item.href;
-      a.textContent = item.label;
-      if (item.page === page) a.setAttribute('aria-current', 'page');
-      li.appendChild(a);
-      list.appendChild(li);
-    });
-
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-
-    nav.appendChild(brand);
-    nav.appendChild(toggle);
-    nav.appendChild(list);
-    document.body.insertBefore(nav, document.body.firstChild);
   }
 
   /* Make the hero scroll-tease (tagline + double chevron) clickable so it
@@ -1524,13 +1201,8 @@
 
   function init() {
     try { injectOverlays(); }       catch (e) { console.warn('[premiere] fx', e); }
-    try { injectFooterSiteMap(); }  catch (e) { console.warn('[premiere] footer-nav', e); }
     try { deferHeroVideo(); }       catch (e) { console.warn('[premiere] video-defer', e); }
     try { wireScrollTeaseClick(); } catch (e) { console.warn('[premiere] scroll-tease', e); }
-    try { mountMedallionMenu(); }   catch (e) { console.warn('[premiere] medallion', e); }
-    /* injectNav + wireNavScrollHide intentionally not called when medallion mounts;
-       CSS hides them via [data-medallion-menu="mounted"]. Kept in source for one
-       cycle so rollback is clean. */
     try { attachSnapIn(); }         catch (e) { console.warn('[premiere] snap-in', e); }
     try { wireSnapBounce(); }       catch (e) { console.warn('[premiere] snap-bounce', e); }
     try { curtainRise(); }          catch (e) { console.warn('[premiere] curtain', e); }

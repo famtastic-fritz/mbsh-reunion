@@ -22,9 +22,8 @@ body.cinematic-proof {
   color: var(--cinema-cream);
 }
 
-/* The cinematic shell replaces the legacy floating compass on proof pages.
-   The original markup remains untouched so rollback is a stylesheet removal. */
-.cinematic-proof .compass-nav { display: none !important; }
+/* The shared cinematic shell owns site-wide navigation. Page markup contains
+   content components only; the retired compass shell is no longer shipped. */
 .cinematic-proof .premiere-menu-toggle,
 .cinematic-proof .premiere-medallion,
 .cinematic-proof .premiere-menu-filmstrip,

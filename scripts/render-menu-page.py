@@ -6,7 +6,6 @@ FRONTEND = ROOT / 'frontend'
 TEMPLATE = FRONTEND / 'templates' / 'simple-page-template.html'
 CONTENT = FRONTEND / 'page-content' / 'menu.content.html'
 OUTPUTS = [
-    FRONTEND / 'menu.html',
     FRONTEND / 'menu' / 'index.html',
 ]
 
