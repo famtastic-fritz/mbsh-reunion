@@ -17,7 +17,7 @@
       submit.textContent = 'Sent. Thank you.';
       setTimeout(() => { submit.disabled = false; submit.textContent = 'Send the Memory'; }, 3000);
     } catch (err) {
-      alert('Could not submit your memory. Email mbsh96reunion@gmail.com.');
+      alert('Could not submit your memory. Email committee@mbsh96reunion.com.');
       submit.disabled = false; submit.textContent = 'Send the Memory';
     }
   });

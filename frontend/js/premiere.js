@@ -720,7 +720,8 @@
       ['through-years.html', 'Through the Years', 'through-years'],
       ['memorial.html', 'In Memory', 'memorial'],
       ['capsule.html', 'Time Capsule', 'capsule'],
-      ['playlist.html', 'Soundtrack', 'playlist']
+      ['playlist.html', 'Soundtrack', 'playlist'],
+      ['/portal/login', 'Attendee Portal', 'portal']
     ].map(function (row) {
       var href = row[0], label = row[1], key = row[2];
       var cur = key === page ? ' aria-current="page"' : '';
@@ -737,9 +738,9 @@
         '<hr class="footer__rule">' +
         '<div class="footer__credits">' +
           '<p class="footer__credits-eyebrow">— A final credit roll —</p>' +
-          '<p class="footer__credits-line"><strong>M11 Committee</strong> <a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a></p>' +
+          '<p class="footer__credits-line"><strong>Reunion Committee</strong> <a href="mailto:committee@mbsh96reunion.com">committee@mbsh96reunion.com</a></p>' +
           '<p class="footer__credits-line">' + navHTML + '</p>' +
-          '<p class="footer__credits-line"><a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a> · <a href="through-years.html#submit-memory">Submit a memory</a> · <a href="tickets.html#sponsor">Become a sponsor</a></p>' +
+          '<p class="footer__credits-line"><a href="/portal/register">Create attendee account</a> · <a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a> · <a href="through-years.html#submit-memory">Submit a memory</a> · <a href="tickets.html#sponsor">Become a sponsor</a></p>' +
           '<p class="footer__credits-line footer__credits-line--social">Instagram &amp; Facebook coming soon — drop a note to the committee for a heads-up.</p>' +
         '</div>' +
         '<hr class="footer__rule">' +

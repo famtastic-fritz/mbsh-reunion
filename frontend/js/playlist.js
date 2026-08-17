@@ -25,7 +25,7 @@
       submit.textContent = 'Suggested. Thank you.';
       setTimeout(() => { submit.disabled = false; submit.textContent = 'Suggest Track'; }, 3000);
     } catch (err) {
-      alert('Could not send your suggestion. Email mbsh96reunion@gmail.com.');
+      alert('Could not send your suggestion. Email committee@mbsh96reunion.com.');
       submit.disabled = false; submit.textContent = 'Suggest Track';
     }
   });

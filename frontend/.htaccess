@@ -1,0 +1,35 @@
+Options -Indexes
+DirectoryIndex index.html index.php
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # One branded identity entrance. Legacy staff bookmarks no longer expose the
+  # retired shared-password administrator screen.
+  RewriteRule ^admin/login\.php$ /portal/login [R=302,L,NE]
+  RewriteRule ^committee/login/?$ /portal/login [R=302,L,NE]
+
+  # The owner-only WordPress control plane is isolated under /cms so its core
+  # files cannot collide with the cinematic public application.
+  RewriteRule ^wp-admin/?$ /cms/wp-admin/ [R=302,L,NE]
+  RewriteRule ^wp-login\.php$ /cms/wp-login.php [R=302,L,NE]
+
+  # Clean attendee and role-aware administration routes. API PHP files and
+  # static portal assets continue to resolve normally before these rules.
+  RewriteRule ^portal/login/?$ /portal/auth/login.html [END]
+  RewriteRule ^portal/register/?$ /portal/auth/register.html [END]
+  RewriteRule ^portal/verify/?$ /portal/auth/verify.html [END]
+  RewriteRule ^portal/recovery/?$ /portal/auth/recovery.html [END]
+  RewriteRule ^portal/reset/?$ /portal/auth/reset.html [END]
+  RewriteRule ^portal/admin/?$ /portal/committee/index.html [END]
+  RewriteRule ^portal/committee/?$ /portal/admin/ [R=308,L,NE]
+  RewriteRule ^portal/owner/?$ /portal/admin/#platform [R=302,L,NE]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(self), microphone=(), geolocation=()"
+</IfModule>

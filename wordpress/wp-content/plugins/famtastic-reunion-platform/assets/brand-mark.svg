@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title">
+  <title id="title">MBSH Class of 1996 reunion medallion</title>
+  <defs><radialGradient id="g"><stop stop-color="#c52d43"/><stop offset="1" stop-color="#650f1e"/></radialGradient></defs>
+  <circle cx="100" cy="100" r="94" fill="#0a0708" stroke="#d8b46a" stroke-width="5"/>
+  <circle cx="100" cy="100" r="76" fill="url(#g)" stroke="#f4dfae" stroke-width="3"/>
+  <text x="100" y="74" text-anchor="middle" fill="#f8f0df" font-family="Georgia,serif" font-size="18" letter-spacing="5">MBSH</text>
+  <text x="100" y="123" text-anchor="middle" fill="#fff6df" font-family="Georgia,serif" font-size="54" font-weight="700">96</text>
+  <path d="M65 142q35 18 70 0" fill="none" stroke="#d8b46a" stroke-width="4"/>
+</svg>

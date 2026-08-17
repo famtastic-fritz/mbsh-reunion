@@ -37,7 +37,7 @@
       alert('Thanks — committee will follow up via email.');
       form.reset();
     } catch (err) {
-      alert('Could not submit. Email mbsh96reunion@gmail.com.');
+      alert('Could not submit. Email committee@mbsh96reunion.com.');
     } finally {
       submit.disabled = false; submit.textContent = 'Submit Inquiry';
     }

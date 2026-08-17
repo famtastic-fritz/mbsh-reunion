@@ -1,0 +1,20 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__ . '/_bootstrap.php';
+fam_portal_json_method(['POST']);
+$data = fam_read_json_body();
+$email = strtolower(trim((string)($data['email'] ?? '')));
+$password = (string)($data['password'] ?? '');
+$emailHash = hash('sha256', $email);
+$ip = fam_client_ip();
+$cutoff = (new DateTimeImmutable('-15 minutes'))->format('Y-m-d H:i:s');
+$q=$pdo->prepare('SELECT COUNT(*) FROM attendee_login_attempts WHERE email_hash=? AND ip_address=? AND success=0 AND attempted_at>=?');
+$q->execute([$emailHash,$ip,$cutoff]);
+if ((int)$q->fetchColumn() >= 5) fam_json_response(429, ['error'=>'too_many_attempts','retry_after'=>900]);
+$q=$pdo->prepare('SELECT id,public_id,password_hash,status,email_verified_at FROM attendee_accounts WHERE email=?'); $q->execute([$email]); $account=$q->fetch();
+$ok=$account && password_verify($password,(string)$account['password_hash']) && $account['status']==='active' && $account['email_verified_at'];
+$pdo->prepare('INSERT INTO attendee_login_attempts (email_hash,ip_address,success) VALUES (?,?,?)')->execute([$emailHash,$ip,$ok?1:0]);
+if (!$ok) fam_json_response(401, ['error'=>'invalid_credentials']);
+fam_attendee_login_session((int)$account['id'], (string)$account['public_id']);
+$pdo->prepare('UPDATE attendee_accounts SET last_login_at=NOW() WHERE id=?')->execute([(int)$account['id']]);
+fam_json_response(200, ['ok'=>true]);

@@ -1,0 +1,12 @@
+:root { --fam-red:#a91f35; --fam-gold:#d8b46a; --fam-cream:#f8f0df; }
+body.login { display:grid; place-items:center; background:radial-gradient(circle at 70% 20%,rgba(169,31,53,.24),transparent 34rem),linear-gradient(145deg,#050405,#160c0f); color:var(--fam-cream); }
+body.login:before { content:'MBSH CLASS OF 1996 · PRIVATE COMMITTEE PORTAL'; position:fixed; top:clamp(22px,5vw,52px); color:var(--fam-gold); font:800 11px/1.4 Arial,sans-serif; letter-spacing:.17em; }
+#login { width:min(92vw,430px); padding:80px 0 40px; }
+.login h1 a { width:132px; height:132px; background:url('/assets/premiere/brand-mark-foil.png') center/contain no-repeat; filter:drop-shadow(0 14px 30px rgba(0,0,0,.6)); }
+.login form { padding:32px; background:rgba(20,14,16,.95); border:1px solid rgba(216,180,106,.25); border-radius:18px; box-shadow:0 28px 80px rgba(0,0,0,.45); }
+.login label, .login #nav a, .login #backtoblog a { color:#d8cbbb; }
+.login input[type=text], .login input[type=password] { min-height:48px; background:#090708; border:1px solid #65454c; color:#fff; border-radius:9px; }
+.login input:focus { border-color:var(--fam-gold); box-shadow:0 0 0 2px rgba(216,180,106,.22); }
+.wp-core-ui .button-primary { min-height:44px; padding:0 22px; border:0; border-radius:999px; background:linear-gradient(135deg,#dc3d56,var(--fam-red)); font-weight:800; }
+.login .message, .login .notice { background:#181113; border-color:var(--fam-gold); color:var(--fam-cream); }
+@media(max-width:480px){#login{padding-top:70px}.login form{padding:24px}}

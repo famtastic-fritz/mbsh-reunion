@@ -12,7 +12,7 @@
   "PAYPAL_BUTTON_ID": null,
   "PAYMENTS_STATUS": "order-request",
   "REGISTRATION_STATUS": "open",
-  "COMMITTEE_EMAIL": "mbsh96reunion@gmail.com",
+  "COMMITTEE_EMAIL": "committee@mbsh96reunion.com",
   "API_BASE_URL": "https://mbsh96reunion.com",
   "API_BASE_URL_DEV": "http://localhost:8888",
   "HARRY_VOICE_ID": null,

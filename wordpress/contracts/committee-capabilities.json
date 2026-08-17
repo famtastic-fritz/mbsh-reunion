@@ -1,0 +1,61 @@
+{
+  "version": "2026-08-16",
+  "roles": {
+    "attendee": [],
+    "committee": [
+      "committee.access",
+      "alerts.read",
+      "people.read",
+      "rsvp.read",
+      "rsvp.edit",
+      "menu.read",
+      "menu.edit_sensitive",
+      "inbox.read",
+      "inbox.reply",
+      "harry.review",
+      "media.review",
+      "memory.review",
+      "memory.publish",
+      "sponsor.review",
+      "memorial.manage",
+      "capsule.read",
+      "capsule.manage",
+      "poll.manage",
+      "poll.results",
+      "tickets.read",
+      "tickets.check_in",
+      "content.edit",
+      "reports.operations",
+      "reports.survey",
+      "outreach.segment",
+      "outreach.send_transactional"
+    ],
+    "owner": [
+      "owner.manage_roles",
+      "owner.manage_integrations",
+      "owner.manage_platform",
+      "owner.view_audit",
+      "owner.manage_privacy",
+      "owner.manage_payments",
+      "campaign.send",
+      "export.attendees",
+      "tickets.issue_manual",
+      "tickets.refund"
+    ]
+  },
+  "forbiddenForCommittee": [
+    "wordpress.plugins",
+    "wordpress.themes",
+    "wordpress.settings",
+    "wordpress.users",
+    "provider.secrets",
+    "payment.secrets",
+    "owner.audit_mutation"
+  ],
+  "notes": [
+    "Owner inherits committee capabilities.",
+    "Committee membership must be linked to a verified attendee identity; matching email alone is insufficient.",
+    "Manual ticket issue, refunds, campaign broadcast, integration settings, and role assignment require owner capability or an explicitly delegated capability with audit.",
+    "WordPress remains maintenance access for the site owner, not the committee experience."
+  ]
+}

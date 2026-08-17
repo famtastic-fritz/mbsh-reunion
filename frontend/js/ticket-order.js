@@ -39,7 +39,7 @@
       form.hidden = true; success.hidden = false;
       successCopy.textContent = `${data.quantity} ticket(s) reserved at $${Number(data.unit_price).toFixed(2)} each. Total due: $${Number(data.total_amount).toFixed(2)}. Order number: ${data.order_code}.`;
     } catch (error) {
-      status.textContent = `${error.message} Please try again or email mbsh96reunion@gmail.com.`;
+      status.textContent = `${error.message} Please try again or email committee@mbsh96reunion.com.`;
       submit.disabled = false; submit.textContent = 'Submit Ticket Order';
     }
   });

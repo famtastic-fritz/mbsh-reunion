@@ -10,7 +10,7 @@ function fam_cors(array $config, string $endpoint_class = 'public_post'): void {
   if ($method === 'OPTIONS') {
     if ($origin && fam_origin_allowed($origin, $config)) {
       header("Access-Control-Allow-Origin: $origin");
-      header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+      header('Access-Control-Allow-Methods: POST, GET, PATCH, OPTIONS');
       header('Access-Control-Allow-Headers: Content-Type, X-CSRF-Token');
       header('Access-Control-Max-Age: 86400');
       header('Vary: Origin');
@@ -35,7 +35,7 @@ function fam_cors(array $config, string $endpoint_class = 'public_post'): void {
 
   if (fam_origin_allowed($origin, $config)) {
     header("Access-Control-Allow-Origin: $origin");
-    header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+    header('Access-Control-Allow-Methods: POST, GET, PATCH, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type, X-CSRF-Token');
     header('Vary: Origin');
   } else {

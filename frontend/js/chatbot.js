@@ -309,7 +309,7 @@
         await submitFallback(question, email);
         li.innerHTML = `<p>Got it. The committee will reply to ${email.replace(/[<>]/g, '')}.</p>`;
       } catch (_) {
-        li.innerHTML = '<p>I could not send that right now. Email <a href="mailto:mbsh96reunion@gmail.com">mbsh96reunion@gmail.com</a> directly.</p>';
+        li.innerHTML = '<p>I could not send that right now. Email <a href="mailto:committee@mbsh96reunion.com">committee@mbsh96reunion.com</a> directly.</p>';
       }
     });
     input.focus();

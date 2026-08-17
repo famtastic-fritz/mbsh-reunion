@@ -40,7 +40,7 @@
       if (window.requestAnimationFrame && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) confettiBurst();
     } catch (err) {
       submit.disabled = false; submit.textContent = 'Submit RSVP 🌊';
-      alert('We could not save your RSVP. Try again or email mbsh96reunion@gmail.com.');
+      alert('We could not save your RSVP. Try again or email committee@mbsh96reunion.com.');
     }
   });
 

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <base href="/portal/auth/" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#080607" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <title>Sign in · My Reunion</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Cormorant+Garamond:ital,wght@0,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="../css/portal.css" />
+    <link rel="stylesheet" href="../css/mobile-hardening.css?v=1" />
+  </head>
+  <body class="auth-page">
+    <main class="auth-shell">
+      <section class="auth-art">
+        <a href="../../index.html" class="portal-brand"
+          ><img
+            src="../../assets/brand-mark/brand-mark.png"
+            alt=""
+            width="48"
+            height="48"
+          /><span
+            ><strong>Class of 1996</strong
+            ><small>30th Reunion · November 7, 2026</small></span
+          ></a
+        >
+        <img
+          class="auth-harry"
+          src="../../assets/mascot/15-seated-usher.png"
+          alt="Hi-Tide Harry welcomes attendees at the entrance"
+        />
+      </section>
+      <section class="auth-panel">
+        <div class="auth-panel__stack">
+          <header class="auth-panel__intro">
+            <p class="eyebrow">Your private entrance</p>
+            <h1>Return to your story.</h1>
+            <p>Your ticket, RSVP, memories, dinner choice, and updates—all in one place.</p>
+          </header>
+          <div class="auth-card">
+          <p class="eyebrow">Welcome back, Hi-Tide</p>
+          <h2>Sign in</h2>
+          <p>Use the email connected to your reservation.</p>
+          <form data-auth-form="login">
+            <label
+              >Email address<input
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                placeholder="you@example.com" /></label
+            ><label
+              >Password<span class="label-link"
+                ><a href="/portal/recovery">Forgot?</a></span
+              ><input
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required /></label
+            ><button class="button button--primary" type="submit">
+              Enter my reunion
+            </button>
+          </form>
+          <div class="auth-divider"><span>New here?</span></div>
+          <a class="button button--full" href="/portal/register"
+            >Create attendee account</a
+          >
+          <p class="auth-note">
+            Protected by a same-origin, HttpOnly session. Passwords and tokens
+            are never stored in browser storage.
+          </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div class="toast" role="status" aria-live="polite" hidden></div>
+    <script src="../js/portal-config.js" defer></script>
+    <script src="../js/portal-api.js" defer></script>
+    <script src="../js/portal.js" defer></script>
+  </body>
+</html>

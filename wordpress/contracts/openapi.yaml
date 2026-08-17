@@ -1,0 +1,61 @@
+openapi: 3.1.0
+info:
+  title: FAMtastic Reunion Headless API
+  version: 0.1.0
+  description: Same-origin, cookie-authenticated contracts for the reunion frontend.
+servers:
+  - url: /wp-json/famtastic/v1
+paths:
+  /me:
+    get:
+      summary: Current verified account
+      responses:
+        '200': {description: Account summary}
+        '401': {description: Authentication required}
+  /memories:
+    post:
+      summary: Submit a moderated memory and explicit usage permission
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, story, rights]
+              properties:
+                title: {type: string, maxLength: 200}
+                story: {type: string, maxLength: 10000}
+                rights: {enum: [private_archive, committee, public]}
+      responses:
+        '201': {description: Pending moderation}
+  /suggestions:
+    post:
+      summary: Submit an attendee suggestion
+      responses:
+        '201': {description: Suggestion received}
+  /preferences:
+    get:
+      summary: Read communication preferences
+      responses:
+        '200': {description: Preferences}
+    put:
+      summary: Update event, memory, and promotional preferences
+      responses:
+        '200': {description: Updated preferences}
+  /tickets:
+    get:
+      summary: Current user's virtual tickets
+      responses:
+        '200': {description: Ticket wallet records and signed QR payloads}
+  /tickets/{code}/check-in:
+    post:
+      summary: Redeem a signed ticket (committee role only)
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema: {type: string}
+      responses:
+        '200': {description: Checked in}
+        '404': {description: Invalid code}
+        '409': {description: Already used or revoked}

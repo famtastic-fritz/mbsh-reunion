@@ -14,7 +14,8 @@
     ['through-years', 'Through the Years', '/through-years.html'],
     ['memorial', 'In Memory', '/memorial.html'],
     ['capsule', 'Time Capsule', '/capsule.html'],
-    ['playlist', 'Soundtrack', '/playlist.html']
+    ['playlist', 'Soundtrack', '/playlist.html'],
+    ['portal', 'Attendee Portal', '/portal/login']
   ];
 
   function mountShell() {
@@ -45,7 +46,7 @@
     drawer.innerHTML = `
       <p class="cinema-drawer__intro">Choose your next scene, Hi-Tide.</p>
       <nav>${routes.map(([key, label, href]) => `<a href="${href}"${key === page ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
-      <a class="cinema-drawer__primary cinema-button" href="/rsvp.html">Reserve your place</a>`;
+      <a class="cinema-drawer__primary cinema-button" href="/portal/register">Create attendee account</a>`;
 
     const backdrop = document.createElement('div');
     backdrop.className = 'cinema-backdrop';

@@ -1,0 +1,43 @@
+{
+  "id": "famtastic-headless-event-commerce",
+  "version": "0.2.0",
+  "status": "locally_proven",
+  "owners": ["FAMtastic Designs", "Site Studio", "Shay Shay"],
+  "purpose": "Build branded event experiences with a headless WordPress staff CMS, WooCommerce financial records, virtual tickets, moderated community content, and provider-backed communications.",
+  "capabilities": [
+    "headless_wordpress_editorial_cms",
+    "woocommerce_catalog_coupons_orders_refunds",
+    "stripe_test_to_live_gate",
+    "secure_account_and_preference_portal",
+    "moderated_media_and_usage_rights",
+    "signed_virtual_ticket_wallet_and_check_in",
+    "resend_transactional_email",
+    "action_scheduler_workers_and_alerts",
+    "react_cinematic_frontend",
+    "attendee_and_permission_filtered_admin_portals",
+    "structured_page_component_registry",
+    "audited_two_way_conversation_workflow",
+    "attendee_owned_submission_lifecycles",
+    "contextual_harry_admin_curriculum",
+    "owner_self_lockout_protection",
+    "audited_ticket_issue_check_in_and_void",
+    "modular_trivia_authoring_scoring_and_leaderboard",
+    "rsvp_menu_snapshot_reconciliation",
+    "staged_migration_and_rollback"
+  ],
+  "nonClaims": [
+    "Production payments are not enabled by this scaffold.",
+    "WordPress does not replace the custom backend until per-capability acceptance passes.",
+    "Uploaded yearbook or diploma media is not automatically public or licensed for marketing."
+    ,"Local provider mocks do not prove live Stripe or Resend delivery."
+  ],
+  "requiredEvidence": [
+    "identity-isolation-test",
+    "stripe-success-decline-3ds-refund-proof",
+    "duplicate-webhook-idempotency-proof",
+    "ticket-issue-wallet-check-in-revoke-proof",
+    "resend-delivery-bounce-suppression-proof",
+    "mobile-accessibility-proof",
+    "backup-restore-and-rollback-rehearsal"
+  ]
+}

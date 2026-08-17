@@ -18,7 +18,7 @@
       form.parentElement.hidden = true;
       success.hidden = false;
     } catch (err) {
-      alert('Could not seal the capsule. Email mbsh96reunion@gmail.com.');
+      alert('Could not seal the capsule. Email committee@mbsh96reunion.com.');
       submit.disabled = false; submit.textContent = 'Seal the Capsule';
     }
   });

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /portal/
+Disallow: /admin/
+Disallow: /backend/
+
+Sitemap: https://mbsh96reunion.com/sitemap.xml

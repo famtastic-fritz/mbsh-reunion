@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080607">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="description" content="Your private MBSH Class of 1996 reunion dashboard, ticket, RSVP, memories, and event updates.">
+  <title>My Reunion · MBSH Class of 1996</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Cormorant+Garamond:ital,wght@0,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/portal.css">
+  <link rel="stylesheet" href="css/portal-integration.css">
+  <link rel="stylesheet" href="css/mobile-hardening.css?v=1">
+  <link rel="stylesheet" href="css/portal-staff.css?v=1">
+</head>
+<body data-view="home">
+  <a class="skip-link" href="#portal-main">Skip to dashboard</a>
+  <header class="portal-header">
+    <a class="portal-brand" href="../index.html" aria-label="MBSH Class of 1996 reunion home">
+      <img src="../assets/brand-mark/brand-mark.png" alt="" width="48" height="48">
+      <span><strong>My Reunion</strong><small>Class of ’96 · Private portal</small></span>
+    </a>
+    <div class="portal-header__actions">
+      <button class="mode-switch" type="button" data-mode-switch hidden><span data-mode-label>Committee Desk</span><small>Switch workspace</small></button>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="portal-drawer"><span aria-hidden="true">☰</span> Menu</button>
+    </div>
+  </header>
+
+  <aside class="portal-drawer" id="portal-drawer" aria-hidden="true" aria-label="Portal navigation">
+    <div class="drawer-profile">
+      <img src="../assets/mascot/23-salute-clean.png" alt="" width="72" height="72">
+      <div><strong>Welcome back, <span data-account-name>Hi-Tide</span></strong><span data-profile-email>Loading secure profile…</span></div>
+    </div>
+    <nav aria-label="My reunion">
+      <p class="drawer-section-label">My reunion</p>
+      <a href="#home" data-route="home" aria-current="page"><span>Tonight</span><small>Your next steps</small></a>
+      <a href="#ticket" data-route="ticket"><span>My ticket</span><small>Wallet &amp; check-in</small></a>
+      <a href="#rsvp" data-route="rsvp"><span>RSVP &amp; dinner</span><small>Guest and meal details</small></a>
+      <a href="#memories" data-route="memories"><span>My memories</span><small>Upload photos &amp; stories</small></a>
+      <a href="#suggestions" data-route="suggestions"><span>Suggestions</span><small>Playlist and event ideas</small></a>
+      <a href="#trivia" data-route="trivia"><span>Class trivia</span><small>Play, score &amp; remember</small></a>
+      <a href="#event" data-route="event"><span>Event guide</span><small>Schedule, venue, dress</small></a>
+      <a href="#notifications" data-route="notifications"><span>Notifications</span><small>Choose what reaches you</small></a>
+      <div class="staff-navigation" data-staff-only hidden>
+        <p class="drawer-section-label">Committee Desk <span data-staff-role></span></p>
+        <a href="#committee" data-route="committee"><span>Command center</span><small>Priorities, alerts &amp; activity</small></a>
+        <a href="#review" data-route="review"><span>Review queue</span><small>Memories, photos &amp; approvals</small></a>
+        <a href="#people" data-route="people"><span>People</span><small>Attendees, committee &amp; access</small></a>
+        <a href="#inbox" data-route="inbox"><span>Inbox</span><small>Messages &amp; Harry questions</small></a>
+        <a href="#communications" data-route="communications"><span>Communications</span><small>Compose, audiences &amp; delivery</small></a>
+        <a href="#operations" data-route="operations"><span>Tickets &amp; operations</span><small>Orders, check-in &amp; exceptions</small></a>
+      </div>
+      <a href="/portal/login" data-logout><span>Sign out</span><small>End this secure session</small></a>
+    </nav>
+  </aside>
+  <button class="drawer-backdrop" type="button" aria-label="Close navigation" hidden></button>
+
+  <main id="portal-main" tabindex="-1">
+    <section class="portal-hero">
+      <div class="portal-hero__copy">
+        <p class="eyebrow" data-view-eyebrow>Your reunion, in one place</p>
+        <h1 data-view-title>The night is getting closer.</h1>
+        <p data-view-lead>Finish your details, keep your ticket ready, and help us tell the Class of ’96 story.</p>
+      </div>
+      <img class="portal-hero__harry" data-harry src="../assets/mascot/01-wave-hello.png" alt="Hi-Tide Harry waves hello" width="320" height="320">
+    </section>
+
+    <div class="portal-layout">
+      <div class="workspace-loading" data-workspace-loading role="status"><span aria-hidden="true"></span>Loading your private reunion workspace…</div>
+      <section class="view is-active" data-view-panel="home" aria-labelledby="home-heading">
+        <h2 class="sr-only" id="home-heading">Dashboard</h2>
+        <div class="next-action">
+          <span class="status-orb" aria-hidden="true"></span>
+          <div><p class="eyebrow">Your next scene</p><h3>Confirm your dinner choice</h3><p>It takes less than a minute and helps the committee finalize your table.</p></div>
+          <a class="button button--primary" href="#rsvp" data-route="rsvp">Choose dinner</a>
+        </div>
+        <div class="dashboard-grid">
+          <article class="scene-card scene-card--ticket"><p class="eyebrow">Admit one</p><h3>Your digital ticket is ready</h3><p>Keep it on this phone for fast check-in.</p><a href="#ticket" data-route="ticket">Open wallet <span aria-hidden="true">→</span></a></article>
+          <article class="scene-card"><span class="scene-icon" aria-hidden="true">✓</span><h3>RSVP received</h3><p>Attending · 1 guest · Dinner pending</p><a href="#rsvp" data-route="rsvp">Review details</a></article>
+          <article class="scene-card"><span class="scene-icon" aria-hidden="true">＋</span><h3>Add your chapter</h3><p>Share a photo or story for the reunion memory reel.</p><a href="#memories" data-route="memories">Upload a memory</a></article>
+          <article class="scene-card"><span class="scene-icon" aria-hidden="true">♪</span><h3>Shape the soundtrack</h3><p>Send the DJ the song that takes you straight back.</p><a href="#suggestions" data-route="suggestions">Suggest a song</a></article>
+        </div>
+        <article class="event-strip"><div><p class="eyebrow">Saturday · November 7, 2026</p><h3>Miami Shores Country Club</h3><p>Doors 6:30 PM · Program 7:30 PM · Black-tie cocktail</p></div><a class="button" href="#event" data-route="event">View event guide</a></article>
+      </section>
+
+      <section class="view" data-view-panel="ticket" aria-labelledby="ticket-heading">
+        <div class="section-heading"><div><p class="eyebrow">Mobile wallet</p><h2 id="ticket-heading">Your premiere pass</h2></div><span class="verified-badge">Verified attendee</span></div>
+        <div data-ticket-data>
+        <article class="ticket-pass" aria-label="Reunion ticket">
+          <img src="../assets/tickets/virtual-ticket-premiere-v1.png" alt="Cinematic MBSH Class of 1996 30th reunion ticket featuring Hi-Tide Harry">
+          <div class="qr-zone" aria-label="Demonstration check-in code. Not valid for admission.">
+            <span class="qr-pattern" aria-hidden="true"></span><strong data-ticket-credential>LOADING</strong><small>Live code refreshes at check-in</small>
+          </div>
+        </article>
+        <div class="ticket-details"><div><span>Attendee</span><strong data-ticket-holder>Loading…</strong></div><div><span>Pass</span><strong data-ticket-type>Loading…</strong></div><div><span>Ticket</span><strong data-ticket-id>Loading…</strong></div><div><span>Status</span><strong class="good" data-ticket-status>Loading…</strong></div></div>
+        </div>
+        <div class="notice"><strong>Keep your pass private.</strong><p>The live QR will be an opaque, rotating check-in token. It will never contain your name, email, or payment details.</p></div>
+        <div class="action-row"><button class="button button--primary" type="button" disabled title="Wallet pass issuance is not available in the current backend">Phone wallet pass coming soon</button><button class="button" type="button" data-brightness>Brighten for check-in</button></div>
+      </section>
+
+      <section class="view" data-view-panel="rsvp" aria-labelledby="rsvp-heading">
+        <div class="section-heading"><div><p class="eyebrow">Saved to your profile</p><h2 id="rsvp-heading">RSVP &amp; dinner</h2></div><span class="saved-state" role="status">All changes saved</span></div>
+        <form class="portal-form" data-demo-form="rsvp">
+          <fieldset><legend>Attendance</legend><label class="choice"><input type="radio" name="attendance" value="yes" required><span><strong>Yes, I’ll be there</strong><small>Reserve my place and dinner</small></span></label><label class="choice"><input type="radio" name="attendance" value="maybe"><span><strong>I’m not certain yet</strong><small>Save my response so I can return later</small></span></label><label class="choice"><input type="radio" name="attendance" value="no"><span><strong>I can’t attend</strong><small>Keep me on reunion updates</small></span></label></fieldset>
+          <div class="field-grid"><label>Number of guests<input type="number" name="guest_count" min="0" max="5" value="0"></label><label>Guest name(s)<input type="text" name="guest_names" maxlength="500" autocomplete="name"></label><label>Mobile number<input type="tel" name="phone" maxlength="50" autocomplete="tel"></label></div>
+          <fieldset><legend>Dinner selection</legend><label class="choice"><input type="radio" name="meal" value="fish"><span><strong>Coastal catch</strong><small>Herb rice · seasonal vegetables</small></span></label><label class="choice"><input type="radio" name="meal" value="chicken"><span><strong>Roasted chicken</strong><small>Garlic mash · seasonal vegetables</small></span></label><label class="choice"><input type="radio" name="meal" value="vegetarian"><span><strong>Garden entrée</strong><small>Plant-based · dairy-free available</small></span></label></fieldset>
+          <label>Dietary or accessibility note<textarea name="dietary_accessibility" maxlength="2000" rows="4" placeholder="Tell the committee what would help you enjoy the night."></textarea></label>
+          <p class="integration-notice" role="status" data-event-source><strong>Loading your reunion record…</strong></p>
+          <button class="button button--primary" type="submit">Save reunion details</button>
+        </form>
+      </section>
+
+      <section class="view" data-view-panel="memories" aria-labelledby="memories-heading">
+        <div class="section-heading"><div><p class="eyebrow">Your chapter belongs here</p><h2 id="memories-heading">Upload a memory</h2></div><span class="privacy-chip">Private until approved</span></div>
+        <div class="memory-layout">
+          <form class="upload-card" data-demo-form="upload"><label>Memory title<input type="text" name="title" maxlength="200" required placeholder="Prom night, spring 1995"></label><label class="drop-zone"><input type="file" name="file" accept="image/jpeg,image/png,image/webp,video/mp4" required><span class="drop-zone__icon" aria-hidden="true">＋</span><strong>Choose one photo or short video</strong><small>Private upload · server limits are enforced</small></label><div class="field-grid"><label>Year<input type="number" name="event_year" min="1900" max="2100" value="1996"></label><label class="check"><input type="checkbox" name="consent_to_publish" value="1"><span>Committee may publish an approved derivative.</span></label></div><label>Story or caption<textarea name="caption" maxlength="1000" rows="5" placeholder="Who is here? What year was it? What should classmates remember?"></textarea></label><button class="button button--primary" type="submit">Send for committee review</button></form>
+          <aside class="process-card"><img src="../assets/mascot/18-presenting.png" alt="Hi-Tide Harry presents the memory process"><h3>What happens next?</h3><ol><li>We scan and store it privately.</li><li>The committee checks consent and context.</li><li>Approved memories may join the gallery or reunion film.</li></ol><p>Your upload is never public automatically.</p></aside>
+        </div>
+        <div class="dashboard-card"><h3>Your submissions</h3><div data-media-list><p>Loading your private submissions…</p></div></div>
+      </section>
+
+      <section class="view" data-view-panel="suggestions" aria-labelledby="suggestions-heading">
+        <div class="section-heading"><div><p class="eyebrow">Help direct the night</p><h2 id="suggestions-heading">Suggestions</h2></div></div>
+        <div class="dashboard-grid dashboard-grid--forms">
+          <form class="portal-form compact" data-demo-form="song"><span class="scene-icon" aria-hidden="true">♪</span><h3>Request a song</h3><label>Song and artist<input type="text" name="subject" maxlength="200" required placeholder="That one song from ’96"></label><label>Why this one?<textarea name="message" maxlength="2000" required rows="3" placeholder="Tell us the memory behind it."></textarea></label><button class="button button--primary" type="submit">Send to the soundtrack</button></form>
+          <form class="portal-form compact" data-demo-form="idea"><span class="scene-icon" aria-hidden="true">✦</span><h3>Pitch an event idea</h3><label>Short title<input type="text" name="subject" maxlength="200" required placeholder="A tribute, activity, or accessibility need"></label><label>Your idea<textarea name="message" maxlength="2000" required rows="5" placeholder="Tell the committee what would make the night better…"></textarea></label><button class="button button--primary" type="submit">Send to the committee</button></form>
+        </div>
+        <div class="dashboard-card"><h3>Your submitted ideas</h3><div data-suggestion-list><p>Loading your suggestions…</p></div></div>
+      </section>
+
+      <section class="view" data-view-panel="trivia" aria-labelledby="trivia-heading"><div class="section-heading"><div><p class="eyebrow">How well do you remember?</p><h2 id="trivia-heading">Class of ’96 Trivia</h2><p>One verified attendee, one attempt, and no answers exposed before you play.</p></div></div><div class="dashboard-card" data-trivia-game><p class="empty-state">Loading the game…</p></div></section>
+
+      <section class="view" data-view-panel="event" aria-labelledby="event-heading">
+        <div class="section-heading"><div><p class="eyebrow">Everything for November 7</p><h2 id="event-heading">Event guide</h2></div><a class="button" href="https://www.google.com/maps/dir/?api=1&amp;destination=Miami+Shores+Country+Club%2C+10000+Biscayne+Blvd%2C+Miami+Shores%2C+FL+33138" target="_blank" rel="noopener">Get directions</a></div>
+        <ol class="timeline"><li><time>6:30 PM</time><div><h3>Doors &amp; red carpet</h3><p>Check in with your mobile ticket, meet the class, and add a message to the time capsule.</p></div></li><li><time>7:30 PM</time><div><h3>Dinner &amp; opening reel</h3><p>A cinematic look back at the Class of ’96 and one hundred years of Hi-Tide history.</p></div></li><li><time>9:00 PM</time><div><h3>The soundtrack takes over</h3><p>Class requests, Miami energy, dancing, photos, and surprises.</p></div></li><li><time>11:45 PM</time><div><h3>Final frame</h3><p>One last class photo before the credits roll.</p></div></li></ol>
+        <div class="info-grid"><article><h3>Where</h3><p>Miami Shores Country Club<br>10000 Biscayne Blvd<br>Miami Shores, FL 33138</p></article><article><h3>What to wear</h3><p>Black-tie cocktail. Think premiere night—elevated, comfortable, and ready for the camera.</p></article><article><h3>Need help?</h3><p>Contact the committee and your message will be attached to your attendee record.</p><a href="mailto:committee@mbsh96reunion.com">Email the committee</a></article></div>
+      </section>
+
+      <section class="view" data-view-panel="notifications" aria-labelledby="notifications-heading">
+        <div class="section-heading"><div><p class="eyebrow">You stay in control</p><h2 id="notifications-heading">Notifications</h2><p>Event-critical updates stay separate from optional reunion stories and promotions.</p></div></div>
+        <form class="preferences" data-demo-form="preferences">
+          <div class="preference-group"><h3>Service messages</h3><p>Required for account security, ticket changes, payments, and critical event updates.</p><label class="preference-row"><span><strong>Security and ticket service</strong><small>Transactional · cannot be disabled here</small></span><input type="checkbox" checked disabled><i aria-hidden="true"></i></label><label class="preference-row"><span><strong>Event updates</strong><small>Schedule, venue, and important reunion changes</small></span><input type="checkbox" name="event_updates"><i aria-hidden="true"></i></label><label class="preference-row"><span><strong>Text me event updates</strong><small>Uses the mobile number on your attendee profile</small></span><input type="checkbox" name="sms_notifications"><i aria-hidden="true"></i></label></div>
+          <div class="preference-group"><h3>Optional messages</h3><p>Change these any time without affecting your ticket or service messages.</p><label class="preference-row"><span><strong>Reunion stories &amp; memories</strong><small>New films, galleries, and class spotlights</small></span><input type="checkbox" name="memory_updates"><i aria-hidden="true"></i></label><label class="preference-row"><span><strong>Promotional email</strong><small>Sponsors, merchandise, and future offers</small></span><input type="checkbox" name="promotional_email"><i aria-hidden="true"></i></label></div>
+          <button class="button button--primary" type="submit">Save preferences</button>
+        </form>
+        <section class="notification-inbox" aria-labelledby="notification-inbox-title"><h3 id="notification-inbox-title">Your recent notices</h3><ul data-notification-list><li class="empty-state">Loading notices…</li></ul></section>
+      </section>
+
+      <section class="view" data-view-panel="inbox" aria-labelledby="attendee-inbox-heading">
+        <div class="section-heading"><div><p class="eyebrow">One accountable conversation</p><h2 id="attendee-inbox-heading">Messages</h2><p>Ask the committee a question and keep its status attached to your attendee account.</p></div></div>
+        <div class="dashboard-grid dashboard-grid--forms"><form class="portal-form compact" data-conversation-form><h3>Start a conversation</h3><label>Subject<input name="subject" maxlength="255" required placeholder="Tickets, dinner, access, or another question"></label><label>Message<textarea name="message" maxlength="5000" rows="6" required placeholder="How can the committee help?"></textarea></label><button class="button button--primary" type="submit">Send to the committee</button></form><section class="notification-inbox"><h3>Your conversations</h3><div data-conversation-list><p class="empty-state">Loading…</p></div><div data-attendee-conversation-detail hidden></div></section></div>
+      </section>
+
+      <section class="view staff-view" data-view-panel="committee" data-staff-only hidden aria-labelledby="committee-heading">
+        <div class="staff-masthead"><div><p class="eyebrow">Committee operations</p><h2 id="committee-heading">Committee Desk</h2><p>Run the reunion without losing the attendee experience. Every action remains permission-checked and recorded.</p></div><div class="staff-badges"><span class="staff-role-badge" data-staff-role>Authorized staff</span><span class="staff-status-chip" data-staff-context hidden></span></div></div>
+        <div class="staff-priority" data-staff-summary><div class="staff-loading" role="status">Loading committee priorities…</div></div>
+        <div class="staff-grid staff-grid--actions">
+          <a class="staff-action" href="#review" data-route="review"><span aria-hidden="true">◎</span><strong>Review submissions</strong><small>Photos, stories, consent and memorial items</small></a>
+          <a class="staff-action" href="#inbox" data-route="inbox"><span aria-hidden="true">✉</span><strong>Open committee inbox</strong><small>Attendee messages and unanswered Harry questions</small></a>
+          <a class="staff-action" href="#people" data-route="people"><span aria-hidden="true">♟</span><strong>Find an attendee</strong><small>RSVP, access, ticket and contact context</small></a>
+          <a class="staff-action" href="#operations" data-route="operations"><span aria-hidden="true">▣</span><strong>Event operations</strong><small>Orders, tickets, check-in and exceptions</small></a>
+        </div>
+      </section>
+
+      <section class="view staff-view" data-view-panel="review" data-staff-only hidden aria-labelledby="review-heading">
+        <div class="section-heading"><div><p class="eyebrow">Private until approved</p><h2 id="review-heading">Review queue</h2><p>Approve only after file safety, consent, context and publication rights are confirmed.</p></div><span class="privacy-chip">Moderated</span></div>
+        <div class="staff-toolbar"><label>Filter queue<select data-staff-filter="review"><option value="pending">Needs review</option><option value="approved">Approved</option><option value="rejected">Returned</option></select></label></div>
+        <div class="staff-list" data-staff-list="review"><div class="staff-loading" role="status">Loading private review queue…</div></div>
+      </section>
+
+      <section class="view staff-view" data-view-panel="people" data-staff-only hidden aria-labelledby="people-heading">
+        <div class="section-heading"><div><p class="eyebrow">One class, protected records</p><h2 id="people-heading">People</h2><p>Search attendee status and service context. Account and role controls appear only when your permission allows them.</p></div></div>
+        <form class="staff-search" data-staff-search="people"><label class="sr-only" for="people-search">Search attendees</label><input id="people-search" name="q" type="search" placeholder="Name, email, ticket or RSVP…"><button class="button button--primary" type="submit">Search</button></form>
+        <div class="staff-list" data-staff-list="people"><div class="staff-empty"><strong>Search the attendee list</strong><p>Results will include only the fields your committee role may view.</p></div></div>
+      </section>
+
+      <section class="view staff-view" data-view-panel="inbox" data-staff-only hidden aria-labelledby="inbox-heading">
+        <div class="section-heading"><div><p class="eyebrow">Nothing falls through the cracks</p><h2 id="inbox-heading">Committee inbox</h2><p>Attendee messages, replies and questions for Harry belong in a single accountable conversation timeline.</p></div><span class="staff-status-chip" data-inbox-count>Loading</span></div>
+        <div class="staff-split"><div class="staff-list" data-staff-list="inbox"><div class="staff-loading" role="status">Loading conversations…</div></div><aside class="staff-detail" data-staff-detail="inbox"><strong>Select a conversation</strong><p>Choose a thread to see its complete timeline and response status.</p></aside></div>
+      </section>
+
+      <section class="view staff-view" data-view-panel="communications" data-staff-only hidden aria-labelledby="communications-heading">
+        <div class="section-heading"><div><p class="eyebrow">Useful, consent-aware communication</p><h2 id="communications-heading">Communications</h2><p>Send transactional event information separately from optional promotional messages.</p></div></div>
+        <div class="staff-grid"><article class="staff-panel"><h3>Compose an update</h3><p>Audience selection, preview, approval and delivery reporting require the communications API.</p><button class="button button--primary" type="button" disabled>Composer awaiting API</button></article><article class="staff-panel"><h3>Delivery health</h3><div data-staff-delivery><p class="integration-notice"><strong>No live status supplied.</strong> Resend delivery, bounce and retry totals will appear here after the secured endpoint is connected.</p></div></article></div>
+      </section>
+
+      <section class="view staff-view" data-view-panel="operations" data-staff-only hidden aria-labelledby="operations-heading">
+        <div class="section-heading"><div><p class="eyebrow">From order to the door</p><h2 id="operations-heading">Tickets &amp; operations</h2><p>Monitor orders, entitlements, check-in and exceptions without exposing payment credentials.</p></div></div>
+        <div class="staff-priority" data-staff-operations><div class="staff-loading" role="status">Loading operational status…</div></div>
+        <div class="notice"><strong>Financial authority remains WooCommerce.</strong><p>This desk may summarize order and ticket state, but refunds, payment settings and financial reconciliation stay restricted to the Site Owner.</p></div>
+      </section>
+    </div>
+  </main>
+
+  <aside class="harry-guide" aria-live="polite">
+    <img data-harry-mini src="../assets/mascot/06-listening.png" alt="" width="80" height="80">
+    <div><strong data-harry-title>Harry’s here</strong><p data-harry-copy>Your next step and your answers travel with you.</p></div>
+    <button type="button" aria-label="Dismiss Harry’s tip" data-dismiss-harry>×</button>
+  </aside>
+  <div class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="js/portal-config.js" defer></script>
+  <script src="js/portal-api.js" defer></script>
+  <script src="js/portal.js" defer></script>
+  <script src="js/trivia.js" defer></script>
+  <script src="js/portal-staff.js" defer></script>
+</body>
+</html>

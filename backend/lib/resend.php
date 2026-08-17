@@ -17,7 +17,7 @@ function fam_send_email(array $config, string $to, string $subject, string $html
   ];
   if ($text) $payload['text'] = $text;
 
-  $ch = curl_init('https://api.resend.com/emails');
+  $ch = curl_init((string)($config['resend_api_url'] ?? 'https://api.resend.com/emails'));
   curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_POST           => true,
@@ -31,7 +31,6 @@ function fam_send_email(array $config, string $to, string $subject, string $html
   $body = curl_exec($ch);
   $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
   $err = curl_error($ch);
-  curl_close($ch);
   if ($body === false) throw new ResendError("Resend curl error: $err");
   if ($status < 200 || $status >= 300) throw new ResendError("Resend HTTP $status: $body");
   $j = json_decode($body, true);

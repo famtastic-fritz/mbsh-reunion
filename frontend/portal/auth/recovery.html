@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <base href="/portal/auth/" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#080607" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <title>Recover account · My Reunion</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="../css/portal.css" />
+    <link rel="stylesheet" href="../css/mobile-hardening.css?v=1" />
+  </head>
+  <body class="auth-page auth-page--center">
+    <main class="auth-card auth-card--standalone">
+      <img
+        class="auth-medallion"
+        src="../../assets/mascot/03-thinking.png"
+        alt="Hi-Tide Harry is ready to help"
+      />
+      <p class="eyebrow">Account recovery</p>
+      <h1>We’ll help you back in.</h1>
+      <p>
+        Enter your email. If it matches an account, we’ll send a time-limited
+        recovery link. For privacy, the response is the same either way.
+      </p>
+      <form data-auth-form="recovery">
+        <label
+          >Email address<input
+            name="email"
+            type="email"
+            autocomplete="email"
+            required /></label
+        ><button class="button button--primary" type="submit">
+          Send recovery link
+        </button>
+      </form>
+      <a class="text-button" href="/portal/login">Return to sign in</a>
+    </main>
+    <div class="toast" role="status" aria-live="polite" hidden></div>
+    <script src="../js/portal-config.js" defer></script>
+    <script src="../js/portal-api.js" defer></script>
+    <script src="../js/portal.js" defer></script>
+  </body>
+</html>
