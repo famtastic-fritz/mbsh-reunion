@@ -2,7 +2,7 @@
 /**
  * Plugin Name: FAMtastic Reunion Platform
  * Description: Headless reunion accounts, moderated memories, preferences, and WooCommerce-backed virtual tickets.
- * Version: 0.4.0
+ * Version: 0.4.1
  * Author: FAMtastic Designs
  * Requires at least: 6.6
  * Requires PHP: 8.1
@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('FAMTASTIC_REUNION_VERSION', '0.4.0');
+define('FAMTASTIC_REUNION_VERSION', '0.4.1');
 define('FAMTASTIC_REUNION_FILE', __FILE__);
 
 require_once __DIR__ . '/includes/class-content.php';
@@ -25,6 +25,7 @@ require_once __DIR__ . '/includes/class-brand-experience.php';
 require_once __DIR__ . '/includes/class-seo.php';
 require_once __DIR__ . '/includes/class-access.php';
 require_once __DIR__ . '/includes/class-integrations.php';
+require_once __DIR__ . '/includes/class-resend-mailer.php';
 
 add_action('plugins_loaded', static function (): void {
     Famtastic_Reunion_Content::register();
@@ -35,6 +36,7 @@ add_action('plugins_loaded', static function (): void {
     Famtastic_Reunion_SEO::register();
     Famtastic_Reunion_Access::register();
     Famtastic_Reunion_Integrations::register();
+    Famtastic_Reunion_Resend_Mailer::register();
 });
 
 register_activation_hook(__FILE__, static function (): void {

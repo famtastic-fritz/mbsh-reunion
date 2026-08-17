@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/premiere.css">
   <link rel="stylesheet" href="css/cinematic-system.css?v=cinematic3">
+  <link rel="stylesheet" href="css/diploma-rsvp.css?v=diploma1">
 </head>
 <body data-page="rsvp" data-premiere="on">
 
@@ -61,8 +62,36 @@
     <div class="premiere-seat-row" aria-hidden="true">
       <span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span><span class="premiere-seat-row__seat"></span>
     </div>
+    <div class="diploma-rsvp-intro">
+      <p class="cinema-kicker">Your official reunion record</p>
+      <h2>Open the diploma. Reserve your place.</h2>
+      <p>The Class of ’96 RSVP keeps the ceremony of our history while securely saving the details the committee needs.</p>
+      <div class="diploma-rsvp-options" aria-label="Choose how to open the RSVP">
+        <button type="button" class="cinema-button cinema-button--primary" data-diploma-open="book">Open like a book</button>
+        <button type="button" class="cinema-button" data-diploma-open="instant">Skip opening effect</button>
+      </div>
+    </div>
+    <div class="diploma-rsvp-stage" data-diploma-rsvp>
+      <div class="diploma-rsvp-book">
+        <div class="diploma-rsvp-pages" aria-hidden="true"></div>
+        <div class="diploma-rsvp-spine" aria-hidden="true"></div>
+        <div class="diploma-rsvp-cover" aria-hidden="true">
+          <img src="/assets/brand-mark/brand-mark.png" alt="" width="128" height="128">
+          <p>Miami Beach Senior High School</p>
+          <strong>Class of 1996</strong>
+          <span>Reunion Attendee Record</span>
+        </div>
+        <div class="diploma-rsvp-leaf" aria-hidden="true"></div>
     <!-- Harry-in-scene (12-clipboard) is injected by premiere.js — replaces the legacy static 08-pointing. -->
-    <form class="rsvp-form" id="rsvp-form" novalidate>
+    <form class="rsvp-form diploma-rsvp-paper" id="rsvp-form" novalidate>
+      <div class="diploma-rsvp-sketch" aria-hidden="true">
+        <svg viewBox="0 0 640 170"><path d="M42 125h556M86 124V78h72v46m20 0V54h86v70m24 0V86h122v38m28 0V64h98v60M64 78h116m-2-24h108m0 32h148m4-22h120M113 78V59m18 19V59m80-5V34m22 20V34m89 52V66m26 20V66m26 20V66m96-22v-20m22 40V44m-425 80c42-20 78-20 111 0m322 0c28-18 55-18 80 0"/><path d="M318 123V39m0 0c-25-21-49-19-70-2m70 2c21-23 47-23 70-5m-70 5c-18 17-29 36-31 57m31-57c19 18 29 38 30 60"/></svg>
+      </div>
+      <header class="diploma-rsvp-heading">
+        <p>Miami Beach Senior High · Class of 1996</p>
+        <h2>Reunion Attendee Record</h2>
+        <span>This commemorates your return for the 30th reunion.</span>
+      </header>
       <fieldset class="rsvp-form__group rsvp-form__group--always">
         <legend class="visually-hidden">Your information</legend>
         <label class="field"><span class="field__label">First Name *</span><input class="field__input" type="text" name="first_name" required maxlength="100"></label>
@@ -110,6 +139,8 @@
       <h3 class="rsvp-success__title">You're on the list. Welcome back, <span id="rsvp-success-name">Hi-Tide</span>.</h3>
       <p class="rsvp-success__sub">We've sent confirmation to <span id="rsvp-success-email"></span>. See you on the night.</p>
       <p class="rsvp-success__capsule"><a href="capsule.html">Want to send your younger self a message? Open the time capsule.</a></p>
+    </div>
+      </div>
     </div>
   </section>
 
@@ -180,6 +211,7 @@
   <script src="js/countdown.js" defer></script>
   <script src="js/compass.js" defer></script>
   <script src="js/rsvp.js?v=cinematic2" defer></script>
+  <script src="js/diploma-rsvp.js?v=diploma1" defer></script>
   <script src="js/chatbot.js?v=cinematic5" defer></script>
   <script src="js/page-sequence.js?v=menufix2" defer></script>
   <script src="js/premiere.js?v=menufix2" defer></script>

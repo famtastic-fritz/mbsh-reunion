@@ -64,6 +64,14 @@ do
   }
 done
 
+MAILER="$ROOT/wp-content/plugins/famtastic-reunion-platform/includes/class-resend-mailer.php"
+for required in "pre_wp_mail" "FAMTASTIC_RESEND_API_KEY" "Idempotency-Key" "wp_mail_failed" "famtastic_resend_delivery_status"; do
+  grep -F "$required" "$MAILER" >/dev/null || {
+    echo "Missing required Resend mail contract: $required" >&2
+    exit 1
+  }
+done
+
 if grep -R -n -E '(sk|rk)_(live|test)_[A-Za-z0-9]{12,}|re_[A-Za-z0-9]{12,}' "$ROOT"; then
   echo 'Potential provider secret found in WordPress scaffold.' >&2
   exit 1

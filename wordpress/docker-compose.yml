@@ -35,6 +35,9 @@ services:
         define('DISABLE_WP_CRON', true);
         define('FAMTASTIC_REUNION_MODE', 'proof');
         define('FAMTASTIC_FRONTEND_URL', '${FAMTASTIC_FRONTEND_URL:-http://127.0.0.1:8952}');
+        define('FAMTASTIC_RESEND_API_KEY', '${RESEND_API_KEY:-}');
+        define('FAMTASTIC_RESEND_FROM', '${RESEND_FROM_COMMITTEE:-committee@send.mbsh96reunion.com}');
+        define('FAMTASTIC_RESEND_REPLY_TO', '${RESEND_REPLY_TO:-committee@mbsh96reunion.com}');
     volumes:
       - mbsh_wp_data:/var/www/html
       - ./wp-content/plugins/famtastic-reunion-platform:/var/www/html/wp-content/plugins/famtastic-reunion-platform:ro

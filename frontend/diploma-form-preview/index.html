@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Diploma Form Experience · Local Proof</title>
+  <link rel="stylesheet" href="diploma-form.css">
+  <link rel="stylesheet" href="book-opening.css">
+</head>
+<body>
+  <a class="skip-link" href="#diploma-form">Skip to form</a>
+  <main>
+    <header class="proof-heading">
+      <a href="../index.html" class="proof-brand"><img src="../assets/brand-mark/brand-mark.png" alt="" width="48" height="48"><span><strong>MBSH Class of 1996</strong><small>FAMtastic Event Cinema · Local concept</small></span></a>
+      <span class="proof-pill">Private design proof · Nothing is submitted</span>
+    </header>
+
+    <section class="diploma-scene" aria-labelledby="proof-title">
+      <div class="scene-copy">
+        <p class="eyebrow">A FORM WORTH REMEMBERING</p>
+        <h1 id="proof-title">Your reunion details, presented like a piece of history.</h1>
+        <p>The real diploma inspired the material, typography and ceremony. Your information remains a normal, accessible form—just wrapped in a more meaningful experience.</p>
+        <div class="opening-options" aria-label="Choose how to open the form">
+          <button class="open-diploma" type="button" data-open="book">Open like a book</button>
+          <button class="open-diploma open-diploma--quiet" type="button" data-open="instant">Skip opening effect</button>
+        </div>
+      </div>
+
+      <div class="diploma-stage" data-diploma>
+        <div class="diploma-book">
+          <div class="book-page-stack" aria-hidden="true"></div>
+          <div class="book-spine" aria-hidden="true"></div>
+          <div class="diploma-cover" aria-hidden="true">
+            <div class="cover-rule"></div>
+            <img src="../assets/brand-mark/brand-mark.png" alt="" width="118" height="118">
+            <p>Miami Beach Senior High School</p>
+            <strong>Class of 1996</strong>
+            <span>Reunion Record</span>
+          </div>
+
+          <div class="turning-leaf" aria-hidden="true"><span></span></div>
+
+          <form class="diploma-paper" id="diploma-form" novalidate>
+            <div class="paper-corner paper-corner--tl" aria-hidden="true"></div><div class="paper-corner paper-corner--tr" aria-hidden="true"></div><div class="paper-corner paper-corner--bl" aria-hidden="true"></div><div class="paper-corner paper-corner--br" aria-hidden="true"></div>
+            <div class="school-sketch" aria-hidden="true">
+              <svg viewBox="0 0 640 170"><path d="M42 125h556M86 124V78h72v46m20 0V54h86v70m24 0V86h122v38m28 0V64h98v60M64 78h116m-2-24h108m0 32h148m4-22h120M113 78V59m18 19V59m80-5V34m22 20V34m89 52V66m26 20V66m26 20V66m96-22v-20m22 40V44m-425 80c42-20 78-20 111 0m322 0c28-18 55-18 80 0"/><path d="M318 123V39m0 0c-25-21-49-19-70-2m70 2c21-23 47-23 70-5m-70 5c-18 17-29 36-31 57m31-57c19 18 29 38 30 60"/></svg>
+            </div>
+
+            <div class="paper-heading">
+              <p class="eyebrow">MIAMI BEACH SENIOR HIGH · CLASS OF 1996</p>
+              <h2>Reunion Attendee Record</h2>
+              <p>This commemorates your return for the 30th reunion.</p>
+            </div>
+
+            <div class="form-progress" aria-label="Form progress">
+              <span data-progress-label>Step 1 of 3 · Identity</span>
+              <div class="progress-track" aria-hidden="true"><i data-progress-bar></i></div>
+            </div>
+
+            <fieldset class="diploma-step" data-step="0">
+              <legend>First, tell us who is returning.</legend>
+              <div class="field-grid">
+                <label>First name<input name="first_name" autocomplete="given-name" required></label>
+                <label>Last name<input name="last_name" autocomplete="family-name" required></label>
+              </div>
+              <label>Name used in school, if different<input name="school_name" autocomplete="off"></label>
+              <label>Email address<input type="email" name="email" autocomplete="email" inputmode="email" required></label>
+            </fieldset>
+
+            <fieldset class="diploma-step" data-step="1" hidden>
+              <legend>Now reserve your place in the story.</legend>
+              <label>Will you attend?
+                <select name="attending" required><option value="">Choose one</option><option value="yes">Yes—I’ll be there</option><option value="maybe">Maybe—keep me updated</option><option value="no">I can’t attend</option></select>
+              </label>
+              <div class="field-grid">
+                <label>Number of guests<input type="number" name="guests" min="0" max="5" value="0"></label>
+                <label>Dinner preference<select name="meal"><option value="">Choose later</option><option>Chicken</option><option>Fish</option><option>Vegetarian</option></select></label>
+              </div>
+              <label>Accessibility or dietary notes<textarea name="notes" rows="3"></textarea></label>
+            </fieldset>
+
+            <fieldset class="diploma-step" data-step="2" hidden>
+              <legend>Choose how the committee may reach you.</legend>
+              <label class="check"><input type="checkbox" name="event_updates" checked><span>Send essential reunion and reservation updates.</span></label>
+              <label class="check"><input type="checkbox" name="memory_updates"><span>Tell me when new approved memories are added.</span></label>
+              <label class="check"><input type="checkbox" name="promotional_email"><span>Send optional community news and future event promotions. I can unsubscribe anytime.</span></label>
+              <label class="check check--required"><input type="checkbox" name="terms" required><span>I agree to the privacy notice and understand this is a local visual proof.</span></label>
+            </fieldset>
+
+            <p class="form-error" data-error role="alert" hidden></p>
+            <div class="form-actions">
+              <button class="button button--secondary" type="button" data-back hidden>Back</button>
+              <button class="button button--primary" type="button" data-next>Continue</button>
+              <button class="button button--primary" type="submit" data-finish hidden>Seal my RSVP</button>
+            </div>
+            <p class="privacy-note">In production, transactional notices and optional promotions remain separate. No information from this proof leaves your browser.</p>
+          </form>
+
+          <section class="diploma-complete" data-complete hidden tabindex="-1">
+            <img src="../assets/mascot/14-wax-stamping.png" alt="Hi-Tide Harry stamps the completed reunion record" width="190" height="190">
+            <div class="completion-seal" aria-hidden="true"><span>1996</span><strong>SEALED</strong><span>2026</span></div>
+            <p class="eyebrow">REUNION RECORD COMPLETE</p>
+            <h2>Welcome back, Hi-Tide.</h2>
+            <p>Your production confirmation would show the saved RSVP, email receipt and next action here.</p>
+            <button class="button button--secondary" type="button" data-reset>Try the form again</button>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="diploma-form.js" defer></script>
+</body>
+</html>
