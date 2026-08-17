@@ -1,5 +1,11 @@
 # FAMtastic Reunion WordPress Proof
 
+## Production operations layer
+
+The reviewed plugin set is captured in `plugins.lock.json`. FluentCRM receives explicit promotional opt-ins only. Fluent Forms is for public polls, surveys, volunteer interest, and contact intake—not portal identity, private media, checkout, or ticketing. WP Mail SMTP uses the native Resend mailer and reads its credential from protected server configuration. WP Crontrol is owner-only visibility; system cron remains the trigger. Two-Factor is enrolled and recovery-tested before enforcement.
+
+The custom **Growth & Delivery** screen explains the connections and their authority boundaries to the site owner.
+
 This directory is the reusable WordPress/WooCommerce control-plane source. A
 production copy is installed under `/cms`, but it does not replace the current
 custom operational backend or become payment authority until the recorded

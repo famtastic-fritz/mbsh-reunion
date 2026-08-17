@@ -1,5 +1,16 @@
 # Site Studio / Shay Shay Recipe: Headless Event Platform
 
+## Growth and delivery layer
+
+Add the operations layer only after the authority map is explicit:
+
+- FluentCRM may receive verified contacts only when the portal's promotional consent is true. Registration, RSVP, or purchase never implies marketing consent.
+- Fluent Forms may support public polls, surveys, volunteer interest, and contact intake. Do not use it to duplicate authentication, payment, private media, or ticket workflows.
+- WordPress mail uses WP Mail SMTP's native Resend provider with credentials loaded from a protected server file.
+- WP Crontrol provides owner visibility; real system cron triggers `wp-cron.php` on a fixed schedule.
+- Two-Factor is installed for owner enrollment, followed by a logout/login and recovery-code proof before enforcement.
+- Add a branded integration map so an operator sees jobs and authority boundaries, not a confusing list of plugin names.
+
 Use this recipe when the requested site needs a short-lived, visually ambitious event frontend but a durable staff-managed system for accounts, media, sales, tickets, and communications.
 
 ## Build order

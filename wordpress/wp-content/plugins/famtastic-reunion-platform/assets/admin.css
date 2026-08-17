@@ -67,6 +67,13 @@ input:focus, textarea:focus, select:focus { border-color:var(--fam-gold) !import
 .famtastic-harry-answer strong { color:var(--fam-gold); }
 .famtastic-harry-boundary { padding-top:10px; border-top:1px solid var(--fam-line); font-size:12px; }
 .famtastic-role-label { display:inline-flex; padding:3px 8px; border:1px solid rgba(216,180,106,.45); border-radius:999px; color:#8a5a00; font-weight:800; background:#fff8e5; }
+.famtastic-lede { max-width:760px; font-size:16px; }
+.famtastic-integration-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:22px 0; }
+.famtastic-integration-grid article, .famtastic-doctrine { padding:20px; border:1px solid var(--fam-line); border-radius:var(--fam-radius); background:var(--fam-panel); box-shadow:0 18px 55px rgba(0,0,0,.18); }
+.famtastic-integration-grid article p { margin:0; color:var(--fam-gold); font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.famtastic-integration-grid article h2 { min-height:54px; margin:.45em 0 .8em; font-size:21px; }
+.famtastic-doctrine { max-width:940px; margin:14px 0; }
+.famtastic-doctrine li { margin:.7em 0; }
 .famtastic-committee-admin #menu-plugins,
 .famtastic-committee-admin #menu-appearance,
 .famtastic-committee-admin #menu-settings,

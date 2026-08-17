@@ -1,0 +1,14 @@
+{
+  "captured_at": "2026-08-17",
+  "policy": "Review updates in proof first; production activation requires backup, lint, authority review, and smoke proof.",
+  "plugins": [
+    {"slug": "famtastic-reunion-platform", "version": "0.4.0", "role": "authority bridge, branded owner UX, tickets, content, operations"},
+    {"slug": "woocommerce", "version": "11.0.1", "role": "catalog, orders, refunds, financial truth"},
+    {"slug": "woocommerce-gateway-stripe", "version": "10.8.5", "role": "Stripe gateway; live use remains acceptance-gated"},
+    {"slug": "fluent-crm", "version": "3.1.10", "role": "permission-based marketing and campaigns"},
+    {"slug": "fluentform", "version": "6.2.12", "role": "committee public forms, polls, surveys, and interest capture"},
+    {"slug": "wp-mail-smtp", "version": "4.9.0", "role": "native Resend mail transport"},
+    {"slug": "wp-crontrol", "version": "1.21.1", "role": "owner scheduled-work inspection"},
+    {"slug": "two-factor", "version": "0.16.0", "role": "owner login hardening"}
+  ]
+}

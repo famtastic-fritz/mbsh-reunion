@@ -1,10 +1,15 @@
 {
   "id": "famtastic-headless-event-commerce",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "status": "locally_proven",
   "owners": ["FAMtastic Designs", "Site Studio", "Shay Shay"],
   "purpose": "Build branded event experiences with a headless WordPress staff CMS, WooCommerce financial records, virtual tickets, moderated community content, and provider-backed communications.",
   "capabilities": [
+    "consent_safe_fluentcrm_marketing",
+    "resend_backed_wordpress_mail",
+    "committee_public_form_builder",
+    "wordpress_cron_operations_visibility",
+    "owner_two_factor_readiness",
     "headless_wordpress_editorial_cms",
     "woocommerce_catalog_coupons_orders_refunds",
     "stripe_test_to_live_gate",

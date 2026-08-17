@@ -1,5 +1,15 @@
 # Headless WordPress/WooCommerce Operations Plan
 
+## Operations plugins (2026-08-17)
+
+- FluentCRM: promotional marketing only; audience is synchronized from explicit portal promotional consent.
+- Fluent Forms: committee-managed public polls, surveys, volunteer interest, and contact forms only.
+- WP Mail SMTP: native Resend transport using the protected reunion credential.
+- WP Crontrol: owner inspection of WordPress scheduled events.
+- Two-Factor: owner authentication hardening after recovery-code proof.
+
+The custom **Growth & Delivery** screen is the owner-facing map for these tools. Attendee registration, preferences, private uploads, support messages, payments, and tickets do not move into these plugins.
+
 **Status:** production-installed, migration-gated hybrid
 **Decision:** staged hybrid migration; no production cutover is implied by this repository state.
 
