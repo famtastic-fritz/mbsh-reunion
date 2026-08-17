@@ -42,3 +42,6 @@ until launch approval.
 The reusable personal Codex skill is `build-famtastic-event-cinema`. The repo
 recipe under `site-studio/recipe/` is canonical for Shay, Claude, Site Studio,
 and other agents.
+
+For reunion advertising and character-consistent creative, also read
+`docs/creative/HI_TIDE_HARRY_CAMPAIGN_CREATIVE_RECIPE_2026-08-17.md`.

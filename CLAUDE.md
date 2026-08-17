@@ -10,3 +10,7 @@ Public-page work must preserve the universal composition contract:
 PageAwareHarry`. Read `docs/architecture/PUBLIC_PAGE_COMPONENT_CONTRACT_2026-08-17.md`
 and run `node tests/frontend/shared-public-shell.test.mjs`. Do not copy a new
 header/nav/footer into one page or use relative global links from nested routes.
+
+Campaign creative must follow
+`docs/creative/HI_TIDE_HARRY_CAMPAIGN_CREATIVE_RECIPE_2026-08-17.md` so Hi-Tide
+Harry, the reunion medallion, event facts, crops, and rights QA stay consistent.

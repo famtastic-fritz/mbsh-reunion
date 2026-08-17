@@ -1,5 +1,13 @@
 # Site Studio / Shay Shay Recipe: Headless Event Platform
 
+## Campaign creative production
+
+Use `../../docs/creative/HI_TIDE_HARRY_CAMPAIGN_CREATIVE_RECIPE_2026-08-17.md`
+for character-consistent stills, OpenArt/Kling animation, Adobe finishing,
+Remotion packaging, export variants, provenance, and factual/mobile/rights QA.
+Campaign assets extend the Event Cinema design system; they are not an
+unrelated art stream.
+
 ## Growth and delivery layer
 
 Add the operations layer only after the authority map is explicit:
