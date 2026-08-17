@@ -1,6 +1,6 @@
 {
   "id": "famtastic-headless-event-commerce",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "status": "locally_proven",
   "owners": ["FAMtastic Designs", "Site Studio", "Shay Shay"],
   "purpose": "Build branded event experiences with a headless WordPress staff CMS, WooCommerce financial records, virtual tickets, moderated community content, and provider-backed communications.",
@@ -22,6 +22,9 @@
     "owner_self_lockout_protection",
     "audited_ticket_issue_check_in_and_void",
     "modular_trivia_authoring_scoring_and_leaderboard",
+    "permissioned_memory_cinema_and_yearbook_player",
+    "separate_consent_led_memorial_tribute_films",
+    "archival_source_year_and_class_year_disambiguation",
     "rsvp_menu_snapshot_reconciliation",
     "staged_migration_and_rollback"
   ],

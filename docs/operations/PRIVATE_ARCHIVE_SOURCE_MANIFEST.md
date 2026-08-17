@@ -17,6 +17,10 @@ that exact use.
 
 ## 1995 yearbook photographs
 
+These pages are from the Class of 1996's **junior-year book**. The reunion and
+attendee cohort remain the **Class of 1996**. Do not describe this source as the
+1996 senior-year yearbook.
+
 All are 4000 × 3000 JPEG photographs of physical pages; classification:
 restricted/personally identifiable archival source.
 

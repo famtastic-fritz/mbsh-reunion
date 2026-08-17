@@ -57,10 +57,20 @@ record, action, owner, status, and failure state.
 - Account verification/recovery and notification settings.
 - Event dashboard, agenda, FAQs, travel, venue, and announcements.
 - Moderated memory/story upload with explicit rights scope.
+- Memory Cinema: restored archival derivatives, an accessible page-turn or
+  list-mode yearbook, approved-memory collections, and user-started films.
+- Memorials are a separate consent-led record type—not a normal gallery tag.
+  Require relationship/authority, human verification, visibility, correction,
+  and takedown controls before a Fallen Hi-Tide tribute can publish.
 - Suggestions/polls and committee response timeline.
 - Woo catalog/checkout/order history and coupon assignment.
 - Signed QR ticket wallet, transfer/reissue, scanner, and check-in audit.
 - Committee dashboard for moderation, attendees, payments, delivery failures, and worker health.
+
+For this reunion, distinguish the graduating **Class of 1996** from the
+available **1995 junior-year yearbook source**. Never relabel the 1995 artifact
+as the 1996 senior yearbook. A fictional proof must say that its people are not
+real classmates.
 
 ## Guardrails
 
