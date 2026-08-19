@@ -34,6 +34,7 @@
       const res = await fetch(url, { method: 'POST', body: fd });
       if (!res.ok) throw new Error('http ' + res.status);
       modal.close();
+      window.mbshAnalytics?.track('sponsor_inquiry_submitted', { tier: fd.get('tier') || 'unspecified' });
       alert('Thanks — committee will follow up via email.');
       form.reset();
     } catch (err) {

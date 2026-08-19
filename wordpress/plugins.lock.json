@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-08-17",
+  "captured_at": "2026-08-18",
   "policy": "Review updates in proof first; production activation requires backup, lint, authority review, and smoke proof.",
   "plugins": [
     {"slug": "famtastic-reunion-platform", "version": "0.4.1", "role": "authority bridge, branded owner UX, tickets, content, operations, Resend delivery"},
@@ -9,6 +9,7 @@
     {"slug": "fluentform", "version": "6.2.12", "role": "committee public forms, polls, surveys, and interest capture"},
     {"slug": "wp-mail-smtp", "version": "4.9.0", "role": "native Resend mail transport"},
     {"slug": "wp-crontrol", "version": "1.21.1", "role": "owner scheduled-work inspection"},
-    {"slug": "two-factor", "version": "0.16.0", "role": "owner login hardening"}
+    {"slug": "two-factor", "version": "0.16.0", "role": "owner login hardening"},
+    {"slug": "google-site-kit", "version": "1.185.0", "role": "private WordPress analytics dashboard and GA4 connection for the sole administrator"}
   ]
 }

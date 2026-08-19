@@ -38,6 +38,9 @@
       if (!response.ok || !data.ok) throw new Error(data.message || 'Your order could not be submitted.');
       form.hidden = true; success.hidden = false;
       successCopy.textContent = `${data.quantity} ticket(s) reserved at $${Number(data.unit_price).toFixed(2)} each. Total due: $${Number(data.total_amount).toFixed(2)}. Order number: ${data.order_code}.`;
+      window.mbshAnalytics?.track('ticket_order_submitted', {
+        quantity: Number(data.quantity), value: Number(data.total_amount), currency: 'USD', payment_status: 'pending'
+      });
     } catch (error) {
       status.textContent = `${error.message} Please try again or email committee@mbsh96reunion.com.`;
       submit.disabled = false; submit.textContent = 'Submit Ticket Order';

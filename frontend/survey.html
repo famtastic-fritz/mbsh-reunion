@@ -274,6 +274,7 @@
   <script src="js/config.js"></script>
   <script src="js/main.js"></script>
   <script src="/js/cinematic-shell.js?v=cinematic5" defer></script>
+  <script src="/js/analytics.js?v=ga1" defer></script>
   <script src="js/page-sequence.js?v=menufix2" defer></script>
   <script src="js/premiere.js?v=menufix2" defer></script>
   <script src="js/chatbot.js"></script>
@@ -305,6 +306,7 @@
           success.style.display = 'block';
           success.scrollIntoView({ behavior: 'smooth', block: 'center' });
           success.removeAttribute('aria-hidden');
+          window.mbshAnalytics?.track('survey_submitted', { graduation_year: '1996' });
         } else {
           status.textContent = json.message || 'Something went wrong. Please try again.';
           status.className = 'survey-form__status survey-form__status--error';

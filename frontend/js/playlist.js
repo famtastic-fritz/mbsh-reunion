@@ -22,6 +22,7 @@
       const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       if (!res.ok) throw new Error('http ' + res.status);
       form.reset();
+      window.mbshAnalytics?.track('playlist_suggestion_submitted');
       submit.textContent = 'Suggested. Thank you.';
       setTimeout(() => { submit.disabled = false; submit.textContent = 'Suggest Track'; }, 3000);
     } catch (err) {

@@ -36,6 +36,7 @@
       success.hidden = false;
       document.getElementById('rsvp-success-name').textContent = data.first_name || 'Hi-Tide';
       document.getElementById('rsvp-success-email').textContent = data.email;
+      window.mbshAnalytics?.track('rsvp_submitted', { attendance_status: data.attending || 'unknown' });
       // Confetti micro-moment
       if (window.requestAnimationFrame && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) confettiBurst();
     } catch (err) {
