@@ -17,6 +17,7 @@
       if (!res.ok) throw new Error('http ' + res.status);
       form.parentElement.hidden = true;
       success.hidden = false;
+      window.mbshAnalytics?.track('time_capsule_submitted');
     } catch (err) {
       alert('Could not seal the capsule. Email committee@mbsh96reunion.com.');
       submit.disabled = false; submit.textContent = 'Seal the Capsule';

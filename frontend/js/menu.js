@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!response.ok || !data.ok) throw new Error(data.messages?.join(' ') || data.error || 'Submission failed.');
       form.hidden = true; successMsg.hidden = false;
       successDetails.innerHTML = `<h3>Your Dinner Menu</h3><ul><li><strong>Hors d'Oeuvres:</strong> ${payload.selections.hors.join(', ')}</li><li><strong>Salads:</strong> ${payload.selections.salad.join(', ')}</li><li><strong>Entrée:</strong> ${entree}</li><li><strong>Sides:</strong> ${payload.selections.side.join(', ')}</li>${payload.dietary ? `<li><strong>Dietary:</strong> ${payload.dietary}</li>` : ''}</ul>`;
+      window.mbshAnalytics?.track('menu_selection_submitted');
     } catch (error) {
       errorMsg.textContent = error.message || 'Network error. Please try again.'; errorMsg.style.display = 'block';
       submit.disabled = false; submit.textContent = 'Submit Meal Selection';

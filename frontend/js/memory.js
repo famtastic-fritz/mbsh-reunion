@@ -10,10 +10,12 @@
     const submit = form.querySelector('.memory-form__submit');
     submit.disabled = true; submit.textContent = 'Sending…';
     try {
+      const hasPhoto = Boolean(form.querySelector('input[type="file"]')?.files?.length);
       const url = window.__famHelpers.apiUrl('/memory.php');
       const res = await fetch(url, { method: 'POST', body: new FormData(form) });
       if (!res.ok) throw new Error('http ' + res.status);
       form.reset();
+      window.mbshAnalytics?.track('memory_submitted', { has_photo: hasPhoto });
       submit.textContent = 'Sent. Thank you.';
       setTimeout(() => { submit.disabled = false; submit.textContent = 'Send the Memory'; }, 3000);
     } catch (err) {

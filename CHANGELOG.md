@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-08-18
+
+### Privacy-safe site analytics
+
+- Added a dedicated GA4 loader for the MBSH production property with advertising consent denied by default.
+- Added page-view, CTA, and confirmed form-outcome events without sending form answers, email addresses, order codes, or other personal data.
+- Added the analytics loader to all nine public routes and the reusable page templates.
+- Registered Google Site Kit as the private WordPress analytics dashboard for the sole administrator.
+- Added contract tests for route coverage, event coverage, and prohibited sensitive fields.
+
 ## 2026-08-17
 
 ### Unified public experience
