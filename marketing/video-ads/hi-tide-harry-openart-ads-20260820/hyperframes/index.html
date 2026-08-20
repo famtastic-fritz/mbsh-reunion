@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; margin: 0; overflow: hidden; background: #100507; }
+      body { font-family: "Archivo Black", sans-serif; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+      .frame-fill { position: absolute; inset: 0; background: #100507; }
+      .source { position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      .copy-wash { position: absolute; inset: 0; background: radial-gradient(ellipse 74% 54% at 10% 20%, rgba(16,5,7,.9) 0%, rgba(16,5,7,.58) 48%, rgba(16,5,7,0) 76%); }
+      .copy-panel { position: absolute; inset: 0; padding: 214px 88px 150px; display: flex; flex-direction: column; justify-content: space-between; color: #fff6ec; }
+      .top-copy { width: 790px; }
+      .eyebrow { color: #d79a43; font: 700 23px/1.15 "JetBrains Mono", monospace; letter-spacing: .17em; text-transform: uppercase; }
+      .copper-rule { width: 196px; height: 8px; margin: 28px 0 31px; background: #d79a43; transform-origin: left center; }
+      .headline { max-width: 790px; font-size: 116px; line-height: .84; letter-spacing: -.066em; text-transform: uppercase; text-wrap: balance; }
+      .headline span, .meta span { display: block; }
+      .whisper { width: 680px; margin-top: 31px; font: italic 46px/1.02 "EB Garamond", Georgia, serif; letter-spacing: -.035em; }
+      .cta-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; }
+      .cta { max-width: 500px; color: #100507; background: #fff6ec; padding: 28px 29px 25px; font-size: 38px; line-height: .88; letter-spacing: -.04em; text-transform: uppercase; box-shadow: 14px 14px 0 #e23426; }
+      .meta { flex: 1; color: #d8d7d6; padding-bottom: 4px; font: 700 17px/1.45 "JetBrains Mono", monospace; letter-spacing: .1em; text-align: right; text-transform: uppercase; }
+      .bloom { position: absolute; right: -180px; bottom: -180px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(226,52,38,.47) 0%, rgba(226,52,38,.18) 37%, rgba(226,52,38,0) 70%); opacity: 0; transform-origin: center; }
+      .film-burn { position: absolute; inset: -280px; opacity: 0; background: radial-gradient(circle at 112% 52%, rgba(215,154,67,.98) 0%, rgba(226,52,38,.66) 20%, rgba(16,5,7,0) 55%); }
+      .film-burn.two { background: radial-gradient(circle at -12% 54%, rgba(215,154,67,.98) 0%, rgba(226,52,38,.62) 22%, rgba(16,5,7,0) 56%); }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-lx8f" id="root" data-composition-id="hi-tide-harry-openart-ads" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+      <div data-hf-id="hf-x8ej" class="frame-fill"></div>
+      <video data-hf-id="hf-v1xg" id="grand-video" class="clip source" src="assets/01-grand-return.mp4" data-start="0" data-duration="5" data-track-index="0" muted playsinline></video>
+      <audio data-hf-id="hf-jm5r" id="grand-audio" src="assets/01-grand-return.mp4" data-start="0" data-duration="5" data-track-index="10" data-volume="1"></audio>
+      <div data-hf-id="hf-q1fb" id="grand-wash" class="clip copy-wash" data-start="0" data-duration="5" data-track-index="1"></div>
+      <div data-hf-id="hf-kvkc" id="grand-panel" class="clip copy-panel" data-start="0" data-duration="5" data-track-index="2"><div data-hf-id="hf-o4o5" class="top-copy"><div data-hf-id="hf-ua39" id="grand-eyebrow" class="eyebrow">MBSH ’96 Reunion</div><div data-hf-id="hf-q8sl" id="grand-rule" class="copper-rule"></div><div data-hf-id="hf-89ut" id="grand-headline" class="headline"><span data-hf-id="hf-cqik">The moment</span><span data-hf-id="hf-rhm8">has arrived.</span></div><div data-hf-id="hf-q7xp" id="grand-whisper" class="whisper">Come back to the story.</div></div><div data-hf-id="hf-8j2d" id="grand-cta-row" class="cta-row"><div data-hf-id="hf-64rx" id="grand-cta" class="cta">Join the roll call</div><div data-hf-id="hf-puvz" class="meta"><span data-hf-id="hf-znw9">Nov 07 2026</span><span data-hf-id="hf-55j1">MBSH96REUNION.COM</span></div></div><div data-hf-id="hf-sr1h" id="grand-bloom" class="bloom"></div></div>
+
+      <video data-hf-id="hf-3ol8" id="roll-video" class="clip source" src="assets/02-roll-call-walk.mp4" data-start="5" data-duration="5" data-track-index="0" muted playsinline></video>
+      <audio data-hf-id="hf-rww3" id="roll-audio" src="assets/02-roll-call-walk.mp4" data-start="5" data-duration="5" data-track-index="10" data-volume="1"></audio>
+      <div data-hf-id="hf-y6td" id="roll-wash" class="clip copy-wash" data-start="5" data-duration="5" data-track-index="1"></div>
+      <div data-hf-id="hf-wu2m" id="roll-panel" class="clip copy-panel" data-start="5" data-duration="5" data-track-index="2"><div data-hf-id="hf-7dvd" class="top-copy"><div data-hf-id="hf-qn4a" id="roll-eyebrow" class="eyebrow">Class of 1996</div><div data-hf-id="hf-yplg" id="roll-rule" class="copper-rule"></div><div data-hf-id="hf-7qbc" id="roll-headline" class="headline"><span data-hf-id="hf-uyx1">The roll call</span><span data-hf-id="hf-90kz">is open.</span></div><div data-hf-id="hf-obxi" id="roll-whisper" class="whisper">Your seat in the story is waiting.</div></div><div data-hf-id="hf-ey9c" id="roll-cta-row" class="cta-row"><div data-hf-id="hf-rayk" id="roll-cta" class="cta">Register today</div><div data-hf-id="hf-zjfj" class="meta"><span data-hf-id="hf-dj7x">Nov 07 2026</span><span data-hf-id="hf-szf5">MBSH96REUNION.COM</span></div></div><div data-hf-id="hf-qrbw" id="roll-bloom" class="bloom"></div></div>
+
+      <video data-hf-id="hf-yfyw" id="memory-video" class="clip source" src="assets/03-memory-opens.mp4" data-start="10" data-duration="5" data-track-index="0" muted playsinline></video>
+      <audio data-hf-id="hf-24tl" id="memory-audio" src="assets/03-memory-opens.mp4" data-start="10" data-duration="5" data-track-index="10" data-volume="1"></audio>
+      <div data-hf-id="hf-0lb7" id="memory-wash" class="clip copy-wash" data-start="10" data-duration="5" data-track-index="1"></div>
+      <div data-hf-id="hf-ymjy" id="memory-panel" class="clip copy-panel" data-start="10" data-duration="5" data-track-index="2"><div data-hf-id="hf-8ksg" class="top-copy"><div data-hf-id="hf-3h2r" id="memory-eyebrow" class="eyebrow">The Hi-Tide Lives On</div><div data-hf-id="hf-jg6s" id="memory-rule" class="copper-rule"></div><div data-hf-id="hf-00pc" id="memory-headline" class="headline"><span data-hf-id="hf-xlhf">The memories</span><span data-hf-id="hf-jgfk">never left.</span></div><div data-hf-id="hf-lixj" id="memory-whisper" class="whisper">Neither did the Hi-Tide.</div></div><div data-hf-id="hf-nlzk" id="memory-cta-row" class="cta-row"><div data-hf-id="hf-raic" id="memory-cta" class="cta">Come home to ’96</div><div data-hf-id="hf-z54i" class="meta"><span data-hf-id="hf-eq50">Nov 07 2026</span><span data-hf-id="hf-u6c8">MBSH96REUNION.COM</span></div></div><div data-hf-id="hf-g6wc" id="memory-bloom" class="bloom"></div></div>
+      <div data-hf-id="hf-clve" id="burn-one" class="film-burn"></div><div data-hf-id="hf-kmlq" id="burn-two" class="film-burn two"></div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const enter = (prefix, start) => {
+        tl.fromTo(`#${prefix}-eyebrow`, { opacity: 0, x: -65 }, { opacity: 1, x: 0, duration: .34, ease: "expo.out" }, start + .12);
+        tl.fromTo(`#${prefix}-rule`, { scaleX: 0 }, { scaleX: 1, duration: .38, ease: "power3.out" }, start + .23);
+        tl.fromTo(`#${prefix}-headline`, { opacity: 0, scale: 1.18 }, { opacity: 1, scale: 1, duration: .52, ease: "power4.out" }, start + .35);
+        tl.fromTo(`#${prefix}-whisper`, { opacity: 0, y: 52, rotation: 2 }, { opacity: 1, y: 0, rotation: 0, duration: .46, ease: "circ.out" }, start + .76);
+        tl.fromTo(`#${prefix}-cta-row`, { opacity: 0, y: 74 }, { opacity: 1, y: 0, duration: .46, ease: "power3.out" }, start + 1.5);
+        tl.fromTo(`#${prefix}-bloom`, { opacity: 0, scale: .82 }, { opacity: .34, scale: 1, duration: .62, ease: "power2.out" }, start + 1.36);
+      };
+      enter("grand", 0); enter("roll", 5); enter("memory", 10);
+      tl.fromTo("#burn-one", { opacity: 0, x: 420 }, { opacity: .9, x: 0, duration: .22, ease: "power2.in" }, 4.72);
+      tl.to("#burn-one", { opacity: 0, x: -480, duration: .42, ease: "power2.out" }, 4.95);
+      tl.fromTo("#burn-two", { opacity: 0, x: -420 }, { opacity: .9, x: 0, duration: .22, ease: "power2.in" }, 9.72);
+      tl.to("#burn-two", { opacity: 0, x: 480, duration: .42, ease: "power2.out" }, 9.95);
+      tl.to("#memory-cta-row", { opacity: 0, duration: .28, ease: "power1.in" }, 14.7);
+      window.__timelines["hi-tide-harry-openart-ads"] = tl;
+    </script>
+  </body>
+</html>
