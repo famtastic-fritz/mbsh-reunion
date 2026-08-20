@@ -255,6 +255,8 @@ body.cinematic-proof {
 .alumni-invite__close:hover { color: var(--cinema-cream); }
 body.alumni-invite-open .chatbot,
 body.alumni-invite-open .chatbot.harry-guide { opacity: 0; pointer-events: none; transition: opacity .22s ease; }
+body.alumni-invite-open .chatbot.harry-guide.is-avoiding:not(.is-open),
+body.alumni-invite-open .chatbot.harry-guide.is-polite:not(.is-open) { opacity: 0; pointer-events: none; }
 
 .cinema-hero {
   position: relative;
