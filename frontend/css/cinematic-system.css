@@ -75,6 +75,43 @@ body.cinematic-proof {
 .cinema-site-header__brand-copy { display: grid; line-height: 1.05; }
 .cinema-site-header__brand-copy strong { font-family: "Playfair Display", serif; font-size: .98rem; }
 .cinema-site-header__brand-copy span { margin-top: .25rem; color: var(--cinema-silver); font: 600 .62rem/1 Inter, sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+.cinema-alumni-login {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .58rem;
+  min-height: 44px;
+  margin-left: auto;
+  padding: .56rem .82rem;
+  border: 1px solid rgba(239, 40, 72, .82);
+  border-radius: 999px;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(135deg, #e92346, #9f1029 72%);
+  box-shadow: 0 0 0 1px rgba(216,184,106,.3), 0 10px 28px rgba(201,20,50,.36);
+  text-decoration: none;
+  transition: transform .24s ease, box-shadow .24s ease;
+}
+.cinema-alumni-login::after {
+  content: "";
+  position: absolute;
+  inset: -80% auto -80% -55%;
+  width: 34%;
+  transform: rotate(20deg);
+  background: rgba(255,255,255,.34);
+  filter: blur(1px);
+}
+.cinema-alumni-login:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(216,184,106,.75), 0 14px 34px rgba(201,20,50,.52); }
+.cinema-alumni-login > span:last-child { position: relative; z-index: 1; display: grid; gap: .13rem; }
+.cinema-alumni-login strong { font: 800 .69rem/1 Inter, sans-serif; letter-spacing: .095em; text-transform: uppercase; white-space: nowrap; }
+.cinema-alumni-login small { color: rgba(255,255,255,.8); font: 600 .56rem/1 Inter, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.cinema-alumni-login__signal { position: relative; z-index: 1; width: .58rem; height: .58rem; border-radius: 50%; background: var(--cinema-gold); box-shadow: 0 0 0 .22rem rgba(216,184,106,.2), 0 0 1rem rgba(216,184,106,.9); }
+@media (prefers-reduced-motion: no-preference) {
+  .cinema-alumni-login::after { animation: cinema-login-sheen 3.8s ease-in-out infinite; }
+  .cinema-alumni-login__signal { animation: cinema-login-signal 2.4s ease-in-out infinite; }
+}
+@keyframes cinema-login-sheen { 0%, 40% { translate: 0 0; opacity: 0; } 48% { opacity: 1; } 68%, 100% { translate: 470% 0; opacity: 0; } }
+@keyframes cinema-login-signal { 0%, 100% { scale: 1; } 50% { scale: 1.22; } }
 .cinema-menu-toggle {
   display: inline-flex;
   align-items: center;
@@ -143,6 +180,81 @@ body.cinematic-proof {
 .cinema-drawer a[aria-current="page"] { color: var(--cinema-gold); }
 .cinema-drawer__primary { margin-top: 1rem; border: 1px solid var(--cinema-red) !important; background: var(--cinema-red); }
 .cinema-backdrop { position: fixed; z-index: 78; inset: 0; background: rgba(0,0,0,.62); backdrop-filter: blur(4px); }
+
+/* A home-page campaign unit with a real portal destination, not a signup mockup. */
+.alumni-account-campaign {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(16rem, .82fr);
+  gap: clamp(1.25rem, 4vw, 4rem);
+  align-items: stretch;
+  margin-top: clamp(2rem, 6vw, 5rem);
+  padding: clamp(1.35rem, 4vw, 3.25rem);
+  border: 1px solid rgba(216,184,106,.46);
+  border-radius: var(--cinema-radius);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 83% 13%, rgba(239,40,72,.52), transparent 19rem),
+    repeating-linear-gradient(132deg, transparent 0 18px, rgba(216,184,106,.1) 19px 20px, transparent 21px 38px),
+    linear-gradient(135deg, #260b12, #0c090c 64%);
+  box-shadow: var(--cinema-shadow);
+}
+.alumni-account-campaign::before { content: "1996 · 2026 · 100"; position: absolute; right: -1.5rem; bottom: -2.8rem; color: rgba(245,239,229,.055); font: 900 clamp(5rem, 15vw, 12rem)/.8 "Playfair Display", serif; letter-spacing: -.09em; pointer-events: none; }
+.alumni-account-campaign__copy { position: relative; z-index: 1; }
+.alumni-account-campaign__eyebrow { margin: 0 0 .85rem; color: var(--cinema-gold); font: 800 .7rem/1 Inter, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.alumni-account-campaign h2 { max-width: 12ch; margin: 0; color: var(--cinema-cream); font: 900 clamp(2.5rem, 5vw, 5rem)/.89 "Playfair Display", serif; letter-spacing: -.06em; }
+.alumni-account-campaign h2 em { color: var(--cinema-gold); font-family: "Cormorant Garamond", serif; font-weight: 400; }
+.alumni-account-campaign__copy > p:not(.alumni-account-campaign__eyebrow) { max-width: 44rem; margin: 1.2rem 0 0; color: rgba(245,239,229,.83); font: 500 clamp(1rem, 1.7vw, 1.18rem)/1.6 "Cormorant Garamond", serif; }
+.alumni-account-campaign__list { display: grid; gap: .62rem; margin: 1.4rem 0 0; padding: 0; list-style: none; }
+.alumni-account-campaign__list li { display: flex; gap: .62rem; color: var(--cinema-cream); font: 700 .77rem/1.4 Inter, sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.alumni-account-campaign__list li::before { content: "✦"; color: var(--cinema-red-bright); }
+.alumni-account-campaign__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.6rem; }
+.alumni-account-campaign__signin { align-self: center; color: var(--cinema-cream); font: 700 .77rem/1.2 Inter, sans-serif; letter-spacing: .05em; text-underline-offset: .3em; }
+.alumni-account-campaign__harry { position: relative; min-height: 18rem; display: grid; place-items: end center; isolation: isolate; }
+.alumni-account-campaign__harry::before { content: ""; position: absolute; inset: 7% 4% 0; z-index: -1; border: 1px solid rgba(216,184,106,.47); border-radius: 50% 50% 0 0; background: radial-gradient(circle at 50% 35%, rgba(216,184,106,.42), transparent 28%), linear-gradient(180deg, rgba(201,20,50,.53), rgba(12,9,12,0)); box-shadow: inset 0 0 0 10px rgba(255,255,255,.025); }
+.alumni-account-campaign__harry img { width: min(100%, 22rem); max-height: 26rem; object-fit: contain; filter: drop-shadow(0 1.4rem 2.8rem rgba(0,0,0,.55)); }
+.alumni-account-campaign__ticket { position: absolute; top: 1rem; right: 0; padding: .66rem .76rem; border: 1px solid rgba(216,184,106,.8); color: var(--cinema-gold); background: rgba(7,6,7,.76); font: 800 .63rem/1 Inter, sans-serif; letter-spacing: .16em; text-transform: uppercase; rotate: 5deg; }
+
+/* Appears after 45 seconds, stays for 25 seconds, and remains entirely optional. */
+.alumni-invite {
+  position: fixed;
+  z-index: 96;
+  right: clamp(.75rem, 2vw, 1.5rem);
+  bottom: clamp(.75rem, 2vw, 1.5rem);
+  width: min(28rem, calc(100vw - 1.5rem));
+  min-height: 13.4rem;
+  display: grid;
+  grid-template-columns: 7.1rem minmax(0, 1fr);
+  gap: .9rem;
+  padding: 1rem 1rem 1.2rem;
+  border: 1px solid rgba(216,184,106,.58);
+  border-radius: 1.1rem;
+  overflow: hidden;
+  color: var(--cinema-cream);
+  background: linear-gradient(135deg, rgba(75,8,24,.99), rgba(10,8,10,.99) 67%);
+  box-shadow: 0 25px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(201,20,50,.24);
+  opacity: 0;
+  transform: translate3d(0, 1.65rem, 0) scale(.97);
+  pointer-events: none;
+  transition: opacity .42s ease, transform .42s cubic-bezier(.22,.8,.22,1);
+}
+.alumni-invite.is-visible { opacity: 1; transform: translate3d(0, 0, 0) scale(1); pointer-events: auto; }
+.alumni-invite.is-leaving { opacity: 0; transform: translate3d(0, 1.65rem, 0) scale(.97); }
+.alumni-invite__glow { position: absolute; inset: auto -5rem -7rem auto; width: 16rem; height: 16rem; border-radius: 50%; background: radial-gradient(circle, rgba(239,40,72,.5), transparent 63%); pointer-events: none; }
+.alumni-invite__harry { position: relative; z-index: 1; align-self: end; width: 100%; max-height: 13rem; object-fit: contain; object-position: bottom center; filter: drop-shadow(0 1rem 1.5rem rgba(0,0,0,.42)); }
+.alumni-invite__copy { position: relative; z-index: 1; padding-right: .75rem; }
+.alumni-invite__eyebrow { margin: .1rem 0 .42rem; color: var(--cinema-gold); font: 800 .6rem/1.3 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.alumni-invite h2 { margin: 0; font: 900 clamp(1.55rem, 5vw, 2.15rem)/.95 "Playfair Display", serif; letter-spacing: -.05em; }
+.alumni-invite h2 em { color: var(--cinema-gold); font-family: "Cormorant Garamond", serif; font-weight: 400; }
+.alumni-invite__copy > p:not(.alumni-invite__eyebrow) { margin: .72rem 0 0; color: rgba(245,239,229,.78); font: 500 .9rem/1.42 "Cormorant Garamond", serif; }
+.alumni-invite__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem .8rem; margin-top: .82rem; }
+.alumni-invite__actions .cinema-button { min-height: 39px; padding: .65rem .76rem; font-size: .65rem; }
+.alumni-invite__signin { color: var(--cinema-cream); font: 700 .65rem/1.25 Inter, sans-serif; letter-spacing: .04em; text-underline-offset: .27em; }
+.alumni-invite__close { position: absolute; z-index: 2; top: .55rem; right: .58rem; border: 0; padding: .3rem; color: rgba(245,239,229,.7); background: transparent; font: 700 .61rem/1 Inter, sans-serif; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
+.alumni-invite__close span { margin-left: .2rem; color: var(--cinema-gold); font-size: 1.05rem; vertical-align: -.08rem; }
+.alumni-invite__close:hover { color: var(--cinema-cream); }
+body.alumni-invite-open .chatbot,
+body.alumni-invite-open .chatbot.harry-guide { opacity: 0; pointer-events: none; transition: opacity .22s ease; }
 
 .cinema-hero {
   position: relative;
@@ -308,7 +420,14 @@ body.cinematic-proof {
 }
 
 @media (max-width: 760px) {
+  .cinema-site-header { gap: .45rem; padding-inline: .7rem; }
   .cinema-site-header__brand-copy span { display: none; }
+  .cinema-site-header__brand-copy strong { font-size: .82rem; }
+  .cinema-alumni-login { gap: .38rem; min-height: 40px; padding: .48rem .58rem; }
+  .cinema-alumni-login small { display: none; }
+  .cinema-alumni-login strong { font-size: .61rem; letter-spacing: .055em; }
+  .cinema-alumni-login__signal { width: .45rem; height: .45rem; }
+  .cinema-menu-toggle { min-height: 40px; padding: .54rem .62rem; }
   .cinema-menu-toggle__label { font-size: 0; }
   .cinema-menu-toggle__label::after { content: "Menu"; font-size: .72rem; }
   .cinema-hero { min-height: 88dvh; }
@@ -320,6 +439,19 @@ body.cinematic-proof {
   .cinema-status__item strong { margin-top: 0; text-align: right; }
   .cinema-journey-grid { grid-template-columns: 1fr; }
   .cinema-journey-card { min-height: 13rem; }
+  .alumni-account-campaign { grid-template-columns: 1fr; }
+  .alumni-account-campaign__harry { min-height: 14rem; order: -1; }
+  .alumni-account-campaign__ticket { right: .75rem; }
+  .alumni-invite { grid-template-columns: 5.2rem minmax(0, 1fr); min-height: 0; padding: .85rem .7rem 1rem; }
+  .alumni-invite__harry { max-height: 10.5rem; }
+  .alumni-invite__copy { padding-right: .45rem; }
+  .alumni-invite__eyebrow { max-width: calc(100% - 2.5rem); }
+  .alumni-invite h2 { max-width: 14ch; font-size: clamp(1.42rem, 6vw, 1.85rem); }
+  .alumni-invite__copy > p:not(.alumni-invite__eyebrow) { font-size: .83rem; }
+  .alumni-invite__actions { margin-top: .68rem; }
+  .alumni-invite__signin { font-size: .59rem; }
+  .alumni-invite__close { top: .5rem; right: .55rem; font-size: 0; }
+  .alumni-invite__close span { margin: 0; font-size: 1.2rem; }
   .journey-progress { border-radius: 1rem; }
   .journey-progress span { letter-spacing: .02em; }
   .cinematic-proof .rsvp-form__group { grid-template-columns: 1fr; }
@@ -329,6 +461,6 @@ body.cinematic-proof {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .cinema-drawer, .cinema-menu-toggle__bars, .cinema-menu-toggle__bars::before, .cinema-menu-toggle__bars::after { transition: none !important; }
+  .cinema-drawer, .cinema-menu-toggle__bars, .cinema-menu-toggle__bars::before, .cinema-menu-toggle__bars::after, .cinema-alumni-login, .alumni-invite { transition: none !important; }
   .cinema-hero__media video { display: none; }
 }
