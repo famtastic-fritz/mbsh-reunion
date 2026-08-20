@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="campaign.css">
+    <title>The Invitation | MBSH Social Promo</title>
+  </head>
+  <body>
+    <div data-hf-id="hf-t89b" id="root" data-composition-id="invitation" data-start="0" data-duration="9" data-width="1080" data-height="1920">
+      <section data-hf-id="hf-y7da" id="scene1" class="scene" aria-label="The call is out" data-layout-allow-overflow="">
+        <img data-hf-id="hf-9a3d" class="plate" src="assets/images/01-red-carpet-roll-call.jpg" alt="Hi-Tide Harry on a red carpet with a megaphone" data-layout-allow-overflow="">
+        <img data-hf-id="hf-da0v" class="insert" src="assets/images/02-golden-ticket.jpg" alt="Hi-Tide Harry holding a gold-edged invitation ticket" data-layout-allow-overflow="">
+        <div data-hf-id="hf-nzwj" class="orb orb--one" data-layout-allow-overflow=""></div><div data-hf-id="hf-ci49" class="orb orb--two" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-a4zw" class="surface-rule"></div>
+        <p data-hf-id="hf-8da8" class="eyebrow">MBSH CLASS OF 1996 / REUNION SEASON</p>
+        <h1 data-hf-id="hf-nvmz" class="headline">THE CALL<br data-hf-id="hf-x5px">IS OUT.<em data-hf-id="hf-0ffb">Did you hear it?</em></h1>
+        <div data-hf-id="hf-95s2" class="footer-rail"><span data-hf-id="hf-02sl">Thirty years of story</span><strong data-hf-id="hf-y3zj">Roll Call</strong></div>
+      </section>
+      <section data-hf-id="hf-r1fw" id="scene2" class="scene scene--secondary" aria-label="Come back to the story" data-layout-allow-overflow="">
+        <img data-hf-id="hf-5t20" class="plate" src="assets/images/07-velvet-spotlight.jpg" alt="Hi-Tide Harry under a theatrical red-carpet spotlight" data-layout-allow-overflow="">
+        <div data-hf-id="hf-7hmr" class="orb orb--one" data-layout-allow-overflow=""></div><div data-hf-id="hf-ry4t" class="orb orb--two" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-g92c" class="surface-rule"></div>
+        <p data-hf-id="hf-vywp" class="eyebrow">YOUR INVITATION IS WAITING</p>
+        <h2 data-hf-id="hf-vyp9" class="headline">COME BACK<br data-hf-id="hf-rsrt">TO THE STORY.<em data-hf-id="hf-7t3g">Make your entrance.</em></h2>
+        <div data-hf-id="hf-cgrq" class="footer-rail"><span data-hf-id="hf-z6gs">Register now</span><strong data-hf-id="hf-tsp0">MBSH96REUNION.COM</strong></div>
+      </section>
+      <div data-hf-id="hf-h60x" class="grain"></div>
+      <audio data-hf-id="hf-tluq" id="bed" class="clip" src="assets/audio/mbsh-existing-teaser-bed.m4a" data-start="0" data-duration="9" data-track-index="10" data-volume="0.52"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const transitionAt = 4.25;
+      tl.fromTo("#scene1 .surface-rule", { scaleX: 0 }, { scaleX: 1, duration: .42, ease: "power3.out" }, .12)
+        .fromTo("#scene1 .eyebrow", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: .36, ease: "power3.out" }, .28)
+        .fromTo("#scene1 .headline", { y: 100, scale: .92, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: .7, ease: "back.out(1.65)" }, .43)
+        .fromTo("#scene1 .insert", { x: 200, rotation: 12, opacity: 0 }, { x: 0, rotation: 6, opacity: 1, duration: .64, ease: "power4.out" }, .68)
+        .fromTo("#scene1 .footer-rail", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: .42, ease: "power3.out" }, 1.05)
+        .to("#scene1 .plate", { scale: 1.07, duration: 4.2, ease: "none" }, 0)
+        .to("#scene1 .orb--one", { scale: 1.1, duration: 3.8, ease: "sine.inOut" }, .1)
+        .to("#scene1 .orb--two", { scale: .82, duration: 3.8, ease: "sine.inOut" }, .1)
+        .set("#scene2", { opacity: 1, yPercent: 100 }, transitionAt)
+        .to("#scene1", { yPercent: -100, duration: .5, ease: "power4.in" }, transitionAt)
+        .to("#scene2", { yPercent: 0, duration: .5, ease: "power4.out" }, transitionAt)
+        .fromTo("#scene2 .surface-rule", { scaleX: 0 }, { scaleX: 1, duration: .38, ease: "power3.out" }, transitionAt + .36)
+        .fromTo("#scene2 .eyebrow", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: .32, ease: "power3.out" }, transitionAt + .46)
+        .fromTo("#scene2 .headline", { y: 82, scale: .94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: .66, ease: "back.out(1.5)" }, transitionAt + .6)
+        .fromTo("#scene2 .footer-rail", { y: 35, opacity: 0 }, { y: 0, opacity: 1, duration: .36, ease: "power3.out" }, transitionAt + 1.04)
+        .to("#scene2 .plate", { scale: 1.06, duration: 4.15, ease: "none" }, transitionAt)
+        .to("#scene2 .orb--one", { scale: 1.12, duration: 4.2, ease: "sine.inOut" }, transitionAt)
+        .to("#scene2 .orb--two", { scale: .8, duration: 4.2, ease: "sine.inOut" }, transitionAt);
+      window.__timelines.invitation = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+{
+  "schema": "famtastic.media-kit.v1",
+  "campaign_id": "mbsh-hi-tide-reunion-social-kit-20260820",
+  "created_at": "2026-08-20T19:10:12.788Z",
+  "visual_source": {
+    "provider": "Google Gemini API",
+    "model": "gemini-3.1-flash-image",
+    "run_id": "mbsh-hi-tide-social-kit-20260820",
+    "asset_count": 9,
+    "duration_ms": 121393,
+    "authoritative_receipt": "../../../frontend/assets/social/2026-reunion-hype/gemini-lite-social-kit-20260820/provenance/gemini-lite-social-kit-receipt.json",
+    "comparison_assets": [
+      "../../../frontend/assets/social/2026-reunion-hype/gemini-lite-social-kit-20260820/images/00-harry-invitation-gemini-lite-wordmark.png",
+      "../../../frontend/assets/social/2026-reunion-hype/gemini-lite-social-kit-20260820/images/00-harry-invitation-gpt-image-2.png"
+    ],
+    "identity_references": [
+      "../../../frontend/assets/mascot/23-salute-clean.png",
+      "../../../frontend/assets/social/2026-reunion-hype/01-hi-tide-harry-ultra-real-4x5.png"
+    ]
+  },
+  "audio_source": {
+    "kind": "existing_owned_campaign_audio",
+    "file": "assets/audio/mbsh-existing-teaser-bed.m4a",
+    "duration_seconds": 9.032562,
+    "generated_this_run": false,
+    "voiceover": false
+  },
+  "compositions": [
+    {
+      "id": "invitation",
+      "title": "The Invitation",
+      "source": "index.html",
+      "motion_spec": "index.motion.json",
+      "source_images": ["01-red-carpet-roll-call.jpg", "02-golden-ticket.jpg", "07-velvet-spotlight.jpg"],
+      "duration_seconds": 9,
+      "output": "renders/mbsh-the-invitation-9x16.mp4",
+      "status": "preview_ready_human_approval_required"
+    },
+    {
+      "id": "memory",
+      "title": "The Memory",
+      "source": "compositions/memory.html",
+      "motion_spec": "compositions/memory.motion.json",
+      "source_images": ["03-memory-reel.jpg", "05-time-capsule.jpg", "08-then-and-now.jpg"],
+      "duration_seconds": 9,
+      "output": "renders/mbsh-the-memory-9x16.mp4",
+      "status": "preview_ready_human_approval_required"
+    },
+    {
+      "id": "roll-call",
+      "title": "The Final Call",
+      "source": "compositions/roll-call.html",
+      "motion_spec": "compositions/roll-call.motion.json",
+      "source_images": ["04-dance-floor.jpg", "06-photo-booth-flash.jpg", "09-final-call.jpg"],
+      "duration_seconds": 9,
+      "output": "renders/mbsh-the-final-call-9x16.mp4",
+      "status": "preview_ready_human_approval_required"
+    }
+  ],
+  "site_use": {
+    "retained_candidates": [
+      "00-harry-invitation-gpt-image-2.png",
+      "00-harry-invitation-gemini-lite-wordmark.png"
+    ],
+    "integration_state": "assets_staged_not_yet_wired_to_a_live_page"
+  }
+}

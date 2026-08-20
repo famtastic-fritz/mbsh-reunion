@@ -1,0 +1,275 @@
+{
+  "ok": true,
+  "strict": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 2,
+    "findings": [
+      {
+        "code": "pointer_events_none",
+        "severity": "info",
+        "message": "`.scene::before` sets `pointer-events: none`. Elements matching this selector are harder to select in the Studio preview.",
+        "selector": ".scene::before",
+        "dataAttributes": {},
+        "sourceFile": "/Users/famtastic-fritz/Development/FAMtastic/sites/site-mbsh-reunion-event-cinema/marketing/hyperframes/mbsh-hi-tide-reunion-social-kit-20260820/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "If these elements should be selectable in the Studio, remove `pointer-events: none` or move it to a wrapper that doesn't contain editable content."
+      },
+      {
+        "code": "pointer_events_none",
+        "severity": "info",
+        "message": "`.grain` sets `pointer-events: none`. Elements matching this selector are harder to select in the Studio preview.",
+        "selector": ".grain",
+        "dataAttributes": {},
+        "sourceFile": "/Users/famtastic-fritz/Development/FAMtastic/sites/site-mbsh-reunion-event-cinema/marketing/hyperframes/mbsh-hi-tide-reunion-social-kit-20260820/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "If these elements should be selectable in the Studio, remove `pointer-events: none` or move it to a wrapper that doesn't contain editable content."
+      }
+    ],
+    "filesScanned": 3
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 5,
+    "findings": [
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 4.5,
+        "selector": "p.eyebrow",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 72,
+          "top": 181,
+          "right": 448.03,
+          "bottom": 240,
+          "width": 376.03,
+          "height": 59
+        },
+        "containerSelector": "img.plate",
+        "text": "MBSH CLASS OF 1996 / REUNION SEASON",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {
+          "data-hf-id": "hf-8da8"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 72,
+          "y": 181,
+          "width": 376.03,
+          "height": 59
+        },
+        "firstSeen": 4.5,
+        "lastSeen": 4.5,
+        "occurrences": 1
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 4.5,
+        "selector": "h1.headline",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 68,
+          "top": 303.75,
+          "right": 700.33,
+          "bottom": 550.27,
+          "width": 632.33,
+          "height": 246.52
+        },
+        "containerSelector": "img.plate",
+        "text": "THE CALLIS OUT.",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {
+          "data-hf-id": "hf-nvmz"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 68,
+          "y": 303.75,
+          "width": 632.33,
+          "height": 246.52
+        },
+        "firstSeen": 4.5,
+        "lastSeen": 4.5,
+        "occurrences": 1
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 4.5,
+        "selector": "h1.headline > em:nth-of-type(1)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 68,
+          "top": 554.78,
+          "right": 487.61,
+          "bottom": 636.78,
+          "width": 419.61,
+          "height": 82
+        },
+        "containerSelector": "img.plate",
+        "text": "Did you hear it?",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {
+          "data-hf-id": "hf-0ffb"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 68,
+          "y": 554.78,
+          "width": 419.61,
+          "height": 82
+        },
+        "firstSeen": 4.5,
+        "lastSeen": 4.5,
+        "occurrences": 1
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 4.5,
+        "selector": "div.footer-rail > span:nth-of-type(1)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 68,
+          "top": 1749.91,
+          "right": 368.8,
+          "bottom": 1773.91,
+          "width": 300.8,
+          "height": 24
+        },
+        "containerSelector": "img.plate",
+        "text": "Thirty years of story",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {
+          "data-hf-id": "hf-02sl"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 68,
+          "y": 1749.91,
+          "width": 300.8,
+          "height": 24
+        },
+        "firstSeen": 4.5,
+        "lastSeen": 4.5,
+        "occurrences": 1
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 4.5,
+        "selector": "div.footer-rail > strong:nth-of-type(1)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 886.59,
+          "top": 1750.91,
+          "right": 1012,
+          "bottom": 1772.91,
+          "width": 125.41,
+          "height": 22
+        },
+        "containerSelector": "img.plate",
+        "text": "Roll Call",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {
+          "data-hf-id": "hf-y3zj"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 886.59,
+          "y": 1750.91,
+          "width": 125.41,
+          "height": 22
+        },
+        "firstSeen": 4.5,
+        "lastSeen": 4.5,
+        "occurrences": 1
+      }
+    ],
+    "duration": 9,
+    "samples": [
+      0.5,
+      1.5,
+      2.5,
+      3.5,
+      4.5,
+      5.5,
+      6.5,
+      7.5,
+      8.5
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 5,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "specPath": "/Users/famtastic-fritz/Development/FAMtastic/sites/site-mbsh-reunion-event-cinema/marketing/hyperframes/mbsh-hi-tide-reunion-social-kit-20260820/index.motion.json",
+    "samples": 181
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      0.5,
+      2.5,
+      4.5,
+      6.5,
+      8.5
+    ],
+    "checked": 23,
+    "passed": 23
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  },
+  "_meta": {
+    "version": "0.8.4",
+    "latestVersion": "0.8.4",
+    "updateAvailable": false
+  }
+}
