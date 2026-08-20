@@ -18,8 +18,8 @@ const publicPages = [
 for (const relativePath of publicPages) {
   const html = fs.readFileSync(path.join(root, relativePath), 'utf8');
   assert.match(html, /data-page="[^"]+"/, `${relativePath} must identify its page for Harry and navigation`);
-  assert.match(html, /cinematic-system\.css\?v=cinematic5/, `${relativePath} must load the shared shell styles`);
-  assert.match(html, /cinematic-shell\.js\?v=cinematic5/, `${relativePath} must load the shared shell behavior`);
+  assert.match(html, /cinematic-system\.css\?v=cinematic6/, `${relativePath} must load the shared shell styles`);
+  assert.match(html, /cinematic-shell\.js\?v=cinematic6/, `${relativePath} must load the shared shell behavior`);
   assert.match(html, /analytics\.js\?v=ga1/, `${relativePath} must load the shared analytics contract`);
   assert.doesNotMatch(html, /compass-nav|compass\.css|compass\.js/, `${relativePath} must not ship the retired compass shell`);
   assert.doesNotMatch(html, /page-header__back/, `${relativePath} must not ship a second branded home control`);
@@ -43,6 +43,11 @@ for (const [relativePath, contracts] of Object.entries(functionalContracts)) {
 }
 
 const shell = fs.readFileSync(path.join(root, 'frontend/js/cinematic-shell.js'), 'utf8');
+assert.match(shell, /cinema-alumni-login/, 'shared header must keep the Alumni Login action beside the menu');
+assert.match(shell, /\/portal\/login/, 'shared Alumni Login action must lead to the real portal login');
+assert.match(shell, /alumni-invite/, 'shared shell must provide the timed alumni invitation');
+assert.match(shell, /45000/, 'alumni invitation must wait 45 seconds before appearing');
+assert.match(shell, /25000/, 'alumni invitation must remain visible for 25 seconds');
 for (const route of [
   '/index.html', '/rsvp.html', '/tickets.html', '/menu/', '/survey.html',
   '/through-years.html', '/memorial.html', '/capsule.html', '/playlist.html', '/portal/login',
@@ -54,5 +59,9 @@ const rsvp = fs.readFileSync(path.join(root, 'frontend/rsvp.html'), 'utf8');
 assert.doesNotMatch(rsvp, /journey-progress/, 'RSVP must not restore the competing legacy progress strip');
 assert.doesNotMatch(rsvp, /premiere-seat-row/, 'RSVP must not restore the unexplained seat-button decoration');
 assert.match(rsvp, /diploma-rsvp-stage/, 'RSVP must retain the approved diploma experience');
+
+const home = fs.readFileSync(path.join(root, 'frontend/index.html'), 'utf8');
+assert.match(home, /alumni-account-campaign/, 'home must carry the visible alumni portal campaign');
+assert.match(home, /Create my alumni account/, 'home campaign must offer a real registration action');
 
 console.log(`PASS shared public shell contract (${publicPages.length} pages)`);
