@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="css/portal-integration.css">
   <link rel="stylesheet" href="css/mobile-hardening.css?v=1">
   <link rel="stylesheet" href="css/portal-staff.css?v=1">
+  <link rel="stylesheet" href="../css/reunion-navigator.css?v=1">
 </head>
 <body data-view="home">
   <a class="skip-link" href="#portal-main">Skip to dashboard</a>
@@ -24,6 +25,7 @@
     </a>
     <div class="portal-header__actions">
       <button class="mode-switch" type="button" data-mode-switch hidden><span data-mode-label>Committee Desk</span><small>Switch workspace</small></button>
+      <button class="menu-button portal-guide-button" type="button" data-reunion-guide-open><span aria-hidden="true">✦</span> Guide</button>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="portal-drawer"><span aria-hidden="true">☰</span> Menu</button>
     </div>
   </header>
@@ -202,6 +204,7 @@
   <div class="toast" role="status" aria-live="polite" hidden></div>
   <script src="js/portal-config.js" defer></script>
   <script src="js/portal-api.js" defer></script>
+  <script src="../js/reunion-navigator.js?v=1" defer></script>
   <script src="js/portal.js" defer></script>
   <script src="js/trivia.js" defer></script>
   <script src="js/portal-staff.js" defer></script>

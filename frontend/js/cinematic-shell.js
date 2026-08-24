@@ -227,6 +227,30 @@
     if (main) main.setAttribute('tabindex', '-1');
   }
 
+  function mountReunionNavigator() {
+    const ready = () => window.MBSHReunionNavigator?.mountPublic?.();
+    if (window.MBSHReunionNavigator) {
+      ready();
+      return;
+    }
+    if (!document.querySelector('link[data-reunion-navigator-style]')) {
+      const style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = '/css/reunion-navigator.css?v=1';
+      style.dataset.reunionNavigatorStyle = 'true';
+      document.head.appendChild(style);
+    }
+    const script = document.createElement('script');
+    script.src = '/js/reunion-navigator.js?v=1';
+    script.defer = true;
+    script.dataset.reunionNavigatorScript = 'true';
+    script.addEventListener('load', ready, { once: true });
+    script.addEventListener('error', () => {
+      // Guidance is progressive enhancement; it must never block a public route.
+    }, { once: true });
+    document.head.appendChild(script);
+  }
+
   function init() {
     mountShell();
     normalizeFooter();
@@ -234,6 +258,7 @@
     prioritizePrimaryTask();
     enhanceMedia();
     mountAlumniInvite();
+    mountReunionNavigator();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
