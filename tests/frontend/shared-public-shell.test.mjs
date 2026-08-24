@@ -13,6 +13,7 @@ const publicPages = [
   'frontend/memorial.html',
   'frontend/capsule.html',
   'frontend/playlist.html',
+  'frontend/manual/index.html',
 ];
 
 for (const relativePath of publicPages) {
@@ -50,7 +51,7 @@ assert.match(shell, /45000/, 'alumni invitation must wait 45 seconds before appe
 assert.match(shell, /25000/, 'alumni invitation must remain visible for 25 seconds');
 for (const route of [
   '/index.html', '/rsvp.html', '/tickets.html', '/menu/', '/survey.html',
-  '/through-years.html', '/memorial.html', '/capsule.html', '/playlist.html', '/portal/login',
+  '/through-years.html', '/memorial.html', '/capsule.html', '/playlist.html', '/manual/', '/portal/login',
 ]) {
   assert.ok(shell.includes(`'${route}'`), `shared navigation is missing ${route}`);
 }

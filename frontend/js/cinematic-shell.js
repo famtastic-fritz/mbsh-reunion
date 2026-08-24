@@ -15,6 +15,7 @@
     ['memorial', 'In Memory', '/memorial.html'],
     ['capsule', 'Time Capsule', '/capsule.html'],
     ['playlist', 'Soundtrack', '/playlist.html'],
+    ['manual', 'How the reunion site works', '/manual/'],
     ['portal', 'Attendee Portal', '/portal/login']
   ];
 
@@ -153,7 +154,7 @@
     // A short, non-blocking invitation: it never traps focus or enrolls a
     // visitor in messages. Registration and communication choices stay in the
     // attendee-owned portal.
-    if (page === 'portal') return;
+    if (page === 'portal' || page === 'manual') return;
 
     const invite = document.createElement('aside');
     invite.className = 'alumni-invite';
@@ -228,6 +229,9 @@
   }
 
   function mountReunionNavigator() {
+    // The Field Guide is a browseable reference and presentation in its own
+    // right. Its own controls must remain the only guidance surface there.
+    if (page === 'manual') return;
     const ready = () => window.MBSHReunionNavigator?.mountPublic?.();
     if (window.MBSHReunionNavigator) {
       ready();
