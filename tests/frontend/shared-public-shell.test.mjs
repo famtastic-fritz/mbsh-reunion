@@ -20,7 +20,7 @@ for (const relativePath of publicPages) {
   const html = fs.readFileSync(path.join(root, relativePath), 'utf8');
   assert.match(html, /data-page="[^"]+"/, `${relativePath} must identify its page for Harry and navigation`);
   assert.match(html, /cinematic-system\.css\?v=cinematic6/, `${relativePath} must load the shared shell styles`);
-  assert.match(html, /cinematic-shell\.js\?v=cinematic6/, `${relativePath} must load the shared shell behavior`);
+  assert.match(html, /cinematic-shell\.js\?v=cinematic7/, `${relativePath} must load the current shared shell behavior`);
   assert.match(html, /analytics\.js\?v=ga1/, `${relativePath} must load the shared analytics contract`);
   assert.doesNotMatch(html, /compass-nav|compass\.css|compass\.js/, `${relativePath} must not ship the retired compass shell`);
   assert.doesNotMatch(html, /page-header__back/, `${relativePath} must not ship a second branded home control`);
