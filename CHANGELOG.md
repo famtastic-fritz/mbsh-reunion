@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-08-24
+
+### Reunion Field Guide and role-safe tours
+
+- Reconciled the already-live analytics and Alumni Login release history into `main` so Git and the GoDaddy frontend share one source record.
+- Added the public `/manual/` Reunion Field Guide, presentation mode, role-safe attendee/committee/owner chapters, and the companion owner deck.
+- Added a non-mutating `How it works` tour on public pages plus `Guide` / `Start tour` entry points for verified attendees and committee members.
+- Bumped the shared-shell asset reference to `cinematic7` so returning visitors receive the tour rather than a cached prior shell.
+- Promoted the verified frontend package to GoDaddy with an atomic, file-scoped release; no attendee records, payments, mail, uploads, or CMS data changed.
+
 ## 2026-08-18
 
 ### Privacy-safe site analytics
