@@ -3,13 +3,13 @@
 
 [[redirects]]
   from = "/admin"
-  to = "https://api.mbsh96reunion.com/admin/"
+  to = "https://mbsh96reunion.com/admin/"
   status = 302
   force = true
 
 [[redirects]]
   from = "/admin/*"
-  to = "https://api.mbsh96reunion.com/admin/:splat"
+  to = "https://mbsh96reunion.com/admin/:splat"
   status = 302
   force = true
 
@@ -23,13 +23,13 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://api.mbsh96reunion.com; frame-src 'self' https://open.spotify.com https://forms.office.com https://www.google.com"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://mbsh96reunion.com; frame-src 'self' https://open.spotify.com https://forms.office.com https://www.google.com"
 
 [[headers]]
   for = "/survey.html"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://api.mbsh96reunion.com; frame-src https://forms.office.com"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://mbsh96reunion.com; frame-src https://forms.office.com"
 
 [[headers]]
   for = "/assets/*"

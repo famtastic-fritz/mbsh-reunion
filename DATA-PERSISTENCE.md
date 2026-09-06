@@ -4,7 +4,11 @@ Schema, security, dev/prod boundary, secrets strategy.
 
 ## Architecture
 
-Hybrid: Netlify (frontend) + GoDaddy cPanel (PHP/MariaDB backend) + Resend (transactional email). Same as canonical.
+Unified GoDaddy hosting: both the static frontend and the PHP/MariaDB backend
+serve from the same webroot under `mbsh96reunion.com` / `www.mbsh96reunion.com`,
+plus Resend for transactional email. Netlify, where used at all, is
+staging/preview only — see `DEPLOY.md` for the canonical deployment
+architecture and current production truth.
 
 ## Schema (10 tables, utf8mb4, idempotent)
 

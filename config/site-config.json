@@ -13,7 +13,7 @@
   "PAYMENTS_STATUS": "order-request",
   "REGISTRATION_STATUS": "open",
   "COMMITTEE_EMAIL": "mbsh96reunion@gmail.com",
-  "API_BASE_URL": "https://api.mbsh96reunion.com",
+  "API_BASE_URL": "https://mbsh96reunion.com",
   "API_BASE_URL_DEV": "http://localhost:8888",
   "HARRY_VOICE_ID": null,
   "BUILD_STATUS": "v2-cowork-build",
