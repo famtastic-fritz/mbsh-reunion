@@ -15,6 +15,7 @@ final class Famtastic_Reunion_Tickets
         add_action('woocommerce_product_options_general_product_data', [self::class, 'ticket_product_field']);
         add_action('woocommerce_process_product_meta', [self::class, 'save_ticket_product_field']);
         add_filter('woocommerce_add_to_cart_validation', [self::class, 'limit_test_ticket_quantity'], 20, 5);
+        add_action('woocommerce_before_calculate_totals', [self::class, 'normalize_test_ticket_cart'], 20);
         add_action('template_redirect', [self::class, 'start_test_checkout']);
         add_action('woocommerce_email_after_order_table', [self::class, 'render_test_ticket_notice'], 20, 4);
         add_action('woocommerce_thankyou', [self::class, 'render_test_ticket_thankyou'], 20);
@@ -248,6 +249,19 @@ final class Famtastic_Reunion_Tickets
             return false;
         }
         return $passed;
+    }
+
+    public static function normalize_test_ticket_cart(WC_Cart $cart): void
+    {
+        if (is_admin() && !wp_doing_ajax()) {
+            return;
+        }
+        foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
+            $product = $cart_item['data'] ?? null;
+            if ($product instanceof WC_Product && $product->get_meta('_famtastic_ticket_test') === 'yes' && (int) $cart_item['quantity'] !== 2) {
+                $cart->set_quantity($cart_item_key, 2, false);
+            }
+        }
     }
 
     /**
