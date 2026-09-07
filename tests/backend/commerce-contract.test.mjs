@@ -13,6 +13,7 @@ const theme = fs.readFileSync(path.join(root, 'wordpress/wp-content/themes/famta
 assert.doesNotMatch(backend, /fam_send_email|require_once __DIR__ \. '\/lib\/resend\.php'/, 'reservation endpoint must not send pre-payment mail');
 assert.match(backend, /beginTransaction\(\)/, 'same-purchaser reservation writes must be serialized');
 assert.match(backend, /replayed/, 'identical recent submissions must replay the existing reservation');
+assert.match(backend, /price_tier, notes\) VALUES/, 'reservation inserts must retain notes used by replay matching');
 assert.match(browser, /wc-ajax=famtastic_ticket_add_to_cart/, 'public form must use the reservation-aware Woo adapter');
 assert.doesNotMatch(browser, /wc-ajax=add_to_cart/, 'public form must not call generic Woo add-to-cart');
 assert.match(commerce, /famtastic_order_attempts/, 'WordPress must maintain an order-attempt ledger');

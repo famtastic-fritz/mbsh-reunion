@@ -64,8 +64,8 @@ try {
 
     if (!$replayed) {
       $orderCode = 'MBSH-' . strtoupper(bin2hex(random_bytes(3)));
-      $stmt = $pdo->prepare('INSERT INTO ticket_orders (order_code, contact_name, email, phone, quantity, guest_names, unit_price, total_amount, price_tier) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-      $stmt->execute([$orderCode, $name, $email, $phone, $quantity, $guestNames, $unitPrice, $total, $priceTier]);
+      $stmt = $pdo->prepare('INSERT INTO ticket_orders (order_code, contact_name, email, phone, quantity, guest_names, unit_price, total_amount, price_tier, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+      $stmt->execute([$orderCode, $name, $email, $phone, $quantity, $guestNames, $unitPrice, $total, $priceTier, $notes]);
     }
     $pdo->commit();
   } catch (Throwable $transactionError) {
