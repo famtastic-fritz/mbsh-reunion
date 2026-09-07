@@ -24,6 +24,7 @@ for (const status of ['attempt', 'abandoned', 'processing', 'paid', 'failed', 'r
 }
 assert.match(commerce, /_famtastic_reservation_code/, 'Woo order must carry the reservation code');
 assert.match(commerce, /woocommerce_payment_complete/, 'tickets and notices must be downstream of payment confirmation');
+assert.match(commerce, /int \$variation_id = 0, array \$variations = \[\]/, 'Woo add-to-cart validation must tolerate three-argument callers');
 assert.match(commerce, /Famtastic_Reunion_Tickets::issue_for_order/, 'ticket issuance must be invoked only from the paid path');
 assert.match(tickets, /_famtastic_reservation_code/, 'MBSH ticket issuance must be linked to the reservation-aware order');
 assert.match(tickets, /_famtastic_ticket_is_test/, 'test tickets must be explicitly marked as non-admission records');

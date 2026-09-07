@@ -240,7 +240,7 @@ final class Famtastic_Reunion_Tickets
         return rest_ensure_response(['id' => $id, 'status' => 'checked_in']);
     }
 
-    public static function limit_test_ticket_quantity(bool $passed, int $product_id, int $quantity, int $variation_id, array $variations): bool
+    public static function limit_test_ticket_quantity(bool $passed, int $product_id, int $quantity, int $variation_id = 0, array $variations = []): bool
     {
         if (get_post_meta($product_id, '_famtastic_ticket_test', true) === 'yes' && ($quantity < 1 || $quantity > 2)) {
             wc_add_notice('The checkout QA product is limited to two test tickets.', 'error');

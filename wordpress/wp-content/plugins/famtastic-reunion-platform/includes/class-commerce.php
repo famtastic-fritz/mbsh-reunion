@@ -164,7 +164,7 @@ final class Famtastic_Reunion_Commerce
         wp_send_json(['ok' => true, 'cart_item_key' => $cart_item_key, 'replayed' => false]);
     }
 
-    public static function require_reservation_for_ticket_product(bool $passed, int $product_id, int $quantity, int $variation_id, array $variations): bool
+    public static function require_reservation_for_ticket_product(bool $passed, int $product_id, int $quantity, int $variation_id = 0, array $variations = []): bool
     {
         if ($product_id === self::PRODUCT_ID && !self::$internal_cart_add) {
             wc_add_notice('Start at the reunion ticket form so your reservation can be linked to this checkout.', 'error');
