@@ -14,6 +14,9 @@ final class Famtastic_Reunion_Tickets
         add_action('woocommerce_order_refunded', [self::class, 'revoke_for_refund'], 10, 2);
         add_action('woocommerce_product_options_general_product_data', [self::class, 'ticket_product_field']);
         add_action('woocommerce_process_product_meta', [self::class, 'save_ticket_product_field']);
+        add_filter('woocommerce_add_to_cart_validation', [self::class, 'limit_test_ticket_quantity'], 20, 5);
+        add_action('woocommerce_email_after_order_table', [self::class, 'render_test_ticket_notice'], 20, 4);
+        add_action('woocommerce_thankyou', [self::class, 'render_test_ticket_thankyou'], 20);
         add_action('rest_api_init', [self::class, 'routes']);
     }
 
@@ -76,8 +79,9 @@ final class Famtastic_Reunion_Tickets
             if ($product->get_meta('_famtastic_ticket_event') === 'mbsh-1996-30th' && $reservationCode === '') {
                 continue;
             }
+            $isTest = $product->get_meta('_famtastic_ticket_test') === 'yes';
             for ($i = 1; $i <= $item->get_quantity(); $i++) {
-                if (self::issue((int) $order->get_user_id(), $order_id, (int) $item_id, $i)) {
+                if (self::issue((int) $order->get_user_id(), $order_id, (int) $item_id, $i, $isTest)) {
                     $issuedAny = true;
                 }
             }
@@ -164,13 +168,15 @@ final class Famtastic_Reunion_Tickets
         }
     }
 
-    private static function issue(int $user_id, int $order_id, int $item_id, int $sequence): bool
+    private static function issue(int $user_id, int $order_id, int $item_id, int $sequence, bool $is_test = false): bool
     {
         $public_id = bin2hex(random_bytes(16));
         $id = wp_insert_post([
             'post_type' => 'reunion_ticket',
             'post_status' => 'publish',
-            'post_title' => sprintf('Order %d · Admission %d', $order_id, $sequence),
+            'post_title' => $is_test
+                ? sprintf('TEST · Order %d · Ticket %d · NOT VALID FOR ADMISSION', $order_id, $sequence)
+                : sprintf('Order %d · Admission %d', $order_id, $sequence),
             'post_author' => $user_id,
         ], true);
         if (is_wp_error($id)) {
@@ -179,7 +185,8 @@ final class Famtastic_Reunion_Tickets
         update_post_meta($id, '_famtastic_ticket_public_id', $public_id);
         update_post_meta($id, '_famtastic_order_id', $order_id);
         update_post_meta($id, '_famtastic_order_item_id', $item_id);
-        update_post_meta($id, '_famtastic_ticket_status', 'valid');
+        update_post_meta($id, '_famtastic_ticket_status', $is_test ? 'test' : 'valid');
+        update_post_meta($id, '_famtastic_ticket_is_test', $is_test ? 'yes' : 'no');
         update_post_meta($id, '_famtastic_ticket_issued_at', current_time('mysql', true));
         do_action('famtastic_reunion_ticket_issued', $id, self::signed_code($public_id));
         return true;
@@ -221,6 +228,9 @@ final class Famtastic_Reunion_Tickets
             return new WP_Error('ticket_not_found', 'Ticket is not valid.', ['status' => 404]);
         }
         $id = $tickets[0]->ID;
+        if (get_post_meta($id, '_famtastic_ticket_is_test', true) === 'yes') {
+            return new WP_Error('test_ticket_not_admission', 'This is a test ticket and is not valid for reunion admission.', ['status' => 409]);
+        }
         if (!self::atomic_status_transition($id, 'valid', 'checked_in')) {
             return new WP_Error('ticket_unavailable', 'Ticket has already been used or revoked.', ['status' => 409]);
         }
@@ -228,6 +238,60 @@ final class Famtastic_Reunion_Tickets
         update_post_meta($id, '_famtastic_ticket_checked_in_by', get_current_user_id());
         self::append_audit($id, 'checked_in', 'staff_user', get_current_user_id());
         return rest_ensure_response(['id' => $id, 'status' => 'checked_in']);
+    }
+
+    public static function limit_test_ticket_quantity(bool $passed, int $product_id, int $quantity, int $variation_id, array $variations): bool
+    {
+        if (get_post_meta($product_id, '_famtastic_ticket_test', true) === 'yes' && ($quantity < 1 || $quantity > 2)) {
+            wc_add_notice('The checkout QA product is limited to two test tickets.', 'error');
+            return false;
+        }
+        return $passed;
+    }
+
+    public static function render_test_ticket_notice(WC_Order $order, bool $sent_to_admin, bool $plain_text, WC_Email $email): void
+    {
+        if ($sent_to_admin || !self::order_has_test_product($order)) {
+            return;
+        }
+        $count = self::test_ticket_count((int) $order->get_id());
+        $message = sprintf('TEST PURCHASE ONLY — %d non-admission test ticket(s) were created. These cannot be used for reunion entry.', $count);
+        echo $plain_text ? "\n" . $message . "\n" : '<div style="margin:18px 0;padding:16px;border:3px solid #b00020;background:#fff4f4;color:#6b0013;font-weight:700">' . esc_html($message) . '</div>';
+    }
+
+    public static function render_test_ticket_thankyou(int $order_id): void
+    {
+        $order = wc_get_order($order_id);
+        if (!$order || !self::order_has_test_product($order)) {
+            return;
+        }
+        printf('<div style="margin:20px 0;padding:18px;border:4px solid #b00020;background:#fff4f4"><strong>TEST — NOT VALID FOR ADMISSION</strong><p>%d non-admission test ticket(s) were created for this QA purchase.</p></div>', self::test_ticket_count($order_id));
+    }
+
+    private static function order_has_test_product(WC_Order $order): bool
+    {
+        foreach ($order->get_items() as $item) {
+            $product = $item->get_product();
+            if ($product && $product->get_meta('_famtastic_ticket_test') === 'yes') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static function test_ticket_count(int $order_id): int
+    {
+        return count(get_posts([
+            'post_type' => 'reunion_ticket',
+            'post_status' => 'publish',
+            'meta_query' => [
+                'relation' => 'AND',
+                ['key' => '_famtastic_order_id', 'value' => $order_id],
+                ['key' => '_famtastic_ticket_is_test', 'value' => 'yes'],
+            ],
+            'posts_per_page' => -1,
+            'fields' => 'ids',
+        ]));
     }
 
     private static function transition_to_revoked(int $ticket_id, string $reason, int $source_id): bool
