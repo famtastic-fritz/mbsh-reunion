@@ -48,6 +48,7 @@ function fam_load_config(): array {
         'admin_password_hash'      => $env['ADMIN_PASSWORD_HASH'] ?? '',
         'admin_csrf_secret'        => $env['ADMIN_CSRF_SECRET'] ?? bin2hex(random_bytes(16)),
         'portal_token_secret'      => $env['PORTAL_TOKEN_SECRET'] ?? ($env['ADMIN_CSRF_SECRET'] ?? ''),
+        'checkout_secret'          => $env['MBSH_CHECKOUT_SECRET'] ?? '',
         'portal_base_url'          => rtrim($env['PORTAL_BASE_URL'] ?? 'http://127.0.0.1:8946', '/'),
         'portal_frontend_base_url' => rtrim($env['PORTAL_FRONTEND_BASE_URL'] ?? (($env['PORTAL_BASE_URL'] ?? 'http://127.0.0.1:8946') . '/portal'), '/'),
         'committee_login_url'      => $env['COMMITTEE_LOGIN_URL'] ?? '/wp-login.php',

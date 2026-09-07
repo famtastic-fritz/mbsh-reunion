@@ -5,7 +5,6 @@ require_once __DIR__ . '/lib/cors.php';
 require_once __DIR__ . '/lib/db.php';
 require_once __DIR__ . '/lib/validate.php';
 require_once __DIR__ . '/lib/rate-limit.php';
-require_once __DIR__ . '/lib/resend.php';
 
 $config = fam_load_config();
 fam_cors($config, 'public_post');
@@ -31,28 +30,66 @@ try {
   $priceTier = $today < $regularStarts ? 'early_bird' : 'regular';
   $unitPrice = $priceTier === 'early_bird' ? 185.00 : 200.00;
   $total = $unitPrice * $quantity;
-  $orderCode = 'MBSH-' . strtoupper(bin2hex(random_bytes(3)));
-
-  $stmt = $pdo->prepare('INSERT INTO ticket_orders (order_code, contact_name, email, phone, quantity, guest_names, unit_price, total_amount, price_tier, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-  $stmt->execute([$orderCode, $name, $email, $phone, $quantity, $guestNames, $unitPrice, $total, $priceTier, $notes]);
-
-  $safeName = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
-  $safeGuests = htmlspecialchars($guestNames ?? 'Not provided', ENT_QUOTES, 'UTF-8');
-  $safePhone = htmlspecialchars($phone ?? 'Not provided', ENT_QUOTES, 'UTF-8');
-  $safeNotes = htmlspecialchars($notes ?? 'None', ENT_QUOTES, 'UTF-8');
-  $priceLabel = $priceTier === 'early_bird' ? 'Early Bird' : 'Regular';
-  $money = number_format($total, 2);
-
-  $guestHtml = "<h2>Ticket order received</h2><p>Hi {$safeName}, your request for <strong>{$quantity}</strong> reunion ticket(s) has been saved.</p><p><strong>Order:</strong> {$orderCode}<br><strong>Price:</strong> {$priceLabel} at $" . number_format($unitPrice, 2) . " per person<br><strong>Total due:</strong> $" . $money . "</p><p><strong>No payment has been collected yet.</strong> The committee will contact you with payment instructions as soon as the payment account is ready.</p><p>Questions? Reply to this email or contact committee@mbsh96reunion.com.</p>";
-  $committeeHtml = "<h2>New ticket order request</h2><p><strong>Order:</strong> {$orderCode}<br><strong>Name:</strong> {$safeName}<br><strong>Email:</strong> {$email}<br><strong>Phone:</strong> {$safePhone}<br><strong>Quantity:</strong> {$quantity}<br><strong>Guests:</strong> {$safeGuests}<br><strong>Tier:</strong> {$priceLabel}<br><strong>Total due:</strong> $" . $money . "<br><strong>Notes:</strong> {$safeNotes}</p><p>Payment status: pending.</p>";
-  try {
-    fam_send_email($config, $email, "Ticket order received — {$orderCode}", $guestHtml, 'harry');
-    fam_send_email($config, $config['committee_email'], "Ticket order: {$safeName} — {$quantity} ticket(s)", $committeeHtml, 'committee');
-  } catch (Throwable $emailError) {
-    error_log('[ticket-order] Email error: ' . $emailError->getMessage());
+  $replayed = false;
+  $checkoutSecret = trim((string) ($config['checkout_secret'] ?? ''));
+  if ($checkoutSecret === '') {
+    fam_json_response(503, ['error' => 'checkout_unavailable', 'message' => 'Secure checkout is temporarily unavailable.']);
   }
 
-  fam_json_response(200, ['ok' => true, 'order_code' => $orderCode, 'quantity' => $quantity, 'unit_price' => $unitPrice, 'total_amount' => $total, 'price_tier' => $priceTier]);
+  // Serialize same-purchaser submissions so a double click, browser retry, or
+  // network retry cannot create another legacy reservation before WooCommerce
+  // becomes the financial authority. This is deliberately narrow: only an
+  // identical request in the last 30 minutes is replayed.
+  $pdo->beginTransaction();
+  try {
+    $recent = $pdo->prepare('SELECT order_code, contact_name, phone, quantity, guest_names, unit_price, total_amount, price_tier, notes FROM ticket_orders WHERE email = ? AND created_at >= (UTC_TIMESTAMP() - INTERVAL 30 MINUTE) ORDER BY id DESC LIMIT 20 FOR UPDATE');
+    $recent->execute([$email]);
+    foreach ($recent->fetchAll() as $existing) {
+      if ((string) $existing['contact_name'] === $name
+        && (string) ($existing['phone'] ?? '') === (string) ($phone ?? '')
+        && (string) ($existing['guest_names'] ?? '') === (string) ($guestNames ?? '')
+        && (string) ($existing['notes'] ?? '') === (string) ($notes ?? '')
+        && (int) $existing['quantity'] === $quantity
+        && (float) $existing['unit_price'] === $unitPrice
+        && (float) $existing['total_amount'] === $total
+      ) {
+        $replayed = true;
+        $orderCode = (string) $existing['order_code'];
+        $unitPrice = (float) $existing['unit_price'];
+        $total = (float) $existing['total_amount'];
+        $priceTier = (string) $existing['price_tier'];
+        break;
+      }
+    }
+
+    if (!$replayed) {
+      $orderCode = 'MBSH-' . strtoupper(bin2hex(random_bytes(3)));
+      $stmt = $pdo->prepare('INSERT INTO ticket_orders (order_code, contact_name, email, phone, quantity, guest_names, unit_price, total_amount, price_tier) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+      $stmt->execute([$orderCode, $name, $email, $phone, $quantity, $guestNames, $unitPrice, $total, $priceTier]);
+    }
+    $pdo->commit();
+  } catch (Throwable $transactionError) {
+    if ($pdo->inTransaction()) $pdo->rollBack();
+    throw $transactionError;
+  }
+
+  // This endpoint records a reservation attempt only. It intentionally sends
+  // no customer or committee mail; WooCommerce's paid-order lifecycle owns
+  // receipts, tickets, and post-payment notifications.
+  $tokenPayload = implode('|', [$orderCode, $email, $quantity, time() + 86400]);
+  $tokenEncoded = rtrim(strtr(base64_encode($tokenPayload), '+/', '-_'), '=');
+  $checkoutToken = $tokenEncoded . '.' . hash_hmac('sha256', $tokenPayload, $checkoutSecret);
+  fam_json_response(200, [
+    'ok' => true,
+    'order_code' => $orderCode,
+    'quantity' => $quantity,
+    'unit_price' => $unitPrice,
+    'total_amount' => $total,
+    'price_tier' => $priceTier,
+    'replayed' => $replayed,
+    'payment_status' => 'attempt',
+    'checkout_token' => $checkoutToken,
+  ]);
 } catch (ValidationError $e) {
   fam_json_response(400, ['error' => 'validation_error', 'message' => $e->getMessage()]);
 } catch (PDOException $e) {

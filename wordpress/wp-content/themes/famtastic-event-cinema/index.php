@@ -2,6 +2,8 @@
 /** Headless-safe branded fallback. */
 declare(strict_types=1);
 $frontend = defined('FAMTASTIC_FRONTEND_URL') ? FAMTASTIC_FRONTEND_URL : '/';
+$isWooRequest = function_exists('is_woocommerce')
+  && (is_woocommerce() || is_cart() || is_checkout() || is_account_page());
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -21,6 +23,16 @@ $frontend = defined('FAMTASTIC_FRONTEND_URL') ? FAMTASTIC_FRONTEND_URL : '/';
     <a class="button" href="<?php echo esc_url(wp_login_url()); ?>">Committee sign in</a>
   </header>
   <main class="site-main">
+<?php if ($isWooRequest): ?>
+    <section class="cinema-card cinema-card--commerce">
+      <?php woocommerce_content(); ?>
+    </section>
+<?php elseif (have_posts()): while (have_posts()): the_post(); ?>
+    <article class="cinema-card">
+      <h1><?php the_title(); ?></h1>
+      <div class="entry-content"><?php the_content(); ?></div>
+    </article>
+<?php endwhile; else: ?>
     <section class="cinema-card">
       <p class="eyebrow">The editorial studio behind the experience</p>
       <h1>The story lives on the main stage.</h1>
@@ -30,6 +42,7 @@ $frontend = defined('FAMTASTIC_FRONTEND_URL') ? FAMTASTIC_FRONTEND_URL : '/';
         <a class="button" href="<?php echo esc_url(wp_login_url()); ?>">Open committee studio</a>
       </div>
     </section>
+<?php endif; ?>
   </main>
   <footer class="site-footer">A FAMtastic Designs Event Cinema experience.</footer>
 </div>

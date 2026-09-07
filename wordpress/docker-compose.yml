@@ -38,6 +38,7 @@ services:
         define('FAMTASTIC_RESEND_API_KEY', '${RESEND_API_KEY:-}');
         define('FAMTASTIC_RESEND_FROM', '${RESEND_FROM_COMMITTEE:-committee@send.mbsh96reunion.com}');
         define('FAMTASTIC_RESEND_REPLY_TO', '${RESEND_REPLY_TO:-committee@mbsh96reunion.com}');
+        define('FAMTASTIC_REUNION_CHECKOUT_SECRET', '${MBSH_CHECKOUT_SECRET:-}');
     volumes:
       - mbsh_wp_data:/var/www/html
       - ./wp-content/plugins/famtastic-reunion-platform:/var/www/html/wp-content/plugins/famtastic-reunion-platform:ro

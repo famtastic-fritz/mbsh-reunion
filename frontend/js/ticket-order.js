@@ -43,19 +43,27 @@
       const cartBody = new URLSearchParams({
         product_id: '26',
         quantity: String(data.quantity),
-        mbsh_order_code: data.order_code
+        mbsh_order_code: data.order_code,
+        checkout_token: data.checkout_token,
+        contact_name: String(payload.contact_name || ''),
+        email: String(payload.email || ''),
+        phone: String(payload.phone || ''),
+        guest_names: String(payload.guest_names || ''),
+        notes: String(payload.notes || '')
       });
-      const cartResponse = await fetch('/cms/?wc-ajax=add_to_cart', {
+      const cartResponse = await fetch('/cms/?wc-ajax=famtastic_ticket_add_to_cart', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
         body: cartBody.toString()
       });
       const cartData = await cartResponse.json();
-      if (!cartResponse.ok || cartData.error) throw new Error('Your reservation was saved, but secure checkout could not be opened.');
+      if (!cartResponse.ok || cartData.error || cartData.ok !== true) {
+        throw new Error(cartData.message || 'Your reservation was saved, but secure checkout could not be opened.');
+      }
       const checkoutUrl = `/cms/checkout/?mbsh_order_code=${encodeURIComponent(data.order_code)}`;
       form.hidden = true; success.hidden = false;
-      successCopy.textContent = `${data.quantity} admission(s) reserved. Reunion order: ${data.order_code}.`;
+      successCopy.textContent = `${data.quantity} admission(s) reserved for checkout. Reunion order: ${data.order_code}. Payment is still pending until WooCommerce confirms it.`;
       checkoutLink.href = checkoutUrl;
       checkoutLink.hidden = false;
       window.mbshAnalytics?.track('ticket_order_submitted', {

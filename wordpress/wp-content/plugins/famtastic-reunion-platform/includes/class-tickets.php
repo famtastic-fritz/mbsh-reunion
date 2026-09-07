@@ -64,14 +64,26 @@ final class Famtastic_Reunion_Tickets
         if (!$order || !$order->is_paid() || $order->get_meta('_famtastic_tickets_issued', true)) {
             return;
         }
+        // The MBSH ticket product must have come through the reservation-aware
+        // checkout bridge. Other event products may retain their own policy.
+        $reservationCode = (string) $order->get_meta('_famtastic_reservation_code', true);
+        $issuedAny = false;
         foreach ($order->get_items() as $item_id => $item) {
             $product = $item->get_product();
             if (!$product || $product->get_meta('_famtastic_ticket_event') === '') {
                 continue;
             }
-            for ($i = 1; $i <= $item->get_quantity(); $i++) {
-                self::issue((int) $order->get_user_id(), $order_id, (int) $item_id, $i);
+            if ($product->get_meta('_famtastic_ticket_event') === 'mbsh-1996-30th' && $reservationCode === '') {
+                continue;
             }
+            for ($i = 1; $i <= $item->get_quantity(); $i++) {
+                if (self::issue((int) $order->get_user_id(), $order_id, (int) $item_id, $i)) {
+                    $issuedAny = true;
+                }
+            }
+        }
+        if (!$issuedAny) {
+            return;
         }
         $order->update_meta_data('_famtastic_tickets_issued', current_time('mysql', true));
         $order->save();
@@ -152,7 +164,7 @@ final class Famtastic_Reunion_Tickets
         }
     }
 
-    private static function issue(int $user_id, int $order_id, int $item_id, int $sequence): void
+    private static function issue(int $user_id, int $order_id, int $item_id, int $sequence): bool
     {
         $public_id = bin2hex(random_bytes(16));
         $id = wp_insert_post([
@@ -162,7 +174,7 @@ final class Famtastic_Reunion_Tickets
             'post_author' => $user_id,
         ], true);
         if (is_wp_error($id)) {
-            return;
+            return false;
         }
         update_post_meta($id, '_famtastic_ticket_public_id', $public_id);
         update_post_meta($id, '_famtastic_order_id', $order_id);
@@ -170,6 +182,7 @@ final class Famtastic_Reunion_Tickets
         update_post_meta($id, '_famtastic_ticket_status', 'valid');
         update_post_meta($id, '_famtastic_ticket_issued_at', current_time('mysql', true));
         do_action('famtastic_reunion_ticket_issued', $id, self::signed_code($public_id));
+        return true;
     }
 
     public static function my_tickets(WP_REST_Request $request): WP_REST_Response
