@@ -42,7 +42,9 @@ try {
   // identical request in the last 30 minutes is replayed.
   $pdo->beginTransaction();
   try {
-    $recent = $pdo->prepare('SELECT order_code, contact_name, phone, quantity, guest_names, unit_price, total_amount, price_tier, notes FROM ticket_orders WHERE email = ? AND created_at >= (UTC_TIMESTAMP() - INTERVAL 30 MINUTE) ORDER BY id DESC LIMIT 20 FOR UPDATE');
+    // created_at uses the database session's CURRENT_TIMESTAMP, so compare it
+    // with NOW() from that same clock instead of UTC_TIMESTAMP().
+    $recent = $pdo->prepare('SELECT order_code, contact_name, phone, quantity, guest_names, unit_price, total_amount, price_tier, notes FROM ticket_orders WHERE email = ? AND created_at >= (NOW() - INTERVAL 30 MINUTE) ORDER BY id DESC LIMIT 20 FOR UPDATE');
     $recent->execute([$email]);
     foreach ($recent->fetchAll() as $existing) {
       if ((string) $existing['contact_name'] === $name
