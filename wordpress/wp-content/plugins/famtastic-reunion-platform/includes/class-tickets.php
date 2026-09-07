@@ -15,6 +15,7 @@ final class Famtastic_Reunion_Tickets
         add_action('woocommerce_product_options_general_product_data', [self::class, 'ticket_product_field']);
         add_action('woocommerce_process_product_meta', [self::class, 'save_ticket_product_field']);
         add_filter('woocommerce_add_to_cart_validation', [self::class, 'limit_test_ticket_quantity'], 20, 5);
+        add_action('template_redirect', [self::class, 'start_test_checkout']);
         add_action('woocommerce_email_after_order_table', [self::class, 'render_test_ticket_notice'], 20, 4);
         add_action('woocommerce_thankyou', [self::class, 'render_test_ticket_thankyou'], 20);
         add_action('rest_api_init', [self::class, 'routes']);
@@ -247,6 +248,42 @@ final class Famtastic_Reunion_Tickets
             return false;
         }
         return $passed;
+    }
+
+    /**
+     * Start a repeatable two-ticket QA checkout without accumulating cart items.
+     *
+     * The private token is stored only in WordPress. After the cart is reset, the
+     * browser is redirected to the clean checkout URL so refreshing checkout does
+     * not add another pair of test products.
+     */
+    public static function start_test_checkout(): void
+    {
+        if (!isset($_GET['famtastic_test_checkout']) || !function_exists('WC')) {
+            return;
+        }
+
+        $expected = (string) get_option('famtastic_test_checkout_token', '');
+        $provided = sanitize_text_field(wp_unslash((string) $_GET['famtastic_test_checkout']));
+        if ($expected === '' || !hash_equals($expected, $provided)) {
+            wp_die('This private checkout test link is not valid.', 'Invalid test link', ['response' => 403]);
+        }
+
+        if (!WC()->cart) {
+            wc_load_cart();
+        }
+        if (!WC()->cart) {
+            wp_die('The checkout cart could not be initialized.', 'Checkout unavailable', ['response' => 503]);
+        }
+
+        WC()->cart->empty_cart();
+        $added = WC()->cart->add_to_cart(28, 2);
+        if (!$added) {
+            wp_die('The two-ticket checkout test could not be prepared.', 'Checkout unavailable', ['response' => 503]);
+        }
+
+        wp_safe_redirect(wc_get_checkout_url());
+        exit;
     }
 
     public static function render_test_ticket_notice(WC_Order $order, bool $sent_to_admin, bool $plain_text, WC_Email $email): void
