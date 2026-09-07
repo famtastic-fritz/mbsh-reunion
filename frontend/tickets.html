@@ -35,7 +35,7 @@
         <p class="tier-card__price"><span class="tier-card__currency">$</span><span data-config-bind="early_bird_price">185</span><span class="tier-card__per"> per person</span></p>
         <p class="tier-card__blurb">Through <span data-config-bind="early_bird_deadline_display">Labor Day — September 7, 2026</span></p>
         <a class="tier-card__cta" href="#ticket-order">Place Ticket Order</a>
-        <p class="tier-card__hint">$185 admission + $5.67 processing fee. Submit your request now; the committee will contact you to complete payment.</p>
+        <p class="tier-card__hint">$185 admission + $5.67 processing fee · secure card payment at checkout.</p>
       </article>
       <article class="tier-card tier-card--regular">
         <h3 class="tier-card__name">Regular Price</h3>
@@ -45,11 +45,11 @@
         <p class="tier-card__hint">The order form automatically uses the current price.</p>
       </article>
     </div>
-    <p class="tickets__note">Ticket requests are open. Your request will be saved, and the committee will contact you with the verified payment step. No card payment is collected on this page.</p>
+    <p class="tickets__note">Ticket sales are open. Your reservation is saved before you continue to the secure card-payment screen.</p>
   </section>
 
   <section class="ticket-order" id="ticket-order" aria-label="Ticket order form">
-    <div class="ticket-order__intro"><p class="premiere-section__eyebrow">Act I · Ticket requests are open</p><h2 class="section-head">Request Your Reunion Tickets</h2><p>Choose up to 10 admissions. We’ll save your request and the committee will contact you to complete payment.</p></div>
+    <div class="ticket-order__intro"><p class="premiere-section__eyebrow">Act I · The box office is open</p><h2 class="section-head">Reserve, Pay, Get Your Ticket</h2><p>Choose up to 10 admissions. We’ll save your reservation, then take you to the secure reunion checkout to pay by card.</p></div>
     <form class="rsvp-form ticket-order__form" id="ticket-order-form">
       <div class="ticket-order__status" id="ticket-order-status" role="status" aria-live="polite"></div>
       <label class="field"><span class="field__label">Contact name *</span><input class="field__input" type="text" name="contact_name" required maxlength="200" autocomplete="name"></label>
@@ -63,10 +63,10 @@
       <label class="field"><span class="field__label">Notes for the committee</span><textarea class="field__input" name="notes" rows="3" maxlength="1000" placeholder="Questions or anything the committee should know"></textarea></label>
       <input type="text" name="website" class="rsvp-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="form_loaded_at" id="ticket-form-loaded-at">
-      <button type="submit" class="rsvp-form__submit">Send Ticket Request</button>
-      <p class="rsvp-form__consent">This form records your request only. It does not charge your card or issue admission. The committee will contact you with the verified payment step.</p>
+      <button type="submit" class="rsvp-form__submit">Continue to Secure Payment</button>
+      <p class="rsvp-form__consent">Your reservation is saved before checkout. Card information is entered only on Stripe’s secure payment form. Admission becomes valid only after payment is confirmed.</p>
     </form>
-    <div class="ticket-order__success" id="ticket-order-success" hidden><h2>Request Received</h2><p id="ticket-order-success-copy"></p><p>The committee will contact you to complete payment. Keep your reunion order number for reference.</p><a class="rsvp-form__submit stripe-payment-stage__link" id="ticket-checkout-link" href="#" hidden>Open Secure Checkout</a></div>
+    <div class="ticket-order__success" id="ticket-order-success" hidden><h2>Opening Secure Checkout</h2><p id="ticket-order-success-copy"></p><p>If checkout does not open automatically, use the button below.</p><a class="rsvp-form__submit stripe-payment-stage__link" id="ticket-checkout-link" href="#" hidden>Open Secure Checkout</a></div>
   </section>
 
   <!-- Sponsor inquiry modal -->

@@ -4,7 +4,7 @@ Theme URI: https://famtasticdesigns.com/
 Author: FAMtastic Designs
 Author URI: https://famtasticdesigns.com/
 Description: A private, headless-ready editorial shell for cinematic events, archives, and ticketed reunion experiences.
-Version: 1.0.1
+Version: 1.0.2
 Requires at least: 6.6
 Requires PHP: 8.1
 License: GNU General Public License v2 or later
@@ -26,4 +26,9 @@ Text Domain: famtastic-event-cinema
 .wc-block-components-text-input label,
 .wc-block-components-combobox-control label,
 .wc-blocks-components-select__label{color:#21191b!important;font-weight:700!important}
+.wc-block-components-text-input.is-active label,
+.wc-block-components-text-input.has-error label,
+.wc-block-components-text-input input:focus+label,
+.wc-block-components-combobox-control.is-active label,
+.wc-blocks-components-select__container label{color:#080607!important;opacity:1!important;text-shadow:none!important}
 .wc-block-components-validation-error{color:#ffb4bf!important;font-weight:700}

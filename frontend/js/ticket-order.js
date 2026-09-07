@@ -39,15 +39,43 @@
       const response = await fetch('/ticket-order.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error(data.message || 'Your order could not be submitted.');
+      submit.textContent = 'Opening secure checkout…';
+      const cartBody = new URLSearchParams({
+        product_id: '26',
+        quantity: String(data.quantity),
+        mbsh_order_code: data.order_code,
+        checkout_token: data.checkout_token,
+        contact_name: String(payload.contact_name || ''),
+        email: String(payload.email || ''),
+        phone: String(payload.phone || ''),
+        guest_names: String(payload.guest_names || ''),
+        notes: String(payload.notes || '')
+      });
+      const cartResponse = await fetch('/cms/?wc-ajax=famtastic_ticket_add_to_cart', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+        body: cartBody.toString()
+      });
+      const cartData = await cartResponse.json();
+      if (!cartResponse.ok || cartData.error || cartData.ok !== true) {
+        throw new Error(cartData.message || 'Your reservation was saved, but secure checkout could not be opened.');
+      }
+      const checkoutUrl = `/cms/checkout/?mbsh_order_code=${encodeURIComponent(data.order_code)}`;
       form.hidden = true; success.hidden = false;
-      successCopy.textContent = `Your request for ${data.quantity} admission(s) is saved. Reunion order: ${data.order_code}. No payment has been collected; the committee will contact you to complete the process.`;
-      checkoutLink.hidden = true;
+      successCopy.textContent = `${data.quantity} admission(s) reserved for checkout. Reunion order: ${data.order_code}. Payment remains pending until the secure checkout confirms it.`;
+      checkoutLink.href = checkoutUrl;
+      checkoutLink.hidden = false;
       window.mbshAnalytics?.track('ticket_order_submitted', {
         quantity: Number(data.quantity), value: Number(data.total_amount), currency: 'USD', payment_status: 'pending'
       });
+      window.mbshAnalytics?.track('ticket_checkout_started', {
+        quantity: Number(data.quantity), value: currentPrice().checkout * Number(data.quantity), currency: 'USD'
+      });
+      window.location.assign(checkoutUrl);
     } catch (error) {
       status.textContent = `${error.message} Please try again or email committee@mbsh96reunion.com.`;
-      submit.disabled = false; submit.textContent = 'Send Ticket Request';
+      submit.disabled = false; submit.textContent = 'Continue to Secure Payment';
     }
   });
 })();
