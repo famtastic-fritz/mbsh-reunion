@@ -2,8 +2,8 @@
 /** Headless-safe branded fallback. */
 declare(strict_types=1);
 $frontend = defined('FAMTASTIC_FRONTEND_URL') ? FAMTASTIC_FRONTEND_URL : '/';
-$isWooRequest = function_exists('is_woocommerce')
-  && (is_woocommerce() || is_cart() || is_checkout() || is_account_page());
+$isWooUtilityPage = function_exists('is_cart') && (is_cart() || is_checkout() || is_account_page());
+$isWooCatalogPage = function_exists('is_woocommerce') && is_woocommerce();
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -23,7 +23,12 @@ $isWooRequest = function_exists('is_woocommerce')
     <a class="button" href="<?php echo esc_url(wp_login_url()); ?>">Committee sign in</a>
   </header>
   <main class="site-main">
-<?php if ($isWooRequest): ?>
+<?php if ($isWooUtilityPage && have_posts()): while (have_posts()): the_post(); ?>
+    <article class="cinema-card cinema-card--commerce">
+      <h1><?php the_title(); ?></h1>
+      <div class="entry-content"><?php the_content(); ?></div>
+    </article>
+<?php endwhile; elseif ($isWooCatalogPage): ?>
     <section class="cinema-card cinema-card--commerce">
       <?php woocommerce_content(); ?>
     </section>

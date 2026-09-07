@@ -33,5 +33,6 @@ assert.match(commerce, /woocommerce_add_to_cart_validation/, 'ticket product mus
 assert.match(plugin, /class-commerce\.php/, 'commerce adapter must be loaded by the platform plugin');
 assert.match(theme, /the_content\(\)/, 'WordPress pages must render their content');
 assert.match(theme, /woocommerce_content\(\)/, 'cart and checkout must render WooCommerce content');
+assert.match(theme, /\$isWooUtilityPage && have_posts\(\)/, 'cart and checkout utility pages must render their block or shortcode content');
 
 console.log('PASS commerce incident contract');
