@@ -10,7 +10,7 @@ add_action('after_setup_theme', static function (): void {
 });
 
 add_action('wp_enqueue_scripts', static function (): void {
-  wp_enqueue_style('famtastic-event-cinema', get_stylesheet_uri(), [], '1.0.0');
+  wp_enqueue_style('famtastic-event-cinema', get_stylesheet_uri(), [], '1.0.1');
 });
 
 add_filter('wp_generator', '__return_empty_string');
