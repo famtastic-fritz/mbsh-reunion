@@ -31,6 +31,8 @@ final class Famtastic_Reunion_Commerce
         add_action('woocommerce_checkout_create_order_line_item', [self::class, 'copy_cart_item_to_order_item'], 10, 4);
         add_action('woocommerce_checkout_create_order', [self::class, 'copy_cart_to_order'], 10, 2);
         add_action('woocommerce_checkout_order_processed', [self::class, 'order_created'], 10, 3);
+        add_action('woocommerce_store_api_checkout_update_order_meta', [self::class, 'copy_store_api_cart_to_order'], 10, 1);
+        add_action('woocommerce_store_api_checkout_order_processed', [self::class, 'store_api_order_created'], 10, 1);
         add_action('woocommerce_payment_complete', [self::class, 'payment_complete'], 20);
         add_action('woocommerce_order_status_processing', [self::class, 'paid_status'], 20);
         add_action('woocommerce_order_status_completed', [self::class, 'paid_status'], 20);
@@ -225,6 +227,21 @@ final class Famtastic_Reunion_Commerce
 
     public static function copy_cart_to_order(WC_Order $order, array $data): void
     {
+        self::copy_reservation_from_cart($order, $data);
+    }
+
+    /**
+     * Checkout Blocks use the Store API and do not fire the classic
+     * woocommerce_checkout_create_order hook. Copy the same reservation data
+     * while the Store API still has the authoritative cart in session.
+     */
+    public static function copy_store_api_cart_to_order(WC_Order $order): void
+    {
+        self::copy_reservation_from_cart($order, []);
+    }
+
+    private static function copy_reservation_from_cart(WC_Order $order, array $data): void
+    {
         if (!function_exists('WC') || !WC() || !WC()->cart) {
             return;
         }
@@ -256,6 +273,20 @@ final class Famtastic_Reunion_Commerce
     }
 
     public static function order_created(int $order_id, array $posted_data, WC_Order $order): void
+    {
+        self::link_created_order($order_id, $order);
+    }
+
+    /**
+     * Checkout Blocks expose the created order object instead of the classic
+     * checkout callback's three arguments.
+     */
+    public static function store_api_order_created(WC_Order $order): void
+    {
+        self::link_created_order((int) $order->get_id(), $order);
+    }
+
+    private static function link_created_order(int $order_id, WC_Order $order): void
     {
         $attempt_id = absint($order->get_meta('_famtastic_attempt_id', true));
         if (!$attempt_id) {

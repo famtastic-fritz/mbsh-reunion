@@ -23,6 +23,10 @@ for (const status of ['attempt', 'abandoned', 'processing', 'paid', 'failed', 'r
   assert.match(commerce, new RegExp(`['"]${status}['"]`), `ledger must represent ${status}`);
 }
 assert.match(commerce, /_famtastic_reservation_code/, 'Woo order must carry the reservation code');
+assert.match(commerce, /woocommerce_store_api_checkout_update_order_meta/, 'Checkout Blocks must copy reservation metadata to the Store API order');
+assert.match(commerce, /woocommerce_store_api_checkout_order_processed/, 'Checkout Blocks must link the Store API order to the saved attempt');
+assert.match(commerce, /copy_store_api_cart_to_order/, 'Store API checkout must use the reservation-aware cart bridge');
+assert.match(commerce, /store_api_order_created/, 'Store API checkout must record the created order lifecycle');
 assert.match(commerce, /woocommerce_payment_complete/, 'tickets and notices must be downstream of payment confirmation');
 assert.match(commerce, /int \$variation_id = 0, array \$variations = \[\]/, 'Woo add-to-cart validation must tolerate three-argument callers');
 assert.match(commerce, /Famtastic_Reunion_Tickets::issue_for_order/, 'ticket issuance must be invoked only from the paid path');
