@@ -387,8 +387,17 @@ final class Famtastic_Reunion_Commerce
             return;
         }
         $code = esc_html((string) $order->get_meta('_famtastic_reservation_code', true));
-        $wallet = esc_url(home_url('/portal/#wallet'));
-        $sent = wp_mail($email, 'MBSH reunion admission confirmed', '<p>Your MBSH Class of 1996 reunion payment is confirmed.</p><p>Reservation: <strong>' . $code . '</strong></p><p>Your admission is available in your reunion wallet after account verification: <a href="' . $wallet . '">' . $wallet . '</a></p>', ['Content-Type: text/html; charset=UTF-8']);
+        $count = 0;
+        foreach ($order->get_items() as $item) {
+            $product = $item->get_product();
+            if ($product && $product->get_meta('_famtastic_ticket_event') === self::EVENT_KEY) {
+                $count += (int) $item->get_quantity();
+            }
+        }
+        $portal = esc_url('https://mbsh96reunion.com/portal/');
+        $harry = esc_url('https://mbsh96reunion.com/assets/mascot/13-ticket-stub.png');
+        $body = '<div style="margin:0;background:#080607;padding:28px 12px;color:#f6efe3;font-family:Arial,sans-serif"><div style="max-width:620px;margin:auto;border:1px solid #ddb966;border-radius:18px;overflow:hidden;background:#161012"><div style="padding:24px;background:linear-gradient(135deg,#310911,#161012);text-align:center"><img src="' . $harry . '" alt="Hi-Tide Harry" width="120" style="max-width:120px;height:auto"><p style="color:#ddb966;letter-spacing:2px;font-weight:bold">ACT I · YOUR SEAT IS CONFIRMED</p><h1 style="margin:8px 0;color:#fff">You are officially on the guest list.</h1></div><div style="padding:28px;color:#f6efe3"><p>Your MBSH Class of 1996 reunion payment is confirmed.</p><p style="font-size:18px"><strong>' . $count . ' admission' . ($count === 1 ? '' : 's') . '</strong><br>Reservation: <strong>' . $code . '</strong><br>Order: <strong>#' . (int) $order_id . '</strong></p><p>Your paid admission record has been issued. Keep this email and use the same email address when signing into your reunion account.</p><p><a href="' . $portal . '" style="display:inline-block;padding:13px 20px;border-radius:999px;background:#c91534;color:#fff;text-decoration:none;font-weight:bold">Open My Reunion</a></p><p style="color:#bfb3b4;font-size:13px">Questions? Reply to this message so the committee can keep your payment and ticket history together.</p></div><div style="padding:18px;text-align:center;border-top:1px solid rgba(221,185,102,.3);color:#bfb3b4;font-size:12px">Presented by <a href="https://famtasticdesigns.com" style="color:#ddb966">FAMtasticDesigns.com</a></div></div></div>';
+        $sent = wp_mail($email, 'Your MBSH reunion admission is confirmed', $body, ['Content-Type: text/html; charset=UTF-8']);
         if ($sent) {
             $order->update_meta_data('_famtastic_paid_notice_sent', current_time('mysql', true));
             $order->delete_meta_data('_famtastic_paid_notice_last_error');
