@@ -31,19 +31,34 @@ trap 'rm -rf "$BUILD_DIR"' EXIT
 
 REMOTE_RELEASES="$REMOTE_ROOT/.releases/mbsh-reunion"
 REMOTE_RELEASE="$REMOTE_RELEASES/releases/$RELEASE_SHA"
-REMOTE_INCOMING="$REMOTE_RELEASES/incoming-$RELEASE_SHA.tar.gz"
 
-ssh "$DEPLOY_HOST" "mkdir -p '$REMOTE_RELEASES/releases'"
-rsync -az --partial "$BUILD_DIR/release.tar.gz" "$DEPLOY_HOST:$REMOTE_INCOMING"
+ssh "$DEPLOY_HOST" "mkdir -p '$REMOTE_RELEASE/webroot'"
+rsync -az "$BUILD_DIR/manifest.paths" "$BUILD_DIR/manifest.sha256" "$BUILD_DIR/commit" "$DEPLOY_HOST:$REMOTE_RELEASE/"
 
-ssh "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASES" "$REMOTE_RELEASE" "$REMOTE_INCOMING" "$RELEASE_SHA" "$MODE" <<'REMOTE_SCRIPT'
+# Seed the immutable release from matching live paths. The checksum-enabled
+# sync that follows transfers only files whose Git content differs.
+ssh "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASE" <<'REMOTE_SEED'
+set -euo pipefail
+remote_root="$1"
+release_dir="$2"
+webroot="$remote_root/public_html"
+while IFS= read -r path; do
+  if [[ -f "$webroot/$path" && ! -f "$release_dir/webroot/$path" ]]; then
+    mkdir -p "$release_dir/webroot/$(dirname "$path")"
+    cp "$webroot/$path" "$release_dir/webroot/$path"
+  fi
+done < "$release_dir/manifest.paths"
+REMOTE_SEED
+
+rsync -azc --partial --files-from="$BUILD_DIR/manifest.paths" "$BUILD_DIR/webroot/" "$DEPLOY_HOST:$REMOTE_RELEASE/webroot/"
+
+ssh "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASES" "$REMOTE_RELEASE" "$RELEASE_SHA" "$MODE" <<'REMOTE_SCRIPT'
 set -euo pipefail
 remote_root="$1"
 releases_root="$2"
 release_dir="$3"
-incoming="$4"
-release_sha="$5"
-mode="$6"
+release_sha="$4"
+mode="$5"
 webroot="$remote_root/public_html"
 
 mkdir -p "$releases_root/releases"
@@ -52,12 +67,6 @@ if ballot="$(readlink "$releases_root/current" 2>/dev/null)"; then
 else
   previous_release=""
 fi
-
-if [[ ! -d "$release_dir/webroot" ]]; then
-  mkdir -p "$release_dir"
-  tar -xzf "$incoming" -C "$release_dir"
-fi
-rm -f "$incoming"
 
 if [[ "$(cat "$release_dir/commit")" != "$release_sha" ]]; then
   echo "Release commit marker mismatch" >&2

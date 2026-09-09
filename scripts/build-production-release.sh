@@ -57,4 +57,3 @@ echo "Release commit: $RELEASE_SHA"
 echo "Release directory: $OUTPUT_DIR"
 echo "Artifact: $OUTPUT_DIR/release.tar.gz"
 echo "Files: $(wc -l < "$OUTPUT_DIR/manifest.paths" | tr -d ' ')"
-
