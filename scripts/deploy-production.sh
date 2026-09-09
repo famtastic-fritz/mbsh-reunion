@@ -50,7 +50,10 @@ while IFS= read -r path; do
 done < "$release_dir/manifest.paths"
 REMOTE_SEED
 
-rsync -azc --partial --files-from="$BUILD_DIR/manifest.paths" "$BUILD_DIR/webroot/" "$DEPLOY_HOST:$REMOTE_RELEASE/webroot/"
+split -l 25 "$BUILD_DIR/manifest.paths" "$BUILD_DIR/manifest.part."
+for manifest_part in "$BUILD_DIR"/manifest.part.*; do
+  rsync -azc --partial --files-from="$manifest_part" "$BUILD_DIR/webroot/" "$DEPLOY_HOST:$REMOTE_RELEASE/webroot/"
+done
 
 ssh "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASES" "$REMOTE_RELEASE" "$RELEASE_SHA" "$MODE" <<'REMOTE_SCRIPT'
 set -euo pipefail
@@ -74,7 +77,7 @@ if [[ "$(cat "$release_dir/commit")" != "$release_sha" ]]; then
 fi
 (
   cd "$release_dir/webroot"
-  shasum -a 256 -c "$release_dir/manifest.sha256" >/dev/null
+  sha256sum -c "$release_dir/manifest.sha256" >/dev/null
 )
 
 changed=0
@@ -116,7 +119,7 @@ fi
 rsync -a --files-from="$release_dir/manifest.paths" "$release_dir/webroot/" "$webroot/"
 (
   cd "$webroot"
-  shasum -a 256 -c "$release_dir/manifest.sha256" >/dev/null
+  sha256sum -c "$release_dir/manifest.sha256" >/dev/null
 )
 
 ln -sfn "$release_dir" "$releases_root/current"
