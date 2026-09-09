@@ -71,7 +71,9 @@ REMOTE_DIFF
 
 rsync -az -e "$RSYNC_SSH" "$DEPLOY_HOST:$REMOTE_RELEASE/changed.paths" "$BUILD_DIR/changed.paths"
 if [[ -s "$BUILD_DIR/changed.paths" ]]; then
-  rsync -az --partial -e "$RSYNC_SSH" --files-from="$BUILD_DIR/changed.paths" "$BUILD_DIR/webroot/" "$DEPLOY_HOST:$REMOTE_RELEASE/webroot/"
+  tar -czf "$BUILD_DIR/changed-files.tar.gz" -C "$BUILD_DIR/webroot" -T "$BUILD_DIR/changed.paths"
+  rsync -az --partial -e "$RSYNC_SSH" "$BUILD_DIR/changed-files.tar.gz" "$DEPLOY_HOST:$REMOTE_RELEASE/changed-files.tar.gz"
+  ssh "${SSH_OPTIONS[@]}" "$DEPLOY_HOST" "tar -xzf '$REMOTE_RELEASE/changed-files.tar.gz' -C '$REMOTE_RELEASE/webroot'"
 fi
 
 ssh "${SSH_OPTIONS[@]}" "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASES" "$REMOTE_RELEASE" "$RELEASE_SHA" "$MODE" <<'REMOTE_SCRIPT'
