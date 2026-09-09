@@ -26,18 +26,27 @@ if ! git -C "$ROOT_DIR" merge-base --is-ancestor "$RELEASE_SHA" "$PRODUCTION_SOU
 fi
 
 BUILD_DIR="$(mktemp -d "${TMPDIR:-/tmp}/mbsh-deploy.${RELEASE_SHA:0:12}.XXXXXX")"
-trap 'rm -rf "$BUILD_DIR"' EXIT
+SSH_CONTROL="$BUILD_DIR/ssh-control"
+cleanup() {
+  ssh -o ControlPath="$SSH_CONTROL" -O exit "$DEPLOY_HOST" >/dev/null 2>&1 || true
+  rm -rf "$BUILD_DIR"
+}
+trap cleanup EXIT
 "$ROOT_DIR/scripts/build-production-release.sh" "$RELEASE_SHA" "$BUILD_DIR" >/dev/null
+
+ssh -o ControlMaster=yes -o ControlPath="$SSH_CONTROL" -o ControlPersist=120 -Nf "$DEPLOY_HOST"
+SSH_OPTIONS=(-o ControlPath="$SSH_CONTROL")
+RSYNC_SSH="ssh -o ControlPath=$SSH_CONTROL"
 
 REMOTE_RELEASES="$REMOTE_ROOT/.releases/mbsh-reunion"
 REMOTE_RELEASE="$REMOTE_RELEASES/releases/$RELEASE_SHA"
 
-ssh "$DEPLOY_HOST" "mkdir -p '$REMOTE_RELEASE/webroot'"
-rsync -az "$BUILD_DIR/manifest.paths" "$BUILD_DIR/manifest.sha256" "$BUILD_DIR/commit" "$DEPLOY_HOST:$REMOTE_RELEASE/"
+ssh "${SSH_OPTIONS[@]}" "$DEPLOY_HOST" "mkdir -p '$REMOTE_RELEASE/webroot'"
+rsync -az -e "$RSYNC_SSH" "$BUILD_DIR/manifest.paths" "$BUILD_DIR/manifest.sha256" "$BUILD_DIR/commit" "$DEPLOY_HOST:$REMOTE_RELEASE/"
 
 # Seed the immutable release from matching live paths. The checksum-enabled
 # sync that follows transfers only files whose Git content differs.
-ssh "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASE" <<'REMOTE_SEED'
+ssh "${SSH_OPTIONS[@]}" "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASE" <<'REMOTE_SEED'
 set -euo pipefail
 remote_root="$1"
 release_dir="$2"
@@ -50,7 +59,7 @@ while IFS= read -r path; do
 done < "$release_dir/manifest.paths"
 REMOTE_SEED
 
-ssh "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASE" <<'REMOTE_DIFF'
+ssh "${SSH_OPTIONS[@]}" "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASE" <<'REMOTE_DIFF'
 set -euo pipefail
 remote_root="$1"
 release_dir="$2"
@@ -60,15 +69,15 @@ release_dir="$2"
 ) | awk -F: '/FAILED/ {print $1}' > "$release_dir/changed.paths"
 REMOTE_DIFF
 
-rsync -az "$DEPLOY_HOST:$REMOTE_RELEASE/changed.paths" "$BUILD_DIR/changed.paths"
+rsync -az -e "$RSYNC_SSH" "$DEPLOY_HOST:$REMOTE_RELEASE/changed.paths" "$BUILD_DIR/changed.paths"
 if [[ -s "$BUILD_DIR/changed.paths" ]]; then
   split -l 10 "$BUILD_DIR/changed.paths" "$BUILD_DIR/changed.part."
   for changed_part in "$BUILD_DIR"/changed.part.*; do
-    rsync -az --partial --files-from="$changed_part" "$BUILD_DIR/webroot/" "$DEPLOY_HOST:$REMOTE_RELEASE/webroot/"
+    rsync -az --partial -e "$RSYNC_SSH" --files-from="$changed_part" "$BUILD_DIR/webroot/" "$DEPLOY_HOST:$REMOTE_RELEASE/webroot/"
   done
 fi
 
-ssh "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASES" "$REMOTE_RELEASE" "$RELEASE_SHA" "$MODE" <<'REMOTE_SCRIPT'
+ssh "${SSH_OPTIONS[@]}" "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASES" "$REMOTE_RELEASE" "$RELEASE_SHA" "$MODE" <<'REMOTE_SCRIPT'
 set -euo pipefail
 remote_root="$1"
 releases_root="$2"
