@@ -50,10 +50,23 @@ while IFS= read -r path; do
 done < "$release_dir/manifest.paths"
 REMOTE_SEED
 
-split -l 25 "$BUILD_DIR/manifest.paths" "$BUILD_DIR/manifest.part."
-for manifest_part in "$BUILD_DIR"/manifest.part.*; do
-  rsync -azc --partial --files-from="$manifest_part" "$BUILD_DIR/webroot/" "$DEPLOY_HOST:$REMOTE_RELEASE/webroot/"
-done
+ssh "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASE" <<'REMOTE_DIFF'
+set -euo pipefail
+remote_root="$1"
+release_dir="$2"
+(
+  cd "$remote_root/public_html"
+  sha256sum -c "$release_dir/manifest.sha256" 2>&1 || true
+) | awk -F: '/FAILED/ {print $1}' > "$release_dir/changed.paths"
+REMOTE_DIFF
+
+rsync -az "$DEPLOY_HOST:$REMOTE_RELEASE/changed.paths" "$BUILD_DIR/changed.paths"
+if [[ -s "$BUILD_DIR/changed.paths" ]]; then
+  split -l 10 "$BUILD_DIR/changed.paths" "$BUILD_DIR/changed.part."
+  for changed_part in "$BUILD_DIR"/changed.part.*; do
+    rsync -az --partial --files-from="$changed_part" "$BUILD_DIR/webroot/" "$DEPLOY_HOST:$REMOTE_RELEASE/webroot/"
+  done
+fi
 
 ssh "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASES" "$REMOTE_RELEASE" "$RELEASE_SHA" "$MODE" <<'REMOTE_SCRIPT'
 set -euo pipefail
