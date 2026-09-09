@@ -78,7 +78,7 @@ final class Famtastic_Reunion_Brand_Experience
         }
         add_meta_box(
             'famtastic_reunion_command_center',
-            'Tonight’s Command Center',
+            'Reunion Command Center',
             [self::class, 'dashboard_widget'],
             'dashboard',
             'normal',
@@ -127,7 +127,7 @@ final class Famtastic_Reunion_Brand_Experience
         ];
         echo '<div class="famtastic-command-center">';
         echo '<p class="famtastic-eyebrow">MBSH CLASS OF 1996 · 30TH REUNION</p>';
-        echo '<h2>The countdown is active.</h2>';
+        echo '<h2>Keep the reunion moving.</h2>';
         echo '<p><strong>Signed in as ' . esc_html($accessLabel) . '.</strong></p>';
         echo '<p>Manage the event, community archive, orders, tickets, and attendee experience from one branded workspace.</p>';
         echo '<div class="famtastic-command-grid">';

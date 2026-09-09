@@ -9,5 +9,5 @@ window.MBSH_PORTAL_CONFIG = Object.assign({
   portalPath: '/portal/',
   ownerAdminUrl: ['127.0.0.1', 'localhost'].includes(window.location.hostname)
     ? 'http://localhost:8096/wp-admin/'
-    : '/wp-admin/'
+    : '/cms/wp-admin/'
 }, localDemo ? {mode: 'demo'} : (window.MBSH_PORTAL_CONFIG || {}));

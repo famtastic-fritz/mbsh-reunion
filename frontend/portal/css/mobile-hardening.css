@@ -55,4 +55,10 @@
 }
 @media (max-width: 390px) {
   .portal-brand small { display: none; }
+  .portal-header { flex-wrap: wrap; gap: .5rem; padding-inline: .7rem; }
+  .portal-header__actions { margin-left: auto; flex-wrap: wrap; justify-content: flex-end; }
+  .portal-guide-button { display: none; }
+  .menu-button { min-width: 44px; min-height: 44px; }
+  .harry-guide { grid-template-columns: 3.4rem 1fr 44px; }
+  .harry-guide button { width: 44px; height: 44px; }
 }

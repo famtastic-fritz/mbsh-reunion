@@ -138,7 +138,7 @@ final class Famtastic_Reunion_Integrations
         $status = get_option('famtastic_reunion_marketing_sync_status', []);
         $heartbeat = get_option('famtastic_reunion_worker_heartbeat', []);
         $cards = [
-            ['Email delivery', Famtastic_Reunion_Resend_Mailer::configured() ? 'Connected to Resend' : 'Needs configuration', admin_url('admin.php?page=famtastic-growth-delivery')],
+            ['Email delivery', Famtastic_Reunion_Resend_Mailer::configured() ? 'Resend configured' : 'Needs configuration', admin_url('admin.php?page=famtastic-growth-delivery')],
             ['Permission-based marketing', is_plugin_active('fluent-crm/fluent-crm.php') ? 'FluentCRM active' : 'Needs configuration', admin_url('admin.php?page=fluentcrm-admin')],
             ['Public forms & surveys', is_plugin_active('fluentform/fluentform.php') ? 'Fluent Forms active' : 'Needs configuration', admin_url('admin.php?page=fluent_forms')],
             ['Scheduled work', is_plugin_active('wp-crontrol/wp-crontrol.php') ? 'Cron visibility active' : 'Needs configuration', admin_url('tools.php?page=crontrol_admin_manage_page')],
@@ -151,7 +151,8 @@ final class Famtastic_Reunion_Integrations
         }
         echo '<div class="famtastic-integration-grid">';
         foreach ($cards as [$label, $value, $url]) {
-            printf('<article><p>%s</p><h2>%s</h2><a class="button" href="%s">Open tool</a></article>', esc_html($label), esc_html($value), esc_url($url));
+            $action = $url === admin_url('admin.php?page=famtastic-growth-delivery') ? 'View status' : 'Open settings';
+            printf('<article><p>%s</p><h2>%s</h2><a class="button" href="%s">%s</a></article>', esc_html($label), esc_html($value), esc_url($url), esc_html($action));
         }
         echo '</div><section class="famtastic-doctrine"><h2>Authority rules</h2><ol>';
         echo '<li><strong>Attendee portal</strong> owns identity, verification, RSVP, preferences, private uploads, messages, and wallet access.</li>';

@@ -11,5 +11,13 @@
     panel.addEventListener('click',async event=>{const game=event.target.closest('[data-game-status]'),question=event.target.closest('[data-question-status]');if(game){await api.staffTriviaUpdate({type:'game',id:game.dataset.id,status:game.dataset.gameStatus});await load()}if(question){await api.staffTriviaUpdate({type:'question',id:question.dataset.id,status:question.dataset.questionStatus});await load()}});
     link.addEventListener('click',()=>{document.querySelector('[data-coach-title]').textContent='Run a fair, memorable trivia round';document.querySelector('[data-coach-lesson]').textContent='Draft and review the question bank before opening the game. Scoring is server-side, and each attendee gets one recorded attempt.';document.querySelector('[data-coach-checklist]').innerHTML='<li>Review every answer and explanation</li><li>Publish questions before opening the round</li><li>Close the game before making changes</li>';document.querySelector('[data-coach-boundary]').textContent='Trivia attempts and answers are audit evidence; retire or archive them instead of silently rewriting completed play.';load();});await load();
   }
+  const sampleForm=document.querySelector('[data-sample-ticket-form]');
+  if(sampleForm){
+    const styles=document.createElement('link');styles.rel='stylesheet';styles.href='../css/sample-ticket-studio.css?v=1';document.head.append(styles);
+    const sampleTicket=document.querySelector('[data-sample-ticket]');
+    if(sampleTicket&&!document.querySelector('[data-sample-ticket-ad]'))sampleTicket.insertAdjacentHTML('afterend','<aside class="sample-ticket-ad" data-sample-ticket-ad><img src="../../assets/mascot/18-presenting.png" alt="Hi-Tide Harry presents the FAMtastic Designs website offer"><div><p>FROM THE CREATORS OF THIS REUNION EXPERIENCE</p><h3>Your business deserves its premiere.</h3><strong>FAMtastic Designs Starter Websites · $199</strong><a href="https://famtasticdesigns.com">Start your website at FAMtasticDesigns.com</a><small>SAMPLE TICKET REVERSE · PROMOTIONAL SIDE</small></div></aside>');
+    sampleForm.addEventListener('submit',event=>{event.preventDefault();const values=new FormData(sampleForm);document.querySelector('[data-sample-ticket-holder]').textContent=String(values.get('holder_name')||'Sample Hi-Tide');document.querySelector('[data-sample-ticket-type]').textContent=String(values.get('ticket_type')||'30th Reunion Admission');});
+    document.querySelector('[data-print-sample-ticket]')?.addEventListener('click',()=>window.print());
+  }
   boot().catch(()=>{});
 })();

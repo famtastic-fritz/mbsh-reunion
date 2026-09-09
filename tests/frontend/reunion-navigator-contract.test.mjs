@@ -26,7 +26,7 @@ assert.match(attendee, /data-reunion-guide-open/, 'attendee portal needs a visib
 assert.match(attendee, /reunion-navigator\.js/, 'attendee portal must load navigator code');
 assert.match(attendeeApp, /mbsh:portal-ready/, 'portal must emit readiness only after its session is established');
 assert.match(committee, /Start tour/, 'committee portal needs a visible tour entry point');
-assert.match(committee, /Start this desk tour/, 'committee Harry briefing must retain a tour entry point');
+assert.equal((committee.match(/data-reunion-guide-open/g)||[]).length, 1, 'committee portal should expose one unambiguous tour entry point');
 assert.match(committeeApp, /mbsh:committee-ready/, 'committee tour must wait for capability authorization');
 assert.match(css, /prefers-reduced-motion/, 'guide must explicitly support reduced motion');
 assert.match(css, /alumni-invite-open/, 'guide must avoid the timed alumni invitation');

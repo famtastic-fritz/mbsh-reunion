@@ -27,7 +27,7 @@
       <button class="mode-switch" type="button" data-mode-switch hidden><span data-mode-label>Committee Desk</span><small>Switch workspace</small></button>
       <a class="menu-button portal-guide-button" href="/manual/#my-reunion"><span aria-hidden="true">⌘</span> Manual</a>
       <button class="menu-button portal-guide-button" type="button" data-reunion-guide-open><span aria-hidden="true">✦</span> Guide</button>
-      <button class="menu-button" type="button" aria-expanded="false" aria-controls="portal-drawer"><span aria-hidden="true">☰</span> Menu</button>
+      <button class="menu-button" data-portal-menu type="button" aria-expanded="false" aria-controls="portal-drawer"><span aria-hidden="true">☰</span> Menu</button>
     </div>
   </header>
 
@@ -38,7 +38,7 @@
     </div>
     <nav aria-label="My reunion">
       <p class="drawer-section-label">My reunion</p>
-      <a href="#home" data-route="home" aria-current="page"><span>Tonight</span><small>Your next steps</small></a>
+      <a href="#home" data-route="home" aria-current="page"><span>Overview</span><small>Your next steps</small></a>
       <a href="#ticket" data-route="ticket"><span>My ticket</span><small>Wallet &amp; check-in</small></a>
       <a href="#rsvp" data-route="rsvp"><span>RSVP &amp; dinner</span><small>Guest and meal details</small></a>
       <a href="#memories" data-route="memories"><span>My memories</span><small>Upload photos &amp; stories</small></a>
@@ -46,12 +46,13 @@
       <a href="#trivia" data-route="trivia"><span>Class trivia</span><small>Play, score &amp; remember</small></a>
       <a href="#event" data-route="event"><span>Event guide</span><small>Schedule, venue, dress</small></a>
       <a href="#notifications" data-route="notifications"><span>Notifications</span><small>Choose what reaches you</small></a>
+      <a href="#inbox" data-route="inbox"><span>Messages</span><small>Questions and committee replies</small></a>
       <div class="staff-navigation" data-staff-only hidden>
         <p class="drawer-section-label">Committee Desk <span data-staff-role></span></p>
         <a href="#committee" data-route="committee"><span>Command center</span><small>Priorities, alerts &amp; activity</small></a>
         <a href="#review" data-route="review"><span>Review queue</span><small>Memories, photos &amp; approvals</small></a>
         <a href="#people" data-route="people"><span>People</span><small>Attendees, committee &amp; access</small></a>
-        <a href="#inbox" data-route="inbox"><span>Inbox</span><small>Messages &amp; Harry questions</small></a>
+        <a href="#committee-inbox" data-route="committee-inbox"><span>Committee inbox</span><small>Messages &amp; Harry questions</small></a>
         <a href="#communications" data-route="communications"><span>Communications</span><small>Compose, audiences &amp; delivery</small></a>
         <a href="#operations" data-route="operations"><span>Tickets &amp; operations</span><small>Orders, check-in &amp; exceptions</small></a>
       </div>
@@ -80,8 +81,8 @@
           <a class="button button--primary" href="#rsvp" data-route="rsvp">Choose dinner</a>
         </div>
         <div class="dashboard-grid">
-          <article class="scene-card scene-card--ticket"><p class="eyebrow">Admit one</p><h3>Your digital ticket is ready</h3><p>Keep it on this phone for fast check-in.</p><a href="#ticket" data-route="ticket">Open wallet <span aria-hidden="true">→</span></a></article>
-          <article class="scene-card"><span class="scene-icon" aria-hidden="true">✓</span><h3>RSVP received</h3><p>Attending · 1 guest · Dinner pending</p><a href="#rsvp" data-route="rsvp">Review details</a></article>
+          <article class="scene-card scene-card--ticket"><p class="eyebrow">Admission</p><h3 data-home-ticket-title>Checking ticket status…</h3><p data-home-ticket-copy>Your paid ticket will appear here after it is issued.</p><a href="#ticket" data-route="ticket">Open wallet <span aria-hidden="true">→</span></a></article>
+          <article class="scene-card"><span class="scene-icon" aria-hidden="true">✓</span><h3 data-home-rsvp-title>Checking RSVP status…</h3><p data-home-rsvp-copy>Your saved response and dinner choice will appear here.</p><a href="#rsvp" data-route="rsvp">Review details</a></article>
           <article class="scene-card"><span class="scene-icon" aria-hidden="true">＋</span><h3>Add your chapter</h3><p>Share a photo or story for the reunion memory reel.</p><a href="#memories" data-route="memories">Upload a memory</a></article>
           <article class="scene-card"><span class="scene-icon" aria-hidden="true">♪</span><h3>Shape the soundtrack</h3><p>Send the DJ the song that takes you straight back.</p><a href="#suggestions" data-route="suggestions">Suggest a song</a></article>
         </div>
@@ -89,7 +90,7 @@
       </section>
 
       <section class="view" data-view-panel="ticket" aria-labelledby="ticket-heading">
-        <div class="section-heading"><div><p class="eyebrow">Mobile wallet</p><h2 id="ticket-heading">Your premiere pass</h2></div><span class="verified-badge">Verified attendee</span></div>
+        <div class="section-heading"><div><p class="eyebrow">Mobile wallet</p><h2 id="ticket-heading">Your premiere pass</h2></div><span class="verified-badge" data-ticket-verified hidden>Verified attendee</span></div>
         <div data-ticket-data>
         <article class="ticket-pass" aria-label="Reunion ticket">
           <img src="../assets/tickets/virtual-ticket-premiere-v1.png" alt="Cinematic MBSH Class of 1996 30th reunion ticket featuring Hi-Tide Harry">
@@ -104,11 +105,11 @@
       </section>
 
       <section class="view" data-view-panel="rsvp" aria-labelledby="rsvp-heading">
-        <div class="section-heading"><div><p class="eyebrow">Saved to your profile</p><h2 id="rsvp-heading">RSVP &amp; dinner</h2></div><span class="saved-state" role="status">All changes saved</span></div>
+        <div class="section-heading"><div><p class="eyebrow">Your reunion details</p><h2 id="rsvp-heading">RSVP &amp; dinner</h2></div><span class="saved-state" role="status">Checking status…</span></div>
         <form class="portal-form" data-demo-form="rsvp">
           <fieldset><legend>Attendance</legend><label class="choice"><input type="radio" name="attendance" value="yes" required><span><strong>Yes, I’ll be there</strong><small>Reserve my place and dinner</small></span></label><label class="choice"><input type="radio" name="attendance" value="maybe"><span><strong>I’m not certain yet</strong><small>Save my response so I can return later</small></span></label><label class="choice"><input type="radio" name="attendance" value="no"><span><strong>I can’t attend</strong><small>Keep me on reunion updates</small></span></label></fieldset>
           <div class="field-grid"><label>Number of guests<input type="number" name="guest_count" min="0" max="5" value="0"></label><label>Guest name(s)<input type="text" name="guest_names" maxlength="500" autocomplete="name"></label><label>Mobile number<input type="tel" name="phone" maxlength="50" autocomplete="tel"></label></div>
-          <fieldset><legend>Dinner selection</legend><label class="choice"><input type="radio" name="meal" value="fish"><span><strong>Coastal catch</strong><small>Herb rice · seasonal vegetables</small></span></label><label class="choice"><input type="radio" name="meal" value="chicken"><span><strong>Roasted chicken</strong><small>Garlic mash · seasonal vegetables</small></span></label><label class="choice"><input type="radio" name="meal" value="vegetarian"><span><strong>Garden entrée</strong><small>Plant-based · dairy-free available</small></span></label></fieldset>
+          <fieldset><legend>Dinner selection</legend><label class="choice"><input type="radio" name="meal" value="chicken"><span><strong>Tuscan Roasted Chicken</strong><small>Choose chicken as your entrée.</small></span></label><label class="choice"><input type="radio" name="meal" value="fish"><span><strong>Maple-Bourbon Salmon</strong><small>Choose salmon as your entrée.</small></span></label><label class="choice"><input type="radio" name="meal" value="vegetarian"><span><strong>Vegetarian Entrée</strong><small>A meat-free selection; add restrictions below.</small></span></label></fieldset>
           <label>Dietary or accessibility note<textarea name="dietary_accessibility" maxlength="2000" rows="4" placeholder="Tell the committee what would help you enjoy the night."></textarea></label>
           <p class="integration-notice" role="status" data-event-source><strong>Loading your reunion record…</strong></p>
           <button class="button button--primary" type="submit">Save reunion details</button>
@@ -144,7 +145,7 @@
       <section class="view" data-view-panel="notifications" aria-labelledby="notifications-heading">
         <div class="section-heading"><div><p class="eyebrow">You stay in control</p><h2 id="notifications-heading">Notifications</h2><p>Event-critical updates stay separate from optional reunion stories and promotions.</p></div></div>
         <form class="preferences" data-demo-form="preferences">
-          <div class="preference-group"><h3>Service messages</h3><p>Required for account security, ticket changes, payments, and critical event updates.</p><label class="preference-row"><span><strong>Security and ticket service</strong><small>Transactional · cannot be disabled here</small></span><input type="checkbox" checked disabled><i aria-hidden="true"></i></label><label class="preference-row"><span><strong>Event updates</strong><small>Schedule, venue, and important reunion changes</small></span><input type="checkbox" name="event_updates"><i aria-hidden="true"></i></label><label class="preference-row"><span><strong>Text me event updates</strong><small>Uses the mobile number on your attendee profile</small></span><input type="checkbox" name="sms_notifications"><i aria-hidden="true"></i></label></div>
+          <div class="preference-group"><h3>Service messages</h3><p>Required for account security, ticket changes, payments, and critical event updates.</p><label class="preference-row"><span><strong>Security and ticket service</strong><small>Transactional · cannot be disabled here</small></span><input type="checkbox" checked disabled><i aria-hidden="true"></i></label><label class="preference-row"><span><strong>Event updates</strong><small>Schedule, venue, and important reunion changes</small></span><input type="checkbox" name="event_updates"><i aria-hidden="true"></i></label><label class="preference-row"><span><strong>Save my preference for future text updates</strong><small>Text delivery is not active yet. This only saves your preference.</small></span><input type="checkbox" name="sms_notifications"><i aria-hidden="true"></i></label></div>
           <div class="preference-group"><h3>Optional messages</h3><p>Change these any time without affecting your ticket or service messages.</p><label class="preference-row"><span><strong>Reunion stories &amp; memories</strong><small>New films, galleries, and class spotlights</small></span><input type="checkbox" name="memory_updates"><i aria-hidden="true"></i></label><label class="preference-row"><span><strong>Promotional email</strong><small>Sponsors, merchandise, and future offers</small></span><input type="checkbox" name="promotional_email"><i aria-hidden="true"></i></label></div>
           <button class="button button--primary" type="submit">Save preferences</button>
         </form>
@@ -179,8 +180,8 @@
         <div class="staff-list" data-staff-list="people"><div class="staff-empty"><strong>Search the attendee list</strong><p>Results will include only the fields your committee role may view.</p></div></div>
       </section>
 
-      <section class="view staff-view" data-view-panel="inbox" data-staff-only hidden aria-labelledby="inbox-heading">
-        <div class="section-heading"><div><p class="eyebrow">Nothing falls through the cracks</p><h2 id="inbox-heading">Committee inbox</h2><p>Attendee messages, replies and questions for Harry belong in a single accountable conversation timeline.</p></div><span class="staff-status-chip" data-inbox-count>Loading</span></div>
+      <section class="view staff-view" data-view-panel="committee-inbox" data-staff-only hidden aria-labelledby="committee-inbox-heading">
+        <div class="section-heading"><div><p class="eyebrow">Nothing falls through the cracks</p><h2 id="committee-inbox-heading">Committee inbox</h2><p>Attendee messages, replies and questions for Harry belong in a single accountable conversation timeline.</p></div><span class="staff-status-chip" data-inbox-count>Loading</span></div>
         <div class="staff-split"><div class="staff-list" data-staff-list="inbox"><div class="staff-loading" role="status">Loading conversations…</div></div><aside class="staff-detail" data-staff-detail="inbox"><strong>Select a conversation</strong><p>Choose a thread to see its complete timeline and response status.</p></aside></div>
       </section>
 
