@@ -1,618 +1,1254 @@
 {
-  "tag": "site-mbsh-reunion",
-  "site_name": "MBSH Class of '96 30th Reunion",
-  "business_type": "reunion",
-  "state": "scaffolded",
-  "deployed_url": null,
-  "deploy_provider": "netlify",
-  "created_at": "2026-04-29T17:16:44.000Z",
-  "registered_in_studio_at": "2026-05-02T18:30:00.000Z",
-  "_audit_provenance": "cowork-audit-001 \u2014 registered after the audit identified that MBSH lived in two locations (asset workshop at ~/famtastic/sites/site-mbsh-reunion/ + deploy repo at ~/famtastic-sites/mbsh-reunion/) but had no Studio spec.json. This file makes Studio aware of MBSH as a buildable spec without violating the repo-separation rule (deploy artifacts stay in the sibling repo).",
-  "design_brief": {
-    "goal": "Convert reunion classmates into RSVPs and create the FAMtastic public showcase build. Every alum who sees this site is a potential FAMtastic client. Quality bar: would the most prominent alum text their network to say 'this is fire.'",
-    "audience": "MBSH Class of '96 alumni, primarily ages ~46-50, encountering the site first on mobile (most likely at 11pm in bed). Secondary audience: visiting alums from other classes (the 100th anniversary frame), prospective FAMtastic clients evaluating the showcase quality.",
-    "tone": [
-      "cinematic",
-      "elegant",
-      "black-tie",
-      "reverent-when-needed",
-      "warm-but-restrained"
-    ],
-    "visual_direction": {
-      "layout": "Cinematic full-bleed hero with layered composition (background loop + brand mark top-left + center typography stack + Hi-Tide Harry bottom-right + scroll-tease bottom-center). Slow deliberate animations. Generous whitespace. High-contrast imagery treated like film stills. Mobile-first.",
-      "typography": "Six-font system: Playfair Display 900 (display), Cormorant Garamond italic (body/captions), Allura cursive (overlay statements), Great Vibes (taglines), Inter 400/600 (UI), JetBrains Mono (data). Five fonts per page maximum.",
-      "color_usage": "Red and white lead, silver and cream accent. Silver is metallic gradient NOT flat gray. Off-black #0A0A0A NOT pure black. Cream #F8F4EC for sections needing air.",
-      "motion": "Hero background video loops silently. Story moments fade in on scroll via IntersectionObserver. 30+100 brand mark on Forever moment has subtle pulse animation. No autoplay audio.",
-      "density": "spacious"
-    },
-    "content_priorities": [
-      "Make the first 5 seconds produce awe and pride",
-      "Reduce RSVP friction",
-      "Sponsor track funds the event (donation tiers + manual approval gate)",
-      "Honor classmates lost (In Memory section, reverent restraint)",
-      "Surprise emotional payoff (Time Capsule sends to classmates' future selves on November 7)",
-      "Living soundtrack (Spotify playlist, embedded)",
-      "First branded AI chatbot built through Studio (Hi-Tide Harry, Phase 1 = FAQ + fallback)"
-    ],
-    "must_have_sections": [
-      "home",
-      "rsvp",
-      "tickets",
-      "through-years",
-      "memorial",
-      "capsule",
-      "playlist"
-    ],
-    "avoid": [
-      "Generic stock imagery (use generated atmospherics + archival sources)",
-      "Single-page architecture (committee explicitly rejected last time \u2014 captured 2026-04-29)",
-      "Provider names in user-facing UI strings",
-      "Name-dropping of celebrity alumni",
-      "Emoji except \ud83c\udf0a (Hi-Tide wave)",
-      "Autoplay audio",
-      "More than 5 fonts on any page",
-      "Pure black #000 (use #0A0A0A off-black)",
-      "Flat silver (use metallic gradient)",
-      "SVG uploads in any user-facing form (security: SVG can carry executable JS)",
-      "Auth tokens via URL parameters",
-      "Force pushes to git",
-      "AI references in commit messages"
-    ],
-    "approved": true,
-    "tier": "famtastic",
-    "audience_gating": "flagship",
-    "v1_brief_canonical_path": "/Users/famtasticfritz/famtastic/docs/sites/site-mbsh-reunion/V1-BRIEF.md",
-    "decision_arc_path": "/Users/famtasticfritz/famtastic/docs/sites/site-mbsh-reunion/cowork-audit-001/",
-    "terminology": {
-      "mascot_internal": "Sonic-style bipedal cartoon character",
-      "mascot_external": "Original cartoon hero with athletic proportions",
-      "rationale": "IP safety on published descriptions; design shorthand internally"
-    },
-    "committee_history": {
-      "prior_site_existed": true,
-      "explicitly_rejected_patterns": [
-        "single-page architecture"
-      ],
-      "lesson": "Always validate architectural assumptions against committee historical objections during interview phase. Source: MBSH single\u2192multi-page mid-build pivot 2026-04-29."
-    }
+  "capability_class": "application",
+  "origin": "legit",
+  "brand": {
+    "name": "Mbsh96reunion",
+    "description": null,
+    "voice": null
   },
-  "tier": "famtastic",
-  "famtastic_mode": true,
-  "style_fingerprint": {
-    "palette": {
-      "primary": "#C8102E",
-      "secondary": "#FFFFFF",
-      "accent": "#C0C0C0",
-      "neutral": "#0A0A0A",
-      "background": "#F8F4EC"
-    },
-    "palette_notes": "Silver #C0C0C0 must render as metallic gradient, NOT flat. Off-black #0A0A0A only \u2014 NEVER pure #000.",
-    "typography": {
-      "heading_family": "Playfair Display",
-      "body_family": "Cormorant Garamond",
-      "scale": "cinematic",
-      "system": [
+  "tokens": {
+    "bg": "#ffffff",
+    "fg": "#f8f4ec",
+    "accent": "#c62828",
+    "muted": "#fbf9f5"
+  },
+  "tokens_provenance": {
+    "source": "detected_from_css",
+    "sample_count": 3
+  },
+  "pages": [
+    {
+      "id": "backend-404",
+      "path": "backend/404.html",
+      "title": "404 — MBSH Class of ’96",
+      "heading": "Lost at sea?",
+      "sections": [
         {
-          "family": "Playfair Display",
-          "weights": [
-            400,
-            700,
-            900
-          ],
-          "role": "display headlines, section heads, milestone callouts"
-        },
-        {
-          "family": "Cormorant Garamond",
-          "weights": [
-            400,
-            500,
-            700
-          ],
-          "italic": true,
-          "role": "body, captions, event-detail labels"
-        },
-        {
-          "family": "Allura",
-          "weights": [
-            400
-          ],
-          "role": "overlay statements (Welcome back, In Memory, attendee counter)"
-        },
-        {
-          "family": "Great Vibes",
-          "weights": [
-            400
-          ],
-          "role": "taglines (Let us be known for our deeds)"
-        },
-        {
-          "family": "Inter",
-          "weights": [
-            400,
-            500,
-            600,
-            700
-          ],
-          "role": "buttons, form labels, navigation, sponsor tier labels, chatbot UI"
-        },
-        {
-          "family": "JetBrains Mono",
-          "weights": [
-            400
-          ],
-          "role": "countdown numerals, ticket prices, RSVP confirmation codes"
+          "id": "hero",
+          "type": "hero",
+          "body": "That page isn't here. Harry's not sure where it went.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>main[1]>h1[1]"
         }
-      ],
-      "google_fonts_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Allura&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap",
-      "fonts_per_page_max": 5
+      ]
     },
-    "mood": "cinematic black-tie elegance with silver accents on red foundation; award-show / red-carpet energy",
-    "source": "v1_brief_locked",
-    "vertical": "reunion",
-    "generated_at": "2026-05-02T18:30:00.000Z"
-  },
-  "site_repo": {
-    "path": "/Users/famtasticfritz/famtastic-sites/mbsh-reunion",
-    "remote": "https://github.com/famtastic-fritz/mbsh-reunion",
-    "current_branch": "main",
-    "archive_branch": "archive/v0-placeholder",
-    "deploy_target_role": "Studio's per-tag directory at ~/famtastic/sites/site-mbsh-reunion/ is the SANDBOX (asset workshop). The deploy artifact lives in the sibling repo above. Per repo-separation rule (Recommendation 0.9 + G.4)."
-  },
-  "environments": {
-    "staging": {
-      "provider": "netlify",
-      "site_id": "3b4f9abd-d0cd-4b78-9ac1-d1b4b51606bf",
-      "url": "https://mbsh-reunion-staging.netlify.app",
-      "state": "netlify_project_exists_git_link_pending",
-      "deferral_note": "Netlify connection deferred to Session 8 per V1-BRIEF (when site is staging-ready and committee can review). Until then, pushes to main do not deploy.",
-      "custom_domain": null,
-      "production_branch": "staging"
+    {
+      "id": "backend-premiere-sandbox",
+      "path": "backend/_premiere-sandbox.html",
+      "title": "Premiere Sandbox — D4 / D5 / D8 component review",
+      "heading": "The Premiere — Component Review",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>header[1]>h1[1]"
+        },
+        {
+          "id": "section-inside-a-golden-filmstrip-frame",
+          "type": "text",
+          "heading": "Section inside a golden filmstrip frame",
+          "body": "A frame is structural. It tells you \"this part of the page is a scene.\" Six of these on the home page would be the movie-poster wall.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>section[1]>div[1]>h2[1]"
+        },
+        {
+          "id": "sections-separated-by-golden-ribbon-dividers",
+          "type": "text",
+          "heading": "Sections separated by golden ribbon dividers",
+          "body": "Dividers are decorative. They thread between sections like a flowing tape. There's a subtle light-sweep that passes across the gold every ~8 seconds — barely perceptible, signals \"celluloid in motion.\"",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>section[2]>h2[1]"
+        },
+        {
+          "id": "snap-into-place-with-bounce",
+          "type": "text",
+          "heading": "Snap-into-place with bounce",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>section[3]>h2[1]"
+        },
+        {
+          "id": "test-harry-s-celebrate-animation",
+          "type": "text",
+          "heading": "Test Harry's celebrate animation",
+          "body": "Click the button. Harry should pulse with a scarlet glow + cheer pose for ~800ms.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>section[4]>h2[1]"
+        },
+        {
+          "id": "six-framed-posters",
+          "type": "text",
+          "heading": "Six framed posters",
+          "body": "This is what the home page cards section will become in P2. Each card is a section in its own filmstrip frame. Hover lifts -12px with a slight rotation.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>section[5]>h2[1]"
+        },
+        {
+          "id": "reserve-your-seat",
+          "type": "text",
+          "heading": "Reserve Your Seat",
+          "body": "Tell us you're coming. The night unlocks once we hear from you.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>section[5]>div[1]>a[1]>h3[1]"
+        },
+        {
+          "id": "tickets-sponsorship",
+          "type": "text",
+          "heading": "Tickets & Sponsorship",
+          "body": "Two ways in: secure your seat, or help fund the night.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>section[5]>div[1]>a[2]>h3[1]"
+        },
+        {
+          "id": "through-the-years",
+          "type": "text",
+          "heading": "Through the Years",
+          "body": "One hundred years of Hi-Tides. The eras that built us.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>section[5]>div[1]>a[3]>h3[1]"
+        },
+        {
+          "id": "in-memory",
+          "type": "text",
+          "heading": "In Memory",
+          "body": "Forever Hi-Tides. Names we carry with us.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>section[5]>div[1]>a[4]>h3[1]"
+        },
+        {
+          "id": "time-capsule",
+          "type": "text",
+          "heading": "Time Capsule",
+          "body": "Send your younger self a note. We'll deliver on the day.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>section[5]>div[1]>a[5]>h3[1]"
+        },
+        {
+          "id": "our-soundtrack",
+          "type": "text",
+          "heading": "Our Soundtrack",
+          "body": "The songs that made us who we are. Curated, embedded, alive.\n\nLet us be known for our deeds\n\nSANDBOX · NOT FOR PRODUCTION",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]>section[5]>div[1]>a[6]>h3[1]"
+        }
+      ]
     },
-    "production": {
-      "provider": "netlify",
-      "site_id": null,
-      "url": null,
-      "state": "deferred",
-      "deferral_note": "Production cutover deferred to Session 9. Custom domain mbsh96reunion.com points to Netlify via GoDaddy DNS at cutover time.",
-      "custom_domain": "mbsh96reunion.com",
-      "custom_domain_aliases": [
-        "www.mbsh96reunion.com"
-      ],
-      "ssl": "letsencrypt-via-netlify",
-      "repo": {
-        "path": "/Users/famtasticfritz/famtastic-sites/mbsh-reunion",
-        "remote": "https://github.com/famtastic-fritz/mbsh-reunion"
-      }
+    {
+      "id": "backend-capsule",
+      "path": "backend/capsule.html",
+      "title": "Hi-Tide Time Capsule — MBSH Class of ’96",
+      "heading": "Hi-Tide Time Capsule",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "Send your younger self a message. We deliver on the day.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>header[1]>h1[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "the-capsule-is-sealed",
+          "type": "text",
+          "heading": "The capsule is sealed.",
+          "body": "You'll hear from your 1996 self on the morning of the reunion.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>div[2]>h3[1]",
+          "image": {
+            "src": "/assets/mascot/01-wave-hello.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "what-to-write-your-younger-self",
+          "type": "text",
+          "heading": "What to write your younger self",
+          "body": "Stuck staring at the form? You're not alone. Three prompts to get you going.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>h2[1]",
+          "image": {
+            "src": "/assets/brand-mark/brand-mark.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "the-thing-you-didn-t-know",
+          "type": "text",
+          "heading": "The thing you didn't know",
+          "body": "What you wish 17-year-old you had heard at the locker before homeroom.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[1]>div[1]>h3[1]"
+        },
+        {
+          "id": "the-person-you-d-thank",
+          "type": "text",
+          "heading": "The person you'd thank",
+          "body": "A teacher, a friend, a parent — someone whose name still sticks thirty years later.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[1]>div[2]>h3[1]"
+        },
+        {
+          "id": "the-night-ahead",
+          "type": "text",
+          "heading": "The night ahead",
+          "body": "What you hope you feel walking into the reunion. The capsule will deliver it back the morning of.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[1]>div[3]>h3[1]"
+        },
+        {
+          "id": "we-deliver-on-the-day",
+          "type": "text",
+          "heading": "We deliver on the day",
+          "body": "The committee never reads what you write. The capsule unlocks the morning of the reunion, sent to your inbox by 9 AM. Whether you make it that night or not — your past will hear your voice on the same day everyone else does.\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926 🌊\n\nLet us be known for our deeds",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>h2[1]"
+        },
+        {
+          "id": "reunion-committee",
+          "type": "text",
+          "heading": "Reunion Committee",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[2]>h4[1]"
+        },
+        {
+          "id": "resources",
+          "type": "text",
+          "heading": "Resources",
+          "body": "© 2026 MBSH Class of '96 Reunion Committee",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[3]>h4[1]"
+        }
+      ]
+    },
+    {
+      "id": "backend-index",
+      "path": "backend/index.html",
+      "title": "MBSH Class of ’96 — 30th Reunion",
+      "heading": "MBSH Class of ’96 — 30th Reunion",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "Welcome back, Class of ’96\n\nSaturday, November 7, 2026 — Miami Shores Country Club\n\nLet us be known for our deeds.\n\nPresented by the Class of '96 · MBSH 1926–2026\n\nThe destination",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>div[2]>div[1]>p[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "miami-shores-country-club",
+          "type": "text",
+          "heading": "Miami Shores Country Club",
+          "body": "Saturday, November 7, 2026\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926 🌊\n\nLet us be known for our deeds",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[5]>div[1]>h2[1]"
+        },
+        {
+          "id": "reunion-committee",
+          "type": "text",
+          "heading": "Reunion Committee",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[2]>h4[1]"
+        },
+        {
+          "id": "resources",
+          "type": "text",
+          "heading": "Resources",
+          "body": "© 2026 MBSH Class of '96 Reunion Committee",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[3]>h4[1]",
+          "image": {
+            "src": "/assets/premiere/brand-mark-foil.png?v=2",
+            "alt": "30 + 100 commemorative mark — Class of '96 30th reunion, MBSH 100th anniversary"
+          }
+        },
+        {
+          "id": "cta",
+          "type": "cta",
+          "body": null,
+          "instruction": null,
+          "items": [
+            "Reserve Your Seat"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "backend-memorial",
+      "path": "backend/memorial.html",
+      "title": "In Memory — MBSH Class of ’96",
+      "heading": "In Memory",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "Forever Hi-Tides.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>header[1]>h1[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "add-a-name",
+          "type": "text",
+          "heading": "Add a name",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>h2[1]",
+          "image": {
+            "src": "/assets/brand-mark/brand-mark.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "at-the-reunion",
+          "type": "text",
+          "heading": "At the reunion",
+          "body": "Every name on this page is read aloud during the tribute. Their seats are reserved. Their families are welcome.\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926 🌊\n\nLet us be known for our deeds",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>h2[1]"
+        },
+        {
+          "id": "reunion-committee",
+          "type": "text",
+          "heading": "Reunion Committee",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[2]>h4[1]"
+        },
+        {
+          "id": "resources",
+          "type": "text",
+          "heading": "Resources",
+          "body": "© 2026 MBSH Class of '96 Reunion Committee",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[3]>h4[1]"
+        }
+      ]
+    },
+    {
+      "id": "backend-menu",
+      "path": "backend/menu.html",
+      "title": "Gold Menu — Dinner Preferences — MBSH Class of ’96",
+      "heading": "Dinner Preferences",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "Review the finalized dinner menu and choose your entrée for the evening.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>header[1]>h1[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "the-menu-is-taking-shape",
+          "type": "text",
+          "heading": "The menu is taking shape",
+          "body": "To simplify service for Miami Shores Country Club and make the evening smoother for everyone, the committee has narrowed the entrée choices to chicken, fish, and a vegetarian option.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>h2[1]",
+          "image": {
+            "src": "/assets/mascot/01-wave-hello.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "review-the-menu",
+          "type": "text",
+          "heading": "Review the menu",
+          "body": "The hors d’oeuvres, salads, and sides are listed below so you know what will be served.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>div[1]>div[1]>h3[1]",
+          "image": {
+            "src": "/assets/premiere/brand-mark-foil.png?v=2",
+            "alt": null
+          }
+        },
+        {
+          "id": "choose-one-entr-e",
+          "type": "text",
+          "heading": "Choose one entrée",
+          "body": "Select Tuscan Roasted Chicken, Maple-Bourbon Salmon, or the Vegetarian Entrée.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>div[1]>div[2]>h3[1]"
+        },
+        {
+          "id": "share-dietary-needs",
+          "type": "text",
+          "heading": "Share dietary needs",
+          "body": "Tell the committee about allergies or dietary restrictions so the venue can prepare.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>div[1]>div[3]>h3[1]"
+        },
+        {
+          "id": "hors-d-oeuvres",
+          "type": "text",
+          "heading": "Hors d’Oeuvres",
+          "body": "Included in the finalized menu\n\nFresh Seasonal Fruits\n\nDomestic and Imported Cheeses, Breads, and Crackers",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[2]>form[1]>div[1]>h2[1]"
+        },
+        {
+          "id": "salads",
+          "type": "text",
+          "heading": "Salads",
+          "body": "Included in the finalized menu\n\nGarden Salad\n\nCaesar Salad\n\nSelect one entrée",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[2]>form[1]>div[2]>h2[1]"
+        },
+        {
+          "id": "sides",
+          "type": "text",
+          "heading": "Sides",
+          "body": "Included in the finalized menu\n\nRosemary Fingerling Potatoes\n\nRice Pilaf\n\nSautéed Green Beans",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[2]>form[1]>div[3]>h2[1]"
+        },
+        {
+          "id": "dietary-restrictions",
+          "type": "text",
+          "heading": "Dietary Restrictions",
+          "body": "Any allergies or special requests?\n\nYour entrée selection and dietary notes will help the committee coordinate final meal counts with Miami Shores Country Club.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[2]>form[1]>div[4]>h2[1]"
+        },
+        {
+          "id": "meal-selection-submitted",
+          "type": "text",
+          "heading": "Meal Selection Submitted!",
+          "body": "Your entrée choice and dietary notes have been sent to the committee.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[2]>div[2]>h2[1]"
+        },
+        {
+          "id": "a-smoother-dinner-service",
+          "type": "text",
+          "heading": "A smoother dinner service",
+          "body": "Three entrée choices keep service clear, give guests meaningful options, and help Miami Shores Country Club deliver the evening with care.\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926 🌊\n\nLet us be known for our deeds",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>h2[1]"
+        },
+        {
+          "id": "mbsh-committee",
+          "type": "text",
+          "heading": "MBSH Committee",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[2]>h4[1]"
+        },
+        {
+          "id": "resources",
+          "type": "text",
+          "heading": "Resources",
+          "body": "© 2026 MBSH Class of '96 Reunion",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[3]>h4[1]"
+        }
+      ]
+    },
+    {
+      "id": "backend-playlist",
+      "path": "backend/playlist.html",
+      "title": "Our Soundtrack — MBSH Class of ’96",
+      "heading": "Our Soundtrack",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "The songs that made us who we are.\n\nSpotify embed loads when the playlist ID is finalized.\n\nThe songs that built us — Class of '96",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>header[1]>h1[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "suggest-a-track",
+          "type": "text",
+          "heading": "Suggest a track",
+          "body": "Got a song that takes you straight back to '96? Drop it — committee curates weekly.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>form[1]>h3[1]",
+          "image": {
+            "src": "/assets/mascot/01-wave-hello.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "about-the-soundtrack",
+          "type": "text",
+          "heading": "About the soundtrack",
+          "body": "A reunion night without the right soundtrack is just a venue. The committee is building this list all the way to November 7 — every track that takes a Class of '96 alum back to where it all started.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>h2[1]",
+          "image": {
+            "src": "/assets/brand-mark/brand-mark.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "senior-year",
+          "type": "text",
+          "heading": "Senior Year",
+          "body": "The hits that scored the year. Hallway radio, late-night drives, the songs that made it onto the dance floor.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>div[1]>div[1]>h3[1]"
+        },
+        {
+          "id": "the-slow-set",
+          "type": "text",
+          "heading": "The Slow Set",
+          "body": "The ballads. The slow dances. The songs you remember by who you were standing next to.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>div[1]>div[2]>h3[1]"
+        },
+        {
+          "id": "south-florida",
+          "type": "text",
+          "heading": "South Florida",
+          "body": "Miami Bass, freestyle, hip-hop — the regional sound that made our '96 different from anyone else's.\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926 🌊\n\nLet us be known for our deeds",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>div[1]>div[3]>h3[1]"
+        },
+        {
+          "id": "reunion-committee",
+          "type": "text",
+          "heading": "Reunion Committee",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[2]>h4[1]"
+        },
+        {
+          "id": "resources",
+          "type": "text",
+          "heading": "Resources",
+          "body": "© 2026 MBSH Class of '96 Reunion Committee",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[3]>h4[1]"
+        }
+      ]
+    },
+    {
+      "id": "backend-rsvp",
+      "path": "backend/rsvp.html",
+      "title": "RSVP — MBSH Class of ’96 30th Reunion",
+      "heading": "Save the Date",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "Tell us you're coming. Welcome back, Hi-Tide.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>header[1]>h1[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "countdown-to-the-night",
+          "type": "text",
+          "heading": "Countdown to the Night",
+          "body": "Saturday, November 7, 2026 — Miami Shores Country Club",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>h2[1]",
+          "image": {
+            "src": "/assets/mascot/01-wave-hello.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "what-to-expect-that-night",
+          "type": "text",
+          "heading": "What to expect that night",
+          "body": "Black-tie cocktail. Live tributes. A soundtrack that knows you. The Class of '96 — back together, exactly thirty years on.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>h2[1]",
+          "image": {
+            "src": "/assets/brand-mark/brand-mark.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "arrival",
+          "type": "text",
+          "heading": "Arrival",
+          "body": "Walk the carpet. Find your row. Reconnect over the first thirty minutes.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>div[1]>div[1]>h3[1]"
+        },
+        {
+          "id": "the-tribute",
+          "type": "text",
+          "heading": "The Tribute",
+          "body": "100 years of MBSH. 30 years of '96. A short reel, names we carry, the moments that built us.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>div[1]>div[2]>h3[1]"
+        },
+        {
+          "id": "the-floor",
+          "type": "text",
+          "heading": "The Floor",
+          "body": "The soundtrack drops. The dancefloor opens. The night you've waited thirty years for.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>div[1]>div[3]>h3[1]"
+        },
+        {
+          "id": "why-this-night-why-now",
+          "type": "text",
+          "heading": "Why this night, why now",
+          "body": "Thirty years is more than a number. It's the chapter we get to write together — once. The committee built this site so every classmate sees what's possible, says yes early, and walks in already feeling part of the night.\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926 🌊\n\nLet us be known for our deeds",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[4]>h2[1]"
+        },
+        {
+          "id": "reunion-committee",
+          "type": "text",
+          "heading": "Reunion Committee",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[2]>h4[1]"
+        },
+        {
+          "id": "resources",
+          "type": "text",
+          "heading": "Resources",
+          "body": "© 2026 MBSH Class of '96 Reunion Committee",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[3]>h4[1]"
+        }
+      ]
+    },
+    {
+      "id": "backend-survey",
+      "path": "backend/survey.html",
+      "title": "Survey — MBSH Class of ’96",
+      "heading": "Survey — MBSH Class of ’96",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "Let us know you're coming. Takes 60 seconds. We'll keep you posted as details firm up.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>main[1]>section[1]>div[2]>p[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "class-survey",
+          "type": "text",
+          "heading": "Class Survey",
+          "body": "7 quick questions so we can plan headcount, seating, and keep you in the loop.\n\nSo we can plan seating and catering.\n\n🎉",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>main[1]>section[2]>div[1]>h2[1]",
+          "image": {
+            "src": "/assets/mascot/01-wave-hello.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "you-re-on-the-list",
+          "type": "text",
+          "heading": "You’re on the list!",
+          "body": "Thanks for letting us know. The committee will see your response in real time and we'll keep you posted as details firm up.\n\nA confirmation email has been sent to your inbox.\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>main[1]>section[2]>div[1]>div[1]>h3[1]"
+        }
+      ]
+    },
+    {
+      "id": "backend-through-years",
+      "path": "backend/through-years.html",
+      "title": "Through the Years — MBSH Class of ’96",
+      "heading": "Through the Years",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "One hundred years of Hi-Tides. The eras that built us.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>header[1]>h1[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "1926-2026",
+          "type": "text",
+          "heading": "1926 → 2026.",
+          "body": "The full reel — five eras, the photos, the programs, the polaroids — is in production with the committee. Add a memory below and we'll splice it into the cut.\n\nComing soon — the committee is curating photos and programs.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>div[1]>h2[1]",
+          "image": {
+            "src": "/assets/mascot/01-wave-hello.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "add-a-memory",
+          "type": "text",
+          "heading": "Add a Memory",
+          "body": "Got a story, a snapshot, a thing you remember? Send it. The committee curates and posts.\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926 🌊\n\nLet us be known for our deeds",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>h2[1]",
+          "image": {
+            "src": "/assets/brand-mark/brand-mark.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "reunion-committee",
+          "type": "text",
+          "heading": "Reunion Committee",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[2]>h4[1]"
+        },
+        {
+          "id": "resources",
+          "type": "text",
+          "heading": "Resources",
+          "body": "© 2026 MBSH Class of '96 Reunion Committee",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[3]>h4[1]"
+        }
+      ]
+    },
+    {
+      "id": "backend-tickets",
+      "path": "backend/tickets.html",
+      "title": "Tickets & Sponsorship — MBSH Class of ’96",
+      "heading": "The Night",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "Two ways in: secure your seat, or help fund the night.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>header[1]>h1[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "tickets",
+          "type": "text",
+          "heading": "Tickets",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>h2[1]",
+          "image": {
+            "src": "/assets/mascot/01-wave-hello.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "early-bird",
+          "type": "text",
+          "heading": "Early Bird",
+          "body": "Submit your order now; payment instructions will follow.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>div[1]>article[1]>h3[1]",
+          "image": {
+            "src": "/assets/premiere/tier-platinum.png?v=2",
+            "alt": null
+          }
+        },
+        {
+          "id": "regular-price",
+          "type": "text",
+          "heading": "Regular Price",
+          "body": "Beginning September 8, 2026\n\nThe order form automatically uses the current price.\n\nTicket ordering is open. No payment is collected on this site yet; the committee will send payment instructions after receiving your order.\n\nOrder now · Pay when instructed",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>div[1]>article[2]>h3[1]",
+          "image": {
+            "src": "/assets/premiere/tier-gold.png?v=2",
+            "alt": null
+          }
+        },
+        {
+          "id": "place-your-ticket-order",
+          "type": "text",
+          "heading": "Place Your Ticket Order",
+          "body": "Reserve up to 10 seats. We’ll save your order at today’s price and email both you and the committee. This is not a payment receipt.\n\nSubmitting this form reserves your order request at the displayed price. It does not collect payment or guarantee admission until payment is completed.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[1]>h2[1]",
+          "image": {
+            "src": "/assets/premiere/tier-silver.png?v=2",
+            "alt": null
+          }
+        },
+        {
+          "id": "order-received",
+          "type": "text",
+          "heading": "Order Received",
+          "body": "The committee will send payment instructions when the payment account is ready. Keep your order number for reference.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[2]>h2[1]",
+          "image": {
+            "src": "/assets/brand-mark/brand-mark.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "sponsor-inquiry",
+          "type": "text",
+          "heading": "Sponsor Inquiry",
+          "body": "Your contact information will be used to coordinate sponsorship details. Approved sponsor logos appear publicly on the site.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>dialog[1]>form[1]>h3[1]"
+        },
+        {
+          "id": "become-a-patron-of-the-premiere",
+          "type": "text",
+          "heading": "Become a Patron of the Premiere",
+          "body": "Three sponsorship tiers fund the night — and put your name on the wall. Every dollar offsets attendee tickets so more classmates can walk the carpet.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>h2[1]"
+        },
+        {
+          "id": "marquee",
+          "type": "text",
+          "heading": "Marquee",
+          "body": "Top of the bill. Logo on screen during the tribute reel, name in the program, four reserved seats.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>div[1]>div[1]>h3[1]"
+        },
+        {
+          "id": "producer",
+          "type": "text",
+          "heading": "Producer",
+          "body": "Producer credit in the program and on the wall. Two reserved seats.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>div[1]>div[2]>h3[1]"
+        },
+        {
+          "id": "featured",
+          "type": "text",
+          "heading": "Featured",
+          "body": "Featured credit in the program. Recognition on the patrons' page.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>div[1]>div[3]>h3[1]"
+        },
+        {
+          "id": "why-your-patronage-matters",
+          "type": "text",
+          "heading": "Why your patronage matters",
+          "body": "Reunions don't run themselves — venue, food, live tributes, the soundtrack, the tribute reel, the small touches that make the night feel like a film. Every patron tier funds a piece of that. Your contribution lands as more classmates in the room.\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926 🌊\n\nLet us be known for our deeds",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[4]>h2[1]"
+        },
+        {
+          "id": "reunion-committee",
+          "type": "text",
+          "heading": "Reunion Committee",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[2]>h4[1]"
+        },
+        {
+          "id": "resources",
+          "type": "text",
+          "heading": "Resources",
+          "body": "© 2026 MBSH Class of '96 Reunion Committee",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[3]>h4[1]"
+        },
+        {
+          "id": "cta",
+          "type": "cta",
+          "body": null,
+          "instruction": null,
+          "items": [
+            "Place Ticket Order",
+            "Place Ticket Order"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frontend-menu-index",
+      "path": "frontend/menu/index.html",
+      "title": "Gold Menu — Dinner Preferences — MBSH Class of ’96",
+      "heading": "Dinner Preferences",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "Review the finalized dinner menu and choose your entrée for the evening.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>header[1]>h1[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "the-menu-is-taking-shape",
+          "type": "text",
+          "heading": "The menu is taking shape",
+          "body": "To simplify service for Miami Shores Country Club and make the evening smoother for everyone, the committee has narrowed the entrée choices to chicken, fish, and a vegetarian option.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>h2[1]",
+          "image": {
+            "src": "/assets/mascot/01-wave-hello.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "review-the-menu",
+          "type": "text",
+          "heading": "Review the menu",
+          "body": "The hors d’oeuvres, salads, and sides are listed below so you know what will be served.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>div[1]>div[1]>h3[1]",
+          "image": {
+            "src": "/assets/premiere/brand-mark-foil.png?v=2",
+            "alt": null
+          }
+        },
+        {
+          "id": "choose-one-entr-e",
+          "type": "text",
+          "heading": "Choose one entrée",
+          "body": "Select Tuscan Roasted Chicken, Maple-Bourbon Salmon, or the Vegetarian Entrée.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>div[1]>div[2]>h3[1]"
+        },
+        {
+          "id": "share-dietary-needs",
+          "type": "text",
+          "heading": "Share dietary needs",
+          "body": "Tell the committee about allergies or dietary restrictions so the venue can prepare.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[1]>div[1]>div[3]>h3[1]"
+        },
+        {
+          "id": "hors-d-oeuvres",
+          "type": "text",
+          "heading": "Hors d’Oeuvres",
+          "body": "Included in the finalized menu\n\nFresh Seasonal Fruits\n\nDomestic and Imported Cheeses, Breads, and Crackers",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[2]>form[1]>div[1]>h2[1]"
+        },
+        {
+          "id": "salads",
+          "type": "text",
+          "heading": "Salads",
+          "body": "Included in the finalized menu\n\nGarden Salad\n\nCaesar Salad\n\nSelect one entrée",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[2]>form[1]>div[2]>h2[1]"
+        },
+        {
+          "id": "sides",
+          "type": "text",
+          "heading": "Sides",
+          "body": "Included in the finalized menu\n\nRosemary Fingerling Potatoes\n\nRice Pilaf\n\nSautéed Green Beans",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[2]>form[1]>div[3]>h2[1]"
+        },
+        {
+          "id": "dietary-restrictions",
+          "type": "text",
+          "heading": "Dietary Restrictions",
+          "body": "Any allergies or special requests?\n\nYour entrée selection and dietary notes will help the committee coordinate final meal counts with Miami Shores Country Club.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[2]>form[1]>div[4]>h2[1]"
+        },
+        {
+          "id": "meal-selection-submitted",
+          "type": "text",
+          "heading": "Meal Selection Submitted!",
+          "body": "Your entrée choice and dietary notes have been sent to the committee.",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[2]>div[2]>div[2]>h2[1]"
+        },
+        {
+          "id": "a-smoother-dinner-service",
+          "type": "text",
+          "heading": "A smoother dinner service",
+          "body": "Three entrée choices keep service clear, give guests meaningful options, and help Miami Shores Country Club deliver the evening with care.\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926 🌊\n\nLet us be known for our deeds",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>section[3]>h2[1]"
+        },
+        {
+          "id": "mbsh-committee",
+          "type": "text",
+          "heading": "MBSH Committee",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[2]>h4[1]"
+        },
+        {
+          "id": "resources",
+          "type": "text",
+          "heading": "Resources",
+          "body": "© 2026 MBSH Class of '96 Reunion",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[3]>h4[1]"
+        }
+      ]
+    },
+    {
+      "id": "frontend-page-content-menu-content",
+      "path": "frontend/page-content/menu.content.html",
+      "title": "Frontend Page Content Menu.Content",
+      "heading": "Frontend Page Content Menu.Content",
+      "sections": [
+        {
+          "id": "the-menu-is-taking-shape",
+          "type": "text",
+          "heading": "The menu is taking shape",
+          "body": "To simplify service for Miami Shores Country Club and make the evening smoother for everyone, the committee has narrowed the entrée choices to chicken, fish, and a vegetarian option.",
+          "instruction": null,
+          "source_selector": "section[1]>h2[1]"
+        },
+        {
+          "id": "review-the-menu",
+          "type": "text",
+          "heading": "Review the menu",
+          "body": "The hors d’oeuvres, salads, and sides are listed below so you know what will be served.",
+          "instruction": null,
+          "source_selector": "section[1]>div[1]>div[1]>h3[1]"
+        },
+        {
+          "id": "choose-one-entr-e",
+          "type": "text",
+          "heading": "Choose one entrée",
+          "body": "Select Tuscan Roasted Chicken, Maple-Bourbon Salmon, or the Vegetarian Entrée.",
+          "instruction": null,
+          "source_selector": "section[1]>div[1]>div[2]>h3[1]"
+        },
+        {
+          "id": "share-dietary-needs",
+          "type": "text",
+          "heading": "Share dietary needs",
+          "body": "Tell the committee about allergies or dietary restrictions so the venue can prepare.",
+          "instruction": null,
+          "source_selector": "section[1]>div[1]>div[3]>h3[1]"
+        },
+        {
+          "id": "hors-d-oeuvres",
+          "type": "text",
+          "heading": "Hors d’Oeuvres",
+          "body": "Included in the finalized menu\n\nFresh Seasonal Fruits\n\nDomestic and Imported Cheeses, Breads, and Crackers",
+          "instruction": null,
+          "source_selector": "section[2]>div[2]>form[1]>div[1]>h2[1]"
+        },
+        {
+          "id": "salads",
+          "type": "text",
+          "heading": "Salads",
+          "body": "Included in the finalized menu\n\nGarden Salad\n\nCaesar Salad\n\nSelect one entrée",
+          "instruction": null,
+          "source_selector": "section[2]>div[2]>form[1]>div[2]>h2[1]"
+        },
+        {
+          "id": "sides",
+          "type": "text",
+          "heading": "Sides",
+          "body": "Included in the finalized menu\n\nRosemary Fingerling Potatoes\n\nRice Pilaf\n\nSautéed Green Beans",
+          "instruction": null,
+          "source_selector": "section[2]>div[2]>form[1]>div[3]>h2[1]"
+        },
+        {
+          "id": "dietary-restrictions",
+          "type": "text",
+          "heading": "Dietary Restrictions",
+          "body": "Any allergies or special requests?\n\nYour entrée selection and dietary notes will help the committee coordinate final meal counts with Miami Shores Country Club.",
+          "instruction": null,
+          "source_selector": "section[2]>div[2]>form[1]>div[4]>h2[1]"
+        },
+        {
+          "id": "meal-selection-submitted",
+          "type": "text",
+          "heading": "Meal Selection Submitted!",
+          "body": "Your entrée choice and dietary notes have been sent to the committee.",
+          "instruction": null,
+          "source_selector": "section[2]>div[2]>div[2]>h2[1]"
+        },
+        {
+          "id": "a-smoother-dinner-service",
+          "type": "text",
+          "heading": "A smoother dinner service",
+          "body": "Three entrée choices keep service clear, give guests meaningful options, and help Miami Shores Country Club deliver the evening with care.",
+          "instruction": null,
+          "source_selector": "section[3]>h2[1]"
+        }
+      ]
+    },
+    {
+      "id": "frontend-templates-interior-page-template",
+      "path": "frontend/templates/interior-page-template.html",
+      "title": "{{PAGE_TITLE}}",
+      "heading": "{{PAGE_HEADING}}",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "{{PAGE_SUBHEAD}}\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926 🌊\n\nLet us be known for our deeds",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>header[1]>h1[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "reunion-committee",
+          "type": "text",
+          "heading": "Reunion Committee",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[2]>h4[1]"
+        },
+        {
+          "id": "resources",
+          "type": "text",
+          "heading": "Resources",
+          "body": "© 2026 MBSH Class of '96 Reunion Committee",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[3]>h4[1]"
+        }
+      ]
+    },
+    {
+      "id": "frontend-templates-landing-page-template",
+      "path": "frontend/templates/landing-page-template.html",
+      "title": "{{PAGE_TITLE}}",
+      "heading": "{{PAGE_TITLE}}",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "{{CHATBOT_CONTENT}}",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>div[1]"
+        }
+      ]
+    },
+    {
+      "id": "frontend-templates-simple-page-template",
+      "path": "frontend/templates/simple-page-template.html",
+      "title": "{{PAGE_TITLE}}",
+      "heading": "{{PAGE_HEADING}}",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "body": "{{PAGE_SUBHEAD}}\n\nClass of 1996 · 30th Reunion\n\nHi-Tide Pride Since 1926 🌊\n\nLet us be known for our deeds",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>header[1]>h1[1]",
+          "image": {
+            "src": "/assets/mascot/06-listening.png",
+            "alt": null
+          }
+        },
+        {
+          "id": "mbsh-committee",
+          "type": "text",
+          "heading": "MBSH Committee",
+          "body": null,
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[2]>h4[1]"
+        },
+        {
+          "id": "resources",
+          "type": "text",
+          "heading": "Resources",
+          "body": "© 2026 MBSH Class of '96 Reunion",
+          "instruction": null,
+          "source_selector": "html[1]>body[1]>footer[1]>div[1]>div[3]>h4[1]"
+        }
+      ]
     }
+  ],
+  "offers": [],
+  "ctas": [
+    "Reserve Your Seat",
+    "Place Ticket Order"
+  ],
+  "seo_targets": {
+    "keywords": [],
+    "meta_direction": "MBSH Class of "
+  },
+  "open_questions": [],
+  "media_slots": [],
+  "generated_from": {
+    "source_adapter": "html-importer",
+    "packet_id": null,
+    "derivation": "imported",
+    "execution_status": "imported",
+    "note": "Derived by parsing 16 real HTML page(s) already on disk under portfolio_sites. No copy was written or altered; every section's body is the page's own existing text.",
+    "pages_imported": 16,
+    "could_not_determine": [
+      "frontend/404.html: not imported, shadowed by backend/404.html (backend takes precedence over frontend for this page; both exist with the same content path)",
+      "frontend/_premiere-sandbox.html: not imported, shadowed by backend/_premiere-sandbox.html (backend takes precedence over frontend for this page; both exist with the same content path)",
+      "frontend/capsule.html: not imported, shadowed by backend/capsule.html (backend takes precedence over frontend for this page; both exist with the same content path)",
+      "frontend/index.html: not imported, shadowed by backend/index.html (backend takes precedence over frontend for this page; both exist with the same content path)",
+      "dist/index.html: not imported, shadowed by backend/index.html (backend takes precedence over dist for this page; both exist with the same content path)",
+      "frontend/memorial.html: not imported, shadowed by backend/memorial.html (backend takes precedence over frontend for this page; both exist with the same content path)",
+      "frontend/menu.html: not imported, shadowed by backend/menu.html (backend takes precedence over frontend for this page; both exist with the same content path)",
+      "frontend/playlist.html: not imported, shadowed by backend/playlist.html (backend takes precedence over frontend for this page; both exist with the same content path)",
+      "frontend/rsvp.html: not imported, shadowed by backend/rsvp.html (backend takes precedence over frontend for this page; both exist with the same content path)",
+      "dist/rsvp.html: not imported, shadowed by backend/rsvp.html (backend takes precedence over dist for this page; both exist with the same content path)",
+      "frontend/survey.html: not imported, shadowed by backend/survey.html (backend takes precedence over frontend for this page; both exist with the same content path)",
+      "frontend/through-years.html: not imported, shadowed by backend/through-years.html (backend takes precedence over frontend for this page; both exist with the same content path)",
+      "frontend/tickets.html: not imported, shadowed by backend/tickets.html (backend takes precedence over frontend for this page; both exist with the same content path)",
+      "page backend/404.html: 1 of 1 image(s) could not be associated with a section by proximity",
+      "page backend/404.html: no meta description present",
+      "page backend/_premiere-sandbox.html: no meta description present",
+      "page backend/capsule.html: 1 of 4 image(s) could not be associated with a section by proximity",
+      "page backend/capsule.html: no meta description present",
+      "page backend/index.html: body text appears before any heading; grouped into a synthetic hero section rather than dropped",
+      "page backend/index.html: 2 of 4 image(s) could not be associated with a section by proximity",
+      "page backend/memorial.html: 2 of 4 image(s) could not be associated with a section by proximity",
+      "page backend/memorial.html: no meta description present",
+      "page backend/menu.html: 1 of 4 image(s) could not be associated with a section by proximity",
+      "page backend/playlist.html: 1 of 4 image(s) could not be associated with a section by proximity",
+      "page backend/playlist.html: no meta description present",
+      "page backend/rsvp.html: 1 of 4 image(s) could not be associated with a section by proximity",
+      "page backend/survey.html: body text appears before any heading; grouped into a synthetic hero section rather than dropped",
+      "page backend/through-years.html: 1 of 4 image(s) could not be associated with a section by proximity",
+      "page backend/through-years.html: no meta description present",
+      "page backend/tickets.html: 1 of 7 image(s) could not be associated with a section by proximity",
+      "page frontend/menu/index.html: 1 of 4 image(s) could not be associated with a section by proximity",
+      "page frontend/page-content/menu.content.html: no meta description present",
+      "page frontend/templates/interior-page-template.html: 3 of 4 image(s) could not be associated with a section by proximity",
+      "page frontend/templates/landing-page-template.html: body text appears before any heading; grouped into a synthetic hero section rather than dropped",
+      "page frontend/templates/simple-page-template.html: 3 of 4 image(s) could not be associated with a section by proximity",
+      "tokens: no background-color declaration found to detect a page background from"
+    ]
   },
   "backend": {
-    "enabled": true,
-    "type": "php-mysql",
-    "host_provider": "godaddy_web_hosting_deluxe",
-    "cpanel_account": "nineoo",
-    "cpanel_host": "FAMTASTICINC.COM",
-    "subdomain": "api.mbsh96reunion.com",
-    "subdomain_dns_state": "deferred_to_session_8",
-    "endpoints": [
-      {
-        "path": "/rsvp.php",
-        "method": "POST",
-        "purpose": "RSVP submissions"
-      },
-      {
-        "path": "/sponsor.php",
-        "method": "POST",
-        "purpose": "Sponsor inquiry + logo upload to pending"
-      },
-      {
-        "path": "/memory.php",
-        "method": "POST",
-        "purpose": "Memory submission + photo upload to pending"
-      },
-      {
-        "path": "/capsule.php",
-        "method": "POST",
-        "purpose": "Time capsule form, queues for November 7 send"
-      },
-      {
-        "path": "/chatbot-question.php",
-        "method": "POST",
-        "purpose": "Chatbot fallback question collector"
-      },
-      {
-        "path": "/attendees.php",
-        "method": "GET",
-        "purpose": "Who's Coming JSON feed (display_publicly only)"
-      },
-      {
-        "path": "/sponsors.php",
-        "method": "GET",
-        "purpose": "Approved sponsor wall JSON feed"
-      },
-      {
-        "path": "/in-memory.php",
-        "method": "GET",
-        "purpose": "In Memory JSON feed (active only)"
-      },
-      {
-        "path": "/admin/*.php",
-        "method": "POST",
-        "purpose": "Committee admin pages (session+CSRF)"
-      }
-    ],
-    "database": {
-      "type": "mariadb",
-      "version": "10.6.24",
-      "host": "localhost",
-      "name": "mbsh96_reunion",
-      "user": "mbsh_user",
-      "schema_path": "backend/schema.sql",
-      "schema_apply_state": "pending_via_phpmyadmin_OR_ssh",
-      "tables": [
-        "rsvps",
-        "sponsors_pending",
-        "sponsors_approved",
-        "memories",
-        "in_memory",
-        "time_capsules",
-        "chatbot_questions",
-        "rate_limits",
-        "admin_login_attempts",
-        "admin_audit_log"
-      ],
-      "charset": "utf8mb4",
-      "collation": "utf8mb4_unicode_ci",
-      "production": {
-        "schema_applied_at": "2026-05-05T18:50:48.952374Z",
-        "tables_count": 10
-      }
-    },
-    "email_provider": "resend",
-    "email_sending_domain": "send.mbsh96reunion.com",
-    "email_sending_domain_state": "ok",
-    "email_senders": {
-      "noreply": "noreply@send.mbsh96reunion.com",
-      "committee": "committee@send.mbsh96reunion.com",
-      "harry": "harry@send.mbsh96reunion.com"
-    },
-    "email_reply_to": "mbsh96reunion@gmail.com",
-    "production_secrets_path": "/home/nineoo/.config/mbsh-config.php",
-    "production_secrets_mode": "0600",
-    "pending_uploads_path": "/home/nineoo/uploads-pending",
-    "approved_uploads_path": "/home/nineoo/public_html/uploads/approved",
-    "cron": [
-      {
-        "script": "cron/send-capsules.php",
-        "schedule": "0 7 * * *",
-        "tz": "UTC",
-        "activates_at": "session_6"
-      },
-      {
-        "script": "cron/cleanup-rate-limits.php",
-        "schedule": "0 3 * * *",
-        "tz": "UTC",
-        "activates_at": "session_8"
-      }
-    ],
-    "security_rules": {
-      "cors_allowlist_origins": [
-        "https://mbsh96reunion.com",
-        "https://www.mbsh96reunion.com",
-        "http://localhost:8080"
-      ],
-      "cors_pattern_origins": [
-        "/^https:\\/\\/[a-z0-9-]+--[a-z0-9-]+\\.netlify\\.app$/",
-        "/^https:\\/\\/[a-z0-9-]+\\.netlify\\.app$/"
-      ],
-      "cors_pattern_lockdown_session": "session_9",
-      "rate_limits": {
-        "public_per_min": 5,
-        "public_per_hour": 20,
-        "admin_login_per_15min": 5,
-        "admin_lockout_min": 60
-      },
-      "upload_mime_allow": [
-        "image/jpeg",
-        "image/png",
-        "image/webp"
-      ],
-      "upload_mime_reject": [
-        "image/svg+xml"
-      ],
-      "upload_max_bytes": 2097152,
-      "upload_max_dimensions": [
-        4000,
-        4000
-      ],
-      "csrf_required_for_state_change": true,
-      "auth_via_session_cookie_only": true,
-      "no_auth_tokens_in_url": true,
-      "cors_locked_at": "2026-05-05T18:53:14.441713Z",
-      "cors_locked_to": "mbsh-reunion-staging"
-    },
-    "deployed_at": "2026-05-05T18:40:56.367903Z",
-    "deploy_revision": "cdf8921",
-    "email_sending_domain_verified_at": "2026-05-05T18:51:13.859840Z"
-  },
-  "character_sets": [
-    {
-      "id": "hi-tide-harry-v1",
-      "name": "Hi-Tide Harry",
-      "description_internal": "Sonic-style bipedal cartoon character \u2014 scarlet body, white shirt with 'Hi-Tide Harry' text, white sneakers, energy and Miami Beach attitude",
-      "description_external": "Original cartoon hero with athletic proportions; reunion mascot for MBSH Class of '96 30th reunion",
-      "style": "illustrated",
-      "anchor_image_path": "/Users/famtasticfritz/famtastic/sites/site-mbsh-reunion/assets/mascot/canonical-reference.png",
-      "anchor_md5": "27204d3e1a53fa0af7295fa786aecc30",
-      "deploy_mirror_path": "/Users/famtasticfritz/famtastic-sites/mbsh-reunion/frontend/assets/mascot/",
-      "poses": [
-        {
-          "index": 1,
-          "pose_name": "wave-hello",
-          "image_path": "assets/mascot/poses/01-wave-hello.png",
-          "default_position": "hero-right",
-          "status": "approved"
-        },
-        {
-          "index": 2,
-          "pose_name": "thumbs-up",
-          "image_path": "assets/mascot/poses/02-thumbs-up.png",
-          "default_position": "card-badge",
-          "status": "approved"
-        },
-        {
-          "index": 3,
-          "pose_name": "thinking",
-          "image_path": "assets/mascot/poses/03-thinking.png",
-          "default_position": "section-peek-left",
-          "status": "approved"
-        },
-        {
-          "index": 4,
-          "pose_name": "excited-cheer",
-          "image_path": "assets/mascot/poses/04-excited-cheer.png",
-          "default_position": "footer-right",
-          "status": "approved"
-        },
-        {
-          "index": 5,
-          "pose_name": "disappointed",
-          "image_path": "assets/mascot/poses/05-disappointed.png",
-          "default_position": "fallback-state",
-          "status": "approved"
-        },
-        {
-          "index": 6,
-          "pose_name": "listening",
-          "image_path": "assets/mascot/poses/06-listening.png",
-          "default_position": "chatbot-idle",
-          "status": "approved_implicitly"
-        },
-        {
-          "index": 7,
-          "pose_name": "confirming",
-          "image_path": "assets/mascot/poses/07-confirming.png",
-          "default_position": "hero-right-alt",
-          "status": "approved_implicitly"
-        },
-        {
-          "index": 8,
-          "pose_name": "pointing",
-          "image_path": "assets/mascot/poses/08-pointing.png",
-          "default_position": "section-peek-right",
-          "status": "approved_implicitly"
-        },
-        {
-          "index": 9,
-          "pose_name": "confused",
-          "image_path": "assets/mascot/poses/09-confused.png",
-          "default_position": "chatbot-fallback",
-          "status": "approved_implicitly"
-        },
-        {
-          "index": 10,
-          "pose_name": "running",
-          "image_path": "assets/mascot/poses/10-running.png",
-          "default_position": "footer-left",
-          "status": "approved_implicitly"
-        }
-      ],
-      "target_pose_count": 25,
-      "remaining_poses_to_generate": 15,
-      "provider_chosen": "chatgpt-manual",
-      "provider_alternatives_tried": [
-        "leonardo-lightning-xl-init",
-        "leonardo-lightning-xl-charref",
-        "gpt-image-2-edits",
-        "imagen-4-vertex",
-        "leonardo-phoenix-1.0-pose-from-pose",
-        "openai-responses-input-image"
-      ],
-      "provider_notes": "FLUX too consistency-locked for pose variation; Imagen-4 Vertex AI access blocked at account level; ChatGPT-manual produced 5/5 canonical pass. Once gpt-image-2 / Imagen-4 access stable, scripted pipeline becomes default.",
-      "recipe_path": "/Users/famtasticfritz/famtastic/docs/sites/site-mbsh-reunion/cowork-audit-001/06-media-recipes.md#recipe-2",
-      "created_at": "2026-04-28"
-    }
-  ],
-  "character_branding": {
-    "home": [
-      {
-        "pose": "wave-hello",
-        "position": "hero-right",
-        "size": "280px-desktop, 150px-mobile"
-      }
-    ],
-    "rsvp": [
-      {
-        "pose": "pointing",
-        "position": "section-peek-right",
-        "context": "near-submit-button"
-      }
-    ],
-    "tickets": [
-      {
-        "pose": "running",
-        "position": "footer-left",
-        "context": "speed-and-energy-personality-moment"
-      }
-    ],
-    "chatbot": [
-      {
-        "pose": "listening",
-        "position": "chatbot-idle",
-        "size": "64px"
-      },
-      {
-        "pose": "wave-hello",
-        "position": "chatbot-greeting",
-        "size": "120px"
-      },
-      {
-        "pose": "confused",
-        "position": "chatbot-fallback",
-        "context": "no-faq-match"
-      }
-    ]
-  },
-  "brand_mark": {
-    "type": "famtastic-commissioned",
-    "milestone": "30+100",
-    "image_path": "/Users/famtasticfritz/famtastic-sites/mbsh-reunion/frontend/assets/brand-mark/brand-mark.png",
-    "workshop_path": "/Users/famtasticfritz/famtastic-sites/mbsh-reunion/frontend/assets/brand-mark/rejected/",
-    "evaluation_path": "/Users/famtasticfritz/famtastic/docs/sites/site-mbsh-reunion/cowork-audit-001/08-brand-mark-evaluation.md",
-    "rounds_run": 2,
-    "candidates_total": 6,
-    "promoted": "round-02-candidate-01",
-    "provider": "openai-responses-gpt-image-1",
-    "cost_total_usd": 0.3,
-    "placements": [
-      {
-        "context": "hero-top-left",
-        "size": "120px-desktop, 80px-mobile",
-        "treatment": "stamp-of-authority"
-      },
-      {
-        "context": "story-forever-moment",
-        "size": "centered-large",
-        "treatment": "subtle-pulse-animation"
-      },
-      {
-        "context": "footer-left",
-        "size": "80px"
-      }
-    ],
-    "iteration_2_path": "Pursue written permission from MBSH school admin for the official 100 Years of Excellence medallion. If granted, swap commissioned mark for official one in iteration 2.",
-    "v1_status": "approved_and_deployed_in_hero"
-  },
-  "background_loops": [
-    {
-      "slug": "01-yearbook-pages",
-      "concept": "1996 yearbook pages softly flipping",
-      "mood": "calm cinematic, page flip in breeze, dust motes",
-      "size_bytes": 3500000,
-      "selected_for": null
-    },
-    {
-      "slug": "02-rebuilt-school-push-in",
-      "concept": "Rebuilt school exterior, slow camera push-in",
-      "mood": "architectural pull-in",
-      "size_bytes": 4400000,
-      "selected_for": null
-    },
-    {
-      "slug": "03-vhs-to-modern-transition",
-      "concept": "VHS-to-modern era transition",
-      "mood": "time-jump treatment",
-      "size_bytes": 5200000,
-      "selected_for": null
-    },
-    {
-      "slug": "04-red-silver-mascot-energy",
-      "concept": "Red/silver mascot energy",
-      "mood": "mascot-themed motion",
-      "size_bytes": 7600000,
-      "selected_for": null
-    },
-    {
-      "slug": "05-dancefloor-confetti",
-      "concept": "Dancefloor confetti",
-      "mood": "event-class celebration",
-      "size_bytes": 6100000,
-      "selected_for": "hero",
-      "promoted": true
-    }
-  ],
-  "audio_assets": {
-    "voice_candidates_path": "/Users/famtasticfritz/famtastic/docs/operating-rules/benchmark-runs/audio/B-005-*",
-    "voice_selection_state": "5_candidates_generated_none_selected",
-    "voice_selected": null,
-    "sfx_candidates_path": "/Users/famtasticfritz/famtastic/docs/operating-rules/benchmark-runs/audio/B-006-*",
-    "sfx_selection_state": "5_candidates_generated_deferred_to_session_6",
-    "music_candidate_path": "/Users/famtasticfritz/famtastic/docs/operating-rules/benchmark-runs/audio/B-007-music-east-coast-boombap-reunion-bed.mp3",
-    "music_state": "1_candidate_generated_spotify_embed_is_actual_vehicle"
-  },
-  "deployment_pipeline": {
-    "stage_target": "session_8",
-    "production_target": "session_9",
-    "reunion_date": "2026-11-07",
-    "timeline_path": "/Users/famtasticfritz/famtastic/docs/sites/site-mbsh-reunion/cowork-audit-001/07-infrastructure-pipeline.md",
-    "credentials_helper": "/Users/famtasticfritz/famtastic-sites/mbsh-reunion/scripts/setup-mbsh-backend.sh"
-  },
-  "config_path": "/Users/famtasticfritz/famtastic-sites/mbsh-reunion/config/site-config.json",
-  "interview_state": {
-    "mode": "skipped",
-    "rationale": "V1-BRIEF was authored manually and loaded as authoritative spec.client_brief per discovery doc recommendation (the chat-driven interview is wrong-shaped for a Tier C flagship of this complexity).",
-    "completed_at": "2026-04-29T17:10:00.000Z"
-  },
-  "_revision": 1,
-  "_last_modified": "2026-05-02T18:30:00.000Z",
-  "_audit_sessions": [
-    {
-      "audit_id": "cowork-audit-001",
-      "date": "2026-05-02",
-      "deliverables_path": "/Users/famtasticfritz/famtastic/docs/sites/site-mbsh-reunion/cowork-audit-001/",
-      "headline_finding": "Studio cannot produce MBSH at all today; build is forward-looking artifact for post-recommendations world. Recipes-as-product framing is the actual moat. Briefing-vs-repo drift is exhibit A for the knowledge capture tool case."
-    }
-  ],
-  "last_smoke_test": {
-    "timestamp": "2026-05-05T21:15:33.152386Z",
-    "passed": 7,
-    "failed": 0,
-    "dns_fallback": false,
-    "results": [
-      {
-        "name": "rsvp",
-        "status": 200,
-        "result": "pass"
-      },
-      {
-        "name": "capsule",
-        "status": 200,
-        "result": "pass"
-      },
-      {
-        "name": "chatbot-question",
-        "status": 200,
-        "result": "pass"
-      },
-      {
-        "name": "attendees",
-        "status": 200,
-        "result": "pass"
-      },
-      {
-        "name": "sponsors",
-        "status": 200,
-        "result": "pass"
-      },
-      {
-        "name": "in-memory",
-        "status": 200,
-        "result": "pass"
-      },
-      {
-        "name": "cors-reject",
-        "status": 403,
-        "result": "pass"
-      }
-    ]
+    "root": "backend",
+    "runtime": "php",
+    "schema_file": null,
+    "deploy_target": null,
+    "migrate_command": null,
+    "authored_by": "external",
+    "studio_understands_contents": false,
+    "verify": [],
+    "verification": "none_declared",
+    "note": "Studio deploys this backend but no behavioral checks are declared, so nothing proves it works. A rendered page is not proof for an application site."
   }
 }
