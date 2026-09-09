@@ -44,6 +44,11 @@ backend/uploads/pending/
 *.tmp
 *.bak
 
+# Local inspection exports may contain attendee names and email addresses.
+# Keep them available to the owner locally, never in repository history.
+artifacts/MBSH96-Ticket-Interest-Report-*.xlsx
+artifacts/MBSH96-Ticket-Interest-Report-*.xlsx.inspect.ndjson
+
 # PHP session files in tests
 sess_*
 
