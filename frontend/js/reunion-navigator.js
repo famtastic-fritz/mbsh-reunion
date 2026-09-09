@@ -1,5 +1,5 @@
 /*
- * MBSH Reunion Navigator v1
+ * MBSH Reunion Navigator v2
  *
  * A deliberately small, non-mutating orientation layer for the public cinema,
  * verified attendee portal, and capability-filtered Committee Desk. It points
@@ -9,7 +9,7 @@
 (function (window, document) {
   'use strict';
 
-  const VERSION = '1';
+  const VERSION = '2';
   const ACTIVE_CLASS = 'mbsh-guide-target';
   const instances = new Map();
 
@@ -102,17 +102,25 @@
         {
           key: 'command',
           title: 'Begin with what needs attention',
-          body: 'The Command center summarizes priorities. It does not make changes—open the proper workspace before acting.',
+          body: 'The Command center is a signal board, not a row of dead totals. Open the related workspace to inspect the source record, latest status, and next accountable action.',
           target: '[data-section="command"]',
           action: { selector: '[data-section="command"]', label: 'Open Command center' },
         },
         {
           key: 'people',
           capability: 'view_roster',
-          title: 'Find one attendee at a time',
-          body: 'People & RSVP starts with an intentional search. It does not automatically expose a roster.',
+          title: 'Know which people count you are reading',
+          body: 'People & RSVP reconciles current portal accounts, production RSVPs, and the legacy survey audience. Historical rows can contain duplicate email addresses, so audience totals and unique people are not always the same number.',
           target: '[data-section="people"]',
           action: { selector: '[data-section="people"]', label: 'Open People & RSVP' },
+        },
+        {
+          key: 'dinner',
+          capability: 'view_menu',
+          title: 'Protect dinner and dietary details',
+          body: 'Dinner & dietary shows production meal submissions linked by normalized email. Use the newest known selection, keep allergies and accessibility notes private, and investigate an empty result instead of assuming nobody responded.',
+          target: '[data-section="dinner"]',
+          action: { selector: '[data-section="dinner"]', label: 'Open Dinner & dietary' },
         },
         {
           key: 'review',
@@ -126,17 +134,25 @@
           key: 'messages',
           capability: 'view_inbox',
           title: 'Keep conversations accountable',
-          body: 'Use Messages to read the complete timeline, give a real next step, and set an honest waiting status.',
+          body: 'Use Messages for attendee timelines and accountable replies. Shay’s temporary Stripe setup room securely routes general setup status and questions to Fritz; it must never collect passwords, bank numbers, SSNs, API keys, card details, or verification codes.',
           target: '[data-section="messages"]',
           action: { selector: '[data-section="messages"]', label: 'Open Messages' },
         },
         {
           key: 'tickets',
           capability: 'manage_tickets',
-          title: 'Treat tickets as a real lifecycle',
-          body: 'Tickets & check-in is operational work. Confirm the authoritative order or documented exception before admitting anyone.',
+          title: 'A saved request is not a paid ticket',
+          body: 'The site can capture a ticket request while Stripe is unfinished, but it remains pending. Confirm payment authority before issuing admission, and use Sample Ticket Studio only for artwork previews—not entry.',
           target: '[data-section="tickets"]',
           action: { selector: '[data-section="tickets"]', label: 'Open Tickets & check-in' },
+        },
+        {
+          key: 'delivery',
+          roles: ['site_owner'],
+          title: 'Operate email as a real campaign lifecycle',
+          body: 'Email & workers separates drafted, accepted, delivered, failed, retried, suppressed, and duplicate-protected sends. Welcome campaigns must deduplicate legacy rows by normalized email and honor preferences or unsubscribe requests.',
+          target: '[data-section="delivery"]',
+          action: { selector: '[data-section="delivery"]', label: 'Open Email & workers' },
         },
       ],
     },
@@ -175,11 +191,11 @@
     }
   }
 
-  function filterSteps(role, capabilities) {
+  function filterSteps(role, capabilities, staffRole = '') {
     const guide = guides[role];
     if (!guide) return [];
     const allowed = new Set(Array.isArray(capabilities) ? capabilities : []);
-    return guide.steps.filter((step) => !step.capability || allowed.has(step.capability));
+    return guide.steps.filter((step) => (!step.capability || allowed.has(step.capability)) && (!step.roles || step.roles.includes(staffRole)));
   }
 
   function clearSpotlight(instance) {
@@ -286,9 +302,9 @@
     return panel;
   }
 
-  function mount({ role, capabilities = [] } = {}) {
+  function mount({ role, capabilities = [], staffRole = '' } = {}) {
     if (!guides[role] || instances.has(role)) return instances.get(role) || null;
-    const steps = filterSteps(role, capabilities);
+    const steps = filterSteps(role, capabilities, staffRole);
     if (!steps.length) return null;
 
     const launcher = document.createElement('button');
@@ -348,7 +364,7 @@
   window.addEventListener('mbsh:committee-ready', (event) => {
     const detail = event.detail || {};
     if (!detail.authorized) return;
-    mount({ role: 'committee', capabilities: detail.capabilities || [] });
+    mount({ role: 'committee', capabilities: detail.capabilities || [], staffRole: detail.role || '' });
   });
 
   window.MBSHReunionNavigator = { mount, mountPublic };

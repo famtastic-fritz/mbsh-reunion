@@ -38,7 +38,8 @@
       <div class="footer__encore">
         <p class="footer__encore-eyebrow">— Encore —</p>
         <p class="footer__copyright">© 2026 MBSH Class of '96 Reunion</p>
-        <p class="footer__credit">Site by <a href="https://famtasticdesigns.com" rel="noopener">FAMtastic Designs</a></p>
+        <p class="footer__credit">Reunion experience created by <a href="https://famtasticdesigns.com" rel="noopener">FAMtastic Designs</a></p>
+        <p class="footer__credit"><strong>Your business deserves its premiere.</strong> <a href="https://famtasticdesigns.com" rel="noopener">Launch a Starter Website for $199 →</a></p>
       </div>
     </div>
     <div class="footer__rail footer__rail--bottom" aria-hidden="true"></div>`;
@@ -245,7 +246,7 @@
       document.head.appendChild(style);
     }
     const script = document.createElement('script');
-    script.src = '/js/reunion-navigator.js?v=1';
+    script.src = '/js/reunion-navigator.js?v=3';
     script.defer = true;
     script.dataset.reunionNavigatorScript = 'true';
     script.addEventListener('load', ready, { once: true });

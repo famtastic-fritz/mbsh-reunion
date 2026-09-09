@@ -21,7 +21,10 @@ git -C "$ROOT_DIR" archive "$RELEASE_SHA" | tar -xf - -C "$OUTPUT_DIR/source"
 # The production webroot is unified. Public presentation owns ordinary HTML,
 # CSS, JS, and assets; the backend contributes runtime PHP and access-control
 # files; WordPress receives only this repository's custom plugin and theme.
-rsync -a "$OUTPUT_DIR/source/frontend/" "$OUTPUT_DIR/webroot/"
+rsync -a \
+  --exclude='assets/social/' \
+  --exclude='assets/yearbook-proof/' \
+  "$OUTPUT_DIR/source/frontend/" "$OUTPUT_DIR/webroot/"
 
 while IFS= read -r source_path; do
   relative_path="${source_path#backend/}"
@@ -51,7 +54,7 @@ done < <(
 )
 
 printf '%s\n' "$RELEASE_SHA" > "$OUTPUT_DIR/commit"
-tar -czf "$OUTPUT_DIR/release.tar.gz" -C "$OUTPUT_DIR" webroot manifest.paths manifest.sha256 commit
+COPYFILE_DISABLE=1 tar -czf "$OUTPUT_DIR/release.tar.gz" -C "$OUTPUT_DIR" webroot manifest.paths manifest.sha256 commit
 
 echo "Release commit: $RELEASE_SHA"
 echo "Release directory: $OUTPUT_DIR"

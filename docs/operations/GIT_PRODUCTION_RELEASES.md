@@ -24,8 +24,12 @@ The release builder maps these tracked sources into the unified webroot:
   below `/home/nineoo/public_html/cms/`.
 
 The builder excludes database content, runtime secrets, approved uploads,
-WordPress uploads, dependency folders, local artifacts, and non-runtime backend
-files. It never uses `rsync --delete` against the shared webroot.
+WordPress uploads, dependency folders, local artifacts, non-runtime backend
+files, and the curated `frontend/assets/social/` and
+`frontend/assets/yearbook-proof/` collections. Those reviewed media collections
+have their own publication lifecycle and must not be overwritten by an
+application-code deployment or rollback. The deployer never uses
+`rsync --delete` against the shared webroot.
 
 ## Release procedure
 
@@ -50,6 +54,10 @@ files. It never uses `rsync --delete` against the shared webroot.
 6. Verify the printed `DEPLOYED` commit, production checksums, PHP syntax,
    public routes, authenticated boundaries, and the task-specific browser
    journey. Record the commit and evidence in the deployment log.
+
+The release must also preserve any shared-document-root host isolation rules in
+`frontend/.htaccess`. A deployment is not approved if the `famtasticinc.com`
+host would resolve to reunion content.
 
 The active production commit is recorded at:
 

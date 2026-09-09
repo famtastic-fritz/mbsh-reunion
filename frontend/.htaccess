@@ -6,6 +6,24 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Keep HTTP-01 reachable while issuing/renewing the public certificate, then
+  # canonicalize every other primary-domain request to the secure apex.
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?famtasticinc\.com$ [NC]
+  RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/ [NC]
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://famtasticinc.com%{REQUEST_URI} [R=301,L,NE]
+
+  # Primary-domain isolation. The hosting account's main domain and the MBSH
+  # addon domain currently share a cPanel document root. Route only the
+  # FAMtastic Inc. host into its isolated static release directory while the
+  # reunion continues to resolve its existing frontend, portal, CMS, APIs and
+  # uploads from this root.
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?famtasticinc\.com$ [NC]
+  RewriteRule ^$ famtasticinc-landing/index.html [END]
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?famtasticinc\.com$ [NC]
+  RewriteRule ^(assets/.*|styles\.css|site\.js|robots\.txt|sitemap\.xml)$ famtasticinc-landing/$1 [END]
+
   # One canonical dinner-preference route; retain old bookmarks without
   # maintaining a second copy of the page.
   RewriteRule ^menu\.html$ /menu/ [R=308,L,NE]

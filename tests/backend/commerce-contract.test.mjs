@@ -8,6 +8,7 @@ const browser = fs.readFileSync(path.join(root, 'frontend/js/ticket-order.js'), 
 const commerce = fs.readFileSync(path.join(root, 'wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-commerce.php'), 'utf8');
 const plugin = fs.readFileSync(path.join(root, 'wordpress/wp-content/plugins/famtastic-reunion-platform/famtastic-reunion-platform.php'), 'utf8');
 const tickets = fs.readFileSync(path.join(root, 'wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-tickets.php'), 'utf8');
+const operations = fs.readFileSync(path.join(root, 'wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-operations.php'), 'utf8');
 const theme = fs.readFileSync(path.join(root, 'wordpress/wp-content/themes/famtastic-event-cinema/index.php'), 'utf8');
 
 assert.doesNotMatch(backend, /fam_send_email|require_once __DIR__ \. '\/lib\/resend\.php'/, 'reservation endpoint must not send pre-payment mail');
@@ -33,6 +34,8 @@ assert.match(commerce, /Famtastic_Reunion_Tickets::issue_for_order/, 'ticket iss
 assert.match(tickets, /_famtastic_reservation_code/, 'MBSH ticket issuance must be linked to the reservation-aware order');
 assert.match(tickets, /_famtastic_ticket_is_test/, 'test tickets must be explicitly marked as non-admission records');
 assert.match(tickets, /test_ticket_not_admission/, 'check-in must reject test-ticket credentials');
+assert.match(operations, /_famtastic_tickets_issued/, 'reconciliation must inspect the ticket issuer marker');
+assert.doesNotMatch(operations, /_famtastic_portal_tickets_issued/, 'reconciliation must not inspect a marker the issuer never writes');
 assert.match(commerce, /woocommerce_add_to_cart_validation/, 'ticket product must reject unlinked direct cart adds');
 assert.match(plugin, /class-commerce\.php/, 'commerce adapter must be loaded by the platform plugin');
 assert.match(theme, /the_content\(\)/, 'WordPress pages must render their content');

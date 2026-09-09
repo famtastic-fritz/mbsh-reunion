@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-09-09
+
+### Git-addressed production recovery
+
+- Replaced file-copy rollback guidance with immutable Git-addressed application releases and rollback-by-commit.
+- Preserved production payment fulfillment, paid-order reconciliation, shared-host isolation, portal data visibility, and the corrected role-aware Committee Desk tour in source control.
+- Corrected the reconciliation marker so background checks inspect the same idempotency record written by ticket issuance.
+- Kept orders, payments, tickets, databases, secrets, uploads, and curated social/yearbook media outside application-code rollback scope.
+- Added release manifests, checksum verification, dry-run change review, recoverable retired-file handling, and deployment documentation.
+
 ## 2026-08-24
 
 ### Reunion Field Guide and role-safe tours

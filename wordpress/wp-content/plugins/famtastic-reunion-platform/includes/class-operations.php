@@ -37,7 +37,25 @@ final class Famtastic_Reunion_Operations
 
     public static function reconciliation_check(): void
     {
-        update_option('famtastic_reunion_reconciliation_heartbeat', ['at'=>current_time('mysql',true),'mode'=>defined('FAMTASTIC_REUNION_MODE')?FAMTASTIC_REUNION_MODE:'unknown'], false);
+        $checked = 0;
+        $waiting = 0;
+        if (function_exists('wc_get_orders')) {
+            $orders = wc_get_orders(['status'=>['processing','completed'],'limit'=>50,'orderby'=>'date','order'=>'DESC']);
+            foreach ($orders as $order) {
+                if (!$order instanceof WC_Order || !$order->is_paid()) continue;
+                $checked++;
+                if (!$order->get_meta('_famtastic_tickets_issued', true)) {
+                    Famtastic_Reunion_Tickets::issue_for_order($order->get_id());
+                    if (!$order->get_meta('_famtastic_tickets_issued', true)) $waiting++;
+                }
+            }
+        }
+        update_option('famtastic_reunion_reconciliation_heartbeat', [
+            'at'=>current_time('mysql',true),
+            'mode'=>defined('FAMTASTIC_REUNION_MODE')?FAMTASTIC_REUNION_MODE:'unknown',
+            'paid_orders_checked'=>$checked,
+            'orders_waiting_for_ticket'=>$waiting,
+        ], false);
     }
 
     public static function delivery_check(): void

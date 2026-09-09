@@ -227,3 +227,17 @@ body[data-premiere="on"] .menu-form .menu-course__rule {
   color: var(--c-off-black) !important;
   opacity: 0.75 !important;
 }
+
+/* Temporary payment-link handoff shown only after a reservation is saved. */
+.stripe-payment-stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(12rem, 15rem); gap: 1.25rem; align-items: center; margin: 1.5rem 0; padding: 1.25rem; border: 1px solid rgba(229,189,103,.45); border-radius: 18px; background: linear-gradient(135deg,rgba(200,16,46,.12),rgba(229,189,103,.07)); }
+.stripe-payment-stage[hidden] { display: none; }
+.stripe-payment-stage__checkout, .stripe-payment-stage__qr { text-align: center; }
+.stripe-payment-stage__checkout > p, .stripe-payment-stage__qr p { margin: .25rem 0 1rem; }
+.stripe-payment-stage__link { display: inline-block; margin-top: .75rem; }
+.stripe-payment-stage__qr img { display: block; width: min(220px,100%); height: auto; margin: auto; padding: .6rem; border-radius: 14px; background: #fff; }
+.ticket-order__truth { padding: 1rem; border-left: 4px solid #e5bd67; background: rgba(0,0,0,.3); }
+.field__help { display: block; margin-top: .45rem; color: #bdb2a5; line-height: 1.4; }
+@media (max-width: 680px) {
+  .stripe-payment-stage { grid-template-columns: 1fr; }
+  .stripe-payment-stage__qr { border-top: 1px solid rgba(229,189,103,.25); padding-top: 1rem; }
+}

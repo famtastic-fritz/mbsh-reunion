@@ -57,6 +57,13 @@ body.alumni-invite-open .mbsh-guide-launcher,
 body.alumni-invite-open .mbsh-reunion-guide { opacity: 0; pointer-events: none; }
 body.mbsh-guide-open .chatbot,
 body.mbsh-guide-open .harry-guide { opacity: 0 !important; pointer-events: none !important; }
+/* The admin portal owns a persistent left navigation rail. Keep its tour and
+   launcher on the opposite edge so neither can cover workspace links. */
+body[data-workspace="admin"] .mbsh-guide-launcher,
+body[data-workspace="admin"] .mbsh-reunion-guide {
+  left: auto;
+  right: max(.85rem, env(safe-area-inset-right));
+}
 @media (max-width: 460px) {
   .mbsh-guide-launcher { min-height: 40px; padding: .58rem .75rem; font-size: .62rem; }
   .mbsh-reunion-guide { bottom: max(4.1rem, calc(env(safe-area-inset-bottom) + 3.55rem)); padding: .9rem; }

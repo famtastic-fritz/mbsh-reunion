@@ -9,6 +9,7 @@ require_once dirname(__DIR__) . '/lib/resend.php';
 require_once dirname(__DIR__) . '/lib/portal-auth.php';
 require_once dirname(__DIR__) . '/lib/portal-email.php';
 require_once dirname(__DIR__) . '/lib/production-snapshot.php';
+require_once dirname(__DIR__) . '/lib/ticket-payments.php';
 
 $config = fam_load_config();
 $config['portal_token_secret'] = $config['portal_token_secret'] ?? ($config['admin_csrf_secret'] ?? '');
