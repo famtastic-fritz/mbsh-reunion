@@ -64,7 +64,7 @@ The canonical hero (at `mbsh-reunion`) is preserved verbatim here. Sections 2-11
 | `attendees.php` | GET public attendee feed (display_publicly only, no PII) |
 | `sponsors.php` | GET approved sponsor wall feed |
 | `in-memory.php` | GET In Memory list (active only) |
-| `admin/login.php` | Admin login form + throttle + audit |
+| `portal/login` | Role-aware attendee and committee sign-in |
 | `admin/logout.php` | Session destroy + redirect |
 | `admin/dashboard.php` | Counts (RSVPs, sponsors, memories, capsules, chatbot fallbacks) |
 | `admin/review-sponsor.php` | Approve / reject pending sponsors (CSRF-gated) |
@@ -88,14 +88,13 @@ The canonical hero (at `mbsh-reunion`) is preserved verbatim here. Sections 2-11
 
 ---
 
-## Deploy (manual today, platform-capability tomorrow)
+## Deploy
 
-### Frontend — Netlify
+### Frontend staging — Netlify
 
 ```
 publish dir: frontend/
-custom domain: mbsh96reunion.com (apex + www)
-SSL: Let's Encrypt via Netlify
+staging domain: mbsh-reunion-staging.netlify.app
 ```
 
 Staging deploy:
@@ -116,25 +115,20 @@ Override the slug only when intentionally creating a different Netlify staging U
 NETLIFY_STAGING_SITE_NAME=mbsh-reunion-demo ./scripts/push-staging.sh
 ```
 
-Production deploys from the `main` branch through the separate production Netlify project and custom domain.
+Production is the unified GoDaddy webroot. It is released from an exact pushed
+Git commit with `scripts/deploy-production.sh`; Netlify is staging only.
 
-### Backend — GoDaddy cPanel (`nineoo` account)
+### Production — GoDaddy cPanel (`nineoo` account)
 
 ```
-1. Run: bash ~/famtastic-sites/mbsh-reunion-v2/scripts/setup-mbsh-backend.sh
-   (captures credentials in TTY, applies schema via SSH, writes
-    /home/nineoo/.config/mbsh-config.php mode 0600)
-2. rsync -avz --exclude=.env backend/ nineoo@FAMTASTICINC.COM:public_html/
-3. Register cron in cPanel:
-     0 7 * * * /usr/bin/php /home/nineoo/public_html/cron/send-capsules.php
-     0 3 * * * /usr/bin/php /home/nineoo/public_html/cron/cleanup-rate-limits.php
-4. Smoke test from EXTERNAL machine:
-     curl -X POST https://api.mbsh96reunion.com/rsvp.php \
-       -H "Origin: https://mbsh96reunion.com" -H "Content-Type: application/json" \
-       -d '{"first_name":"Test","last_name":"Smoke","email":"test@example.com","attending":"yes","form_loaded_at":TIMESTAMP_4S_AGO}'
+1. Commit, test, and push the approved release.
+2. Preview: `./scripts/deploy-production.sh <commit> --dry-run`
+3. Deploy: `./scripts/deploy-production.sh <commit>`
+4. Roll back application code: `./scripts/rollback-production.sh <previous-commit>`
 ```
 
-Future: invocation should be `platform.deploy_backend(site=mbsh-reunion-v2)`.
+See `docs/operations/GIT_PRODUCTION_RELEASES.md`. Database records, payment
+evidence, secrets, and uploads are never rolled back by Git.
 
 ---
 

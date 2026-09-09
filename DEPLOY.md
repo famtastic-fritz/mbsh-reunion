@@ -31,47 +31,36 @@ site-mbsh-reunion/
 
 This file lives **outside web root** with mode `0600`. It is the single source of truth for production credentials.
 
-```php
-<?php
-return [
-  'db_host'               => 'localhost',
-  'db_name'               => 'mbsh_reunion_v2',
-  'db_user'               => 'mbsh_reunion_v2_user',
-  'db_password'           => '***REDACTED***',
-  'resend_api_key'        => '***REDACTED***',
-  'resend_from_domain'    => 'send.mbsh96reunion.com',
-  'committee_email'       => 'mbsh96reunion@gmail.com',
-  'menu_notification_email' => 'valerievalcourt96@gmail.com',
-  'admin_password_hash'   => '$2y$12$teqyXpBFkhT2sEaiW77ZguekS5wB4cVQF.wnyG0UNrdgjECTJOB8u',
-  'admin_csrf_secret'     => '***REDACTED***',
-  'allowed_origins'       => ['https://mbsh96reunion.com', 'https://www.mbsh96reunion.com'],
-  'environment'           => 'production',
-];
-```
-
-**Current admin password:** `Letmein123`  
-**Password hash (above):** bcrypt hash of `Letmein123`
+The file contains database, mail, session, and integration secrets. Never copy
+its values into Git, deployment output, tickets, chat, or documentation. Use
+the approved account-recovery or owner-authorized rotation procedure when an
+administrator cannot sign in.
 
 ### Deployment Steps
 
-1. SSH into GoDaddy hosting
-2. `cd /home/nineoo/public_html/` (or the actual web root)
-3. Pull latest from GitHub OR rsync the repo:
+1. Run the relevant automated and browser tests.
+2. Commit and push the approved release.
+3. Preview the exact commit-addressed production release:
    ```bash
-   # Frontend assets
-   rsync -avz --delete frontend/ /home/nineoo/public_html/
-   
-   # Backend PHP
-   rsync -avz --delete backend/ /home/nineoo/public_html/
+   ./scripts/deploy-production.sh <commit> --dry-run
    ```
-4. Verify `/home/nineoo/.config/mbsh-config.php` exists and has the correct hash
-5. Test: `https://mbsh96reunion.com/menu.php` should respond to POST
+4. Review every changed and retired path, then deploy the same commit:
+   ```bash
+   ./scripts/deploy-production.sh <commit>
+   ```
+5. Verify the deployed commit, checksums, PHP syntax, routes, authentication
+   boundaries, and the release-specific browser journey.
+
+Normal application rollback redeploys a previous Git commit through
+`scripts/rollback-production.sh`. See
+[`docs/operations/GIT_PRODUCTION_RELEASES.md`](docs/operations/GIT_PRODUCTION_RELEASES.md).
 
 ### What Lives on GoDaddy
 
 - All static HTML from `frontend/` (`index.html`, `menu.html`, `survey.html`, etc.)
 - All PHP endpoints from `backend/` (`menu.php`, `survey.php`, `survey2.php`, `rsvp.php`, etc.)
-- Admin panel at `/admin/` (PHP, session-based auth)
+- Role-aware attendee and committee portal at `/portal/`
+- Owner-only WordPress and commerce administration under `/cms/wp-admin/`
 - Database tables: `rsvps`, `menu_selections`, `surveys`, `poll_*`, `admin_*`, etc.
 
 ## Staging — Netlify
@@ -134,8 +123,9 @@ The production database has tables that were created incrementally. Key tables:
 ## Troubleshooting
 
 **Admin login fails:**
-- Check `/home/nineoo/.config/mbsh-config.php` has correct `admin_password_hash`
-- Current hash above is for password `Letmein123`
+- Use the portal's approved password-recovery flow.
+- If recovery is unavailable, perform an owner-authorized credential rotation
+  without printing or committing the replacement secret.
 
 **Form submissions 403 / CORS error:**
 - Verify `allowed_origins` in config includes `https://mbsh96reunion.com`
