@@ -26,7 +26,7 @@ if ! git -C "$ROOT_DIR" merge-base --is-ancestor "$RELEASE_SHA" "$PRODUCTION_SOU
 fi
 
 BUILD_DIR="$(mktemp -d "${TMPDIR:-/tmp}/mbsh-deploy.${RELEASE_SHA:0:12}.XXXXXX")"
-SSH_CONTROL="$BUILD_DIR/ssh-control"
+SSH_CONTROL="/tmp/mbsh-ssh-$$"
 cleanup() {
   ssh -o ControlPath="$SSH_CONTROL" -O exit "$DEPLOY_HOST" >/dev/null 2>&1 || true
   rm -rf "$BUILD_DIR"
