@@ -54,7 +54,7 @@ done < <(
 )
 
 printf '%s\n' "$RELEASE_SHA" > "$OUTPUT_DIR/commit"
-COPYFILE_DISABLE=1 tar -czf "$OUTPUT_DIR/release.tar.gz" -C "$OUTPUT_DIR" webroot manifest.paths manifest.sha256 commit
+COPYFILE_DISABLE=1 tar --no-xattrs -czf "$OUTPUT_DIR/release.tar.gz" -C "$OUTPUT_DIR" webroot manifest.paths manifest.sha256 commit
 
 echo "Release commit: $RELEASE_SHA"
 echo "Release directory: $OUTPUT_DIR"
