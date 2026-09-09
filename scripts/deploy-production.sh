@@ -71,10 +71,7 @@ REMOTE_DIFF
 
 rsync -az -e "$RSYNC_SSH" "$DEPLOY_HOST:$REMOTE_RELEASE/changed.paths" "$BUILD_DIR/changed.paths"
 if [[ -s "$BUILD_DIR/changed.paths" ]]; then
-  split -l 10 "$BUILD_DIR/changed.paths" "$BUILD_DIR/changed.part."
-  for changed_part in "$BUILD_DIR"/changed.part.*; do
-    rsync -az --partial -e "$RSYNC_SSH" --files-from="$changed_part" "$BUILD_DIR/webroot/" "$DEPLOY_HOST:$REMOTE_RELEASE/webroot/"
-  done
+  rsync -az --partial -e "$RSYNC_SSH" --files-from="$BUILD_DIR/changed.paths" "$BUILD_DIR/webroot/" "$DEPLOY_HOST:$REMOTE_RELEASE/webroot/"
 fi
 
 ssh "${SSH_OPTIONS[@]}" "$DEPLOY_HOST" bash -s -- "$REMOTE_ROOT" "$REMOTE_RELEASES" "$REMOTE_RELEASE" "$RELEASE_SHA" "$MODE" <<'REMOTE_SCRIPT'
