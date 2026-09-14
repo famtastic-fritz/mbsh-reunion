@@ -1,5 +1,11 @@
 # MBSH Class of '96 — 30th Reunion (v2 Cowork build)
 
+## Current source ownership (2026-09-14)
+
+This existing `famtastic-fritz/mbsh-reunion` repository is the canonical independent source. Its outside-parent checkout is `~/Development/FAMtastic-Repos/site-mbsh-reunion`. Other MBSH linked worktrees are preserved work/proof lanes, not competing customer repositories. The older A/B wording below is historical context.
+
+Run `npm ci`, `npm test`, `npm run verify:repository` and `npm run build`. The dependency-free Node test suite checks frontend and commerce source contracts. The build uses the existing immutable release script and does not deploy. Live PHP/WordPress/database, payment and email integration gates remain governed by AGENTS.md and the existing deployment runbooks. Source reconciliation did not change those systems.
+
 **Built by Cowork as A/B counterpart to the canonical `mbsh-reunion` repo.** Same V1-BRIEF spec, full multi-page implementation, live PHP backend, Hi-Tide Compass nav, chatbot widget Phase 1, sponsor flow with manual approval gate, time capsule, memorial, playlist.
 
 The canonical hero (at `mbsh-reunion`) is preserved verbatim here. Sections 2-11 + backend + admin are the new build.

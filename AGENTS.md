@@ -45,3 +45,8 @@ and other agents.
 
 For reunion advertising and character-consistent creative, also read
 `docs/creative/HI_TIDE_HARRY_CAMPAIGN_CREATIVE_RECIPE_2026-08-17.md`.
+
+
+## Independent source contract (2026-09-14)
+
+Read `.famtastic/site-manifest.json`, `design.md`, `SITE-LEARNINGS.md` and `CONVERSATIONS.md`. This business has its own source repository; FAMtastic Designs is the builder. Preserve authored source, backend, privacy and operational records during rebuilds. Run `node .famtastic/verify-repository.mjs`; source validation is not a deployment or business-data migration.

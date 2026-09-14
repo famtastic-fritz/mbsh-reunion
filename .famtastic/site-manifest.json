@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "contract_version": "1.0.0",
+  "format": "source_repository",
+  "site_id": "site-mbsh-reunion",
+  "business_name": "MBSH Class of 1996 Reunion",
+  "business_owner": {
+    "name": "MBSH Class of 1996 Reunion"
+  },
+  "builder": {
+    "name": "FAMtastic Designs",
+    "url": "https://famtasticdesigns.com"
+  },
+  "target": "existing_host_unchanged",
+  "repository": {
+    "mode": "create_or_existing",
+    "url": "https://github.com/famtastic-fritz/mbsh-reunion",
+    "branch": "main",
+    "state": "remote_verified"
+  },
+  "design_contract_sha256": "3edc960cbf8669ac7cf75ab46458b86bd9f42780b043e96f4631c2dd6b33b622",
+  "generated_by": "site-foundation",
+  "installed_recipes": [
+    {
+      "id": "site-foundation",
+      "version": "1.0.0"
+    }
+  ],
+  "canonical_url": null,
+  "publication": {
+    "state": "unchanged_not_reverified",
+    "release_receipt": null
+  },
+  "migration": {
+    "source_revision": "5ed9a49314aac4195354094b56c1e1abe2603d4d",
+    "provider_actions": false,
+    "data_actions": false
+  }
+}
