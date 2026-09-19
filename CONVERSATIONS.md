@@ -1,5 +1,12 @@
 # Conversation decisions
 
+## 2026-09-19 — Compact final logo row
+
+Fritz requested a slightly smaller logo and reduced bottom space. The standing
+rule requires centered final linked artwork, not a large duplicate footer.
+Implement160px logo and compact spacing without changing existing footer copy,
+approved artwork, destination, customer state or commerce behavior.
+
 This repository stores curated, redacted decisions, not raw private conversations. For each entry record date, decision, source task reference, affected commit and verified private archive link when available. Never claim a Drive upload from a local sync-folder write alone.
 
 

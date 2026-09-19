@@ -1,5 +1,12 @@
 # Site learnings
 
+## 2026-09-19 — Attribution is a signature, not a second footer
+
+Do not make generous guide clearance a universal design token. Use160px original
+logo with compact desktop spacing; reserve mobile space only where actual fixed
+controls need it. Keep readable/clickable44px targets while reducing empty area.
+Evidence: docs/operations/COMPACT-CREATOR-CREDIT-2026-09-19.md.
+
 ## 2026-09-18 — Final creator credit must survive JavaScript and rebuilds
 
 Observation: public shell footer copy alone did not include a linked agency logo.

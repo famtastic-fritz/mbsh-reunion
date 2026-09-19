@@ -10,6 +10,9 @@ Edit `frontend/templates/creator-credit.html`, then run
 `node scripts/sync-creator-credit.mjs` and `--check`. Release packaging checks
 the immutable candidate. Public UTM source tags only; never customer identifiers.
 Do not rewrite historical evidence or resend old messages to add a logo.
+The mandate is placement/identity, not a large panel: use a compact160px logo
+and16–24px vertical spacing. Additional mobile clearance is site-specific and
+must be measured against actual fixed controls, not copied to every website.
 
 Read `docs/architecture/EVENT_CINEMA_ARCHITECTURE.md` and
 `docs/operations/PRIVATE_ARCHIVE_SOURCE_MANIFEST.md` before changing identity,

@@ -151,11 +151,11 @@ tr:hover{background:#fafafa}
 </table>
 </div>
 <!-- famtastic-creator-credit:start -->
-<style>@media(max-width:600px){[data-famtastic-creator-credit="v1"]{padding-bottom:192px!important}}</style>
-<div data-famtastic-creator-credit="v1" style="box-sizing:border-box;clear:both;position:relative;width:100%;padding:24px 16px 88px;text-align:center;background:#080a08;color:#f5f5ee;grid-column:1 / -1">
-  <p style="margin:0 0 10px;font:12px/1.5 Arial,sans-serif;color:#f5f5ee">Created by FAMtasticDesigns.com</p>
+<style>@media(max-width:600px){[data-famtastic-creator-credit="v1"]{padding-bottom:160px!important}}</style>
+<div data-famtastic-creator-credit="v1" style="box-sizing:border-box;clear:both;position:relative;width:100%;padding:16px 16px 24px;text-align:center;background:#080a08;color:#f5f5ee;grid-column:1 / -1">
+  <p style="margin:0 0 6px;font:11px/1.5 Arial,sans-serif;color:#f5f5ee">Created by FAMtasticDesigns.com</p>
   <a href="https://famtasticdesigns.com/?utm_source=mbsh96reunion&amp;utm_medium=creator_credit&amp;utm_campaign=created_by_famtastic" aria-label="Created by FAMtastic Designs — visit our website" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;border-radius:6px">
-    <img src="/assets/famtastic/famtastic-designs-logo-v1.png" alt="FAMtastic Designs" width="2172" height="724" loading="lazy" style="display:block;width:190px;max-width:100%;height:auto;border:0">
+    <img src="/assets/famtastic/famtastic-designs-logo-v1.png" alt="FAMtastic Designs" width="2172" height="724" loading="lazy" style="display:block;width:160px;max-width:100%;height:auto;border:0">
   </a>
 </div>
 <!-- famtastic-creator-credit:end -->
