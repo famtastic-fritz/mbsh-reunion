@@ -18,6 +18,12 @@ fi
 mkdir -p "$OUTPUT_DIR/source" "$OUTPUT_DIR/webroot"
 git -C "$ROOT_DIR" archive "$RELEASE_SHA" | tar -xf - -C "$OUTPUT_DIR/source"
 
+# Fail before packaging if an authored document loses the mandatory final row.
+# Check the actual immutable candidate, not another checkout's current files.
+if [[ -f "$OUTPUT_DIR/source/scripts/sync-creator-credit.mjs" ]]; then
+  node "$OUTPUT_DIR/source/scripts/sync-creator-credit.mjs" --check
+fi
+
 # The production webroot is unified. Public presentation owns ordinary HTML,
 # CSS, JS, and assets; the backend contributes runtime PHP and access-control
 # files; WordPress receives only this repository's custom plugin and theme.

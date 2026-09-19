@@ -1,5 +1,12 @@
 # Site learnings
 
+## 2026-09-18 — Final creator credit must survive JavaScript and rebuilds
+
+Observation: public shell footer copy alone did not include a linked agency logo.
+Rule: retain event footer text, add one static final-row fragment to complete
+documents and source templates, validate the exact logo and every generated row
+before release. Do not rely on runtime injection or erase immutable prior proof.
+
 Record site-specific observations, decisions, failed approaches and verification evidence here. Generalized reusable lessons belong in the owning library; link their pinned versions rather than duplicating their source authority.
 
 

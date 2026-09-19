@@ -22,6 +22,14 @@ The diploma currently belongs to RSVP/reservation because it represents the atte
 
 ## Enforcement
 
+Owner rule added September 18: a static, final creator-credit row follows the
+existing shared footer and page controllers. It is sourced from
+`frontend/templates/creator-credit.html` by `scripts/sync-creator-credit.mjs`.
+This row must remain centered, clickable and usable without the JS shell; it
+does not take ownership of event navigation or duplicate the event footer.
+Run its `--check` mode after rendering pages. The production builder enforces
+it against the immutable candidate. Exceptions require explicit owner approval.
+
 Run:
 
 `node tests/frontend/shared-public-shell.test.mjs`

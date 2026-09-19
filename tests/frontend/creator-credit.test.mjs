@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+const root = path.resolve(import.meta.dirname, '../..');
+execFileSync(process.execPath, ['scripts/sync-creator-credit.mjs', '--check'], {cwd:root, stdio:'pipe'});
+const fragment = fs.readFileSync(path.join(root, 'frontend/templates/creator-credit.html'), 'utf8');
+assert.match(fragment, /text-align:center/);
+assert.match(fragment, /min-height:44px/);
+assert.match(fragment, /max-width:100%/);
+assert.match(fragment, /aria-label="Created by FAMtastic Designs/);
+assert.match(fragment, /https:\/\/famtasticdesigns.com\/\?utm_source=mbsh96reunion&amp;utm_medium=creator_credit/);
+assert.doesNotMatch(fragment, /onclick|<script|target="_blank"/);
+assert.equal((fragment.match(/<img /g) || []).length, 1);
+console.log('PASS creator credit: final static row, original asset, source-only attribution, no JS dependency');

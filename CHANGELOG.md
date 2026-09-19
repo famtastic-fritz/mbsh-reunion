@@ -45,3 +45,12 @@
 ## 2026-09-14 Independent repository foundation
 
 Private-by-default customer source ownership, complete agent/design/research/provenance records and clean-clone verification are mandatory. Preserve the existing remote identity and public/private visibility; no provider, DNS, owner, database or email change was performed. Original source revision: `5ed9a49314aac4195354094b56c1e1abe2603d4d`. Source task: Codex01a097f9-4915-7640-b92f-abd74a1e49ca. Public crawler/policy files remain in their authored public roots; the scaffold does not overwrite them.
+# 2026-09-18 — Mandatory creator credit
+
+- Added exact original FAMtastic logo as a centered final linked row across
+  52 authored HTML documents, including source templates and portal previews.
+- Added deterministic synchronization, immutable-asset checking and release
+  packaging enforcement. Existing footer copy and event workflows unchanged.
+- Attribution is a public site-slug UTM link, not a new visitor tracker.
+- Local checks: eight test files pass; repository identity valid. Live receipt
+  is recorded separately in docs/operations/CREATOR-CREDIT-2026-09-18.md.

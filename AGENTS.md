@@ -1,5 +1,16 @@
 # FAMtastic Event Cinema agent contract
 
+## Mandatory final creator credit — owner rule, September 18, 2026
+
+Every authored site, page, proof and prototype ends with one centered clickable
+FAMtastic Designs logo linking to https://famtasticdesigns.com/. Preserve existing
+footer wording and the customer's identity. This includes inexpensive sites;
+only an explicit recorded owner exception can waive it. Never redraw the logo.
+Edit `frontend/templates/creator-credit.html`, then run
+`node scripts/sync-creator-credit.mjs` and `--check`. Release packaging checks
+the immutable candidate. Public UTM source tags only; never customer identifiers.
+Do not rewrite historical evidence or resend old messages to add a logo.
+
 Read `docs/architecture/EVENT_CINEMA_ARCHITECTURE.md` and
 `docs/operations/PRIVATE_ARCHIVE_SOURCE_MANIFEST.md` before changing identity,
 commerce, uploads, archival media, email, or scheduled jobs.
