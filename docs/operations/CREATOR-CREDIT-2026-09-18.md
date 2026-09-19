@@ -33,7 +33,13 @@ links to the tagged agency URL. Follow-up `ce933426390eda6682105fb481396e883021e
 adds clearance for fixed guide buttons and the mobile chat greeting. PHP lint
 passes on every changed PHP file. The 390px browser check showed a centered
 190px logo; layout needs to retain clearance below it for persistent controls.
-Email adapter follow-up deployment receipt will be recorded separately.
+Final runtime release: `76b578c23fe76202fb39323367de1412afa1a6de` is on
+`origin/main` and production. The email follow-up changed exactly three runtime
+PHP files and retired none. Deployment verified the full release manifest;
+the remote logo SHA256 equals the approved source. Public homepage mobile and
+desktop plus portal sign-in desktop were visually checked. No authenticated
+admin workflow, inbox delivery or Gmail/Outlook rendering is claimed by this
+footer-only check.
 
 One intermediate dry-run failed due to temporary local disk exhaustion; the
 remote host had ample space. The retry passed without changing the deployment
