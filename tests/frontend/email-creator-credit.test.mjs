@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+const result = execFileSync('php', ['-r', `require 'backend/lib/creator-credit.php';
+$input = '<html><body><p>Keep &amp; preserve content</p></body></html>';
+$output = fam_creator_credit_email($input);
+require 'wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-resend-mailer.php';
+$wp = new ReflectionMethod('Famtastic_Reunion_Resend_Mailer', 'creator_credit');
+echo json_encode(['html'=>$output,'twice'=>fam_creator_credit_email($output),'fragment'=>fam_creator_credit_email('<p>Fragment</p>'),'wp'=>$wp->invoke(null,$input),'wpTwice'=>$wp->invoke(null,$output)]);`], {encoding:'utf8'});
+const {html, twice, fragment, wp, wpTwice} = JSON.parse(result);
+assert.equal(html, wp);
+assert.equal(html, wpTwice);
+assert.equal(html, twice);
+assert.ok(html.includes('<p>Keep &amp; preserve content</p>'));
+assert.ok(html.indexOf('data-famtastic-email-credit') < html.indexOf('</body>'));
+assert.match(fragment, /<\/a><\/div>$/);
+assert.match(html, /https:\/\/mbsh96reunion.com\/assets\/famtastic\/famtastic-designs-logo-v1.png/);
+assert.match(html, /text-align:center/);
+console.log('PASS email credit: unchanged dynamic content, absolute image URL, idempotent final row; no mail sent');

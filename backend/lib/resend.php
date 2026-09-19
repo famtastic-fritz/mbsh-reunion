@@ -1,6 +1,7 @@
 <?php
 // lib/resend.php — Resend transactional email send + ResendError
 declare(strict_types=1);
+require_once __DIR__ . '/creator-credit.php';
 
 class ResendError extends RuntimeException {}
 
@@ -13,9 +14,9 @@ function fam_send_email(array $config, string $to, string $subject, string $html
     'to' => [$to],
     'reply_to' => $config['resend_reply_to'] ?? $config['committee_email'],
     'subject' => $subject,
-    'html' => $html,
+    'html' => fam_creator_credit_email($html),
   ];
-  if ($text) $payload['text'] = $text;
+  if ($text) $payload['text'] = $text . "\n\nCreated by FAMtastic Designs: https://famtasticdesigns.com/";
 
   $ch = curl_init((string)($config['resend_api_url'] ?? 'https://api.resend.com/emails'));
   curl_setopt_array($ch, [

@@ -9,9 +9,9 @@ MBSH96 first: final centered clickable approved logo, preserved existing footer 
 Tasks
 
 - [x] Re-anchor source, live marker and deployment contract.
-- [ ] Add deterministic credit markup, exact asset and tests to public/portal/prototype/template HTML and server-rendered HTML.
-- [ ] Review production dry-run, merge main, deploy MBSH first.
-- [ ] Verify rendered footer and live route/asset safety.
+- [x] Add deterministic credit markup, exact asset and tests to public/portal/prototype/template HTML and server-rendered HTML.
+- [x] Review production dry-run, merge main, deploy MBSH first.
+- [x] Verify rendered footer and live route/asset safety.
 - [ ] Integrate studio, agency and customer audit results into final report.
 
 Status: active

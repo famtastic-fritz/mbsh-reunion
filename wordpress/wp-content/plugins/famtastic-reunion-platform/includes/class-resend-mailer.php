@@ -37,7 +37,7 @@ final class Famtastic_Reunion_Resend_Mailer
             'from' => (string) FAMTASTIC_RESEND_FROM,
             'to' => $recipients,
             'subject' => wp_strip_all_tags((string) ($attributes['subject'] ?? '')),
-            'html' => (string) ($attributes['message'] ?? ''),
+            'html' => self::creator_credit((string) ($attributes['message'] ?? '')),
             'reply_to' => $headers['reply_to'] ?? (defined('FAMTASTIC_RESEND_REPLY_TO') ? (string) FAMTASTIC_RESEND_REPLY_TO : ''),
         ];
         if ($payload['reply_to'] === '') {
@@ -74,6 +74,16 @@ final class Famtastic_Reunion_Resend_Mailer
             do_action('wp_mail_failed', new WP_Error('famtastic_resend_failed', 'Resend rejected WordPress email.', ['status' => $status]));
         }
         return $success;
+    }
+
+    private static function creator_credit(string $html): string
+    {
+        if (str_contains($html, 'data-famtastic-email-credit="v1"')) {
+            return $html;
+        }
+        $credit = '<div data-famtastic-email-credit="v1" style="padding:24px 16px;text-align:center;background:#080a08;color:#f5f5ee;font-family:Arial,sans-serif"><p style="margin:0 0 10px;font-size:12px">Created by FAMtasticDesigns.com</p><a href="https://famtasticdesigns.com/?utm_source=mbsh96reunion-email&amp;utm_medium=creator_credit&amp;utm_campaign=created_by_famtastic" aria-label="Visit FAMtastic Designs" style="display:inline-block;min-height:44px"><img src="https://mbsh96reunion.com/assets/famtastic/famtastic-designs-logo-v1.png" alt="FAMtastic Designs" width="190" style="display:block;width:190px;max-width:100%;height:auto;border:0"></a></div>';
+        $position = strripos($html, '</body>');
+        return $position === false ? $html . $credit : substr($html, 0, $position) . $credit . substr($html, $position);
     }
 
     private static function headers(array|string $headers): array
