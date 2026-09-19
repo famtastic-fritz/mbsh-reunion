@@ -11,6 +11,7 @@ assert.match(fragment, /max-width:100%/);
 assert.match(fragment, /padding:16px 16px 24px/, 'compact desktop signature, not a second footer');
 assert.match(fragment, /width:160px/, 'owner-requested smaller logo');
 assert.match(fragment, /@media\(max-width:600px\).*padding-bottom:160px/, 'MBSH-specific mobile guide clearance');
+assert.match(fragment, /body:has\(#chatbot\)/, 'no extra mobile clearance on pages without Harry');
 assert.doesNotMatch(fragment, /padding-bottom:192px|16px 88px/);
 assert.match(fragment, /aria-label="Created by FAMtastic Designs/);
 assert.match(fragment, /https:\/\/famtasticdesigns.com\/\?utm_source=mbsh96reunion&amp;utm_medium=creator_credit/);

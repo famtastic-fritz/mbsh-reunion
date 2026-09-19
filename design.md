@@ -27,7 +27,8 @@ site slug, without cookies/scripts or personally identifiable parameters.
 
 September 19 refinement: this is a compact signature, not a second footer.
 Default row padding is16px top/24px bottom. MBSH alone reserves160px below
-600px for its fixed Harry/help controls; that exception is not a fleet default.
+600px on pages containing #chatbot for fixed Harry/help controls; pages without
+Harry retain compact spacing. That exception is not a fleet default.
 Preserve the44px link target and verify the visible greeting cannot cover it.
 
 Verify 390, 768 and 1280 pixel layouts, keyboard navigation, readable contrast, reduced motion and form error states. Preserve asset rights and provenance.
