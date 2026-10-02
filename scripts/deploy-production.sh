@@ -147,4 +147,37 @@ ln -sfn "$release_dir" "$releases_root/current"
 printf '%s\n' "$release_sha" > "$releases_root/DEPLOYED_COMMIT"
 date -u +%Y-%m-%dT%H:%M:%SZ > "$release_dir/deployed-at-utc"
 echo "DEPLOYED $release_sha"
+
+# Application-code rollback rebuilds a selected commit through this same
+# deployer. Keep the newly deployed copy and its immediate predecessor for a
+# quick local recovery; older copies duplicate Git-addressed build output.
+# Never prune if either release pointer is unclear, and never touch uploads,
+# databases, or anything outside this dedicated release directory.
+if [[ "$(readlink -f "$releases_root/current")" == "$release_dir" &&
+      "$(cat "$releases_root/DEPLOYED_COMMIT")" == "$release_sha" &&
+      "$previous_release" == "$releases_root/releases/"* &&
+      "$previous_release" != "$release_dir" && -d "$previous_release" ]]; then
+  removed=0
+  for old_release in "$releases_root"/releases/*; do
+    [[ -d "$old_release" ]] || continue
+    [[ "$old_release" == "$release_dir" || "$old_release" == "$previous_release" ]] && continue
+    old_sha="${old_release##*/}"
+    if [[ ! "$old_sha" =~ ^[0-9a-f]{40}$ || -L "$old_release" ||
+          ! -f "$old_release/manifest.paths" ||
+          ! -f "$old_release/manifest.sha256" ||
+          ! -f "$old_release/commit" ||
+          "$(cat "$old_release/commit")" != "$old_sha" ]]; then
+      echo "Retention skipped unrecognized release: $old_release" >&2
+      continue
+    fi
+    if rm -rf -- "$old_release"; then
+      removed=$((removed + 1))
+    else
+      echo "Retention could not remove old release: $old_release" >&2
+    fi
+  done
+  echo "Retention removed $removed old code release(s); current and previous retained."
+else
+  echo "Retention skipped: current or previous release pointer could not be verified." >&2
+fi
 REMOTE_SCRIPT

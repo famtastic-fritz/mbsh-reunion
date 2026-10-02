@@ -65,6 +65,13 @@ The active production commit is recorded at:
 /home/nineoo/.releases/mbsh-reunion/DEPLOYED_COMMIT
 ```
 
+After a successful deployment, the deployer retains the current and immediately
+previous Git-addressed code copies under `.releases/mbsh-reunion/releases` and
+prunes older validated copies. If the release pointers or an old copy's manifest
+cannot be verified, it skips that deletion. A deeper code rollback rebuilds the
+selected commit through the same deployer. This policy does not prune the live
+webroot, approved uploads, database exports, or other site data.
+
 ## Rollback procedure
 
 1. Close consequential entry points when the incident affects checkout,
