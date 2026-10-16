@@ -1,6 +1,6 @@
 [
   {
-    "path": "screenshots/home-mobile.png",
+    "path": "screenshots/home-mobile.jpg",
     "route": "/",
     "environment": "local_review",
     "captured_on": "2026-10-16",
@@ -17,7 +17,7 @@
     "owner_acceptance": "pending"
   },
   {
-    "path": "screenshots/home-desktop.png",
+    "path": "screenshots/home-desktop.jpg",
     "route": "/",
     "environment": "local_review",
     "captured_on": "2026-10-16",

@@ -47,7 +47,7 @@ node scripts/sync-creator-credit.mjs --check
 
 Docker proof creates only named, isolated fixtures, blocks external provider requests and mail, and cleans its own containers/volumes/network. It requires the pinned official WordPress/MariaDB images and WooCommerce 11.0.1; the runner uses the pinned local vendor cache or downloads the official package. No existing local DB/settings are copied. Source-only/unit results and real Woo simulation are separate from provider evidence.
 
-Preview: `php -S 127.0.0.1:8976 -t frontend scripts/local-portal-router.php`. Server launched for owner review, PID **84462**, source directory above. It was verified as this turn's server; unrelated servers are not stopped. [Desktop capture](screenshots/home-desktop.png) and [phone capture](screenshots/home-mobile.png) record local review, not owner approval.
+Preview: `php -S 127.0.0.1:8976 -t frontend scripts/local-portal-router.php`. Server launched for owner review, PID **84462**, source directory above. It was verified as this turn's server; unrelated servers are not stopped. [Desktop capture](screenshots/home-desktop.jpg) and [phone capture](screenshots/home-mobile.jpg) record local review, not owner approval.
 
 The worktree's foundation verifier encounters a pre-existing common-directory manifest gap in the older primary checkout. Do not patch another checkout to hide this. Verify the committed candidate from a fresh independent clone with the original GitHub origin; record that result in the closeout receipt.
 
