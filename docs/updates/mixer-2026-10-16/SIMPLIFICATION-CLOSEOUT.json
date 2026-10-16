@@ -5,7 +5,7 @@
   "provider_acceptance": "pending as previously recorded; no new payment/provider action",
   "source_authority": "GoDaddy actual source snapshot: 251 manifest files plus live email helper; HTTPS hashes match",
   "production_base": "67f22480d6fe2a3596d9b6117279097c8db54768",
-  "source_revision": "parent commit of this documentation receipt; see git history",
+  "source_revision": "ea9d000d5c4a5d924c660e369d6408b031aa79d5",
   "netlify": "retired by owner instruction; no deploy or push performed in correction session; stale build guard fails closed",
   "supersedes_visual_scope": "CLOSEOUT.json and prior home screenshots",
   "capability_evidence": [
@@ -81,7 +81,7 @@
   ],
   "owner_task_acceptance": {
     "status": "pending",
-    "release": "local candidate source commit, identified by parent commit",
+    "release": "ea9d000d5c4a5d924c660e369d6408b031aa79d5",
     "tasks": [
       "Find venue/time/price/food terms and open directions on a phone",
       "Reach ticket quantity directly, without RSVP/menu/survey or sign-up popups",
@@ -108,5 +108,12 @@
       "mime": "image/jpeg",
       "sha256": "76bbf0d94c47b905ad6936d8ff427559e2e8ec6a317e2e36bba2096d72a1fd0e"
     }
-  ]
+  ],
+  "release_artifact": {
+    "path": "/private/tmp/mbsh-mixer-production-verified-ea9d000/release.tar.gz",
+    "sha256": "4f85c5e2bf4b232f898e743035442a5287257feae0d9bef0bfbe49533cf6ec27",
+    "files": 265,
+    "validation": "all checksums pass; exact release.json commit; production email helper included; raw image masters excluded",
+    "deployed": false
+  }
 }

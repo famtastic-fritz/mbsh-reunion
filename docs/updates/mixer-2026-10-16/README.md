@@ -77,3 +77,5 @@ Fritz confirmed Netlify is not used at all and removed the separate RSVP/menu/pl
 The obsolete staging helper now exits before network operations, and netlify.toml deliberately fails any stale automatic build. Do not use Netlify as a candidate or release authority. No push is performed in this correction session; existing external Git integrations must not be mistaken for the GoDaddy production process. The release builder includes a checksummed release.json naming the exact commit.
 
 The previous CLOSEOUT.json and home screenshots describe the earlier candidate and are superseded for visual scope by SIMPLIFICATION-CLOSEOUT.json and the simplified captures. Earlier financial proof remains bounded to its recorded source and simulated gateway; this presentation correction does not establish provider acceptance.
+
+The production-verified simplified source is `ea9d000d5c4a5d924c660e369d6408b031aa79d5`. Its 265-file release archive passes every checksum and includes the exact source revision in `release.json`. Artifact details are in SIMPLIFICATION-CLOSEOUT.json. This correction is committed locally and has not been pushed or deployed.
