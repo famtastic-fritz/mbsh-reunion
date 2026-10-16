@@ -1,6 +1,6 @@
 # MBSH Reunion Mixer — implementation and review
 
-Status: **changed / local-tested candidate; not deployed; owner visual acceptance pending**. This is the implementation of Fritz's October 16 plan, not a new event proposal. The canonical source is `famtastic-fritz/mbsh-reunion`, branch `codex/mbsh-mixer-update-20261016`, based on `origin/main` at `730eea5`. Worktree: `/Users/famtastic-fritz/Development/ClientWorktrees/mbsh-mixer-20261016`.
+Status: **changed / local-tested candidate; not deployed; owner visual acceptance pending**. [Exact proof receipt](CLOSEOUT.json) records source revision, fresh-clone checks, package hash and owner-task status. This is the implementation of Fritz's October 16 plan, not a new event proposal. The canonical source is `famtastic-fritz/mbsh-reunion`, branch `codex/mbsh-mixer-update-20261016`, based on `origin/main` at `730eea5`. Worktree: `/Users/famtastic-fritz/Development/ClientWorktrees/mbsh-mixer-20261016`.
 
 ## Locked event facts and direction
 
@@ -49,7 +49,7 @@ Docker proof creates only named, isolated fixtures, blocks external provider req
 
 Preview: `php -S 127.0.0.1:8976 -t frontend scripts/local-portal-router.php`. Server launched for owner review, PID **84462**, source directory above. It was verified as this turn's server; unrelated servers are not stopped. [Desktop capture](screenshots/home-desktop.jpg) and [phone capture](screenshots/home-mobile.jpg) record local review, not owner approval.
 
-The worktree's foundation verifier encounters a pre-existing common-directory manifest gap in the older primary checkout. Do not patch another checkout to hide this. Verify the committed candidate from a fresh independent clone with the original GitHub origin; record that result in the closeout receipt.
+The worktree's foundation verifier encounters a pre-existing common-directory manifest gap in the older primary checkout. The independent clone passed its repository contract, npm/PHP tests and release packaging. All graphics were regenerated from preserved masters in that clean clone and matched the complete asset hash manifest. No other checkout was patched to hide the primary manifest gap.
 
 ## Release sequence after review
 
