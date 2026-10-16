@@ -37,14 +37,16 @@ if($method==='GET'){
 
 fam_require_attendee_csrf(); $d=fam_read_json_body();
 $attendance=strtolower(trim((string)($d['attendance']??'')));
-$meal=strtolower(trim((string)($d['meal_choice']??'')));
+if (isset($d['meal_choice']) && !in_array((string)$d['meal_choice'], ['', 'undecided'], true)) {
+  fam_json_response(410, ['error'=>'meal_selection_closed','message'=>'Food is on your own; meal selection is closed. Reload to update your RSVP.']);
+}
 $guestCount=(int)($d['guest_count']??0);
 $guestNames=trim((string)($d['guest_names']??''));
 $phone=trim((string)($d['phone']??''));
 $note=trim((string)($d['dietary_accessibility']??''));
-if(!in_array($attendance,['yes','maybe','no'],true)||!in_array($meal,['fish','chicken','vegetarian','undecided'],true)||$guestCount<0||$guestCount>5||mb_strlen($guestNames)>500||mb_strlen($phone)>50||mb_strlen($note)>2000) fam_json_response(422,['error'=>'validation_error']);
+if(!in_array($attendance,['yes','maybe','no'],true)||$guestCount<0||$guestCount>5||mb_strlen($guestNames)>500||mb_strlen($phone)>50||mb_strlen($note)>2000) fam_json_response(422,['error'=>'validation_error']);
 fam_seed_event_response($pdo,$config,$id,$account);
-$q=$pdo->prepare("UPDATE portal_event_responses SET attendance=?,guest_count=?,guest_names=?,phone=?,meal_choice=?,dietary_accessibility=?,status='submitted',migration_sync_status='local_only',submitted_at=NOW() WHERE attendee_id=?");
-$q->execute([$attendance,$guestCount,$guestNames?:null,$phone?:null,$meal,$note?:null,$id]);
+$q=$pdo->prepare("UPDATE portal_event_responses SET attendance=?,guest_count=?,guest_names=?,phone=?,dietary_accessibility=?,status='submitted',migration_sync_status='local_only',submitted_at=NOW() WHERE attendee_id=?");
+$q->execute([$attendance,$guestCount,$guestNames?:null,$phone?:null,$note?:null,$id]);
 if($phone!=='')$pdo->prepare('UPDATE attendee_profiles SET phone=? WHERE attendee_id=?')->execute([$phone,$id]);
 fam_json_response(200,['ok'=>true,'event_response'=>fam_event_response($pdo,$id),'message'=>'Your reunion details are saved to your attendee account.']);

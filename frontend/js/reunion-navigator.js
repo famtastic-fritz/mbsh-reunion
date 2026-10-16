@@ -23,21 +23,14 @@
         {
           key: 'welcome',
           title: 'Start with the real reunion plan',
-          body: 'Browse the schedule, reunion stories, dinner information, and the paths that matter most before you decide what to do next.',
+          body: 'Browse the schedule, reunion stories, food and location information, and the paths that matter most before you decide what to do next.',
           target: '.cinema-menu-toggle',
           action: { href: '/index.html', label: 'Open reunion home' },
         },
         {
-          key: 'rsvp',
-          title: 'Reserve your place',
-          body: 'The RSVP journey is where you tell the committee whether you are coming and what they need to plan for you.',
-          target: 'a[href="/rsvp.html"]',
-          action: { href: '/rsvp.html', label: 'Open RSVP' },
-        },
-        {
           key: 'portal',
           title: 'Keep your reunion in one private place',
-          body: 'Create or enter your attendee account to manage RSVP and dinner details, your ticket, memories, messages, and update preferences.',
+          body: 'Create or enter your attendee account to find your paid ticket, memories, messages, and update preferences.',
           target: '.cinema-alumni-login',
           action: { href: '/portal/register', label: 'Create attendee account' },
         },
@@ -62,13 +55,6 @@
           body: 'Your next action, event guide, ticket status, and personal reunion tools live here. Nothing shown here changes your record by itself.',
           target: 'a[data-route="home"]',
           action: { selector: 'a[data-route="home"]', label: 'Open dashboard' },
-        },
-        {
-          key: 'rsvp',
-          title: 'Confirm RSVP, dinner, and access needs',
-          body: 'Use RSVP & dinner to update the details the committee needs. Saving remains a deliberate action on the real form.',
-          target: 'a[data-route="rsvp"]',
-          action: { selector: 'a[data-route="rsvp"]', label: 'Open RSVP & dinner' },
         },
         {
           key: 'ticket',
@@ -117,10 +103,10 @@
         {
           key: 'dinner',
           capability: 'view_menu',
-          title: 'Protect dinner and dietary details',
-          body: 'Dinner & dietary shows production meal submissions linked by normalized email. Use the newest known selection, keep allergies and accessibility notes private, and investigate an empty result instead of assuming nobody responded.',
+          title: 'Review historical meal records',
+          body: 'Historical meal records shows production meal submissions linked by normalized email. These belong to the superseded dinner event. Keep them private and do not treat them as current mixer meal orders.',
           target: '[data-section="dinner"]',
-          action: { selector: '[data-section="dinner"]', label: 'Open Dinner & dietary' },
+          action: { selector: '[data-section="dinner"]', label: 'Open Historical meal records' },
         },
         {
           key: 'review',

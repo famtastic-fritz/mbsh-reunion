@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080607">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <meta name="description" content="Your private MBSH Class of 1996 reunion dashboard, ticket, RSVP, memories, and event updates.">
+  <meta name="description" content="Your private MBSH Class of 1996 reunion dashboard, ticket, memories, and event updates.">
   <title>My Reunion · MBSH Class of 1996</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +40,6 @@
       <p class="drawer-section-label">My reunion</p>
       <a href="#home" data-route="home" aria-current="page"><span>Overview</span><small>Your next steps</small></a>
       <a href="#ticket" data-route="ticket"><span>My ticket</span><small>Wallet &amp; check-in</small></a>
-      <a href="#rsvp" data-route="rsvp"><span>RSVP &amp; dinner</span><small>Guest and meal details</small></a>
       <a href="#memories" data-route="memories"><span>My memories</span><small>Upload photos &amp; stories</small></a>
       <a href="#suggestions" data-route="suggestions"><span>Suggestions</span><small>Playlist and event ideas</small></a>
       <a href="#trivia" data-route="trivia"><span>Class trivia</span><small>Play, score &amp; remember</small></a>
@@ -77,23 +76,22 @@
         <h2 class="sr-only" id="home-heading">Dashboard</h2>
         <div class="next-action">
           <span class="status-orb" aria-hidden="true"></span>
-          <div><p class="eyebrow">Your next scene</p><h3>Confirm your dinner choice</h3><p>It takes less than a minute and helps the committee finalize your table.</p></div>
-          <a class="button button--primary" href="#rsvp" data-route="rsvp">Choose dinner</a>
+          <div><p class="eyebrow">Your next scene</p><h3>Get ready for the mixer</h3><p>Buy your $30 mixer ticket, then keep your paid pass ready for check-in.</p></div>
+          <a class="button button--primary" href="/tickets.html#ticket-order">Get mixer tickets</a>
         </div>
         <div class="dashboard-grid">
           <article class="scene-card scene-card--ticket"><p class="eyebrow">Admission</p><h3 data-home-ticket-title>Checking ticket status…</h3><p data-home-ticket-copy>Your paid ticket will appear here after it is issued.</p><a href="#ticket" data-route="ticket">Open wallet <span aria-hidden="true">→</span></a></article>
-          <article class="scene-card"><span class="scene-icon" aria-hidden="true">✓</span><h3 data-home-rsvp-title>Checking RSVP status…</h3><p data-home-rsvp-copy>Your saved response and dinner choice will appear here.</p><a href="#rsvp" data-route="rsvp">Review details</a></article>
           <article class="scene-card"><span class="scene-icon" aria-hidden="true">＋</span><h3>Add your chapter</h3><p>Share a photo or story for the reunion memory reel.</p><a href="#memories" data-route="memories">Upload a memory</a></article>
-          <article class="scene-card"><span class="scene-icon" aria-hidden="true">♪</span><h3>Shape the soundtrack</h3><p>Send the DJ the song that takes you straight back.</p><a href="#suggestions" data-route="suggestions">Suggest a song</a></article>
+          <article class="scene-card"><span class="scene-icon" aria-hidden="true">♪</span><h3>Shape the soundtrack</h3><p>Suggest the song that takes you straight back.</p><a href="#suggestions" data-route="suggestions">Suggest a song</a></article>
         </div>
-        <article class="event-strip"><div><p class="eyebrow">Saturday · November 7, 2026</p><h3>Miami Shores Country Club</h3><p>Doors 6:30 PM · Program 7:30 PM · Black-tie cocktail</p></div><a class="button" href="#event" data-route="event">View event guide</a></article>
+        <article class="event-strip"><div><p class="eyebrow">Saturday · November 7, 2026</p><h3>Twisted Tonic</h3><p>Reunion Mixer · 7–10 PM · $30 per person</p></div><a class="button" href="#event" data-route="event">View event guide</a></article>
       </section>
 
       <section class="view" data-view-panel="ticket" aria-labelledby="ticket-heading">
-        <div class="section-heading"><div><p class="eyebrow">Mobile wallet</p><h2 id="ticket-heading">Your premiere pass</h2></div><span class="verified-badge" data-ticket-verified hidden>Verified attendee</span></div>
+        <div class="section-heading"><div><p class="eyebrow">Mobile wallet</p><h2 id="ticket-heading">Your mixer pass</h2></div><span class="verified-badge" data-ticket-verified hidden>Verified attendee</span></div>
         <div data-ticket-data>
         <article class="ticket-pass" aria-label="Reunion ticket">
-          <img src="../assets/tickets/virtual-ticket-premiere-v1.png" alt="Cinematic MBSH Class of 1996 30th reunion ticket featuring Hi-Tide Harry">
+          <img src="../assets/mixer-2026/mixer-ticket.webp" alt="MBSH Class of 1996 Reunion Mixer ticket featuring Hi-Tide Harry">
           <div class="qr-zone" aria-label="Demonstration check-in code. Not valid for admission.">
             <span class="qr-pattern" aria-hidden="true"></span><strong data-ticket-credential>LOADING</strong><small>Live code refreshes at check-in</small>
           </div>
@@ -104,17 +102,6 @@
         <div class="action-row"><button class="button button--primary" type="button" disabled title="Wallet pass issuance is not available in the current backend">Phone wallet pass coming soon</button><button class="button" type="button" data-brightness>Brighten for check-in</button></div>
       </section>
 
-      <section class="view" data-view-panel="rsvp" aria-labelledby="rsvp-heading">
-        <div class="section-heading"><div><p class="eyebrow">Your reunion details</p><h2 id="rsvp-heading">RSVP &amp; dinner</h2></div><span class="saved-state" role="status">Checking status…</span></div>
-        <form class="portal-form" data-demo-form="rsvp">
-          <fieldset><legend>Attendance</legend><label class="choice"><input type="radio" name="attendance" value="yes" required><span><strong>Yes, I’ll be there</strong><small>Reserve my place and dinner</small></span></label><label class="choice"><input type="radio" name="attendance" value="maybe"><span><strong>I’m not certain yet</strong><small>Save my response so I can return later</small></span></label><label class="choice"><input type="radio" name="attendance" value="no"><span><strong>I can’t attend</strong><small>Keep me on reunion updates</small></span></label></fieldset>
-          <div class="field-grid"><label>Number of guests<input type="number" name="guest_count" min="0" max="5" value="0"></label><label>Guest name(s)<input type="text" name="guest_names" maxlength="500" autocomplete="name"></label><label>Mobile number<input type="tel" name="phone" maxlength="50" autocomplete="tel"></label></div>
-          <fieldset><legend>Dinner selection</legend><label class="choice"><input type="radio" name="meal" value="chicken"><span><strong>Tuscan Roasted Chicken</strong><small>Choose chicken as your entrée.</small></span></label><label class="choice"><input type="radio" name="meal" value="fish"><span><strong>Maple-Bourbon Salmon</strong><small>Choose salmon as your entrée.</small></span></label><label class="choice"><input type="radio" name="meal" value="vegetarian"><span><strong>Vegetarian Entrée</strong><small>A meat-free selection; add restrictions below.</small></span></label></fieldset>
-          <label>Dietary or accessibility note<textarea name="dietary_accessibility" maxlength="2000" rows="4" placeholder="Tell the committee what would help you enjoy the night."></textarea></label>
-          <p class="integration-notice" role="status" data-event-source><strong>Loading your reunion record…</strong></p>
-          <button class="button button--primary" type="submit">Save reunion details</button>
-        </form>
-      </section>
 
       <section class="view" data-view-panel="memories" aria-labelledby="memories-heading">
         <div class="section-heading"><div><p class="eyebrow">Your chapter belongs here</p><h2 id="memories-heading">Upload a memory</h2></div><span class="privacy-chip">Private until approved</span></div>
@@ -138,8 +125,8 @@
 
       <section class="view" data-view-panel="event" aria-labelledby="event-heading">
         <div class="section-heading"><div><p class="eyebrow">Everything for November 7</p><h2 id="event-heading">Event guide</h2></div><a class="button" href="https://www.google.com/maps/dir/?api=1&amp;destination=Miami+Shores+Country+Club%2C+10000+Biscayne+Blvd%2C+Miami+Shores%2C+FL+33138" target="_blank" rel="noopener">Get directions</a></div>
-        <ol class="timeline"><li><time>6:30 PM</time><div><h3>Doors &amp; red carpet</h3><p>Check in with your mobile ticket, meet the class, and add a message to the time capsule.</p></div></li><li><time>7:30 PM</time><div><h3>Dinner &amp; opening reel</h3><p>A cinematic look back at the Class of ’96 and one hundred years of Hi-Tide history.</p></div></li><li><time>9:00 PM</time><div><h3>The soundtrack takes over</h3><p>Class requests, Miami energy, dancing, photos, and surprises.</p></div></li><li><time>11:45 PM</time><div><h3>Final frame</h3><p>One last class photo before the credits roll.</p></div></li></ol>
-        <div class="info-grid"><article><h3>Where</h3><p>Miami Shores Country Club<br>10000 Biscayne Blvd<br>Miami Shores, FL 33138</p></article><article><h3>What to wear</h3><p>Black-tie cocktail. Think premiere night—elevated, comfortable, and ready for the camera.</p></article><article><h3>Need help?</h3><p>Contact the committee and your message will be attached to your attendee record.</p><a href="mailto:committee@mbsh96reunion.com">Email the committee</a></article></div>
+        <ol class="timeline"><li><time>7:00 PM</time><div><h3>Reunion mixer begins</h3><p>Twisted Tonic, inside The Lincoln Eatery, 723 Lincoln Ln N, Miami Beach. Bring your paid admission ticket.</p></div></li><li><time>7–10 PM</time><div><h3>Back together in Miami Beach</h3><p>Catch up with classmates. Food is on your own.</p></div></li><li><time>10:00 PM</time><div><h3>Mixer ends</h3><p>Thank you for celebrating thirty years of Class of ’96 memories.</p></div></li></ol>
+        <div class="info-grid"><article><h3>Where</h3><p>Twisted Tonic<br>723 Lincoln Ln N<br>Miami Beach, FL 33139</p></article><article><h3>Food</h3><p>Food on your own. No catered meal or meal selection is included.</p></article><article><h3>Need help?</h3><p>Contact the committee and your message will be attached to your attendee record.</p><a href="mailto:committee@mbsh96reunion.com">Email the committee</a></article></div>
       </section>
 
       <section class="view" data-view-panel="notifications" aria-labelledby="notifications-heading">
@@ -154,7 +141,7 @@
 
       <section class="view" data-view-panel="inbox" aria-labelledby="attendee-inbox-heading">
         <div class="section-heading"><div><p class="eyebrow">One accountable conversation</p><h2 id="attendee-inbox-heading">Messages</h2><p>Ask the committee a question and keep its status attached to your attendee account.</p></div></div>
-        <div class="dashboard-grid dashboard-grid--forms"><form class="portal-form compact" data-conversation-form><h3>Start a conversation</h3><label>Subject<input name="subject" maxlength="255" required placeholder="Tickets, dinner, access, or another question"></label><label>Message<textarea name="message" maxlength="5000" rows="6" required placeholder="How can the committee help?"></textarea></label><button class="button button--primary" type="submit">Send to the committee</button></form><section class="notification-inbox"><h3>Your conversations</h3><div data-conversation-list><p class="empty-state">Loading…</p></div><div data-attendee-conversation-detail hidden></div></section></div>
+        <div class="dashboard-grid dashboard-grid--forms"><form class="portal-form compact" data-conversation-form><h3>Start a conversation</h3><label>Subject<input name="subject" maxlength="255" required placeholder="Mixer tickets, access, or another question"></label><label>Message<textarea name="message" maxlength="5000" rows="6" required placeholder="How can the committee help?"></textarea></label><button class="button button--primary" type="submit">Send to the committee</button></form><section class="notification-inbox"><h3>Your conversations</h3><div data-conversation-list><p class="empty-state">Loading…</p></div><div data-attendee-conversation-detail hidden></div></section></div>
       </section>
 
       <section class="view staff-view" data-view-panel="committee" data-staff-only hidden aria-labelledby="committee-heading">
@@ -206,8 +193,8 @@
   <div class="toast" role="status" aria-live="polite" hidden></div>
   <script src="js/portal-config.js" defer></script>
   <script src="js/portal-api.js" defer></script>
-  <script src="../js/reunion-navigator.js?v=1" defer></script>
-  <script src="js/portal.js" defer></script>
+  <script src="../js/reunion-navigator.js?v=1&amp;event=mixersimple20261016" defer></script>
+  <script src="js/portal.js?event=mixersimple20261016" defer></script>
   <script src="js/trivia.js" defer></script>
   <script src="js/portal-staff.js" defer></script>
 <!-- famtastic-creator-credit:start -->

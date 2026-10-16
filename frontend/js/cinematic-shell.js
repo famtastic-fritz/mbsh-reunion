@@ -7,16 +7,13 @@
 
   const routes = [
     ['home', 'Home', '/index.html'],
-    ['rsvp', 'RSVP', '/rsvp.html'],
-    ['tickets', 'Tickets & Sponsorship', '/tickets.html'],
-    ['menu', 'Dinner Preferences', '/menu/'],
-    ['survey', 'Class Check-In', '/survey.html'],
+    ['tickets', 'Mixer Tickets', '/tickets.html'],
     ['through-years', 'Through the Years', '/through-years.html'],
     ['memorial', 'In Memory', '/memorial.html'],
     ['capsule', 'Time Capsule', '/capsule.html'],
     ['playlist', 'Soundtrack', '/playlist.html'],
     ['manual', 'How the reunion site works', '/manual/'],
-    ['portal', 'Attendee Portal', '/portal/login']
+    ['portal', 'My Ticket / Login', '/portal/login']
   ];
 
   const footerMarkup = `
@@ -31,7 +28,7 @@
         <p class="footer__credits-eyebrow">— A final credit roll —</p>
         <p class="footer__credits-line"><strong>Reunion Committee</strong> <a href="mailto:committee@mbsh96reunion.com">committee@mbsh96reunion.com</a></p>
         <p class="footer__credits-line">${routes.map(([key, label, href]) => `<a href="${href}"${key === page ? ' aria-current="page"' : ''}>${label}</a>`).join(' · ')}</p>
-        <p class="footer__credits-line"><a href="/portal/register">Create attendee account</a> · <a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a> · <a href="/through-years.html#submit-memory">Submit a memory</a> · <a href="/tickets.html#sponsor">Become a sponsor</a></p>
+        <p class="footer__credits-line"><a href="/index.html#venue">Location &amp; directions</a> · <a href="https://miamibeachseniorhigh.net" rel="noopener">Official MBSH Site</a></p>
         <p class="footer__credits-line footer__credits-line--social">Instagram &amp; Facebook coming soon — contact the committee for updates.</p>
       </div>
       <hr class="footer__rule">
@@ -60,9 +57,9 @@
         <img src="/assets/brand-mark/brand-mark.png" alt="" width="48" height="48">
         <span class="cinema-site-header__brand-copy"><strong>Class of 1996</strong><span>30th Reunion · 100 Years of Hi-Tides</span></span>
       </a>
-      <a class="cinema-alumni-login" href="/portal/login" data-analytics-cta aria-label="Alumni Login — access or create your reunion portal account">
+      <a class="cinema-alumni-login" href="/portal/login" data-analytics-cta aria-label="My Ticket — sign in to your private ticket wallet">
         <span class="cinema-alumni-login__signal" aria-hidden="true"></span>
-        <span><strong>Alumni Login</strong><small>Portal access</small></span>
+        <span><strong>My Ticket</strong><small>Sign in</small></span>
       </a>
       <button class="cinema-menu-toggle" type="button" aria-expanded="false" aria-controls="cinema-drawer">
         <span class="cinema-menu-toggle__bars" aria-hidden="true"></span><span class="cinema-menu-toggle__label">Explore</span>
@@ -74,9 +71,9 @@
     drawer.setAttribute('aria-label', 'Reunion navigation');
     drawer.setAttribute('aria-hidden', 'true');
     drawer.innerHTML = `
-      <p class="cinema-drawer__intro">Choose your next scene, Hi-Tide.</p>
+      <p class="cinema-drawer__intro">The mixer, your ticket, and our memories.</p>
       <nav>${routes.map(([key, label, href]) => `<a href="${href}"${key === page ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
-      <a class="cinema-drawer__primary cinema-button" href="/portal/register" data-analytics-cta>Join the alumni portal</a>`;
+      <a class="cinema-drawer__primary cinema-button" href="/tickets.html#ticket-order" data-analytics-cta>Get Mixer Tickets — $30</a>`;
 
     const backdrop = document.createElement('div');
     backdrop.className = 'cinema-backdrop';
@@ -144,85 +141,6 @@
     footer.innerHTML = footerMarkup;
   }
 
-  function prioritizePrimaryTask() {
-    if (page !== 'rsvp') return;
-    const form = document.querySelector('.rsvp-form-wrap');
-    const countdown = document.querySelector('.countdown');
-    if (form && countdown) countdown.before(form);
-  }
-
-  function mountAlumniInvite() {
-    // A short, non-blocking invitation: it never traps focus or enrolls a
-    // visitor in messages. Registration and communication choices stay in the
-    // attendee-owned portal.
-    if (page === 'portal' || page === 'manual') return;
-
-    const invite = document.createElement('aside');
-    invite.className = 'alumni-invite';
-    invite.hidden = true;
-    invite.setAttribute('aria-hidden', 'true');
-    invite.setAttribute('aria-label', 'Join the MBSH alumni portal');
-    invite.setAttribute('aria-live', 'polite');
-    invite.innerHTML = `
-      <div class="alumni-invite__glow" aria-hidden="true"></div>
-      <img class="alumni-invite__harry" src="/assets/mascot/21-pride-celebrate.png" alt="">
-      <div class="alumni-invite__copy">
-        <p class="alumni-invite__eyebrow">Hi-Tide Harry has a reminder</p>
-        <h2>Don&rsquo;t just visit the reunion. <em>Belong to it.</em></h2>
-        <p>Create your alumni portal account for official updates, platform news, RSVP details, dinner and dietary preferences, memories, and your personal reunion record.</p>
-        <div class="alumni-invite__actions">
-          <a class="cinema-button cinema-button--primary" href="/portal/register" data-analytics-cta>Create my account</a>
-          <a class="alumni-invite__signin" href="/portal/login" data-analytics-cta>Already registered? Sign in</a>
-        </div>
-      </div>
-      <button class="alumni-invite__close" type="button" aria-label="Dismiss alumni portal invitation">Not now <span aria-hidden="true">×</span></button>`;
-    document.body.appendChild(invite);
-
-    let dismissTimer;
-    let removed = false;
-    const motionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const track = (eventName) => window.mbshAnalytics?.track?.(eventName, { page_type: page });
-    const dismiss = (reason) => {
-      if (removed) return;
-      removed = true;
-      window.clearTimeout(dismissTimer);
-      invite.classList.remove('is-visible');
-      invite.classList.add('is-leaving');
-      invite.setAttribute('aria-hidden', 'true');
-      track(reason === 'cta' ? 'portal_invite_opened' : 'portal_invite_dismissed');
-      window.setTimeout(() => {
-        invite.remove();
-        document.body.classList.remove('alumni-invite-open');
-      }, motionReduced ? 0 : 420);
-    };
-    const scheduleDismiss = () => {
-      window.clearTimeout(dismissTimer);
-      dismissTimer = window.setTimeout(() => dismiss('timeout'), 25000);
-    };
-    const show = () => {
-      if (document.visibilityState !== 'visible') {
-        window.setTimeout(show, 3000);
-        return;
-      }
-      invite.hidden = false;
-      invite.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('alumni-invite-open');
-      window.requestAnimationFrame(() => invite.classList.add('is-visible'));
-      track('portal_invite_shown');
-      scheduleDismiss();
-    };
-
-    invite.querySelector('.alumni-invite__close').addEventListener('click', () => dismiss('dismiss'));
-    invite.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => dismiss('cta')));
-    invite.addEventListener('pointerenter', () => window.clearTimeout(dismissTimer));
-    invite.addEventListener('pointerleave', scheduleDismiss);
-    invite.addEventListener('focusin', () => window.clearTimeout(dismissTimer));
-    invite.addEventListener('focusout', (event) => {
-      if (!invite.contains(event.relatedTarget)) scheduleDismiss();
-    });
-    window.setTimeout(show, 45000);
-  }
-
   function identifyMain() {
     const main = document.querySelector('main') || document.querySelector('.cinema-hero') || document.querySelector('.page-header');
     if (main && !main.id) main.id = 'main-content';
@@ -246,7 +164,7 @@
       document.head.appendChild(style);
     }
     const script = document.createElement('script');
-    script.src = '/js/reunion-navigator.js?v=3';
+    script.src = '/js/reunion-navigator.js?v=3&event=mixersimple20261016';
     script.defer = true;
     script.dataset.reunionNavigatorScript = 'true';
     script.addEventListener('load', ready, { once: true });
@@ -256,14 +174,23 @@
     document.head.appendChild(script);
   }
 
+  function markPreview() {
+    const host = window.location.hostname;
+    if (host !== 'localhost' && host !== '127.0.0.1') return;
+    const banner = document.createElement('div');
+    banner.className = 'mixer-preview-notice';
+    banner.setAttribute('role', 'status');
+    banner.textContent = 'Local preview · Payments unavailable · Production: mbsh96reunion.com';
+    document.body.prepend(banner);
+  }
+
   function init() {
     mountShell();
     normalizeFooter();
     identifyMain();
-    prioritizePrimaryTask();
     enhanceMedia();
-    mountAlumniInvite();
-    mountReunionNavigator();
+    if (page !== 'home' && page !== 'tickets') mountReunionNavigator();
+    markPreview();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

@@ -5,10 +5,7 @@ import assert from 'node:assert/strict';
 const root = path.resolve(import.meta.dirname, '../..');
 const publicPages = [
   'frontend/index.html',
-  'frontend/rsvp.html',
   'frontend/tickets.html',
-  'frontend/menu/index.html',
-  'frontend/survey.html',
   'frontend/through-years.html',
   'frontend/memorial.html',
   'frontend/capsule.html',
@@ -28,10 +25,7 @@ for (const relativePath of publicPages) {
 }
 
 const functionalContracts = {
-  'frontend/rsvp.html': [/id="rsvp-form"/, /js\/rsvp\.js/],
-  'frontend/tickets.html': [/id="ticket-order-form"/, /js\/ticket-order\.js/, /id="sponsor-form"/, /js\/sponsor\.js/],
-  'frontend/menu/index.html': [/id="menu-form"/, /js\/menu\.js/],
-  'frontend/survey.html': [/id="survey-form"/, /fetch\('\/survey2\.php'/],
+  'frontend/tickets.html': [/id="ticket-order-form"/, /js\/ticket-order\.js/, /mailto:committee@mbsh96reunion\.com/],
   'frontend/through-years.html': [/id="memory-form"/, /js\/memory\.js/],
   'frontend/memorial.html': [/id="memorial-list"/, /js\/memorial\.js/],
   'frontend/capsule.html': [/id="capsule-form"/, /js\/time-capsule\.js/],
@@ -46,23 +40,18 @@ for (const [relativePath, contracts] of Object.entries(functionalContracts)) {
 const shell = fs.readFileSync(path.join(root, 'frontend/js/cinematic-shell.js'), 'utf8');
 assert.match(shell, /cinema-alumni-login/, 'shared header must keep the Alumni Login action beside the menu');
 assert.match(shell, /\/portal\/login/, 'shared Alumni Login action must lead to the real portal login');
-assert.match(shell, /alumni-invite/, 'shared shell must provide the timed alumni invitation');
-assert.match(shell, /45000/, 'alumni invitation must wait 45 seconds before appearing');
-assert.match(shell, /25000/, 'alumni invitation must remain visible for 25 seconds');
+assert.doesNotMatch(shell, /mountAlumniInvite|alumni-invite/, 'mixer purchase must not be interrupted by a sign-up campaign');
 for (const route of [
-  '/index.html', '/rsvp.html', '/tickets.html', '/menu/', '/survey.html',
+  '/index.html', '/tickets.html',
   '/through-years.html', '/memorial.html', '/capsule.html', '/playlist.html', '/manual/', '/portal/login',
 ]) {
   assert.ok(shell.includes(`'${route}'`), `shared navigation is missing ${route}`);
 }
 
-const rsvp = fs.readFileSync(path.join(root, 'frontend/rsvp.html'), 'utf8');
-assert.doesNotMatch(rsvp, /journey-progress/, 'RSVP must not restore the competing legacy progress strip');
-assert.doesNotMatch(rsvp, /premiere-seat-row/, 'RSVP must not restore the unexplained seat-button decoration');
-assert.match(rsvp, /diploma-rsvp-stage/, 'RSVP must retain the approved diploma experience');
-
 const home = fs.readFileSync(path.join(root, 'frontend/index.html'), 'utf8');
-assert.match(home, /alumni-account-campaign/, 'home must carry the visible alumni portal campaign');
-assert.match(home, /Create my alumni account/, 'home campaign must offer a real registration action');
+assert.doesNotMatch(home, /alumni-account-campaign|program-bulletin|href="(?:rsvp.html|\/menu\/|survey.html)"/, 'home must keep a direct mixer purchase flow');
+assert.match(home, /id="venue"/, 'directions must be inline');
+assert.match(home, /href="tickets.html#ticket-order"/, 'home must lead directly to ticket purchase');
+for (const route of ['/rsvp.html', '/menu/', '/survey.html']) assert.ok(!shell.includes(`'${route}'`), `retired route in navigation: ${route}`);
 
 console.log(`PASS shared public shell contract (${publicPages.length} pages)`);

@@ -17,3 +17,10 @@ Private-by-default customer source ownership, complete agent/design/research/pro
 ## Verified private archive
 
 [Readable redacted conversation](https://drive.google.com/file/d/1rzYD2Wo3OJBZ_IVJ9EbQ03TDbt4w4UUO/view), cutoff 2026-09-14T18:29:20Z, 164 visible messages. Owner-only permissions and exact raw bytes were verified. SHA-256: `7abd9ae684338f3781a1749c40166ca554ab0938b5ace94075fedd8f03a9ea6c`. Hidden reasoning, tool output, credentials and attachments are excluded. Later source receipts are recorded separately in the ecosystem migration ledger.
+
+## 2026-10-16 — Replacement reunion mixer
+
+Fritz supplied the committee update and confirmed: replace the former event; Twisted Tonic on November 7, 2026, 7–10 PM; exactly $30 per admission; food on your own; cinematic Miami mixer direction. He reported no earlier paid tickets. Read-only Woo/Stripe checks found the historical transactions fully refunded, with no outstanding paid admissions. Implementation requested after the proposed plan. Website/graphics preview is prepared; exact visual review, external gateway proof and live publication remain pending. See `docs/updates/mixer-2026-10-16/README.md`.
+
+
+October 16 correction: Fritz confirmed no Netlify deployments and directed use of actual production files. Verified live GoDaddy source via SSH/hash inventory and HTTPS, then simplified the mixer purchase flow and retired public RSVP/menu/planning survey forms. Production remains unchanged; local candidate only.

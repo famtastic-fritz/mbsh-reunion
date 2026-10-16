@@ -1,47 +1,5 @@
+# Retired October 16, 2026 by owner direction. No Netlify deployment.
+# Fail closed if a stale external Git integration still attempts a build.
 [build]
+  command = "echo 'Netlify deployment retired. Use scripts/deploy-production.sh for the GoDaddy unified release.' >&2; exit 1"
   publish = "frontend/"
-
-[[redirects]]
-  from = "/admin"
-  to = "https://mbsh96reunion.com/admin/"
-  status = 302
-  force = true
-
-[[redirects]]
-  from = "/admin/*"
-  to = "https://mbsh96reunion.com/admin/:splat"
-  status = 302
-  force = true
-
-# /config/site-config.json is now served as a static file from
-# frontend/config/. The previous /config/* self-rewrite caused a 500
-# loop, so it has been removed.
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://mbsh96reunion.com; frame-src 'self' https://open.spotify.com https://forms.office.com https://www.google.com"
-
-[[headers]]
-  for = "/survey.html"
-  [headers.values]
-    X-Frame-Options = "SAMEORIGIN"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://mbsh96reunion.com; frame-src https://forms.office.com"
-
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=300, must-revalidate"
-
-[[headers]]
-  for = "/config/*.json"
-  [headers.values]
-    Cache-Control = "no-cache"

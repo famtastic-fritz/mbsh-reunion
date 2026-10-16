@@ -11,11 +11,8 @@
 
   function getTargetTime() {
     const cfg = window.__SITE_CONFIG__ || {};
-    if (!cfg.REUNION_DATE) return null;
-    // Build target as 7:00 PM Eastern (UTC-4 EDT for July)
-    const datePart = cfg.REUNION_DATE; // e.g. 2026-07-12
-    const isoEdt = `${datePart}T19:00:00-04:00`;
-    const t = Date.parse(isoEdt);
+    if (!cfg.REUNION_START_AT) return null;
+    const t = Date.parse(cfg.REUNION_START_AT);
     return isNaN(t) ? null : t;
   }
 
@@ -39,6 +36,7 @@
     els.secs.textContent = pad(s);
   }
 
-  document.addEventListener('siteconfig:loaded', () => { tick(); setInterval(tick, 1000); });
+  let timer = null;
+  document.addEventListener('siteconfig:loaded', () => { tick(); if (!timer) timer = setInterval(tick, 1000); });
   tick();
 })();

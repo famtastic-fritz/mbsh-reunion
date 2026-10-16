@@ -2,10 +2,15 @@
   "name": "site-mbsh-reunion",
   "private": true,
   "version": "1.0.0",
-  "engines": {"node": ">=22"},
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "test": "node --test tests/frontend/*.test.mjs tests/backend/commerce-contract.test.mjs",
     "verify:repository": "node .famtastic/verify-repository.mjs",
     "build": "bash scripts/build-production-release.sh HEAD"
+  },
+  "devDependencies": {
+    "sharp": "0.35.5"
   }
 }

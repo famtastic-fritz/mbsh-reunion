@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-10-16",
+  "tool": "built-in image_gen",
+  "model": "not_reported_by_tool",
+  "derived_with": "Sharp 0.35.5; controlled typography and existing logos",
+  "assets": [
+    {
+      "path": "frontend/assets/mascot/01-wave-hello.png",
+      "sha256": "e93e0a02488efe200dd06ae23869f9031b76d243d99f14a5269c4798c03c3936",
+      "bytes": 855778
+    },
+    {
+      "path": "frontend/assets/brand-mark/brand-mark.png",
+      "sha256": "e923788c8829371635448bac1ee86b817d419dee999ede07afe52b54a4ebd721",
+      "bytes": 2251854
+    },
+    {
+      "path": "frontend/assets/famtastic/famtastic-designs-logo-v1.png",
+      "sha256": "ebb0477344132d32e449ba19e2b622921585aa71af0decdbcf8abfbe033fa950",
+      "bytes": 2020725
+    },
+    {
+      "path": "frontend/assets/mixer-2026/announcement-story.jpg",
+      "sha256": "af0bf9df1714ea5e1ac1659c53d5edb8c478394ed60563ded795bceda03e071b",
+      "bytes": 352015
+    },
+    {
+      "path": "frontend/assets/mixer-2026/mixer-ticket.webp",
+      "sha256": "049432a9b0a256272b93fd7823c325de1c28c5ba49ed9df83744ec5343b7eff6",
+      "bytes": 153330
+    },
+    {
+      "path": "frontend/assets/mixer-2026/location-card.png",
+      "sha256": "2b47ca2ae6036c6b8645f43390924bdcc45ab26bfe53aa6b800848c4d349f3fb",
+      "bytes": 147633
+    },
+    {
+      "path": "frontend/assets/mixer-2026/social-preview.jpg",
+      "sha256": "6abae19adfa30769098b4fd14184b5637e3d95833debb4c1fbf152026fe640d0",
+      "bytes": 182892
+    },
+    {
+      "path": "frontend/assets/mixer-2026/hero-mobile.webp",
+      "sha256": "21a21b23ba106007727180af3662cb03df12304acbbf5afb4f78152343ab6bcd",
+      "bytes": 182034
+    },
+    {
+      "path": "frontend/assets/mixer-2026/announcement-square.jpg",
+      "sha256": "795a42887ee928f3175005985de69dc13795a742a51418c7cee7ff34dac48a80",
+      "bytes": 236947
+    },
+    {
+      "path": "frontend/assets/mixer-2026/hero-wide.webp",
+      "sha256": "519347d2d1935153e83def8a673344ff6e2540c9c08e5e56e6f6ce56eaa0c3e7",
+      "bytes": 211574
+    },
+    {
+      "path": "frontend/assets/mixer-2026/mixer-ticket.png",
+      "sha256": "c056e9c2643d17c9534026374c4dcbaf992028560d3da8a1fe62de2385185fdb",
+      "bytes": 1757542
+    },
+    {
+      "path": "frontend/assets/mixer-2026/announcement-feed.jpg",
+      "sha256": "42b6b6cf84b2293fcbabeb9d9dc7e1a9f8e038bbd0f025d7339e6de5a4c88fea",
+      "bytes": 276914
+    },
+    {
+      "path": "frontend/assets/mixer-2026/source/miami-evening-harry-mobile-v1.png",
+      "sha256": "1976a9bb228b6176e9e5089fa0930de0b74e18f40c91a663f6fa487af664f2ca",
+      "bytes": 2093076
+    },
+    {
+      "path": "frontend/assets/mixer-2026/source/miami-evening-harry-wide-v1.png",
+      "sha256": "6f0ba8e0389201a24e20b5d0f8d58cacfcc32ca62351cb7e65f620e4cf941049",
+      "bytes": 2074156
+    }
+  ]
+}

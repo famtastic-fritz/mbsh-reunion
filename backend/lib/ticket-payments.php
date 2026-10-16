@@ -11,8 +11,8 @@ require_once __DIR__ . '/portal-email-templates.php';
 function fam_ticket_payment_link(): array
 {
     return [
-        'provider' => 'stripe_payment_link',
-        'url' => 'https://buy.stripe.com/3cIfZg8vZd5haIgb1c5Vu04',
+        'provider' => 'retired_legacy_offer',
+        'url' => 'https://mbsh96reunion.com/tickets.html#ticket-order',
         'buy_button_id' => 'buy_btn_1U9F3GD5PsE39cMx3iBvqu0d',
         'publishable_key' => 'pk_live_51Tu0uLD5PsE39cMxv1wBnVLQOwG1pRG4sCFtYrLJHxtkrG9ItVWwX8S71FERewpaFEWPxSc0nNmhpRpZE8KPdhMf00Sz1qpYOY',
         'unit_amount' => 190.67,
@@ -26,12 +26,12 @@ function fam_ticket_payment_link_is_open(?DateTimeImmutable $now = null): bool
 {
     $now ??= new DateTimeImmutable('now', new DateTimeZone('America/New_York'));
     $closes = new DateTimeImmutable(fam_ticket_payment_link()['available_through'], new DateTimeZone('America/New_York'));
-    return $now <= $closes;
+    return false; // Superseded by the reservation-aware mixer checkout.
 }
 
 function fam_ticket_payment_handoff_url(string $orderCode): string
 {
-    return 'https://mbsh96reunion.com/pay/?order=' . rawurlencode(strtoupper($orderCode));
+    return 'https://mbsh96reunion.com/tickets.html#ticket-order';
 }
 
 function fam_ticket_payment_expected_amount(int $quantity): float

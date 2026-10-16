@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '../..');
-const pages = ['index.html', 'rsvp.html', 'tickets.html', 'menu.html', 'survey.html', 'through-years.html', 'memorial.html', 'capsule.html', 'playlist.html'];
+const pages = ['index.html', 'tickets.html', 'through-years.html', 'memorial.html', 'capsule.html', 'playlist.html'];
 const failures = [];
 const canonicals = [];
 

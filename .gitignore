@@ -52,3 +52,6 @@ sess_*
 
 # Local-only site context copied from platform planning docs
 .site-context/
+
+# Local Python proof caches
+__pycache__/

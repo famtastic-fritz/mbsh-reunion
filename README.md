@@ -1,3 +1,5 @@
+> **October 16 mixer update:** [Implementation, graphics review, proof and pending release](docs/updates/mixer-2026-10-16/README.md). Twisted Tonic · November 7, 7–10 PM · $30 per person · food on your own. Local candidate; not deployed.
+
 # MBSH Class of '96 — 30th Reunion (v2 Cowork build)
 
 ## Current source ownership (2026-09-14)
@@ -87,7 +89,7 @@ The canonical hero (at `mbsh-reunion`) is preserved verbatim here. Sections 2-11
 | File | Role |
 |---|---|
 | `config/site-config.json` | Public site config (REUNION_DATE, prices, payment status, etc.) |
-| `netlify.toml` | Publish dir + headers (CSP, X-Frame-Options, immutable assets cache) |
+| `netlify.toml` | Fail-closed guard against obsolete automatic Netlify builds |
 | `.gitignore` | .env, secrets, uploads, story stills work |
 | `.env.example` | Dev environment template |
 | `DATA-PERSISTENCE.md` | Architecture + secrets strategy + dev/prod boundary |
@@ -96,33 +98,11 @@ The canonical hero (at `mbsh-reunion`) is preserved verbatim here. Sections 2-11
 
 ## Deploy
 
-### Frontend staging — Netlify
-
-```
-publish dir: frontend/
-staging domain: mbsh-reunion-staging.netlify.app
-```
-
-Staging deploy:
-
-```bash
-./scripts/push-staging.sh
-```
-
-The staging helper verifies the Netlify staging site slug before pushing the current commit to the `staging` branch. By default it enforces:
-
-```text
-https://mbsh-reunion-staging.netlify.app
-```
-
-Override the slug only when intentionally creating a different Netlify staging URL:
-
-```bash
-NETLIFY_STAGING_SITE_NAME=mbsh-reunion-demo ./scripts/push-staging.sh
-```
-
-Production is the unified GoDaddy webroot. It is released from an exact pushed
-Git commit with `scripts/deploy-production.sh`; Netlify is staging only.
+Netlify is retired and is not a staging or production target. The old helper
+fails without making any network calls; the configuration prevents stale
+external Git integrations from publishing another build. Local review uses the
+production-compatible PHP router. Release authority is the actual GoDaddy
+source and an exact tested commit.
 
 ### Production — GoDaddy cPanel (`nineoo` account)
 

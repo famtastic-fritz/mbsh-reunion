@@ -11,10 +11,10 @@
   const checkoutLink = document.getElementById('ticket-checkout-link');
   const loadedAt = document.getElementById('ticket-form-loaded-at');
   loadedAt.value = Date.now();
+  const previewOnly = ['localhost', '127.0.0.1'].includes(window.location.hostname);
 
   function currentPrice() {
-    const starts = new Date('2026-09-08T00:00:00-04:00');
-    return new Date() < starts ? { admission: 185, fee: 5.67, checkout: 190.67, label: 'Early Bird' } : { admission: 200, fee: 0, checkout: 200, label: 'Regular' };
+    return { admission: 30, fee: 0, checkout: 30, label: 'Mixer admission' };
   }
   function updateTotal() {
     const price = currentPrice();
@@ -24,11 +24,21 @@
       : `${price.label} · $${price.admission.toFixed(2)} per person`;
     total.textContent = `Checkout total: $${(price.checkout * count).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   }
+  if (new URLSearchParams(window.location.search).get('offer') === 'updated') {
+    status.textContent = 'The reunion is now a $30 mixer at Twisted Tonic. Please start a new ticket purchase below.';
+  }
   quantity.addEventListener('change', updateTotal);
   updateTotal();
+  if (previewOnly) {
+    status.textContent = 'Design preview only. Ticket quantities can be reviewed here; orders and payments are unavailable.';
+    form.querySelectorAll('input, textarea, button[type="submit"]').forEach(control => { control.disabled = true; });
+    form.querySelector('button[type="submit"]').textContent = 'Payment unavailable in preview';
+  }
 
   form.addEventListener('submit', async function (event) {
-    event.preventDefault(); status.textContent = '';
+    event.preventDefault();
+    if (previewOnly) return;
+    status.textContent = '';
     const submit = form.querySelector('button[type="submit"]');
     const fd = new FormData(form);
     const payload = Object.fromEntries(fd.entries());
@@ -63,7 +73,7 @@
       }
       const checkoutUrl = `/cms/checkout/?mbsh_order_code=${encodeURIComponent(data.order_code)}`;
       form.hidden = true; success.hidden = false;
-      successCopy.textContent = `${data.quantity} admission(s) reserved for checkout. Reunion order: ${data.order_code}. Payment remains pending until the secure checkout confirms it.`;
+      successCopy.textContent = `${data.quantity} admission(s) reserved for checkout. Mixer reservation: ${data.order_code}. Payment remains pending until the secure checkout confirms it.`;
       checkoutLink.href = checkoutUrl;
       checkoutLink.hidden = false;
       window.mbshAnalytics?.track('ticket_order_submitted', {

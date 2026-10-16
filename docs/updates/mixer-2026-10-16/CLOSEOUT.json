@@ -1,0 +1,46 @@
+{
+  "classification": "changed",
+  "source_revision": "e5ac95187193d874361a4dc93b2ced8797f963e7",
+  "environment": "local_and_isolated_test",
+  "deployment": "not_performed",
+  "owner_acceptance": "pending",
+  "provider_gateway_test": "not_performed; test credentials absent",
+  "checks": {
+    "node_test_files": 10,
+    "node_test_result": "pass",
+    "php_security_and_offer_behavior": "pass",
+    "wordpress_static": "pass",
+    "mariadb_mixer_integration": "pass",
+    "existing_portal_full_integration": "pass",
+    "isolated_real_woocommerce_11_0_1_ajax_and_order_lifecycle": "pass; provider payment-complete simulated; external HTTP and mail blocked",
+    "fresh_independent_clone_repository_contract": "pass",
+    "fresh_clone_npm_and_php_tests": "pass",
+    "release_manifest_checksums": 264,
+    "raw_generation_masters_excluded_from_release": true,
+    "production_writes": false,
+    "live_payments_or_refunds": false,
+    "fresh_clone_graphic_export_hashes": "pass; all source/reference/export hashes match the asset manifest",
+    "customer_messages_sent": false
+  },
+  "release_archive_sha256": "b2c6defac5f1275db4b3ab859d2c2bffc062d44f2f79451d70bd8b5f4afce9fc",
+  "preview_url": "http://127.0.0.1:8976/mixer-review/",
+  "remaining": [
+    "owner review of rendered candidate",
+    "Stripe sandbox success/decline/3DS/webhook/receipt acceptance",
+    "retire legacy payment link and associated open sessions at cutover",
+    "apply additive schema and $30 catalog revision; verify hosted release"
+  ],
+  "owner_task_acceptance": {
+    "task_id": "mbsh.mixer.owner-review",
+    "owner": "Fritz",
+    "role": "site_owner",
+    "device": "owner phone; not yet observed",
+    "route": "http://127.0.0.1:8976/mixer-review/",
+    "release_revision": "e5ac95187193d874361a4dc93b2ced8797f963e7",
+    "preconditions": "Local candidate for visual review; separate sandbox for checkout acceptance",
+    "expected": "Correct event facts; $30/$60; directions; paid-only wallet entitlement and failed-payment isolation in sandbox",
+    "reversal": "Test order refund/revocation; close sales and roll back source by immutable commit if required",
+    "observed_result": "pending",
+    "evidence_level": "proposed"
+  }
+}
