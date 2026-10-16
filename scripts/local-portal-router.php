@@ -17,6 +17,12 @@ $cleanPortalPages = [
     '/portal/admin/' => '/portal/committee/index.html',
 ];
 
+if ($path === '/mixer-review/') {
+    header('Content-Type: text/html; charset=utf-8');
+    readfile(__DIR__ . '/../docs/updates/mixer-2026-10-16/REVIEW.html');
+    return true;
+}
+
 if ($path === '/portal') {
     header('Location: /portal/', true, 308);
     return true;
@@ -54,6 +60,15 @@ if (preg_match('#^/portal/(staff|committee|owner)/([a-z0-9-]+\.php)$#', $path, $
         return true;
     }
 }
+
+if ($path === '/ticket-order.php') {
+    http_response_code(503); header('Content-Type: application/json');
+    echo json_encode(['error'=>'local_preview','message'=>'This is a local visual preview. Orders and payments cannot be submitted here.']);
+    return true;
+}
+if ($path === '/menu.php') { require $backendRoot . $path; return true; }
+
+if ($path === '/menu/') { header('Content-Type: text/html; charset=utf-8'); readfile($frontendRoot . '/menu/index.html'); return true; }
 
 $candidate = realpath($frontendRoot . ($path === '/' ? '/index.html' : $path));
 if ($candidate && str_starts_with($candidate, $frontendRoot . DIRECTORY_SEPARATOR) && is_file($candidate)) {

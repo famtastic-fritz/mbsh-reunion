@@ -1,3 +1,5 @@
+> **October 16 mixer update:** [Implementation, graphics review, proof and pending release](docs/updates/mixer-2026-10-16/README.md). Twisted Tonic · November 7, 7–10 PM · $30 per person · food on your own. Local candidate; not deployed.
+
 # MBSH Class of '96 — 30th Reunion (v2 Cowork build)
 
 ## Current source ownership (2026-09-14)

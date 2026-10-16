@@ -18,6 +18,10 @@ fi
 mkdir -p "$OUTPUT_DIR/source" "$OUTPUT_DIR/webroot"
 git -C "$ROOT_DIR" archive "$RELEASE_SHA" | tar -xf - -C "$OUTPUT_DIR/source"
 
+if [[ -f "$OUTPUT_DIR/source/scripts/sync-event-config.mjs" ]]; then
+  node "$OUTPUT_DIR/source/scripts/sync-event-config.mjs" --check
+fi
+
 # Fail before packaging if an authored document loses the mandatory final row.
 # Check the actual immutable candidate, not another checkout's current files.
 if [[ -f "$OUTPUT_DIR/source/scripts/sync-creator-credit.mjs" ]]; then
@@ -28,6 +32,7 @@ fi
 # CSS, JS, and assets; the backend contributes runtime PHP and access-control
 # files; WordPress receives only this repository's custom plugin and theme.
 rsync -a \
+  --exclude='assets/mixer-2026/source/' \
   --exclude='assets/social/' \
   --exclude='assets/yearbook-proof/' \
   "$OUTPUT_DIR/source/frontend/" "$OUTPUT_DIR/webroot/"

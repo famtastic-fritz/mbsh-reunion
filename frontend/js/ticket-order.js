@@ -13,8 +13,7 @@
   loadedAt.value = Date.now();
 
   function currentPrice() {
-    const starts = new Date('2026-09-08T00:00:00-04:00');
-    return new Date() < starts ? { admission: 185, fee: 5.67, checkout: 190.67, label: 'Early Bird' } : { admission: 200, fee: 0, checkout: 200, label: 'Regular' };
+    return { admission: 30, fee: 0, checkout: 30, label: 'Mixer admission' };
   }
   function updateTotal() {
     const price = currentPrice();
@@ -23,6 +22,9 @@
       ? `${price.label} · $${price.admission.toFixed(2)} + $${price.fee.toFixed(2)} fee per person`
       : `${price.label} · $${price.admission.toFixed(2)} per person`;
     total.textContent = `Checkout total: $${(price.checkout * count).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  }
+  if (new URLSearchParams(window.location.search).get('offer') === 'updated') {
+    status.textContent = 'The reunion is now a $30 mixer at Twisted Tonic. Please start a new reservation below.';
   }
   quantity.addEventListener('change', updateTotal);
   updateTotal();
@@ -63,7 +65,7 @@
       }
       const checkoutUrl = `/cms/checkout/?mbsh_order_code=${encodeURIComponent(data.order_code)}`;
       form.hidden = true; success.hidden = false;
-      successCopy.textContent = `${data.quantity} admission(s) reserved for checkout. Reunion order: ${data.order_code}. Payment remains pending until the secure checkout confirms it.`;
+      successCopy.textContent = `${data.quantity} admission(s) reserved for checkout. Mixer reservation: ${data.order_code}. Payment remains pending until the secure checkout confirms it.`;
       checkoutLink.href = checkoutUrl;
       checkoutLink.hidden = false;
       window.mbshAnalytics?.track('ticket_order_submitted', {

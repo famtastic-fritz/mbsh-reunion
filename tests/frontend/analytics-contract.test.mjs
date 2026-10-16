@@ -15,7 +15,6 @@ assert.doesNotMatch(analytics, /document\.cookie|localStorage|sessionStorage/, '
 const outcomeContracts = {
   'frontend/js/rsvp.js': 'rsvp_submitted',
   'frontend/js/ticket-order.js': 'ticket_order_submitted',
-  'frontend/js/menu.js': 'menu_selection_submitted',
   'frontend/js/memory.js': 'memory_submitted',
   'frontend/js/time-capsule.js': 'time_capsule_submitted',
   'frontend/js/playlist.js': 'playlist_suggestion_submitted',
@@ -27,6 +26,8 @@ for (const [relativePath, eventName] of Object.entries(outcomeContracts)) {
   const source = fs.readFileSync(path.join(root, relativePath), 'utf8');
   assert.ok(source.includes(`'${eventName}'`), `${relativePath} must emit ${eventName} only after success`);
 }
+
+assert.doesNotMatch(fs.readFileSync(path.join(root, 'frontend/js/menu.js'), 'utf8'), /menu_selection_submitted|fetch\(/, 'closed meal flow must not submit or emit success');
 
 for (const forbidden of ['first_name', 'last_name', 'data.email', 'payload.dietary', 'data.order_code']) {
   assert.doesNotMatch(analytics, new RegExp(forbidden.replace('.', '\\.')), `analytics core must not collect ${forbidden}`);

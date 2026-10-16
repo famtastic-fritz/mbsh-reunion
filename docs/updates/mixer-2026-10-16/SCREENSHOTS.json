@@ -1,0 +1,36 @@
+[
+  {
+    "path": "screenshots/home-mobile.png",
+    "route": "/",
+    "environment": "local_review",
+    "captured_on": "2026-10-16",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "decoded": {
+      "width": 375,
+      "height": 812,
+      "format": "jpeg"
+    },
+    "sha256": "9687aaef030b2d5587fc0727c26078bfe0e9745600c52b410ca85c461c24020b",
+    "owner_acceptance": "pending"
+  },
+  {
+    "path": "screenshots/home-desktop.png",
+    "route": "/",
+    "environment": "local_review",
+    "captured_on": "2026-10-16",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "decoded": {
+      "width": 1265,
+      "height": 889,
+      "format": "jpeg"
+    },
+    "sha256": "7e7b1c41c2946bf2df357fcc9ceb31aca7c5d4845c8c8b18f3b93d935bae272a",
+    "owner_acceptance": "pending"
+  }
+]

@@ -29,8 +29,8 @@ for (const relativePath of publicPages) {
 
 const functionalContracts = {
   'frontend/rsvp.html': [/id="rsvp-form"/, /js\/rsvp\.js/],
-  'frontend/tickets.html': [/id="ticket-order-form"/, /js\/ticket-order\.js/, /id="sponsor-form"/, /js\/sponsor\.js/],
-  'frontend/menu/index.html': [/id="menu-form"/, /js\/menu\.js/],
+  'frontend/tickets.html': [/id="ticket-order-form"/, /js\/ticket-order\.js/, /id="sponsor"/, /mailto:committee@mbsh96reunion\.com/],
+  'frontend/menu/index.html': [/id="location-title"/, /Food on your own/, /Get directions/],
   'frontend/survey.html': [/id="survey-form"/, /fetch\('\/survey2\.php'/],
   'frontend/through-years.html': [/id="memory-form"/, /js\/memory\.js/],
   'frontend/memorial.html': [/id="memorial-list"/, /js\/memorial\.js/],

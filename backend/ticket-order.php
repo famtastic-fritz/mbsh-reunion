@@ -5,6 +5,7 @@ require_once __DIR__ . '/lib/cors.php';
 require_once __DIR__ . '/lib/db.php';
 require_once __DIR__ . '/lib/validate.php';
 require_once __DIR__ . '/lib/rate-limit.php';
+require_once __DIR__ . '/lib/event-offer.php';
 
 $config = fam_load_config();
 fam_cors($config, 'public_post');
@@ -25,10 +26,9 @@ try {
   $guestNames = fam_optional($data, 'guest_names', 1000);
   $notes = fam_optional($data, 'notes', 1000);
 
-  $today = new DateTimeImmutable('now', new DateTimeZone('America/New_York'));
-  $regularStarts = new DateTimeImmutable('2026-09-08 00:00:00', new DateTimeZone('America/New_York'));
-  $priceTier = $today < $regularStarts ? 'early_bird' : 'regular';
-  $unitPrice = $priceTier === 'early_bird' ? 185.00 : 200.00;
+  $offer = fam_mixer_offer();
+  $priceTier = 'mixer';
+  $unitPrice = (float) $offer['TICKET_PRICE'];
   $total = $unitPrice * $quantity;
   $replayed = false;
   $checkoutSecret = trim((string) ($config['checkout_secret'] ?? ''));
@@ -51,6 +51,7 @@ try {
         && (string) ($existing['phone'] ?? '') === (string) ($phone ?? '')
         && (string) ($existing['guest_names'] ?? '') === (string) ($guestNames ?? '')
         && (string) ($existing['notes'] ?? '') === (string) ($notes ?? '')
+        && (string) $existing['price_tier'] === $priceTier
         && (int) $existing['quantity'] === $quantity
         && (float) $existing['unit_price'] === $unitPrice
         && (float) $existing['total_amount'] === $total
@@ -78,7 +79,7 @@ try {
   // This endpoint records a reservation attempt only. It intentionally sends
   // no customer or committee mail; WooCommerce's paid-order lifecycle owns
   // receipts, tickets, and post-payment notifications.
-  $tokenPayload = implode('|', [$orderCode, $email, $quantity, time() + 86400]);
+  $tokenPayload = fam_mixer_checkout_payload($orderCode, $email, $quantity, time() + 86400);
   $tokenEncoded = rtrim(strtr(base64_encode($tokenPayload), '+/', '-_'), '=');
   $checkoutToken = $tokenEncoded . '.' . hash_hmac('sha256', $tokenPayload, $checkoutSecret);
   fam_json_response(200, [
@@ -88,6 +89,7 @@ try {
     'unit_price' => $unitPrice,
     'total_amount' => $total,
     'price_tier' => $priceTier,
+    'offer_id' => $offer['TICKET_OFFER_ID'],
     'replayed' => $replayed,
     'payment_status' => 'attempt',
     'checkout_token' => $checkoutToken,

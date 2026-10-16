@@ -17,8 +17,8 @@ assert.match(page, /noindex,nofollow,noarchive/, 'manual should remain shareable
 assert.match(script, /fetch\('\/portal\/session\.php'/, 'private chapters must use the real session authority');
 assert.match(script, /staff\.authorized/, 'committee chapter must require server-authorized staff');
 assert.match(script, /staff\.role === 'site_owner'/, 'owner chapter must require the site-owner role');
-assert.match(script, /Tickets & sponsorship/, 'public ticket capability must be represented');
-assert.match(script, /This is not live checkout or payment collection/, 'manual must not imply live checkout');
+assert.match(script, /Mixer tickets/, 'public ticket capability must be represented');
+assert.match(script, /after payment is confirmed/, 'manual must distinguish a reservation from paid admission');
 assert.match(script, /Originals stay private/, 'manual must preserve media-moderation boundary');
 assert.doesNotMatch(page, /wp-admin|cms\/wp-admin/i, 'public manual markup must not advertise the owner CMS');
 assert.doesNotMatch(script, /cms\/wp-admin/i, 'public manual script must not expose the owner CMS destination');

@@ -414,7 +414,7 @@ CREATE TABLE IF NOT EXISTS ticket_orders (
   guest_names TEXT NULL,
   unit_price DECIMAL(8,2) NOT NULL,
   total_amount DECIMAL(10,2) NOT NULL,
-  price_tier ENUM('early_bird','regular') NOT NULL,
+  price_tier ENUM('early_bird','regular','mixer') NOT NULL,
   payment_status ENUM('pending','paid','cancelled') NOT NULL DEFAULT 'pending',
   notes TEXT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

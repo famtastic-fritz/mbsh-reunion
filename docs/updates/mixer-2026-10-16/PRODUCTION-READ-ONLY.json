@@ -1,0 +1,28 @@
+{
+  "checked_on": "2026-10-16",
+  "environment": "production_read_only",
+  "source_base": "origin/main 730eea5",
+  "production_marker": "67f22480d6fe2a3596d9b6117279097c8db54768",
+  "woo": {
+    "admission_orders_fully_refunded": 9,
+    "test_orders_fully_refunded": 1,
+    "outstanding_paid_admission_orders": 0,
+    "pending_orders": 0,
+    "product_id": 26,
+    "old_price": "190.67",
+    "currency": "USD",
+    "tax_status": "none",
+    "taxes_enabled": false
+  },
+  "stripe": {
+    "receipts_checked": 10,
+    "fully_refunded": 10,
+    "missing_references": 0,
+    "lookup_errors": 0,
+    "superseded_payment_link_active": true,
+    "test_keys_configured": false
+  },
+  "changes_performed": false,
+  "payment_or_refund_actions": false,
+  "external_gateway_proof": "pending; no test credentials configured; isolated Woo simulation is separate"
+}

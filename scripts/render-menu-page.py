@@ -10,17 +10,17 @@ OUTPUTS = [
 ]
 
 replacements = {
-    '{{PAGE_DESCRIPTION}}': "Gold menu dinner preference survey for the MBSH Class of '96 30th Reunion.",
-    '{{PAGE_TITLE}}': "Gold Menu — Dinner Preferences — MBSH Class of ’96",
-    '{{OPTIONAL_PAGE_CSS}}': '  <link rel="stylesheet" href="/css/menu.css">',
+    '{{PAGE_DESCRIPTION}}': "Food and location information for the MBSH Class of '96 Reunion Mixer at Twisted Tonic.",
+    '{{PAGE_TITLE}}': "Food & Location — MBSH Reunion Mixer",
+    '{{OPTIONAL_PAGE_CSS}}': '  <link rel="stylesheet" href="/css/mixer.css?v=mixer1">',
     '{{PAGE_KEY}}': 'menu',
     '{{OPTIONAL_HEADER_MODIFIER}}': '',
-    '{{PAGE_HEADING}}': 'Dinner Preferences',
+    '{{PAGE_HEADING}}': 'Food & Location',
     '{{OPTIONAL_TITLE_MODIFIER}}': '',
-    '{{PAGE_SUBHEAD}}': 'Review the finalized dinner menu and choose your entrée for the evening.',
+    '{{PAGE_SUBHEAD}}': 'Twisted Tonic · November 7, 2026 · 7–10 PM · Food on your own.',
     '{{OPTIONAL_SUB_MODIFIER}}': '',
     '{{PAGE_CONTENT}}': CONTENT.read_text(),
-    '{{OPTIONAL_PAGE_JS}}': '  <script src="/js/menu.js" defer></script>\n  <script src="/js/page-sequence.js" defer></script>\n  <script src="/js/premiere.js" defer></script>',
+    '{{OPTIONAL_PAGE_JS}}': '  <script src="/js/page-sequence.js?event=mixer20261016" defer></script>\n  <script src="/js/premiere.js?event=mixer20261016" defer></script>',
 }
 
 html = TEMPLATE.read_text()

@@ -56,8 +56,8 @@
       slug: 'tickets.html',
       reelRoman: 'III',
       sceneLocation: 'Concession Stand',
-      title: 'Tickets & Sponsorship',
-      usher: 'Two ways in — secure a seat, or help fund the night.'
+      title: 'Mixer Tickets',
+      usher: 'One reunion mixer. $30 per person. Food on your own.'
     },
     {
       id: 'menu',
@@ -65,8 +65,8 @@
       slug: '/menu/',
       reelRoman: 'IV',
       sceneLocation: 'Dining Room',
-      title: 'Dinner Preferences',
-      usher: 'Vote the menu up front so the committee locks the strongest dinner lineup.'
+      title: 'Food & Location',
+      usher: 'Find Twisted Tonic and plan your evening. Food is on your own.'
     },
     {
       id: 'survey',

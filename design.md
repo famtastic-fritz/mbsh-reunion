@@ -32,3 +32,7 @@ Harry retain compact spacing. That exception is not a fleet default.
 Preserve the44px link target and verify the visible greeting cannot cover it.
 
 Verify 390, 768 and 1280 pixel layouts, keyboard navigation, readable contrast, reduced motion and form error states. Preserve asset rights and provenance.
+
+## 2026-10-16 — Mixer direction revision
+
+Fritz authorized the cinematic Miami mixer direction: keep the commissioned reunion seal, recognizable Harry, red/black/gold and shared shell; use warm illustrative Miami evening scenery. The phone layout separates essential copy/controls from the character scene. The replacement event is Twisted Tonic, November 7, 7–10 PM, $30 per person, food on your own. No formal attire, dinner package or exact rooftop booking is implied. This direction authorization is not acceptance of the rendered candidate. Sources, eight graphic exports, optimized wallet variant, screenshots and pending release evidence are indexed in `docs/updates/mixer-2026-10-16/README.md`.

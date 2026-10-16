@@ -4,9 +4,11 @@ const result = execFileSync('php', ['-r', `require 'backend/lib/creator-credit.p
 $input = '<html><body><p>Keep &amp; preserve content</p></body></html>';
 $output = fam_creator_credit_email($input);
 require 'wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-resend-mailer.php';
+require 'backend/lib/portal-email-templates.php';
+$template = fam_ticket_transaction_email('payment_confirmed', ['first_name'=>'Fixture','quantity'=>1,'total'=>'$30.00']);
 $wp = new ReflectionMethod('Famtastic_Reunion_Resend_Mailer', 'creator_credit');
-echo json_encode(['html'=>$output,'twice'=>fam_creator_credit_email($output),'fragment'=>fam_creator_credit_email('<p>Fragment</p>'),'wp'=>$wp->invoke(null,$input),'wpTwice'=>$wp->invoke(null,$output)]);`], {encoding:'utf8'});
-const {html, twice, fragment, wp, wpTwice} = JSON.parse(result);
+echo json_encode(['template'=>$template['html'],'html'=>$output,'twice'=>fam_creator_credit_email($output),'fragment'=>fam_creator_credit_email('<p>Fragment</p>'),'wp'=>$wp->invoke(null,$input),'wpTwice'=>$wp->invoke(null,$output)]);`], {encoding:'utf8'});
+const {html, twice, fragment, wp, wpTwice, template} = JSON.parse(result);
 assert.equal(html, wp);
 assert.equal(html, wpTwice);
 assert.equal(html, twice);
@@ -16,3 +18,8 @@ assert.match(fragment, /<\/a><\/div>$/);
 assert.match(html, /https:\/\/mbsh96reunion.com\/assets\/famtastic\/famtastic-designs-logo-v1.png/);
 assert.match(html, /text-align:center/);
 console.log('PASS email credit: unchanged dynamic content, absolute image URL, idempotent final row; no mail sent');
+
+assert.match(template,/Twisted Tonic/);
+assert.match(template,/Food on your own/);
+assert.equal((template.match(/data-famtastic-email-credit="v1"/g)||[]).length,1);
+assert.doesNotMatch(template,/Miami Shores|Country Club|\$185|\$200/);

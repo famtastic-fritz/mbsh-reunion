@@ -5,8 +5,8 @@
     public: [
       ['01', 'Home', 'The cinematic reunion landing page: event facts, directions, and the clearest next actions.', '/index.html', 'Open home', 'Public route'],
       ['02', 'RSVP', 'Use the diploma-style RSVP to tell the committee you are coming and supply reunion details.', '/rsvp.html', 'Start RSVP', 'Public form'],
-      ['03', 'Tickets & sponsorship', 'Request seats or make a sponsor inquiry. This is not live checkout or payment collection.', '/tickets.html', 'Review ticket options', 'Request only'],
-      ['04', 'Dinner preferences', 'Choose an entrée and share dietary information for the committee to plan the evening.', '/menu/', 'Open dinner choices', 'Public form'],
+      ['03', 'Mixer tickets', 'Reserve $30 mixer admissions, continue to secure card checkout, then retrieve your ticket after payment is confirmed.', '/tickets.html', 'Get mixer tickets', 'Secure checkout'],
+      ['04', 'Food & location', 'Find the mixer venue and directions. Food is on your own; no meal selection is required.', '/menu/', 'Open food & location', 'Venue information'],
       ['05', 'Class check-in', 'A short class survey that helps the committee understand attendance and interest.', '/survey.html', 'Check in with the class', 'Public form'],
       ['06', 'Through the Years', 'Explore the centennial story and submit a photo or memory for committee approval.', '/through-years.html', 'Visit the archive', 'Archive coming soon'],
       ['07', 'In Memory', 'A committee-curated place to carry classmates forward with care.', '/memorial.html', 'Visit In Memory', 'Curated feed'],
@@ -17,7 +17,7 @@
     ],
     member: [
       ['01', 'My Reunion dashboard', 'Your private home for the next reunion action, personal status, and event guidance.', '/portal/#home', 'Open My Reunion', 'Private'],
-      ['02', 'RSVP & dinner', 'Save attendance, guests, meal choice, phone, and dietary or accessibility needs to your current portal response.', '/portal/#rsvp', 'Review RSVP & dinner', 'Private record'],
+      ['02', 'RSVP & access', 'Save attendance, guests, phone, and accessibility needs to your current portal response.', '/portal/#rsvp', 'Review RSVP & access', 'Private record'],
       ['03', 'Ticket wallet', 'See only tickets issued to your verified account and the current rotating check-in credential.', '/portal/#ticket', 'Open ticket wallet', 'Credential protected'],
       ['04', 'Memories', 'Upload a photo or video with a title, caption, year, and publication consent. It remains private until reviewed.', '/portal/#memories', 'Share a memory', 'Moderated'],
       ['05', 'Suggestions', 'Send music, event, accessibility, or site ideas and follow the committee decision on your own submission.', '/portal/#suggestions', 'Make a suggestion', 'Private thread'],
@@ -28,7 +28,7 @@
     committee: [
       ['01', 'Command center', 'Read operational signals and the current source context. Counts never grant permission to change a record.', '/portal/admin/#command', 'Open command center', 'Staff session'],
       ['02', 'People & RSVP', 'Deliberately search a protected attendee record and see only the details your capability permits.', '/portal/admin/#people', 'Open People', 'view_roster'],
-      ['03', 'Dinner & dietary', 'Open linked attendee context for dinner submissions. Existing legacy history is read-only here.', '/portal/admin/#dinner', 'Open dinner context', 'view_menu'],
+      ['03', 'Historical meal records', 'Open linked attendee context for dinner submissions. Existing legacy history is read-only here.', '/portal/admin/#dinner', 'Open dinner context', 'view_menu'],
       ['04', 'Hi-Tide Harry Desk', 'Review unanswered Harry questions and save an accountable internal response—never an automatic public reply.', '/portal/admin/#harry', 'Open Harry Desk', 'respond_harry'],
       ['05', 'Media approvals', 'Approve or return submitted media after rights, safety, and context review. Originals stay private.', '/portal/admin/#review', 'Open review queue', 'moderate_media'],
       ['06', 'Messages', 'Read the full attendee conversation timeline and queue an accountable committee reply.', '/portal/admin/#messages', 'Open messages', 'view_inbox'],

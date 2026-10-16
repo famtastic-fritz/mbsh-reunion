@@ -8,8 +8,8 @@
   const routes = [
     ['home', 'Home', '/index.html'],
     ['rsvp', 'RSVP', '/rsvp.html'],
-    ['tickets', 'Tickets & Sponsorship', '/tickets.html'],
-    ['menu', 'Dinner Preferences', '/menu/'],
+    ['tickets', 'Mixer Tickets', '/tickets.html'],
+    ['menu', 'Food & Location', '/menu/'],
     ['survey', 'Class Check-In', '/survey.html'],
     ['through-years', 'Through the Years', '/through-years.html'],
     ['memorial', 'In Memory', '/memorial.html'],
@@ -169,7 +169,7 @@
       <div class="alumni-invite__copy">
         <p class="alumni-invite__eyebrow">Hi-Tide Harry has a reminder</p>
         <h2>Don&rsquo;t just visit the reunion. <em>Belong to it.</em></h2>
-        <p>Create your alumni portal account for official updates, platform news, RSVP details, dinner and dietary preferences, memories, and your personal reunion record.</p>
+        <p>Create your alumni portal account for official updates, platform news, RSVP details, mixer tickets and accessibility notes, memories, and your personal reunion record.</p>
         <div class="alumni-invite__actions">
           <a class="cinema-button cinema-button--primary" href="/portal/register" data-analytics-cta>Create my account</a>
           <a class="alumni-invite__signin" href="/portal/login" data-analytics-cta>Already registered? Sign in</a>
@@ -246,7 +246,7 @@
       document.head.appendChild(style);
     }
     const script = document.createElement('script');
-    script.src = '/js/reunion-navigator.js?v=3';
+    script.src = '/js/reunion-navigator.js?v=3&event=mixer20261016';
     script.defer = true;
     script.dataset.reunionNavigatorScript = 'true';
     script.addEventListener('load', ready, { once: true });

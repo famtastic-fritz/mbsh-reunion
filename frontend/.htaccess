@@ -24,8 +24,10 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTP_HOST} ^(?:www\.)?famtasticinc\.com$ [NC]
   RewriteRule ^(assets/.*|styles\.css|site\.js|robots\.txt|sitemap\.xml)$ famtasticinc-landing/$1 [END]
 
-  # One canonical dinner-preference route; retain old bookmarks without
+  # One canonical food/location route; retain old bookmarks without
   # maintaining a second copy of the page.
+  # Superseded payment-link handoffs must start a current mixer reservation.
+  RewriteRule ^pay(?:/.*)?$ /tickets.html?offer=updated [R=302,L,QSD,NE]
   RewriteRule ^menu\.html$ /menu/ [R=308,L,NE]
 
   # One branded identity entrance. Legacy staff bookmarks no longer expose the

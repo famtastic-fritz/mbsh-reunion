@@ -4,26 +4,29 @@
   'use strict';
 
   const FAQ = [
+    { match: /when.*where|where.*when/i, answer: () => 'Saturday, November 7, 2026, 7–10 PM at Twisted Tonic, inside The Lincoln Eatery, 723 Lincoln Ln N, Miami Beach. $30 per person; food on your own. <a href="/menu/">Get directions</a>.' },
+    { match: /payment|pay here|pay.*work|checkout/i, answer: () => 'Start on the <a href="/tickets.html#ticket-order">mixer ticket form</a>. We save your reservation, then open secure checkout. The final charge is $30 per person; tickets become valid after payment is confirmed.' },
+    { match: /time|hours|start|finish|end/i, answer: () => 'The mixer is Saturday, November 7, 2026, from 7 PM to 10 PM at Twisted Tonic in Miami Beach.' },
     { match: /(when|date|day).*(reunion|happen|event)|when is/i,
-      answer: () => `${window.__SITE_CONFIG__?.REUNION_DATE_DISPLAY || 'Saturday, November 7, 2026'}, from 7 PM to midnight.` },
+      answer: () => `${window.__SITE_CONFIG__?.REUNION_DATE_DISPLAY || 'Saturday, November 7, 2026'}, from 7 PM to 10 PM.` },
     { match: /where|venue|location|address/i,
-      answer: () => 'Miami Shores Country Club, 10000 Biscayne Blvd, Miami Shores, FL 33138. <a href="https://www.google.com/maps/dir/?api=1&destination=Miami+Shores+Country+Club%2C+10000+Biscayne+Blvd%2C+Miami+Shores%2C+FL+33138" target="_blank" rel="noopener">Get directions</a>.' },
+      answer: () => 'Twisted Tonic, 723 Lincoln Ln N, Miami Beach, FL 33139. <a href="https://www.google.com/maps/dir/?api=1&destination=Twisted+Tonic%2C+723+Lincoln+Ln+N%2C+Miami+Beach%2C+FL+33139" target="_blank" rel="noopener">Get directions</a>.' },
     { match: /rsvp|reserve|confirm.*attend/i,
       answer: () => 'I can walk you right to it. <a href="/rsvp.html">Reserve your place</a>.' },
     { match: /who.*coming|attendees|attendee list|guest list/i,
       answer: () => 'The public attendee list only shows classmates who choose to be displayed. The committee will publish the class list once it is ready.' },
     { match: /dress|attire|black.tie|what.*wear/i,
-      answer: () => 'Black-tie cocktail. Think prom night—grown up, polished, and ready for pictures.' },
+      answer: () => 'The committee has not supplied a dress code for the mixer. Contact them if you need guidance.' },
     { match: /price|cost|tickets|how much/i,
-      answer: () => `$${window.__SITE_CONFIG__?.EARLY_BIRD_PRICE || 185} early bird and $${window.__SITE_CONFIG__?.REGULAR_PRICE || 200} after the deadline. <a href="/tickets.html">See ticket details</a>.` },
+      answer: () => '$30 per person, with no additional checkout fee. Food is on your own. <a href="/tickets.html">Get mixer tickets</a>.' },
     { match: /food|meal|menu|dinner|allerg|diet/i,
-      answer: () => 'Dinner choices and dietary notes live on the menu page. <a href="/menu/">Choose your entrée</a>.' },
+      answer: () => 'Food is on your own; a catered meal is not included and no meal selection is needed. <a href="/menu/">Food and location information</a>.' },
     { match: /music|playlist|song|soundtrack/i,
       answer: () => 'Now you are speaking my language. <a href="/playlist.html">Visit the soundtrack</a> and suggest the song that takes you back.' },
     { match: /memory|photo|yearbook|1996|through the years/i,
       answer: () => 'The living archive is taking shape. <a href="/through-years.html">Share a memory or photo</a> for committee review.' },
     { match: /sponsor|donate|donation|fund/i,
-      answer: () => 'Your support helps produce the night. <a href="/tickets.html#sponsor">See sponsorship options</a>.' },
+      answer: () => 'Your support helps produce the night. <a href="/tickets.html#sponsor">Contact the committee about supporting the mixer</a>.' },
     { match: /are you ai|are you a bot|are you real|are you.*chatgpt/i,
       answer: () => 'I am Hi-Tide Harry—the spirit of the halls, your reunion usher, and apparently the only mascot working the night shift.' }
   ];
@@ -32,7 +35,7 @@
     home: {
       pose: '/assets/mascot/01-wave-hello.png',
       greeting: 'There you are. Thirty years later—and right on time. I can show you around or get you straight to RSVP.',
-      nudge: 'The lobby is open. Start with your place at the table?',
+      nudge: 'The lobby is open. Start with the $30 mixer tickets?',
       chips: [['RSVP', 'How do I RSVP?'], ['Tickets', 'How much are tickets?'], ['The night', 'When and where is the reunion?']]
     },
     rsvp: {
@@ -43,15 +46,15 @@
     },
     tickets: {
       pose: '/assets/mascot/13-ticket-stub.png',
-      greeting: 'Welcome to the box office. I can explain the ticket phase, guest orders, or sponsorship without the fine-print fog.',
+      greeting: 'Welcome to the box office. I can explain the $30 mixer admission, guest orders, or payment without the fine-print fog.',
       nudge: 'Pick the number of seats first. I will help with the rest.',
       chips: [['Ticket price', 'How much are tickets?'], ['Payment', 'How does payment work?'], ['Sponsor', 'How can I sponsor?']]
     },
     menu: {
       pose: '/assets/mascot/15-seated-usher.png',
-      greeting: 'Dinner service, handled. Choose one entrée and tell us about anything the kitchen needs to know.',
-      nudge: 'Chicken, salmon, or vegetarian—what is calling your name?',
-      chips: [['Dietary needs', 'How do I report an allergy?'], ['Update choice', 'Can I change my meal later?'], ['Tickets', 'Where is my ticket order?']]
+      greeting: 'Meet us at Twisted Tonic on November 7, 7–10 PM. Food is on your own; no meal selection is needed.',
+      nudge: 'The new location and directions are right here.',
+      chips: [['Food', 'Is food included?'], ['Directions', 'Where is the mixer?'], ['Tickets', 'Where is my ticket order?']]
     },
     survey: {
       pose: '/assets/mascot/12-clipboard.png',
@@ -261,7 +264,7 @@
   function findFaq(text) { return FAQ.find(item => item.match.test(text)); }
 
   function contextualAnswer(text) {
-    if (/what happens after.*rsvp|what happens next/i.test(text)) return 'You receive a confirmation email. Next, the ticket page handles seats and the menu page captures dinner choices.';
+    if (/what happens after.*rsvp|what happens next/i.test(text)) return 'You receive a confirmation email. Next, get your $30 mixer ticket on the ticket page. Food is on your own; no meal selection is needed.';
     if (/who can see|privacy|how is this used/i.test(text)) return 'Only the public-display choice can place your name and city on the attendee list. The committee uses the remaining details to coordinate the reunion.';
     if (/do i pay here|payment work/i.test(text)) return 'The current ticket page records the order at today’s price. It clearly explains whether payment is collected now or sent as a follow-up instruction.';
     if (/same as rsvp/i.test(text)) return 'No. Class Check-In is an early planning signal. RSVP is the formal attendance record. The facelift makes that distinction explicit.';

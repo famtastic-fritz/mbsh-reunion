@@ -654,8 +654,8 @@
     : [
         { id: 'home',     page: 'home',          href: 'index.html',         reel: 'I',    title: 'Welcome — The Premiere',     usher: 'Curtain up. Find your row, find your row of 1996.',           runtime: '—' },
         { id: 'rsvp',     page: 'rsvp',          href: 'rsvp.html',          reel: 'II',   title: 'Reserve Your Seat',          usher: "Tell us you're coming. The night unlocks once we hear from you.", runtime: '4 min' },
-        { id: 'tickets',  page: 'tickets',       href: 'tickets.html',       reel: 'III',  title: 'Tickets & Sponsorship',      usher: 'Two ways in — secure a seat, or help fund the night.',  runtime: '6 min' },
-        { id: 'menu',     page: 'menu',          href: '/menu/',             reel: 'IV',   title: 'Dinner Preferences',         usher: 'Vote the menu up front so the committee locks the strongest dinner lineup.', runtime: '5 min' },
+        { id: 'tickets',  page: 'tickets',       href: 'tickets.html',       reel: 'III',  title: 'Mixer Tickets',      usher: 'One reunion mixer. $30 per person. Food on your own.',  runtime: '6 min' },
+        { id: 'menu',     page: 'menu',          href: '/menu/',             reel: 'IV',   title: 'Food & Location',         usher: 'Find Twisted Tonic and plan your evening. Food is on your own.', runtime: '5 min' },
         { id: 'survey',   page: 'survey',        href: 'survey.html',        reel: 'V',    title: 'Class Survey',               usher: 'Give the committee the head count, guest signal, and planning intel they need.', runtime: '3 min' },
         { id: 'years',    page: 'through-years', href: 'through-years.html', reel: 'VI',   title: 'Through the Years',          usher: 'One hundred years of Hi-Tides. The eras that built us.',     runtime: '12 min' },
         { id: 'memory',   page: 'memorial',      href: 'memorial.html',      reel: 'VII',  title: 'In Memory',                  usher: 'Forever Hi-Tides. Names we carry with us.',                  runtime: '5 min' },
@@ -870,31 +870,31 @@
         eyebrow: 'The night',
         kind: 'headline',
         harry: '23-salute-clean.png',
-        headline: 'Saturday, November 7, 2026.<br><span class="billboard__accent">Black-tie cocktail.</span>',
-        sub: 'Miami Shores Country Club. The night unlocks once we hear from you.'
+        headline: 'Saturday, November 7, 2026.<br><span class="billboard__accent">7–10 PM · Food on your own.</span>',
+        sub: 'Twisted Tonic. The night unlocks once we hear from you.'
       }
     ],
     rsvp: [
       { eyebrow: 'A note from your usher', kind: 'welcome', harry: '12-clipboard.png',
         line: "Take your seat, Hi-Tide. The night unlocks the moment you tell us you're coming.",
         beats: [
-          'Fill the form below — name, plus-one, dietary notes.',
+          'Fill the form below — name, guests, and accessibility notes.',
           'You can update later if anything changes.',
           'Tap me if a field gets weird or you want a hand.'
         ], sign: '— Harry' },
       { eyebrow: 'Save the date', kind: 'headline', harry: '02-thumbs-up.png',
-        headline: 'Saturday, November 7, 2026.', sub: 'Black-tie cocktail. Miami Shores Country Club.' }
+        headline: 'Saturday, November 7, 2026.', sub: '7–10 PM · Food on your own. Twisted Tonic.' }
     ],
     tickets: [
       { eyebrow: 'A note from your usher', kind: 'welcome', harry: '13-ticket-stub.png',
-        line: 'Two ways in tonight, Hi-Tide — secure a seat, or help fund the night.',
+        line: 'Your Class of ’96 mixer ticket is $30, Hi-Tide.',
         beats: [
-          'Tier badges below show what each level unlocks.',
-          'Patrons get on-site recognition + the patron-row at dinner.',
+          'One price: $30 per person, with no extra checkout fee.',
+          'Food is on your own. No meal selection is needed.',
           "Got a company that wants to put their name on it? I'll point them my way."
         ], sign: '— Harry' },
-      { eyebrow: 'Patrons of the evening', kind: 'headline', harry: '04-excited-cheer.png',
-        headline: 'Studio · Director · Producer · Patron.', sub: 'Pick a tier. Or pick the seat. Either reels the room.' }
+      { eyebrow: 'Back together in Miami Beach', kind: 'headline', harry: '04-excited-cheer.png',
+        headline: '$30. One reunion mixer.', sub: 'Twisted Tonic · November 7 · 7–10 PM. Food on your own.' }
     ],
     'through-years': [
       { eyebrow: 'A note from your usher', kind: 'welcome', harry: '22-walk-frame.png',

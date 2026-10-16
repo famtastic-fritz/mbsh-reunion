@@ -130,22 +130,30 @@ final class Famtastic_Reunion_Commerce
         ]);
 
         foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
-            if (($cart_item['famtastic_reservation_code'] ?? '') === $code) {
+            if (($cart_item['famtastic_reservation_code'] ?? '') === $code && Famtastic_Reunion_Mixer_Offer::current_line($cart_item)) {
                 self::record_event($attempt_id, 'cart_replayed', ['cart_item_key' => $cart_item_key]);
                 wp_send_json(['ok' => true, 'cart_item_key' => $cart_item_key, 'replayed' => true]);
             }
         }
 
         $product = wc_get_product(self::PRODUCT_ID);
-        if (!$product || !$product->is_purchasable() || !$product->is_in_stock() || $product->get_meta('_famtastic_ticket_event') !== self::EVENT_KEY) {
+        if (!Famtastic_Reunion_Mixer_Offer::product_ready($product) || !$product->is_purchasable() || !$product->is_in_stock()) {
             self::fail_attempt($attempt_id, 'ticket_product_unavailable');
             self::json_error(409, 'ticket_product_unavailable', 'Secure checkout is not ready for this ticket product. Please try again later.');
         }
 
+        // One current reservation per checkout; preserve all prior order/attempt records.
+        foreach (WC()->cart->get_cart() as $old_key => $old_line) {
+            if (Famtastic_Reunion_Mixer_Offer::is_ticket_line($old_line)) { WC()->cart->remove_cart_item($old_key); }
+        }
+        if (!WC()->cart->is_empty()) {
+            self::json_error(409, 'mixed_cart', 'Complete or clear the other items in your cart before buying mixer tickets.');
+        }
         self::$internal_cart_add = true;
         try {
             $cart_item_key = WC()->cart->add_to_cart(self::PRODUCT_ID, $quantity, 0, [], [
                 'famtastic_reservation_code' => $code,
+                'famtastic_offer_id' => Famtastic_Reunion_Mixer_Offer::ID,
                 'famtastic_attempt_id' => $attempt_id,
                 'famtastic_contact_name' => $name,
                 'famtastic_email' => $email,
@@ -193,11 +201,11 @@ final class Famtastic_Reunion_Commerce
         if (!is_string($payload)) {
             return false;
         }
-        $values = explode('|', $payload, 4);
-        if (count($values) !== 4 || (int) $values[3] < time()) {
+        $values = explode('|', $payload);
+        if (count($values) !== 5 || (int) $values[3] < time() || $values[4] !== Famtastic_Reunion_Mixer_Offer::ID) {
             return false;
         }
-        [$tokenCode, $tokenEmail, $tokenQuantity, $expires] = $values;
+        [$tokenCode, $tokenEmail, $tokenQuantity, $expires, $offerId] = $values;
         $expected = hash_hmac('sha256', $payload, (string) FAMTASTIC_REUNION_CHECKOUT_SECRET);
         return hash_equals($expected, $parts[1])
             && hash_equals($tokenCode, $code)
@@ -221,6 +229,7 @@ final class Famtastic_Reunion_Commerce
         if (empty($values['famtastic_reservation_code'])) {
             return;
         }
+        $item->add_meta_data('_famtastic_offer_id', sanitize_text_field((string)($values['famtastic_offer_id'] ?? '')), true);
         $item->add_meta_data('_famtastic_reservation_code', sanitize_text_field((string) $values['famtastic_reservation_code']), true);
         $item->add_meta_data('_famtastic_attempt_id', absint($values['famtastic_attempt_id'] ?? 0), true);
     }
@@ -254,6 +263,7 @@ final class Famtastic_Reunion_Commerce
             $order->update_meta_data('_famtastic_reservation_code', $code);
             $order->update_meta_data('_famtastic_attempt_id', $attempt_id);
             $order->update_meta_data('_famtastic_ticket_event', self::EVENT_KEY);
+            $order->update_meta_data('_famtastic_offer_id', (string) ($cart_item['famtastic_offer_id'] ?? ''));
             $order->update_meta_data('_famtastic_payment_lifecycle', 'processing');
             if (empty($data['billing_first_name']) && empty($data['billing_last_name'])) {
                 [$first, $last] = self::split_name((string) ($cart_item['famtastic_contact_name'] ?? ''));
@@ -427,7 +437,7 @@ final class Famtastic_Reunion_Commerce
         }
         $portal = esc_url('https://mbsh96reunion.com/portal/');
         $harry = esc_url('https://mbsh96reunion.com/assets/mascot/13-ticket-stub.png');
-        $body = '<div style="margin:0;background:#080607;padding:28px 12px;color:#f6efe3;font-family:Arial,sans-serif"><div style="max-width:620px;margin:auto;border:1px solid #ddb966;border-radius:18px;overflow:hidden;background:#161012"><div style="padding:24px;background:linear-gradient(135deg,#310911,#161012);text-align:center"><img src="' . $harry . '" alt="Hi-Tide Harry" width="120" style="max-width:120px;height:auto"><p style="color:#ddb966;letter-spacing:2px;font-weight:bold">ACT I · YOUR SEAT IS CONFIRMED</p><h1 style="margin:8px 0;color:#fff">You are officially on the guest list.</h1></div><div style="padding:28px;color:#f6efe3"><p>Your MBSH Class of 1996 reunion payment is confirmed.</p><p style="font-size:18px"><strong>' . $count . ' admission' . ($count === 1 ? '' : 's') . '</strong><br>Reservation: <strong>' . $code . '</strong><br>Order: <strong>#' . (int) $order_id . '</strong></p><p>Your paid admission record has been issued. Keep this email and use the same email address when signing into your reunion account.</p><p><a href="' . $portal . '" style="display:inline-block;padding:13px 20px;border-radius:999px;background:#c91534;color:#fff;text-decoration:none;font-weight:bold">Open My Reunion</a></p><p style="color:#bfb3b4;font-size:13px">Questions? Reply to this message so the committee can keep your payment and ticket history together.</p></div><div style="padding:18px;text-align:center;border-top:1px solid rgba(221,185,102,.3);color:#bfb3b4;font-size:12px">Presented by <a href="https://famtasticdesigns.com" style="color:#ddb966">FAMtasticDesigns.com</a></div></div></div>';
+        $body = '<div style="margin:0;background:#080607;padding:28px 12px;color:#f6efe3;font-family:Arial,sans-serif"><div style="max-width:620px;margin:auto;border:1px solid #ddb966;border-radius:18px;overflow:hidden;background:#161012"><div style="padding:24px;background:linear-gradient(135deg,#310911,#161012);text-align:center"><img src="' . $harry . '" alt="Hi-Tide Harry" width="120" style="max-width:120px;height:auto"><p style="color:#ddb966;letter-spacing:2px;font-weight:bold">ACT I · YOUR SEAT IS CONFIRMED</p><h1 style="margin:8px 0;color:#fff">You are officially on the guest list.</h1></div><div style="padding:28px;color:#f6efe3"><p>Your MBSH Class of 1996 Reunion Mixer payment is confirmed. Twisted Tonic · Saturday, November 7, 2026 · 7–10 PM. Food on your own.</p><p style="font-size:18px"><strong>' . $count . ' admission' . ($count === 1 ? '' : 's') . '</strong><br>Reservation: <strong>' . $code . '</strong><br>Order: <strong>#' . (int) $order_id . '</strong></p><p>Your paid admission record has been issued. Keep this email and use the same email address when signing into your reunion account.</p><p><a href="' . $portal . '" style="display:inline-block;padding:13px 20px;border-radius:999px;background:#c91534;color:#fff;text-decoration:none;font-weight:bold">Open My Reunion</a></p><p style="color:#bfb3b4;font-size:13px">Questions? Reply to this message so the committee can keep your payment and ticket history together.</p></div><div style="padding:18px;text-align:center;border-top:1px solid rgba(221,185,102,.3);color:#bfb3b4;font-size:12px">Presented by <a href="https://famtasticdesigns.com" style="color:#ddb966">FAMtasticDesigns.com</a></div></div></div>';
         $sent = wp_mail($email, 'Your MBSH reunion admission is confirmed', $body, ['Content-Type: text/html; charset=UTF-8']);
         if ($sent) {
             $order->update_meta_data('_famtastic_paid_notice_sent', current_time('mysql', true));
