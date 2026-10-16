@@ -7,7 +7,6 @@ body[data-page="home"] .cinema-hero__lead {max-width:36rem;font-family:Inter,san
 body[data-page="home"] .cinema-hero__media img {object-position:center}
 body[data-page="home"] .cinema-hero__media::after {background:linear-gradient(90deg,rgba(8,6,7,.65),rgba(8,6,7,.18) 53%,transparent 72%),linear-gradient(0deg,#080607,transparent 18%)}
 body[data-page="home"] .cinema-actions {max-width:37rem}
-body[data-page="home"] .cinema-actions a:last-child {display:none}
 .mixer-offer {display:grid;grid-template-columns:minmax(240px,.8fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:center;max-width:1100px;margin:auto;padding:3rem 1.5rem;text-align:left}
 .mixer-offer__art {display:block;width:100%;max-width:420px;height:auto;border-radius:1rem;border:1px solid #d8b86a44}
 .mixer-price {margin:1rem 0;font:700 clamp(3.5rem,8vw,6rem)/1 Georgia,serif;color:#e7c980}
@@ -43,3 +42,11 @@ body[data-page="home"] .cinema-actions a:last-child {display:none}
  body[data-page="home"] .cinema-hero__media img {object-position:center bottom}
  body[data-page="home"] .cinema-hero__media::after {background:linear-gradient(180deg,#0c090b,transparent 15%,transparent 90%,#080607)}
 }
+
+/* Lean mixer flow: event details and one purchase action. */
+.mixer-faq { padding:64px 24px; text-align:center; }
+.mixer-faq h2 { font-family:"Playfair Display",serif; font-size:clamp(28px,5vw,48px); }
+.mixer-faq p { max-width:700px; margin:18px auto; line-height:1.7; }
+.mixer-faq a:not(.cinema-button) { color:#e5bd72; }
+.mixer-preview-notice { position:relative; z-index:10000; padding:12px 20px; background:#31240c; color:#fff2cc; font:600 12px/1.6 Inter,sans-serif; text-align:center; }
+body:has(.mixer-preview-notice) .cinema-site-header { position:relative; top:0; }

@@ -22,11 +22,7 @@ const event = {
 
 const pages = {
   'index.html': ['/', 'MBSH Reunion Mixer | Twisted Tonic | November 7, 2026', 'Join the MBSH Class of 1996 Reunion Mixer at Twisted Tonic on November 7, 2026, 7–10 PM. Tickets are $30 per person. Food on your own.'],
-  'rsvp.html': ['/rsvp.html', 'RSVP | MBSH Class of 1996 30th Reunion', 'Reserve your place for the MBSH Class of 1996 reunion and share the details the committee needs for reunion night.'],
   'tickets.html': ['/tickets.html', '$30 Mixer Tickets | MBSH Class of 1996', 'Get $30 tickets for the MBSH Class of 1996 Reunion Mixer at Twisted Tonic, November 7, 2026, 7–10 PM. Food is on your own.'],
-  'menu/index.html': ['/menu/', 'Food and Location | MBSH Reunion Mixer', 'Find Twisted Tonic at 723 Lincoln Ln N, Miami Beach. Reunion Mixer: November 7, 2026, 7–10 PM. Admission is $30; food is on your own.'],
-  'menu.html': ['/menu/', 'Food and Location | MBSH Reunion Mixer', 'Find Twisted Tonic at 723 Lincoln Ln N, Miami Beach. Reunion Mixer: November 7, 2026, 7–10 PM. Admission is $30; food is on your own.'],
-  'survey.html': ['/survey.html', 'Class Check-In | MBSH Class of 1996 Reunion', 'Help the reunion committee understand attendance, interests, and what would make the Class of 1996 reunion meaningful.'],
   'through-years.html': ['/through-years.html', 'Through the Years | MBSH Class of 1996 Memories', 'Explore the developing Class of 1996 archive and submit a photograph or story for committee review and the reunion memory reel.'],
   'memorial.html': ['/memorial.html', 'In Memory | MBSH Class of 1996 Reunion', 'Remember classmates with care and learn how to submit a name or tribute for the MBSH Class of 1996 reunion memorial.'],
   'capsule.html': ['/capsule.html', '1996 Time Capsule | MBSH Reunion', 'Write a private message to your 1996 self and receive it on the morning of the Class of 1996 reunion.'],

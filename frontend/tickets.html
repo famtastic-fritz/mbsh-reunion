@@ -22,18 +22,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Allura&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
   <link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/typography.css"><link rel="stylesheet" href="css/sections.css"><link rel="stylesheet" href="css/chatbot.css"><link rel="stylesheet" href="css/footer.css"><link rel="stylesheet" href="css/premiere.css"><link rel="stylesheet" href="/css/cinematic-system.css?v=cinematic6">
-  <link rel="stylesheet" href="/css/mixer.css?v=mixer1">
+  <link rel="stylesheet" href="/css/mixer.css?v=mixer2">
 </head>
 <body data-page="tickets" data-premiere="on">
   <section class="page-header"><h1 class="page-header__title">The Reunion Mixer</h1><p class="page-header__sub">Twisted Tonic · Saturday, November 7, 2026 · 7–10 PM</p></section>
 
   <section class="tickets mixer-offer" aria-label="Mixer admission">
     <img class="mixer-offer__art" src="/assets/mixer-2026/announcement-feed.jpg" width="1080" height="1350" alt="MBSH reunion mixer: Twisted Tonic, November 7, 7–10 PM. $30 per person. Food on your own.">
-    <div><p class="cinema-kicker">New venue. Updated ticket price.</p><h2 class="section-head">One night. All our stories.</h2><p class="mixer-price">$30 <span>per person</span></p><p>Saturday, November 7, 2026 · 7–10 PM<br>Twisted Tonic · Miami Beach</p><p><strong>Food on your own.</strong> Your ticket is for mixer admission. The final checkout charge is $30 per person.</p><a class="cinema-button cinema-button--primary" href="#ticket-order">Get Mixer Tickets — $30</a><p><a href="/menu/">Venue, directions &amp; food information →</a></p></div>
+    <div><p class="cinema-kicker">New venue. Updated ticket price.</p><h2 class="section-head">One night. All our stories.</h2><p class="mixer-price">$30 <span>per person</span></p><p>Saturday, November 7, 2026 · 7–10 PM<br>Twisted Tonic · Miami Beach</p><p><strong>Food on your own.</strong> Your ticket is for mixer admission. The final checkout charge is $30 per person.</p><a class="cinema-button cinema-button--primary" href="#ticket-order">Get Mixer Tickets — $30</a><p><a href="/index.html#venue">Venue, directions &amp; food information →</a></p></div>
   </section>
 
   <section class="ticket-order" id="ticket-order" aria-label="Ticket order form">
-    <div class="ticket-order__intro"><p class="premiere-section__eyebrow">Reunion mixer · $30 per person</p><h2 class="section-head">Get Your Mixer Ticket</h2><p>Choose up to 10 mixer admissions at $30 each. Food is on your own. We’ll save your reservation, then take you to the secure reunion checkout to pay by card.</p></div>
+    <div class="ticket-order__intro"><p class="premiere-section__eyebrow">Reunion mixer · $30 per person</p><h2 class="section-head">Get Your Mixer Ticket</h2><p>Choose up to 10 mixer admissions at $30 each. Food is on your own. Continue to secure card checkout. No separate RSVP is needed.</p></div>
+    <p>Questions or accessibility needs? <a href="mailto:committee@mbsh96reunion.com">Contact the committee</a>.</p>
     <form class="rsvp-form ticket-order__form" id="ticket-order-form">
       <div class="ticket-order__status" id="ticket-order-status" role="status" aria-live="polite"></div>
       <label class="field"><span class="field__label">Contact name *</span><input class="field__input" type="text" name="contact_name" required maxlength="200" autocomplete="name"></label>
@@ -48,7 +49,7 @@
       <input type="text" name="website" class="rsvp-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="form_loaded_at" id="ticket-form-loaded-at">
       <button type="submit" class="rsvp-form__submit">Continue to Secure Payment</button>
-      <p class="rsvp-form__consent">Your reservation is saved before checkout. Card information is entered only on Stripe’s secure payment form. Admission becomes valid only after payment is confirmed.</p>
+      <p class="rsvp-form__consent">Card information is entered only on Stripe’s secure payment form. Admission becomes valid only after payment is confirmed.</p>
     </form>
     <div class="ticket-order__success" id="ticket-order-success" hidden><h2>Opening Secure Checkout</h2><p id="ticket-order-success-copy"></p><p>If checkout does not open automatically, use the button below.</p><a class="rsvp-form__submit stripe-payment-stage__link" id="ticket-checkout-link" href="#" hidden>Open Secure Checkout</a></div>
   </section>
@@ -57,18 +58,18 @@
 <div class="chatbot" id="chatbot"><button class="chatbot__bubble" id="chatbot-toggle" type="button" aria-expanded="false" aria-label="Open chat"><img src="/assets/mascot/06-listening.png" alt="" width="64" height="64"></button><div class="chatbot__panel" id="chatbot-panel" hidden><header class="chatbot__panel-header"><img class="chatbot__panel-pose" src="/assets/mascot/01-wave-hello.png" alt="" width="120" height="120"><div class="chatbot__panel-title"><strong>Hi-Tide Harry</strong><span>Reunion Assistant</span></div><button class="chatbot__close" id="chatbot-close" type="button" aria-label="Close">×</button></header><ul class="chatbot__messages" id="chatbot-messages" aria-live="polite"></ul><form class="chatbot__input" id="chatbot-form"><input type="text" id="chatbot-input" placeholder="Ask Harry&hellip;" autocomplete="off"><button type="submit">→</button></form></div></div>
   <!-- Legacy static page-mascot removed — premiere.js injects the in-scene Harry (13-ticket-stub) into the .tickets section. -->
 
-  <section class="premiere-section" id="sponsor" aria-label="Support the reunion"><h2 class="premiere-section__title">Help bring the class together.</h2><p class="premiere-section__lead">Interested in supporting the mixer? <a href="mailto:committee@mbsh96reunion.com?subject=Reunion%20mixer%20support">Contact the committee</a> to discuss the updated event.</p></section>
+
 
   <footer class="footer"></footer>
 
-  <script src="js/config.js?event=mixer20261016" defer></script>
+  <script src="js/config.js?event=mixersimple20261016" defer></script>
   <script src="js/main.js" defer></script>
-  <script src="/js/cinematic-shell.js?v=cinematic7&amp;event=mixer20261016" defer></script>
+  <script src="/js/cinematic-shell.js?v=cinematic7&amp;event=mixersimple20261016" defer></script>
   <script src="/js/analytics.js?v=ga1" defer></script>
-  <script src="js/ticket-order.js?event=mixer20261016" defer></script>
-  <script src="js/chatbot.js?event=mixer20261016" defer></script>
-  <script src="js/page-sequence.js?v=menufix2&amp;event=mixer20261016" defer></script>
-  <script src="js/premiere.js?v=menufix2&amp;event=mixer20261016" defer></script>
+  <script src="js/ticket-order.js?event=mixersimple20261016" defer></script>
+  <script src="js/chatbot.js?event=mixersimple20261016" defer></script>
+  <script src="js/page-sequence.js?v=menufix2&amp;event=mixersimple20261016" defer></script>
+  <script src="js/premiere.js?v=menufix2&amp;event=mixersimple20261016" defer></script>
 <!-- famtastic-creator-credit:start -->
 <style>@media(max-width:600px){body:has(#chatbot) [data-famtastic-creator-credit="v1"]{padding-bottom:160px!important}}</style>
 <div data-famtastic-creator-credit="v1" style="box-sizing:border-box;clear:both;position:relative;width:100%;padding:16px 16px 24px;text-align:center;background:#080a08;color:#f5f5ee;grid-column:1 / -1">

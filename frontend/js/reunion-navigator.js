@@ -28,16 +28,9 @@
           action: { href: '/index.html', label: 'Open reunion home' },
         },
         {
-          key: 'rsvp',
-          title: 'Reserve your place',
-          body: 'The RSVP journey is where you tell the committee whether you are coming and what they need to plan for you.',
-          target: 'a[href="/rsvp.html"]',
-          action: { href: '/rsvp.html', label: 'Open RSVP' },
-        },
-        {
           key: 'portal',
           title: 'Keep your reunion in one private place',
-          body: 'Create or enter your attendee account to manage RSVP and accessibility details, your ticket, memories, messages, and update preferences.',
+          body: 'Create or enter your attendee account to find your paid ticket, memories, messages, and update preferences.',
           target: '.cinema-alumni-login',
           action: { href: '/portal/register', label: 'Create attendee account' },
         },
@@ -62,13 +55,6 @@
           body: 'Your next action, event guide, ticket status, and personal reunion tools live here. Nothing shown here changes your record by itself.',
           target: 'a[data-route="home"]',
           action: { selector: 'a[data-route="home"]', label: 'Open dashboard' },
-        },
-        {
-          key: 'rsvp',
-          title: 'Confirm RSVP and access needs',
-          body: 'Use RSVP & access to update the details the committee needs. Saving remains a deliberate action on the real form.',
-          target: 'a[data-route="rsvp"]',
-          action: { selector: 'a[data-route="rsvp"]', label: 'Open RSVP & access' },
         },
         {
           key: 'ticket',

@@ -23,6 +23,9 @@ if ($path === '/mixer-review/') {
     return true;
 }
 
+$retiredPages = ['/rsvp.html' => '/tickets.html#ticket-order', '/rsvp' => '/tickets.html#ticket-order', '/survey.html' => '/tickets.html#ticket-order', '/survey' => '/tickets.html#ticket-order', '/menu/' => '/index.html#venue', '/menu' => '/index.html#venue', '/menu.html' => '/index.html#venue', '/menu/index.html' => '/index.html#venue'];
+if (isset($retiredPages[$path])) { header('Location: ' . $retiredPages[$path], true, 302); return true; }
+
 if ($path === '/portal') {
     header('Location: /portal/', true, 308);
     return true;
@@ -66,6 +69,7 @@ if ($path === '/ticket-order.php') {
     echo json_encode(['error'=>'local_preview','message'=>'This is a local visual preview. Orders and payments cannot be submitted here.']);
     return true;
 }
+if (in_array($path, ['/rsvp.php', '/survey2.php'], true)) { require $backendRoot . $path; return true; }
 if ($path === '/menu.php') { require $backendRoot . $path; return true; }
 
 if ($path === '/menu/') { header('Content-Type: text/html; charset=utf-8'); readfile($frontendRoot . '/menu/index.html'); return true; }

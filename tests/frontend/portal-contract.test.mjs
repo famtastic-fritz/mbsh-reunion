@@ -29,7 +29,8 @@ for(const [file,fields] of Object.entries({register:['email','first_name','last_
 assert.match(backend.session,/csrf_token/,'session must bootstrap CSRF');
 for(const file of ['logout','profile','preferences','media','suggestions','notifications','my-event','conversations']) assert.match(backend[file],/fam_require_attendee_csrf/,'authenticated mutation must require CSRF');
 assert.match(api,/updateMyEvent/,'RSVP must use its authenticated API');
-assert.match(app,/api\.updateMyEvent/,'RSVP form must perform a real authenticated write');
+assert.doesNotMatch(app,/api\.updateMyEvent/,'mixer dashboard must not require a separate RSVP');
+assert.doesNotMatch(ui,/data-route="rsvp"|data-view-panel="rsvp"/,'attendee RSVP view must be retired');
 for(const method of ['updateMedia','withdrawMedia','updateSuggestion','closeSuggestion']) assert.match(api,new RegExp(`${method}:`),`missing attendee lifecycle API ${method}`);
 for(const marker of ['data-media-list','data-suggestion-list']) assert.match(ui,new RegExp(marker),`missing attendee lifecycle surface ${marker}`);
 for(const call of ['api.updateMedia','api.withdrawMedia','api.updateSuggestion','api.closeSuggestion']) assert.match(app,new RegExp(call.replace('.','\\.')),`attendee UI does not call ${call}`);

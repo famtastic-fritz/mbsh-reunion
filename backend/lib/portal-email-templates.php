@@ -79,15 +79,15 @@ function fam_committee_lead_email(string $firstName, bool $draft = false): array
 function fam_attendee_welcome_email(string $firstName, bool $draft = false): array
 {
     $name = htmlspecialchars($firstName, ENT_QUOTES, 'UTF-8');
-    $body = '<p style="margin-top:0">Hi ' . $name . ',</p><p><strong style="color:#f3c76d">Thank you for registering—you are officially on the guest list.</strong> Saturday, November 7 at Twisted Tonic · 7–10 PM · Food on your own is going to be an exciting night for the Class of 1996.</p>'
+    $body = '<p style="margin-top:0">Hi ' . $name . ',</p><p><strong style="color:#f3c76d">Your private reunion account is ready. Admission is confirmed only after ticket payment.</strong> Saturday, November 7 at Twisted Tonic · 7–10 PM · Food on your own is going to be an exciting night for the Class of 1996.</p>'
         . '<p><strong>Here is what to do next:</strong></p><ul style="padding-left:20px">'
-        . '<li><strong>Claim or open your private reunion account</strong> using this same email address, then review your profile and RSVP.</li>'
+        . '<li><strong>Claim or open your private reunion account</strong> using this same email address, to retrieve your paid ticket. No separate RSVP is needed.</li>'
         . '<li><strong>Plan your evening.</strong> The Reunion Mixer is at Twisted Tonic on November 7, 7–10 PM. Food is on your own; no meal selection is needed.</li>'
         . '<li><strong>Secure your ticket.</strong> Mixer admission is <strong style="color:#f3c76d">$30 per person</strong>, with no additional checkout fee.</li>'
         . '<li><strong>Call another Hi-Tide home.</strong> Reach out personally and share <a href="https://mbsh96reunion.com" style="color:#f3c76d">mbsh96reunion.com</a> with classmates who may not know the reunion is coming.</li>'
         . '<li><strong>Bring the story with you.</strong> Submit a favorite photo or memory for private committee review—nothing publishes automatically.</li></ul>'
         . '<table role="presentation" cellspacing="0" cellpadding="0" style="margin:28px auto"><tr><td><a href="https://mbsh96reunion.com/tickets.html" style="display:inline-block;background:#c8102e;color:#fff;text-decoration:none;font-weight:800;padding:15px 22px;border-radius:8px">GET MY $30 MIXER TICKET</a></td></tr></table>'
-        . '<p style="text-align:center"><a href="https://mbsh96reunion.com/portal/register" style="color:#f3c76d;font-weight:800">Claim my private reunion account</a> &nbsp;·&nbsp; <a href="https://mbsh96reunion.com/menu/" style="color:#f3c76d;font-weight:800">Food & location</a> &nbsp;·&nbsp; <a href="https://mbsh96reunion.com/through-years.html#submit-memory" style="color:#f3c76d;font-weight:800">Share a memory</a></p>'
+        . '<p style="text-align:center"><a href="https://mbsh96reunion.com/portal/register" style="color:#f3c76d;font-weight:800">Claim my private reunion account</a> &nbsp;·&nbsp; <a href="https://mbsh96reunion.com/index.html#venue" style="color:#f3c76d;font-weight:800">Food & location</a> &nbsp;·&nbsp; <a href="https://mbsh96reunion.com/through-years.html#submit-memory" style="color:#f3c76d;font-weight:800">Share a memory</a></p>'
         . '<p>Act I has begun. Help us call the Hi-Tides home.</p>'
         . '<p style="color:#998f82;font-size:12px">You can manage optional reunion stories and promotional email in your private profile without affecting essential account, payment, ticket, or event-service messages. You may also reply “unsubscribe” for committee assistance.</p>';
     return [

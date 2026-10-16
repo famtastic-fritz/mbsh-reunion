@@ -16,7 +16,7 @@ vm.runInNewContext(read('frontend/js/countdown.js'),{
 });
 assert.equal(elements['countdown-hours'].textContent,'01','7 PM EST is 00:00 UTC, not 23:00 UTC');
 events['siteconfig:loaded']();events['siteconfig:loaded']();assert.equal(intervals,1,'Config reload must not duplicate countdown timers');
-for(const file of ['index.html','tickets.html','rsvp.html','menu/index.html','survey.html','through-years.html','memorial.html','capsule.html','playlist.html']){
+for(const file of ['index.html','tickets.html','through-years.html','memorial.html','capsule.html','playlist.html']){
  const html=read('frontend/'+file);
  assert.doesNotMatch(html,/Miami Shores|Country Club|Black-tie|\$185|\$200|190\.67/,'Old offer on '+file);
  assert.equal((html.match(/property="og:image"/g)||[]).length,1,'Duplicate social image on '+file);
@@ -27,4 +27,4 @@ for(const file of ['index.html','tickets.html','rsvp.html','menu/index.html','su
 const portal=read('frontend/portal/index.html');assert.doesNotMatch(portal,/Miami Shores|Country Club|Black-tie|6:30 PM|11:45 PM|name="meal"/);
 assert.match(read('backend/portal/my-event.php'),/meal_selection_closed/);
 assert.doesNotMatch(read('backend/portal/my-event.php'),/SET[^;]*meal_choice=\?/,'New RSVP writes must not erase historical meals');
-console.log('PASS mixer content: nine routes, event times/offer schema, duplicate metadata, portal retirement and actual EST countdown');
+console.log('PASS mixer content: six active routes, event times/offer schema, duplicate metadata, portal retirement and actual EST countdown');

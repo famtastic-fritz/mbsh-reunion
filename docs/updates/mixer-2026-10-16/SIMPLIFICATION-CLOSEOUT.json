@@ -1,0 +1,112 @@
+{
+  "classification": "changed",
+  "deployment": "not_deployed",
+  "owner_acceptance": "pending",
+  "provider_acceptance": "pending as previously recorded; no new payment/provider action",
+  "source_authority": "GoDaddy actual source snapshot: 251 manifest files plus live email helper; HTTPS hashes match",
+  "production_base": "67f22480d6fe2a3596d9b6117279097c8db54768",
+  "source_revision": "parent commit of this documentation receipt; see git history",
+  "netlify": "retired by owner instruction; no deploy or push performed in correction session; stale build guard fails closed",
+  "supersedes_visual_scope": "CLOSEOUT.json and prior home screenshots",
+  "capability_evidence": [
+    {
+      "capability": "mbsh.mixer.source-authority",
+      "evidence": "PRODUCTION-SOURCE-RECONCILIATION.json",
+      "status": "read_only_verified"
+    },
+    {
+      "capability": "mbsh.mixer.simple-purchase",
+      "entry": "home -> ticket form; inline venue; no separate planning steps",
+      "evidence": "11 frontend/backend Node test files pass; PHP security and offer behavior pass; browser 390x844 and 1129x878 no horizontal overflow; quantity 2 shows $60; no billboard or retired navigation links",
+      "status": "local_tested"
+    },
+    {
+      "capability": "mbsh.mixer.retired-forms",
+      "evidence": [
+        {
+          "path": "rsvp.html",
+          "status": 302,
+          "location": "/tickets.html#ticket-order"
+        },
+        {
+          "path": "survey.html",
+          "status": 302,
+          "location": "/tickets.html#ticket-order"
+        },
+        {
+          "path": "menu/",
+          "status": 302,
+          "location": "/index.html#venue"
+        },
+        {
+          "path": "menu.html",
+          "status": 302,
+          "location": "/index.html#venue"
+        },
+        {
+          "path": "menu/index.html",
+          "status": 302,
+          "location": "/index.html#venue"
+        },
+        {
+          "path": "rsvp.php",
+          "status": 410,
+          "error": "planning_form_retired"
+        },
+        {
+          "path": "survey2.php",
+          "status": 410,
+          "error": "planning_form_retired"
+        },
+        {
+          "path": "menu.php",
+          "status": 410,
+          "error": "meal_selection_closed"
+        }
+      ],
+      "status": "local_tested",
+      "saved_result": "No new public planning rows or mail; all existing data retained",
+      "reversal": "Git application rollback; do not restore database or payment state"
+    },
+    {
+      "capability": "mbsh.mixer.preview",
+      "evidence": "purchaser inputs and submit disabled; VM verified no order/payment request on local hosts",
+      "status": "local_tested"
+    },
+    {
+      "capability": "mbsh.mixer.production-payment",
+      "status": "pending",
+      "evidence": "Existing isolated Woo proof is separate from Stripe sandbox acceptance and live catalog cutover"
+    }
+  ],
+  "owner_task_acceptance": {
+    "status": "pending",
+    "release": "local candidate source commit, identified by parent commit",
+    "tasks": [
+      "Find venue/time/price/food terms and open directions on a phone",
+      "Reach ticket quantity directly, without RSVP/menu/survey or sign-up popups",
+      "Review $30 and $60 totals; complete provider acceptance separately before sales are opened"
+    ],
+    "uncoached_owner_result": null
+  },
+  "screenshots": [
+    {
+      "path": "screenshots/simplified-desktop.jpg",
+      "viewport": [
+        1129,
+        878
+      ],
+      "mime": "image/jpeg",
+      "sha256": "96a1ca74187be4fa3ce5dcfe315f7166368673a369485a28bb6069a932bc630d"
+    },
+    {
+      "path": "screenshots/simplified-mobile.jpg",
+      "viewport": [
+        390,
+        844
+      ],
+      "mime": "image/jpeg",
+      "sha256": "76bbf0d94c47b905ad6936d8ff427559e2e8ec6a317e2e36bba2096d72a1fd0e"
+    }
+  ]
+}

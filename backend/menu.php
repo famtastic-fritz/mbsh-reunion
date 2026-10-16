@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
-require_once __DIR__ . '/lib/config.php';
-require_once __DIR__ . '/lib/cors.php';
-require_once __DIR__ . '/lib/validate.php';
-$config = fam_load_config();
-fam_cors($config);
-if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'OPTIONS') { http_response_code(204); exit; }
-fam_json_response(410, ['error' => 'meal_selection_closed', 'message' => 'The reunion is now a mixer at Twisted Tonic. Food is on your own and no meal selection is needed.', 'information_url' => '/menu/']);
+// Retired mixer meal form: no configuration, database, or mail side effects.
+http_response_code(410);
+header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
+echo json_encode(['error'=>'meal_selection_closed','message'=>'Food is on your own. No meal selection is needed for the reunion mixer.','information_url'=>'/index.html#venue']);

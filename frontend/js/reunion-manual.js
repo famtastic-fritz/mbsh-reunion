@@ -4,10 +4,7 @@
   const tracks = {
     public: [
       ['01', 'Home', 'The cinematic reunion landing page: event facts, directions, and the clearest next actions.', '/index.html', 'Open home', 'Public route'],
-      ['02', 'RSVP', 'Use the diploma-style RSVP to tell the committee you are coming and supply reunion details.', '/rsvp.html', 'Start RSVP', 'Public form'],
       ['03', 'Mixer tickets', 'Reserve $30 mixer admissions, continue to secure card checkout, then retrieve your ticket after payment is confirmed.', '/tickets.html', 'Get mixer tickets', 'Secure checkout'],
-      ['04', 'Food & location', 'Find the mixer venue and directions. Food is on your own; no meal selection is required.', '/menu/', 'Open food & location', 'Venue information'],
-      ['05', 'Class check-in', 'A short class survey that helps the committee understand attendance and interest.', '/survey.html', 'Check in with the class', 'Public form'],
       ['06', 'Through the Years', 'Explore the centennial story and submit a photo or memory for committee approval.', '/through-years.html', 'Visit the archive', 'Archive coming soon'],
       ['07', 'In Memory', 'A committee-curated place to carry classmates forward with care.', '/memorial.html', 'Visit In Memory', 'Curated feed'],
       ['08', 'Time Capsule', 'Write a private note intended for scheduled reunion-day delivery.', '/capsule.html', 'Write a capsule', 'Scheduled delivery'],
@@ -17,7 +14,6 @@
     ],
     member: [
       ['01', 'My Reunion dashboard', 'Your private home for the next reunion action, personal status, and event guidance.', '/portal/#home', 'Open My Reunion', 'Private'],
-      ['02', 'RSVP & access', 'Save attendance, guests, phone, and accessibility needs to your current portal response.', '/portal/#rsvp', 'Review RSVP & access', 'Private record'],
       ['03', 'Ticket wallet', 'See only tickets issued to your verified account and the current rotating check-in credential.', '/portal/#ticket', 'Open ticket wallet', 'Credential protected'],
       ['04', 'Memories', 'Upload a photo or video with a title, caption, year, and publication consent. It remains private until reviewed.', '/portal/#memories', 'Share a memory', 'Moderated'],
       ['05', 'Suggestions', 'Send music, event, accessibility, or site ideas and follow the committee decision on your own submission.', '/portal/#suggestions', 'Make a suggestion', 'Private thread'],

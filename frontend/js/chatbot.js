@@ -4,15 +4,15 @@
   'use strict';
 
   const FAQ = [
-    { match: /when.*where|where.*when/i, answer: () => 'Saturday, November 7, 2026, 7–10 PM at Twisted Tonic, inside The Lincoln Eatery, 723 Lincoln Ln N, Miami Beach. $30 per person; food on your own. <a href="/menu/">Get directions</a>.' },
-    { match: /payment|pay here|pay.*work|checkout/i, answer: () => 'Start on the <a href="/tickets.html#ticket-order">mixer ticket form</a>. We save your reservation, then open secure checkout. The final charge is $30 per person; tickets become valid after payment is confirmed.' },
+    { match: /when.*where|where.*when/i, answer: () => 'Saturday, November 7, 2026, 7–10 PM at Twisted Tonic, inside The Lincoln Eatery, 723 Lincoln Ln N, Miami Beach. $30 per person; food on your own. <a href="/index.html#venue">Get directions</a>.' },
+    { match: /payment|pay here|pay.*work|checkout/i, answer: () => 'Start on the <a href="/tickets.html#ticket-order">mixer ticket form</a>. Choose your ticket quantity, then continue to secure checkout. The final charge is $30 per person; tickets become valid after payment is confirmed.' },
     { match: /time|hours|start|finish|end/i, answer: () => 'The mixer is Saturday, November 7, 2026, from 7 PM to 10 PM at Twisted Tonic in Miami Beach.' },
     { match: /(when|date|day).*(reunion|happen|event)|when is/i,
       answer: () => `${window.__SITE_CONFIG__?.REUNION_DATE_DISPLAY || 'Saturday, November 7, 2026'}, from 7 PM to 10 PM.` },
     { match: /where|venue|location|address/i,
       answer: () => 'Twisted Tonic, 723 Lincoln Ln N, Miami Beach, FL 33139. <a href="https://www.google.com/maps/dir/?api=1&destination=Twisted+Tonic%2C+723+Lincoln+Ln+N%2C+Miami+Beach%2C+FL+33139" target="_blank" rel="noopener">Get directions</a>.' },
     { match: /rsvp|reserve|confirm.*attend/i,
-      answer: () => 'I can walk you right to it. <a href="/rsvp.html">Reserve your place</a>.' },
+      answer: () => 'No separate RSVP is needed. Buy your $30 ticket to join us. <a href="/tickets.html#ticket-order">Get mixer tickets</a>.' },
     { match: /who.*coming|attendees|attendee list|guest list/i,
       answer: () => 'The public attendee list only shows classmates who choose to be displayed. The committee will publish the class list once it is ready.' },
     { match: /dress|attire|black.tie|what.*wear/i,
@@ -20,13 +20,13 @@
     { match: /price|cost|tickets|how much/i,
       answer: () => '$30 per person, with no additional checkout fee. Food is on your own. <a href="/tickets.html">Get mixer tickets</a>.' },
     { match: /food|meal|menu|dinner|allerg|diet/i,
-      answer: () => 'Food is on your own; a catered meal is not included and no meal selection is needed. <a href="/menu/">Food and location information</a>.' },
+      answer: () => 'Food is on your own; a catered meal is not included and no meal selection is needed. <a href="/index.html#venue">Food and location information</a>.' },
     { match: /music|playlist|song|soundtrack/i,
       answer: () => 'Now you are speaking my language. <a href="/playlist.html">Visit the soundtrack</a> and suggest the song that takes you back.' },
     { match: /memory|photo|yearbook|1996|through the years/i,
       answer: () => 'The living archive is taking shape. <a href="/through-years.html">Share a memory or photo</a> for committee review.' },
     { match: /sponsor|donate|donation|fund/i,
-      answer: () => 'Your support helps produce the night. <a href="/tickets.html#sponsor">Contact the committee about supporting the mixer</a>.' },
+      answer: () => 'Your support helps produce the night. <a href="mailto:committee@mbsh96reunion.com">Contact the committee</a>.' },
     { match: /are you ai|are you a bot|are you real|are you.*chatgpt/i,
       answer: () => 'I am Hi-Tide Harry—the spirit of the halls, your reunion usher, and apparently the only mascot working the night shift.' }
   ];
@@ -34,33 +34,15 @@
   const PAGE_PERSONA = {
     home: {
       pose: '/assets/mascot/01-wave-hello.png',
-      greeting: 'There you are. Thirty years later—and right on time. I can show you around or get you straight to RSVP.',
+      greeting: 'There you are. Thirty years later—and right on time. I can show you around or get you straight to $30 mixer tickets.',
       nudge: 'The lobby is open. Start with the $30 mixer tickets?',
-      chips: [['RSVP', 'How do I RSVP?'], ['Tickets', 'How much are tickets?'], ['The night', 'When and where is the reunion?']]
-    },
-    rsvp: {
-      pose: '/assets/mascot/12-clipboard.png',
-      greeting: 'I have the clipboard. You bring the memories. This takes about two minutes, and I will stay out of your way while you type.',
-      nudge: 'First things first: tell us whether we should save you a seat.',
-      chips: [['What happens next?', 'What happens after I RSVP?'], ['Privacy', 'Who can see my RSVP?'], ['Tickets', 'Do I pay here?']]
+      chips: [['Directions', 'Where is the mixer?'], ['Tickets', 'How much are tickets?'], ['The night', 'When and where is the reunion?']]
     },
     tickets: {
       pose: '/assets/mascot/13-ticket-stub.png',
       greeting: 'Welcome to the box office. I can explain the $30 mixer admission, guest orders, or payment without the fine-print fog.',
-      nudge: 'Pick the number of seats first. I will help with the rest.',
-      chips: [['Ticket price', 'How much are tickets?'], ['Payment', 'How does payment work?'], ['Sponsor', 'How can I sponsor?']]
-    },
-    menu: {
-      pose: '/assets/mascot/15-seated-usher.png',
-      greeting: 'Meet us at Twisted Tonic on November 7, 7–10 PM. Food is on your own; no meal selection is needed.',
-      nudge: 'The new location and directions are right here.',
-      chips: [['Food', 'Is food included?'], ['Directions', 'Where is the mixer?'], ['Tickets', 'Where is my ticket order?']]
-    },
-    survey: {
-      pose: '/assets/mascot/12-clipboard.png',
-      greeting: 'This is the quick class check-in—not the final ticket purchase. Sixty seconds gives the committee a better head count.',
-      nudge: 'A quick signal now helps the committee plan the room.',
-      chips: [['Survey vs RSVP', 'Is this the same as RSVP?'], ['Privacy', 'How is this used?'], ['Event date', 'When is the reunion?']]
+      nudge: 'Choose your ticket quantity first. I will help with the rest.',
+      chips: [['Ticket price', 'How much are tickets?'], ['Payment', 'How does payment work?'], ['Food', 'Is food included?']]
     },
     'through-years': {
       pose: '/assets/mascot/22-walk-frame.png',
@@ -264,10 +246,10 @@
   function findFaq(text) { return FAQ.find(item => item.match.test(text)); }
 
   function contextualAnswer(text) {
-    if (/what happens after.*rsvp|what happens next/i.test(text)) return 'You receive a confirmation email. Next, get your $30 mixer ticket on the ticket page. Food is on your own; no meal selection is needed.';
+    if (/what happens after.*rsvp|what happens next/i.test(text)) return 'Buy your $30 mixer ticket, then complete secure checkout. Admission is confirmed after payment. No separate RSVP or meal selection is needed.';
     if (/who can see|privacy|how is this used/i.test(text)) return 'Only the public-display choice can place your name and city on the attendee list. The committee uses the remaining details to coordinate the reunion.';
     if (/do i pay here|payment work/i.test(text)) return 'The current ticket page records the order at today’s price. It clearly explains whether payment is collected now or sent as a follow-up instruction.';
-    if (/same as rsvp/i.test(text)) return 'No. Class Check-In is an early planning signal. RSVP is the formal attendance record. The facelift makes that distinction explicit.';
+    if (/same as rsvp/i.test(text)) return 'The mixer does not require a separate survey or RSVP. Buy your $30 ticket to join us.';
     if (/committee read|capsule.*private/i.test(text)) return 'The capsule promise says the committee does not read or share your answers. The message is queued for delivery to your email on reunion day.';
     if (/capsule delivered|when.*deliver/i.test(text)) return 'The capsule is scheduled for reunion morning, November 7, 2026.';
     if (/add a name|classmate.*missing/i.test(text)) return 'Send the classmate’s name and a short note to the committee. Additions are verified before publication.';

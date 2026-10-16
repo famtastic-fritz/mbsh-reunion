@@ -56,6 +56,8 @@ done < <(
     grep -E '^wordpress/wp-content/(plugins/famtastic-reunion-platform|themes/famtastic-event-cinema)/'
 )
 
+printf '{"commit":"%s","source":"GoDaddy unified production release"}\n' "$RELEASE_SHA" > "$OUTPUT_DIR/webroot/release.json"
+
 (
   cd "$OUTPUT_DIR/webroot"
   find . -type f -print | LC_ALL=C sort | sed 's#^\./##' > "$OUTPUT_DIR/manifest.paths"

@@ -24,3 +24,6 @@ Private-by-default customer source ownership, complete agent/design/research/pro
 ## 2026-10-16 — Venue/price updates include cached and unpaid paths
 
 Trace generated slides, Harry answers, the attendee guide, schema, email templates and checkout state alongside public markup. Bind a checkout token to its offer revision; reject stale carts/unpaid orders and mismatched final totals. Do not erase former meal responses when a mixer replaces dinner. A clean-checkout test caught the missing email-template dependency that a populated source tree could conceal. Candidate lesson remains site-local; no shared promotion.
+
+
+October 16 site-local correction: the actual GoDaddy webroot and matching HTTPS bytes are release authority. Obsolete Netlify documentation/configuration must not define this site. Preserve historical records while retiring public dinner-planning steps; do not mistake a local/automatic frontend preview for unified PHP/WooCommerce production.

@@ -13,13 +13,11 @@ assert.match(analytics, /url\.search\s*=\s*''/, 'all query parameters must be re
 assert.doesNotMatch(analytics, /document\.cookie|localStorage|sessionStorage/, 'analytics must not store custom browser identifiers');
 
 const outcomeContracts = {
-  'frontend/js/rsvp.js': 'rsvp_submitted',
   'frontend/js/ticket-order.js': 'ticket_order_submitted',
   'frontend/js/memory.js': 'memory_submitted',
   'frontend/js/time-capsule.js': 'time_capsule_submitted',
   'frontend/js/playlist.js': 'playlist_suggestion_submitted',
   'frontend/js/sponsor.js': 'sponsor_inquiry_submitted',
-  'frontend/survey.html': 'survey_submitted',
 };
 
 for (const [relativePath, eventName] of Object.entries(outcomeContracts)) {

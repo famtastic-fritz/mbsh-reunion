@@ -10,7 +10,7 @@
 // `window.PAGE_SEQUENCE` and the helpers below being defined.
 //
 // PAGE SEQUENCE (locked):
-//   home → rsvp → tickets → menu → survey → through-years → memorial → capsule → playlist
+//   home → tickets → through-years → memorial → capsule → playlist
 //   playlist's "next" wraps back to home.
 //
 // Each entry carries:
@@ -42,46 +42,19 @@
       usher: 'Curtain up. Find your row, find your row of 1996.'
     },
     {
-      id: 'rsvp',
-      page: 'rsvp',
-      slug: 'rsvp.html',
-      reelRoman: 'II',
-      sceneLocation: 'Box Office',
-      title: 'Mixer RSVP',
-      usher: "Tell us you're coming. The night unlocks once we hear from you."
-    },
-    {
       id: 'tickets',
       page: 'tickets',
       slug: 'tickets.html',
-      reelRoman: 'III',
+      reelRoman: 'II',
       sceneLocation: 'Concession Stand',
       title: 'Mixer Tickets',
       usher: 'One reunion mixer. $30 per person. Food on your own.'
     },
     {
-      id: 'menu',
-      page: 'menu',
-      slug: '/menu/',
-      reelRoman: 'IV',
-      sceneLocation: 'Dining Room',
-      title: 'Food & Location',
-      usher: 'Find Twisted Tonic and plan your evening. Food is on your own.'
-    },
-    {
-      id: 'survey',
-      page: 'survey',
-      slug: 'survey.html',
-      reelRoman: 'V',
-      sceneLocation: 'Roll Call',
-      title: 'Class Survey',
-      usher: 'Give the committee the head count, guest signal, and planning intel they need.'
-    },
-    {
       id: 'through-years',
       page: 'through-years',
       slug: 'through-years.html',
-      reelRoman: 'VI',
+      reelRoman: 'III',
       sceneLocation: 'The Marquee',
       title: 'Through the Years',
       usher: 'One hundred years of Hi-Tides. The eras that built us.'
@@ -90,7 +63,7 @@
       id: 'memorial',
       page: 'memorial',
       slug: 'memorial.html',
-      reelRoman: 'VII',
+      reelRoman: 'IV',
       sceneLocation: 'Memorial Hall',
       title: 'In Memory',
       usher: 'Forever Hi-Tides. Names we carry with us.'
@@ -99,7 +72,7 @@
       id: 'capsule',
       page: 'capsule',
       slug: 'capsule.html',
-      reelRoman: 'VIII',
+      reelRoman: 'V',
       sceneLocation: 'Projection Booth',
       title: 'Time Capsule',
       usher: "Send your younger self a note. We'll deliver on the day."
@@ -108,7 +81,7 @@
       id: 'playlist',
       page: 'playlist',
       slug: 'playlist.html',
-      reelRoman: 'IX',
+      reelRoman: 'VI',
       sceneLocation: 'Sound Stage',
       title: 'The Soundtrack',
       usher: 'The songs that made us who we are. Curated, embedded, alive.'

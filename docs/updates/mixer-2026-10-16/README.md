@@ -1,6 +1,6 @@
 # MBSH Reunion Mixer — implementation and review
 
-Status: **changed / local-tested candidate; not deployed; owner visual acceptance pending**. [Exact proof receipt](CLOSEOUT.json) records source revision, fresh-clone checks, package hash and owner-task status. This is the implementation of Fritz's October 16 plan, not a new event proposal. The canonical source is `famtastic-fritz/mbsh-reunion`, branch `codex/mbsh-mixer-update-20261016`, based on `origin/main` at `730eea5`. Worktree: `/Users/famtastic-fritz/Development/ClientWorktrees/mbsh-mixer-20261016`.
+Status: **changed / local-tested candidate; not deployed; owner visual acceptance pending**. [Exact proof receipt](CLOSEOUT.json) records source revision, fresh-clone checks, package hash and owner-task status. This is the implementation of Fritz's October 16 plan, not a new event proposal. The canonical source is `famtastic-fritz/mbsh-reunion`, branch `codex/mbsh-mixer-update-20261016`, verified against the actual GoDaddy production snapshot at marker `67f22480d6fe2a3596d9b6117279097c8db54768`. All 251 manifest files matched the live bytes; the additional live email helper was captured separately. See [production source reconciliation](PRODUCTION-SOURCE-RECONCILIATION.json). Netlify is retired; no Netlify deployment is part of this workflow. Worktree: `/Users/famtastic-fritz/Development/ClientWorktrees/mbsh-mixer-20261016`.
 
 ## Locked event facts and direction
 
@@ -11,17 +11,17 @@ Fritz selected cinematic Miami mixer styling: recognizable Harry, original commi
 ## Implemented behavior
 
 - Homepage, venue/map links, ticket offer, public navigation, injected slides, Harry answers, metadata/Event schema and the attendee portal use the new facts. Changed JS URLs carry an event revision to prevent stale browser caches restoring old prices or meal prompts.
-- `/menu/` is now food/location information; `/menu.html` remains compatible. The public meal endpoint returns 410 without a DB write or email. Portal attendance/access edits preserve prior meal history and reject stale catered-meal selections. Authorized staff retain clearly labeled historical meal records.
+- The homepage leads to $30 tickets, with venue/directions and food terms inline. Separate RSVP, menu and planning survey pages redirect to the current flow. Their public PHP forms return 410 without database writes or email. Sign-up campaigns and the multi-page program were removed from the purchase journey. The private dashboard leads with tickets and has no attendee RSVP form; protected historical records remain intact.
 - One admission offer replaces early-bird/regular tiers. New server reservations are $30 × quantity and `price_tier=mixer`; the additive migration preserves old tiers/amounts. The API retains existing response fields and adds `offer_id`.
 - New HMAC checkout tokens bind the offer revision as well as purchaser, quantity and expiry. Woo rejects old tokens, stale carts/unpaid orders and final totals other than $30 × quantity. One reservation occupies one cart line; retry does not add admissions. The Woo product remains financial truth; the legacy table remains a request ledger.
-- Existing confirmation templates and wallet artwork reflect the mixer. A missing template dependency in main prevented a clean-checkout portal bootstrap; the existing template source was recovered from `cf7a835`, then updated to mixer facts. The static creator-credit synchronizer excludes this PHP string producer; rendered email credit is tested separately. No email was sent.
+- Existing confirmation templates and wallet artwork reflect the mixer. A missing template dependency in main prevented a clean-checkout portal bootstrap; the live production helper was compared directly with the recovered source, preserving its existing function family and layout while updating event facts and adding the required runtime creator credit. The static creator-credit synchronizer excludes this PHP string producer; rendered email credit is tested separately. No email was sent.
 - Two generated masters produce eight graphic exports plus an optimized wallet WebP. Masters and old approved assets are preserved. New source masters are excluded from deployment packaging.
 
 ## Evidence and limits
 
 | Capability | Entry / saved result / reversal | Evidence | Provider / owner state |
 |---|---|---|---|
-| `mbsh.mixer.event-info` | Home, ticket page, food/location page, Harry and portal event guide; source/config changes can roll back by Git revision | `local_tested`: actual 390×844, 768×1024 and 1280×900 viewports; no horizontal overflow; correct mobile source; reduced-motion verified; required-field focus recovery | Provider `not_applicable`; owner `pending` |
+| `mbsh.mixer.event-info` | Home with inline venue, ticket page, Harry and portal event guide; source/config changes can roll back by Git revision | `local_tested`: actual 390×844, 768×1024 and 1280×900 viewports; no horizontal overflow; correct mobile source; reduced-motion verified; required-field focus recovery | Provider `not_applicable`; owner `pending` |
 | `mbsh.mixer.graphics` | Hero, announcement set, link preview, wallet and location card; versioned original references and masters | `local_tested`: deterministic typography, manual image review, hash manifest; screenshots below | Built-in image tool output received; model not exposed; owner `pending` |
 | `mbsh.mixer.reservation` | Ticket form → server request → Woo AJAX bridge/attempt ledger; old requests preserved | `local_tested`: real MariaDB migration, $30/$60, replay, price tampering, invalid quantity, retired meal endpoint; real Woo AJAX one-line cart / $60 | Woo `local_tested`; Stripe sandbox `unconfigured`; owner `pending` |
 | `mbsh.mixer.entitlement` | Paid Woo order → one entitlement per admission; failed order gets none; refunds revoke correct quantity | `simulated`: real WooCommerce 11.0.1 isolated DB, payment-complete event, duplicate issuance, partial/full refund and replay; no external provider or mail | Gateway remains `connected_unverified` for changed offer; owner `pending` |
@@ -69,3 +69,11 @@ Acceptance is **pending**, not inferred from these tests. On Fritz's phone: (1) 
 ## Site-local learning
 
 Event facts were duplicated in visible markup, generated slides, configuration, countdown, portal guidance and commerce. A changed venue/price requires tracing that full journey. Consolidated event configuration, version-bound payment tokens and changed-asset cache revisions prevent an old browser or unpaid checkout from silently restoring the previous offer. Classification: `site_local`; no shared skill/profile promotion or Studio-consumption claim.
+
+## Production-source correction — October 16
+
+Fritz confirmed Netlify is not used at all and removed the separate RSVP/menu/planning survey from scope. The SSH snapshot contains 251 release-manifest files plus the live email helper. All 251 match the recorded production commit and release manifest; an inventory of 130 runtime source files found no additional source beyond this capture. Five public HTTPS responses match the snapshot byte for byte. The snapshot excludes credentials, database data, customer uploads, WordPress core and unrelated domains. The read-only hashes are retained in PRODUCTION-SOURCE-RECONCILIATION.json. No remote file, database, provider or DNS change was made.
+
+The obsolete staging helper now exits before network operations, and netlify.toml deliberately fails any stale automatic build. Do not use Netlify as a candidate or release authority. No push is performed in this correction session; existing external Git integrations must not be mistaken for the GoDaddy production process. The release builder includes a checksummed release.json naming the exact commit.
+
+The previous CLOSEOUT.json and home screenshots describe the earlier candidate and are superseded for visual scope by SIMPLIFICATION-CLOSEOUT.json and the simplified captures. Earlier financial proof remains bounded to its recorded source and simulated gateway; this presentation correction does not establish provider acceptance.

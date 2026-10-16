@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080607">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <meta name="description" content="Your private MBSH Class of 1996 reunion dashboard, ticket, RSVP, memories, and event updates.">
+  <meta name="description" content="Your private MBSH Class of 1996 reunion dashboard, ticket, memories, and event updates.">
   <title>My Reunion · MBSH Class of 1996</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +40,6 @@
       <p class="drawer-section-label">My reunion</p>
       <a href="#home" data-route="home" aria-current="page"><span>Overview</span><small>Your next steps</small></a>
       <a href="#ticket" data-route="ticket"><span>My ticket</span><small>Wallet &amp; check-in</small></a>
-      <a href="#rsvp" data-route="rsvp"><span>RSVP &amp; access</span><small>Guests and accessibility</small></a>
       <a href="#memories" data-route="memories"><span>My memories</span><small>Upload photos &amp; stories</small></a>
       <a href="#suggestions" data-route="suggestions"><span>Suggestions</span><small>Playlist and event ideas</small></a>
       <a href="#trivia" data-route="trivia"><span>Class trivia</span><small>Play, score &amp; remember</small></a>
@@ -77,12 +76,11 @@
         <h2 class="sr-only" id="home-heading">Dashboard</h2>
         <div class="next-action">
           <span class="status-orb" aria-hidden="true"></span>
-          <div><p class="eyebrow">Your next scene</p><h3>Confirm your mixer RSVP</h3><p>Keep your attendance and accessibility notes up to date.</p></div>
-          <a class="button button--primary" href="#rsvp" data-route="rsvp">Update RSVP</a>
+          <div><p class="eyebrow">Your next scene</p><h3>Get ready for the mixer</h3><p>Buy your $30 mixer ticket, then keep your paid pass ready for check-in.</p></div>
+          <a class="button button--primary" href="/tickets.html#ticket-order">Get mixer tickets</a>
         </div>
         <div class="dashboard-grid">
           <article class="scene-card scene-card--ticket"><p class="eyebrow">Admission</p><h3 data-home-ticket-title>Checking ticket status…</h3><p data-home-ticket-copy>Your paid ticket will appear here after it is issued.</p><a href="#ticket" data-route="ticket">Open wallet <span aria-hidden="true">→</span></a></article>
-          <article class="scene-card"><span class="scene-icon" aria-hidden="true">✓</span><h3 data-home-rsvp-title>Checking RSVP status…</h3><p data-home-rsvp-copy>Your saved attendance response will appear here.</p><a href="#rsvp" data-route="rsvp">Review details</a></article>
           <article class="scene-card"><span class="scene-icon" aria-hidden="true">＋</span><h3>Add your chapter</h3><p>Share a photo or story for the reunion memory reel.</p><a href="#memories" data-route="memories">Upload a memory</a></article>
           <article class="scene-card"><span class="scene-icon" aria-hidden="true">♪</span><h3>Shape the soundtrack</h3><p>Suggest the song that takes you straight back.</p><a href="#suggestions" data-route="suggestions">Suggest a song</a></article>
         </div>
@@ -104,17 +102,6 @@
         <div class="action-row"><button class="button button--primary" type="button" disabled title="Wallet pass issuance is not available in the current backend">Phone wallet pass coming soon</button><button class="button" type="button" data-brightness>Brighten for check-in</button></div>
       </section>
 
-      <section class="view" data-view-panel="rsvp" aria-labelledby="rsvp-heading">
-        <div class="section-heading"><div><p class="eyebrow">Your reunion details</p><h2 id="rsvp-heading">RSVP &amp; access</h2></div><span class="saved-state" role="status">Checking status…</span></div>
-        <form class="portal-form" data-demo-form="rsvp">
-          <fieldset><legend>Attendance</legend><label class="choice"><input type="radio" name="attendance" value="yes" required><span><strong>Yes, I’ll be there</strong><small>Save my mixer RSVP</small></span></label><label class="choice"><input type="radio" name="attendance" value="maybe"><span><strong>I’m not certain yet</strong><small>Save my response so I can return later</small></span></label><label class="choice"><input type="radio" name="attendance" value="no"><span><strong>I can’t attend</strong><small>Keep me on reunion updates</small></span></label></fieldset>
-          <div class="field-grid"><label>Number of guests<input type="number" name="guest_count" min="0" max="5" value="0"></label><label>Guest name(s)<input type="text" name="guest_names" maxlength="500" autocomplete="name"></label><label>Mobile number<input type="tel" name="phone" maxlength="50" autocomplete="tel"></label></div>
-          <p class="notice">Reunion Mixer · Twisted Tonic · November 7, 7–10 PM.<br>$30 admission per person. Food is on your own; no meal selection is needed.</p>
-          <label>Accessibility or event note<textarea name="dietary_accessibility" maxlength="2000" rows="4" placeholder="Tell the committee what would help you enjoy the night."></textarea></label>
-          <p class="integration-notice" role="status" data-event-source><strong>Loading your reunion record…</strong></p>
-          <button class="button button--primary" type="submit">Save reunion details</button>
-        </form>
-      </section>
 
       <section class="view" data-view-panel="memories" aria-labelledby="memories-heading">
         <div class="section-heading"><div><p class="eyebrow">Your chapter belongs here</p><h2 id="memories-heading">Upload a memory</h2></div><span class="privacy-chip">Private until approved</span></div>
@@ -206,8 +193,8 @@
   <div class="toast" role="status" aria-live="polite" hidden></div>
   <script src="js/portal-config.js" defer></script>
   <script src="js/portal-api.js" defer></script>
-  <script src="../js/reunion-navigator.js?v=1&amp;event=mixer20261016" defer></script>
-  <script src="js/portal.js?event=mixer20261016" defer></script>
+  <script src="../js/reunion-navigator.js?v=1&amp;event=mixersimple20261016" defer></script>
+  <script src="js/portal.js?event=mixersimple20261016" defer></script>
   <script src="js/trivia.js" defer></script>
   <script src="js/portal-staff.js" defer></script>
 <!-- famtastic-creator-credit:start -->

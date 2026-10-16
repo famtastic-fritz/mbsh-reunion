@@ -1,0 +1,2061 @@
+{
+  "captured_on": "2026-10-16",
+  "host": "mbsh96reunion.com",
+  "webroot": "/home/nineoo/public_html",
+  "deployed_marker": "67f22480d6fe2a3596d9b6117279097c8db54768",
+  "production_mutations": false,
+  "excluded": "credentials, WordPress core, database data, uploads, unrelated domains",
+  "files": [
+    {
+      "path": ".htaccess",
+      "source_path": "frontend/.htaccess",
+      "sha256": "60912db4100b8b47bfbddb6a0d31a9899abea1aa9964c83eda313668d992f6c1",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "404.html",
+      "source_path": "frontend/404.html",
+      "sha256": "e1e1647d5c0ae8ffc778b43c11142337f526c4252ba49972e9bd2c56d6385327",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "_premiere-sandbox.html",
+      "source_path": "frontend/_premiere-sandbox.html",
+      "sha256": "24d94f616b619a81e77a0a52ccfbdc5803727bd58d7cac62198d7208e3a9a26e",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "admin/capsules.php",
+      "source_path": "backend/admin/capsules.php",
+      "sha256": "581ce698277f988057fc3eb234ea5894e67dc5f279cf725b0445845ca21b8ad4",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/chatbot.php",
+      "source_path": "backend/admin/chatbot.php",
+      "sha256": "1349a1f804a5d0b2fcae28a6dc67698816f3604a84cdc199cc71f506d02642c6",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/dashboard.php",
+      "source_path": "backend/admin/dashboard.php",
+      "sha256": "e675fdc830ef2944556900c9d563eab20a761698d21d65cefaa3c292e4a0c990",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/export-emails.php",
+      "source_path": "backend/admin/export-emails.php",
+      "sha256": "b7fcec0f3453dbb8ebdecb1a0348cd0e4ac5bf00b7464a986bd4415937aeb88f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/follow-up.php",
+      "source_path": "backend/admin/follow-up.php",
+      "sha256": "2021b8a51693a6821c52a2424f4c2827720d5964c178bb9bb78df0522d1d07c8",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/import-survey-csv.php",
+      "source_path": "backend/admin/import-survey-csv.php",
+      "sha256": "8d4b6aa264a366b71b8fc0caa21fd5f5749a54f94c6dd7b0a04bef4e78f0d118",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/login.php",
+      "source_path": "backend/admin/login.php",
+      "sha256": "4951a950c69907c6a605b28a4a36b94af0f1b1360b6abcfe69a76398ca036f51",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/logout.php",
+      "source_path": "backend/admin/logout.php",
+      "sha256": "fed4c3eebd9d61a6f5c9b801d7bd1d93097a4f66529b40987e95ee44a73b25e9",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/manage-in-memory.php",
+      "source_path": "backend/admin/manage-in-memory.php",
+      "sha256": "b5c291bd3a4d2ccfe5088c808a9605b466aad8e7ac8a81692c06d6a708fe3ed2",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/menu-results.php",
+      "source_path": "backend/admin/menu-results.php",
+      "sha256": "c4171238cb4889909f6814cf27d678f86b29b6ec1ce9f748632db5b7e19f162e",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/polls.php",
+      "source_path": "backend/admin/polls.php",
+      "sha256": "07b56c1bc539b25973e45dfb88f977b1ad7abacab2ce8509ed9c50a11851e7f7",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/portal-action.php",
+      "source_path": "backend/admin/portal-action.php",
+      "sha256": "0b7bbafe6971a30d358358d151a28bf4a97bb46f0fe9f231c1507a7ecca98f6a",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/portal-report.php",
+      "source_path": "backend/admin/portal-report.php",
+      "sha256": "2d90c86a19f34de8d77d56648ddcac5b7d2756110d1602c5bd49f8a39c537b11",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/portal-session.php",
+      "source_path": "backend/admin/portal-session.php",
+      "sha256": "18592db748bd82f4d95d0ee7e00455d1fa7c291f3d2f593270f911c3850c925f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/reports.php",
+      "source_path": "backend/admin/reports.php",
+      "sha256": "96df04c27233b0918fa18a7356a8e4225d32920f9c6df3bb71a9c31bf4780efc",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/review-memory.php",
+      "source_path": "backend/admin/review-memory.php",
+      "sha256": "6df70089494afa20f38dc77243f654096b75b4415ec018c81cac94d4a149006a",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/review-sponsor.php",
+      "source_path": "backend/admin/review-sponsor.php",
+      "sha256": "8fc0a3efdbd68ac06698895627a534c4912a4f0f855fa06f759ed574b9a04588",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/rsvp-edit.php",
+      "source_path": "backend/admin/rsvp-edit.php",
+      "sha256": "a39e224fdaec9901280737e43d883f193663fb05de4574923ff40d63e9d51a29",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/rsvps.php",
+      "source_path": "backend/admin/rsvps.php",
+      "sha256": "a6e2d4dad76641aa9528efde3065afae8bc17990ce092206b87aae078835504e",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/serve-pending-upload.php",
+      "source_path": "backend/admin/serve-pending-upload.php",
+      "sha256": "d355f13648d5fd17d93224f8895078e8b84a4cf0e803c74924877c84f5038593",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "admin/surveys.php",
+      "source_path": "backend/admin/surveys.php",
+      "sha256": "bb710a55fba13974c5556464f0a99af104875c34ea2b832e3d21709f7b9947a7",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/audio/.gitkeep",
+      "source_path": "frontend/assets/audio/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/backgrounds/01-yearbook-pages.mp4",
+      "source_path": "frontend/assets/backgrounds/01-yearbook-pages.mp4",
+      "sha256": "61473948704c13791b95a10d69dfea46f15c03ae91482db0a482c4d473c71ac7",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/backgrounds/02-rebuilt-school-push-in.mp4",
+      "source_path": "frontend/assets/backgrounds/02-rebuilt-school-push-in.mp4",
+      "sha256": "b508f2657e60c334465b7aa2f915db58c2ba4683e85a286c4d41c57176ec415a",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/backgrounds/03-vhs-to-modern-transition.mp4",
+      "source_path": "frontend/assets/backgrounds/03-vhs-to-modern-transition.mp4",
+      "sha256": "83da1d5283817774bde734d5e7ac68b50619afa909ca26facc14cb01988d2754",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/backgrounds/04-red-silver-mascot-energy.mp4",
+      "source_path": "frontend/assets/backgrounds/04-red-silver-mascot-energy.mp4",
+      "sha256": "5f71b66333a88e84e75fa5d797dc9208513a519c37a23a216f8c2c0a5f3d2818",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/backgrounds/05-dancefloor-confetti.mp4",
+      "source_path": "frontend/assets/backgrounds/05-dancefloor-confetti.mp4",
+      "sha256": "ad138bbf24b6199a40bd536a15dcea7971d5775d99ca42c7e80bbd19135a8fe5",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/brand-mark/brand-mark.png",
+      "source_path": "frontend/assets/brand-mark/brand-mark.png",
+      "sha256": "e923788c8829371635448bac1ee86b817d419dee999ede07afe52b54a4ebd721",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/brand-mark/round-02-candidate-01-PROMOTED.png",
+      "source_path": "frontend/assets/brand-mark/round-02-candidate-01-PROMOTED.png",
+      "sha256": "e923788c8829371635448bac1ee86b817d419dee999ede07afe52b54a4ebd721",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/famtastic/famtastic-designs-logo-v1.png",
+      "source_path": "frontend/assets/famtastic/famtastic-designs-logo-v1.png",
+      "sha256": "ebb0477344132d32e449ba19e2b622921585aa71af0decdbcf8abfbe033fa950",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/icons/.gitkeep",
+      "source_path": "frontend/assets/icons/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/.gitignore",
+      "source_path": "frontend/assets/mascot/.gitignore",
+      "sha256": "1b1522576437103cd1c0d7f65a7b1ba1ddc6ac416d391ef51684fade46c1284a",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/01-wave-hello.png",
+      "source_path": "frontend/assets/mascot/01-wave-hello.png",
+      "sha256": "e93e0a02488efe200dd06ae23869f9031b76d243d99f14a5269c4798c03c3936",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/02-thumbs-up.png",
+      "source_path": "frontend/assets/mascot/02-thumbs-up.png",
+      "sha256": "baf6aa468a7c546adf741a016f03e02996be7971e6e934151d9dfeae6818eb27",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/03-thinking.png",
+      "source_path": "frontend/assets/mascot/03-thinking.png",
+      "sha256": "40573150bca670ba775baeaf50c6e1058887fbda3ceeec98cc6649dcf9821195",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/04-excited-cheer.png",
+      "source_path": "frontend/assets/mascot/04-excited-cheer.png",
+      "sha256": "e1591096a858311254b4837a8c772b696bdab24c393aa251b09ab269055922d9",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/05-disappointed.png",
+      "source_path": "frontend/assets/mascot/05-disappointed.png",
+      "sha256": "20c4b2e37be282150dfaa2eca423faf40d7bb29e6c41ed0bc646330cbf11b8cf",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/06-listening.png",
+      "source_path": "frontend/assets/mascot/06-listening.png",
+      "sha256": "d0ef3a541341ca03acfd214ad09d62a5b8857b0a260d04e3a2adc98499156f1c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/07-confirming.png",
+      "source_path": "frontend/assets/mascot/07-confirming.png",
+      "sha256": "f1c273cbd020f9888644127a9274e403a8827a95b6639eeb31ff7284e256fac0",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/08-pointing.png",
+      "source_path": "frontend/assets/mascot/08-pointing.png",
+      "sha256": "380526e1615bc58ce6f206ce32ecc419553c25028ce3ffcbcbca63c19cfe7c29",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/09-confused.png",
+      "source_path": "frontend/assets/mascot/09-confused.png",
+      "sha256": "693c34e40f51765f04cb4c3aac4ff9c424231d7546bfcf9b293d62b875b8bdb8",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/10-running.png",
+      "source_path": "frontend/assets/mascot/10-running.png",
+      "sha256": "b8b0bff2a01d27ee47cacafa47ef0f0a18c2d4ac41859d772d811107208a79a4",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/11-peeking.png",
+      "source_path": "frontend/assets/mascot/11-peeking.png",
+      "sha256": "d5333ec21d77919874c8e201b50a0b47886f54d9b846fd32629e3eb77ba9bfa7",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/12-clipboard.png",
+      "source_path": "frontend/assets/mascot/12-clipboard.png",
+      "sha256": "f998d51fdb07b70150e91fd7448798d86ff4697d90ed5d2d1fc811b47f870bf1",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/13-ticket-stub.png",
+      "source_path": "frontend/assets/mascot/13-ticket-stub.png",
+      "sha256": "118c3461bfafa1b72e7e6d797e871b9122e2b7bfbeb144cfcc0ef410d2936f37",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/14-wax-stamping.png",
+      "source_path": "frontend/assets/mascot/14-wax-stamping.png",
+      "sha256": "a6a398ee022e32aa50414f02bb00e938a27b7d7cd6ffd957f45105da62ccff1f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/15-seated-usher.png",
+      "source_path": "frontend/assets/mascot/15-seated-usher.png",
+      "sha256": "7eba19f86516df47aa1463481c3c81163ad4a3fc7977cd57e114ab97804bce6f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/16-conducting.png",
+      "source_path": "frontend/assets/mascot/16-conducting.png",
+      "sha256": "28dff93ad736ff9536fcc927ad80efdbfb9363b9508d92986aa3258962e8b8a0",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/17-respectful.png",
+      "source_path": "frontend/assets/mascot/17-respectful.png",
+      "sha256": "4fafa47cea5b09d3da0a216dfa6829fc2fc357a2848f0a5460a55747b853cabe",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/18-presenting.png",
+      "source_path": "frontend/assets/mascot/18-presenting.png",
+      "sha256": "b5195e9762ed8c4ced428fed8f62526c61ef96c14ff4847ca2ff750f963f297f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/19-pointing-down.png",
+      "source_path": "frontend/assets/mascot/19-pointing-down.png",
+      "sha256": "1c6fd5512aec77b4b067659194e0f09e21e7ea52604987bfa4a453656057bbb5",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/20-pointing-across.png",
+      "source_path": "frontend/assets/mascot/20-pointing-across.png",
+      "sha256": "35792f137c6e0db4efc824f63c4fd42d567090b7fc2db03a6183088643adcf87",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/21-pride-celebrate.png",
+      "source_path": "frontend/assets/mascot/21-pride-celebrate.png",
+      "sha256": "25b1768e891ee387bb3132d43f11aebd94767c518966831208c794f772766793",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/22-walk-frame.png",
+      "source_path": "frontend/assets/mascot/22-walk-frame.png",
+      "sha256": "6be860ba341dee5ad3349f7b9cbcc0d4798e9a688c03f04d399f90b6a52b4baa",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/23-salute-clean.png",
+      "source_path": "frontend/assets/mascot/23-salute-clean.png",
+      "sha256": "e44b9f5819f80a709d9d17b89b18a7f07f09a6f70325d369cc62575e59427caa",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/mascot/23-salute.png",
+      "source_path": "frontend/assets/mascot/23-salute.png",
+      "sha256": "40257c1f16ae75f31ec04be36c03fe7460a68225fe756bfd1b06e288cd611a6d",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/premiere/bg-capsule.jpg",
+      "source_path": "frontend/assets/premiere/bg-capsule.jpg",
+      "sha256": "71949bd263705e766b6386cc5ebc21e526232592c2f69f50fb7d2544821f13aa",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/premiere/bg-rsvp.jpg",
+      "source_path": "frontend/assets/premiere/bg-rsvp.jpg",
+      "sha256": "23c1b5f3a6b36f922f6acc22a3157c778413ca1067e48c81132cb89959ed78b8",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/premiere/bg-tickets.jpg",
+      "source_path": "frontend/assets/premiere/bg-tickets.jpg",
+      "sha256": "1872a139945af519804035496ed3156bfa36697eb25c1cd835579dec4d8e4a9d",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/premiere/brand-mark-foil.png",
+      "source_path": "frontend/assets/premiere/brand-mark-foil.png",
+      "sha256": "2e33ee3e5da3804af2501c36bef94b06ce1c998b8980611f1f23e84612733295",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/premiere/hero-poster.jpg",
+      "source_path": "frontend/assets/premiere/hero-poster.jpg",
+      "sha256": "8208505c682b3b0f54915b4a97463c859ba7430b4f1aa75ae715b71933ab0047",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/premiere/tier-bronze.png",
+      "source_path": "frontend/assets/premiere/tier-bronze.png",
+      "sha256": "cda78f6c8b0b31d77a8b7fdff474c8f901b15932e32b161341c48534f4a5ba91",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/premiere/tier-gold.png",
+      "source_path": "frontend/assets/premiere/tier-gold.png",
+      "sha256": "d2a3e18a6e6ec39bf3c76ed1bedb513c194fe49b706d1b679090005dae603f4e",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/premiere/tier-platinum.png",
+      "source_path": "frontend/assets/premiere/tier-platinum.png",
+      "sha256": "0c760f1cf4a5a4fad861afb595bf18c74f5f805ec13e66afe5eb2468fdd2ae3d",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/premiere/tier-silver.png",
+      "source_path": "frontend/assets/premiere/tier-silver.png",
+      "sha256": "29a129f96193712500756281c15a8fe936d8689f8055fafdd51d49d5712caeb0",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/story/.gitkeep",
+      "source_path": "frontend/assets/story/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/story/RIGHTS-MANIFEST.md",
+      "source_path": "frontend/assets/story/RIGHTS-MANIFEST.md",
+      "sha256": "49681c90bde6913172d096995b61769921e7b7cc30983e88b1b8a80d640f30af",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/story/era-1926-1959.jpg",
+      "source_path": "frontend/assets/story/era-1926-1959.jpg",
+      "sha256": "edac2f80ee5317351a791bcdcc7d13c6e649164412587d67f803946394f7a1ba",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/story/era-1960-1979.jpg",
+      "source_path": "frontend/assets/story/era-1960-1979.jpg",
+      "sha256": "511555f3d126b8bc3540f4ba43e4d8e525e3081de6e7b3702f431610c962c370",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/story/era-1980s.jpg",
+      "source_path": "frontend/assets/story/era-1980s.jpg",
+      "sha256": "ece09c807f99d86f9f942044c918e7d3b80b33437ff0722746c496c193726cc1",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/story/era-1996.jpg",
+      "source_path": "frontend/assets/story/era-1996.jpg",
+      "sha256": "272527a17ceb9948c2a539558603eefa0af8c5614e48f006bb51be06425bb071",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/story/era-2026.jpg",
+      "source_path": "frontend/assets/story/era-2026.jpg",
+      "sha256": "1a2337858231d62a888b4f3761dc8ee133846abaaf5c06ffc501bda108f47e40",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/story/now-miami-beach.jpg",
+      "source_path": "frontend/assets/story/now-miami-beach.jpg",
+      "sha256": "f240d6b4a2bac190dfafb81036db3c8d4804f2ac433578fe5cae1b96de82c25c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/story/then-1996-hallway.jpg",
+      "source_path": "frontend/assets/story/then-1996-hallway.jpg",
+      "sha256": "c350cf2884f7779a3850b372ad2c1ab468414bef9bb03e7f0ab358886f048eb5",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "assets/tickets/virtual-ticket-premiere-v1.png",
+      "source_path": "frontend/assets/tickets/virtual-ticket-premiere-v1.png",
+      "sha256": "c29d00771808dda9cda17e12a3492a94c2de21355b20875b019fad8a78a07f5f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "attendees.php",
+      "source_path": "backend/attendees.php",
+      "sha256": "8df5fa2a8003c215972dc137ef2311736a3001846cbb5e550e1dc5371aa7b3b1",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "capsule.html",
+      "source_path": "frontend/capsule.html",
+      "sha256": "627c39ee81532131c70b869f8a2173caa95de5135fb8f004472c61d1b57c4a90",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "capsule.php",
+      "source_path": "backend/capsule.php",
+      "sha256": "f0181648acdca505fc1ab408fe24e63de8a25bffeb17af2c06c69ccb0cc15ad1",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "chatbot-question.php",
+      "source_path": "backend/chatbot-question.php",
+      "sha256": "67d59464d7a3d5f988910be7dc228c6691ce57e828f1676683e23b0cbaacbd8f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/assets/admin.css",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/assets/admin.css",
+      "sha256": "c25940e05842f5e69c6bed44db54c147593e63dd253776339c968101cf9fb94c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/assets/admin.js",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/assets/admin.js",
+      "sha256": "006e200f8cfdf0d8ee5c4cc0900783c037d085d8de931fb9f4f893d5609c3ab2",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/assets/brand-mark.svg",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/assets/brand-mark.svg",
+      "sha256": "5905dd5a98f815e8f3432be2d4c3279d2ccd56e90298369b5d6effc67064ce7b",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/assets/login.css",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/assets/login.css",
+      "sha256": "62428a93316696df2cff4b733ef2736a3f1329ce04cfbc1e5ca35e8b428ba0bf",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/famtastic-reunion-platform.php",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/famtastic-reunion-platform.php",
+      "sha256": "45efdd51b1912b9c45a55464eab0a1c7e25867688520c028f2ad89dc237975ce",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-access.php",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-access.php",
+      "sha256": "dcf0213cf3dad530de2b0db9c7ec28ee42b4a03d8859e74c24d4134394baa78c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-brand-experience.php",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-brand-experience.php",
+      "sha256": "2b1a5216b7458cef227046c4b97b00dfbb199f8375912dad741ac1dd604a22f5",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-commerce.php",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-commerce.php",
+      "sha256": "caecaa2f97340f74867d7cbee526d53176d6b3a6746f2bd60c2240c837d028de",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-content.php",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-content.php",
+      "sha256": "fde7a6d53752185d19812e897973bc5105f14304d5563c91ebcc0adbaa997852",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-integrations.php",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-integrations.php",
+      "sha256": "62b52eb1b0820d40695e06760f330d8c8704869072f6105a9ef9924cf421605a",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-operations.php",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-operations.php",
+      "sha256": "fbe4932230e5067290ea39b14bce8b5c0450d1ffc99dde4b4313003a9ee0b38e",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-resend-mailer.php",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-resend-mailer.php",
+      "sha256": "387ed08b327d76eed761164ada37b936b157e14084fff9f182e53114881563ab",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-rest.php",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-rest.php",
+      "sha256": "3b135e78da7b51e70e9498918b476efddb61351437453ea3fd26cd9931e5dcc4",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-seo.php",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-seo.php",
+      "sha256": "d2a29bcb8be94c8b25a714f90302babf6112ea34b7d944fe2308d08e570b895a",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-tickets.php",
+      "source_path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-tickets.php",
+      "sha256": "1b852c45e9ca328b47a94b3be6092d66719bc84242525c211cbdc7a03cddfde4",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/themes/famtastic-event-cinema/functions.php",
+      "source_path": "wordpress/wp-content/themes/famtastic-event-cinema/functions.php",
+      "sha256": "27180e56472aa7e661f1783d6990185007cc574f5ff7d5c9b0ee3b996691289b",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/themes/famtastic-event-cinema/index.php",
+      "source_path": "wordpress/wp-content/themes/famtastic-event-cinema/index.php",
+      "sha256": "51bc8e9e5498f6b32d54e908e2035779797124efac9264d0660f56b7ef836f87",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/themes/famtastic-event-cinema/style.css",
+      "source_path": "wordpress/wp-content/themes/famtastic-event-cinema/style.css",
+      "sha256": "7b6817783f2018a48defcc826dcff93bf3676306f5096820f76bdaf613363f57",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cms/wp-content/themes/famtastic-event-cinema/theme.json",
+      "source_path": "wordpress/wp-content/themes/famtastic-event-cinema/theme.json",
+      "sha256": "a4c7f4e737ad55ada1443d7e767dfe948535a7320b51545d738663b78339c8eb",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "config/site-config.json",
+      "source_path": "frontend/config/site-config.json",
+      "sha256": "9a534354564662e55fcc337649efb3a8fbf24d386e475c21b05add49e6db470f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "cron/cleanup-rate-limits.php",
+      "source_path": "backend/cron/cleanup-rate-limits.php",
+      "sha256": "ff470f0dae5ffe3c5eee28cbc8865a5600e556d591e825bf1752cdba47eb4eb2",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cron/process-portal-email.php",
+      "source_path": "backend/cron/process-portal-email.php",
+      "sha256": "e1ce3f25c104e09476207a7f10e551e86bcc40a1d3954b8ec870f6964c289696",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "cron/send-capsules.php",
+      "source_path": "backend/cron/send-capsules.php",
+      "sha256": "e5b477579c1856142d1b09671b5d0a05ec6a294f49679e28a4737fc10c7921c5",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/base.css",
+      "source_path": "frontend/css/base.css",
+      "sha256": "d46bd4fd05e0be7e47ba0b5bba0456ebb5b0765a23ae7056632607ce8bccd6e7",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/chatbot.css",
+      "source_path": "frontend/css/chatbot.css",
+      "sha256": "2d2d8ea5c31df88fa8e2a1091f92969b1af4801e248dc7ae5195d92190ef099e",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/cinematic-system.css",
+      "source_path": "frontend/css/cinematic-system.css",
+      "sha256": "eeaef77c5ecd6f20761d14da65bd7758d7eedc608993e47c90e398098914e3ef",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/compass.css",
+      "source_path": "frontend/css/compass.css",
+      "sha256": "e0cfa1cd8cc87142e30f17c8fc9eeee72fa3a93527251a6764e5fa7317efd450",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/diploma-rsvp.css",
+      "source_path": "frontend/css/diploma-rsvp.css",
+      "sha256": "398cac7ac715b2f590d3d51cc411c7f53f01a8ddcff9b881fb4316aeed7fe50f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/footer.css",
+      "source_path": "frontend/css/footer.css",
+      "sha256": "53474f3c137e2320e6adbc1a1b3eee42f8280a772106d023ca8ccccd1227abd6",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/hero.css",
+      "source_path": "frontend/css/hero.css",
+      "sha256": "7582355fa90cca2ae8814ac509fcd128f2e6639a35046be8db3154dc1f392d85",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/menu.css",
+      "source_path": "frontend/css/menu.css",
+      "sha256": "e561ac8b2cd02483504ca5d2af43d7148819b47fb294a5ce8c00d146bb9ba78b",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/premiere.css",
+      "source_path": "frontend/css/premiere.css",
+      "sha256": "0c56c5a4ca733c38cdbbb331b7ef32c3bde73a379378d9b47daa39c1f2f5ea0a",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/reunion-manual.css",
+      "source_path": "frontend/css/reunion-manual.css",
+      "sha256": "a1ceae2c387e979525df16f92d9e93e8f44192e2ee7d7fd95dbb11e849fde851",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/reunion-navigator.css",
+      "source_path": "frontend/css/reunion-navigator.css",
+      "sha256": "3156c21c12c27aa7a32ef2969aeee958e69c6621cce031a6dbd65345dd18d4c5",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/sections.css",
+      "source_path": "frontend/css/sections.css",
+      "sha256": "86bf09c58dc0ba8f1118273b13015b34c805a66766df1ab106c04b9a11c8a6f9",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/story.css",
+      "source_path": "frontend/css/story.css",
+      "sha256": "d8eaf4d12f8a343e28352963aab60a697507d22d5875355cfc4daa1a9551d8a2",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "css/typography.css",
+      "source_path": "frontend/css/typography.css",
+      "sha256": "0efd53efe4f8e6114c40aa3d4bab7add1019200c12c0232f022be2f58b88cb29",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "diploma-form-preview/book-opening.css",
+      "source_path": "frontend/diploma-form-preview/book-opening.css",
+      "sha256": "238721810d1c48c29ccf5491d680f00300d43c8f1b90b317792aa8fcb2fe79b1",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "diploma-form-preview/diploma-form.css",
+      "source_path": "frontend/diploma-form-preview/diploma-form.css",
+      "sha256": "c568d754760fff55089d5790e10386fb40d00895afd72c6a6c401adb98eae681",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "diploma-form-preview/diploma-form.js",
+      "source_path": "frontend/diploma-form-preview/diploma-form.js",
+      "sha256": "94beb15205fc3f51d418fc730ead10294e4f15d2abf612882f92431b7aded335",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "diploma-form-preview/index.html",
+      "source_path": "frontend/diploma-form-preview/index.html",
+      "sha256": "1606f822e2a662349f8db78fb0070270641e76e87645cb40a4fb7aec7072ef6d",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "in-memory.php",
+      "source_path": "backend/in-memory.php",
+      "sha256": "8369fc5adec4f896cad6fee3cf9e0e6040490ce296324f12b8199bb04bb72673",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "index.html",
+      "source_path": "frontend/index.html",
+      "sha256": "e89bb57e42970f47041bd36f7abbcab04143d465a120e2857c6f13b84d6271f0",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "js/analytics.js",
+      "source_path": "frontend/js/analytics.js",
+      "sha256": "55756621a97a426c4886ce5d1eb54cc60067fb501dfb3e6bc8da5a3b8689670e",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "js/chatbot.js",
+      "source_path": "frontend/js/chatbot.js",
+      "sha256": "1679431968bd6069102e26b3361c88e972c5a166d4c1af8ad93c775a2884f446",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "js/cinematic-shell.js",
+      "source_path": "frontend/js/cinematic-shell.js",
+      "sha256": "acb784b90035c70ba1c9da333d326185de711b6badbb9e6ff091b0b6197d2d1d",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "js/compass.js",
+      "source_path": "frontend/js/compass.js",
+      "sha256": "5102b40f3a01913dfb9cca2c25d66c43028b9f2c239bcf7929972da9be3529ee",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "js/config.js",
+      "source_path": "frontend/js/config.js",
+      "sha256": "864aa494088883c116bfd607e191455c42db2d38fbc39815fb02942fcf1c9292",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "js/countdown.js",
+      "source_path": "frontend/js/countdown.js",
+      "sha256": "41502b4f5c6c1080ab3633761a731b58dd80353e773668ebb796dd18232cc657",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "js/diploma-rsvp.js",
+      "source_path": "frontend/js/diploma-rsvp.js",
+      "sha256": "0c2839bf175b99cc0461dc1c36e6964a1e7e7c8bccf80435272c66f8f483e980",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "js/main.js",
+      "source_path": "frontend/js/main.js",
+      "sha256": "6ee24338da11cd86ac8cce54fb59021b16c7f84c03a92483266dbfb90f0fc5db",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "js/memorial.js",
+      "source_path": "frontend/js/memorial.js",
+      "sha256": "6101882a13c24373f76d230ffe5927741d4a44f489b1b4689513076ec110fdcb",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "js/memory.js",
+      "source_path": "frontend/js/memory.js",
+      "sha256": "08b069dfd4801981c17fe15e8143a29a9b1694c565ca21a0b55a86d6995645df",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "js/menu.js",
+      "source_path": "frontend/js/menu.js",
+      "sha256": "81542ae6dab7cf26f6ab1bfdb6c89fff216efe53a612bbc90deb77cd4e77d2f5",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "js/page-sequence.js",
+      "source_path": "frontend/js/page-sequence.js",
+      "sha256": "166f4ee25d38169ac8af96b25e46b18d9bb5c70870c9d075964115435a851b76",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "js/playlist.js",
+      "source_path": "frontend/js/playlist.js",
+      "sha256": "db3efb97fdf521503cfaef72a8c1ab874850cca5ea13a1acb8da3c0f48dace8c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "js/premiere.js",
+      "source_path": "frontend/js/premiere.js",
+      "sha256": "cb3019fb1adc024252357f29ed90cca4b278e698a63f98cceefd40185f5fbe0c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "js/reunion-manual.js",
+      "source_path": "frontend/js/reunion-manual.js",
+      "sha256": "78d328b5e62e1a576f9f42c09f3c663a9bcf2e798a2460450407d9a121f841a0",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "js/reunion-navigator.js",
+      "source_path": "frontend/js/reunion-navigator.js",
+      "sha256": "ec18c644dc376b276a57922817d6f237b5046abe4d0040005bfc78d5d133fed4",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "js/rsvp.js",
+      "source_path": "frontend/js/rsvp.js",
+      "sha256": "2a1cef6224c0a3ba4aeabb40a0919b3b98cca4bf90b3d98c590419a985e40109",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "js/sponsor.js",
+      "source_path": "frontend/js/sponsor.js",
+      "sha256": "3f9bf3f690de1d6e54b3c24c72cf04b0b66871772e23d5fabbbced5b11b10209",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "js/ticket-order.js",
+      "source_path": "frontend/js/ticket-order.js",
+      "sha256": "a8cb95fcb97a75d75dbb47160c09e7ede8c25acb071f34f141a1d5c9c6cf5459",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "js/time-capsule.js",
+      "source_path": "frontend/js/time-capsule.js",
+      "sha256": "bd236b6b63193ebde56051de2f636cb57f901e3d806f669e4307ab1d0d49a252",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/admin-auth.php",
+      "source_path": "backend/lib/admin-auth.php",
+      "sha256": "03bbc3c82afa9585cab3d011e41f8426b5051e98a915dfccd5832138257efdb6",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/config.php",
+      "source_path": "backend/lib/config.php",
+      "sha256": "6d45f1794a3abe4f29d9f29d9a268c036e7809cbc2e9e08745097a6f9966e4ea",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/cors.php",
+      "source_path": "backend/lib/cors.php",
+      "sha256": "c1848c0874dfe7613b65d0e57f43f47cfa7eeb768c8aa16d8fb1d71241e864e8",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/creator-credit.php",
+      "source_path": "backend/lib/creator-credit.php",
+      "sha256": "e8e48ec39f513c24bdd80c46ee3d4ebc7a3740ab0994d350736f29e8c598782f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/csrf.php",
+      "source_path": "backend/lib/csrf.php",
+      "sha256": "b2ffd5224e763233a2ebf25749d59df96065163280068173d25e292a122a18f0",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/db.php",
+      "source_path": "backend/lib/db.php",
+      "sha256": "f81aca6e34816ba65ee287f02c6f50ae045a3d5f8ae322aa7d1d9f60486767a0",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/portal-auth.php",
+      "source_path": "backend/lib/portal-auth.php",
+      "sha256": "269d933b3b9a34100b30f747d3144990846a34f95148f59d5b201934b1c9272f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/portal-email.php",
+      "source_path": "backend/lib/portal-email.php",
+      "sha256": "9993d01ee518ba7f22f0fe41da9336121797de6974f03ae1aff5edc147f8701f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/portal-upload.php",
+      "source_path": "backend/lib/portal-upload.php",
+      "sha256": "cd9a85c17ab486a927c07c763f2db2bc836626d49305453e43e22afb1059cb0c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/production-snapshot.php",
+      "source_path": "backend/lib/production-snapshot.php",
+      "sha256": "73bb0a746b8966f814c09ecea10d0184e912df10adfdd8f4ee779d476d9421fd",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/rate-limit.php",
+      "source_path": "backend/lib/rate-limit.php",
+      "sha256": "cf9d37f64f0e922d6fcdeefe45bf3fd94b68d5d26bdbdb13ac6b606e3255d9dd",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/resend.php",
+      "source_path": "backend/lib/resend.php",
+      "sha256": "b7efbe461378b327ce1a1cabbd977f5b9e1a1f58489792ca9b079c029073d9a3",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/ticket-payments.php",
+      "source_path": "backend/lib/ticket-payments.php",
+      "sha256": "e8b82df141ad5364719017a7958e4da1643d3fc09c18495f0a989c739bba3d6f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "lib/upload.php",
+      "source_path": "backend/lib/upload.php",
+      "sha256": "eda19a3513fc344ee773bf989005c970f4f3b518ab353f0bfc98f36394080ee6",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/validate.php",
+      "source_path": "backend/lib/validate.php",
+      "sha256": "5202ced0b4cd6f2a6cd1e9e2f678cab9e17fceb59741280059e70a22589da70d",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "manual/index.html",
+      "source_path": "frontend/manual/index.html",
+      "sha256": "84f91298edaab98fb79f11376fe3a1cbf4976929cc84cade0029fd0501436444",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "memorial.html",
+      "source_path": "frontend/memorial.html",
+      "sha256": "ff9201f5b14ee2cd14e6b698f6376cc3f51915ada2630d75e747a73a3d6e8748",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "memory.php",
+      "source_path": "backend/memory.php",
+      "sha256": "49ada1795aebde01d31087950620e4bd315c77f58d1681c339a4292030d6d7f2",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "menu.html",
+      "source_path": "frontend/menu.html",
+      "sha256": "cb18d085cd3c472b99ed250d63792aca193b45239cefc7ad5ff73500e43d72d4",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "menu.php",
+      "source_path": "backend/menu.php",
+      "sha256": "9a0e0aab9c5035f6c27426f961016f3fd7b1741fb51a424404b406c77a05cf3c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "menu/index.html",
+      "source_path": "frontend/menu/index.html",
+      "sha256": "91ee817135d69cf856424a97f2c3bc8c55071201f423a0c29011741237a91e8a",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "page-content/menu.content.html",
+      "source_path": "frontend/page-content/menu.content.html",
+      "sha256": "8b83163bc27fd37307d241a1243a23f6673eaa9a50aee1f8840b99484db8f704",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "playlist.html",
+      "source_path": "frontend/playlist.html",
+      "sha256": "080a2e64f5dc7b70302f839b0e4cf348f0f48bc358b76071722e51444fded822",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "poll.php",
+      "source_path": "backend/poll.php",
+      "sha256": "33cf774b796dd8fcab9c3f63a7f265189086b582b73fbb2e626e5b93c0d1e076",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/_bootstrap.php",
+      "source_path": "backend/portal/_bootstrap.php",
+      "sha256": "e9a3c766bf2d2f5588c050bb2c85df6ed0861679508b2eda76638eed71c66215",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/auth/login.html",
+      "source_path": "frontend/portal/auth/login.html",
+      "sha256": "a25d947a8be3a5c3f0b6cd98e79f99b58f986dc991252f1a564648b0efd1f0be",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "portal/auth/recovery.html",
+      "source_path": "frontend/portal/auth/recovery.html",
+      "sha256": "fc36de709201871ed03e46b7c7876eeed122450a4b0a32e7050ab48626844d7d",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "portal/auth/register.html",
+      "source_path": "frontend/portal/auth/register.html",
+      "sha256": "f962bfd53a661d837b447d72d7f7a25a32f6d9bd8bd2f10ad9b3e2d0640e75cc",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "portal/auth/reset.html",
+      "source_path": "frontend/portal/auth/reset.html",
+      "sha256": "970fbd841df8c4815d07abb223936bad2d6dc741e5fa2982395564c2729cab42",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "portal/auth/verify.html",
+      "source_path": "frontend/portal/auth/verify.html",
+      "sha256": "2302ed660b1cb5392262c0feeabd2c90d25888aebd9b11c17af78518500e10c6",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "portal/committee/action.php",
+      "source_path": "backend/portal/committee/action.php",
+      "sha256": "7ece55245d763eda62079282a9abba49ca35073cb08ab8d66b01e7e61ed467cd",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/committee/index.html",
+      "source_path": "frontend/portal/committee/index.html",
+      "sha256": "b8d73da09885bd737c69887a5989fc617adc71d5fcd12dfe913ab162838c0787",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "portal/committee/summary.php",
+      "source_path": "backend/portal/committee/summary.php",
+      "sha256": "84dbfb67dd38eead6c2ddf67dc48d3365cb22c75278f1904c3d0da967aaee0c9",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/components/README.md",
+      "source_path": "frontend/portal/components/README.md",
+      "sha256": "cd6b9f07ec844754f4790a049519a3fb1117750f9126e29570be10e3f268e8c6",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/conversations.php",
+      "source_path": "backend/portal/conversations.php",
+      "sha256": "994b4c09afbfabb90d0ba76d245af190ffa74a0efd398f8f54c1d656577473d1",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/css/admin-coach.css",
+      "source_path": "frontend/portal/css/admin-coach.css",
+      "sha256": "4a270cb681393c10aec2185f78f23501c0791e141d791c9b558f4d898234c212",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/css/admin-fixes.css",
+      "source_path": "frontend/portal/css/admin-fixes.css",
+      "sha256": "e1fee8ada22471731b9366017195b17b5f836742e28cd56831f19a01a7a44a9c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/css/mobile-hardening.css",
+      "source_path": "frontend/portal/css/mobile-hardening.css",
+      "sha256": "3842bb4458f330026890b7c62acb60aa6e94ffbbc62c32c792c19a5d7eddca8f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/css/portal-integration.css",
+      "source_path": "frontend/portal/css/portal-integration.css",
+      "sha256": "4e515157bcc17dc551fedc84cb8d2180a920b04c2bbd662c83999c586d7b0e57",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/css/portal-staff.css",
+      "source_path": "frontend/portal/css/portal-staff.css",
+      "sha256": "66a722c95c5af2c2954f73f2aa0136e1ab93cb3afd084598c1182786818d5ae0",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/css/portal.css",
+      "source_path": "frontend/portal/css/portal.css",
+      "sha256": "56650b20325ee8f8855b387b984fcefa71354eb658af6ace397cf0ca54c0e64a",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/css/sample-ticket-studio.css",
+      "source_path": "frontend/portal/css/sample-ticket-studio.css",
+      "sha256": "eb111db5ee4210ee58eef7e047ec0e82890d08fbbf97113ddbb13b012193c0ca",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/css/workspaces.css",
+      "source_path": "frontend/portal/css/workspaces.css",
+      "sha256": "931fc96f39a2c5aa6ce9f8323ee5919238a92387cb2aef39b56309579c3f550f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/forgot-password.php",
+      "source_path": "backend/portal/forgot-password.php",
+      "sha256": "3f493a43d27a8bd44bbbc178b99ba4bf374340abfe31b7209c0c45bc7bc3c1d0",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/index.html",
+      "source_path": "frontend/portal/index.html",
+      "sha256": "bcfaf0ce0ce4ce179732c7fd9977fad6a01a7b45966d27f9cde1a9b95f65555d",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "portal/js/admin-harry-guide.js",
+      "source_path": "frontend/portal/js/admin-harry-guide.js",
+      "sha256": "d73f25552847ad39893553bff2615fb47f8ed7d392a2ad9be41f9419f503a83f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/js/admin-trivia.js",
+      "source_path": "frontend/portal/js/admin-trivia.js",
+      "sha256": "b7c3ef55e8b5cccd1efa79bcac3b55f1c9963c2331645c3b67a1a2c86c043427",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/js/committee-workspace.js",
+      "source_path": "frontend/portal/js/committee-workspace.js",
+      "sha256": "dfb70921333ef28333b56021f8fb951b3f8f7d3655a341692b9b282a2a16a8cc",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/js/destructive-action-guard.js",
+      "source_path": "frontend/portal/js/destructive-action-guard.js",
+      "sha256": "7bf3662353a275b3030849dde72db77cc94cadbec06360f712d368b7ef673269",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/js/owner-workspace.js",
+      "source_path": "frontend/portal/js/owner-workspace.js",
+      "sha256": "a7fcada9a50979cd1b618cbfcf4bc9ed9eb056ab693c7cf6b524604f3091add1",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/js/portal-api.js",
+      "source_path": "frontend/portal/js/portal-api.js",
+      "sha256": "7ea8c5fbb44b26b15a1ff2bcd08b3afe6b970a6967a7a6b092065df12df1ef49",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/js/portal-config.js",
+      "source_path": "frontend/portal/js/portal-config.js",
+      "sha256": "e25dd7c52c09ff47922832b27d0c3a42362d406664a7678d29477b98b72cee3a",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/js/portal-staff.js",
+      "source_path": "frontend/portal/js/portal-staff.js",
+      "sha256": "8988f9387535427ba418e3b286c705ab03afbad96523cef936ae568b54852d10",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/js/portal.js",
+      "source_path": "frontend/portal/js/portal.js",
+      "sha256": "ba334984bf6fc881ffe883408ee08515d66b5ffd2b635745bff6a1b58842b334",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "portal/js/ticket-payment-desk.js",
+      "source_path": "frontend/portal/js/ticket-payment-desk.js",
+      "sha256": "b5a452363429087f97c4858347058d96f76b25eccbf59f35b7793244931959f8",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/js/trivia.js",
+      "source_path": "frontend/portal/js/trivia.js",
+      "sha256": "9b8be7417945f372365dd4faa2cdcd89cf8426a8e04b2ecf27b2de23755c699d",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/login.php",
+      "source_path": "backend/portal/login.php",
+      "sha256": "a6930b71863ab780bb95d9852fd4a2496de2f08e2e805882db5f40b25518fb67",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/logout.php",
+      "source_path": "backend/portal/logout.php",
+      "sha256": "5bc7dfa275ca828d9753301a948ad223fa8271258e99e6c910bc62e20bbfed05",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/media.php",
+      "source_path": "backend/portal/media.php",
+      "sha256": "a33308978b9be3024daee1e99c9f9f262965415355af93ebcb73e3ef7d0820a0",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/my-event.php",
+      "source_path": "backend/portal/my-event.php",
+      "sha256": "83d965ead54d5c00ce162d20633f2cebd2a63d6162fea6fbe96b236db5b9e272",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "portal/notifications.php",
+      "source_path": "backend/portal/notifications.php",
+      "sha256": "d397f376e7a50eb20fe87d63b4f26e7c53d27db19b78a7a061b9acaf05259364",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/owner/audit.php",
+      "source_path": "backend/portal/owner/audit.php",
+      "sha256": "7c7c824436aa0592064aae9f671e617a3cf813106feb3d08b5e5f89a0be426db",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/owner/content.php",
+      "source_path": "backend/portal/owner/content.php",
+      "sha256": "eea3cb38e71f334604eddf7ef4cb351a8b5fc76865aa5c73cde4370ae19a8af4",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/owner/index.html",
+      "source_path": "frontend/portal/owner/index.html",
+      "sha256": "5bf4b60d482ab7e5e9404e94c889413ff663e4fe268f29497fd8868af524b542",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "portal/owner/memberships.php",
+      "source_path": "backend/portal/owner/memberships.php",
+      "sha256": "a49dc011c23615057228750f9afdfb80ab9cc911a3b68ccc889d793e1b89cf25",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/preferences.php",
+      "source_path": "backend/portal/preferences.php",
+      "sha256": "c13f451b576fbcdeba79d83c9c0251465d602a8802b1daa2c2dd219479592b68",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/profile.php",
+      "source_path": "backend/portal/profile.php",
+      "sha256": "58554215a111b5f171fce96be16d46c3c7526a84325b7ff2ecdf5d5af7a15b9e",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/register.php",
+      "source_path": "backend/portal/register.php",
+      "sha256": "ea6a177de422abb9d3059cd396fb1cee07b1b8f19ffae00991598fbc1c9c905b",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/reset-password.php",
+      "source_path": "backend/portal/reset-password.php",
+      "sha256": "0b88d3e47919937c4e586d65c786f0d37105f26de25da415390d92ade2a9a9c3",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/session.php",
+      "source_path": "backend/portal/session.php",
+      "sha256": "48c65850acdeaf634ff58add02d00d55ffede9e994582d1e6b5cd82089f6e6a1",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/action.php",
+      "source_path": "backend/portal/staff/action.php",
+      "sha256": "1f3a1ac853dd0b31f14a2dcc502773cf1be1f931c49139a71e55381c1b98c76b",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/communications.php",
+      "source_path": "backend/portal/staff/communications.php",
+      "sha256": "096175d687ea740e5a6b6b4124f6ef883451aa0bc268c6c5df03e0a9ba8503f7",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/content.php",
+      "source_path": "backend/portal/staff/content.php",
+      "sha256": "c4d4767b386bc899a17733e13156c3a2a23aab4093325c31ebaedca47ac0d71d",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/conversation.php",
+      "source_path": "backend/portal/staff/conversation.php",
+      "sha256": "3cfffc6b57ad50a102f00f5fc01392ae7cdcf498a90b34aac77e4e8b870f3c22",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/dashboard.php",
+      "source_path": "backend/portal/staff/dashboard.php",
+      "sha256": "9c2864633a29c7c18d4dbdb4bea191151299c05ebb8223a1386d734346a4ce27",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/dinner.php",
+      "source_path": "backend/portal/staff/dinner.php",
+      "sha256": "a837d9fdfba37f8eff8c44d44ed1c682feb33e937e8ff28cbafe74caddfdf90a",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/harry.php",
+      "source_path": "backend/portal/staff/harry.php",
+      "sha256": "e9ce9bb1fc94a2d0658e93b9056d3fa9cbd25e3ffe465f306b46735ad712d539",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/inbox.php",
+      "source_path": "backend/portal/staff/inbox.php",
+      "sha256": "d20d7bec08a706f8970eba0a9092c85b6e60535ad48ce4a54e666f1fb35c6fa6",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/operations.php",
+      "source_path": "backend/portal/staff/operations.php",
+      "sha256": "548d8725340c27823484349ed41844bb8b2a937de436abc77eb82c8d823030e9",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/people.php",
+      "source_path": "backend/portal/staff/people.php",
+      "sha256": "7a145b2fa826447d38d1b2a7d026ff06c54b716aa034f55d589b5df053239cdc",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/record.php",
+      "source_path": "backend/portal/staff/record.php",
+      "sha256": "8e6def7161c5a6ea71aaf7b9d4f04bc59ea1723eb13f9abf563e5eecc32fab39",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/review-queue.php",
+      "source_path": "backend/portal/staff/review-queue.php",
+      "sha256": "afed92ef7512b069bb8b553962d173c8fcad69d5079652991cdcaf4448f72683",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/staff/trivia.php",
+      "source_path": "backend/portal/staff/trivia.php",
+      "sha256": "0028955e880c363b49b87244dd8cc9b59c3786904ec0be9b12a9b4a80e6d8c36",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/suggestions.php",
+      "source_path": "backend/portal/suggestions.php",
+      "sha256": "755c12b9394463068819aa7a56ec62a175600fae00a6510e01125f910101f7ff",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/tickets.php",
+      "source_path": "backend/portal/tickets.php",
+      "sha256": "29a4918cc614f97353eb38aaebd426a2d2fde42733804ddf61e63dc2ac9fd363",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/trivia.php",
+      "source_path": "backend/portal/trivia.php",
+      "sha256": "f6819f51e5fd422d0a0d65111667a03bf08bf1018b0345ea582ce8b7c9572069",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "portal/verify-email.php",
+      "source_path": "backend/portal/verify-email.php",
+      "sha256": "ee100165a432df959049e47c74ba637979327de2a30c75b5ba93a02e529aeb9c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "robots.txt",
+      "source_path": "frontend/robots.txt",
+      "sha256": "d9fcd8ae75968c6e5c4d559353f22d976cf15cb2dc7e05f2d5139ba7392cd704",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "rsvp.html",
+      "source_path": "frontend/rsvp.html",
+      "sha256": "3bb93164d61b15e134352736e40d943ac1be6e85bf5e692bbb660a43c10536cc",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "rsvp.php",
+      "source_path": "backend/rsvp.php",
+      "sha256": "60dd5a7c3be8869ef8097199749ec1405977ffb626073a35cb93e6a86bf223e6",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "sitemap.xml",
+      "source_path": "frontend/sitemap.xml",
+      "sha256": "aedc4c0ec862a254889b85ede63bb3557cfbd75525abf49cffacd5338a159fa9",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "sponsor.php",
+      "source_path": "backend/sponsor.php",
+      "sha256": "12ec8feef1b6dfdff04669eda1f2fe5da53f5667c46649e3ac60824082975e71",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "sponsors.php",
+      "source_path": "backend/sponsors.php",
+      "sha256": "f7d1adf2790ee35304d02e7b59f67fbc4db61e0be762749ddf77bfa7cb27f26b",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "survey.html",
+      "source_path": "frontend/survey.html",
+      "sha256": "28776003c0e764852cd1a5d6cca3a360b3b33bdd3b816f77ebacb21c892821eb",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "survey.php",
+      "source_path": "backend/survey.php",
+      "sha256": "026179415189ce5f2ba87d8b299306e1223caf8fdb9e27aa60cc820610b5c45c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "survey2.php",
+      "source_path": "backend/survey2.php",
+      "sha256": "00e6baa2e97dceaa1be591801edf1d8c31aaa4685e18f50e75b189077cf8d2fe",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "templates/creator-credit.html",
+      "source_path": "frontend/templates/creator-credit.html",
+      "sha256": "9fa5593e688a3341858ba1d8048d9fda45cb3db387278d97df28d9a4edc62af3",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "templates/interior-page-template.html",
+      "source_path": "frontend/templates/interior-page-template.html",
+      "sha256": "4a95d89bc011453bdc9c0c8491c171c8fd9369ddde75b73346609a8c00fbf990",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "templates/landing-page-template.html",
+      "source_path": "frontend/templates/landing-page-template.html",
+      "sha256": "544e18ee9e044943d4155cfad9b611a86e071c24efd8852bc9ebb4ec0747529f",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "templates/simple-page-template.html",
+      "source_path": "frontend/templates/simple-page-template.html",
+      "sha256": "3b064652cef2be2345bc87f5afe0fc1f2138a98032bf933b86d165f63cbbbb1c",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "through-years.html",
+      "source_path": "frontend/through-years.html",
+      "sha256": "579b4b2bcc71d0b3f1699e6ee4968ed496255385aa9e5d255d2e517af750dfe9",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "ticket-order.php",
+      "source_path": "backend/ticket-order.php",
+      "sha256": "8f999b954d22fd92667f59f1c5900e88fb362a640d4324a4f7ffee144f0ea9b6",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "tickets.html",
+      "source_path": "frontend/tickets.html",
+      "sha256": "149b7bd57571d2d590eaec07edb383d02643c5fcc14bae615267b8d0ee3dfd77",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": false
+    },
+    {
+      "path": "yearbook-preview/index.html",
+      "source_path": "frontend/yearbook-preview/index.html",
+      "sha256": "4c21e8bb56e0de588c1867f9622a28a744d8886217155ecf7f9c1573a69620e2",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "yearbook-preview/yearbook.css",
+      "source_path": "frontend/yearbook-preview/yearbook.css",
+      "sha256": "4d200837f3411006fbfce2991a59460831fa0ae37f2109b183e48705af438c56",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "yearbook-preview/yearbook.js",
+      "source_path": "frontend/yearbook-preview/yearbook.js",
+      "sha256": "52b3859854c516fa4250afc05f304687ca39ecca163ab4ee44d613ab4cf12450",
+      "matches_release_manifest": true,
+      "matches_recorded_commit": true,
+      "candidate_same": true
+    },
+    {
+      "path": "lib/portal-email-templates.php",
+      "source_path": "backend/lib/portal-email-templates.php",
+      "sha256": "a6e75bd36d586282aa1ea9f66b9be6efbe7769d0c6986f097212c523f063842d",
+      "matches_release_manifest": null,
+      "matches_recorded_commit": false,
+      "candidate_same": false
+    }
+  ],
+  "https_verification": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "e89bb57e42970f47041bd36f7abbcab04143d465a120e2857c6f13b84d6271f0",
+      "matches_ssh_source": true
+    },
+    {
+      "path": "tickets.html",
+      "status": 200,
+      "sha256": "149b7bd57571d2d590eaec07edb383d02643c5fcc14bae615267b8d0ee3dfd77",
+      "matches_ssh_source": true
+    },
+    {
+      "path": "js/cinematic-shell.js",
+      "status": 200,
+      "sha256": "acb784b90035c70ba1c9da333d326185de711b6badbb9e6ff091b0b6197d2d1d",
+      "matches_ssh_source": true
+    },
+    {
+      "path": "portal/index.html",
+      "status": 200,
+      "sha256": "bcfaf0ce0ce4ce179732c7fd9977fad6a01a7b45966d27f9cde1a9b95f65555d",
+      "matches_ssh_source": true
+    },
+    {
+      "path": "config/site-config.json",
+      "status": 200,
+      "sha256": "9a534354564662e55fcc337649efb3a8fbf24d386e475c21b05add49e6db470f",
+      "matches_ssh_source": true
+    }
+  ],
+  "runtime_inventory_files": 130,
+  "additional_runtime_files_beyond_snapshot": [],
+  "source_authority": "Actual GoDaddy public_html source; verified by SSH snapshot and HTTPS. Netlify is retired and not used."
+}

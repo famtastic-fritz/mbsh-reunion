@@ -653,10 +653,7 @@
       })
     : [
         { id: 'home',     page: 'home',          href: 'index.html',         reel: 'I',    title: 'Welcome — The Premiere',     usher: 'Curtain up. Find your row, find your row of 1996.',           runtime: '—' },
-        { id: 'rsvp',     page: 'rsvp',          href: 'rsvp.html',          reel: 'II',   title: 'Mixer RSVP',          usher: "Tell us you're coming. The night unlocks once we hear from you.", runtime: '4 min' },
         { id: 'tickets',  page: 'tickets',       href: 'tickets.html',       reel: 'III',  title: 'Mixer Tickets',      usher: 'One reunion mixer. $30 per person. Food on your own.',  runtime: '6 min' },
-        { id: 'menu',     page: 'menu',          href: '/menu/',             reel: 'IV',   title: 'Food & Location',         usher: 'Find Twisted Tonic and plan your evening. Food is on your own.', runtime: '5 min' },
-        { id: 'survey',   page: 'survey',        href: 'survey.html',        reel: 'V',    title: 'Class Survey',               usher: 'Give the committee the head count, guest signal, and planning intel they need.', runtime: '3 min' },
         { id: 'years',    page: 'through-years', href: 'through-years.html', reel: 'VI',   title: 'Through the Years',          usher: 'One hundred years of Hi-Tides. The eras that built us.',     runtime: '12 min' },
         { id: 'memory',   page: 'memorial',      href: 'memorial.html',      reel: 'VII',  title: 'In Memory',                  usher: 'Forever Hi-Tides. Names we carry with us.',                  runtime: '5 min' },
         { id: 'capsule',  page: 'capsule',       href: 'capsule.html',       reel: 'VIII', title: 'Time Capsule',               usher: "Send your younger self a note. We'll deliver on the day.",   runtime: '8 min' },
@@ -730,7 +727,7 @@
   /* Inject (or upgrade) Where-Next on landing pages only. Simple pages like
      menu/survey should stay clean: header, content, footer. */
   function injectWhereNext() {
-    if (page !== 'home') return;
+    if (page === 'home' || page === 'tickets') return;
     // If a hardcoded .page-next exists (home), upgrade it in place.
     const legacy = document.querySelector('.page-next');
     let target;
@@ -1023,6 +1020,7 @@
   }
 
   function mountAllBillboards() {
+    if (page === 'home' || page === 'tickets') return;
     // Home billboard already has a host element with data-billboard="home".
     document.querySelectorAll('[data-billboard]').forEach(host => {
       const key = host.dataset.billboard;

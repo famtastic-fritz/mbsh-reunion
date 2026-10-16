@@ -11,6 +11,7 @@
   const checkoutLink = document.getElementById('ticket-checkout-link');
   const loadedAt = document.getElementById('ticket-form-loaded-at');
   loadedAt.value = Date.now();
+  const previewOnly = ['localhost', '127.0.0.1'].includes(window.location.hostname);
 
   function currentPrice() {
     return { admission: 30, fee: 0, checkout: 30, label: 'Mixer admission' };
@@ -24,13 +25,20 @@
     total.textContent = `Checkout total: $${(price.checkout * count).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   }
   if (new URLSearchParams(window.location.search).get('offer') === 'updated') {
-    status.textContent = 'The reunion is now a $30 mixer at Twisted Tonic. Please start a new reservation below.';
+    status.textContent = 'The reunion is now a $30 mixer at Twisted Tonic. Please start a new ticket purchase below.';
   }
   quantity.addEventListener('change', updateTotal);
   updateTotal();
+  if (previewOnly) {
+    status.textContent = 'Design preview only. Ticket quantities can be reviewed here; orders and payments are unavailable.';
+    form.querySelectorAll('input, textarea, button[type="submit"]').forEach(control => { control.disabled = true; });
+    form.querySelector('button[type="submit"]').textContent = 'Payment unavailable in preview';
+  }
 
   form.addEventListener('submit', async function (event) {
-    event.preventDefault(); status.textContent = '';
+    event.preventDefault();
+    if (previewOnly) return;
+    status.textContent = '';
     const submit = form.querySelector('button[type="submit"]');
     const fd = new FormData(form);
     const payload = Object.fromEntries(fd.entries());
