@@ -653,7 +653,7 @@
       })
     : [
         { id: 'home',     page: 'home',          href: 'index.html',         reel: 'I',    title: 'Welcome — The Premiere',     usher: 'Curtain up. Find your row, find your row of 1996.',           runtime: '—' },
-        { id: 'rsvp',     page: 'rsvp',          href: 'rsvp.html',          reel: 'II',   title: 'Reserve Your Seat',          usher: "Tell us you're coming. The night unlocks once we hear from you.", runtime: '4 min' },
+        { id: 'rsvp',     page: 'rsvp',          href: 'rsvp.html',          reel: 'II',   title: 'Mixer RSVP',          usher: "Tell us you're coming. The night unlocks once we hear from you.", runtime: '4 min' },
         { id: 'tickets',  page: 'tickets',       href: 'tickets.html',       reel: 'III',  title: 'Mixer Tickets',      usher: 'One reunion mixer. $30 per person. Food on your own.',  runtime: '6 min' },
         { id: 'menu',     page: 'menu',          href: '/menu/',             reel: 'IV',   title: 'Food & Location',         usher: 'Find Twisted Tonic and plan your evening. Food is on your own.', runtime: '5 min' },
         { id: 'survey',   page: 'survey',        href: 'survey.html',        reel: 'V',    title: 'Class Survey',               usher: 'Give the committee the head count, guest signal, and planning intel they need.', runtime: '3 min' },

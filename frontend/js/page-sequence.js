@@ -47,7 +47,7 @@
       slug: 'rsvp.html',
       reelRoman: 'II',
       sceneLocation: 'Box Office',
-      title: 'Reserve Your Seat',
+      title: 'Mixer RSVP',
       usher: "Tell us you're coming. The night unlocks once we hear from you."
     },
     {
