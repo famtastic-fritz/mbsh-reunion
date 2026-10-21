@@ -1,5 +1,15 @@
 # Conversation decisions
 
+## 2026-10-21 - Publication-safe source candidate
+
+The held source histories are being reconciled from current remote mixer main,
+without attaching credential-bearing local ancestry. Preserve both original
+heads and private recovery evidence. WooCommerce remains financial authority;
+the superseded wallet/checkout proposal stays retired. The reviewed tracked-tree
+import and five conflict dispositions are recorded in
+[the source receipt](docs/reviews/2026-10-21-PUBLICATION-SAFE-SOURCE-RECONCILIATION.md).
+No deployment, payment, mail, provider or owner-acceptance change is implied.
+
 ## 2026-09-19 — Compact final logo row
 
 Fritz requested a slightly smaller logo and reduced bottom space. The standing
@@ -24,3 +34,6 @@ Fritz supplied the committee update and confirmed: replace the former event; Twi
 
 
 October 16 correction: Fritz confirmed no Netlify deployments and directed use of actual production files. Verified live GoDaddy source via SSH/hash inventory and HTTPS, then simplified the mixer purchase flow and retired public RSVP/menu/planning survey forms. Production remains unchanged; local candidate only.
+## 2026-10-04 — Authorized complete candidate source integration
+
+Fritz authorized committing and merging all Event Cinema candidate source into local main except actual overwrites/regressions of working production behavior, then reviewing those exact holds. This supersedes archival discussion. No push/deploy/send/payment/migration/provider execution is included. Evidence, exact file dispositions, release-matched owner acceptance pending state and retained candidate branch are in `docs/reviews/2026-10-04-EVENT-CINEMA-SAFE-INTEGRATION.md`.

@@ -1,5 +1,15 @@
 # Site learnings
 
+## 2026-10-21 - Publication-safe source candidate
+
+The held source histories are being reconciled from current remote mixer main,
+without attaching credential-bearing local ancestry. Preserve both original
+heads and private recovery evidence. WooCommerce remains financial authority;
+the superseded wallet/checkout proposal stays retired. The reviewed tracked-tree
+import and five conflict dispositions are recorded in
+[the source receipt](docs/reviews/2026-10-21-PUBLICATION-SAFE-SOURCE-RECONCILIATION.md).
+No deployment, payment, mail, provider or owner-acceptance change is implied.
+
 ## 2026-09-19 — Attribution is a signature, not a second footer
 
 Do not make generous guide clearance a universal design token. Use160px original
@@ -27,3 +37,6 @@ Trace generated slides, Harry answers, the attendee guide, schema, email templat
 
 
 October 16 site-local correction: the actual GoDaddy webroot and matching HTTPS bytes are release authority. Obsolete Netlify documentation/configuration must not define this site. Preserve historical records while retiring public dinner-planning steps; do not mistake a local/automatic frontend preview for unified PHP/WooCommerce production.
+## 2026-10-04 — Preserve newer behavior during candidate integration
+
+A merge without textual conflict can still introduce an expired payment route or remove runtime safety. Compare request/retry/signing/test-ticket behavior and package bytes against the confirmed production commit. Keep exact rejected changes on the candidate branch, integrate harmless source and dormant tools, and record source proof separately from hosted and owner acceptance. Email libraries contain HTML string literals; static page-credit synchronization must leave those producers to the email wrapper. Worktree common-root identity remains checked; an older primary checkout without its site manifest can fail that gate even when a fresh independent clone verifies. These are site-local observations, not approved shared rules.

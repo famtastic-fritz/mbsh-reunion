@@ -1,0 +1,25 @@
+{
+  "production_files": 251,
+  "candidate_files": 263,
+  "unchanged": 249,
+  "changed": [
+    "lib/config.php",
+    "portal/js/admin-trivia.js"
+  ],
+  "removed": [],
+  "added": [
+    "assets/characters/shay/concepts/digital-fairy-v1.png",
+    "assets/characters/shay/email/shay-love-note-v1.png",
+    "assets/characters/shay/shay-stripe-call-sheet-v1.png",
+    "assets/mascot/act-1/cartoon/famtastic-presenter-v1.png",
+    "assets/mascot/act-1/cartoon/registration-welcome-v1.png",
+    "assets/mascot/act-1/cartoon/ticket-premiere-v1.png",
+    "assets/mascot/act-1/cartoon/trailer-curtain-host-v1.png",
+    "assets/mascot/act-1/famtastic-starter-presenter.png",
+    "assets/mascot/act-1/registration-welcome.png",
+    "assets/mascot/act-1/ticket-premiere.png",
+    "assets/mascot/act-1/trailer-curtain-host.png",
+    "lib/portal-email-templates.php"
+  ],
+  "artifact_extraction_matches": 263
+}

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-21 - Held source reconciliation candidate
+
+Prepared compatible local-only source contributions on current remote mixer main
+without merging unsafe historical ancestry. Preserved current mixer/WooCommerce
+behavior, remote email renderer and exact credit; combined both existing backend
+test families. No source main move, deployment, payment, mail or provider action.
+See [the source receipt](docs/reviews/2026-10-21-PUBLICATION-SAFE-SOURCE-RECONCILIATION.md).
+
 ## 2026-09-09
 
 ### Git-addressed production recovery
