@@ -1,0 +1,53 @@
+{
+  "schema": "famtastic.image-model-comparison.v1",
+  "generated_at": "2026-08-20T19:04:04.528Z",
+  "started_at": "2026-08-20T19:03:50.869Z",
+  "provider": "google-gemini-api",
+  "model": "gemini-3.1-flash-image",
+  "purpose": "rich-color wordmark reference test: original character + approved high-fidelity shirt-wordmark reference",
+  "references": [
+    {
+      "path": "/Users/famtastic-fritz/Development/FAMtastic/sites/site-mbsh-reunion-event-cinema/frontend/assets/mascot/23-salute-clean.png",
+      "sha256": "e44b9f5819f80a709d9d17b89b18a7f07f09a6f70325d369cc62575e59427caa",
+      "role": "character identity"
+    },
+    {
+      "path": "/Users/famtastic-fritz/Development/FAMtastic/sites/site-mbsh-reunion-event-cinema/frontend/assets/social/2026-reunion-hype/01-hi-tide-harry-ultra-real-4x5.png",
+      "sha256": "ccd6fc17b4cf462c5df892de8b2876ff90e0b15e43894bb4cba43f94a83d24c3",
+      "role": "shirt wordmark and material reference"
+    }
+  ],
+  "prompt_verbatim": "Use case: stylized-concept\nAsset type: premium website campaign character, vertical 4:5 portrait\nInput images: Reference A preserves the approved Hi-Tide Harry character identity. Reference B is the approved high-fidelity style and shirt-wordmark reference.\nPrimary request: make a NEW ultra-realistic cinematic CGI Hi-Tide Harry invitation pose. Keep premium rich red/gold/black visual density, but do not copy either reference image's pose or setting.\n\nIdentity: friendly compact red-skinned mascot, swept flame-red forelock, pointed ears, warm large eyes, red trousers, black-and-red sneakers, silver cape. Full body at the right side of the image, moving slightly toward camera, near hand extended with an open welcoming palm, far hand softly holding the cape edge. Feet must be visible. The left 46 percent is a clean near-black-to-wine-red gradient, reserved for website copy.\n\nWordmark invariant: On the chest of the plain white tee, reproduce the exact red hand-painted script wordmark visible on Reference B. Text (verbatim, including hyphen and capitalization):\n\"Hi-Tide\nHarry\"\nIt must be precisely legible, red, centered, two stacked lines, clean ink/screen-print texture following the shirt fabric. Do not invent a different word, logo, badge, or emblem. The text is the required character identity marking.\n\nRendering and color recipe: high-end physically based CGI, deep true blacks, saturated scarlet/vermilion skin, dark wine-red shadows, burnished copper-gold rim light, bright controlled silver cape highlights. Realistic red skin microtexture and gentle subsurface scattering; individual glossy hair strands; micro-knit shirt fabric; brushed metal clasps; leather grain and stitching on shoes; substantial silver cape folds. High-contrast filmic grade with dense black point, warm highlight roll-off, restrained bokeh and floor reflection. Rich, dramatic, luxurious—not pastel, grey, flat, toy-plastic, or low contrast.\n\nText: only the exact shirt wordmark above. No other visible words.\nConstraints: no official marks beyond the exact supplied shirt wordmark, no watermark, no extra people, no duplicate limbs or malformed fingers, no cropped feet or hand, no flat illustration, no generic stock pose.",
+  "prompt_sha256": "fbeeaedaa4012ed02f65fe5bb3c8c07617126b1d587b88db9cae16733e800fdf",
+  "requested_output": {
+    "aspect_ratio": "4:5",
+    "image_size": "2K"
+  },
+  "output_file": "/tmp/famtastic-harry-model-comparison-20260820/gemini-3.1-flash-image-harry-invitation-rich-v3-wordmark.png",
+  "output_sha256": "0afc057c4e470e6547974af1df4559b23d8d498cadef36d70c2bf399797d3da0",
+  "output_bytes": 2133255,
+  "output_mime_type": "image/jpeg",
+  "duration_ms": 13660,
+  "usage_metadata": {
+    "promptTokenCount": 998,
+    "candidatesTokenCount": 2091,
+    "totalTokenCount": 3089,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 482
+      },
+      {
+        "modality": "IMAGE",
+        "tokenCount": 516
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "IMAGE",
+        "tokenCount": 1680
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="/campaign.css">
+    <title>The Memory | MBSH Social Promo</title>
+  </head>
+  <body>
+    <div data-hf-id="hf-mc7z" id="root" data-composition-id="memory" data-start="0" data-duration="9" data-width="1080" data-height="1920">
+      <section data-hf-id="hf-77p4" id="scene1" class="scene" aria-label="The memories never left" data-layout-allow-overflow="">
+        <img data-hf-id="hf-dt2x" class="plate" src="/assets/images/03-memory-reel.jpg" alt="Hi-Tide Harry with a silver memory reel" data-layout-allow-overflow="">
+        <img data-hf-id="hf-n09h" class="insert" src="/assets/images/05-time-capsule.jpg" alt="Hi-Tide Harry opening a time capsule" data-layout-allow-overflow="">
+        <div data-hf-id="hf-nzwj" class="orb orb--one" data-layout-allow-overflow=""></div><div data-hf-id="hf-ci49" class="orb orb--two" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-a4zw" class="surface-rule"></div>
+        <p data-hf-id="hf-kz8p" class="eyebrow">THE MEMORY VAULT / 1996 TO NOW</p>
+        <h1 data-hf-id="hf-7din" class="headline">THE MEMORIES<br data-hf-id="hf-x5px">NEVER LEFT.<em data-hf-id="hf-109l">They kept the light on.</em></h1>
+        <div data-hf-id="hf-95s2" class="footer-rail"><span data-hf-id="hf-1x24">Keep the story moving</span><strong data-hf-id="hf-ss8c">Hi-Tide</strong></div>
+      </section>
+      <section data-hf-id="hf-nyhr" id="scene2" class="scene scene--secondary" aria-label="The roll call is waiting" data-layout-allow-overflow="">
+        <img data-hf-id="hf-dulc" class="plate" src="/assets/images/08-then-and-now.jpg" alt="Hi-Tide Harry beside symbolic memory frames" data-layout-allow-overflow="">
+        <div data-hf-id="hf-7hmr" class="orb orb--one" data-layout-allow-overflow=""></div><div data-hf-id="hf-ry4t" class="orb orb--two" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-g92c" class="surface-rule"></div>
+        <p data-hf-id="hf-1ahq" class="eyebrow">THEN AND NOW / STILL OUR STORY</p>
+        <h2 data-hf-id="hf-143i" class="headline">THE ROLL CALL<br data-hf-id="hf-rsrt">IS WAITING.<em data-hf-id="hf-xogl">Come home to MBSH ’96.</em></h2>
+        <div data-hf-id="hf-cgrq" class="footer-rail"><span data-hf-id="hf-d7b3">Reconnect today</span><strong data-hf-id="hf-tsp0">MBSH96REUNION.COM</strong></div>
+      </section>
+      <div data-hf-id="hf-h60x" class="grain"></div>
+      <audio data-hf-id="hf-td4s" id="bed" class="clip" src="/assets/audio/mbsh-existing-teaser-bed.m4a" data-start="0" data-duration="9" data-track-index="20" data-volume="0.48"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const transitionAt = 4.2;
+      tl.fromTo("#scene1 .surface-rule", { scaleX: 0 }, { scaleX: 1, duration: .46, ease: "power2.out" }, .12)
+        .fromTo("#scene1 .eyebrow", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: .38, ease: "power2.out" }, .28)
+        .fromTo("#scene1 .headline", { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: .78, ease: "power3.out" }, .42)
+        .fromTo("#scene1 .insert", { scale: .78, rotation: 12, opacity: 0 }, { scale: 1, rotation: 6, opacity: 1, duration: .78, ease: "power3.out" }, .72)
+        .fromTo("#scene1 .footer-rail", { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: .42, ease: "power2.out" }, 1.08)
+        .to("#scene1 .plate", { scale: 1.08, duration: 4.1, ease: "none" }, 0)
+        .to("#scene1 .orb--one", { scale: 1.12, duration: 4, ease: "sine.inOut" }, 0)
+        .to("#scene1 .orb--two", { scale: .84, duration: 4, ease: "sine.inOut" }, 0)
+        .set("#scene2", { opacity: 1, yPercent: 100 }, transitionAt)
+        .to("#scene1", { yPercent: -100, duration: .62, ease: "power2.in" }, transitionAt)
+        .to("#scene2", { yPercent: 0, duration: .62, ease: "power2.out" }, transitionAt)
+        .fromTo("#scene2 .surface-rule", { scaleX: 0 }, { scaleX: 1, duration: .42, ease: "power2.out" }, transitionAt + .4)
+        .fromTo("#scene2 .eyebrow", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: .35, ease: "power2.out" }, transitionAt + .54)
+        .fromTo("#scene2 .headline", { y: 68, opacity: 0 }, { y: 0, opacity: 1, duration: .72, ease: "power3.out" }, transitionAt + .68)
+        .fromTo("#scene2 .footer-rail", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .38, ease: "power2.out" }, transitionAt + 1.08)
+        .to("#scene2 .plate", { scale: 1.06, duration: 4.2, ease: "none" }, transitionAt)
+        .to("#scene2 .orb--one", { scale: 1.08, duration: 4.4, ease: "sine.inOut" }, transitionAt)
+        .to("#scene2 .orb--two", { scale: .84, duration: 4.4, ease: "sine.inOut" }, transitionAt);
+      window.__timelines.memory = tl;
+    </script>
+  </body>
+</html>

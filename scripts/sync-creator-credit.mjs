@@ -19,9 +19,9 @@ const changed = [];
 let covered = 0;
 for (const file of files) {
   if (file === fragmentPath || !/\.(html|php)$/.test(file)) continue;
-  // This producer renders strings and applies fam_creator_credit_email at runtime.
-  // A static fragment would corrupt its PHP literals; rendered output has its own test.
-  if (file === 'backend/lib/portal-email-templates.php') continue;
+  // Library producers may contain HTML inside PHP strings. Their outbound
+  // email wrapper adds credit; inserting a page fragment would corrupt PHP.
+  if (file.startsWith('backend/lib/')) continue;
   const original = fs.readFileSync(path.join(root, file), 'utf8');
   // Only complete HTML documents. Never touch JSON/API, email producers,
   // archived evidence or content fragments. PHP access checks remain unchanged.

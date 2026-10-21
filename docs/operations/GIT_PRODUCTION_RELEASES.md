@@ -96,3 +96,7 @@ commit passwords, password hashes, API keys, webhook secrets, banking details,
 or production configuration values. Authentication recovery uses the product's
 approved reset path or an owner-authorized rotation—not a password copied from
 documentation.
+
+## October 4, 2026 — Local source integration only
+
+The Event Cinema candidate is preserved as committed source and safe portions integrated into owning local main; see `docs/reviews/2026-10-04-EVENT-CINEMA-SAFE-INTEGRATION.md`. Read-only production recheck still confirms `67f22480d6fe2a3596d9b6117279097c8db54768` with 251/251 managed code hashes. The local merge is not a promoted release; no automatic push, deploy, migration, send or provider activation is authorized.

@@ -1,0 +1,343 @@
+{
+  "schema": "famtastic.gemini-lite-social-kit.v1",
+  "run_id": "mbsh-hi-tide-social-kit-20260820",
+  "provider": "google-gemini-api",
+  "model": "gemini-3.1-flash-image",
+  "started_at": "2026-08-20T19:08:11.391Z",
+  "references": [
+    {
+      "role": "character identity",
+      "path": "/Users/famtastic-fritz/Development/FAMtastic/sites/site-mbsh-reunion-event-cinema/frontend/assets/mascot/23-salute-clean.png",
+      "sha256": "e44b9f5819f80a709d9d17b89b18a7f07f09a6f70325d369cc62575e59427caa"
+    },
+    {
+      "role": "wordmark and material quality",
+      "path": "/Users/famtastic-fritz/Development/FAMtastic/sites/site-mbsh-reunion-event-cinema/frontend/assets/social/2026-reunion-hype/01-hi-tide-harry-ultra-real-4x5.png",
+      "sha256": "ccd6fc17b4cf462c5df892de8b2876ff90e0b15e43894bb4cba43f94a83d24c3"
+    }
+  ],
+  "requested_output": {
+    "aspect_ratio": "4:5",
+    "image_size": "2K"
+  },
+  "assets": [
+    {
+      "id": "01-red-carpet-roll-call",
+      "role": "roll-call invitation",
+      "scene": "at a luxurious red-carpet theater entrance, Harry holds an unbranded black-and-silver megaphone at his side and points warmly toward the viewer with his other hand; deep red velvet curtains, rope stanchions, and a few soft gold practical lights",
+      "pose": "full-body forward step, invitation hand extended, confident grin",
+      "prompt_verbatim": "Use case: ads-marketing\nAsset type: premium social-media image, 4:5 portrait\nInput images: Reference A is the approved Hi-Tide Harry character-identity reference. Reference B is the approved high-fidelity color, material, and exact shirt-wordmark reference.\n\nIdentity invariants: Preserve the proprietary friendly red-skinned Hi-Tide Harry mascot: swept flame-red forelock, pointed ears, large warm eyes, compact heroic proportions, red trousers, black-and-red leather sneakers, and silver cape. His white tee must display the exact red, two-line hand-painted script shirt text shown in Reference B: \"Hi-Tide\\nHarry\". It must be cleanly legible, centered, red, and follow the shirt fabric. Do not add any other text.\n\nPremium rendering recipe: ultra-realistic cinematic CGI, physically based materials, deep true black point, saturated scarlet/vermilion skin, wine-red shadows, burnished copper-gold rim light, nuanced realistic red-skin texture and subsurface scattering, individually defined glossy hair strands, knit shirt weave, brushed-metal cape clasps, weighted silver cape folds, leather grain and stitching in shoes, filmic high-contrast grade, warm highlight roll-off, restrained 35mm grain. No pastel or washed-out palette.\n\nComposition: preserve substantial uncluttered negative space in the upper-left for later deterministic social-copy overlays.\n\nStrict exclusions: no words except the exact shirt wordmark; no letters, dates, logos, badges, medallions, watermarks, signs, UI, extra people, duplicated limbs, malformed hands, cropped feet, flat illustration, or generic stock character pose.\n\nSocial role: roll-call invitation.\nScene/backdrop: at a luxurious red-carpet theater entrance, Harry holds an unbranded black-and-silver megaphone at his side and points warmly toward the viewer with his other hand; deep red velvet curtains, rope stanchions, and a few soft gold practical lights.\nPose/framing: full-body forward step, invitation hand extended, confident grin.\nPrimary request: create this as a new original campaign still; it must feel like part of the same MBSH reunion visual world while having a unique camera angle, physical action, and story moment.",
+      "prompt_sha256": "fe968caba1a58149590e8b30b041d2fab93a7a099b8d8596d086d7b9e5de55ed",
+      "output": "images/01-red-carpet-roll-call.jpg",
+      "output_sha256": "cc443d32137a153c41a2a56cfaf2e523e6a26de86b90217f2c9b072ed496d042",
+      "bytes": 2611925,
+      "mime_type": "image/jpeg",
+      "duration_ms": 12857,
+      "usage_metadata": {
+        "promptTokenCount": 990,
+        "candidatesTokenCount": 2046,
+        "totalTokenCount": 3036,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 474
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 516
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1680
+          }
+        ],
+        "serviceTier": "standard"
+      }
+    },
+    {
+      "id": "02-golden-ticket",
+      "role": "RSVP invitation",
+      "scene": "in a dark premiere lobby, Harry presents a blank, unbranded red-and-gold ticket toward the camera; the ticket must contain no numbers, letters, logos, or readable marks; dark marble floor and soft golden bokeh",
+      "pose": "three-quarter full-body, ticket in near foreground but Harry remains fully visible",
+      "prompt_verbatim": "Use case: ads-marketing\nAsset type: premium social-media image, 4:5 portrait\nInput images: Reference A is the approved Hi-Tide Harry character-identity reference. Reference B is the approved high-fidelity color, material, and exact shirt-wordmark reference.\n\nIdentity invariants: Preserve the proprietary friendly red-skinned Hi-Tide Harry mascot: swept flame-red forelock, pointed ears, large warm eyes, compact heroic proportions, red trousers, black-and-red leather sneakers, and silver cape. His white tee must display the exact red, two-line hand-painted script shirt text shown in Reference B: \"Hi-Tide\\nHarry\". It must be cleanly legible, centered, red, and follow the shirt fabric. Do not add any other text.\n\nPremium rendering recipe: ultra-realistic cinematic CGI, physically based materials, deep true black point, saturated scarlet/vermilion skin, wine-red shadows, burnished copper-gold rim light, nuanced realistic red-skin texture and subsurface scattering, individually defined glossy hair strands, knit shirt weave, brushed-metal cape clasps, weighted silver cape folds, leather grain and stitching in shoes, filmic high-contrast grade, warm highlight roll-off, restrained 35mm grain. No pastel or washed-out palette.\n\nComposition: preserve substantial uncluttered negative space in the upper-left for later deterministic social-copy overlays.\n\nStrict exclusions: no words except the exact shirt wordmark; no letters, dates, logos, badges, medallions, watermarks, signs, UI, extra people, duplicated limbs, malformed hands, cropped feet, flat illustration, or generic stock character pose.\n\nSocial role: RSVP invitation.\nScene/backdrop: in a dark premiere lobby, Harry presents a blank, unbranded red-and-gold ticket toward the camera; the ticket must contain no numbers, letters, logos, or readable marks; dark marble floor and soft golden bokeh.\nPose/framing: three-quarter full-body, ticket in near foreground but Harry remains fully visible.\nPrimary request: create this as a new original campaign still; it must feel like part of the same MBSH reunion visual world while having a unique camera angle, physical action, and story moment.",
+      "prompt_sha256": "f7ce56cc98f1c85ef8fe6599efb9e2bf1695cc081e2e850f3ab59e683be705a9",
+      "output": "images/02-golden-ticket.jpg",
+      "output_sha256": "c280ab812f793202bc086c3a77c0b0299394930e8167c3710a122f088f19d98e",
+      "bytes": 2569217,
+      "mime_type": "image/jpeg",
+      "duration_ms": 14358,
+      "usage_metadata": {
+        "promptTokenCount": 986,
+        "candidatesTokenCount": 2082,
+        "totalTokenCount": 3068,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 470
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 516
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1680
+          }
+        ],
+        "serviceTier": "standard"
+      }
+    },
+    {
+      "id": "03-memory-reel",
+      "role": "memory archive",
+      "scene": "beside a large curling strip of blank silver film looping through the air, Harry looks over his shoulder with a fond, knowing smile; abstract dark frames only, no visible photographs or text; cinematic red velvet and charcoal background",
+      "pose": "mid-stride full-body, one hand guiding the floating film strip",
+      "prompt_verbatim": "Use case: ads-marketing\nAsset type: premium social-media image, 4:5 portrait\nInput images: Reference A is the approved Hi-Tide Harry character-identity reference. Reference B is the approved high-fidelity color, material, and exact shirt-wordmark reference.\n\nIdentity invariants: Preserve the proprietary friendly red-skinned Hi-Tide Harry mascot: swept flame-red forelock, pointed ears, large warm eyes, compact heroic proportions, red trousers, black-and-red leather sneakers, and silver cape. His white tee must display the exact red, two-line hand-painted script shirt text shown in Reference B: \"Hi-Tide\\nHarry\". It must be cleanly legible, centered, red, and follow the shirt fabric. Do not add any other text.\n\nPremium rendering recipe: ultra-realistic cinematic CGI, physically based materials, deep true black point, saturated scarlet/vermilion skin, wine-red shadows, burnished copper-gold rim light, nuanced realistic red-skin texture and subsurface scattering, individually defined glossy hair strands, knit shirt weave, brushed-metal cape clasps, weighted silver cape folds, leather grain and stitching in shoes, filmic high-contrast grade, warm highlight roll-off, restrained 35mm grain. No pastel or washed-out palette.\n\nComposition: preserve substantial uncluttered negative space in the upper-left for later deterministic social-copy overlays.\n\nStrict exclusions: no words except the exact shirt wordmark; no letters, dates, logos, badges, medallions, watermarks, signs, UI, extra people, duplicated limbs, malformed hands, cropped feet, flat illustration, or generic stock character pose.\n\nSocial role: memory archive.\nScene/backdrop: beside a large curling strip of blank silver film looping through the air, Harry looks over his shoulder with a fond, knowing smile; abstract dark frames only, no visible photographs or text; cinematic red velvet and charcoal background.\nPose/framing: mid-stride full-body, one hand guiding the floating film strip.\nPrimary request: create this as a new original campaign still; it must feel like part of the same MBSH reunion visual world while having a unique camera angle, physical action, and story moment.",
+      "prompt_sha256": "bff9bde205770ad62e306fadb7f1f14cf2642b25367ba68942f139f2af181785",
+      "output": "images/03-memory-reel.jpg",
+      "output_sha256": "944d8b88b0a72396f2848307afec5227821a91a71d77f1544b84a87968ec5c8c",
+      "bytes": 2625512,
+      "mime_type": "image/jpeg",
+      "duration_ms": 13520,
+      "usage_metadata": {
+        "promptTokenCount": 982,
+        "candidatesTokenCount": 2034,
+        "totalTokenCount": 3016,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 466
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 516
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1680
+          }
+        ],
+        "serviceTier": "standard"
+      }
+    },
+    {
+      "id": "04-dance-floor",
+      "role": "celebration energy",
+      "scene": "on a glossy dark dance floor with warm red and amber light reflections, Harry performs one joyful but natural dance step; distant disco light circles and subtle atmospheric haze, no crowd and no text",
+      "pose": "full body in a lively mid-step, cape lifting naturally behind him",
+      "prompt_verbatim": "Use case: ads-marketing\nAsset type: premium social-media image, 4:5 portrait\nInput images: Reference A is the approved Hi-Tide Harry character-identity reference. Reference B is the approved high-fidelity color, material, and exact shirt-wordmark reference.\n\nIdentity invariants: Preserve the proprietary friendly red-skinned Hi-Tide Harry mascot: swept flame-red forelock, pointed ears, large warm eyes, compact heroic proportions, red trousers, black-and-red leather sneakers, and silver cape. His white tee must display the exact red, two-line hand-painted script shirt text shown in Reference B: \"Hi-Tide\\nHarry\". It must be cleanly legible, centered, red, and follow the shirt fabric. Do not add any other text.\n\nPremium rendering recipe: ultra-realistic cinematic CGI, physically based materials, deep true black point, saturated scarlet/vermilion skin, wine-red shadows, burnished copper-gold rim light, nuanced realistic red-skin texture and subsurface scattering, individually defined glossy hair strands, knit shirt weave, brushed-metal cape clasps, weighted silver cape folds, leather grain and stitching in shoes, filmic high-contrast grade, warm highlight roll-off, restrained 35mm grain. No pastel or washed-out palette.\n\nComposition: preserve substantial uncluttered negative space in the upper-left for later deterministic social-copy overlays.\n\nStrict exclusions: no words except the exact shirt wordmark; no letters, dates, logos, badges, medallions, watermarks, signs, UI, extra people, duplicated limbs, malformed hands, cropped feet, flat illustration, or generic stock character pose.\n\nSocial role: celebration energy.\nScene/backdrop: on a glossy dark dance floor with warm red and amber light reflections, Harry performs one joyful but natural dance step; distant disco light circles and subtle atmospheric haze, no crowd and no text.\nPose/framing: full body in a lively mid-step, cape lifting naturally behind him.\nPrimary request: create this as a new original campaign still; it must feel like part of the same MBSH reunion visual world while having a unique camera angle, physical action, and story moment.",
+      "prompt_sha256": "eb5a582fd5d065923378e4f7fda8b47def3f2353af7d035b05440e22cb3fb34e",
+      "output": "images/04-dance-floor.jpg",
+      "output_sha256": "33bcc083faa2cfa8a8db90bff2072bb6e0db38b1a29b6ecac8b54974e7e2484b",
+      "bytes": 2556654,
+      "mime_type": "image/jpeg",
+      "duration_ms": 12150,
+      "usage_metadata": {
+        "promptTokenCount": 976,
+        "candidatesTokenCount": 2036,
+        "totalTokenCount": 3012,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 460
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 516
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1680
+          }
+        ],
+        "serviceTier": "standard"
+      }
+    },
+    {
+      "id": "05-time-capsule",
+      "role": "nostalgia",
+      "scene": "in front of a brushed-metal time capsule pedestal with a closed unbranded lid, Harry kneels beside it and holds a blank small photo card; no visible words or imagery on the card; deep burgundy shadows, copper rim light",
+      "pose": "low full-body pose with both hands anatomically correct and face fully visible",
+      "prompt_verbatim": "Use case: ads-marketing\nAsset type: premium social-media image, 4:5 portrait\nInput images: Reference A is the approved Hi-Tide Harry character-identity reference. Reference B is the approved high-fidelity color, material, and exact shirt-wordmark reference.\n\nIdentity invariants: Preserve the proprietary friendly red-skinned Hi-Tide Harry mascot: swept flame-red forelock, pointed ears, large warm eyes, compact heroic proportions, red trousers, black-and-red leather sneakers, and silver cape. His white tee must display the exact red, two-line hand-painted script shirt text shown in Reference B: \"Hi-Tide\\nHarry\". It must be cleanly legible, centered, red, and follow the shirt fabric. Do not add any other text.\n\nPremium rendering recipe: ultra-realistic cinematic CGI, physically based materials, deep true black point, saturated scarlet/vermilion skin, wine-red shadows, burnished copper-gold rim light, nuanced realistic red-skin texture and subsurface scattering, individually defined glossy hair strands, knit shirt weave, brushed-metal cape clasps, weighted silver cape folds, leather grain and stitching in shoes, filmic high-contrast grade, warm highlight roll-off, restrained 35mm grain. No pastel or washed-out palette.\n\nComposition: preserve substantial uncluttered negative space in the upper-left for later deterministic social-copy overlays.\n\nStrict exclusions: no words except the exact shirt wordmark; no letters, dates, logos, badges, medallions, watermarks, signs, UI, extra people, duplicated limbs, malformed hands, cropped feet, flat illustration, or generic stock character pose.\n\nSocial role: nostalgia.\nScene/backdrop: in front of a brushed-metal time capsule pedestal with a closed unbranded lid, Harry kneels beside it and holds a blank small photo card; no visible words or imagery on the card; deep burgundy shadows, copper rim light.\nPose/framing: low full-body pose with both hands anatomically correct and face fully visible.\nPrimary request: create this as a new original campaign still; it must feel like part of the same MBSH reunion visual world while having a unique camera angle, physical action, and story moment.",
+      "prompt_sha256": "ff7006f576195b159e804d335d99556b7e70fde6ccbca1bafd90dc3caf478a78",
+      "output": "images/05-time-capsule.jpg",
+      "output_sha256": "afb1b5896c05ecc99fc7ac7bb2b8dc51526d5e035bf87ae98fc982ab64028779",
+      "bytes": 2396903,
+      "mime_type": "image/jpeg",
+      "duration_ms": 16200,
+      "usage_metadata": {
+        "promptTokenCount": 985,
+        "candidatesTokenCount": 2130,
+        "totalTokenCount": 3115,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 469
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 516
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1680
+          }
+        ],
+        "serviceTier": "standard"
+      }
+    },
+    {
+      "id": "06-photo-booth-flash",
+      "role": "shareable portrait",
+      "scene": "inside a chic vintage-inspired photo booth with red curtains and a warm flash, Harry leans into the frame with playful charm; no signage, no photo-strip text, no other subjects",
+      "pose": "full-body to three-quarter portrait with the cape tucked back and one open-palmed greeting",
+      "prompt_verbatim": "Use case: ads-marketing\nAsset type: premium social-media image, 4:5 portrait\nInput images: Reference A is the approved Hi-Tide Harry character-identity reference. Reference B is the approved high-fidelity color, material, and exact shirt-wordmark reference.\n\nIdentity invariants: Preserve the proprietary friendly red-skinned Hi-Tide Harry mascot: swept flame-red forelock, pointed ears, large warm eyes, compact heroic proportions, red trousers, black-and-red leather sneakers, and silver cape. His white tee must display the exact red, two-line hand-painted script shirt text shown in Reference B: \"Hi-Tide\\nHarry\". It must be cleanly legible, centered, red, and follow the shirt fabric. Do not add any other text.\n\nPremium rendering recipe: ultra-realistic cinematic CGI, physically based materials, deep true black point, saturated scarlet/vermilion skin, wine-red shadows, burnished copper-gold rim light, nuanced realistic red-skin texture and subsurface scattering, individually defined glossy hair strands, knit shirt weave, brushed-metal cape clasps, weighted silver cape folds, leather grain and stitching in shoes, filmic high-contrast grade, warm highlight roll-off, restrained 35mm grain. No pastel or washed-out palette.\n\nComposition: preserve substantial uncluttered negative space in the upper-left for later deterministic social-copy overlays.\n\nStrict exclusions: no words except the exact shirt wordmark; no letters, dates, logos, badges, medallions, watermarks, signs, UI, extra people, duplicated limbs, malformed hands, cropped feet, flat illustration, or generic stock character pose.\n\nSocial role: shareable portrait.\nScene/backdrop: inside a chic vintage-inspired photo booth with red curtains and a warm flash, Harry leans into the frame with playful charm; no signage, no photo-strip text, no other subjects.\nPose/framing: full-body to three-quarter portrait with the cape tucked back and one open-palmed greeting.\nPrimary request: create this as a new original campaign still; it must feel like part of the same MBSH reunion visual world while having a unique camera angle, physical action, and story moment.",
+      "prompt_sha256": "f0bdf65a053ab357363f79ca259735cc554f73a30a2cc17b32ecaa87624ef210",
+      "output": "images/06-photo-booth-flash.jpg",
+      "output_sha256": "865b5661993edd190ff79772c8bd09e132347b763f8bf5ca6bcd2c9036cb98e7",
+      "bytes": 2739608,
+      "mime_type": "image/jpeg",
+      "duration_ms": 12910,
+      "usage_metadata": {
+        "promptTokenCount": 983,
+        "candidatesTokenCount": 2040,
+        "totalTokenCount": 3023,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 467
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 516
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1680
+          }
+        ],
+        "serviceTier": "standard"
+      }
+    },
+    {
+      "id": "07-velvet-spotlight",
+      "role": "reunion announcement",
+      "scene": "alone beneath a theater spotlight on a rich red carpet, Harry stands with one hand on his chest and the other opening his cape like a stage curtain; black background, delicate gold dust, no signs or text",
+      "pose": "center-right full body, proud welcoming theatrical stance",
+      "prompt_verbatim": "Use case: ads-marketing\nAsset type: premium social-media image, 4:5 portrait\nInput images: Reference A is the approved Hi-Tide Harry character-identity reference. Reference B is the approved high-fidelity color, material, and exact shirt-wordmark reference.\n\nIdentity invariants: Preserve the proprietary friendly red-skinned Hi-Tide Harry mascot: swept flame-red forelock, pointed ears, large warm eyes, compact heroic proportions, red trousers, black-and-red leather sneakers, and silver cape. His white tee must display the exact red, two-line hand-painted script shirt text shown in Reference B: \"Hi-Tide\\nHarry\". It must be cleanly legible, centered, red, and follow the shirt fabric. Do not add any other text.\n\nPremium rendering recipe: ultra-realistic cinematic CGI, physically based materials, deep true black point, saturated scarlet/vermilion skin, wine-red shadows, burnished copper-gold rim light, nuanced realistic red-skin texture and subsurface scattering, individually defined glossy hair strands, knit shirt weave, brushed-metal cape clasps, weighted silver cape folds, leather grain and stitching in shoes, filmic high-contrast grade, warm highlight roll-off, restrained 35mm grain. No pastel or washed-out palette.\n\nComposition: preserve substantial uncluttered negative space in the upper-left for later deterministic social-copy overlays.\n\nStrict exclusions: no words except the exact shirt wordmark; no letters, dates, logos, badges, medallions, watermarks, signs, UI, extra people, duplicated limbs, malformed hands, cropped feet, flat illustration, or generic stock character pose.\n\nSocial role: reunion announcement.\nScene/backdrop: alone beneath a theater spotlight on a rich red carpet, Harry stands with one hand on his chest and the other opening his cape like a stage curtain; black background, delicate gold dust, no signs or text.\nPose/framing: center-right full body, proud welcoming theatrical stance.\nPrimary request: create this as a new original campaign still; it must feel like part of the same MBSH reunion visual world while having a unique camera angle, physical action, and story moment.",
+      "prompt_sha256": "638db436d148e8eea48825d1000feb8d93c80bfa8184c975198637e61bd0eb57",
+      "output": "images/07-velvet-spotlight.jpg",
+      "output_sha256": "c6df365ddd0f9a9c01e7bb9fba64576fba8f9511ee2fd94ee7ac80695f2b8ea0",
+      "bytes": 2599231,
+      "mime_type": "image/jpeg",
+      "duration_ms": 12037,
+      "usage_metadata": {
+        "promptTokenCount": 976,
+        "candidatesTokenCount": 2073,
+        "totalTokenCount": 3049,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 460
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 516
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1680
+          }
+        ],
+        "serviceTier": "standard"
+      }
+    },
+    {
+      "id": "08-then-and-now",
+      "role": "heritage visual",
+      "scene": "in a premium dark studio, Harry stands beside two abstract blank chrome picture frames tilted at different angles, suggesting then-and-now without photos or text; wine-red wall, sharp copper highlights, reflective floor",
+      "pose": "full body, hand reaching toward one frame, thoughtful friendly expression",
+      "prompt_verbatim": "Use case: ads-marketing\nAsset type: premium social-media image, 4:5 portrait\nInput images: Reference A is the approved Hi-Tide Harry character-identity reference. Reference B is the approved high-fidelity color, material, and exact shirt-wordmark reference.\n\nIdentity invariants: Preserve the proprietary friendly red-skinned Hi-Tide Harry mascot: swept flame-red forelock, pointed ears, large warm eyes, compact heroic proportions, red trousers, black-and-red leather sneakers, and silver cape. His white tee must display the exact red, two-line hand-painted script shirt text shown in Reference B: \"Hi-Tide\\nHarry\". It must be cleanly legible, centered, red, and follow the shirt fabric. Do not add any other text.\n\nPremium rendering recipe: ultra-realistic cinematic CGI, physically based materials, deep true black point, saturated scarlet/vermilion skin, wine-red shadows, burnished copper-gold rim light, nuanced realistic red-skin texture and subsurface scattering, individually defined glossy hair strands, knit shirt weave, brushed-metal cape clasps, weighted silver cape folds, leather grain and stitching in shoes, filmic high-contrast grade, warm highlight roll-off, restrained 35mm grain. No pastel or washed-out palette.\n\nComposition: preserve substantial uncluttered negative space in the upper-left for later deterministic social-copy overlays.\n\nStrict exclusions: no words except the exact shirt wordmark; no letters, dates, logos, badges, medallions, watermarks, signs, UI, extra people, duplicated limbs, malformed hands, cropped feet, flat illustration, or generic stock character pose.\n\nSocial role: heritage visual.\nScene/backdrop: in a premium dark studio, Harry stands beside two abstract blank chrome picture frames tilted at different angles, suggesting then-and-now without photos or text; wine-red wall, sharp copper highlights, reflective floor.\nPose/framing: full body, hand reaching toward one frame, thoughtful friendly expression.\nPrimary request: create this as a new original campaign still; it must feel like part of the same MBSH reunion visual world while having a unique camera angle, physical action, and story moment.",
+      "prompt_sha256": "ecc1d9b6deba6bb22b04bf0bf4b5e7717c32c7d86f00c92c6795f23ceaacc469",
+      "output": "images/08-then-and-now.jpg",
+      "output_sha256": "737b4a62ea93e5ed3126bcd7b8e5e97730d755c9fc28cdd7e05e05e3c5bf5e91",
+      "bytes": 2454510,
+      "mime_type": "image/jpeg",
+      "duration_ms": 13937,
+      "usage_metadata": {
+        "promptTokenCount": 979,
+        "candidatesTokenCount": 2009,
+        "totalTokenCount": 2988,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 463
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 516
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1680
+          }
+        ],
+        "serviceTier": "standard"
+      }
+    },
+    {
+      "id": "09-final-call",
+      "role": "closing call to action",
+      "scene": "at the edge of a dark cinema stage with a soft red curtain opening behind him, Harry turns back toward the viewer and raises an open hand in a final come-with-us gesture; sparse warm bokeh and rich black-red-gold atmosphere",
+      "pose": "full-body three-quarter back-to-camera turn, face visible, cape catching the rim light",
+      "prompt_verbatim": "Use case: ads-marketing\nAsset type: premium social-media image, 4:5 portrait\nInput images: Reference A is the approved Hi-Tide Harry character-identity reference. Reference B is the approved high-fidelity color, material, and exact shirt-wordmark reference.\n\nIdentity invariants: Preserve the proprietary friendly red-skinned Hi-Tide Harry mascot: swept flame-red forelock, pointed ears, large warm eyes, compact heroic proportions, red trousers, black-and-red leather sneakers, and silver cape. His white tee must display the exact red, two-line hand-painted script shirt text shown in Reference B: \"Hi-Tide\\nHarry\". It must be cleanly legible, centered, red, and follow the shirt fabric. Do not add any other text.\n\nPremium rendering recipe: ultra-realistic cinematic CGI, physically based materials, deep true black point, saturated scarlet/vermilion skin, wine-red shadows, burnished copper-gold rim light, nuanced realistic red-skin texture and subsurface scattering, individually defined glossy hair strands, knit shirt weave, brushed-metal cape clasps, weighted silver cape folds, leather grain and stitching in shoes, filmic high-contrast grade, warm highlight roll-off, restrained 35mm grain. No pastel or washed-out palette.\n\nComposition: preserve substantial uncluttered negative space in the upper-left for later deterministic social-copy overlays.\n\nStrict exclusions: no words except the exact shirt wordmark; no letters, dates, logos, badges, medallions, watermarks, signs, UI, extra people, duplicated limbs, malformed hands, cropped feet, flat illustration, or generic stock character pose.\n\nSocial role: closing call to action.\nScene/backdrop: at the edge of a dark cinema stage with a soft red curtain opening behind him, Harry turns back toward the viewer and raises an open hand in a final come-with-us gesture; sparse warm bokeh and rich black-red-gold atmosphere.\nPose/framing: full-body three-quarter back-to-camera turn, face visible, cape catching the rim light.\nPrimary request: create this as a new original campaign still; it must feel like part of the same MBSH reunion visual world while having a unique camera angle, physical action, and story moment.",
+      "prompt_sha256": "94954c73a3d749cca3f34eea0e13281cd54a23cf119057ade31b555b18ebfb82",
+      "output": "images/09-final-call.jpg",
+      "output_sha256": "d23fa1286c96574857d46a862131b42de00cb55e8ad0183d8acbc2c21c0b7829",
+      "bytes": 2463355,
+      "mime_type": "image/jpeg",
+      "duration_ms": 13424,
+      "usage_metadata": {
+        "promptTokenCount": 997,
+        "candidatesTokenCount": 2118,
+        "totalTokenCount": 3115,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 481
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 516
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1680
+          }
+        ],
+        "serviceTier": "standard"
+      }
+    }
+  ],
+  "completed_at": "2026-08-20T19:10:12.788Z",
+  "total_duration_ms": 121393,
+  "total_output_bytes": 23016915
+}

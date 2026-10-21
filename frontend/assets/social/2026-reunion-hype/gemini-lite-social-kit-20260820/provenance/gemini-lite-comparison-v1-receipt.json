@@ -1,0 +1,43 @@
+{
+  "schema": "famtastic.image-model-comparison.v1",
+  "generated_at": "2026-08-20T18:55:52.915Z",
+  "started_at": "2026-08-20T18:55:39.075Z",
+  "provider": "google-gemini-api",
+  "model": "gemini-3.1-flash-image",
+  "purpose": "literal visual-transcription recreation of a GPT Image 2 character pose; original mascot identity reference only",
+  "original_reference": "/Users/famtastic-fritz/Development/FAMtastic/sites/site-mbsh-reunion-event-cinema/frontend/assets/mascot/23-salute-clean.png",
+  "original_reference_sha256": "e44b9f5819f80a709d9d17b89b18a7f07f09a6f70325d369cc62575e59427caa",
+  "prompt_verbatim": "Create one original premium 4:5 character-marketing image. Use the attached approved Hi-Tide Harry illustration only to preserve the proprietary character's identity: a friendly compact red-skinned mascot with a swept flame-red forelock, pointed ears, large warm eyes, a plain white tee, red trousers, black-and-red sneakers, and a silver cape. Do not repeat the reference's salute pose and do not copy its illustration style.\n\nArt-direction transcription: a vertically framed ultra-realistic cinematic 3D character portrait on a deep charcoal-to-burgundy black studio gradient. The full character stands in the right half of the frame, feet fully visible near the lower edge, body in a three-quarter stance. He turns toward the viewer with a gentle welcoming smile and extends his near hand forward, palm open, in an alumni invitation gesture. His other hand softly gathers the edge of the silver cape. Keep a large softly dark, uncluttered negative-space field over the entire left half for future website copy. Light him with a warm red-gold rim around the forelock, ears, cape, and shoes; use a soft key on the face; a few dim warm bokeh specks sit far behind him. Render tactile red skin, individual hair strands, a fine knit white shirt with absolutely no printing, woven red trousers, convincing rubber/leather sneakers, brushed-metal cape clasps, realistic cape folds, and a soft floor shadow/reflection.\n\nStrict exclusions: no words, letters, shirt print, logo, seal, badge, medallion, official mark, watermark, signage, extra people, duplicate limbs, malformed fingers, cropped feet, or generic stock-pose styling. This must look like a newly rendered original character image with a welcoming high-end campaign feel.",
+  "prompt_sha256": "80298d17a8a836390e09673936c9b68df9f8397015b0efb98433ca2a3400894f",
+  "requested_output": {
+    "aspect_ratio": "4:5",
+    "image_size": "2K"
+  },
+  "output_file": "/tmp/famtastic-harry-model-comparison-20260820/gemini-3.1-flash-image-harry-invitation.png",
+  "output_sha256": "a16f0f02fb8d823d42f6478fd873833cc156e38aaf30cbd17d9c2090d73052cd",
+  "output_bytes": 1921902,
+  "output_mime_type": "image/jpeg",
+  "duration_ms": 13841,
+  "usage_metadata": {
+    "promptTokenCount": 625,
+    "candidatesTokenCount": 2014,
+    "totalTokenCount": 2639,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 367
+      },
+      {
+        "modality": "IMAGE",
+        "tokenCount": 258
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "IMAGE",
+        "tokenCount": 1680
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

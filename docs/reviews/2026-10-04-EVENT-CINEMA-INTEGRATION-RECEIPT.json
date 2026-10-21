@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-04",
+  "classification": "changed",
+  "tested_merge_sha": "52135e3b3b1d068277ea9dc3fb755818aad7da8c",
+  "candidate_sha": "56ad7b8202a5e3a721ff9aa6edf4699a0adb8b0a",
+  "main_before": "02c8fe4dbc707a3c1c8907f3268aeea9dee691a0",
+  "production_sha": "67f22480d6fe2a3596d9b6117279097c8db54768",
+  "fresh_clone": "/tmp/mbsh-fresh-source-20261004/site-mbsh-reunion",
+  "fresh_clone_identity": "pass",
+  "current_worktree_identity": "common_directory_mismatch; older primary checkout lacks matching manifest; no guard changed",
+  "checks": {
+    "frontend_commerce_suites": 10,
+    "frontend_commerce_failures": 0,
+    "backend_security_and_syntax": "pass",
+    "offline_email_rendering": "pass six states, escaped input, invalid state/URL, no transport",
+    "wordpress_static": "pass",
+    "creator_credit": "pass 52 authored documents, approved logo hash",
+    "secret_scan": "bounded added/modified text pass; historical ancestry not certified",
+    "historical_tools": "six send tools and one role tool refusal-only; no activation, send or role change"
+  },
+  "production_managed_hashes_matched": 251,
+  "package": {
+    "production_files": 251,
+    "candidate_files": 263,
+    "unchanged": 249,
+    "changed": [
+      "lib/config.php",
+      "portal/js/admin-trivia.js"
+    ],
+    "removed": [],
+    "added": [
+      "assets/characters/shay/concepts/digital-fairy-v1.png",
+      "assets/characters/shay/email/shay-love-note-v1.png",
+      "assets/characters/shay/shay-stripe-call-sheet-v1.png",
+      "assets/mascot/act-1/cartoon/famtastic-presenter-v1.png",
+      "assets/mascot/act-1/cartoon/registration-welcome-v1.png",
+      "assets/mascot/act-1/cartoon/ticket-premiere-v1.png",
+      "assets/mascot/act-1/cartoon/trailer-curtain-host-v1.png",
+      "assets/mascot/act-1/famtastic-starter-presenter.png",
+      "assets/mascot/act-1/registration-welcome.png",
+      "assets/mascot/act-1/ticket-premiere.png",
+      "assets/mascot/act-1/trailer-curtain-host.png",
+      "lib/portal-email-templates.php"
+    ],
+    "artifact_extraction_matches": 263
+  },
+  "local_browser": {
+    "environment": "fictional demo, localhost static server; external traffic and non-GET blocked",
+    "viewports": [
+      390,
+      1280
+    ],
+    "height": 844,
+    "reduced_motion": true,
+    "page_errors": 0,
+    "writes": 0,
+    "inherited_mobile_issue": "baseline and integrated document width 480 at viewport 390",
+    "inherited_tour_issue": "baseline and integrated each have two visible tour controls",
+    "result": "sample preview generation, escaping and image load pass; baseline layout problems remain"
+  },
+  "release_artifact_sha256": "4be432b58723140f1b1b8453c30c36904e78b87e934f630e37ed46f993bec3bc",
+  "archive_sha256": "8d368b17670235339c54fd64961f294a747769a14f26dcb4d90d91ae2d95bdfa",
+  "owner_acceptance": "pending; no uncoached observation",
+  "production_actions": "none",
+  "remaining_gates": [
+    "exact held behavior review",
+    "inherited mobile overflow and duplicate tour controls",
+    "migration applicability and reversal without executing now",
+    "payment/provider/mail hosted journey",
+    "owner task acceptance",
+    "historical tool content/audience/idempotency review before activation",
+    "historical secret remediation before publication",
+    "campaign rights/publication and Studio consumption"
+  ]
+}

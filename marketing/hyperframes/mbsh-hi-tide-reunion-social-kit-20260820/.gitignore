@@ -1,0 +1,5 @@
+# Generated HyperFrames preview caches. The source, approved snapshots, and
+# final QA evidence are retained elsewhere in this kit.
+.thumbnails/
+.waveform-cache/
+.hyperframes-*.json

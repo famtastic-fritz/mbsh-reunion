@@ -1,0 +1,559 @@
+{
+  "date": "2026-10-04",
+  "classification": "changed",
+  "source_baseline": "02c8fe4db",
+  "candidate": "56ad7b8202a5e3a721ff9aa6edf4699a0adb8b0a",
+  "production": "67f22480d6fe2a3596d9b6117279097c8db54768",
+  "counts": {
+    "adapted_safe": 4,
+    "held_candidate": 32,
+    "already_main": 13,
+    "integrated": 33
+  },
+  "dirty_paths": [
+    {
+      "path": ".env.example",
+      "disposition": "adapted_safe",
+      "candidate_sha256": "418c0eff52b0528a1de517988fbe5dae89badc0b172f9374e6266aecfe65830b",
+      "integrated_sha256": "d9abe0e681d58d4dcfae5c741bcde23d0f7ef821e05ff1545a613d4920546b3b"
+    },
+    {
+      "path": "backend/404.html",
+      "disposition": "held_candidate",
+      "candidate_sha256": "4f527277ff7f329f274674b2970ef82dbfae6eff7082087b6f33a91a49d8cc17",
+      "integrated_sha256": "4d14784e0d2854634859575ea987e0174eeca0c3acddecbcf3a0e58abd910d52"
+    },
+    {
+      "path": "backend/lib/config.php",
+      "disposition": "adapted_safe",
+      "candidate_sha256": "e0830ee175f84952c31f7a51fbf09ea78361bab3df4df24f24697b8cce520179",
+      "integrated_sha256": "4356fd5feadcab3e29b5c262fd5888e4494ad72f48f0a8d83843552b0e8b7314"
+    },
+    {
+      "path": "backend/lib/production-snapshot.php",
+      "disposition": "already_main",
+      "candidate_sha256": "73bb0a746b8966f814c09ecea10d0184e912df10adfdd8f4ee779d476d9421fd",
+      "integrated_sha256": "73bb0a746b8966f814c09ecea10d0184e912df10adfdd8f4ee779d476d9421fd"
+    },
+    {
+      "path": "backend/portal/_bootstrap.php",
+      "disposition": "already_main",
+      "candidate_sha256": "e9a3c766bf2d2f5588c050bb2c85df6ed0861679508b2eda76638eed71c66215",
+      "integrated_sha256": "e9a3c766bf2d2f5588c050bb2c85df6ed0861679508b2eda76638eed71c66215"
+    },
+    {
+      "path": "backend/portal/committee/action.php",
+      "disposition": "already_main",
+      "candidate_sha256": "7ece55245d763eda62079282a9abba49ca35073cb08ab8d66b01e7e61ed467cd",
+      "integrated_sha256": "7ece55245d763eda62079282a9abba49ca35073cb08ab8d66b01e7e61ed467cd"
+    },
+    {
+      "path": "backend/portal/staff/operations.php",
+      "disposition": "already_main",
+      "candidate_sha256": "548d8725340c27823484349ed41844bb8b2a937de436abc77eb82c8d823030e9",
+      "integrated_sha256": "548d8725340c27823484349ed41844bb8b2a937de436abc77eb82c8d823030e9"
+    },
+    {
+      "path": "backend/portal/staff/people.php",
+      "disposition": "already_main",
+      "candidate_sha256": "7a145b2fa826447d38d1b2a7d026ff06c54b716aa034f55d589b5df053239cdc",
+      "integrated_sha256": "7a145b2fa826447d38d1b2a7d026ff06c54b716aa034f55d589b5df053239cdc"
+    },
+    {
+      "path": "backend/portal/verify-email.php",
+      "disposition": "already_main",
+      "candidate_sha256": "ee100165a432df959049e47c74ba637979327de2a30c75b5ba93a02e529aeb9c",
+      "integrated_sha256": "ee100165a432df959049e47c74ba637979327de2a30c75b5ba93a02e529aeb9c"
+    },
+    {
+      "path": "backend/schema.sql",
+      "disposition": "integrated",
+      "candidate_sha256": "bd539e4b5a32fbed09e1620fa2aed9fadec84166cd69df210afb512d559dda91",
+      "integrated_sha256": "bd539e4b5a32fbed09e1620fa2aed9fadec84166cd69df210afb512d559dda91"
+    },
+    {
+      "path": "backend/ticket-order.php",
+      "disposition": "held_candidate",
+      "candidate_sha256": "2d372e28f69e6e76111ced176c78631b18c29773bf8464c664ec8783d98b9168",
+      "integrated_sha256": "8f999b954d22fd92667f59f1c5900e88fb362a640d4324a4f7ffee144f0ea9b6"
+    },
+    {
+      "path": "backend/tickets.html",
+      "disposition": "held_candidate",
+      "candidate_sha256": "a933aea2eb5877c72bc8b640e8dc68fe8f81ec3793f0be19923c95e7cde16519",
+      "integrated_sha256": "ad4bc75f1baeaf395ac36e918f36ed388e759a135b2be1110e2b4ffea60f32cd"
+    },
+    {
+      "path": "frontend/404.html",
+      "disposition": "held_candidate",
+      "candidate_sha256": "a799f27d9cc10cb8783f2ad02912132f044d545c705464f8836eadc00827bfae",
+      "integrated_sha256": "e1e1647d5c0ae8ffc778b43c11142337f526c4252ba49972e9bd2c56d6385327"
+    },
+    {
+      "path": "frontend/assets/mascot/09-confused.png",
+      "disposition": "held_candidate",
+      "candidate_sha256": null,
+      "integrated_sha256": "693c34e40f51765f04cb4c3aac4ff9c424231d7546bfcf9b293d62b875b8bdb8"
+    },
+    {
+      "path": "frontend/assets/social/2026-reunion-hype/09-ultra-real-practical-effects.png",
+      "disposition": "held_candidate",
+      "candidate_sha256": "c79f2459a970ab305a5b3175b19f6d75ed2fcd0a61adbb9fa43ea2bac7522855",
+      "integrated_sha256": "efd9c7812ad6ddb31b9cf086588606d86f285c7e0e74b694fc396db0876d880d"
+    },
+    {
+      "path": "frontend/assets/social/2026-reunion-hype/README.md",
+      "disposition": "held_candidate",
+      "candidate_sha256": "41df2e4a7e6a5fc8b6fe93d37cf5f1792c79d07047e24a3a2ed06a0601b75813",
+      "integrated_sha256": "4b4752878ca198e6b3b8967b44db73e42891a16b369c0693eb904661e998bea1"
+    },
+    {
+      "path": "frontend/css/reunion-navigator.css",
+      "disposition": "already_main",
+      "candidate_sha256": "3156c21c12c27aa7a32ef2969aeee958e69c6621cce031a6dbd65345dd18d4c5",
+      "integrated_sha256": "3156c21c12c27aa7a32ef2969aeee958e69c6621cce031a6dbd65345dd18d4c5"
+    },
+    {
+      "path": "frontend/css/sections.css",
+      "disposition": "held_candidate",
+      "candidate_sha256": "91d65e13a2566062c5da01b9e0654c56933ec11a6c961a19f07c21a5c30a8ad9",
+      "integrated_sha256": "86bf09c58dc0ba8f1118273b13015b34c805a66766df1ab106c04b9a11c8a6f9"
+    },
+    {
+      "path": "frontend/js/cinematic-shell.js",
+      "disposition": "already_main",
+      "candidate_sha256": "acb784b90035c70ba1c9da333d326185de711b6badbb9e6ff091b0b6197d2d1d",
+      "integrated_sha256": "acb784b90035c70ba1c9da333d326185de711b6badbb9e6ff091b0b6197d2d1d"
+    },
+    {
+      "path": "frontend/js/reunion-navigator.js",
+      "disposition": "already_main",
+      "candidate_sha256": "ec18c644dc376b276a57922817d6f237b5046abe4d0040005bfc78d5d133fed4",
+      "integrated_sha256": "ec18c644dc376b276a57922817d6f237b5046abe4d0040005bfc78d5d133fed4"
+    },
+    {
+      "path": "frontend/js/ticket-order.js",
+      "disposition": "held_candidate",
+      "candidate_sha256": "9d631ddc2e3621f14034d70eddf0b769ec51ffe6c167d68752d4f343621de4c6",
+      "integrated_sha256": "a8cb95fcb97a75d75dbb47160c09e7ede8c25acb071f34f141a1d5c9c6cf5459"
+    },
+    {
+      "path": "frontend/portal/committee/index.html",
+      "disposition": "held_candidate",
+      "candidate_sha256": "217a5d6a32453f2e5a15914de48789398cf573662d8d30e1d0cfa39ab7ef29fb",
+      "integrated_sha256": "b8d73da09885bd737c69887a5989fc617adc71d5fcd12dfe913ab162838c0787"
+    },
+    {
+      "path": "frontend/portal/index.html",
+      "disposition": "held_candidate",
+      "candidate_sha256": "1dd749e5c084a9be3cf55b4a5401d1ed20c744c1182d8b5fbbe996e3c2cd5510",
+      "integrated_sha256": "bcfaf0ce0ce4ce179732c7fd9977fad6a01a7b45966d27f9cde1a9b95f65555d"
+    },
+    {
+      "path": "frontend/portal/js/admin-harry-guide.js",
+      "disposition": "already_main",
+      "candidate_sha256": "d73f25552847ad39893553bff2615fb47f8ed7d392a2ad9be41f9419f503a83f",
+      "integrated_sha256": "d73f25552847ad39893553bff2615fb47f8ed7d392a2ad9be41f9419f503a83f"
+    },
+    {
+      "path": "frontend/portal/js/admin-trivia.js",
+      "disposition": "integrated",
+      "candidate_sha256": "c5ffefa73862ede17589173d9e8e302f3101a80eedb6948ce205329a5866b0f0",
+      "integrated_sha256": "c5ffefa73862ede17589173d9e8e302f3101a80eedb6948ce205329a5866b0f0"
+    },
+    {
+      "path": "frontend/portal/js/committee-workspace.js",
+      "disposition": "held_candidate",
+      "candidate_sha256": "81948bb18de8edb1feb1e348d3f65d381fde743cf1f073f5fc3618c45a6192c5",
+      "integrated_sha256": "dfb70921333ef28333b56021f8fb951b3f8f7d3655a341692b9b282a2a16a8cc"
+    },
+    {
+      "path": "frontend/portal/js/portal-api.js",
+      "disposition": "held_candidate",
+      "candidate_sha256": "dc03ed7975d2f843d7f2b85e684666fbd2312f1d41f7e89dc811f627a4859b1e",
+      "integrated_sha256": "7ea8c5fbb44b26b15a1ff2bcd08b3afe6b970a6967a7a6b092065df12df1ef49"
+    },
+    {
+      "path": "frontend/portal/js/portal-config.js",
+      "disposition": "already_main",
+      "candidate_sha256": "e25dd7c52c09ff47922832b27d0c3a42362d406664a7678d29477b98b72cee3a",
+      "integrated_sha256": "e25dd7c52c09ff47922832b27d0c3a42362d406664a7678d29477b98b72cee3a"
+    },
+    {
+      "path": "frontend/tickets.html",
+      "disposition": "held_candidate",
+      "candidate_sha256": "5c0272a34d48f12ce1ab45b5c424707a2db0d555c0f84504eece7805fe5389f3",
+      "integrated_sha256": "149b7bd57571d2d590eaec07edb383d02643c5fcc14bae615267b8d0ee3dfd77"
+    },
+    {
+      "path": "marketing/video-ads/hi-tide-harry-openart-ads-20260820/CAMPAIGN-COPY.md",
+      "disposition": "integrated",
+      "candidate_sha256": "55ae683818c11379fec5b0ed241fc4ce59e9a8aafcdd2932aaabaf12f39658ea",
+      "integrated_sha256": "55ae683818c11379fec5b0ed241fc4ce59e9a8aafcdd2932aaabaf12f39658ea"
+    },
+    {
+      "path": "spec.json",
+      "disposition": "held_candidate",
+      "candidate_sha256": "121ac6e0bad2caab77e39524e58dbf873822f333c41f94eee8a1c92c1d3a6ff0",
+      "integrated_sha256": "543977558f2a6818d16eb11b298b683dfe51969e45d4a3973290b292f010f1f8"
+    },
+    {
+      "path": "wordpress/wp-content/plugins/famtastic-reunion-platform/famtastic-reunion-platform.php",
+      "disposition": "held_candidate",
+      "candidate_sha256": "37ed3c9a3d6ea895ac93750b65af5a2fa9a62cd25571aa0e8b34183879ebc691",
+      "integrated_sha256": "45efdd51b1912b9c45a55464eab0a1c7e25867688520c028f2ad89dc237975ce"
+    },
+    {
+      "path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-operations.php",
+      "disposition": "held_candidate",
+      "candidate_sha256": "8a9c44d9ea79cac4953e685055ba8ddb9cdbe736e0198d569038c8824e97e538",
+      "integrated_sha256": "fbe4932230e5067290ea39b14bce8b5c0450d1ffc99dde4b4313003a9ee0b38e"
+    },
+    {
+      "path": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-tickets.php",
+      "disposition": "held_candidate",
+      "candidate_sha256": "550a2afe146f2dab1daba5f7297d2452735470bbc2871d33aff7729a720ebe58",
+      "integrated_sha256": "1b852c45e9ca328b47a94b3be6092d66719bc84242525c211cbdc7a03cddfde4"
+    },
+    {
+      "path": "backend/lib/portal-email-templates.php",
+      "disposition": "adapted_safe",
+      "candidate_sha256": "a6e75bd36d586282aa1ea9f66b9be6efbe7769d0c6986f097212c523f063842d",
+      "integrated_sha256": "6a591b9e3d48b1cd1683694a96ab49b2a216a67b139084d2641ef6b954ec5b3b"
+    },
+    {
+      "path": "backend/lib/ticket-payments.php",
+      "disposition": "held_candidate",
+      "candidate_sha256": "702e2267f52aec855416756759735c31235845d3d9ec42e4dac98f3c974885c0",
+      "integrated_sha256": "e8b82df141ad5364719017a7958e4da1643d3fc09c18495f0a989c739bba3d6f"
+    },
+    {
+      "path": "backend/migrations/20260902_ticket_payment_link_lifecycle.sql",
+      "disposition": "integrated",
+      "candidate_sha256": "bce51f74f7685973d6424c230b405b6be32ec80654416cf0320623c42ff08bce",
+      "integrated_sha256": "bce51f74f7685973d6424c230b405b6be32ec80654416cf0320623c42ff08bce"
+    },
+    {
+      "path": "backend/portal/staff/dinner.php",
+      "disposition": "already_main",
+      "candidate_sha256": "a837d9fdfba37f8eff8c44d44ed1c682feb33e937e8ff28cbafe74caddfdf90a",
+      "integrated_sha256": "a837d9fdfba37f8eff8c44d44ed1c682feb33e937e8ff28cbafe74caddfdf90a"
+    },
+    {
+      "path": "docs/email/ACT_I_EMAIL_CATALOG_AND_SCHEDULE.md",
+      "disposition": "integrated",
+      "candidate_sha256": "9803618495a840f368a9b58dcf3d1f58ea1908a1c675517de386f8eb5a77d1d3",
+      "integrated_sha256": "9803618495a840f368a9b58dcf3d1f58ea1908a1c675517de386f8eb5a77d1d3"
+    },
+    {
+      "path": "docs/email/proofs/shay-love-note-junyeismom-2026-08-26.html",
+      "disposition": "integrated",
+      "candidate_sha256": "8a1901c1161ec6e1c6d8bbc1a7d5e1932e4413a9f7a3e36ab606f9a607c55b91",
+      "integrated_sha256": "8a1901c1161ec6e1c6d8bbc1a7d5e1932e4413a9f7a3e36ab606f9a607c55b91"
+    },
+    {
+      "path": "docs/operations/STRIPE_PAYMENT_LINK_TICKET_LIFECYCLE_2026-09-02.md",
+      "disposition": "integrated",
+      "candidate_sha256": "64a23db87657933bff7cd77237910612e53c5398fb5383e108679b2eac4aa538",
+      "integrated_sha256": "64a23db87657933bff7cd77237910612e53c5398fb5383e108679b2eac4aa538"
+    },
+    {
+      "path": "docs/operations/STRIPE_WOOCOMMERCE_CONNECT_HANDOFF_2026-08-31.md",
+      "disposition": "integrated",
+      "candidate_sha256": "77d022451fea1a0b3511d9fb845c93900ab969471e280a55b3dd93d6220b5ae2",
+      "integrated_sha256": "77d022451fea1a0b3511d9fb845c93900ab969471e280a55b3dd93d6220b5ae2"
+    },
+    {
+      "path": "frontend/assets/characters/shay/concepts/digital-fairy-v1.png",
+      "disposition": "integrated",
+      "candidate_sha256": "51c90de5288d5160883ac837025e168ca24f1e63f640d910ee72194b3fe5007a",
+      "integrated_sha256": "51c90de5288d5160883ac837025e168ca24f1e63f640d910ee72194b3fe5007a"
+    },
+    {
+      "path": "frontend/assets/characters/shay/email/shay-love-note-v1.png",
+      "disposition": "integrated",
+      "candidate_sha256": "b13bc103f8e4516cb4e457ee13e50e4e83d719477faed239dd5e3c1174e9e931",
+      "integrated_sha256": "b13bc103f8e4516cb4e457ee13e50e4e83d719477faed239dd5e3c1174e9e931"
+    },
+    {
+      "path": "frontend/assets/characters/shay/shay-stripe-call-sheet-v1.png",
+      "disposition": "integrated",
+      "candidate_sha256": "20226d37890ca6e35053ddcc4ca248ee0e63ce79c83b06cfe764a9c28782d6c2",
+      "integrated_sha256": "20226d37890ca6e35053ddcc4ca248ee0e63ce79c83b06cfe764a9c28782d6c2"
+    },
+    {
+      "path": "frontend/assets/mascot/act-1/cartoon/famtastic-presenter-v1.png",
+      "disposition": "integrated",
+      "candidate_sha256": "4b0a8a0bb71af1d4c3a2bd59d79bb8338030462515662f03c9eed79acf63aa47",
+      "integrated_sha256": "4b0a8a0bb71af1d4c3a2bd59d79bb8338030462515662f03c9eed79acf63aa47"
+    },
+    {
+      "path": "frontend/assets/mascot/act-1/cartoon/registration-welcome-v1.png",
+      "disposition": "integrated",
+      "candidate_sha256": "fc98371057af1caa6172f3bcd3f74e471edb3498ab02192cd51ef43c43503784",
+      "integrated_sha256": "fc98371057af1caa6172f3bcd3f74e471edb3498ab02192cd51ef43c43503784"
+    },
+    {
+      "path": "frontend/assets/mascot/act-1/cartoon/ticket-premiere-v1.png",
+      "disposition": "integrated",
+      "candidate_sha256": "6bc6c0b3c681f98d0a38f2e6e2c0ce6814284bec23c9591f7d021019c9b9a756",
+      "integrated_sha256": "6bc6c0b3c681f98d0a38f2e6e2c0ce6814284bec23c9591f7d021019c9b9a756"
+    },
+    {
+      "path": "frontend/assets/mascot/act-1/cartoon/trailer-curtain-host-v1.png",
+      "disposition": "integrated",
+      "candidate_sha256": "a001004696e9885db20c383d5fcb3f1b16eb6d7a8d5169d21d139c75fb891c5d",
+      "integrated_sha256": "a001004696e9885db20c383d5fcb3f1b16eb6d7a8d5169d21d139c75fb891c5d"
+    },
+    {
+      "path": "frontend/assets/mascot/act-1/famtastic-starter-presenter.png",
+      "disposition": "integrated",
+      "candidate_sha256": "d9f8982357c06b6bd70c2ad5a80ac6776150b397f04f84e29666670e204d4f08",
+      "integrated_sha256": "d9f8982357c06b6bd70c2ad5a80ac6776150b397f04f84e29666670e204d4f08"
+    },
+    {
+      "path": "frontend/assets/mascot/act-1/registration-welcome.png",
+      "disposition": "integrated",
+      "candidate_sha256": "373f577dc88a0a63230ca7755da884c481fe8cb2cf9c434f86d67f92a59f1b4d",
+      "integrated_sha256": "373f577dc88a0a63230ca7755da884c481fe8cb2cf9c434f86d67f92a59f1b4d"
+    },
+    {
+      "path": "frontend/assets/mascot/act-1/ticket-premiere.png",
+      "disposition": "integrated",
+      "candidate_sha256": "cf2c87a5aa96f45c64ca89c6ee18e2e0c4a0af5aa275189ca765e10f39bb2f1a",
+      "integrated_sha256": "cf2c87a5aa96f45c64ca89c6ee18e2e0c4a0af5aa275189ca765e10f39bb2f1a"
+    },
+    {
+      "path": "frontend/assets/mascot/act-1/trailer-curtain-host.png",
+      "disposition": "integrated",
+      "candidate_sha256": "c79f2459a970ab305a5b3175b19f6d75ed2fcd0a61adbb9fa43ea2bac7522855",
+      "integrated_sha256": "c79f2459a970ab305a5b3175b19f6d75ed2fcd0a61adbb9fa43ea2bac7522855"
+    },
+    {
+      "path": "frontend/assets/tickets/stripe-payment-link-qr.png",
+      "disposition": "held_candidate",
+      "candidate_sha256": "c27d42eb6007b3ded541520dd2194fe5bd1bd64af3c1f878d6fb26ece62ef312",
+      "integrated_sha256": null
+    },
+    {
+      "path": "frontend/pay/index.html",
+      "disposition": "held_candidate",
+      "candidate_sha256": "122de8f15eef9a66e57338a4198b0783082e7a587cac47430cddc8eab46d19f5",
+      "integrated_sha256": null
+    },
+    {
+      "path": "frontend/payment-setup/conversation-v2.css",
+      "disposition": "held_candidate",
+      "candidate_sha256": "4a22bde9f1e39e9ad1d87d9076f9bfa8f50a72577caaa2680769f644856f53cf",
+      "integrated_sha256": null
+    },
+    {
+      "path": "frontend/payment-setup/conversation.css",
+      "disposition": "held_candidate",
+      "candidate_sha256": "f9d764a08086e552427e04e9bbdfab848b17513c838f371bb70184086144ddc7",
+      "integrated_sha256": null
+    },
+    {
+      "path": "frontend/payment-setup/conversation.js",
+      "disposition": "held_candidate",
+      "candidate_sha256": "9388b3acc55cffef74e40f560befc3d00a275f5cbbc4158e8a91f1f119bb3a56",
+      "integrated_sha256": null
+    },
+    {
+      "path": "frontend/payment-setup/guard-talk.css",
+      "disposition": "held_candidate",
+      "candidate_sha256": "cb5aa9b54a2df291b54581f49fe5b5412ce8b7ffe5e9e702cb666dec7f713110",
+      "integrated_sha256": null
+    },
+    {
+      "path": "frontend/payment-setup/index.html",
+      "disposition": "held_candidate",
+      "candidate_sha256": "4ed844b4a6dfbfda603e8a623f6490d0153c4fcb0eeda4c231ca031b575f4b19",
+      "integrated_sha256": null
+    },
+    {
+      "path": "frontend/payment-setup/index.php",
+      "disposition": "held_candidate",
+      "candidate_sha256": "dbf55a8d10f7af757b713abda06144599691fe49cf28a4173bcddb89b9333aae",
+      "integrated_sha256": null
+    },
+    {
+      "path": "frontend/payment-setup/payment-setup.css",
+      "disposition": "held_candidate",
+      "candidate_sha256": "89f2cd47abf7e06e93db44df41e85526e819d16ef4251601b3af881f1ef6770d",
+      "integrated_sha256": null
+    },
+    {
+      "path": "frontend/payment-setup/secure-form.css",
+      "disposition": "held_candidate",
+      "candidate_sha256": "ab7efb019cf62db0503505c6d520391b2e6e50a4a609aed7a02cf4c289dd40f0",
+      "integrated_sha256": null
+    },
+    {
+      "path": "frontend/payment-setup/text-animation.css",
+      "disposition": "held_candidate",
+      "candidate_sha256": "4352feeb1c63235f37f3a87575d67879b010499559344e911e758470081b8a4b",
+      "integrated_sha256": null
+    },
+    {
+      "path": "frontend/portal/css/sample-ticket-studio.css",
+      "disposition": "already_main",
+      "candidate_sha256": "eb111db5ee4210ee58eef7e047ec0e82890d08fbbf97113ddbb13b012193c0ca",
+      "integrated_sha256": "eb111db5ee4210ee58eef7e047ec0e82890d08fbbf97113ddbb13b012193c0ca"
+    },
+    {
+      "path": "frontend/portal/js/ticket-payment-desk.js",
+      "disposition": "held_candidate",
+      "candidate_sha256": "1b3fda644f6996c7fff82de96e060a694de3ebcca5fb1bec63a17848c436ce7c",
+      "integrated_sha256": "b5a452363429087f97c4858347058d96f76b25eccbf59f35b7793244931959f8"
+    },
+    {
+      "path": "marketing/video-ads/hi-tide-harry-openart-ads-20260820/hyperframes/.thumbnails/v4_v3_027ede3ecf9fbcfa_jpeg_preview_index.html_1080x1920_76x135_1787261600525_12.50__memory-panel_0.jpg",
+      "disposition": "integrated",
+      "candidate_sha256": "1fdedc251cef3334bcbdab684f09ae07fb4592ce9abc6044c5907c035dc49eac",
+      "integrated_sha256": "1fdedc251cef3334bcbdab684f09ae07fb4592ce9abc6044c5907c035dc49eac"
+    },
+    {
+      "path": "marketing/video-ads/hi-tide-harry-openart-ads-20260820/hyperframes/.thumbnails/v4_v3_027ede3ecf9fbcfa_jpeg_preview_index.html_1080x1920_76x135_1787261600525_12.50__memory-wash_0.jpg",
+      "disposition": "integrated",
+      "candidate_sha256": "1fdedc251cef3334bcbdab684f09ae07fb4592ce9abc6044c5907c035dc49eac",
+      "integrated_sha256": "1fdedc251cef3334bcbdab684f09ae07fb4592ce9abc6044c5907c035dc49eac"
+    },
+    {
+      "path": "marketing/video-ads/hi-tide-harry-openart-ads-20260820/hyperframes/.thumbnails/v4_v3_027ede3ecf9fbcfa_jpeg_preview_index.html_1080x1920_76x135_1787261600525_2.50__grand-panel_0.jpg",
+      "disposition": "integrated",
+      "candidate_sha256": "90ad98e8a338c12be55ad9e587c766e09fb69c6f6b6fccedaa4eb890b4e46a70",
+      "integrated_sha256": "90ad98e8a338c12be55ad9e587c766e09fb69c6f6b6fccedaa4eb890b4e46a70"
+    },
+    {
+      "path": "marketing/video-ads/hi-tide-harry-openart-ads-20260820/hyperframes/.thumbnails/v4_v3_027ede3ecf9fbcfa_jpeg_preview_index.html_1080x1920_76x135_1787261600525_2.50__grand-wash_0.jpg",
+      "disposition": "integrated",
+      "candidate_sha256": "90ad98e8a338c12be55ad9e587c766e09fb69c6f6b6fccedaa4eb890b4e46a70",
+      "integrated_sha256": "90ad98e8a338c12be55ad9e587c766e09fb69c6f6b6fccedaa4eb890b4e46a70"
+    },
+    {
+      "path": "marketing/video-ads/hi-tide-harry-openart-ads-20260820/hyperframes/.thumbnails/v4_v3_027ede3ecf9fbcfa_jpeg_preview_index.html_1080x1920_76x135_1787261600525_7.50__roll-panel_0.jpg",
+      "disposition": "integrated",
+      "candidate_sha256": "530c230cb9ada3fb1f2e5b49e7da572c0a68708b2e130ceb9d810d3b1663becb",
+      "integrated_sha256": "530c230cb9ada3fb1f2e5b49e7da572c0a68708b2e130ceb9d810d3b1663becb"
+    },
+    {
+      "path": "marketing/video-ads/hi-tide-harry-openart-ads-20260820/hyperframes/.thumbnails/v4_v3_027ede3ecf9fbcfa_jpeg_preview_index.html_1080x1920_76x135_1787261600525_7.50__roll-wash_0.jpg",
+      "disposition": "integrated",
+      "candidate_sha256": "530c230cb9ada3fb1f2e5b49e7da572c0a68708b2e130ceb9d810d3b1663becb",
+      "integrated_sha256": "530c230cb9ada3fb1f2e5b49e7da572c0a68708b2e130ceb9d810d3b1663becb"
+    },
+    {
+      "path": "scripts/list-pending-ticket-orders.php",
+      "disposition": "integrated",
+      "candidate_sha256": "295d57eb58cd024572c6b530c8c27c53229c38da421daf82c91e4f454f483886",
+      "integrated_sha256": "295d57eb58cd024572c6b530c8c27c53229c38da421daf82c91e4f454f483886"
+    },
+    {
+      "path": "scripts/promote-valerie-committee-lead.php",
+      "disposition": "integrated",
+      "candidate_sha256": "03e7e35345a1e3b15099c0b050a44ac0eabe09573c7d92a793f673c2e1569e87",
+      "integrated_sha256": "03e7e35345a1e3b15099c0b050a44ac0eabe09573c7d92a793f673c2e1569e87"
+    },
+    {
+      "path": "scripts/send-approved-20260826-campaign.php",
+      "disposition": "adapted_safe",
+      "candidate_sha256": "c67e5bca24f11f0b54490ac03b7a78bd073ded67845d95c68934a0236d6deb7d",
+      "integrated_sha256": "92bb750c1aec944add9d6071eba34c338af38b3520403756581450b401e459a2"
+    },
+    {
+      "path": "scripts/send-committee-email-drafts.php",
+      "disposition": "integrated",
+      "candidate_sha256": "c600067f33a7fa513dccf9bf26aacf31da37503e7c32e0c5855bec1cefc70f4e",
+      "integrated_sha256": "c600067f33a7fa513dccf9bf26aacf31da37503e7c32e0c5855bec1cefc70f4e"
+    },
+    {
+      "path": "scripts/send-gussie-stripe-connection-instructions.php",
+      "disposition": "integrated",
+      "candidate_sha256": "c2a964db2bbeaaf3547f2065cadab727d0ee7b5d9d853081cc24f4760a2b0e37",
+      "integrated_sha256": "c2a964db2bbeaaf3547f2065cadab727d0ee7b5d9d853081cc24f4760a2b0e37"
+    },
+    {
+      "path": "scripts/send-legacy-welcome-20260826.php",
+      "disposition": "integrated",
+      "candidate_sha256": "057472439e91303a6abdec29de9545b779bc000951aba1c469572b06cc0f780f",
+      "integrated_sha256": "057472439e91303a6abdec29de9545b779bc000951aba1c469572b06cc0f780f"
+    },
+    {
+      "path": "scripts/send-stripe-options-valerie.php",
+      "disposition": "integrated",
+      "candidate_sha256": "00ac2c94919cbe02900c2ae9be5a07bea75ca2b1d9bb42fa0f85f19ec9256367",
+      "integrated_sha256": "00ac2c94919cbe02900c2ae9be5a07bea75ca2b1d9bb42fa0f85f19ec9256367"
+    },
+    {
+      "path": "scripts/send-ticket-launch-handoff-committee.php",
+      "disposition": "integrated",
+      "candidate_sha256": "1a7b94618104188653d97dcea06653355d1f9970e7695109aa994cf95cbf4e87",
+      "integrated_sha256": "1a7b94618104188653d97dcea06653355d1f9970e7695109aa994cf95cbf4e87"
+    },
+    {
+      "path": "tests/frontend/sample-ticket-contract.test.mjs",
+      "disposition": "integrated",
+      "candidate_sha256": "cd6d6377d88d7309dd4bf8df5321e178d69f4dfff3169f886b7cba2553c8a59e",
+      "integrated_sha256": "cd6d6377d88d7309dd4bf8df5321e178d69f4dfff3169f886b7cba2553c8a59e"
+    },
+    {
+      "path": "tests/frontend/stripe-payment-link-contract.test.mjs",
+      "disposition": "held_candidate",
+      "candidate_sha256": "5a3717417fc2a530282951e906e38a7c4215652a826d2f064680171196a9f227",
+      "integrated_sha256": null
+    }
+  ],
+  "conflicts": [
+    ".env.example",
+    "CHANGELOG.md",
+    "backend/lib/ticket-payments.php",
+    "backend/ticket-order.php",
+    "frontend/capsule.html",
+    "frontend/css/sections.css",
+    "frontend/index.html",
+    "frontend/js/ticket-order.js",
+    "frontend/manual/index.html",
+    "frontend/memorial.html",
+    "frontend/menu/index.html",
+    "frontend/playlist.html",
+    "frontend/portal/committee/index.html",
+    "frontend/portal/index.html",
+    "frontend/portal/js/admin-trivia.js",
+    "frontend/portal/js/committee-workspace.js",
+    "frontend/portal/js/portal-api.js",
+    "frontend/portal/js/portal.js",
+    "frontend/portal/js/ticket-payment-desk.js",
+    "frontend/rsvp.html",
+    "frontend/survey.html",
+    "frontend/templates/interior-page-template.html",
+    "frontend/templates/landing-page-template.html",
+    "frontend/templates/simple-page-template.html",
+    "frontend/through-years.html",
+    "frontend/tickets.html",
+    "tests/frontend/reunion-navigator-contract.test.mjs",
+    "tests/frontend/shared-public-shell.test.mjs",
+    "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-operations.php",
+    "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-tickets.php"
+  ],
+  "preserved_main_extra": [
+    "backend/tickets.html",
+    "frontend/assets/mascot/09-confused.png",
+    "frontend/assets/social/2026-reunion-hype/09-ultra-real-practical-effects.png",
+    "spec.json"
+  ],
+  "withheld_new": [
+    "frontend/pay/index.html",
+    "frontend/payment-setup/conversation-v2.css",
+    "frontend/payment-setup/conversation.css",
+    "frontend/payment-setup/conversation.js",
+    "frontend/payment-setup/guard-talk.css",
+    "frontend/payment-setup/index.html",
+    "frontend/payment-setup/index.php",
+    "frontend/payment-setup/payment-setup.css",
+    "frontend/payment-setup/secure-form.css",
+    "frontend/payment-setup/text-animation.css",
+    "frontend/assets/tickets/stripe-payment-link-qr.png",
+    "tests/frontend/stripe-payment-link-contract.test.mjs"
+  ]
+}
