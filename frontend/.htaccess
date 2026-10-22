@@ -6,6 +6,15 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Ticket requests and secure checkout require the HTTPS public origin.
+  # Preserve method/body on redirects and keep HTTP-01 reachable for automatic
+  # certificate renewal. Limit this to reunion hosts.
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?mbsh96reunion\.com$ [NC]
+  RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/ [NC]
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://mbsh96reunion.com%{REQUEST_URI} [R=308,L,NE]
+
   # Keep HTTP-01 reachable while issuing/renewing the public certificate, then
   # canonicalize every other primary-domain request to the secure apex.
   RewriteCond %{HTTP_HOST} ^(?:www\.)?famtasticinc\.com$ [NC]
