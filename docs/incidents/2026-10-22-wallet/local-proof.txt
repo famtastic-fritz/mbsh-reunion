@@ -1,0 +1,7 @@
+PASS isolated WordPress setup; no imported settings or real recipients
+PASS isolated $30 WooCommerce catalog
+PASS real WooCommerce AJAX: legacy-token rejection, signed mixer add, duplicate replay, one cart line, $60 final total, tampered quantity rejection
+PASS isolated receipt: unpaid-order suppression; paid notice queued; synthetic recipient/current-event content; mocked provider failure retained error; retry preserves idempotency key; success and duplicate suppression. No outbound mail.
+PASS real WooCommerce 11.0.1: signed AJAX bridge + ledger; $60 two-ticket order; simulated paid lifecycle; exactly-once issuance; partial/full refund and replay; failed-order isolation; stale/extra-fee payment guards. External provider and mail blocked.
+PASS wallet fixtures: paid quantity, stable credentials/replay, failed/unpaid, partial/full refund, manual revoke, failed fulfillment and retry.
+PASS HTTP wallet: real registration/verification/login, unverified/anonymous denial, two admissions after purchase-before-account, cross-account/query exclusion, staff capability/CSRF/credential check-in and duplicate rejection; no financial calls or outbound mail.

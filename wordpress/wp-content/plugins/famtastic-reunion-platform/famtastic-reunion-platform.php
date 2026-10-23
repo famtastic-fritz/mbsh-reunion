@@ -20,6 +20,7 @@ define('FAMTASTIC_REUNION_FILE', __FILE__);
 require_once __DIR__ . '/includes/class-content.php';
 require_once __DIR__ . '/includes/class-rest.php';
 require_once __DIR__ . '/includes/class-tickets.php';
+require_once __DIR__ . '/includes/class-portal-wallet.php';
 require_once __DIR__ . '/includes/class-operations.php';
 require_once __DIR__ . '/includes/class-brand-experience.php';
 require_once __DIR__ . '/includes/class-seo.php';

@@ -30,15 +30,23 @@ try:
   try:run('docker','exec',db,'mariadb','-umixer_wp','-pisolated_mixer_test','mixer_wp','-e','SELECT 1');break
   except RuntimeError:time.sleep(.5)
  else:raise RuntimeError('Proof DB did not become ready')
- run('docker','run','-d','--name',wp,'--network',network,'-e','WORDPRESS_DB_HOST='+db,'-e','WORDPRESS_DB_NAME=mixer_wp','-e','WORDPRESS_DB_USER=mixer_wp','-e','WORDPRESS_DB_PASSWORD=isolated_mixer_test','-e',"WORDPRESS_CONFIG_EXTRA=define('WP_ENVIRONMENT_TYPE','local');define('DISABLE_WP_CRON',true);define('FAMTASTIC_REUNION_CHECKOUT_SECRET',str_repeat('t',64));define('FAMTASTIC_RESEND_API_KEY','isolated-proof-no-provider');define('FAMTASTIC_RESEND_FROM','proof@example.test');",'-v',str(R/'wordpress/wp-content/plugins/famtastic-reunion-platform')+':/var/www/html/wp-content/plugins/famtastic-reunion-platform:ro','-v',str(vendor)+':/var/www/html/wp-content/plugins/woocommerce:ro','-v',str(cache/'mail-sink.php')+':/var/www/html/wp-content/mu-plugins/proof-mail-sink.php:ro','-v',str(R/'tests/wordpress')+':/proof:ro','wordpress:7.0.4-php8.3-apache');created.append(wp)
+ run('docker','run','-d','--name',wp,'--network',network,'-e','WORDPRESS_DB_HOST='+db,'-e','WORDPRESS_DB_NAME=mixer_wp','-e','WORDPRESS_DB_USER=mixer_wp','-e','WORDPRESS_DB_PASSWORD=isolated_mixer_test','-e',"WORDPRESS_CONFIG_EXTRA=define('WP_ENVIRONMENT_TYPE','local');define('DISABLE_WP_CRON',true);define('FAMTASTIC_REUNION_CHECKOUT_SECRET',str_repeat('t',64));define('FAMTASTIC_RESEND_API_KEY','isolated-proof-no-provider');define('FAMTASTIC_RESEND_FROM','proof@example.test');",'-v',str(R/'wordpress/wp-content/plugins/famtastic-reunion-platform')+':/var/www/html/wp-content/plugins/famtastic-reunion-platform:ro','-v',str(vendor)+':/var/www/html/wp-content/plugins/woocommerce:ro','-v',str(cache/'mail-sink.php')+':/var/www/html/wp-content/mu-plugins/proof-mail-sink.php:ro','-e','MBSH_CONFIG_PATH=/proof/wallet-config.php','-p','127.0.0.1:8977:80','-v',str(R/'backend')+':/portal-backend:ro','-v',str(R/'frontend')+':/site:ro','-v',str(R/'tests/wordpress')+':/proof:ro','wordpress:7.0.4-php8.3-apache');created.append(wp)
  for _ in range(60):
   try:run('docker','exec',wp,'test','-f','/var/www/html/wp-config.php');break
   except RuntimeError:time.sleep(.5)
  else:raise RuntimeError('WordPress files did not become ready')
+ run('docker','exec',wp,'sh','-c','docker-php-ext-install pdo_mysql >/tmp/pdo-build.log 2>&1')
  for mode in ['setup','catalog']:
   print(run('docker','exec',wp,'php','-d','memory_limit=512M','/proof/mixer-proof.php',mode))
  print(run(sys.executable,str(R/'tests/wordpress/mixer-ajax-proof.py')))
  print(run('docker','exec',wp,'php','-d','memory_limit=512M','/proof/mixer-proof.php','exercise'))
+ schema=(R/'tests/backend/fixtures/prerequisites.sql').read_text()+'\n'+(R/'backend/schema.sql').read_text()
+ subprocess.run(['docker','exec','-i',db,'mariadb','-umixer_wp','-pisolated_mixer_test','mixer_wp'],input=schema,text=True,check=True,capture_output=True)
+ run('docker','exec',wp,'sh','-c','cp -a /site/portal /var/www/html/portal && cp -a /portal-backend/portal/. /var/www/html/portal/ && ln -s /portal-backend/lib /var/www/html/lib && ln -s /site/assets /var/www/html/assets && apachectl graceful')
+ print(run('docker','exec',wp,'php','-d','memory_limit=512M','/proof/wallet-proof.php','fixtures'))
+ print(run(sys.executable,str(R/'tests/wordpress/wallet-http-proof.py')))
+ if os.environ.get('MBSH_KEEP_WALLET_PROOF')=='1':
+  print('Retained isolated wallet proof at http://127.0.0.1:8977/portal/ for browser validation',flush=True);created=[];created_network=False
 finally:
  for name in reversed(created):subprocess.run(['docker','rm','-f','-v',name],capture_output=True)
  if created_network:subprocess.run(['docker','network','rm',network],capture_output=True)

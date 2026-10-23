@@ -1,0 +1,8 @@
+/* Keep the live credential large enough to scan; artwork is not a credential. */
+[data-ticket-data] > label { display: grid; gap: .5rem; margin-bottom: 1rem; font-weight: 700; }
+[data-ticket-data] select { min-height: 44px; width: 100%; padding: .65rem; border: 1px solid var(--gold); border-radius: .5rem; background: var(--panel); color: var(--cream); font: inherit; }
+.ticket-pass .qr-zone { position: static; display: flex; flex-direction: column; align-items: center; gap: .75rem; width: 100%; padding: 1.25rem; background: #fff; color: #111; }
+.ticket-pass .qr-zone small { max-width: 22rem; font-size: .9rem; line-height: 1.45; text-align: center; }
+.ticket-pass .qr-zone { aspect-ratio: auto; height: auto; min-height: 0; box-shadow: none; }
+.ticket-pass .qr-zone small { position: static; width: auto; color: #111; text-shadow: none; }
+.ticket-pass .qr-zone strong { position: static; font-size: 1rem; }

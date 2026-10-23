@@ -105,6 +105,12 @@ try {
     $public=fam_required($data,'ticket_id',36);$credential=fam_required($data,'credential',200);
     $secret=(string)($config['portal_token_secret']??'');
     if(!fam_ticket_credential_valid($credential,$public,$secret)) fam_json_response(400,['error'=>'invalid_ticket']);
+    if(str_starts_with($public,'wc-')){
+      require_once dirname(__DIR__,2).'/lib/commerce-wallet.php';
+      if(!fam_commerce_wallet_transition($pdo,$config,(int)$staff['attendee_id'],$public,'checked_in')) fam_json_response(409,['error'=>'ticket_not_active']);
+      fam_portal_staff_audit($pdo,$staff,'ticket_checked_in','commerce_ticket',$public);
+      fam_json_response(200,['ok'=>true]);
+    }
     $q=$pdo->prepare("UPDATE ticket_wallet_items SET status='checked_in',checked_in_at=NOW() WHERE public_id=? AND status='active'");$q->execute([$public]);
     if($q->rowCount()!==1) fam_json_response(409,['error'=>'ticket_not_active']);
     fam_portal_staff_audit($pdo,$staff,'ticket_checked_in','ticket_wallet_items',$public);
@@ -113,6 +119,12 @@ try {
   if($action==='ticket_void'){
     $staff=fam_require_portal_staff($pdo,'issue_manual_tickets');
     $public=fam_required($data,'ticket_id',36);$note=fam_required($data,'note',1000);
+    if(str_starts_with($public,'wc-')){
+      require_once dirname(__DIR__,2).'/lib/commerce-wallet.php';
+      if(!fam_commerce_wallet_transition($pdo,$config,(int)$staff['attendee_id'],$public,'revoked')) fam_json_response(409,['error'=>'ticket_not_active']);
+      fam_portal_staff_audit($pdo,$staff,'ticket_voided','commerce_ticket',$public,['note'=>$note]);
+      fam_json_response(200,['ok'=>true]);
+    }
     $q=$pdo->prepare("UPDATE ticket_wallet_items SET status='void' WHERE public_id=? AND status IN ('pending','active')");$q->execute([$public]);
     if($q->rowCount()!==1) fam_json_response(409,['error'=>'ticket_not_voidable']);
     fam_portal_staff_audit($pdo,$staff,'ticket_voided','ticket_wallet_items',$public,['note'=>$note]);

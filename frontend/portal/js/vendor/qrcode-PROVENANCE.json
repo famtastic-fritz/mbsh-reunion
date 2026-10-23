@@ -1,0 +1,7 @@
+{
+  "package": "qrcode-generator",
+  "version": "2.0.4",
+  "repository": "https://github.com/kazuhikoarase/qrcode-generator",
+  "integrity": "sha512-mZSiP6RnbHl4xL2Ap5HfkjLnmxfKcPWpWe/c+5XxCuetEenqmNFf1FH/ftXPCtFG5/TDobjsjz6sSNL0Sr8Z9g==",
+  "purpose": "Local rendering; authenticated credentials never sent to an external QR service."
+}

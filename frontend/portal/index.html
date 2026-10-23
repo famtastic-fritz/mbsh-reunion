@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Cormorant+Garamond:ital,wght@0,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="css/portal.css">
   <link rel="stylesheet" href="css/portal-integration.css">
+  <link rel="stylesheet" href="css/wallet.css?v=20261022">
   <link rel="stylesheet" href="css/mobile-hardening.css?v=1">
   <link rel="stylesheet" href="css/portal-staff.css?v=1">
   <link rel="stylesheet" href="../css/reunion-navigator.css?v=1">
@@ -98,7 +99,7 @@
         </article>
         <div class="ticket-details"><div><span>Attendee</span><strong data-ticket-holder>Loading…</strong></div><div><span>Pass</span><strong data-ticket-type>Loading…</strong></div><div><span>Ticket</span><strong data-ticket-id>Loading…</strong></div><div><span>Status</span><strong class="good" data-ticket-status>Loading…</strong></div></div>
         </div>
-        <div class="notice"><strong>Keep your pass private.</strong><p>The live QR will be an opaque, rotating check-in token. It will never contain your name, email, or payment details.</p></div>
+        <div class="notice"><strong>Keep your pass private.</strong><p>Your live check-in code refreshes automatically. It contains no name, email, or payment details.</p></div>
         <div class="action-row"><button class="button button--primary" type="button" disabled title="Wallet pass issuance is not available in the current backend">Phone wallet pass coming soon</button><button class="button" type="button" data-brightness>Brighten for check-in</button></div>
       </section>
 
@@ -194,7 +195,9 @@
   <script src="js/portal-config.js" defer></script>
   <script src="js/portal-api.js" defer></script>
   <script src="../js/reunion-navigator.js?v=1&amp;event=mixersimple20261016" defer></script>
-  <script src="js/portal.js?event=mixersimple20261016" defer></script>
+  <script src="js/vendor/qrcode-2.0.4.js" defer></script>
+  <script src="js/wallet.js?v=20261022" defer></script>
+  <script src="js/portal.js?event=wallet20261022" defer></script>
   <script src="js/trivia.js" defer></script>
   <script src="js/portal-staff.js" defer></script>
 <!-- famtastic-creator-credit:start -->

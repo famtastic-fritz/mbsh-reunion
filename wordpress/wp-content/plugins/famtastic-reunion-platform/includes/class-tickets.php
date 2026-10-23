@@ -66,6 +66,10 @@ final class Famtastic_Reunion_Tickets
             return;
         }
         $order = wc_get_order($order_id);
+        if ($order && Famtastic_Reunion_Portal_Wallet::current_order($order)) {
+            self::recover_mixer_order($order);
+            return;
+        }
         if (!$order || !$order->is_paid() || $order->get_meta('_famtastic_tickets_issued', true)) {
             return;
         }
@@ -93,6 +97,41 @@ final class Famtastic_Reunion_Tickets
         }
         $order->update_meta_data('_famtastic_tickets_issued', current_time('mysql', true));
         $order->save();
+    }
+
+    /** Recover only missing paid quantity; existing/revoked credentials are never replaced. */
+    private static function recover_mixer_order(WC_Order $order): void
+    {
+        if (!$order->is_paid()) return;
+        global $wpdb;
+        $key = 'mbsh-ticket-order-'.$order->get_id();
+        if ((int)$wpdb->get_var($wpdb->prepare('SELECT GET_LOCK(%s,5)',$key)) !== 1) {
+            $order->update_meta_data('_famtastic_ticket_recovery_error','issuance_lock_busy'); $order->save(); return;
+        }
+        try {
+            $order = wc_get_order($order->get_id());
+            if (!$order || !$order->is_paid()) return;
+            $complete = true;
+            foreach ($order->get_items() as $item_id=>$item) {
+                $ids = Famtastic_Reunion_Portal_Wallet::ticket_ids($order->get_id(),$item_id);
+                $active = 0; $manually_revoked = 0;
+                foreach ($ids as $id) {
+                    $state = get_post_meta($id,'_famtastic_ticket_status',true);
+                    if (in_array($state,['valid','checked_in'],true)) $active++;
+                    elseif (get_post_meta($id,'_famtastic_ticket_revoke_reason',true) !== 'refund') $manually_revoked++;
+                }
+                $expected = max(0,$item->get_quantity()+$order->get_qty_refunded_for_item($item_id)-$manually_revoked);
+                $missing = min(max(0,$item->get_quantity()-count($ids)),max(0,$expected-$active));
+                for ($i=0;$i<$missing;$i++) {
+                    if (!self::issue((int)$order->get_user_id(),$order->get_id(),(int)$item_id,count($ids)+$i+1,false)) { $complete=false; break; }
+                }
+            }
+            if (!$complete) throw new RuntimeException('ticket_insert_failed');
+            if (!$order->get_meta('_famtastic_tickets_issued',true)) $order->update_meta_data('_famtastic_tickets_issued',current_time('mysql',true));
+            $order->delete_meta_data('_famtastic_ticket_recovery_error'); $order->save();
+        } catch (Throwable $error) {
+            $order->update_meta_data('_famtastic_ticket_recovery_error','ticket_issuance_retry_required'); $order->save();
+        } finally { $wpdb->get_var($wpdb->prepare('SELECT RELEASE_LOCK(%s)',$key)); }
     }
 
     public static function revoke_for_order(int $order_id): void
