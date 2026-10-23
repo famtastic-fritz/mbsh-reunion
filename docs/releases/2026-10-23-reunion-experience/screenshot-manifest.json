@@ -1,0 +1,40 @@
+[
+  {
+    "file": "screenshots/attendee-phone.jpg",
+    "route": "/portal/#experience",
+    "role": "verified paid synthetic attendee",
+    "environment": "isolated local WooCommerce; synthetic records only",
+    "captured_date": "2026-10-23",
+    "release_id": "reunion-experience-20261023",
+    "revision": "See receipt.json source_commit; before final popup and banner copy correction",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "decoded_image": {
+      "width": 375,
+      "height": 812,
+      "mime": "image/jpeg"
+    },
+    "sha256": "e49061c8d062819dc28f07f29a245f4f1ed9b68d9689e7baa062a2c0b810b2f5"
+  },
+  {
+    "file": "screenshots/committee-phone.jpg",
+    "route": "/portal/admin/#activities",
+    "role": "synthetic site_owner",
+    "environment": "isolated local WooCommerce; synthetic records only",
+    "captured_date": "2026-10-23",
+    "release_id": "reunion-experience-20261023",
+    "revision": "See receipt.json source_commit; before final popup and banner copy correction",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "decoded_image": {
+      "width": 375,
+      "height": 812,
+      "mime": "image/jpeg"
+    },
+    "sha256": "3f751006606848701b6b7833beed5ed113f2daf46b2256f225e36049623d83ca"
+  }
+]

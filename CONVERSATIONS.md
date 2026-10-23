@@ -60,3 +60,7 @@ October 16 correction: Fritz confirmed no Netlify deployments and directed use o
 ## 2026-10-04 — Authorized complete candidate source integration
 
 Fritz authorized committing and merging all Event Cinema candidate source into local main except actual overwrites/regressions of working production behavior, then reviewing those exact holds. This supersedes archival discussion. No push/deploy/send/payment/migration/provider execution is included. Evidence, exact file dispositions, release-matched owner acceptance pending state and retained candidate branch are in `docs/reviews/2026-10-04-EVENT-CINEMA-SAFE-INTEGRATION.md`.
+
+## 2026-10-23 — Approved paid-holder reunion experience
+
+Fritz approved implementation of 1996 Trivia, Guess Who, Photos & Memories, Request a Song and Suggest a Game, including the near-top Harry invitation and phone committee controls. Participation requires a verified account and valid paid current-mixer admission; registration alone is insufficient. He explicitly authorized production after tests and will review in the morning. Preserve the active three-wave campaign, no additional mail/monitor or financial reporting, and reuse graphics ($0 spent). Disk use must be measured and cleanup limited to this task's disposable resources. Source task `01a16603-8d01-7382-8c59-5de8d2b04641`; immutable runtime and proof are recorded in `docs/releases/2026-10-23-reunion-experience/receipt.json` when promotion is verified. No new private conversation archive upload is claimed.

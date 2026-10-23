@@ -6,4 +6,6 @@ return [
  'portal_base_url'=>'http://127.0.0.1:8977','portal_frontend_base_url'=>'http://127.0.0.1:8977/portal',
  'resend_api_key'=>'isolated-proof-no-provider','resend_api_url'=>'http://127.0.0.1:9/no-mail',
  'resend_from_noreply'=>'proof@example.test','resend_from_harry'=>'proof@example.test','committee_email'=>'committee@example.test',
+ 'pending_uploads_path'=>'/tmp/mbsh-experience-private','approved_uploads_path'=>'/tmp/mbsh-experience-approved',
+ 'trivia_starter_path'=>'/experience-data/trivia/1996-starter.json',
 ];

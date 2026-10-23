@@ -69,6 +69,8 @@
 .manual-route-card__bottom { margin-top: auto; padding-top: 1.5rem; }
 .manual-route-card a { color: var(--manual-red); font: 800 .68rem/1.2 var(--manual-ui); letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
 .manual-route-card a:hover, .manual-route-card a:focus-visible { color: var(--manual-gold); text-decoration: underline; text-underline-offset: .25rem; }
+#ticket-holder-games .manual-route-card p + p { margin-top: 1rem; }
+#ticket-holder-games .manual-route-card a { font: inherit; text-transform: none; letter-spacing: normal; text-decoration: underline; color: var(--manual-gold); }
 .manual-private-intro { max-width: 92rem; display: flex; align-items: center; gap: 1rem; margin: 0 auto; border: 1px solid var(--manual-line); padding: 1.25rem; background: rgba(0,0,0,.2); }
 .manual-private-intro[hidden] { display: none; }
 .manual-private-intro > div { flex: 1; }

@@ -1,0 +1,773 @@
+{
+  "schema_version": 1,
+  "bank_key": "class-of-1996-starter-v1",
+  "title": "Back to 1996 — Starter Bank",
+  "status": "reviewed_draft",
+  "event_year": 1996,
+  "prepared_at": "2026-10-23T03:52:09Z",
+  "review": {
+    "fact_check": "source_checked_by_research_agent",
+    "committee_review": "pending",
+    "publication": "draft_only",
+    "note": "Research review is not committee approval or an open round."
+  },
+  "instructions": "One scored attempt per question. Correct answers earn 100 points; incorrect answers earn 0. Equal scores share the same place. No speed bonus. The committee chooses and opens the round, then closes it before publishing results. No prize is promised.",
+  "categories": {
+    "music": "Music",
+    "film_tv": "Film & TV",
+    "sports": "Sports",
+    "culture_events": "Culture & Events"
+  },
+  "questions": [
+    {
+      "key": "1996-music-wannabe",
+      "category": "music",
+      "prompt": "Which group made its debut with Wannabe in July 1996?",
+      "choices": [
+        "TLC",
+        "En Vogue",
+        "All Saints",
+        "Spice Girls"
+      ],
+      "correct_index": 3,
+      "explanation": "Wannabe was the Spice Girls' debut single. This question uses its 1996 release, not its later chart arrival in every country.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Official Charts — Wannabe 25th anniversary",
+          "url": "https://www.officialcharts.com/chart-news/spice-girls-announce-wannabe-25th-anniversary-ep-featuring-previously-unreleased-song-feed-your-love__33356/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Spice Girls released their debut single Wannabe in July 1996.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "release"
+    },
+    {
+      "key": "1996-music-macarena",
+      "category": "music",
+      "prompt": "Which duo was behind Macarena, whose Bayside Boys Remix became a 1996 dance sensation?",
+      "choices": [
+        "Los Del Río",
+        "Pet Shop Boys",
+        "Everything but the Girl",
+        "Milli Vanilli"
+      ],
+      "correct_index": 0,
+      "explanation": "Los Del Río recorded Macarena. The remix's 1996 success followed the earlier original recording.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Recording Academy — Los Del Río and Macarena",
+          "url": "https://www.grammy.com/news/feature-remember-when-los-del-rio-macarena-take-over-us/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Los Del Río's Macarena became a US hit through the Bayside Boys Remix in 1996; the original recording was earlier.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "chart_year"
+    },
+    {
+      "key": "1996-music-killing-me-softly",
+      "category": "music",
+      "prompt": "Whose version of Killing Me Softly finished as the UK's best-selling single of 1996?",
+      "choices": [
+        "The Fugees",
+        "Boyz II Men",
+        "TLC",
+        "SWV"
+      ],
+      "correct_index": 0,
+      "explanation": "The Fugees led the UK's 1996 year-end singles sales chart with their version of Killing Me Softly.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Official Charts — Best-selling singles of 1996",
+          "url": "https://www.officialcharts.com/chart-news/official-top-40-best-selling-singles-of-1996__33496/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "The Fugees' Killing Me Softly was the UK's best-selling single of 1996.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "UK_year_end_chart"
+    },
+    {
+      "key": "1996-music-falling-into-you",
+      "category": "music",
+      "prompt": "Which singer released the album Falling Into You in 1996?",
+      "choices": [
+        "Mariah Carey",
+        "Whitney Houston",
+        "Shania Twain",
+        "Céline Dion"
+      ],
+      "correct_index": 3,
+      "explanation": "Céline Dion's Falling Into You arrived in March 1996 and includes Because You Loved Me.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Céline Dion — Falling Into You",
+          "url": "https://www.celinedion.com/discography/falling-into-you/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Céline Dion released Falling Into You in March 1996; the album includes Because You Loved Me.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "release"
+    },
+    {
+      "key": "1996-music-grammy-album",
+      "category": "music",
+      "prompt": "At the Grammy ceremony held in 1996, which album won Album of the Year?",
+      "choices": [
+        "Daydream",
+        "Vitalogy",
+        "Relish",
+        "Jagged Little Pill"
+      ],
+      "correct_index": 3,
+      "explanation": "Alanis Morissette's Jagged Little Pill won at the 1996 ceremony. The award year is the question's date; it does not mean the album first appeared that year.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Recording Academy — 38th Annual Grammy Awards, 1996",
+          "url": "https://www.grammy.com/awards/38th-annual-grammy-awards/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "The 1996 ceremony awarded Album of the Year to Alanis Morissette's Jagged Little Pill and Record of the Year to Seal's Kiss From A Rose.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "award_ceremony"
+    },
+    {
+      "key": "1996-music-grammy-record",
+      "category": "music",
+      "prompt": "Who won Record of the Year at the 1996 Grammys for Kiss From A Rose?",
+      "choices": [
+        "Coolio",
+        "Seal",
+        "Joan Osborne",
+        "Boyz II Men"
+      ],
+      "correct_index": 1,
+      "explanation": "Seal won Record of the Year at the 1996 ceremony. This refers to when the award was presented, not the song's original release year.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Recording Academy — 38th Annual Grammy Awards, 1996",
+          "url": "https://www.grammy.com/awards/38th-annual-grammy-awards/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "The 1996 ceremony awarded Album of the Year to Alanis Morissette's Jagged Little Pill and Record of the Year to Seal's Kiss From A Rose.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "award_ceremony"
+    },
+    {
+      "key": "1996-music-unbreak-my-heart",
+      "category": "music",
+      "prompt": "Who sang the 1996 chart hit Un-Break My Heart?",
+      "choices": [
+        "Brandy",
+        "Toni Braxton",
+        "Monica",
+        "Mary J. Blige"
+      ],
+      "correct_index": 1,
+      "explanation": "Toni Braxton is the artist behind Un-Break My Heart; its UK chart run began in November 1996.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Official Charts — Un-Break My Heart",
+          "url": "https://www.officialcharts.com/songs/toni-braxton-un-break-my-heart/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Toni Braxton is the credited artist; this single entered the UK chart in November 1996.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "chart_year"
+    },
+    {
+      "key": "1996-music-no-diggity",
+      "category": "music",
+      "prompt": "Which group teamed with Dr. Dre on the 1996 hit No Diggity?",
+      "choices": [
+        "Blackstreet",
+        "Jodeci",
+        "Dru Hill",
+        "112"
+      ],
+      "correct_index": 0,
+      "explanation": "The single is credited to Blackstreet featuring Dr. Dre and reached the UK chart in October 1996.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Official Charts — No Diggity",
+          "url": "https://www.officialcharts.com/songs/blackstreet-ft-dr-dre-no-diggity/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Blackstreet featuring Dr. Dre is the credited act; the single entered the UK chart in October 1996.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "chart_year"
+    },
+    {
+      "key": "1996-film-independence-day",
+      "category": "film_tv",
+      "prompt": "Which 1996 film pairs Will Smith with an alien invasion and a July 4 fightback?",
+      "choices": [
+        "Mars Attacks!",
+        "Independence Day",
+        "Men in Black",
+        "The Fifth Element"
+      ],
+      "correct_index": 1,
+      "explanation": "Independence Day follows humanity resisting a global alien attack. The studio dates its release to July 1996.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "20th Century Studios — Independence Day",
+          "url": "https://www.20thcenturystudios.com/movies/independence-day",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "The 1996 film stars Will Smith and depicts a worldwide alien attack followed by humanity's July 4 counterattack.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "release"
+    },
+    {
+      "key": "1996-film-space-jam",
+      "category": "film_tv",
+      "prompt": "Who joins Bugs Bunny on the basketball court in the original 1996 Space Jam?",
+      "choices": [
+        "Michael Jordan",
+        "Shaquille O'Neal",
+        "Magic Johnson",
+        "LeBron James"
+      ],
+      "correct_index": 0,
+      "explanation": "Michael Jordan teams with the Looney Tunes characters in the original Space Jam.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "BFI Southbank — Space Jam",
+          "url": "https://whatson.bfi.org.uk/Online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Acontext_id=&BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Apermalink=spacejam2022",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "BFI identifies the film as a 1996 production in which Michael Jordan plays basketball alongside Looney Tunes characters.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "release"
+    },
+    {
+      "key": "1996-film-scream-director",
+      "category": "film_tv",
+      "prompt": "Who directed the original Scream, released in 1996?",
+      "choices": [
+        "John Carpenter",
+        "Wes Craven",
+        "Tim Burton",
+        "Sam Raimi"
+      ],
+      "correct_index": 1,
+      "explanation": "The British Film Institute credits Wes Craven as the director of Scream (1996).",
+      "points": 100,
+      "sources": [
+        {
+          "title": "BFI — Scream (1996)",
+          "url": "https://www.bfi.org.uk/film/1bd1f2a9-138e-5279-87fa-ae4b8a3bdd6b/scream",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "BFI credits Wes Craven as director of the 1996 film.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "release"
+    },
+    {
+      "key": "1996-film-matilda",
+      "category": "film_tv",
+      "prompt": "Which actor plays Matilda in the 1996 film of that name?",
+      "choices": [
+        "Mara Wilson",
+        "Christina Ricci",
+        "Anna Paquin",
+        "Kirsten Dunst"
+      ],
+      "correct_index": 0,
+      "explanation": "Mara Wilson plays Matilda in Sony's 1996 film.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Sony Pictures — Matilda",
+          "url": "https://www.sonypictures.com/movies/matilda",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Sony identifies the film as 1996 and Mara Wilson as the actor playing Matilda.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "release"
+    },
+    {
+      "key": "1996-film-mission-impossible",
+      "category": "film_tv",
+      "prompt": "In the 1996 Mission: Impossible film, what is Tom Cruise's character called?",
+      "choices": [
+        "James Bond",
+        "Jack Ryan",
+        "Ethan Hunt",
+        "Jason Bourne"
+      ],
+      "correct_index": 2,
+      "explanation": "Tom Cruise plays Ethan Hunt in the 1996 Mission: Impossible.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Paramount — Mission: Impossible",
+          "url": "https://www.paramount.com/movies/mission-impossible",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Paramount lists the film's year as 1996 and credits Tom Cruise as Ethan Hunt.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "release"
+    },
+    {
+      "key": "1996-tv-lithgow-emmy",
+      "category": "film_tv",
+      "prompt": "John Lithgow won a 1996 comedy acting Emmy for which show?",
+      "choices": [
+        "Frasier",
+        "3rd Rock from the Sun",
+        "Seinfeld",
+        "Mad About You"
+      ],
+      "correct_index": 1,
+      "explanation": "Lithgow won for playing Dick Solomon in 3rd Rock from the Sun. The question names the award ceremony year.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Television Academy — 1996 Lead Actor in a Comedy Series",
+          "url": "https://www.televisionacademy.com/awards/nominees-winners/1996/outstanding-lead-actor-in-a-comedy-series",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "John Lithgow won the 1996 award for playing Dick Solomon in 3rd Rock From The Sun.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "award_ceremony"
+    },
+    {
+      "key": "1996-film-best-picture",
+      "category": "film_tv",
+      "prompt": "At the Oscar ceremony held in March 1996, which film won Best Picture?",
+      "choices": [
+        "Apollo 13",
+        "Babe",
+        "Sense and Sensibility",
+        "Braveheart"
+      ],
+      "correct_index": 3,
+      "explanation": "Braveheart won at the 1996 Oscars, a ceremony honoring movies released in 1995.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Academy — 68th Academy Awards, 1996",
+          "url": "https://www.oscars.org/oscars/ceremonies/1996",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "The March 25, 1996 ceremony honored films released in 1995; Braveheart won Best Picture.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "award_ceremony_honoring_1995"
+    },
+    {
+      "key": "1996-tv-comedy-emmy",
+      "category": "film_tv",
+      "prompt": "Which show won Outstanding Comedy Series at the 1996 Emmy Awards?",
+      "choices": [
+        "Friends",
+        "Seinfeld",
+        "Frasier",
+        "The Larry Sanders Show"
+      ],
+      "correct_index": 2,
+      "explanation": "Frasier won this category at the 1996 ceremony; the other choices were nominees.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Television Academy — 1996 Outstanding Comedy Series",
+          "url": "https://www.televisionacademy.com/awards/nominees-winners/1996/outstanding-comedy-series",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Frasier won Outstanding Comedy Series at the 1996 Emmy Awards.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "award_ceremony"
+    },
+    {
+      "key": "1996-sports-bulls",
+      "category": "sports",
+      "prompt": "Which NBA team won 72 regular-season games in 1995–96?",
+      "choices": [
+        "Seattle SuperSonics",
+        "Orlando Magic",
+        "Chicago Bulls",
+        "Los Angeles Lakers"
+      ],
+      "correct_index": 2,
+      "explanation": "Chicago finished 72–10.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "NBA — 72-win season",
+          "url": "https://www.nba.com/news/history-top-moments-bulls-win-72-games",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "1995–96 record.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "season_ending_1996"
+    },
+    {
+      "key": "1996-sports-olympic-city",
+      "category": "sports",
+      "prompt": "Which US city hosted the 1996 Summer Olympics?",
+      "choices": [
+        "Los Angeles",
+        "Miami",
+        "New York City",
+        "Atlanta"
+      ],
+      "correct_index": 3,
+      "explanation": "The 1996 Summer Games took place in Atlanta, Georgia.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Muhammad Ali Center — Ali Takes the Torch",
+          "url": "https://alicenter.org/ali-takes-the-torch/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Atlanta hosted the 1996 Summer Olympics; Muhammad Ali lit the opening ceremony cauldron.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "event"
+    },
+    {
+      "key": "1996-sports-olympic-cauldron",
+      "category": "sports",
+      "prompt": "Which boxing legend lit the Olympic cauldron in Atlanta in 1996?",
+      "choices": [
+        "Joe Frazier",
+        "Muhammad Ali",
+        "George Foreman",
+        "Sugar Ray Leonard"
+      ],
+      "correct_index": 1,
+      "explanation": "Muhammad Ali was the surprise final torchbearer who lit the opening ceremony cauldron.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Muhammad Ali Center — Ali Takes the Torch",
+          "url": "https://alicenter.org/ali-takes-the-torch/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Atlanta hosted the 1996 Summer Olympics; Muhammad Ali lit the opening ceremony cauldron.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "event"
+    },
+    {
+      "key": "1996-sports-johnson-double",
+      "category": "sports",
+      "prompt": "Which American sprinter won both the men's 200m and 400m at the 1996 Olympics?",
+      "choices": [
+        "Carl Lewis",
+        "Michael Johnson",
+        "Maurice Greene",
+        "Michael Marsh"
+      ],
+      "correct_index": 1,
+      "explanation": "Michael Johnson completed the men's 200m–400m double in Atlanta. Both races belong to the same 1996 Olympics.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "World Athletics — Michael Johnson's Olympic double",
+          "url": "https://worldathletics.org/news/news/michael-johnson-to-target-own-400m-record",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Michael Johnson won both the men's 200m and 400m at the 1996 Atlanta Olympics.",
+          "verification_method": "indexed_primary_excerpt"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "event"
+    },
+    {
+      "key": "1996-sports-world-series",
+      "category": "sports",
+      "prompt": "Who won the 1996 World Series?",
+      "choices": [
+        "Atlanta Braves",
+        "Baltimore Orioles",
+        "New York Yankees",
+        "St. Louis Cardinals"
+      ],
+      "correct_index": 2,
+      "explanation": "New York beat Atlanta.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "MLB — 1996 postseason",
+          "url": "https://www.mlb.com/postseason/history/1996",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "1996 champion.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "event"
+    },
+    {
+      "key": "1996-sports-super-bowl",
+      "category": "sports",
+      "prompt": "Which team won Super Bowl XXX in January 1996?",
+      "choices": [
+        "Dallas Cowboys",
+        "Pittsburgh Steelers",
+        "Green Bay Packers",
+        "San Francisco 49ers"
+      ],
+      "correct_index": 0,
+      "explanation": "Dallas defeated Pittsburgh on January 28, 1996. This is the game played in 1996, not the Super Bowl following the 1996 regular season.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Pro Football Hall of Fame — 1996",
+          "url": "https://www.profootballhof.com/football-history/football-history/1980-1999/1996",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Dallas defeated Pittsburgh in Super Bowl XXX on January 28, 1996.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "event_for_previous_season"
+    },
+    {
+      "key": "1996-sports-panthers-final",
+      "category": "sports",
+      "prompt": "Which team faced the Florida Panthers in the 1996 Stanley Cup Final?",
+      "choices": [
+        "Detroit Red Wings",
+        "Pittsburgh Penguins",
+        "New York Rangers",
+        "Colorado Avalanche"
+      ],
+      "correct_index": 3,
+      "explanation": "Florida met Colorado in the 1996 final; the Avalanche won the series.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "NHL — Morning Skate, June 4, 2024, page 3",
+          "url": "https://media.nhl.com/site/vasset/public/attachments/2024/06/18119/MorningSkate_060424.pdf",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "The historical 1996 Stanley Cup Final section identifies Colorado as Florida's opponent and series winner.",
+          "verification_method": "opened_pdf"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "season_ending_1996"
+    },
+    {
+      "key": "1996-culture-nintendo",
+      "category": "culture_events",
+      "prompt": "Which Nintendo console launched in the US in 1996 alongside Super Mario 64?",
+      "choices": [
+        "Super Nintendo",
+        "GameCube",
+        "Nintendo 64",
+        "Nintendo Wii"
+      ],
+      "correct_index": 2,
+      "explanation": "Nintendo's history places the US Nintendo 64 launch in 1996, alongside Super Mario 64.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Nintendo — Our History",
+          "url": "https://careers.nintendo.com/our-history/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Nintendo's timeline identifies the US Nintendo 64 and Super Mario 64 launch in 1996.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "US_launch"
+    },
+    {
+      "key": "1996-culture-pokemon",
+      "category": "culture_events",
+      "prompt": "Which two Pokémon versions were first released in Japan in February 1996?",
+      "choices": [
+        "Red and Blue",
+        "Gold and Silver",
+        "Red and Green",
+        "Ruby and Sapphire"
+      ],
+      "correct_index": 2,
+      "explanation": "The original Japanese pair was Red and Green. The question specifies Japan so it is not confused with the later international Red and Blue releases.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "The Pokémon Company — 30th anniversary",
+          "url": "https://www.pokemon.co.jp/30th/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "The Japanese anniversary page dates the original Red and Green releases to February 27, 1996.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "Japan_release"
+    },
+    {
+      "key": "1996-culture-tamagotchi",
+      "category": "culture_events",
+      "prompt": "Which portable virtual pet did Bandai first release in 1996?",
+      "choices": [
+        "Furby",
+        "Giga Pets",
+        "Poo-Chi",
+        "Tamagotchi"
+      ],
+      "correct_index": 3,
+      "explanation": "Tamagotchi was Bandai's original 1996 portable pet game. The question asks about its first release, not its arrival in every country.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Bandai — Tamagotchi mobile release announcement, December 5, 2005",
+          "url": "https://www.bandainamco.co.jp/en/releases/images/3/25977.pdf",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Bandai identifies Tamagotchi as its original 1996 portable LCD game.",
+          "verification_method": "opened_pdf"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "original_release"
+    },
+    {
+      "key": "1996-culture-dolly",
+      "category": "culture_events",
+      "prompt": "Dolly, born in July 1996 after being cloned from an adult cell, was what kind of animal?",
+      "choices": [
+        "A cow",
+        "A pig",
+        "A sheep",
+        "A goat"
+      ],
+      "correct_index": 2,
+      "explanation": "Dolly was a sheep born at the Roslin Institute in 1996. Her birth preceded the public announcement in 1997.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "University of Edinburgh — Cloning of Dolly the Sheep, 1996",
+          "url": "https://ourhistory.is.ed.ac.uk/index.php?title=Cloning_of_Dolly_the_Sheep%2C_1996",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Dolly was a sheep born at the Roslin Institute on July 5, 1996 and cloned from an adult cell; the public announcement followed in 1997.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "birth"
+    },
+    {
+      "key": "1996-culture-pathfinder",
+      "category": "culture_events",
+      "prompt": "Which NASA mission launched in December 1996 carrying the Sojourner rover?",
+      "choices": [
+        "Mars Pathfinder",
+        "Voyager 2",
+        "Cassini",
+        "Mars Global Surveyor"
+      ],
+      "correct_index": 0,
+      "explanation": "Mars Pathfinder launched on December 4, 1996. Its landing and Sojourner's work on Mars followed in 1997.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "NASA Science — Mars Pathfinder",
+          "url": "https://science.nasa.gov/mission/mars-pathfinder/",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Mars Pathfinder launched December 4, 1996 carrying Sojourner; its Mars landing was July 4, 1997.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "launch"
+    },
+    {
+      "key": "1996-culture-deep-blue",
+      "category": "culture_events",
+      "prompt": "Which IBM computer won a chess game against Garry Kasparov in February 1996?",
+      "choices": [
+        "Watson",
+        "Deep Blue",
+        "AlphaGo",
+        "Deep Thought"
+      ],
+      "correct_index": 1,
+      "explanation": "Deep Blue won the first game, but Kasparov won the 1996 match. Deep Blue's match victory came in 1997.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "IBM — Deep Blue",
+          "url": "https://www.ibm.com/history/deep-blue",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "Deep Blue won the first game against Garry Kasparov in February 1996; Kasparov won that match. The computer's match victory came in 1997.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "individual_game"
+    },
+    {
+      "key": "1996-culture-internet-archive",
+      "category": "culture_events",
+      "prompt": "Which digital library was founded in 1996 and later opened the Wayback Machine to the public?",
+      "choices": [
+        "Internet Archive",
+        "Project Gutenberg",
+        "Wikimedia Foundation",
+        "Europeana"
+      ],
+      "correct_index": 0,
+      "explanation": "The Internet Archive began in 1996. Its public Wayback Machine service launched in 2001.",
+      "points": 100,
+      "sources": [
+        {
+          "title": "Internet Archive — October 24, 2001 press release, preserved by Library Technology Guides",
+          "url": "https://librarytechnology.org/pr/9384/internet-archive-launches-wayback-machine-free-service-enables-users-to-access-archived-versions-of-web-sites-dating-from-1996",
+          "accessed_at": "2026-10-23T03:52:09Z",
+          "claim_supported": "The issuing organization states it was founded in 1996; the Wayback Machine's public launch was in 2001.",
+          "verification_method": "opened_page"
+        }
+      ],
+      "event_year": 1996,
+      "event_scope": "founding"
+    }
+  ]
+}

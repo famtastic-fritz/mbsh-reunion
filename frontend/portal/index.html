@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="css/mobile-hardening.css?v=1">
   <link rel="stylesheet" href="css/portal-staff.css?v=1">
   <link rel="stylesheet" href="../css/reunion-navigator.css?v=1">
+  <link rel="stylesheet" href="/portal/css/experience.css?v=20261023">
 </head>
 <body data-view="home">
   <a class="skip-link" href="#portal-main">Skip to dashboard</a>
@@ -40,10 +41,12 @@
     <nav aria-label="My reunion">
       <p class="drawer-section-label">My reunion</p>
       <a href="#home" data-route="home" aria-current="page"><span>Overview</span><small>Your next steps</small></a>
+      <a href="#experience" data-route="experience"><span>Reunion experience</span><small>Play, share &amp; reconnect</small></a>
+      <a href="#guess-who" data-route="guess-who"><span>Guess Who?</span><small>Your clues &amp; classmates’ guesses</small></a>
       <a href="#ticket" data-route="ticket"><span>My ticket</span><small>Wallet &amp; check-in</small></a>
-      <a href="#memories" data-route="memories"><span>My memories</span><small>Upload photos &amp; stories</small></a>
+      <a href="#memories" data-route="memories"><span>Photos &amp; Memories</span><small>Upload photos &amp; stories</small></a>
       <a href="#suggestions" data-route="suggestions"><span>Suggestions</span><small>Playlist and event ideas</small></a>
-      <a href="#trivia" data-route="trivia"><span>Class trivia</span><small>Play, score &amp; remember</small></a>
+      <a href="#trivia" data-route="trivia"><span>1996 Trivia</span><small>Play, score &amp; remember</small></a>
       <a href="#event" data-route="event"><span>Event guide</span><small>Schedule, venue, dress</small></a>
       <a href="#notifications" data-route="notifications"><span>Notifications</span><small>Choose what reaches you</small></a>
       <a href="#inbox" data-route="inbox"><span>Messages</span><small>Questions and committee replies</small></a>
@@ -75,7 +78,8 @@
       <div class="workspace-loading" data-workspace-loading role="status"><span aria-hidden="true"></span>Loading your private reunion workspace…</div>
       <section class="view is-active" data-view-panel="home" aria-labelledby="home-heading">
         <h2 class="sr-only" id="home-heading">Dashboard</h2>
-        <div class="next-action">
+        <div class="experience-access-notice" data-experience-home role="status">Checking your reunion experience…</div>
+        <div class="next-action" data-original-next-action>
           <span class="status-orb" aria-hidden="true"></span>
           <div><p class="eyebrow">Your next scene</p><h3>Get ready for the mixer</h3><p>Buy your $30 mixer ticket, then keep your paid pass ready for check-in.</p></div>
           <a class="button button--primary" href="/tickets.html#ticket-order">Get mixer tickets</a>
@@ -86,6 +90,39 @@
           <article class="scene-card"><span class="scene-icon" aria-hidden="true">♪</span><h3>Shape the soundtrack</h3><p>Suggest the song that takes you straight back.</p><a href="#suggestions" data-route="suggestions">Suggest a song</a></article>
         </div>
         <article class="event-strip"><div><p class="eyebrow">Saturday · November 7, 2026</p><h3>Twisted Tonic</h3><p>Reunion Mixer · 7–10 PM · $30 per person</p></div><a class="button" href="#event" data-route="event">View event guide</a></article>
+      </section>
+
+      <section class="view" data-view-panel="experience" aria-labelledby="experience-heading">
+        <div class="section-heading"><div><p class="eyebrow">Your ticket unlocks the night</p><h2 id="experience-heading">Play. Share. Reconnect.</h2><p>Bring your stories before the mixer. Follow the live rounds, photos and committee announcements here on November 7.</p></div><button class="button" type="button" data-refresh-experience>Refresh activity</button></div>
+        <div data-experience-status role="status">Checking ticket-holder access…</div>
+        <div class="experience-now" data-experience-now><p>Loading the current activity…</p></div>
+        <div class="experience-tiles">
+          <a class="scene-card" href="#trivia" data-route="trivia"><span aria-hidden="true">96</span><h3>1996 Trivia</h3><p>Play an open round. Each answer is final; the committee publishes the results.</p></a>
+          <a class="scene-card" href="#guess-who" data-route="guess-who"><span aria-hidden="true">?</span><h3>Guess Who?</h3><p>Share clues about yourself and guess your classmates. Answers stay hidden until the reveal.</p></a>
+          <a class="scene-card" href="#memories" data-route="memories"><span aria-hidden="true">▧</span><h3>Photos &amp; Memories</h3><p>Upload a throwback or a photo from the mixer. Check its review status.</p></a>
+          <a class="scene-card" href="#suggestions" data-route="suggestions"><span aria-hidden="true">♪</span><h3>Request a Song</h3><p>Save a request for the committee and DJ. A request is not a guaranteed play.</p></a>
+          <a class="scene-card" href="#suggestions" data-route="suggestions"><span aria-hidden="true">✦</span><h3>Suggest a Game</h3><p>Submit an idea and follow the committee’s decision.</p></a>
+        </div>
+        <section class="experience-results" aria-labelledby="experience-results-heading"><h3 id="experience-results-heading">Scores &amp; announced winners</h3><div data-experience-results><p>Results appear after the committee closes and publishes a round.</p></div></section>
+        <section class="experience-gallery" aria-labelledby="experience-gallery-heading"><h3 id="experience-gallery-heading">Photos from our class</h3><p>Only approved photos with permission appear here. Originals stay private.</p><div data-experience-gallery></div></section>
+      </section>
+      <section class="view" data-view-panel="guess-who" aria-labelledby="guess-who-heading">
+        <div class="section-heading"><div><p class="eyebrow">The stories behind the faces</p><h2 id="guess-who-heading">Guess Who?</h2><p>Write three or four clues about yourself. The committee reviews them and selects entries for a round. Keep your name and other people’s private details out of the clues.</p></div></div>
+        <div class="experience-access-notice" data-experience-gate role="status">Checking ticket-holder access…</div>
+        <div class="memory-layout">
+          <form class="portal-form" data-guess-submission><h3>My clues</h3><p class="experience-form-help">Your answer is your profile’s full name. Contact the committee if it needs correcting before play.</p>
+            <fieldset data-participation-fields disabled><legend class="sr-only">Three or four clues about yourself</legend>
+              <label>Clue 1<textarea name="clue_1" rows="2" minlength="5" maxlength="240" required></textarea></label>
+              <label>Clue 2<textarea name="clue_2" rows="2" minlength="5" maxlength="240" required></textarea></label>
+              <label>Clue 3<textarea name="clue_3" rows="2" minlength="5" maxlength="240" required></textarea></label>
+              <label>Clue 4 · optional<textarea name="clue_4" rows="2" maxlength="240"></textarea></label>
+              <label class="check"><input type="checkbox" name="consent_to_publish" required><span>These clues are about me. I agree to their use in Guess Who? and to my name being revealed when the committee publishes the answers.</span></label>
+              <button class="button button--primary" type="submit">Save clues for review</button>
+            </fieldset><div data-guess-submission-status role="status"></div>
+          </form>
+          <aside class="process-card"><img src="/assets/mascot/03-thinking.png" alt="Hi-Tide Harry considers the clues" loading="lazy"><h3>A fair game, together</h3><ol><li>Edit your clues before they enter a round. You can withdraw later too; this removes the affected round from play and results.</li><li>One guess per classmate in each round. You cannot guess your own entry.</li><li>Use the classmate’s first and last name (current or maiden name). Guesses stay final; no hints are revealed during play.</li><li>The committee closes the round, checks the scores and announces all tied winners.</li></ol><p>No prizes are promised.</p></aside>
+        </div>
+        <section class="experience-guess-play" aria-labelledby="guess-play-heading"><h3 id="guess-play-heading">The current round</h3><div data-guess-round><p>The committee will open a round when the clues are ready.</p></div></section>
       </section>
 
       <section class="view" data-view-panel="ticket" aria-labelledby="ticket-heading">
@@ -106,26 +143,26 @@
 
       <section class="view" data-view-panel="memories" aria-labelledby="memories-heading">
         <div class="section-heading"><div><p class="eyebrow">Your chapter belongs here</p><h2 id="memories-heading">Upload a memory</h2></div><span class="privacy-chip">Private until approved</span></div>
-        <div class="memory-layout">
-          <form class="upload-card" data-demo-form="upload"><label>Memory title<input type="text" name="title" maxlength="200" required placeholder="Prom night, spring 1995"></label><label class="drop-zone"><input type="file" name="file" accept="image/jpeg,image/png,image/webp,video/mp4" required><span class="drop-zone__icon" aria-hidden="true">＋</span><strong>Choose one photo or short video</strong><small>Private upload · server limits are enforced</small></label><div class="field-grid"><label>Year<input type="number" name="event_year" min="1900" max="2100" value="1996"></label><label class="check"><input type="checkbox" name="consent_to_publish" value="1"><span>Committee may publish an approved derivative.</span></label></div><label>Story or caption<textarea name="caption" maxlength="1000" rows="5" placeholder="Who is here? What year was it? What should classmates remember?"></textarea></label><button class="button button--primary" type="submit">Send for committee review</button></form>
-          <aside class="process-card"><img src="../assets/mascot/18-presenting.png" alt="Hi-Tide Harry presents the memory process"><h3>What happens next?</h3><ol><li>We scan and store it privately.</li><li>The committee checks consent and context.</li><li>Approved memories may join the gallery or reunion film.</li></ol><p>Your upload is never public automatically.</p></aside>
+        <div class="experience-access-notice" data-experience-gate role="status">Checking ticket-holder access…</div><div class="memory-layout">
+          <form class="upload-card" data-demo-form="upload"><fieldset data-participation-fields disabled><legend class="sr-only">Photos and memories</legend><label>Memory title<input type="text" name="title" maxlength="200" required placeholder="Prom night, spring 1995"></label><label class="drop-zone"><input type="file" name="file" accept="image/jpeg,image/png,image/webp,video/mp4" required><span class="drop-zone__icon" aria-hidden="true">＋</span><strong>Choose one photo or short video</strong><small>JPEG, PNG or WebP preferred · up to 25 MB. Video stays private until a safe approved version is available.</small></label><div class="field-grid"><label>Year<input type="number" name="event_year" min="1900" max="2100" value="1996"></label><label class="check"><input type="checkbox" name="consent_to_publish" value="1"><span>Committee may publish an approved derivative.</span></label></div><label>Story or caption<textarea name="caption" maxlength="1000" rows="5" placeholder="Share the story and year. Include other people only with their permission."></textarea></label><button class="button button--primary" type="submit">Send for committee review</button></fieldset></form>
+          <aside class="process-card"><img src="../assets/mascot/18-presenting.png" alt="Hi-Tide Harry presents the memory process"><h3>What happens next?</h3><ol><li>We validate the file and store it privately.</li><li>The committee checks consent and context.</li><li>Approved memories may join the gallery or reunion film.</li></ol><p>Your upload is never public automatically.</p></aside>
         </div>
         <div class="dashboard-card"><h3>Your submissions</h3><div data-media-list><p>Loading your private submissions…</p></div></div>
       </section>
 
       <section class="view" data-view-panel="suggestions" aria-labelledby="suggestions-heading">
         <div class="section-heading"><div><p class="eyebrow">Help direct the night</p><h2 id="suggestions-heading">Suggestions</h2></div></div>
-        <div class="dashboard-grid dashboard-grid--forms">
-          <form class="portal-form compact" data-demo-form="song"><span class="scene-icon" aria-hidden="true">♪</span><h3>Request a song</h3><label>Song and artist<input type="text" name="subject" maxlength="200" required placeholder="That one song from ’96"></label><label>Why this one?<textarea name="message" maxlength="2000" required rows="3" placeholder="Tell us the memory behind it."></textarea></label><button class="button button--primary" type="submit">Send to the soundtrack</button></form>
-          <form class="portal-form compact" data-demo-form="idea"><span class="scene-icon" aria-hidden="true">✦</span><h3>Pitch an event idea</h3><label>Short title<input type="text" name="subject" maxlength="200" required placeholder="A tribute, activity, or accessibility need"></label><label>Your idea<textarea name="message" maxlength="2000" required rows="5" placeholder="Tell the committee what would make the night better…"></textarea></label><button class="button button--primary" type="submit">Send to the committee</button></form>
+        <div class="experience-access-notice" data-experience-gate role="status">Checking ticket-holder access…</div><div class="dashboard-grid dashboard-grid--forms">
+          <form class="portal-form compact" data-demo-form="song"><fieldset data-participation-fields disabled><legend class="sr-only">Song request</legend><span class="scene-icon" aria-hidden="true">♪</span><h3>Request a song</h3><p>Your request joins the committee/DJ queue. Play is not guaranteed.</p><label>Song and artist<input type="text" name="subject" maxlength="200" required placeholder="That one song from ’96"></label><label>Why this one?<textarea name="message" maxlength="2000" required rows="3" placeholder="Tell us the memory behind it."></textarea></label><button class="button button--primary" type="submit">Save song request</button></fieldset></form>
+          <form class="portal-form compact" data-demo-form="idea"><fieldset data-participation-fields disabled><legend class="sr-only">Game idea</legend><span class="scene-icon" aria-hidden="true">✦</span><h3>Suggest a game</h3><p>Ideas go to the committee for review. Submission does not guarantee inclusion.</p><label>Short title<input type="text" name="subject" maxlength="200" required placeholder="A game we could play together"></label><label>Your idea<textarea name="message" maxlength="2000" required rows="5" placeholder="Tell the committee what would make the night better…"></textarea></label><button class="button button--primary" type="submit">Save game idea</button></fieldset></form>
         </div>
         <div class="dashboard-card"><h3>Your submitted ideas</h3><div data-suggestion-list><p>Loading your suggestions…</p></div></div>
       </section>
 
-      <section class="view" data-view-panel="trivia" aria-labelledby="trivia-heading"><div class="section-heading"><div><p class="eyebrow">How well do you remember?</p><h2 id="trivia-heading">Class of ’96 Trivia</h2><p>One verified attendee, one attempt, and no answers exposed before you play.</p></div></div><div class="dashboard-card" data-trivia-game><p class="empty-state">Loading the game…</p></div></section>
+      <section class="view" data-view-panel="trivia" aria-labelledby="trivia-heading"><div class="section-heading"><div><p class="eyebrow">How well do you remember?</p><h2 id="trivia-heading">Class of ’96 Trivia</h2><p>One ticket holder, one attempt per round. The committee opens play and publishes the results.</p></div></div><div class="experience-access-notice" data-experience-gate role="status">Checking ticket-holder access…</div><div class="dashboard-card" data-trivia-game><p class="empty-state">Loading the game…</p></div></section>
 
       <section class="view" data-view-panel="event" aria-labelledby="event-heading">
-        <div class="section-heading"><div><p class="eyebrow">Everything for November 7</p><h2 id="event-heading">Event guide</h2></div><a class="button" href="https://www.google.com/maps/dir/?api=1&amp;destination=Miami+Shores+Country+Club%2C+10000+Biscayne+Blvd%2C+Miami+Shores%2C+FL+33138" target="_blank" rel="noopener">Get directions</a></div>
+        <div class="section-heading"><div><p class="eyebrow">Everything for November 7</p><h2 id="event-heading">Event guide</h2></div><a class="button" href="https://www.google.com/maps/dir/?api=1&amp;destination=Twisted+Tonic%2C+723+Lincoln+Ln+N%2C+Miami+Beach%2C+FL+33139" target="_blank" rel="noopener">Get directions</a></div>
         <ol class="timeline"><li><time>7:00 PM</time><div><h3>Reunion mixer begins</h3><p>Twisted Tonic, inside The Lincoln Eatery, 723 Lincoln Ln N, Miami Beach. Bring your paid admission ticket.</p></div></li><li><time>7–10 PM</time><div><h3>Back together in Miami Beach</h3><p>Catch up with classmates. Food is on your own.</p></div></li><li><time>10:00 PM</time><div><h3>Mixer ends</h3><p>Thank you for celebrating thirty years of Class of ’96 memories.</p></div></li></ol>
         <div class="info-grid"><article><h3>Where</h3><p>Twisted Tonic<br>723 Lincoln Ln N<br>Miami Beach, FL 33139</p></article><article><h3>Food</h3><p>Food on your own. No catered meal or meal selection is included.</p></article><article><h3>Need help?</h3><p>Contact the committee and your message will be attached to your attendee record.</p><a href="mailto:committee@mbsh96reunion.com">Email the committee</a></article></div>
       </section>
@@ -193,12 +230,13 @@
   </aside>
   <div class="toast" role="status" aria-live="polite" hidden></div>
   <script src="js/portal-config.js" defer></script>
-  <script src="js/portal-api.js" defer></script>
+  <script src="js/portal-api.js?v=20261023" defer></script>
   <script src="../js/reunion-navigator.js?v=1&amp;event=mixersimple20261016" defer></script>
   <script src="js/vendor/qrcode-2.0.4.js" defer></script>
   <script src="js/wallet.js?v=20261022" defer></script>
-  <script src="js/portal.js?event=wallet20261022" defer></script>
-  <script src="js/trivia.js" defer></script>
+  <script src="js/portal.js?event=experience20261023" defer></script>
+  <script src="js/experience.js?v=20261023" defer></script>
+  <script src="js/trivia.js?v=20261023" defer></script>
   <script src="js/portal-staff.js" defer></script>
 <!-- famtastic-creator-credit:start -->
 <style>@media(max-width:600px){body:has(#chatbot) [data-famtastic-creator-credit="v1"]{padding-bottom:160px!important}}</style>

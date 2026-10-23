@@ -13,9 +13,7 @@ try {
     fam_admin_audit($pdo,'portal_account_'.$status,'attendee_accounts',null,$public); fam_json_response(200,['ok'=>true]);
   }
   if($action==='review_media'){
-    $public=fam_required($data,'submission_id',36); $status=fam_enum($data,'status',['approved','rejected'],true); $note=fam_optional($data,'note',1000);
-    $q=$pdo->prepare('UPDATE attendee_media_submissions SET status=?,moderation_note=?,reviewed_at=NOW() WHERE public_id=? AND status="pending"'); $q->execute([$status,$note,$public]);
-    fam_admin_audit($pdo,'portal_media_'.$status,'attendee_media_submissions',null,$public); fam_json_response(200,['ok'=>true]);
+    fam_json_response(409,['error'=>'use_committee_media_review','message'=>'Open Reunion Activities to review the safe photo preview and publication permission.','action_url'=>'/portal/admin/#activities']);
   }
   if($action==='set_suggestion_status'){
     $public=fam_required($data,'suggestion_id',36); $status=fam_enum($data,'status',['reviewing','accepted','declined','closed'],true); $note=fam_optional($data,'note',1000);

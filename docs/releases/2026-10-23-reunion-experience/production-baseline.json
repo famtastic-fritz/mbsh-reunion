@@ -1,0 +1,58 @@
+{
+    "utc": "2026-10-23T03:52:51+00:00",
+    "php": "8.3.35",
+    "gd": true,
+    "fileinfo": true,
+    "files": {
+        "index.html": "649b0024bd285827318219012189efe72c4a131b6f27c40ad9b35a7df357ae70",
+        "portal/index.html": "9c99c44b2bfec90b2cc11c0f23b946d2eafbfab705740398feaa140216b0dc91",
+        "admin/index.html": null,
+        "portal/trivia.php": "f6819f51e5fd422d0a0d65111667a03bf08bf1018b0345ea582ce8b7c9572069",
+        "portal/media.php": "a33308978b9be3024daee1e99c9f9f262965415355af93ebcb73e3ef7d0820a0",
+        "portal/suggestions.php": "755c12b9394463068819aa7a56ec62a175600fae00a6510e01125f910101f7ff",
+        "lib/commerce-wallet.php": "7db8c2a833c93e1fbe774aba7e65b60e5b99329505b6c640785686785f8eca3d",
+        "lib/portal-auth.php": "269d933b3b9a34100b30f747d3144990846a34f95148f59d5b201934b1c9272f",
+        "portal/preferences.php": "34f9a8f1c64aaab10fa51a3d9cba14cae799883e4f3e31ef6e4d39f14858d983",
+        "lib/portal-preferences.php": "7603b3fd613bf134986a503b0e8a582c9de9dd2e02eb93b113a12d376a696198",
+        "lib/portal-email-templates.php": "a11b315815a15a2890803a557cd2eea75dd821169a89c9a1e8ece40cbb04af53",
+        "lib/creator-credit.php": "e8e48ec39f513c24bdd80c46ee3d4ebc7a3740ab0994d350736f29e8c598782f"
+    },
+    "manifest.json": {
+        "keys": [
+            "schema",
+            "id",
+            "activation",
+            "source_revision",
+            "timezone",
+            "waves",
+            "audience_authorization",
+            "authority_note",
+            "owner_content_acceptance",
+            "content_sha256",
+            "layout_hashes",
+            "recipients",
+            "initial_inventory_count",
+            "additional_test_exclusions",
+            "prepared_at",
+            "activated_at"
+        ],
+        "activated_at": "2026-10-23T03:34:22+00:00"
+    },
+    "state.private.json": {
+        "keys": [
+            "schema",
+            "campaign_id",
+            "items",
+            "heartbeat_at",
+            "last_run_summary"
+        ]
+    },
+    "campaign_pins": {
+        "runtime/campaigns/unlock-the-night-20261023.php": "77bbc9bc32791b9b91918c592fba07af43d48d700754b40165bea790b74d3b96",
+        "runtime/campaigns/run-unlock-the-night.php": "d11164b79af7dc70a12b1c5d4e4c3db1e3da76147fcd0aa75d8a0e579a61bfde",
+        "runtime/lib/campaign-worker.php": "624e5c85056d657eb2cc7838eaaa1fc999fc5fde8584ec4187f35cb9d345cec5",
+        "runtime/lib/campaign-audience.php": "2d2bb44e3af43db2d44f03e673431806be0cd794952377b38b5512f7f1369739",
+        "manifest.json": "22a59885c5efa46b82e34648edf6bba804281a192f971b2d6ca1a31442776e4a"
+    },
+    "base_deployed_commit": "9d93db84796c6069833d9240f05330dadd1ca714"
+}

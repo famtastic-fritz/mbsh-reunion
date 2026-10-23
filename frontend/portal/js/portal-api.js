@@ -20,7 +20,12 @@
   }
   function friendlyError(code) {
     const errors = {
-      authentication_required: 'Please sign in to continue.', invalid_credentials: 'The email or password was not accepted.',
+      no_published_questions: 'Publish at least one reviewed question before opening this round.', another_game_open: 'Close the current trivia round before opening another.', another_round_open: 'Close the current Guess Who? round before opening another.',
+      invalid_round_transition: 'The round has changed. Refresh the queues before trying again.', invalid_game_transition: 'The round has changed. Refresh the rounds before trying again.', round_not_open: 'This round is closed. Check the reunion experience for the next activity.', game_not_draft: 'Questions can only be added to a draft round.',
+      answer_already_recorded: 'Your answer was already saved. Refresh your round to continue.', attempt_not_active: 'Your attempt is no longer open. Refresh to see its current status.', own_card: 'You cannot guess your own entry.',
+      submission_not_reviewable: 'This entry is no longer available for review. Refresh the queues.', need_two_approved_clue_sets: 'A round needs at least two approved clue sets with permission.',
+      round_busy: 'Another committee update is being saved. Try again shortly.', game_busy: 'Another committee update is being saved. Try again shortly.',
+      ticket_holder_required: 'A verified account with a valid paid mixer ticket is needed to participate. Your account and ticket support remain available.', experience_unavailable: 'Ticket access could not be checked. Please try again shortly.', authentication_required: 'Please sign in to continue.', invalid_credentials: 'The email or password was not accepted.',
       too_many_attempts: 'Too many attempts. Please wait 15 minutes and try again.', csrf_invalid: 'Your session changed. Refresh and try again.',
       invalid_or_expired_token: 'This secure link is invalid or has expired.', weak_password: 'Use at least 12 characters with a letter and number.',
       validation_error: 'Please check the form and try again.', upload_error: 'The file could not be accepted.', not_found: 'That record was not found.'
@@ -35,11 +40,20 @@
       if (!csrfToken) throw new PortalApiError('Your secure session is unavailable. Sign in again.', 401, 'authentication_required');
       headers.set('X-CSRF-Token', csrfToken);
     }
-    return decode(await fetch(endpoint(path), { method: options.method || 'GET', credentials: 'same-origin', headers, body: options.body, signal: options.signal }));
+    let response;
+    try { response = await fetch(endpoint(path), { method: options.method || 'GET', credentials: 'same-origin', headers, body: options.body, signal: options.signal }); }
+    catch (error) {
+      if (error?.name === 'AbortError') throw new PortalApiError('Request canceled. Your form is still here.', 0, 'request_canceled');
+      throw new PortalApiError('Connection lost. Your form is still here. Try again.', 0, 'network_error');
+    }
+    return decode(response);
   }
   async function session() { const data = await request('session.php'); csrfToken = data.csrf_token || ''; return data; }
 
   const apiAdapter = {
+    experience: () => request('experience.php'),
+    guessWho: () => request('guess-who.php'), guessWhoAction: data => request('guess-who.php', {method:'POST',json:data,csrf:true}),
+    staffExperience: () => request('staff/experience.php'), staffExperienceAction: data => request('staff/experience.php', {method:'POST',json:data,csrf:true}),
     mode: 'api', session,
     register: data => request('register.php', {method:'POST', json:data}),
     login: data => request('login.php', {method:'POST', json:data}),

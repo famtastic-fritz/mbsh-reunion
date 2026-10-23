@@ -12,10 +12,8 @@ try {
     $public=fam_required($data,'submission_id',36);
     $status=fam_enum($data,'status',['approved','rejected'],true);
     $note=fam_optional($data,'note',1000);
-    $q=$pdo->prepare("UPDATE attendee_media_submissions SET status=?,moderation_note=?,reviewed_at=NOW() WHERE public_id=? AND status='pending'");
-    $q->execute([$status,$note,$public]);
-    if($q->rowCount()!==1) fam_json_response(409,['error'=>'submission_not_pending']);
-    fam_portal_staff_audit($pdo,$staff,'media_'.$status,'attendee_media_submissions',$public,['note'=>$note]);
+    require_once dirname(__DIR__,2).'/lib/reunion-media.php'; fam_experience_errors();
+    fam_review_experience_media($pdo,$config,$staff,$public,$status,$note);
     fam_json_response(200,['ok'=>true]);
   }
   if($action==='set_suggestion_status'){

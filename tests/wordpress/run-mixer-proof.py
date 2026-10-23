@@ -45,6 +45,13 @@ try:
  run('docker','exec',wp,'sh','-c','cp -a /site/portal /var/www/html/portal && cp -a /portal-backend/portal/. /var/www/html/portal/ && ln -s /portal-backend/lib /var/www/html/lib && ln -s /site/assets /var/www/html/assets && apachectl graceful')
  print(run('docker','exec',wp,'php','-d','memory_limit=512M','/proof/wallet-proof.php','fixtures'))
  print(run(sys.executable,str(R/'tests/wordpress/wallet-http-proof.py')))
+ if os.environ.get('MBSH_EXPERIENCE_PROOF')=='1':
+  subprocess.run(['docker','exec','-i',db,'mariadb','-umixer_wp','-pisolated_mixer_test','mixer_wp'],input=(R/'backend/migrations/20261023_reunion_experience.sql').read_text(),text=True,check=True,capture_output=True)
+  run('docker','exec',wp,'mkdir','-p','/experience-data/trivia')
+  run('docker','cp',str(R/'data/trivia/1996-starter.json'),wp+':/experience-data/trivia/1996-starter.json')
+  run('docker','exec',wp,'sh','-c','cp /site/index.html /var/www/html/index.html && cp /site/.htaccess /var/www/html/.htaccess && ln -s /site/css /var/www/html/css && ln -s /site/js /var/www/html/js && ln -s /site/config /var/www/html/config && ln -s /site/manual /var/www/html/manual && a2enmod rewrite headers >/dev/null && apachectl graceful')
+  print(run('docker','exec',wp,'php','/proof/experience-proof.php','fixtures'))
+  print(run(sys.executable,str(R/'tests/wordpress/experience-http-proof.py')))
  if os.environ.get('MBSH_KEEP_WALLET_PROOF')=='1':
   print('Retained isolated wallet proof at http://127.0.0.1:8977/portal/ for browser validation',flush=True);created=[];created_network=False
 finally:
