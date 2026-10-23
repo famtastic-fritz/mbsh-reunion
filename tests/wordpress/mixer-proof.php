@@ -29,11 +29,35 @@ global $wpdb;$attempt=(int)$wpdb->get_var("SELECT id FROM {$wpdb->prefix}famtast
 proof((float)$order->get_total()===60.0,'Two admissions must total $60');
 Famtastic_Reunion_Mixer_Offer::guard_new_order($order);
 Famtastic_Reunion_Commerce::order_created($order->get_id(),[],$order);
+$before=count($GLOBALS['mbsh_proof_mail_http']);
+Famtastic_Reunion_Commerce::send_paid_order_notice($order->get_id());
+proof(count($GLOBALS['mbsh_proof_mail_http'])===$before,'Unpaid order attempted confirmation mail');
 $order->payment_complete('isolated-fixture-no-provider');$order=wc_get_order($order->get_id());
 proof($order->is_paid(),'Simulated paid order status');
 $find=static fn()=>get_posts(['post_type'=>'reunion_ticket','post_status'=>'publish','meta_key'=>'_famtastic_order_id','meta_value'=>$order->get_id(),'posts_per_page'=>-1,'fields'=>'ids']);
 $tickets=$find();proof(count($tickets)===2,'Exactly two paid-quantity entitlements');
 Famtastic_Reunion_Tickets::issue_for_order($order->get_id());proof(count($find())===2,'Duplicate paid event issued extra tickets');
+proof((bool)$order->get_meta('_famtastic_paid_notice_queued'),'Paid order did not queue its notice');
+$GLOBALS['mbsh_proof_mail_fail']=true;
+Famtastic_Reunion_Commerce::send_paid_order_notice($order->get_id());
+$order=wc_get_order($order->get_id());
+proof(!$order->get_meta('_famtastic_paid_notice_sent'),'Simulated provider failure marked notice sent');
+proof((bool)$order->get_meta('_famtastic_paid_notice_last_error'),'Provider failure was not recorded');
+$failedMail=end($GLOBALS['mbsh_proof_mail_http']);
+$GLOBALS['mbsh_proof_mail_fail']=false;
+Famtastic_Reunion_Commerce::send_paid_order_notice($order->get_id());
+$order=wc_get_order($order->get_id());$sentMail=end($GLOBALS['mbsh_proof_mail_http']);
+proof((bool)$order->get_meta('_famtastic_paid_notice_sent'),'Successful mock receipt was not recorded');
+proof(!$order->get_meta('_famtastic_paid_notice_last_error'),'Successful retry retained failure state');
+proof($failedMail['idempotency_key']===$sentMail['idempotency_key'],'Receipt retry changed provider idempotency key');
+proof($sentMail['payload']['to']===['fixture@example.test'],'Receipt recipient differs from purchaser');
+foreach(['2 admissions','MBSH-ABC123','Twisted Tonic','November 7, 2026','Food on your own','data-famtastic-email-credit="v1"'] as $expected){
+    proof(str_contains($sentMail['payload']['html'],$expected),'Receipt missing expected current-event content');
+}
+$sentCount=count($GLOBALS['mbsh_proof_mail_http']);
+Famtastic_Reunion_Commerce::send_paid_order_notice($order->get_id());
+proof(count($GLOBALS['mbsh_proof_mail_http'])===$sentCount,'Receipt replay caused another provider call');
+echo "PASS isolated receipt: unpaid-order suppression; paid notice queued; synthetic recipient/current-event content; mocked provider failure retained error; retry preserves idempotency key; success and duplicate suppression. No outbound mail.\n";
 $first_item=current($order->get_items());$refund=wc_create_refund(['order_id'=>$order->get_id(),'amount'=>30,'refund_payment'=>false,'line_items'=>[$first_item->get_id()=>['qty'=>1,'refund_total'=>30,'refund_tax'=>[]]]]);proof(!is_wp_error($refund),'Local partial refund');
 $states=array_map(static fn($id)=>get_post_meta($id,'_famtastic_ticket_status',true),$tickets);
 proof(count(array_filter($states,static fn($s)=>$s==='revoked'))===1,'Partial refund must revoke one ticket');

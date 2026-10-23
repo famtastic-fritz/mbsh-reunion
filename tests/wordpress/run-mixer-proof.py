@@ -13,7 +13,7 @@ if not (vendor/'woocommerce.php').is_file():
    if not target.is_relative_to(cache.resolve()):raise RuntimeError('Invalid vendor archive path')
   bundle.extractall(cache)
 assert 'Version: 11.0.1' in (vendor/'woocommerce.php').read_text()[:2000], 'Pinned WooCommerce 11.0.1 required'
-(cache/'mail-sink.php').write_text("<?php\nadd_filter('pre_wp_mail',static fn()=>true,-1000);\nadd_filter('pre_http_request',static fn()=>new WP_Error('proof_network_disabled','External providers disabled in isolated proof.'),-1000);\n")
+(cache/'mail-sink.php').write_bytes((R/'tests/wordpress/mail-sink.php').read_bytes())
 network='mbsh-mixer-proof-20261016';db='mbsh-mixer-wc-db-20261016';wp='mbsh-mixer-wc-app-20261016'
 def run(*args):
  result=subprocess.run(args,text=True,capture_output=True)
@@ -30,7 +30,7 @@ try:
   try:run('docker','exec',db,'mariadb','-umixer_wp','-pisolated_mixer_test','mixer_wp','-e','SELECT 1');break
   except RuntimeError:time.sleep(.5)
  else:raise RuntimeError('Proof DB did not become ready')
- run('docker','run','-d','--name',wp,'--network',network,'-e','WORDPRESS_DB_HOST='+db,'-e','WORDPRESS_DB_NAME=mixer_wp','-e','WORDPRESS_DB_USER=mixer_wp','-e','WORDPRESS_DB_PASSWORD=isolated_mixer_test','-e',"WORDPRESS_CONFIG_EXTRA=define('WP_ENVIRONMENT_TYPE','local');define('DISABLE_WP_CRON',true);define('FAMTASTIC_REUNION_CHECKOUT_SECRET',str_repeat('t',64));",'-v',str(R/'wordpress/wp-content/plugins/famtastic-reunion-platform')+':/var/www/html/wp-content/plugins/famtastic-reunion-platform:ro','-v',str(vendor)+':/var/www/html/wp-content/plugins/woocommerce:ro','-v',str(cache/'mail-sink.php')+':/var/www/html/wp-content/mu-plugins/proof-mail-sink.php:ro','-v',str(R/'tests/wordpress')+':/proof:ro','wordpress:7.0.4-php8.3-apache');created.append(wp)
+ run('docker','run','-d','--name',wp,'--network',network,'-e','WORDPRESS_DB_HOST='+db,'-e','WORDPRESS_DB_NAME=mixer_wp','-e','WORDPRESS_DB_USER=mixer_wp','-e','WORDPRESS_DB_PASSWORD=isolated_mixer_test','-e',"WORDPRESS_CONFIG_EXTRA=define('WP_ENVIRONMENT_TYPE','local');define('DISABLE_WP_CRON',true);define('FAMTASTIC_REUNION_CHECKOUT_SECRET',str_repeat('t',64));define('FAMTASTIC_RESEND_API_KEY','isolated-proof-no-provider');define('FAMTASTIC_RESEND_FROM','proof@example.test');",'-v',str(R/'wordpress/wp-content/plugins/famtastic-reunion-platform')+':/var/www/html/wp-content/plugins/famtastic-reunion-platform:ro','-v',str(vendor)+':/var/www/html/wp-content/plugins/woocommerce:ro','-v',str(cache/'mail-sink.php')+':/var/www/html/wp-content/mu-plugins/proof-mail-sink.php:ro','-v',str(R/'tests/wordpress')+':/proof:ro','wordpress:7.0.4-php8.3-apache');created.append(wp)
  for _ in range(60):
   try:run('docker','exec',wp,'test','-f','/var/www/html/wp-config.php');break
   except RuntimeError:time.sleep(.5)
