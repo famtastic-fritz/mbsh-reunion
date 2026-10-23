@@ -40,10 +40,21 @@ final class Famtastic_Reunion_Operations
         $checked = 0;
         $waiting = 0;
         if (function_exists('wc_get_orders')) {
+            // Preserve the former 50-order legacy recovery window; only the current
+            // mixer receives the new full-history quantity reconciliation.
+            $legacy=wc_get_orders(['status'=>['processing','completed'],'limit'=>50,'orderby'=>'date','order'=>'DESC']);
+            foreach ($legacy as $order) {
+                if (!$order instanceof WC_Order || !$order->is_paid() || Famtastic_Reunion_Portal_Wallet::current_order($order)) continue;
+                $checked++;
+                if (!$order->get_meta('_famtastic_tickets_issued',true)) {
+                    Famtastic_Reunion_Tickets::issue_for_order($order->get_id());
+                    if (!wc_get_order($order->get_id())->get_meta('_famtastic_tickets_issued',true)) $waiting++;
+                }
+            }
             for ($page=1;;$page++) {
                 $batch=wc_get_orders(['type'=>'shop_order','status'=>['processing','completed'],'limit'=>100,'page'=>$page,'paginate'=>true,'orderby'=>'ID','order'=>'ASC']);
                 foreach ($batch->orders as $order) {
-                    if (!$order instanceof WC_Order || !$order->is_paid()) continue;
+                    if (!$order instanceof WC_Order || !$order->is_paid() || !Famtastic_Reunion_Portal_Wallet::current_order($order)) continue;
                     $checked++;
                     if (Famtastic_Reunion_Portal_Wallet::current_order($order) || !$order->get_meta('_famtastic_tickets_issued',true)) {
                         Famtastic_Reunion_Tickets::issue_for_order($order->get_id());
