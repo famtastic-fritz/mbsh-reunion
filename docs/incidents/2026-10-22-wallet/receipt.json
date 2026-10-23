@@ -1,0 +1,171 @@
+{
+  "classification": "deployed",
+  "source_commit": "33edba9e202c014e9734592c4ad9c869edfe8f8f",
+  "live_base": "9d93db84796c6069833d9240f05330dadd1ca714",
+  "deployed_at": "2026-10-23T00:41:22.620739+00:00",
+  "refinements": [
+    {
+      "source_commit": "33edba9e202c014e9734592c4ad9c869edfe8f8f",
+      "target": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-operations.php",
+      "before": "a5e40e7abce82c330b1eb68aa44b8edca08a0da796148ec79d1be5d6b57f7767",
+      "after": "0cf5457ae4ca5fc1bdb36903f51ed266141ec5fcab16df95dcdd907ea2bc20dc",
+      "deployed_at": "2026-10-23T00:44:04.205430+00:00"
+    }
+  ],
+  "files": [
+    {
+      "source": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-portal-wallet.php",
+      "target": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-portal-wallet.php",
+      "before": null,
+      "after": "57a2915fb70d086a843ed73883c5b9a89a5ae1cea4734ceeabaead2c848e1038"
+    },
+    {
+      "source": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-tickets.php",
+      "target": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-tickets.php",
+      "before": "1b852c45e9ca328b47a94b3be6092d66719bc84242525c211cbdc7a03cddfde4",
+      "after": "9724ff2f83dd74a2478dab37f1da362d642acb59bde3c25dd321fd536e9b7d56"
+    },
+    {
+      "source": "wordpress/wp-content/plugins/famtastic-reunion-platform/includes/class-operations.php",
+      "target": "cms/wp-content/plugins/famtastic-reunion-platform/includes/class-operations.php",
+      "before": "fbe4932230e5067290ea39b14bce8b5c0450d1ffc99dde4b4313003a9ee0b38e",
+      "after": "0cf5457ae4ca5fc1bdb36903f51ed266141ec5fcab16df95dcdd907ea2bc20dc"
+    },
+    {
+      "source": "wordpress/wp-content/plugins/famtastic-reunion-platform/famtastic-reunion-platform.php",
+      "target": "cms/wp-content/plugins/famtastic-reunion-platform/famtastic-reunion-platform.php",
+      "before": "06889ddb0a59028dc573f4695056dcfbe4ae98e2333de263910b6487ed7d8ca1",
+      "after": "5eec67e98c9d21605ecc5160c7704daf55d58fd1652c2c6442c22e7e55978d07"
+    },
+    {
+      "source": "backend/lib/commerce-wallet.php",
+      "target": "lib/commerce-wallet.php",
+      "before": null,
+      "after": "7db8c2a833c93e1fbe774aba7e65b60e5b99329505b6c640785686785f8eca3d"
+    },
+    {
+      "source": "backend/portal/committee/action.php",
+      "target": "portal/committee/action.php",
+      "before": "7ece55245d763eda62079282a9abba49ca35073cb08ab8d66b01e7e61ed467cd",
+      "after": "493bfa3c3f6757347c5f8e1b26bca25f819782467287bafc8f694502323a390d"
+    },
+    {
+      "source": "backend/portal/tickets.php",
+      "target": "portal/tickets.php",
+      "before": "29a4918cc614f97353eb38aaebd426a2d2fde42733804ddf61e63dc2ac9fd363",
+      "after": "48ee00cb3708859e2f48aabbb25f578b895fb3d13ddd388884347e62bcaa2e16"
+    },
+    {
+      "source": "frontend/portal/js/vendor/qrcode-2.0.4.js",
+      "target": "portal/js/vendor/qrcode-2.0.4.js",
+      "before": null,
+      "after": "79ec86f82856005b1c887905cfccfcfbec3821ca61c7fd5a952faa5f778f791c"
+    },
+    {
+      "source": "frontend/portal/js/vendor/qrcode-LICENSE",
+      "target": "portal/js/vendor/qrcode-LICENSE",
+      "before": null,
+      "after": "3a850fa5f08101db6f40676c2786e10bd2cd5fff7b12ffdf1e0c434d4e49d90c"
+    },
+    {
+      "source": "frontend/portal/js/vendor/qrcode-PROVENANCE.json",
+      "target": "portal/js/vendor/qrcode-PROVENANCE.json",
+      "before": null,
+      "after": "f1dd14b4a9af95e1aec7f4c00431159cc4d305e489cbeddaec58807a691ef0a4"
+    },
+    {
+      "source": "frontend/portal/js/wallet.js",
+      "target": "portal/js/wallet.js",
+      "before": null,
+      "after": "f25b746ad4a9423d5295c5220aebec700644f1c8e37c5c77a3c0ba1ab7934b13"
+    },
+    {
+      "source": "frontend/portal/css/wallet.css",
+      "target": "portal/css/wallet.css",
+      "before": null,
+      "after": "f3c265cd00db2d427770c6a23b7bb918aa0df2cb2e5cc0cfaa97a3a823652645"
+    },
+    {
+      "source": "frontend/portal/js/portal.js",
+      "target": "portal/js/portal.js",
+      "before": "48354f5fccd4725cb80149346b5dfdc5216c6d0b1df615f11a42bab5e3d81cb4",
+      "after": "65ae214dce1fff1e8f23c59cec4938c794e843c5178babc83f4f84bf01706e47"
+    },
+    {
+      "source": "frontend/portal/index.html",
+      "target": "portal/index.html",
+      "before": "53f809c1122c0d9bd3fa5e4fe30d9cd8d121cbb811ec343f337920018731705c",
+      "after": "9c99c44b2bfec90b2cc11c0f23b946d2eafbfab705740398feaa140216b0dc91"
+    }
+  ],
+  "before_portal_exposed_commerce_admissions": 0,
+  "recovered_portal_admission_visibility": 8,
+  "new_admission_records": 0,
+  "owner_acceptance": "pending",
+  "real_customer_login": "not_observed",
+  "rollback": "Private server deployment directory contains unchanged pre-overlay backup and updated hash-guarded rollback script. No data rollback needed.",
+  "github_actions": "disabled_by_owner_policy",
+  "payment_scope": "Per-order capture and refund checks only; no balance or fundraising analytics.",
+  "reconciliation_at_initial_closeout": {
+    "mode": "apply",
+    "checked_at": "2026-10-23T00:44:07+00:00",
+    "paid_orders": 6,
+    "purchasers": 6,
+    "expected_admissions": 8,
+    "existing_admissions": 8,
+    "created_admissions": 0,
+    "portal_available_admissions": 8,
+    "verified_admissions": 4,
+    "unverified_admissions": 1,
+    "unregistered_admissions": 3,
+    "verified_purchasers": 3,
+    "unverified_purchasers": 1,
+    "unregistered_purchasers": 2,
+    "credentials_preserved": true,
+    "emails_sent": 0,
+    "exceptions": []
+  },
+  "reconciliation": {
+    "mode": "apply",
+    "checked_at": "2026-10-23T00:51:38+00:00",
+    "paid_orders": 7,
+    "purchasers": 7,
+    "expected_admissions": 9,
+    "existing_admissions": 9,
+    "created_admissions": 0,
+    "portal_available_admissions": 9,
+    "verified_admissions": 4,
+    "unverified_admissions": 2,
+    "unregistered_admissions": 3,
+    "verified_purchasers": 3,
+    "unverified_purchasers": 2,
+    "unregistered_purchasers": 2,
+    "credentials_preserved": true,
+    "emails_sent": 0,
+    "exceptions": []
+  },
+  "new_purchase_during_verification": {
+    "additional_paid_orders": 1,
+    "additional_admissions": 1,
+    "normal_issuance_observed": true,
+    "extra_backfill_records_required": 0
+  },
+  "reconciliation_messages_sent": 0,
+  "portal_access_notices": {
+    "separately_authorized": true,
+    "sender_display": "Hi-Tide Harry",
+    "theme": "Established MBSH Miami Beach reunion",
+    "registration_notices": 2,
+    "verification_notices": 2,
+    "send_count_per_purchaser": 1,
+    "provider_accepted": 4,
+    "provider_reported_delivered": 4,
+    "verification": "Normal existing 24-hour token issuance; delivered only to matching purchase/account email; no account auto-verification.",
+    "receipt_resends": 0,
+    "public_tokens_or_addresses": false
+  },
+  "final_runtime_hash_check": {
+    "files": 14,
+    "all_match": true
+  }
+}
