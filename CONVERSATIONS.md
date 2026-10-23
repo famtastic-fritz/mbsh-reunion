@@ -1,5 +1,17 @@
 # Conversation decisions
 
+## 2026-10-22 — Approved three-day nonbuyer campaign
+
+Fritz reported committee approval, reviewed and accepted all three delivered
+owner proofs, and explicitly confirmed the committee list scope covers the
+FAMtastic commercial. He authorized Friday October23 at6PM, Sunday October25
+at11AM and Monday October26 at10AM Eastern, with a fresh paid mixer buyer
+exclusion before every submission/retry. No Tuesday send is authorized.
+The three jobs are active on the production host, with genuine suppressions
+and applicable preferences honored; no global consent flags were changed.
+See [the campaign release](docs/campaigns/2026-10-23-unlock-the-night/README.md)
+for exact counts, content hashes, automatic heartbeat and delivery boundaries.
+
 ## 2026-10-22 — Repair the active ticket-submission incident
 
 Fritz requested investigation, explanation and repair of callers' repeated

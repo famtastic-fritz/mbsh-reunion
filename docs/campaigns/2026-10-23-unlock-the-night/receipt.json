@@ -1,0 +1,89 @@
+{
+  "classification": "deployed",
+  "runtime_source_revision": "06e583d48cbb0676ee17f484e220062be5cba738",
+  "activated_at": "2026-10-23T03:34:24+00:00",
+  "automatic_cron_heartbeat_at": "2026-10-23T03:35:01+00:00",
+  "timezone": "America/New_York",
+  "jobs": [
+    {
+      "id": "unlock-the-night-20261023:friday",
+      "due_utc": "2026-10-23T22:00:00Z"
+    },
+    {
+      "id": "unlock-the-night-20261023:sunday",
+      "due_utc": "2026-10-25T15:00:00Z"
+    },
+    {
+      "id": "unlock-the-night-20261023:monday",
+      "due_utc": "2026-10-26T14:00:00Z"
+    }
+  ],
+  "original_inventory": 103,
+  "additional_test_exclusions": 2,
+  "frozen_candidate_pool": 101,
+  "current_preview": {
+    "eligible": 70,
+    "paid_mixer_buyer": 9,
+    "historical_contact_preference": 21,
+    "provider_suppression": 1
+  },
+  "attendee_submissions_at_activation": 0,
+  "existing_cron_preserved": true,
+  "runtime_hashes": {
+    "campaigns/run-unlock-the-night.php": "d11164b79af7dc70a12b1c5d4e4c3db1e3da76147fcd0aa75d8a0e579a61bfde",
+    "campaigns/unlock-the-night-20261023.php": "77bbc9bc32791b9b91918c592fba07af43d48d700754b40165bea790b74d3b96",
+    "lib/campaign-audience.php": "2d2bb44e3af43db2d44f03e673431806be0cd794952377b38b5512f7f1369739",
+    "lib/campaign-worker.php": "624e5c85056d657eb2cc7838eaaa1fc999fc5fde8584ec4187f35cb9d345cec5",
+    "lib/portal-preferences.php": "7603b3fd613bf134986a503b0e8a582c9de9dd2e02eb93b113a12d376a696198"
+  },
+  "public_source_overlay": [
+    {
+      "path": "/home/nineoo/public_html/lib/portal-preferences.php",
+      "before": null,
+      "after": "7603b3fd613bf134986a503b0e8a582c9de9dd2e02eb93b113a12d376a696198"
+    },
+    {
+      "path": "/home/nineoo/public_html/portal/preferences.php",
+      "before": "c13f451b576fbcdeba79d83c9c0251465d602a8802b1daa2c2dd219479592b68",
+      "after": "34f9a8f1c64aaab10fa51a3d9cba14cae799883e4f3e31ef6e4d39f14858d983"
+    }
+  ],
+  "content_and_layout_exact_match_to_approved_proofs": true,
+  "owner_content_acceptance": "observed_pass",
+  "future_attendee_delivery": "not_yet_due",
+  "owner_proofs": [
+    {
+      "wave": "friday",
+      "html_sha256": "4e9b9b8ed00e14679bb58c80ebbd2752ff054cb2e92472ce96204f9e8694a008",
+      "status": "delivered",
+      "copies": 1
+    },
+    {
+      "wave": "sunday",
+      "html_sha256": "51db19c82de2c8f83b6da2d1f1adf1b76da0d052a7f1046ce1723321b138e582",
+      "status": "delivered",
+      "copies": 1
+    },
+    {
+      "wave": "monday",
+      "html_sha256": "fb0c4ed873df3b174b6e2227b1c098b92135a8fe202c092c95a52f353defafa9",
+      "status": "delivered",
+      "copies": 1
+    }
+  ],
+  "validation": {
+    "campaign_worker_tests": "passed",
+    "campaign_buyer_authority_tests": "passed",
+    "preference_save_and_isolation_tests": "passed",
+    "existing_backend_suite": "passed in fresh independent source clone",
+    "shared_public_shell": "passed",
+    "managed_worktree_repository_verifier": "common_directory_mismatch",
+    "independent_source_clone_verifier": "passed",
+    "github_actions": "not used; source-only policy"
+  },
+  "limitations": [
+    "Future recipient count can shrink with purchases, preference changes or suppressions.",
+    "An already provider-accepted email cannot be recalled if payment races that acceptance.",
+    "Proof delivery/approval does not establish attendee delivery or conversion."
+  ]
+}

@@ -1,5 +1,17 @@
 # Site learnings
 
+## 2026-10-22 — Campaign authority, preferences and paid state are separate
+
+An imported false promotional default is not evidence of an explicit refusal.
+Keep current campaign scope authorization separate from global opt-in flags,
+provider suppression and historical contact preferences. Record an explicit
+preference save even when values are unchanged, so later off choices can be
+honored. Refresh authoritative purchases before every submission and retry;
+freezing a recipient list in a provider days ahead cannot enforce that rule.
+The original103-address inventory also contained two additional test identities
+found in the deeper audience audit. Preserve that correction and all source
+records. Evidence: [three-day campaign](docs/campaigns/2026-10-23-unlock-the-night/README.md).
+
 ## 2026-10-22 — Verify the public entry transport before blaming payment
 
 HTTP rendered the ticket form but its POST was correctly rejected by the
