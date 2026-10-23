@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "quantity": 2,
+  "unit_price": 30,
+  "total_amount": 60,
+  "price_tier": "mixer",
+  "offer_id": "mbsh-mixer-2026-11-07-v1",
+  "replayed": true,
+  "payment_status": "attempt",
+  "http_status": 200,
+  "same_diagnostic_code": true
+}

@@ -1,5 +1,16 @@
 # Site learnings
 
+## 2026-10-22 — Verify the public entry transport before blaming payment
+
+HTTP rendered the ticket form but its POST was correctly rejected by the
+HTTPS-only origin allowlist. An expired public certificate added a separate
+barrier. Verify HTTP/www entry, certificate dates, the actual API response and
+access logs; a previously loaded Stripe form is not purchase proof. The repair
+adds canonical HTTPS routing and registers the certificate with the existing
+server renewal job. Keep the allowlist strict. See the
+[incident receipt](docs/incidents/2026-10-22-checkout/README.md) for exact overlay,
+isolated Apache coverage, hosted request/cart proof and remaining payment gates.
+
 ## 2026-10-21 - Publication-safe source candidate
 
 The held source histories are being reconciled from current remote mixer main,

@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-22",
+  "classification": "deployed",
+  "capability_id": "mbsh.mixer.purchase",
+  "source_repair": "7a236385d84f5ff1fa5b149b5fd7524f817122aa",
+  "live_base_release": "9d93db84796c6069833d9240f05330dadd1ca714",
+  "live_overlay": {
+    "path": ".htaccess",
+    "sha256_before": "8b0c2da72a2b7be83369be4c5e4f0be232eb57c5bd6705050971c761658fc62d",
+    "sha256_after": "17d4758c1dc121a28570fdb4ddefff07d230045941a0b913cc0e6eb5014aa501",
+    "all_other_manifest_files_unchanged": true
+  },
+  "root_causes": [
+    "HTTP ticket entry was not redirected to HTTPS; allowed-origin rejection returned 403 before reservation or Woo payment",
+    "Public apex/www TLS certificate expired; domain absent from existing server ACME renewal configuration"
+  ],
+  "logged_failed_http_submissions": {
+    "2026-10-20": 6,
+    "2026-10-21": 11,
+    "2026-10-22_before_probe": 18,
+    "unit": "requests, not unique people"
+  },
+  "tls": {
+    "old_expiry_utc": "2026-10-21T01:41:31Z",
+    "new_expiry_utc": "2027-01-20T22:53:05Z",
+    "new_sha256_fingerprint": "A3:17:F9:DE:60:0E:A1:8D:E2:FC:37:AB:6C:E9:64:90:94:94:76:EB:E1:EA:89:FD:39:D1:88:BB:E8:F8:CF:D6",
+    "hosts": [
+      "mbsh96reunion.com",
+      "www.mbsh96reunion.com"
+    ],
+    "external_validation": true,
+    "install_hook_executed_successfully": true,
+    "existing_daily_acme_job_configured": true,
+    "future_unattended_renewal_observed": false
+  },
+  "http_evidence": [
+    {
+      "at_utc": "2026-10-22T23:56:40Z",
+      "route": "/ticket-order.php",
+      "status": 200
+    },
+    {
+      "at_utc": "2026-10-22T23:56:41Z",
+      "route": "/cms/?wc-ajax=famtastic_ticket_add_to_cart",
+      "status": 200
+    },
+    {
+      "at_utc": "2026-10-22T23:58:16Z",
+      "route": "/ticket-order.php",
+      "status": 200,
+      "replayed": true
+    }
+  ],
+  "diagnostic_attempt": {
+    "request_rows": 1,
+    "quantity": 2,
+    "unit_price": 30,
+    "total": 60,
+    "currency": "USD",
+    "request_status": "pending",
+    "woo_attempt_status": "attempt",
+    "woo_order_id": null,
+    "email_jobs": 0,
+    "retained_for_audit": true
+  },
+  "browser": {
+    "entry": "http://mbsh96reunion.com/tickets.html#ticket-order",
+    "landed_on_secure_apex": true,
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "desktop_viewport": [
+      1280,
+      900
+    ],
+    "reduced_motion": true,
+    "required_validation_focused_name": true,
+    "keyboard_tab_reached_email": true,
+    "checkout_total": 60,
+    "payment_action_taken": false,
+    "tab_closed": true
+  },
+  "screenshot": {
+    "path": "mobile-checkout-summary.jpg",
+    "format": "JPEG",
+    "decoded_dimensions": [
+      390,
+      580
+    ],
+    "actual_viewport": [
+      390,
+      844
+    ],
+    "cropped_to_exclude_payment_details": true,
+    "sha256": "41fe9aba357b5b0b088f693ef523bc609abbd3a5b457e478d8b971712e23259b"
+  },
+  "evidence_levels": [
+    "hosted_verified for entry/request/cart/loaded checkout",
+    "local_tested for transport, security, tamper, invalid and replay cases"
+  ],
+  "provider_state": "connected_unverified for completed transaction",
+  "owner_acceptance": "pending",
+  "consumption": "not_applicable",
+  "not_performed": [
+    "card entry",
+    "Place Order",
+    "charge",
+    "refund",
+    "test email",
+    "settlement proof",
+    "receipt delivery proof",
+    "ticket issuance proof",
+    "owner purchase acceptance",
+    "legacy payment-link retirement"
+  ],
+  "github_actions": "disabled_by_owner_policy",
+  "private_evidence_directory": "/home/nineoo/.releases/mbsh-reunion/incidents/20261022-checkout",
+  "next_decision": "Fritz decides whether to authorize controlled payment-through-ticket and receipt verification."
+}

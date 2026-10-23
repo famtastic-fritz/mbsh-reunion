@@ -1,5 +1,16 @@
 # Conversation decisions
 
+## 2026-10-22 — Repair the active ticket-submission incident
+
+Fritz requested investigation, explanation and repair of callers' repeated
+“Your order could not be submitted” failure, then a report for his next decision.
+Scope covered a narrow reversible live correction, preserving the current $30
+mixer; no real charges, refunds or test email. Source repair `7a23638` fixes
+HTTPS entry and certificate renewal. One labeled unpaid diagnostic attempt
+reached the $60 two-admission checkout and was retained for audit; payment,
+receipt, ticket issuance and owner acceptance remain unverified. See the
+[incident record](docs/incidents/2026-10-22-checkout/README.md).
+
 ## 2026-10-21 - Publication-safe source candidate
 
 The held source histories are being reconciled from current remote mixer main,
