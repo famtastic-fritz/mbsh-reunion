@@ -1,0 +1,203 @@
+{
+  "verified_at": "2026-10-23T04:26:41.302570+00:00",
+  "source_commit": "3c6daed2f52c66b8fa607468c5f13687f89a6d4e",
+  "checks": [
+    {
+      "path": "/css/reunion-experience.css",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "755de5b06decf2d562c91dca80109db59ae5fb1c65f0750782057a22c70457bd"
+    },
+    {
+      "path": "/css/reunion-manual.css",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "fbb70623b5209ac0424508f1a92d83d23c01a42dffaf440b84aa297674e8ba25"
+    },
+    {
+      "path": "/js/reunion-experience-invitation.js",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "c5f2e55a24f3ed54c6d7a34c7a5e32f9a3591e1a38d75042fd395ab17ee53142"
+    },
+    {
+      "path": "/portal/css/experience.css",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "0ac24be2b0a7e72f4528bd3e6546e61c618e4fbf01a3bb2477a425eda531eef5"
+    },
+    {
+      "path": "/portal/js/admin-experience.js",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "31d25359b5a04f1bc44adb0f5a35b8179354cb194767e34b80d9ff1f8dc1ad50"
+    },
+    {
+      "path": "/portal/js/admin-trivia.js",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "3dc97cf3d6ebe672b956965aeefb466d586d28f6d0c9c4c76b1c41ac09f5188e"
+    },
+    {
+      "path": "/portal/js/committee-workspace.js",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "f41bf820464107151c01e4f15edf8148721d3e4e11e35dae0cc19da05863c9b0"
+    },
+    {
+      "path": "/portal/js/experience.js",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "0a06f9eb0f776698020babaa2fb8b6091222324dd92be254162cbe173e68e0e4"
+    },
+    {
+      "path": "/portal/js/portal-api.js",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "23edb5e2ec9ab9404f6224a2cdc09cfc7aa5e42095b03f852b79cd642be79a83"
+    },
+    {
+      "path": "/portal/js/portal.js",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "460872ef6c55f0c0fb3bb694b4febf5eb37a2312b68b6b76c6a1470641b737fd"
+    },
+    {
+      "path": "/portal/js/trivia.js",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "c8e23feaf328648ae0f27eec617a12f8da9a20042ac17cf46e2bacfa5a2e10b4"
+    },
+    {
+      "path": "/index.html",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "30a796e09c6d4b10fcfb0a39d3050b28e3019a713caa8d931dd88f018411a9c1"
+    },
+    {
+      "path": "/manual/index.html",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "44992b184222bfff69b267fe30a6c7c6729854c9c97cf3cdcd52c634a1ef03e4"
+    },
+    {
+      "path": "/portal/auth/login.html",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "2abae3b62823daf760ef928835b3f534627f487bb08d91c0e0739682024cad28"
+    },
+    {
+      "path": "/portal/auth/register.html",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "5d94a884f316e65241f84e956a6cc06694ee69ad0a66cf2ac9464f7d5f50184a"
+    },
+    {
+      "path": "/portal/committee/index.html",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "4e20c99d7e4a38e27bcdbfa584b55a0e31c6a1f195c2e17da5fa9e77e81a996a"
+    },
+    {
+      "path": "/portal/index.html",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "6d73bae3c78f98817b013cec1f5d463f23ea31570268d57b1b8f4fa123c32a2c"
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "30a796e09c6d4b10fcfb0a39d3050b28e3019a713caa8d931dd88f018411a9c1"
+    },
+    {
+      "path": "/portal/admin/",
+      "status": 200,
+      "expected_status": 200,
+      "ok": true,
+      "sha256": "4e20c99d7e4a38e27bcdbfa584b55a0e31c6a1f195c2e17da5fa9e77e81a996a"
+    },
+    {
+      "path": "/portal/experience.php",
+      "status": 401,
+      "expected_status": 401,
+      "ok": true,
+      "authentication_required": true,
+      "cache_control": "no-store, no-cache, must-revalidate"
+    },
+    {
+      "path": "/portal/guess-who.php",
+      "status": 401,
+      "expected_status": 401,
+      "ok": true,
+      "authentication_required": true,
+      "cache_control": "no-store, no-cache, must-revalidate"
+    },
+    {
+      "path": "/portal/media-file.php",
+      "status": 401,
+      "expected_status": 401,
+      "ok": true,
+      "authentication_required": true,
+      "cache_control": "no-store, no-cache, must-revalidate"
+    },
+    {
+      "path": "/portal/trivia.php",
+      "status": 401,
+      "expected_status": 401,
+      "ok": true,
+      "authentication_required": true,
+      "cache_control": "no-store, no-cache, must-revalidate"
+    },
+    {
+      "path": "/portal/suggestions.php",
+      "status": 401,
+      "expected_status": 401,
+      "ok": true,
+      "authentication_required": true,
+      "cache_control": "no-store, no-cache, must-revalidate"
+    },
+    {
+      "path": "/portal/staff/experience.php",
+      "status": 401,
+      "expected_status": 401,
+      "ok": true,
+      "authentication_required": true,
+      "cache_control": "no-store, no-cache, must-revalidate"
+    },
+    {
+      "path": "/portal/staff/trivia.php",
+      "status": 401,
+      "expected_status": 401,
+      "ok": true,
+      "authentication_required": true,
+      "cache_control": "no-store, no-cache, must-revalidate"
+    },
+    {
+      "path": "/data/trivia/1996-starter.json",
+      "status": 404,
+      "ok": true,
+      "private_bank_not_exposed": true
+    }
+  ],
+  "passed": 27,
+  "total": 27
+}

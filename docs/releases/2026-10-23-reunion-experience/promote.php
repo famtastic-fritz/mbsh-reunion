@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 // Scoped, CLI-only release operator. Run from the private immutable release package.
-if (PHP_SAPI !== 'cli' || !in_array($argv[1] ?? '', ['check', 'apply'], true)) exit(64);
+if (PHP_SAPI !== 'cli' || !in_array($argv[1] ?? '', ['check', 'apply', 'verify'], true)) exit(64);
 umask(0077);
 $release = __DIR__;
 $web = '/home/nineoo/public_html';
@@ -20,12 +20,14 @@ $checkPins = static function() use ($baseline, $campaign, $web, $actualHash): vo
 };
 try {
     $checkPins();
+    $baseMarker = '/home/nineoo/.releases/mbsh-reunion/DEPLOYED_COMMIT';
+    if (!is_readable($baseMarker) || trim(file_get_contents($baseMarker)) !== $baseline['base_deployed_commit']) throw new RuntimeException('Base release marker mismatch');
     $cronHash = hash('sha256', (string)shell_exec('crontab -l 2>/dev/null'));
     foreach ($manifest['files'] as $entry) {
         $path = $entry['path'];
         if (!preg_match('~^[a-zA-Z0-9_./-]+$~', $path) || str_contains($path, '..') || str_starts_with($path, '/')) throw new RuntimeException('Invalid release path');
         if ($actualHash($release.'/runtime/'.$path) !== $entry['after']) throw new RuntimeException('Candidate hash mismatch: '.$path);
-        if ($actualHash($web.'/'.$path) !== $entry['before']) throw new RuntimeException('Live baseline mismatch: '.$path);
+        if ($actualHash($web.'/'.$path) !== $entry[$argv[1] === 'verify' ? 'after' : 'before']) throw new RuntimeException('Live baseline mismatch: '.$path);
     }
     foreach (['bank.json','migration.sql'] as $file) {
         if ($actualHash($release.'/'.$file) !== $manifest['private_files'][$file]) throw new RuntimeException('Private candidate mismatch: '.$file);
@@ -44,6 +46,7 @@ try {
         echo json_encode(['status'=>'ready','source_commit'=>$manifest['source_commit'],'runtime_files'=>count($manifest['files']),'protected_pins'=>'matched','php'=>PHP_VERSION,'gd'=>extension_loaded('gd')], JSON_PRETTY_PRINT)."\n";
         exit;
     }
+    if ($argv[1] === 'apply') {
     if (is_file($release.'/receipt.json')) throw new RuntimeException('Release already applied');
     $snapshot = fopen($release.'/activity-before.private.jsonl', 'x');
     if (!$snapshot) throw new RuntimeException('Snapshot already exists; inspect partial release before retry');
@@ -82,13 +85,14 @@ try {
         if ($pdo->inTransaction()) $pdo->rollBack();
         $pdo->query("SELECT RELEASE_LOCK('mbsh_trivia_lifecycle')");
     }
+    }
     $q=$pdo->query("SELECT g.status,COUNT(q.id) questions FROM trivia_games g JOIN trivia_questions q ON q.game_id=g.id WHERE g.bank_key='class-of-1996-starter-v1' GROUP BY g.id,g.status");
     $draft=$q->fetch(PDO::FETCH_ASSOC);
     if (($draft['status']??'')!=='draft' || (int)($draft['questions']??0)!==30) throw new RuntimeException('Starter draft verification failed');
     $checkPins();
     if (hash('sha256',(string)shell_exec('crontab -l 2>/dev/null'))!==$cronHash) throw new RuntimeException('Cron changed during release');
     $state=json_decode(file_get_contents($campaign.'/state.private.json'),true);
-    $receipt=['release_id'=>$manifest['release_id'],'source_commit'=>$manifest['source_commit'],'deployed_at'=>gmdate('c'),'classification'=>'deployed','owner_acceptance'=>'pending','files'=>$manifest['files'],'trivia_starter'=>$draft,'private_bank_sha256'=>$actualHash($bankPath),'campaign_pins'=>'unchanged','protected_runtime'=>'unchanged','cron_sha256'=>$cronHash,'campaign_heartbeat_at'=>$state['heartbeat_at']??null,'base_deployed_commit_preserved'=>trim(file_get_contents($web.'/DEPLOYED_COMMIT'))];
+    $receipt=['release_id'=>$manifest['release_id'],'source_commit'=>$manifest['source_commit'],'deployed_at'=>gmdate('c'),'verification_mode'=>$argv[1],'classification'=>'deployed','owner_acceptance'=>'pending','files'=>$manifest['files'],'trivia_starter'=>$draft,'private_bank_sha256'=>$actualHash($bankPath),'campaign_pins'=>'unchanged','protected_runtime'=>'unchanged','cron_sha256'=>$cronHash,'campaign_heartbeat_at'=>$state['heartbeat_at']??null,'base_deployed_commit_preserved'=>trim(file_get_contents('/home/nineoo/.releases/mbsh-reunion/DEPLOYED_COMMIT'))];
     file_put_contents($release.'/receipt.json',json_encode($receipt,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)."\n");
     echo json_encode($receipt,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)."\n";
 } catch (Throwable $e) {

@@ -1,0 +1,209 @@
+{
+    "release_id": "reunion-experience-20261023",
+    "source_commit": "3c6daed2f52c66b8fa607468c5f13687f89a6d4e",
+    "deployed_at": "2026-10-23T04:26:18+00:00",
+    "verification_mode": "verify",
+    "classification": "deployed",
+    "owner_acceptance": "pending",
+    "files": [
+        {
+            "source_path": "backend/lib/reunion-experience.php",
+            "path": "lib/reunion-experience.php",
+            "before": null,
+            "after": "32788321764a244e908add50ff4c0739756a722ea333ecf23ab5f34686c86d07"
+        },
+        {
+            "source_path": "backend/lib/reunion-media.php",
+            "path": "lib/reunion-media.php",
+            "before": null,
+            "after": "14a66b7a3272acc2c2abf3310399a59ba0caad6a3f70d33b1a9ff6a0c23d6e07"
+        },
+        {
+            "source_path": "backend/lib/reunion-trivia-bank.php",
+            "path": "lib/reunion-trivia-bank.php",
+            "before": null,
+            "after": "2739e9ee05fb83e0fb34e98c5d384138470c6f8b004c246156c16ed3927dd51d"
+        },
+        {
+            "source_path": "backend/admin/portal-action.php",
+            "path": "admin/portal-action.php",
+            "before": "0b7bbafe6971a30d358358d151a28bf4a97bb46f0fe9f231c1507a7ecca98f6a",
+            "after": "4896a955b6e566188ff548b23206a51ba3f8978a7998d9f890645614843740f6"
+        },
+        {
+            "source_path": "backend/portal/committee/action.php",
+            "path": "portal/committee/action.php",
+            "before": "493bfa3c3f6757347c5f8e1b26bca25f819782467287bafc8f694502323a390d",
+            "after": "77127d2829f154a9e8168e931a4bf79e981bf30057e9dd9d54527c7d64d73e4c"
+        },
+        {
+            "source_path": "backend/portal/experience.php",
+            "path": "portal/experience.php",
+            "before": null,
+            "after": "ead82e1c85b65651932103ed1792247b84863a64b15aab1e360e1e2e405db464"
+        },
+        {
+            "source_path": "backend/portal/guess-who.php",
+            "path": "portal/guess-who.php",
+            "before": null,
+            "after": "1819e3d0b49fc024a7e5d8b347b70420cad5c412ccf6506a7ec2d2c9d0535b77"
+        },
+        {
+            "source_path": "backend/portal/media-file.php",
+            "path": "portal/media-file.php",
+            "before": null,
+            "after": "e1209804dc2e3404c99854d4f03e438ebbcff988f4dcc958d618fc0d4f7d5b4e"
+        },
+        {
+            "source_path": "backend/portal/media.php",
+            "path": "portal/media.php",
+            "before": "a33308978b9be3024daee1e99c9f9f262965415355af93ebcb73e3ef7d0820a0",
+            "after": "e542b161b9eb3af0164d8e4912b4181895a72de54d679e7a2990abac6d125425"
+        },
+        {
+            "source_path": "backend/portal/staff/experience.php",
+            "path": "portal/staff/experience.php",
+            "before": null,
+            "after": "eaa6d9ac536076cf88fae2169108898cc0084fefe686aab8185fbf8022140f2b"
+        },
+        {
+            "source_path": "backend/portal/staff/review-queue.php",
+            "path": "portal/staff/review-queue.php",
+            "before": "afed92ef7512b069bb8b553962d173c8fcad69d5079652991cdcaf4448f72683",
+            "after": "91a4f92362dcc203d969ba8950074a6fdeb9efd27c4b809ef5932fd847f1eb44"
+        },
+        {
+            "source_path": "backend/portal/staff/trivia.php",
+            "path": "portal/staff/trivia.php",
+            "before": "0028955e880c363b49b87244dd8cc9b59c3786904ec0be9b12a9b4a80e6d8c36",
+            "after": "442dc25672785e4e55323a0ec6d332946b06e5ff8d3ba5c9af96f10fedf17dce"
+        },
+        {
+            "source_path": "backend/portal/suggestions.php",
+            "path": "portal/suggestions.php",
+            "before": "755c12b9394463068819aa7a56ec62a175600fae00a6510e01125f910101f7ff",
+            "after": "344927fcc3f35dc89617108e13ddf798b62b8742a2579785944909bec9a7cd8b"
+        },
+        {
+            "source_path": "backend/portal/trivia.php",
+            "path": "portal/trivia.php",
+            "before": "f6819f51e5fd422d0a0d65111667a03bf08bf1018b0345ea582ce8b7c9572069",
+            "after": "bf1493f96808b5c6863ec71c41683c61af8f54d350584e2bba77629d7ed58c9d"
+        },
+        {
+            "source_path": "frontend/css/reunion-experience.css",
+            "path": "css/reunion-experience.css",
+            "before": null,
+            "after": "755de5b06decf2d562c91dca80109db59ae5fb1c65f0750782057a22c70457bd"
+        },
+        {
+            "source_path": "frontend/css/reunion-manual.css",
+            "path": "css/reunion-manual.css",
+            "before": "a1ceae2c387e979525df16f92d9e93e8f44192e2ee7d7fd95dbb11e849fde851",
+            "after": "fbb70623b5209ac0424508f1a92d83d23c01a42dffaf440b84aa297674e8ba25"
+        },
+        {
+            "source_path": "frontend/js/reunion-experience-invitation.js",
+            "path": "js/reunion-experience-invitation.js",
+            "before": null,
+            "after": "c5f2e55a24f3ed54c6d7a34c7a5e32f9a3591e1a38d75042fd395ab17ee53142"
+        },
+        {
+            "source_path": "frontend/portal/css/experience.css",
+            "path": "portal/css/experience.css",
+            "before": null,
+            "after": "0ac24be2b0a7e72f4528bd3e6546e61c618e4fbf01a3bb2477a425eda531eef5"
+        },
+        {
+            "source_path": "frontend/portal/js/admin-experience.js",
+            "path": "portal/js/admin-experience.js",
+            "before": null,
+            "after": "31d25359b5a04f1bc44adb0f5a35b8179354cb194767e34b80d9ff1f8dc1ad50"
+        },
+        {
+            "source_path": "frontend/portal/js/admin-trivia.js",
+            "path": "portal/js/admin-trivia.js",
+            "before": "b7c3ef55e8b5cccd1efa79bcac3b55f1c9963c2331645c3b67a1a2c86c043427",
+            "after": "3dc97cf3d6ebe672b956965aeefb466d586d28f6d0c9c4c76b1c41ac09f5188e",
+            "source_baseline_before": "c5ffefa73862ede17589173d9e8e302f3101a80eedb6948ce205329a5866b0f0",
+            "live_before_source_commit": "c57e79289ba1d9e8a954f82dde2a5aa0c931bc91",
+            "reconciliation": "Live retained the older sample-ticket mascot path; exact historical source match. Remaining content matches62f714c. Candidate uses existing reviewed-source asset."
+        },
+        {
+            "source_path": "frontend/portal/js/committee-workspace.js",
+            "path": "portal/js/committee-workspace.js",
+            "before": "dfb70921333ef28333b56021f8fb951b3f8f7d3655a341692b9b282a2a16a8cc",
+            "after": "f41bf820464107151c01e4f15edf8148721d3e4e11e35dae0cc19da05863c9b0"
+        },
+        {
+            "source_path": "frontend/portal/js/experience.js",
+            "path": "portal/js/experience.js",
+            "before": null,
+            "after": "0a06f9eb0f776698020babaa2fb8b6091222324dd92be254162cbe173e68e0e4"
+        },
+        {
+            "source_path": "frontend/portal/js/portal-api.js",
+            "path": "portal/js/portal-api.js",
+            "before": "7ea8c5fbb44b26b15a1ff2bcd08b3afe6b970a6967a7a6b092065df12df1ef49",
+            "after": "23edb5e2ec9ab9404f6224a2cdc09cfc7aa5e42095b03f852b79cd642be79a83"
+        },
+        {
+            "source_path": "frontend/portal/js/portal.js",
+            "path": "portal/js/portal.js",
+            "before": "65ae214dce1fff1e8f23c59cec4938c794e843c5178babc83f4f84bf01706e47",
+            "after": "460872ef6c55f0c0fb3bb694b4febf5eb37a2312b68b6b76c6a1470641b737fd"
+        },
+        {
+            "source_path": "frontend/portal/js/trivia.js",
+            "path": "portal/js/trivia.js",
+            "before": "9b8be7417945f372365dd4faa2cdcd89cf8426a8e04b2ecf27b2de23755c699d",
+            "after": "c8e23feaf328648ae0f27eec617a12f8da9a20042ac17cf46e2bacfa5a2e10b4"
+        },
+        {
+            "source_path": "frontend/index.html",
+            "path": "index.html",
+            "before": "649b0024bd285827318219012189efe72c4a131b6f27c40ad9b35a7df357ae70",
+            "after": "30a796e09c6d4b10fcfb0a39d3050b28e3019a713caa8d931dd88f018411a9c1"
+        },
+        {
+            "source_path": "frontend/manual/index.html",
+            "path": "manual/index.html",
+            "before": "1871600c782300c958e1875d455b831d024bed567137fb645cf4ade89ea8b4f3",
+            "after": "44992b184222bfff69b267fe30a6c7c6729854c9c97cf3cdcd52c634a1ef03e4"
+        },
+        {
+            "source_path": "frontend/portal/auth/login.html",
+            "path": "portal/auth/login.html",
+            "before": "1d933306092df3b3b65dcf00446e24218ba555b5df9b1f1a0c86f9114b691590",
+            "after": "2abae3b62823daf760ef928835b3f534627f487bb08d91c0e0739682024cad28"
+        },
+        {
+            "source_path": "frontend/portal/auth/register.html",
+            "path": "portal/auth/register.html",
+            "before": "8df5d0cd98ed32c7f4c73cb94f7bb378c2ed77e5e1a39bab2f8e48d1e5c8ba74",
+            "after": "5d94a884f316e65241f84e956a6cc06694ee69ad0a66cf2ac9464f7d5f50184a"
+        },
+        {
+            "source_path": "frontend/portal/committee/index.html",
+            "path": "portal/committee/index.html",
+            "before": "58f6280ec48261a2d31bb2f7a930b6cb1c23618069934c06f6d162b7cc108f8a",
+            "after": "4e20c99d7e4a38e27bcdbfa584b55a0e31c6a1f195c2e17da5fa9e77e81a996a"
+        },
+        {
+            "source_path": "frontend/portal/index.html",
+            "path": "portal/index.html",
+            "before": "9c99c44b2bfec90b2cc11c0f23b946d2eafbfab705740398feaa140216b0dc91",
+            "after": "6d73bae3c78f98817b013cec1f5d463f23ea31570268d57b1b8f4fa123c32a2c"
+        }
+    ],
+    "trivia_starter": {
+        "status": "draft",
+        "questions": 30
+    },
+    "private_bank_sha256": "9de3ea8763c29c7eb92c361cc005edf50c2abb29977dff8788b140c6f5915483",
+    "campaign_pins": "unchanged",
+    "protected_runtime": "unchanged",
+    "cron_sha256": "715a12632cb57f03561e818894ded71b6f9d884e58a4973f235b75009c72ecde",
+    "campaign_heartbeat_at": "2026-10-23T04:26:02+00:00",
+    "base_deployed_commit_preserved": "9d93db84796c6069833d9240f05330dadd1ca714"
+}

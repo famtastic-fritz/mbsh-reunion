@@ -1,0 +1,40 @@
+PASS portal security primitives
+PASS 36 reunion experience validation, scoring and private derivative checks
+PASS mixer offer: signed versioned tokens, stale carts/orders, $30 totals, fail-closed catalog and fee mismatch
+PASS offline email rendering, escaping, invalid states, creator credit, and main payment-link expiry
+PASS no early send
+PASS durable record precedes provider
+PASS exact UTC Friday due
+PASS replay sends no duplicate
+PASS purchase between waves suppresses Sunday
+PASS new suppression blocks Monday
+PASS durable record precedes provider
+PASS unknown result enters bounded retry
+PASS retry waits until backoff
+PASS durable record precedes provider
+PASS retry preserves exact payload and idempotency key
+PASS durable record precedes provider
+PASS purchase before retry prevents submission
+PASS late worker does not compress campaign cadence
+PASS held manifest never submits
+PASS durable record precedes provider
+PASS durable record precedes provider
+PASS durable record precedes provider
+PASS durable record precedes provider
+PASS durable record precedes provider
+PASS five failed attempts enter dead-letter state
+PASS durable record precedes provider
+PASS durable record precedes provider
+PASS crash recovery retains provider deduplication key
+PASS tampered recipient identity fails closed
+PASS nonbuyer initially allowed
+PASS abandoned request is not a purchase
+PASS new payment read immediately without frozen buyer list
+PASS other product does not count as current mixer
+PASS former paid buyer remains suppressed after refund
+PASS verified linked purchase identity excluded
+PASS unverified alias does not borrow purchase identity
+PASS no guessed Gmail-style identity merges
+PASS purchase authority refreshed for every check
+PASS explicit unchanged off preference records save time; other account preserved
+PASS PHP syntax

@@ -1,0 +1,46 @@
+
+> site-mbsh-reunion@1.0.0 test
+> node --test tests/frontend/*.test.mjs tests/backend/commerce-contract.test.mjs
+
+PASS commerce incident contract
+✔ tests/backend/commerce-contract.test.mjs (68.553792ms)
+PASS analytics contract (5 confirmed outcomes)
+✔ tests/frontend/analytics-contract.test.mjs (58.231584ms)
+PASS creator credit: final static row, original asset, source-only attribution, no JS dependency
+✔ tests/frontend/creator-credit.test.mjs (158.617459ms)
+PASS email credit: unchanged dynamic content, absolute image URL, idempotent final row; no mail sent
+✔ tests/frontend/email-creator-credit.test.mjs (316.581292ms)
+PASS local preview: no purchaser entry or payment requests; quantity review and production entry preserved
+✔ tests/frontend/mixer-preview.test.mjs (78.13575ms)
+PASS mixer content: six active routes, event times/offer schema, duplicate metadata, portal retirement and actual EST countdown
+✔ tests/frontend/mixer-update.test.mjs (55.129208ms)
+portal contract: PASS
+✔ tests/frontend/portal-contract.test.mjs (57.904833ms)
+✔ public ticket path survives anonymous, failed and non-entitled checks (5.820375ms)
+✔ only explicit live entitlement changes public CTA to private experience (0.984167ms)
+✔ announcement stays nonmodal, remembered and restricted to homepage (0.91175ms)
+✔ public benefits and purchase path are present without JavaScript (0.40575ms)
+✔ new writes use same-origin session CSRF and preserve exact payload (19.521667ms)
+✔ server entitlement failure is readable and not converted to success (0.624042ms)
+✔ registered nonbuyer remains gated but can retrieve own entry for withdrawal (0.926375ms)
+✔ entitled activity view never exposes Guess Who identity before reveal (0.915708ms)
+✔ published Guess Who view renders reveal and no guessing controls (0.33725ms)
+✔ network failure stays readable and never automatically retries a write (0.466875ms)
+✔ hidden chatbot modal does not block notice, but a visible modal does (1.990958ms)
+PASS reunion manual contract
+✔ tests/frontend/reunion-manual-contract.test.mjs (43.888ms)
+PASS reunion navigator contract
+✔ tests/frontend/reunion-navigator-contract.test.mjs (32.471542ms)
+✔ tests/frontend/sample-ticket-contract.test.mjs (65.37ms)
+SEO contract PASS: 6 public routes, 6 sitemap URLs, private portal excluded.
+✔ tests/frontend/seo-contract.test.mjs (73.488167ms)
+PASS shared public shell contract (7 pages)
+✔ tests/frontend/shared-public-shell.test.mjs (57.860375ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 336.362

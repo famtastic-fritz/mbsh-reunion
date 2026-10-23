@@ -1,0 +1,16 @@
+file:///Users/famtastic-fritz/.codex/worktrees/f413/site-mbsh-reunion/.famtastic/site-foundation/git.js:6
+export function fail(code, message) { return Object.assign(new Error(message), { code, statusCode: 409 }); }
+                                                           ^
+
+Error: The worktree common directory is not owned by this customer site
+    at fail (file:///Users/famtastic-fritz/.codex/worktrees/f413/site-mbsh-reunion/.famtastic/site-foundation/git.js:6:60)
+    at preflightRepository (file:///Users/famtastic-fritz/.codex/worktrees/f413/site-mbsh-reunion/.famtastic/site-foundation/git.js:70:56)
+    at file:///Users/famtastic-fritz/.codex/worktrees/f413/site-mbsh-reunion/.famtastic/verify-repository.mjs:5:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  code: 'common_directory_mismatch',
+  statusCode: 409
+}
+
+Node.js v24.19.0

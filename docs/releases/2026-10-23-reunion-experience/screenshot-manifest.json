@@ -36,5 +36,43 @@
       "mime": "image/jpeg"
     },
     "sha256": "3f751006606848701b6b7833beed5ed113f2daf46b2256f225e36049623d83ca"
+  },
+  {
+    "file": "screenshots/live-home-phone.jpg",
+    "route": "https://mbsh96reunion.com/#reunion-experience",
+    "role": "anonymous visitor",
+    "environment": "production HTTPS",
+    "captured_date": "2026-10-23",
+    "release_id": "reunion-experience-20261023",
+    "revision": "3c6daed2f52c66b8fa607468c5f13687f89a6d4e",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "decoded_image": {
+      "width": 375,
+      "height": 812,
+      "mime": "image/jpeg"
+    },
+    "sha256": "d3336a8b45d5017a9d5392b294d0d4d4d25cd3995660a69b90f38f81a99f9df9"
+  },
+  {
+    "file": "screenshots/live-guide-phone.jpg",
+    "route": "https://mbsh96reunion.com/manual/#ticket-holder-games",
+    "role": "anonymous visitor",
+    "environment": "production HTTPS",
+    "captured_date": "2026-10-23",
+    "release_id": "reunion-experience-20261023",
+    "revision": "3c6daed2f52c66b8fa607468c5f13687f89a6d4e",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "decoded_image": {
+      "width": 375,
+      "height": 812,
+      "mime": "image/jpeg"
+    },
+    "sha256": "e278b09db68b9b7dfb80dcac395f779d8814312104b1d29a2b8d14df5edcba23"
   }
 ]

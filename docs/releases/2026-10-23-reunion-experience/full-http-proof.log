@@ -1,0 +1,16 @@
+PASS isolated WordPress setup; no imported settings or real recipients
+PASS isolated $30 WooCommerce catalog
+PASS real WooCommerce AJAX: legacy-token rejection, signed mixer add, duplicate replay, one cart line, $60 final total, tampered quantity rejection
+PASS isolated receipt: unpaid-order suppression; paid notice queued; synthetic recipient/current-event content; mocked provider failure retained error; retry preserves idempotency key; success and duplicate suppression. No outbound mail.
+PASS real WooCommerce 11.0.1: signed AJAX bridge + ledger; $60 two-ticket order; simulated paid lifecycle; exactly-once issuance; partial/full refund and replay; failed-order isolation; stale/extra-fee payment guards. External provider and mail blocked.
+PASS wallet fixtures: paid quantity, stable credentials/replay, failed/unpaid, partial/full refund, manual revoke, failed fulfillment and retry.
+PASS HTTP wallet: real registration/verification/login, unverified/anonymous denial, two admissions after purchase-before-account, cross-account/query exclusion, staff capability/CSRF/credential check-in and duplicate rejection; no financial calls or outbound mail.
+PASS isolated experience fixtures created; no provider called.
+PASS entitlement: anonymous/unverified/unpaid denied; actual paid and checked-in admissions accepted; CSRF and ordinary staff denial.
+PASS song/game queues: real persistence, stable retry, cross-account denial, committee statuses returned to attendee.
+PASS Guess Who: consent, edit/withdraw/resubmit, committee selection, secret answers, one-guess replay protection, own-card denial, delayed reveal, server score and shared tie.
+PASS trivia: ordered server scoring, retries, no duplicate answers, frozen questions, closed-round denial, ties/published results, 30-source-question draft import without duplicate.
+PASS media: real private upload, MIME rejection, stable retry, pending invisibility, staff capability, approved JPEG derivative, cross-account protection and withdrawal.
+PASS roles/refund/audit: member restricted, refunded admission loses participation without losing account; consent withdrawal after refund removes published round; mutations audited and no activity emails queued.
+PASS full isolated experience HTTP journeys; synthetic identities only, provider network blocked.
+Retained isolated wallet proof at http://127.0.0.1:8977/portal/ for browser validation

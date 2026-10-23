@@ -1,0 +1,3 @@
+The initial preflight correctly stopped on one historical mascot path; reconciled exact c57e792 live hash before any runtime/database mutation.
+The initial apply promoted all31 runtimefiles, completed additive migration and30-question draft seed, and passed campaign/cron verification. Receipt writing then failed because the base DEPLOYED_COMMIT marker was read from the webroot instead of the private releases root. Corrected the bookkeeping path, added verify-only mode, and reverified the deployed hashes/draft/pins without repeating migration or seed.
+An attempted redundant event check used a nonexistent script name; corrected to node scripts/sync-event-config.mjs --check, PASS.

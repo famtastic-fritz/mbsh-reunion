@@ -1,0 +1,19 @@
+{
+  "backend/admin/portal-action.php": "4896a955b6e566188ff548b23206a51ba3f8978a7998d9f890645614843740f6",
+  "backend/portal/committee/action.php": "77127d2829f154a9e8168e931a4bf79e981bf30057e9dd9d54527c7d64d73e4c",
+  "backend/portal/media.php": "e542b161b9eb3af0164d8e4912b4181895a72de54d679e7a2990abac6d125425",
+  "backend/portal/staff/review-queue.php": "91a4f92362dcc203d969ba8950074a6fdeb9efd27c4b809ef5932fd847f1eb44",
+  "backend/portal/staff/trivia.php": "442dc25672785e4e55323a0ec6d332946b06e5ff8d3ba5c9af96f10fedf17dce",
+  "backend/portal/suggestions.php": "344927fcc3f35dc89617108e13ddf798b62b8742a2579785944909bec9a7cd8b",
+  "backend/portal/trivia.php": "bf1493f96808b5c6863ec71c41683c61af8f54d350584e2bba77629d7ed58c9d",
+  "backend/lib/reunion-experience.php": "32788321764a244e908add50ff4c0739756a722ea333ecf23ab5f34686c86d07",
+  "backend/lib/reunion-media.php": "14a66b7a3272acc2c2abf3310399a59ba0caad6a3f70d33b1a9ff6a0c23d6e07",
+  "backend/lib/reunion-trivia-bank.php": "2739e9ee05fb83e0fb34e98c5d384138470c6f8b004c246156c16ed3927dd51d",
+  "backend/migrations/20261023_reunion_experience.sql": "7faba42e88622563c5b827409e164cc61b745a536809eeaf94ddb92f7abe6d91",
+  "backend/portal/experience.php": "ead82e1c85b65651932103ed1792247b84863a64b15aab1e360e1e2e405db464",
+  "backend/portal/guess-who.php": "1819e3d0b49fc024a7e5d8b347b70420cad5c412ccf6506a7ec2d2c9d0535b77",
+  "backend/portal/media-file.php": "e1209804dc2e3404c99854d4f03e438ebbcff988f4dcc958d618fc0d4f7d5b4e",
+  "backend/portal/staff/experience.php": "eaa6d9ac536076cf88fae2169108898cc0084fefe686aab8185fbf8022140f2b",
+  "tests/backend/reunion_experience_test.php": "0633d66869d61b7b91f52309a8e6fc6f49ad5543d3e659bdf48e64b076e46882",
+  "tests/backend/run.sh": "d82c60baf1e021ba673846db7ccfa6bdea2282df1a26da6b4eaa1a2c0dc54504"
+}

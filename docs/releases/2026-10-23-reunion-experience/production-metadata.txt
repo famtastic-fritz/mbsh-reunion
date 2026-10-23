@@ -1,0 +1,7 @@
+04e73949d0ec5ab2f6c952ed4acb2bc58b713180d2fe970c71b70dfaf583a723  activity-before.private.jsonl
+ca3622e8293bfeedc8dc3a6120c0a8c690f03e322c39ddeefd92e0ee47b50279  verify-release.php
+8dc7f47a9fd52f4b7f37934ca864d39872c5fc641b9b4da0b969533b3424a5c9  receipt.json
+816	.
+600 activity-before.private.jsonl
+600 /home/nineoo/data/trivia/1996-starter.json
+PASS production PHP syntax: 14 files
